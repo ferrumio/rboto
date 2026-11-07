@@ -57540,6 +57540,848 @@ impl PyOperationValidateCloudConnectorOutput {
     }
 }
 
+fn invalid_item_content_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::InvalidItemContentException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.type_name {
+        let detail_8256 = (value).as_str().into_py_any(py)?;
+        result.set_item("type_name", detail_8256)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn item_content_mismatch_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ItemContentMismatchException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.type_name {
+        let detail_8257 = (value).as_str().into_py_any(py)?;
+        result.set_item("type_name", detail_8257)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn item_size_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ItemSizeLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.type_name {
+        let detail_8258 = (value).as_str().into_py_any(py)?;
+        result.set_item("type_name", detail_8258)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ops_item_already_exists_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::OpsItemAlreadyExistsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.ops_item_id {
+        let detail_8259 = (value).as_str().into_py_any(py)?;
+        result.set_item("ops_item_id", detail_8259)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ops_item_invalid_parameter_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::OpsItemInvalidParameterException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.parameter_names {
+        let detail_8260_list = PyList::empty(py);
+        for item_8261 in value {
+            let converted_item_8262 = (item_8261).as_str().into_py_any(py)?;
+            detail_8260_list.append(converted_item_8262)?;
+        }
+        let detail_8260 = detail_8260_list.into_any().unbind();
+        result.set_item("parameter_names", detail_8260)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ops_item_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::OpsItemLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_types {
+        let detail_8263_list = PyList::empty(py);
+        for item_8264 in value {
+            let converted_item_8265 = (item_8264).as_str().into_py_any(py)?;
+            detail_8263_list.append(converted_item_8265)?;
+        }
+        let detail_8263 = detail_8263_list.into_any().unbind();
+        result.set_item("resource_types", detail_8263)?;
+    }
+    let detail_8266 = (&value.limit).to_owned().into_py_any(py)?;
+    result.set_item("limit", detail_8266)?;
+    if let Some(value) = &value.limit_type {
+        let detail_8267 = (value).as_str().into_py_any(py)?;
+        result.set_item("limit_type", detail_8267)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ops_item_related_item_already_exists_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::OpsItemRelatedItemAlreadyExistsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_uri {
+        let detail_8268 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_uri", detail_8268)?;
+    }
+    if let Some(value) = &value.ops_item_id {
+        let detail_8269 = (value).as_str().into_py_any(py)?;
+        result.set_item("ops_item_id", detail_8269)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_data_sync_already_exists_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ResourceDataSyncAlreadyExistsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.sync_name {
+        let detail_8270 = (value).as_str().into_py_any(py)?;
+        result.set_item("sync_name", detail_8270)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_data_sync_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ResourceDataSyncNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.sync_name {
+        let detail_8271 = (value).as_str().into_py_any(py)?;
+        result.set_item("sync_name", detail_8271)?;
+    }
+    if let Some(value) = &value.sync_type {
+        let detail_8272 = (value).as_str().into_py_any(py)?;
+        result.set_item("sync_type", detail_8272)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_policy_invalid_parameter_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ResourcePolicyInvalidParameterException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.parameter_names {
+        let detail_8273_list = PyList::empty(py);
+        for item_8274 in value {
+            let converted_item_8275 = (item_8274).as_str().into_py_any(py)?;
+            detail_8273_list.append(converted_item_8275)?;
+        }
+        let detail_8273 = detail_8273_list.into_any().unbind();
+        result.set_item("parameter_names", detail_8273)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_policy_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ResourcePolicyLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_8276 = (&value.limit).to_owned().into_py_any(py)?;
+    result.set_item("limit", detail_8276)?;
+    if let Some(value) = &value.limit_type {
+        let detail_8277 = (value).as_str().into_py_any(py)?;
+        result.set_item("limit_type", detail_8277)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_id {
+        let detail_8278 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_id", detail_8278)?;
+    }
+    if let Some(value) = &value.resource_type {
+        let detail_8279 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_type", detail_8279)?;
+    }
+    let detail_8280 = (&value.quota_code).as_str().into_py_any(py)?;
+    result.set_item("quota_code", detail_8280)?;
+    let detail_8281 = (&value.service_code).as_str().into_py_any(py)?;
+    result.set_item("service_code", detail_8281)?;
+    Ok(result.into_any().unbind())
+}
+
+fn throttling_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ThrottlingException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.quota_code {
+        let detail_8282 = (value).as_str().into_py_any(py)?;
+        result.set_item("quota_code", detail_8282)?;
+    }
+    if let Some(value) = &value.service_code {
+        let detail_8283 = (value).as_str().into_py_any(py)?;
+        result.set_item("service_code", detail_8283)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn unsupported_inventory_item_context_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::UnsupportedInventoryItemContextException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.type_name {
+        let detail_8284 = (value).as_str().into_py_any(py)?;
+        result.set_item("type_name", detail_8284)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn validation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_ssm::types::error::ValidationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.reason_code {
+        let detail_8285 = (value).as_str().into_py_any(py)?;
+        result.set_item("reason_code", detail_8285)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::add_tags_to_resource::AddTagsToResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::associate_ops_item_related_item::AssociateOpsItemRelatedItemError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            Self::OpsItemLimitExceededException(value) => {
+                ops_item_limit_exceeded_exception_error_details(py, value)
+            }
+            Self::OpsItemRelatedItemAlreadyExistsException(value) => {
+                ops_item_related_item_already_exists_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_command::CancelCommandError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_maintenance_window_execution::CancelMaintenanceWindowExecutionError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_activation::CreateActivationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_association::CreateAssociationError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::create_association_batch::CreateAssociationBatchError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::create_cloud_connector::CreateCloudConnectorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_document::CreateDocumentError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::create_maintenance_window::CreateMaintenanceWindowError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_item::CreateOpsItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemAlreadyExistsException(value) => {
+                ops_item_already_exists_exception_error_details(py, value)
+            }
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            Self::OpsItemLimitExceededException(value) => {
+                ops_item_limit_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_metadata::CreateOpsMetadataError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::create_patch_baseline::CreatePatchBaselineError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::create_resource_data_sync::CreateResourceDataSyncError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncAlreadyExistsException(value) => {
+                resource_data_sync_already_exists_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_activation::DeleteActivationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_association::DeleteAssociationError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::delete_cloud_connector::DeleteCloudConnectorError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_document::DeleteDocumentError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_inventory::DeleteInventoryError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::delete_maintenance_window::DeleteMaintenanceWindowError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_item::DeleteOpsItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_metadata::DeleteOpsMetadataError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameter::DeleteParameterError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameters::DeleteParametersError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::delete_patch_baseline::DeletePatchBaselineError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::delete_resource_data_sync::DeleteResourceDataSyncError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncNotFoundException(value) => {
+                resource_data_sync_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourcePolicyInvalidParameterException(value) => {
+                resource_policy_invalid_parameter_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::deregister_managed_instance::DeregisterManagedInstanceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_patch_baseline_for_patch_group::DeregisterPatchBaselineForPatchGroupError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_target_from_maintenance_window::DeregisterTargetFromMaintenanceWindowError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_task_from_maintenance_window::DeregisterTaskFromMaintenanceWindowError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_activations::DescribeActivationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_association::DescribeAssociationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_association_execution_targets::DescribeAssociationExecutionTargetsError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_association_executions::DescribeAssociationExecutionsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_automation_executions::DescribeAutomationExecutionsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_automation_step_executions::DescribeAutomationStepExecutionsError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_available_patches::DescribeAvailablePatchesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_document::DescribeDocumentError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_document_permission::DescribeDocumentPermissionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_instance_associations::DescribeEffectiveInstanceAssociationsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_patches_for_patch_baseline::DescribeEffectivePatchesForPatchBaselineError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_associations_status::DescribeInstanceAssociationsStatusError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_instance_information::DescribeInstanceInformationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_instance_patch_states::DescribeInstancePatchStatesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_patch_states_for_patch_group::DescribeInstancePatchStatesForPatchGroupError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_instance_patches::DescribeInstancePatchesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_instance_properties::DescribeInstancePropertiesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_inventory_deletions::DescribeInventoryDeletionsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_task_invocations::DescribeMaintenanceWindowExecutionTaskInvocationsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_tasks::DescribeMaintenanceWindowExecutionTasksError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_executions::DescribeMaintenanceWindowExecutionsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_schedule::DescribeMaintenanceWindowScheduleError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_targets::DescribeMaintenanceWindowTargetsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_tasks::DescribeMaintenanceWindowTasksError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_maintenance_windows::DescribeMaintenanceWindowsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_windows_for_target::DescribeMaintenanceWindowsForTargetError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_ops_items::DescribeOpsItemsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_parameters::DescribeParametersError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_patch_baselines::DescribePatchBaselinesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_patch_group_state::DescribePatchGroupStateError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_patch_groups::DescribePatchGroupsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::describe_patch_properties::DescribePatchPropertiesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_sessions::DescribeSessionsError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::disassociate_ops_item_related_item::DisassociateOpsItemRelatedItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemInvalidParameterException(value) => ops_item_invalid_parameter_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_access_token::GetAccessTokenError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_automation_execution::GetAutomationExecutionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_calendar_state::GetCalendarStateError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_cloud_connector::GetCloudConnectorError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_command_invocation::GetCommandInvocationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_connection_status::GetConnectionStatusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_default_patch_baseline::GetDefaultPatchBaselineError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_deployable_patch_snapshot_for_instance::GetDeployablePatchSnapshotForInstanceError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_document::GetDocumentError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_execution_preview::GetExecutionPreviewError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory::GetInventoryError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory_schema::GetInventorySchemaError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_maintenance_window::GetMaintenanceWindowError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_maintenance_window_execution::GetMaintenanceWindowExecutionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task::GetMaintenanceWindowExecutionTaskError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task_invocation::GetMaintenanceWindowExecutionTaskInvocationError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_maintenance_window_task::GetMaintenanceWindowTaskError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_item::GetOpsItemError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_metadata::GetOpsMetadataError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_summary::GetOpsSummaryError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncNotFoundException(value) => {
+                resource_data_sync_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameter::GetParameterError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_parameter_history::GetParameterHistoryError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameters::GetParametersError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_parameters_by_path::GetParametersByPathError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline::GetPatchBaselineError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline_for_patch_group::GetPatchBaselineForPatchGroupError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::get_resource_policies::GetResourcePoliciesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourcePolicyInvalidParameterException(value) => {
+                resource_policy_invalid_parameter_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_service_setting::GetServiceSettingError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::label_parameter_version::LabelParameterVersionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_association_versions::ListAssociationVersionsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_associations::ListAssociationsError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_cloud_connectors::ListCloudConnectorsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_command_invocations::ListCommandInvocationsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_commands::ListCommandsError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_compliance_items::ListComplianceItemsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_compliance_summaries::ListComplianceSummariesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_document_metadata_history::ListDocumentMetadataHistoryError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_document_versions::ListDocumentVersionsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_documents::ListDocumentsError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_inventory_entries::ListInventoryEntriesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes::ListNodesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncNotFoundException(value) => {
+                resource_data_sync_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes_summary::ListNodesSummaryError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncNotFoundException(value) => {
+                resource_data_sync_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_item_events::ListOpsItemEventsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            Self::OpsItemLimitExceededException(value) => {
+                ops_item_limit_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_ops_item_related_items::ListOpsItemRelatedItemsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_metadata::ListOpsMetadataError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_resource_compliance_summaries::ListResourceComplianceSummariesError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_resource_data_sync::ListResourceDataSyncError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::modify_document_permission::ModifyDocumentPermissionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::put_compliance_items::PutComplianceItemsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidItemContentException(value) => {
+                invalid_item_content_exception_error_details(py, value)
+            }
+            Self::ItemSizeLimitExceededException(value) => {
+                item_size_limit_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::put_inventory::PutInventoryError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidItemContentException(value) => {
+                invalid_item_content_exception_error_details(py, value)
+            }
+            Self::ItemContentMismatchException(value) => {
+                item_content_mismatch_exception_error_details(py, value)
+            }
+            Self::ItemSizeLimitExceededException(value) => {
+                item_size_limit_exceeded_exception_error_details(py, value)
+            }
+            Self::UnsupportedInventoryItemContextException(value) => {
+                unsupported_inventory_item_context_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::put_parameter::PutParameterError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::put_resource_policy::PutResourcePolicyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourcePolicyInvalidParameterException(value) => {
+                resource_policy_invalid_parameter_exception_error_details(py, value)
+            }
+            Self::ResourcePolicyLimitExceededException(value) => {
+                resource_policy_limit_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::register_default_patch_baseline::RegisterDefaultPatchBaselineError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_patch_baseline_for_patch_group::RegisterPatchBaselineForPatchGroupError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_target_with_maintenance_window::RegisterTargetWithMaintenanceWindowError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_task_with_maintenance_window::RegisterTaskWithMaintenanceWindowError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::remove_tags_from_resource::RemoveTagsFromResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::reset_service_setting::ResetServiceSettingError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::resume_session::ResumeSessionError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::send_automation_signal::SendAutomationSignalError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::send_command::SendCommandError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::start_access_request::StartAccessRequestError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::start_associations_once::StartAssociationsOnceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::start_automation_execution::StartAutomationExecutionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::start_change_request_execution::StartChangeRequestExecutionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::start_execution_preview::StartExecutionPreviewError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::start_session::StartSessionError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::stop_automation_execution::StopAutomationExecutionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::terminate_session::TerminateSessionError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::unlabel_parameter_version::UnlabelParameterVersionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_association::UpdateAssociationError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_association_status::UpdateAssociationStatusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_cloud_connector::UpdateCloudConnectorError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_document::UpdateDocumentError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_document_default_version::UpdateDocumentDefaultVersionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_document_metadata::UpdateDocumentMetadataError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_maintenance_window::UpdateMaintenanceWindowError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_maintenance_window_target::UpdateMaintenanceWindowTargetError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_maintenance_window_task::UpdateMaintenanceWindowTaskError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_managed_instance_role::UpdateManagedInstanceRoleError
+{
+}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_item::UpdateOpsItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::OpsItemAlreadyExistsException(value) => {
+                ops_item_already_exists_exception_error_details(py, value)
+            }
+            Self::OpsItemInvalidParameterException(value) => {
+                ops_item_invalid_parameter_exception_error_details(py, value)
+            }
+            Self::OpsItemLimitExceededException(value) => {
+                ops_item_limit_exceeded_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_metadata::UpdateOpsMetadataError {}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_patch_baseline::UpdatePatchBaselineError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_resource_data_sync::UpdateResourceDataSyncError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceDataSyncNotFoundException(value) => {
+                resource_data_sync_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::update_service_setting::UpdateServiceSettingError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_ssm::operation::validate_cloud_connector::ValidateCloudConnectorError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccountSharingInfo>()?;
     module.add_class::<PyActivation>()?;
@@ -57976,20 +58818,24 @@ impl SSMClient {
                 .set_resource_type(resource_type_value)
                 .set_resource_id(resource_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AddTagsToResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AddTagsToResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAddTagsToResourceOutput { inner: output })
         })
@@ -58091,20 +58937,24 @@ impl SSMClient {
                 .set_association_type(association_type_value)
                 .set_resource_type(resource_type_value)
                 .set_resource_uri(resource_uri_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AssociateOpsItemRelatedItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssociateOpsItemRelatedItem",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAssociateOpsItemRelatedItemOutput { inner: output })
         })
@@ -58187,20 +59037,19 @@ impl SSMClient {
                 .cancel_command()
                 .set_command_id(command_id_value)
                 .set_instance_ids(instance_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelCommand"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CancelCommand", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCancelCommandOutput { inner: output })
         })
@@ -58240,20 +59089,24 @@ impl SSMClient {
             let request = client
                 .cancel_maintenance_window_execution()
                 .set_window_execution_id(window_execution_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelMaintenanceWindowExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelMaintenanceWindowExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelMaintenanceWindowExecutionOutput { inner: output })
         })
@@ -58469,20 +59322,24 @@ impl SSMClient {
                 .set_expiration_date(expiration_date_value)
                 .set_tags(tags_value)
                 .set_registration_metadata(registration_metadata_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateActivation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateActivation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateActivationOutput { inner: output })
         })
@@ -59184,20 +60041,24 @@ impl SSMClient {
                 .set_tags(tags_value)
                 .set_alarm_configuration(alarm_configuration_value)
                 .set_association_dispatch_assume_role(association_dispatch_assume_role_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateAssociationOutput {
                 inner: output.into(),
@@ -59284,20 +60145,24 @@ impl SSMClient {
                 .create_association_batch()
                 .set_entries(entries_value)
                 .set_association_dispatch_assume_role(association_dispatch_assume_role_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateAssociationBatch"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAssociationBatch",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateAssociationBatchOutput {
                 inner: output.into(),
@@ -59463,20 +60328,24 @@ impl SSMClient {
                 .set_configuration(configuration_value)
                 .set_config_connector_arn(config_connector_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCloudConnector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCloudConnector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCloudConnectorOutput { inner: output })
         })
@@ -59769,20 +60638,19 @@ impl SSMClient {
                 .set_document_format(document_format_value)
                 .set_target_type(target_type_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDocument", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateDocumentOutput {
                 inner: output.into(),
@@ -60059,20 +60927,24 @@ impl SSMClient {
                 .set_allow_unassociated_targets(allow_unassociated_targets_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMaintenanceWindow"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateMaintenanceWindowOutput { inner: output })
         })
@@ -60524,20 +61396,19 @@ impl SSMClient {
                 .set_planned_start_time(planned_start_time_value)
                 .set_planned_end_time(planned_end_time_value)
                 .set_account_id(account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateOpsItem", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateOpsItemOutput { inner: output })
         })
@@ -60667,20 +61538,24 @@ impl SSMClient {
                 .set_resource_id(resource_id_value)
                 .set_metadata(metadata_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateOpsMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateOpsMetadata",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateOpsMetadataOutput { inner: output })
         })
@@ -61099,20 +61974,24 @@ impl SSMClient {
                 )
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePatchBaselineOutput { inner: output })
         })
@@ -61214,20 +62093,24 @@ impl SSMClient {
                 .set_s3_destination(s3_destination_value)
                 .set_sync_type(sync_type_value)
                 .set_sync_source(sync_source_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateResourceDataSync"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateResourceDataSync",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateResourceDataSyncOutput { inner: output })
         })
@@ -61266,20 +62149,24 @@ impl SSMClient {
             let request = client
                 .delete_activation()
                 .set_activation_id(activation_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteActivation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteActivation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteActivationOutput { inner: output })
         })
@@ -61356,20 +62243,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_instance_id(instance_id_value)
                 .set_association_id(association_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteAssociationOutput { inner: output })
         })
@@ -61409,20 +62300,24 @@ impl SSMClient {
             let request = client
                 .delete_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCloudConnector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCloudConnector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCloudConnectorOutput { inner: output })
         })
@@ -61516,20 +62411,19 @@ impl SSMClient {
                 .set_document_version(document_version_value)
                 .set_version_name(version_name_value)
                 .set_force(force_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDocument", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteDocumentOutput { inner: output })
         })
@@ -61631,20 +62525,19 @@ impl SSMClient {
                 .set_schema_delete_option(schema_delete_option_value)
                 .set_dry_run(dry_run_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInventory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteInventory", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteInventoryOutput {
                 inner: output.into(),
@@ -61685,20 +62578,24 @@ impl SSMClient {
             let request = client
                 .delete_maintenance_window()
                 .set_window_id(window_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMaintenanceWindow"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteMaintenanceWindowOutput { inner: output })
         })
@@ -61735,20 +62632,19 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_ops_item().set_ops_item_id(ops_item_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteOpsItem", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteOpsItemOutput { inner: output })
         })
@@ -61787,20 +62683,24 @@ impl SSMClient {
             let request = client
                 .delete_ops_metadata()
                 .set_ops_metadata_arn(ops_metadata_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteOpsMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteOpsMetadata",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteOpsMetadataOutput { inner: output })
         })
@@ -61833,20 +62733,19 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_parameter().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteParameter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteParameterOutput { inner: output })
         })
@@ -61906,20 +62805,24 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_parameters().set_names(names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteParameters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteParameters",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteParametersOutput { inner: output })
         })
@@ -61958,20 +62861,24 @@ impl SSMClient {
             let request = client
                 .delete_patch_baseline()
                 .set_baseline_id(baseline_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeletePatchBaselineOutput { inner: output })
         })
@@ -62031,20 +62938,24 @@ impl SSMClient {
                 .delete_resource_data_sync()
                 .set_sync_name(sync_name_value)
                 .set_sync_type(sync_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourceDataSync"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourceDataSync",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourceDataSyncOutput { inner: output })
         })
@@ -62148,20 +63059,24 @@ impl SSMClient {
                 .set_policy_id(policy_id_value)
                 .set_policy_hash(policy_hash_value)
                 .set_deletion_mode(deletion_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
@@ -62200,20 +63115,24 @@ impl SSMClient {
             let request = client
                 .deregister_managed_instance()
                 .set_instance_id(instance_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeregisterManagedInstance"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterManagedInstance",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeregisterManagedInstanceOutput { inner: output })
         })
@@ -62273,21 +63192,23 @@ impl SSMClient {
                 .deregister_patch_baseline_for_patch_group()
                 .set_baseline_id(baseline_id_value)
                 .set_patch_group(patch_group_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeregisterPatchBaselineForPatchGroup")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterPatchBaselineForPatchGroup",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeregisterPatchBaselineForPatchGroupOutput { inner: output })
@@ -62365,21 +63286,23 @@ impl SSMClient {
                 .set_window_id(window_id_value)
                 .set_window_target_id(window_target_id_value)
                 .set_safe(safe_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeregisterTargetFromMaintenanceWindow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterTargetFromMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeregisterTargetFromMaintenanceWindowOutput { inner: output })
@@ -62440,21 +63363,23 @@ impl SSMClient {
                 .deregister_task_from_maintenance_window()
                 .set_window_id(window_id_value)
                 .set_window_task_id(window_task_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeregisterTaskFromMaintenanceWindow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterTaskFromMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeregisterTaskFromMaintenanceWindowOutput { inner: output })
@@ -62559,20 +63484,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeActivations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeActivations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeActivationsOutput {
                 inner: output.into(),
@@ -62673,20 +63602,24 @@ impl SSMClient {
                 .set_instance_id(instance_id_value)
                 .set_association_id(association_id_value)
                 .set_association_version(association_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAssociationOutput {
                 inner: output.into(),
@@ -62835,21 +63768,23 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeAssociationExecutionTargets")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAssociationExecutionTargets",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeAssociationExecutionTargetsOutput {
@@ -62977,20 +63912,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAssociationExecutions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAssociationExecutions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAssociationExecutionsOutput {
                 inner: output.into(),
@@ -63096,20 +64035,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationExecutions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAutomationExecutions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAutomationExecutionsOutput {
                 inner: output.into(),
@@ -63258,20 +64201,24 @@ impl SSMClient {
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
                 .set_reverse_order(reverse_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAutomationStepExecutions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAutomationStepExecutions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAutomationStepExecutionsOutput {
                 inner: output.into(),
@@ -63377,20 +64324,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAvailablePatches"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAvailablePatches",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAvailablePatchesOutput {
                 inner: output.into(),
@@ -63469,20 +64420,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_document_version(document_version_value)
                 .set_version_name(version_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDocument",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDocumentOutput {
                 inner: output.into(),
@@ -63584,20 +64539,24 @@ impl SSMClient {
                 .set_permission_type(permission_type_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDocumentPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDocumentPermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDocumentPermissionOutput {
                 inner: output.into(),
@@ -63680,21 +64639,23 @@ impl SSMClient {
                 .set_instance_id(instance_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeEffectiveInstanceAssociations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEffectiveInstanceAssociations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeEffectiveInstanceAssociationsOutput {
@@ -63778,21 +64739,23 @@ impl SSMClient {
                 .set_baseline_id(baseline_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeEffectivePatchesForPatchBaseline")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEffectivePatchesForPatchBaseline",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeEffectivePatchesForPatchBaselineOutput {
@@ -63876,21 +64839,23 @@ impl SSMClient {
                 .set_instance_id(instance_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeInstanceAssociationsStatus")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstanceAssociationsStatus",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeInstanceAssociationsStatusOutput {
@@ -64044,20 +65009,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceInformation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstanceInformation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeInstanceInformationOutput {
                 inner: output.into(),
@@ -64163,20 +65132,24 @@ impl SSMClient {
                 .set_instance_ids(instance_ids_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatchStates"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstancePatchStates",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeInstancePatchStatesOutput {
                 inner: output.into(),
@@ -64303,21 +65276,23 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeInstancePatchStatesForPatchGroup")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstancePatchStatesForPatchGroup",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeInstancePatchStatesForPatchGroupOutput {
@@ -64445,20 +65420,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstancePatches"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstancePatches",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeInstancePatchesOutput {
                 inner: output.into(),
@@ -64611,20 +65590,24 @@ impl SSMClient {
                 .set_filters_with_operator(filters_with_operator_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInstanceProperties"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInstanceProperties",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeInstancePropertiesOutput {
                 inner: output.into(),
@@ -64707,20 +65690,24 @@ impl SSMClient {
                 .set_deletion_id(deletion_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeInventoryDeletions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeInventoryDeletions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeInventoryDeletionsOutput {
                 inner: output.into(),
@@ -64865,17 +65852,14 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
@@ -64883,6 +65867,7 @@ impl SSMClient {
                         py,
                         &error,
                         "DescribeMaintenanceWindowExecutionTaskInvocations",
+                        &observer.response_metadata(),
                     )
                 })
             })?;
@@ -65014,21 +65999,23 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutionTasks")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowExecutionTasks",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowExecutionTasksOutput {
@@ -65156,21 +66143,23 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeMaintenanceWindowExecutions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowExecutions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowExecutionsOutput {
@@ -65366,21 +66355,23 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeMaintenanceWindowSchedule")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowSchedule",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowScheduleOutput {
@@ -65508,20 +66499,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTargets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowTargets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowTargetsOutput {
                 inner: output.into(),
@@ -65648,20 +66643,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindowTasks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowTasks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowTasksOutput {
                 inner: output.into(),
@@ -65767,20 +66766,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMaintenanceWindows"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindows",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowsOutput {
                 inner: output.into(),
@@ -65910,21 +66913,23 @@ impl SSMClient {
                 .set_resource_type(resource_type_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeMaintenanceWindowsForTarget")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMaintenanceWindowsForTarget",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeMaintenanceWindowsForTargetOutput {
@@ -66031,20 +67036,24 @@ impl SSMClient {
                 .set_ops_item_filters(ops_item_filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeOpsItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeOpsItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeOpsItemsOutput {
                 inner: output.into(),
@@ -66212,20 +67221,24 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_shared(shared_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeParameters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeParameters",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeParametersOutput {
                 inner: output.into(),
@@ -66331,20 +67344,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchBaselines"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePatchBaselines",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePatchBaselinesOutput {
                 inner: output.into(),
@@ -66385,20 +67402,24 @@ impl SSMClient {
             let request = client
                 .describe_patch_group_state()
                 .set_patch_group(patch_group_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroupState"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePatchGroupState",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePatchGroupStateOutput { inner: output })
         })
@@ -66502,20 +67523,24 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_filters(filters_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchGroups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePatchGroups",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePatchGroupsOutput {
                 inner: output.into(),
@@ -66645,20 +67670,24 @@ impl SSMClient {
                 .set_patch_set(patch_set_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePatchProperties"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePatchProperties",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePatchPropertiesOutput { inner: output })
         })
@@ -66785,20 +67814,24 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_filters(filters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSessions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeSessions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeSessionsOutput {
                 inner: output.into(),
@@ -66860,20 +67893,24 @@ impl SSMClient {
                 .disassociate_ops_item_related_item()
                 .set_ops_item_id(ops_item_id_value)
                 .set_association_id(association_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateOpsItemRelatedItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateOpsItemRelatedItem",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisassociateOpsItemRelatedItemOutput { inner: output })
         })
@@ -66913,20 +67950,19 @@ impl SSMClient {
             let request = client
                 .get_access_token()
                 .set_access_request_id(access_request_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAccessToken", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetAccessTokenOutput {
                 inner: output.into(),
@@ -66968,20 +68004,24 @@ impl SSMClient {
             let request = client
                 .get_automation_execution()
                 .set_automation_execution_id(automation_execution_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAutomationExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomationExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAutomationExecutionOutput {
                 inner: output.into(),
@@ -67062,20 +68102,24 @@ impl SSMClient {
                 .get_calendar_state()
                 .set_calendar_names(calendar_names_value)
                 .set_at_time(at_time_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCalendarState"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCalendarState",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCalendarStateOutput { inner: output })
         })
@@ -67115,20 +68159,24 @@ impl SSMClient {
             let request = client
                 .get_cloud_connector()
                 .set_cloud_connector_id(cloud_connector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCloudConnector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCloudConnector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCloudConnectorOutput { inner: output })
         })
@@ -67209,20 +68257,24 @@ impl SSMClient {
                 .set_command_id(command_id_value)
                 .set_instance_id(instance_id_value)
                 .set_plugin_name(plugin_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCommandInvocation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCommandInvocation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCommandInvocationOutput {
                 inner: output.into(),
@@ -67257,20 +68309,24 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_connection_status().set_target(target_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetConnectionStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetConnectionStatus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetConnectionStatusOutput { inner: output })
         })
@@ -67311,20 +68367,24 @@ impl SSMClient {
             let request = client
                 .get_default_patch_baseline()
                 .set_operating_system(operating_system_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDefaultPatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDefaultPatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDefaultPatchBaselineOutput { inner: output })
         })
@@ -67428,21 +68488,23 @@ impl SSMClient {
                 .set_snapshot_id(snapshot_id_value)
                 .set_baseline_override(baseline_override_value)
                 .set_use_s3_dual_stack_endpoint(use_s3_dual_stack_endpoint_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetDeployablePatchSnapshotForInstance")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeployablePatchSnapshotForInstance",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetDeployablePatchSnapshotForInstanceOutput { inner: output })
@@ -67543,20 +68605,20 @@ impl SSMClient {
                 .set_version_name(version_name_value)
                 .set_document_version(document_version_value)
                 .set_document_format(document_format_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDocument")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDocument", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetDocumentOutput {
                 inner: output.into(),
             })
@@ -67597,20 +68659,24 @@ impl SSMClient {
             let request = client
                 .get_execution_preview()
                 .set_execution_preview_id(execution_preview_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionPreview"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetExecutionPreview",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetExecutionPreviewOutput { inner: output })
         })
@@ -67803,20 +68869,19 @@ impl SSMClient {
                 .set_result_attributes(result_attributes_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInventory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetInventory", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetInventoryOutput {
                 inner: output.into(),
@@ -67941,20 +69006,24 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_aggregator(aggregator_value)
                 .set_sub_type(sub_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInventorySchema"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInventorySchema",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInventorySchemaOutput {
                 inner: output.into(),
@@ -67995,20 +69064,24 @@ impl SSMClient {
             let request = client
                 .get_maintenance_window()
                 .set_window_id(window_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindow"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMaintenanceWindowOutput { inner: output })
         })
@@ -68048,20 +69121,24 @@ impl SSMClient {
             let request = client
                 .get_maintenance_window_execution()
                 .set_window_execution_id(window_execution_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMaintenanceWindowExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMaintenanceWindowExecutionOutput { inner: output })
         })
@@ -68118,21 +69195,23 @@ impl SSMClient {
                 .get_maintenance_window_execution_task()
                 .set_window_execution_id(window_execution_id_value)
                 .set_task_id(task_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTask")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMaintenanceWindowExecutionTask",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetMaintenanceWindowExecutionTaskOutput {
@@ -68213,21 +69292,23 @@ impl SSMClient {
                 .set_window_execution_id(window_execution_id_value)
                 .set_task_id(task_id_value)
                 .set_invocation_id(invocation_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetMaintenanceWindowExecutionTaskInvocation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMaintenanceWindowExecutionTaskInvocation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetMaintenanceWindowExecutionTaskInvocationOutput { inner: output })
@@ -68288,20 +69369,24 @@ impl SSMClient {
                 .get_maintenance_window_task()
                 .set_window_id(window_id_value)
                 .set_window_task_id(window_task_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMaintenanceWindowTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMaintenanceWindowTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMaintenanceWindowTaskOutput {
                 inner: output.into(),
@@ -68363,20 +69448,20 @@ impl SSMClient {
                 .get_ops_item()
                 .set_ops_item_id(ops_item_id_value)
                 .set_ops_item_arn(ops_item_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsItem")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetOpsItem", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetOpsItemOutput {
                 inner: output.into(),
             })
@@ -68458,20 +69543,19 @@ impl SSMClient {
                 .set_ops_metadata_arn(ops_metadata_arn_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetOpsMetadata", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetOpsMetadataOutput {
                 inner: output.into(),
@@ -68687,20 +69771,19 @@ impl SSMClient {
                 .set_result_attributes(result_attributes_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetOpsSummary"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetOpsSummary", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetOpsSummaryOutput {
                 inner: output.into(),
@@ -68758,20 +69841,19 @@ impl SSMClient {
                 .get_parameter()
                 .set_name(name_value)
                 .set_with_decryption(with_decryption_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetParameter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetParameter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetParameterOutput {
                 inner: output.into(),
@@ -68871,20 +69953,24 @@ impl SSMClient {
                 .set_with_decryption(with_decryption_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetParameterHistory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetParameterHistory",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetParameterHistoryOutput {
                 inner: output.into(),
@@ -68969,20 +70055,19 @@ impl SSMClient {
                 .get_parameters()
                 .set_names(names_value)
                 .set_with_decryption(with_decryption_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetParameters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetParameters", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetParametersOutput {
                 inner: output.into(),
@@ -69148,20 +70233,24 @@ impl SSMClient {
                 .set_with_decryption(with_decryption_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersByPath"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetParametersByPath",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetParametersByPathOutput {
                 inner: output.into(),
@@ -69202,20 +70291,24 @@ impl SSMClient {
             let request = client
                 .get_patch_baseline()
                 .set_baseline_id(baseline_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPatchBaselineOutput {
                 inner: output.into(),
@@ -69279,20 +70372,24 @@ impl SSMClient {
                 .get_patch_baseline_for_patch_group()
                 .set_patch_group(patch_group_value)
                 .set_operating_system(operating_system_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPatchBaselineForPatchGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPatchBaselineForPatchGroup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPatchBaselineForPatchGroupOutput { inner: output })
         })
@@ -69373,20 +70470,24 @@ impl SSMClient {
                 .set_resource_arn(resource_arn_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePoliciesOutput {
                 inner: output.into(),
@@ -69427,20 +70528,24 @@ impl SSMClient {
             let request = client
                 .get_service_setting()
                 .set_setting_id(setting_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetServiceSetting"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetServiceSetting",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetServiceSettingOutput {
                 inner: output.into(),
@@ -69543,20 +70648,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_parameter_version(parameter_version_value)
                 .set_labels(labels_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "LabelParameterVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "LabelParameterVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationLabelParameterVersionOutput { inner: output })
         })
@@ -69637,20 +70746,24 @@ impl SSMClient {
                 .set_association_id(association_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociationVersions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAssociationVersions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListAssociationVersionsOutput {
                 inner: output.into(),
@@ -69757,20 +70870,24 @@ impl SSMClient {
                 .set_association_filter_list(association_filter_list_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAssociations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAssociations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListAssociationsOutput {
                 inner: output.into(),
@@ -69876,20 +70993,24 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_filters(filters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCloudConnectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCloudConnectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCloudConnectorsOutput {
                 inner: output.into(),
@@ -70054,20 +71175,24 @@ impl SSMClient {
                 .set_next_token(next_token_value)
                 .set_filters(filters_value)
                 .set_details(details_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCommandInvocations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCommandInvocations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCommandInvocationsOutput {
                 inner: output.into(),
@@ -70215,20 +71340,19 @@ impl SSMClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_filters(filters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCommands"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListCommands", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListCommandsOutput {
                 inner: output.into(),
@@ -70422,20 +71546,24 @@ impl SSMClient {
                 .set_resource_types(resource_types_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListComplianceItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListComplianceItemsOutput {
                 inner: output.into(),
@@ -70541,20 +71669,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListComplianceSummaries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListComplianceSummaries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListComplianceSummariesOutput {
                 inner: output.into(),
@@ -70677,20 +71809,24 @@ impl SSMClient {
                 .set_metadata(metadata_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentMetadataHistory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDocumentMetadataHistory",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDocumentMetadataHistoryOutput {
                 inner: output.into(),
@@ -70769,20 +71905,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDocumentVersions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDocumentVersions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDocumentVersionsOutput {
                 inner: output.into(),
@@ -70933,20 +72073,19 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDocuments", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListDocumentsOutput {
                 inner: output.into(),
@@ -71094,20 +72233,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInventoryEntries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInventoryEntries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInventoryEntriesOutput { inner: output })
         })
@@ -71232,20 +72375,20 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListNodes")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListNodes", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListNodesOutput {
                 inner: output.into(),
             })
@@ -71415,20 +72558,24 @@ impl SSMClient {
                 .set_aggregators(aggregators_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListNodesSummary"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListNodesSummary",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListNodesSummaryOutput { inner: output })
         })
@@ -71532,20 +72679,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListOpsItemEvents",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListOpsItemEventsOutput {
                 inner: output.into(),
@@ -71673,20 +72824,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsItemRelatedItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListOpsItemRelatedItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListOpsItemRelatedItemsOutput {
                 inner: output.into(),
@@ -71792,20 +72947,19 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListOpsMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListOpsMetadata", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListOpsMetadataOutput {
                 inner: output.into(),
@@ -71911,20 +73065,24 @@ impl SSMClient {
                 .set_filters(filters_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceComplianceSummaries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListResourceComplianceSummaries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListResourceComplianceSummariesOutput {
                 inner: output.into(),
@@ -72007,20 +73165,24 @@ impl SSMClient {
                 .set_sync_type(sync_type_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceDataSync"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListResourceDataSync",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListResourceDataSyncOutput {
                 inner: output.into(),
@@ -72084,20 +73246,24 @@ impl SSMClient {
                 .list_tags_for_resource()
                 .set_resource_type(resource_type_value)
                 .set_resource_id(resource_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -72269,20 +73435,24 @@ impl SSMClient {
                 .set_account_ids_to_add(account_ids_to_add_value)
                 .set_account_ids_to_remove(account_ids_to_remove_value)
                 .set_shared_document_version(shared_document_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ModifyDocumentPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ModifyDocumentPermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationModifyDocumentPermissionOutput { inner: output })
         })
@@ -72474,20 +73644,24 @@ impl SSMClient {
                 .set_items(items_value)
                 .set_item_content_hash(item_content_hash_value)
                 .set_upload_type(upload_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutComplianceItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutComplianceItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutComplianceItemsOutput { inner: output })
         })
@@ -72570,20 +73744,19 @@ impl SSMClient {
                 .put_inventory()
                 .set_instance_id(instance_id_value)
                 .set_items(items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutInventory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutInventory", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutInventoryOutput { inner: output })
         })
@@ -72843,20 +74016,19 @@ impl SSMClient {
                 .set_tier(tier_value)
                 .set_policies(policies_value)
                 .set_data_type(data_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutParameter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutParameter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutParameterOutput { inner: output })
         })
@@ -72954,20 +74126,24 @@ impl SSMClient {
                 .set_policy(policy_value)
                 .set_policy_id(policy_id_value)
                 .set_policy_hash(policy_hash_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -73006,20 +74182,24 @@ impl SSMClient {
             let request = client
                 .register_default_patch_baseline()
                 .set_baseline_id(baseline_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RegisterDefaultPatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterDefaultPatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRegisterDefaultPatchBaselineOutput { inner: output })
         })
@@ -73079,21 +74259,23 @@ impl SSMClient {
                 .register_patch_baseline_for_patch_group()
                 .set_baseline_id(baseline_id_value)
                 .set_patch_group(patch_group_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "RegisterPatchBaselineForPatchGroup")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterPatchBaselineForPatchGroup",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationRegisterPatchBaselineForPatchGroupOutput { inner: output })
@@ -73282,21 +74464,23 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_description(description_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "RegisterTargetWithMaintenanceWindow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterTargetWithMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationRegisterTargetWithMaintenanceWindowOutput { inner: output })
@@ -73699,21 +74883,23 @@ impl SSMClient {
                 .set_client_token(client_token_value)
                 .set_cutoff_behavior(cutoff_behavior_value)
                 .set_alarm_configuration(alarm_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "RegisterTaskWithMaintenanceWindow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterTaskWithMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationRegisterTaskWithMaintenanceWindowOutput { inner: output })
@@ -73820,20 +75006,24 @@ impl SSMClient {
                 .set_resource_type(resource_type_value)
                 .set_resource_id(resource_id_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTagsFromResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemoveTagsFromResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRemoveTagsFromResourceOutput { inner: output })
         })
@@ -73872,20 +75062,24 @@ impl SSMClient {
             let request = client
                 .reset_service_setting()
                 .set_setting_id(setting_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ResetServiceSetting"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ResetServiceSetting",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationResetServiceSettingOutput {
                 inner: output.into(),
@@ -73924,20 +75118,19 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.resume_session().set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ResumeSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ResumeSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationResumeSessionOutput { inner: output })
         })
@@ -74066,20 +75259,24 @@ impl SSMClient {
                 .set_automation_execution_id(automation_execution_id_value)
                 .set_signal_type(signal_type_value)
                 .set_payload(payload_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SendAutomationSignal"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendAutomationSignal",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSendAutomationSignalOutput { inner: output })
         })
@@ -74575,20 +75772,20 @@ impl SSMClient {
                 .set_notification_config(notification_config_value)
                 .set_cloud_watch_output_config(cloud_watch_output_config_value)
                 .set_alarm_configuration(alarm_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendCommand")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SendCommand", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationSendCommandOutput {
                 inner: output.into(),
             })
@@ -74712,20 +75909,24 @@ impl SSMClient {
                 .set_reason(reason_value)
                 .set_targets(targets_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartAccessRequest"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAccessRequest",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartAccessRequestOutput { inner: output })
         })
@@ -74787,20 +75988,24 @@ impl SSMClient {
             let request = client
                 .start_associations_once()
                 .set_association_ids(association_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartAssociationsOnce"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAssociationsOnce",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartAssociationsOnceOutput { inner: output })
         })
@@ -75313,20 +76518,24 @@ impl SSMClient {
                 .set_tags(tags_value)
                 .set_alarm_configuration(alarm_configuration_value)
                 .set_target_locations_url(target_locations_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartAutomationExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAutomationExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartAutomationExecutionOutput { inner: output })
         })
@@ -75683,20 +76892,24 @@ impl SSMClient {
                 .set_tags(tags_value)
                 .set_scheduled_end_time(scheduled_end_time_value)
                 .set_change_details(change_details_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartChangeRequestExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartChangeRequestExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartChangeRequestExecutionOutput { inner: output })
         })
@@ -75777,20 +76990,24 @@ impl SSMClient {
                 .set_document_name(document_name_value)
                 .set_document_version(document_version_value)
                 .set_execution_inputs(execution_inputs_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartExecutionPreview"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartExecutionPreview",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartExecutionPreviewOutput { inner: output })
         })
@@ -75934,20 +77151,19 @@ impl SSMClient {
                 .set_document_name(document_name_value)
                 .set_reason(reason_value)
                 .set_parameters(parameters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationStartSessionOutput { inner: output })
         })
@@ -76009,20 +77225,24 @@ impl SSMClient {
                 .stop_automation_execution()
                 .set_automation_execution_id(automation_execution_id_value)
                 .set_type(type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopAutomationExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopAutomationExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopAutomationExecutionOutput { inner: output })
         })
@@ -76059,20 +77279,24 @@ impl SSMClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.terminate_session().set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TerminateSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TerminateSession",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTerminateSessionOutput { inner: output })
         })
@@ -76173,20 +77397,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_parameter_version(parameter_version_value)
                 .set_labels(labels_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UnlabelParameterVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UnlabelParameterVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUnlabelParameterVersionOutput { inner: output })
         })
@@ -76866,20 +78094,24 @@ impl SSMClient {
                 .set_target_maps(target_maps_value)
                 .set_alarm_configuration(alarm_configuration_value)
                 .set_association_dispatch_assume_role(association_dispatch_assume_role_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateAssociationOutput {
                 inner: output.into(),
@@ -76959,20 +78191,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_instance_id(instance_id_value)
                 .set_association_status(association_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAssociationStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAssociationStatus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateAssociationStatusOutput {
                 inner: output.into(),
@@ -77077,20 +78313,24 @@ impl SSMClient {
                 .set_display_name(display_name_value)
                 .set_configuration(configuration_value)
                 .set_description(description_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCloudConnector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCloudConnector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateCloudConnectorOutput { inner: output })
         })
@@ -77293,20 +78533,19 @@ impl SSMClient {
                 .set_document_version(document_version_value)
                 .set_document_format(document_format_value)
                 .set_target_type(target_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateDocument", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateDocumentOutput {
                 inner: output.into(),
@@ -77364,20 +78603,24 @@ impl SSMClient {
                 .update_document_default_version()
                 .set_name(name_value)
                 .set_document_version(document_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentDefaultVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDocumentDefaultVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDocumentDefaultVersionOutput {
                 inner: output.into(),
@@ -77456,20 +78699,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_document_version(document_version_value)
                 .set_document_reviews(document_reviews_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDocumentMetadata",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDocumentMetadataOutput { inner: output })
         })
@@ -77734,20 +78981,24 @@ impl SSMClient {
                 .set_allow_unassociated_targets(allow_unassociated_targets_value)
                 .set_enabled(enabled_value)
                 .set_replace(replace_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindow"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMaintenanceWindow",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMaintenanceWindowOutput { inner: output })
         })
@@ -77928,20 +79179,24 @@ impl SSMClient {
                 .set_name(name_value)
                 .set_description(description_value)
                 .set_replace(replace_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTarget"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMaintenanceWindowTarget",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMaintenanceWindowTargetOutput {
                 inner: output.into(),
@@ -78339,20 +79594,24 @@ impl SSMClient {
                 .set_replace(replace_value)
                 .set_cutoff_behavior(cutoff_behavior_value)
                 .set_alarm_configuration(alarm_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMaintenanceWindowTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMaintenanceWindowTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMaintenanceWindowTaskOutput {
                 inner: output.into(),
@@ -78410,20 +79669,24 @@ impl SSMClient {
                 .update_managed_instance_role()
                 .set_instance_id(instance_id_value)
                 .set_iam_role(iam_role_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateManagedInstanceRole"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateManagedInstanceRole",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateManagedInstanceRoleOutput { inner: output })
         })
@@ -78882,20 +80145,19 @@ impl SSMClient {
                 .set_planned_start_time(planned_start_time_value)
                 .set_planned_end_time(planned_end_time_value)
                 .set_ops_item_arn(ops_item_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateOpsItem", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateOpsItemOutput { inner: output })
         })
@@ -79026,20 +80288,24 @@ impl SSMClient {
                 .set_ops_metadata_arn(ops_metadata_arn_value)
                 .set_metadata_to_update(metadata_to_update_value)
                 .set_keys_to_delete(keys_to_delete_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOpsMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateOpsMetadata",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateOpsMetadataOutput { inner: output })
         })
@@ -79408,20 +80674,24 @@ impl SSMClient {
                     available_security_updates_compliance_status_value,
                 )
                 .set_replace(replace_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePatchBaseline"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdatePatchBaseline",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdatePatchBaselineOutput {
                 inner: output.into(),
@@ -79504,20 +80774,24 @@ impl SSMClient {
                 .set_sync_name(sync_name_value)
                 .set_sync_type(sync_type_value)
                 .set_sync_source(sync_source_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResourceDataSync"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateResourceDataSync",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateResourceDataSyncOutput { inner: output })
         })
@@ -79577,20 +80851,24 @@ impl SSMClient {
                 .update_service_setting()
                 .set_setting_id(setting_id_value)
                 .set_setting_value(setting_value_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateServiceSetting"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateServiceSetting",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateServiceSettingOutput { inner: output })
         })
@@ -79672,20 +80950,24 @@ impl SSMClient {
                 .set_cloud_connector_id(cloud_connector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ValidateCloudConnector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ValidateCloudConnector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationValidateCloudConnectorOutput {
                 inner: output.into(),

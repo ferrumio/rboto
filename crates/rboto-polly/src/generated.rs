@@ -2165,6 +2165,106 @@ impl PyOperationSynthesizeSpeechOutput {
     }
 }
 
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_polly::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_295 = (&value.quota_code).as_str().into_py_any(py)?;
+    result.set_item("quota_code", detail_295)?;
+    let detail_296 = (&value.service_code).as_str().into_py_any(py)?;
+    result.set_item("service_code", detail_296)?;
+    Ok(result.into_any().unbind())
+}
+
+fn throttling_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_polly::types::error::ThrottlingException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.throttling_reasons {
+        let detail_297_list = PyList::empty(py);
+        for item_298 in value {
+            let converted_item_299 = throttling_reason_to_py(py, item_298)?;
+            detail_297_list.append(converted_item_299)?;
+        }
+        let detail_297 = detail_297_list.into_any().unbind();
+        result.set_item("throttling_reasons", detail_297)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn validation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_polly::types::error::ValidationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_300 = (&value.reason).as_str().into_py_any(py)?;
+    result.set_item("reason", detail_300)?;
+    if let Some(value) = &value.fields {
+        let detail_301_list = PyList::empty(py);
+        for item_302 in value {
+            let converted_item_303 = validation_exception_field_to_py(py, item_302)?;
+            detail_301_list.append(converted_item_303)?;
+        }
+        let detail_301 = detail_301_list.into_any().unbind();
+        result.set_item("fields", detail_301)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::delete_lexicon::DeleteLexiconError {}
+impl ModeledErrorDetails for aws_sdk_polly::operation::describe_voices::DescribeVoicesError {}
+impl ModeledErrorDetails for aws_sdk_polly::operation::get_lexicon::GetLexiconError {}
+impl ModeledErrorDetails
+    for aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskError
+{
+}
+impl ModeledErrorDetails for aws_sdk_polly::operation::list_lexicons::ListLexiconsError {}
+impl ModeledErrorDetails
+    for aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksError
+{
+}
+impl ModeledErrorDetails for aws_sdk_polly::operation::put_lexicon::PutLexiconError {}
+impl ModeledErrorDetails
+    for aws_sdk_polly::operation::start_speech_synthesis_stream::StartSpeechSynthesisStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskError
+{
+}
+impl ModeledErrorDetails for aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechError {}
+impl ModeledErrorDetails
+    for aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 #[pyclass(
     name = "StartSpeechSynthesisStreamEventStreamReceiver",
     module = "rboto_polly._native"
@@ -2178,7 +2278,7 @@ struct PyStartSpeechSynthesisStreamEventStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyStartSpeechSynthesisStreamEventStreamReceiver {
@@ -2187,11 +2287,11 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
             aws_sdk_polly::types::StartSpeechSynthesisStreamEventStream,
             aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -2225,7 +2325,7 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -2254,7 +2354,7 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -2363,20 +2463,19 @@ impl PollyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_lexicon().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLexicon"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteLexicon", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteLexiconOutput { inner: output })
         })
@@ -2482,20 +2581,19 @@ impl PollyClient {
                 .set_language_code(language_code_value)
                 .set_include_additional_language_codes(include_additional_language_codes_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeVoices"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeVoices", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeVoicesOutput {
                 inner: output.into(),
@@ -2530,20 +2628,20 @@ impl PollyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_lexicon().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetLexicon")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLexicon", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetLexiconOutput {
                 inner: output.into(),
             })
@@ -2579,20 +2677,24 @@ impl PollyClient {
             let request = client
                 .get_speech_synthesis_task()
                 .set_task_id(task_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSpeechSynthesisTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSpeechSynthesisTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetSpeechSynthesisTaskOutput {
                 inner: output.into(),
@@ -2631,20 +2733,19 @@ impl PollyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_lexicons().set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListLexicons"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListLexicons", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListLexiconsOutput {
                 inner: output.into(),
@@ -2728,20 +2829,24 @@ impl PollyClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_status(status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSpeechSynthesisTasks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSpeechSynthesisTasks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSpeechSynthesisTasksOutput {
                 inner: output.into(),
@@ -2795,20 +2900,20 @@ impl PollyClient {
                 .put_lexicon()
                 .set_name(name_value)
                 .set_content(content_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutLexicon")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutLexicon", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutLexiconOutput { inner: output })
         })
     }
@@ -2993,28 +3098,36 @@ impl PollyClient {
                 .set_sample_rate(sample_rate_value)
                 .set_voice_id(voice_id_value)
                 .set_action_stream(action_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartSpeechSynthesisStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartSpeechSynthesisStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartSpeechSynthesisStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyStartSpeechSynthesisStreamEventStreamReceiver::new(
                         output.event_stream,
-                        "StartSpeechSynthesisStream",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("event_stream", stream)?;
@@ -3341,20 +3454,24 @@ impl PollyClient {
                 .set_text(text_value)
                 .set_text_type(text_type_value)
                 .set_voice_id(voice_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartSpeechSynthesisTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartSpeechSynthesisTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartSpeechSynthesisTaskOutput {
                 inner: output.into(),
@@ -3615,24 +3732,33 @@ impl PollyClient {
                 .set_text(text_value)
                 .set_text_type(text_type_value)
                 .set_voice_id(voice_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let mut output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SynthesizeSpeech"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SynthesizeSpeech",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SynthesizeSpeech",
+                metadata: observer.response_metadata(),
+            };
             let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
+                let py_audio_stream =
+                    Py::new(py, PyByteStream::new(audio_stream, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationSynthesizeSpeechOutput {

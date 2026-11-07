@@ -25532,6 +25532,461 @@ impl PyOperationUpdateScheduledQueryOutput {
     }
 }
 
+fn data_already_accepted_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_cloudwatchlogs::types::error::DataAlreadyAcceptedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.expected_sequence_token {
+        let detail_3373 = (value).as_str().into_py_any(py)?;
+        result.set_item("expected_sequence_token", detail_3373)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_sequence_token_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_cloudwatchlogs::types::error::InvalidSequenceTokenException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.expected_sequence_token {
+        let detail_3374 = (value).as_str().into_py_any(py)?;
+        result.set_item("expected_sequence_token", detail_3374)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn malformed_query_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_cloudwatchlogs::types::error::MalformedQueryException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.query_compile_error {
+        let detail_3375 = query_compile_error_to_py(py, value)?;
+        result.set_item("query_compile_error", detail_3375)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn too_many_tags_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_cloudwatchlogs::types::error::TooManyTagsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_name {
+        let detail_3376 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_3376)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::associate_kms_key::AssociateKmsKeyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::cancel_export_task::CancelExportTaskError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::cancel_import_task::CancelImportTaskError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_delivery::CreateDeliveryError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_export_task::CreateExportTaskError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_import_task::CreateImportTaskError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_log_group::CreateLogGroupError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_log_stream::CreateLogStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_lookup_table::CreateLookupTableError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::create_scheduled_query::CreateScheduledQueryError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_account_policy::DeleteAccountPolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_data_protection_policy::DeleteDataProtectionPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_delivery::DeleteDeliveryError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination::DeleteDeliveryDestinationError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination_policy::DeleteDeliveryDestinationPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_delivery_source::DeleteDeliverySourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_destination::DeleteDestinationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_index_policy::DeleteIndexPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_integration::DeleteIntegrationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_log_anomaly_detector::DeleteLogAnomalyDetectorError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_log_group::DeleteLogGroupError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_log_stream::DeleteLogStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_lookup_table::DeleteLookupTableError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_metric_filter::DeleteMetricFilterError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_query_definition::DeleteQueryDefinitionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_retention_policy::DeleteRetentionPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_scheduled_query::DeleteScheduledQueryError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_subscription_filter::DeleteSubscriptionFilterError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_syslog_configuration::DeleteSyslogConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::delete_transformer::DeleteTransformerError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_account_policies::DescribeAccountPoliciesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_deliveries::DescribeDeliveriesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_delivery_sources::DescribeDeliverySourcesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_destinations::DescribeDestinationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_export_tasks::DescribeExportTasksError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_field_indexes::DescribeFieldIndexesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_import_tasks::DescribeImportTasksError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_index_policies::DescribeIndexPoliciesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_log_groups::DescribeLogGroupsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_log_streams::DescribeLogStreamsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_lookup_tables::DescribeLookupTablesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_metric_filters::DescribeMetricFiltersError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_queries::DescribeQueriesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_query_definitions::DescribeQueryDefinitionsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::describe_resource_policies::DescribeResourcePoliciesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::disassociate_kms_key::DisassociateKmsKeyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::filter_log_events::FilterLogEventsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_data_protection_policy::GetDataProtectionPolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_delivery_destination::GetDeliveryDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_delivery_source::GetDeliverySourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_integration::GetIntegrationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_log_anomaly_detector::GetLogAnomalyDetectorError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_log_group_fields::GetLogGroupFieldsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_object::GetLogObjectError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_lookup_table::GetLookupTableError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_query_results::GetQueryResultsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_scheduled_query::GetScheduledQueryError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_storage_tier_policy::GetStorageTierPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::get_transformer::GetTransformerError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_integrations::ListIntegrationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_log_anomaly_detectors::ListLogAnomalyDetectorsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_log_groups::ListLogGroupsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_log_groups_for_query::ListLogGroupsForQueryError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_scheduled_queries::ListScheduledQueriesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_syslog_configurations::ListSyslogConfigurationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::list_tags_log_group::ListTagsLogGroupError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_account_policy::PutAccountPolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_bearer_token_authentication::PutBearerTokenAuthenticationError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_data_protection_policy::PutDataProtectionPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_delivery_destination::PutDeliveryDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_delivery_source::PutDeliverySourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_destination::PutDestinationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_destination_policy::PutDestinationPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_index_policy::PutIndexPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_integration::PutIntegrationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_events::PutLogEventsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::DataAlreadyAcceptedException(value) => {
+                data_already_accepted_exception_error_details(py, value)
+            }
+            Self::InvalidSequenceTokenException(value) => {
+                invalid_sequence_token_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_group_deletion_protection::PutLogGroupDeletionProtectionError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_metric_filter::PutMetricFilterError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_query_definition::PutQueryDefinitionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_resource_policy::PutResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_retention_policy::PutRetentionPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_storage_tier_policy::PutStorageTierPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_subscription_filter::PutSubscriptionFilterError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_syslog_configuration::PutSyslogConfigurationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::put_transformer::PutTransformerError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::start_live_tail::StartLiveTailError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::start_query::StartQueryError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::MalformedQueryException(value) => {
+                malformed_query_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_log_group::TagLogGroupError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::test_metric_filter::TestMetricFilterError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::test_transformer::TestTransformerError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::untag_log_group::UntagLogGroupError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_anomaly::UpdateAnomalyError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_log_anomaly_detector::UpdateLogAnomalyDetectorError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::update_lookup_table::UpdateLookupTableError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::operation::update_scheduled_query::UpdateScheduledQueryError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError
+{
+}
+
 #[pyclass(
     name = "GetLogObjectResponseStreamReceiver",
     module = "rboto_cloudwatch_logs._native"
@@ -25545,7 +26000,7 @@ struct PyGetLogObjectResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyGetLogObjectResponseStreamReceiver {
@@ -25554,11 +26009,11 @@ impl PyGetLogObjectResponseStreamReceiver {
             aws_sdk_cloudwatchlogs::types::GetLogObjectResponseStream,
             aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -25592,7 +26047,7 @@ impl PyGetLogObjectResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -25618,7 +26073,7 @@ impl PyGetLogObjectResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -25639,7 +26094,7 @@ struct PyStartLiveTailResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyStartLiveTailResponseStreamReceiver {
@@ -25648,11 +26103,11 @@ impl PyStartLiveTailResponseStreamReceiver {
             aws_sdk_cloudwatchlogs::types::StartLiveTailResponseStream,
             aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -25686,7 +26141,7 @@ impl PyStartLiveTailResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -25713,7 +26168,7 @@ impl PyStartLiveTailResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -26030,21 +26485,24 @@ impl CloudWatchLogsClient {
                 .set_log_group_name(log_group_name_value)
                 .set_kms_key_id(kms_key_id_value)
                 .set_resource_identifier(resource_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AssociateKmsKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AssociateKmsKey", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "AssociateKmsKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -26103,21 +26561,23 @@ impl CloudWatchLogsClient {
                 .associate_source_to_s3_table_integration()
                 .set_integration_arn(integration_arn_value)
                 .set_data_source(data_source_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "AssociateSourceToS3TableIntegration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssociateSourceToS3TableIntegration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationAssociateSourceToS3TableIntegrationOutput { inner: output })
@@ -26151,21 +26611,29 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_export_task().set_task_id(task_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelExportTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelExportTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "CancelExportTask",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -26201,20 +26669,24 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_import_task().set_import_id(import_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelImportTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelImportTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelImportTaskOutput {
                 inner: output.into(),
@@ -26408,20 +26880,19 @@ impl CloudWatchLogsClient {
                 .set_field_delimiter(field_delimiter_value)
                 .set_s3_delivery_configuration(s3_delivery_configuration_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDelivery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDelivery", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateDeliveryOutput {
                 inner: output.into(),
@@ -26582,20 +27053,24 @@ impl CloudWatchLogsClient {
                 .set_to(to_value)
                 .set_destination(destination_value)
                 .set_destination_prefix(destination_prefix_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateExportTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateExportTaskOutput { inner: output })
         })
@@ -26677,20 +27152,24 @@ impl CloudWatchLogsClient {
                 .set_import_source_arn(import_source_arn_value)
                 .set_import_role_arn(import_role_arn_value)
                 .set_import_filter(import_filter_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateImportTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateImportTaskOutput { inner: output })
         })
@@ -26906,20 +27385,24 @@ impl CloudWatchLogsClient {
                 .set_kms_key_id(kms_key_id_value)
                 .set_anomaly_visibility_time(anomaly_visibility_time_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateLogAnomalyDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateLogAnomalyDetector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateLogAnomalyDetectorOutput { inner: output })
         })
@@ -27067,21 +27550,24 @@ impl CloudWatchLogsClient {
                 .set_tags(tags_value)
                 .set_log_group_class(log_group_class_value)
                 .set_deletion_protection_enabled(deletion_protection_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateLogGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateLogGroup", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "CreateLogGroup",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27140,21 +27626,24 @@ impl CloudWatchLogsClient {
                 .create_log_stream()
                 .set_log_group_name(log_group_name_value)
                 .set_log_stream_name(log_stream_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateLogStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateLogStream", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "CreateLogStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27316,20 +27805,24 @@ impl CloudWatchLogsClient {
                 .set_query_id(query_id_value)
                 .set_kms_key_id(kms_key_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateLookupTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateLookupTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateLookupTableOutput { inner: output })
         })
@@ -27711,20 +28204,24 @@ impl CloudWatchLogsClient {
                 .set_execution_role_arn(execution_role_arn_value)
                 .set_state(state_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateScheduledQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateScheduledQuery",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateScheduledQueryOutput { inner: output })
         })
@@ -27786,21 +28283,29 @@ impl CloudWatchLogsClient {
                 .delete_account_policy()
                 .set_policy_name(policy_name_value)
                 .set_policy_type(policy_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAccountPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAccountPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteAccountPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27839,21 +28344,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataProtectionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDataProtectionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDataProtectionPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27885,21 +28398,24 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery().set_id(id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDelivery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDelivery", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDelivery",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27931,21 +28447,29 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery_destination().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDeliveryDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDeliveryDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDeliveryDestination",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -27984,21 +28508,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDeliveryDestinationPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDeliveryDestinationPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDeliveryDestinationPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28030,21 +28562,29 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_delivery_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDeliverySource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDeliverySource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDeliverySource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28082,21 +28622,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_destination()
                 .set_destination_name(destination_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDestination",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28135,20 +28683,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_index_policy()
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndexPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIndexPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteIndexPolicyOutput { inner: output })
         })
@@ -28204,20 +28756,24 @@ impl CloudWatchLogsClient {
                 .delete_integration()
                 .set_integration_name(integration_name_value)
                 .set_force(force_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIntegration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteIntegrationOutput { inner: output })
         })
@@ -28257,21 +28813,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_log_anomaly_detector()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLogAnomalyDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteLogAnomalyDetector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteLogAnomalyDetector",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28309,21 +28873,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_log_group()
                 .set_log_group_name(log_group_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLogGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteLogGroup", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteLogGroup",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28382,21 +28949,24 @@ impl CloudWatchLogsClient {
                 .delete_log_stream()
                 .set_log_group_name(log_group_name_value)
                 .set_log_stream_name(log_stream_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLogStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteLogStream", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteLogStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28434,21 +29004,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_lookup_table()
                 .set_lookup_table_arn(lookup_table_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLookupTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteLookupTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteLookupTable",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28507,21 +29085,29 @@ impl CloudWatchLogsClient {
                 .delete_metric_filter()
                 .set_log_group_name(log_group_name_value)
                 .set_filter_name(filter_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMetricFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMetricFilter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteMetricFilter",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28560,20 +29146,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_query_definition()
                 .set_query_definition_id(query_definition_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteQueryDefinition"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteQueryDefinition",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteQueryDefinitionOutput { inner: output })
         })
@@ -28655,21 +29245,29 @@ impl CloudWatchLogsClient {
                 .set_policy_name(policy_name_value)
                 .set_resource_arn(resource_arn_value)
                 .set_expected_revision_id(expected_revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteResourcePolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28707,21 +29305,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_retention_policy()
                 .set_log_group_name(log_group_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetentionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteRetentionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteRetentionPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28759,20 +29365,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_scheduled_query()
                 .set_identifier(identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteScheduledQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteScheduledQuery",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteScheduledQueryOutput { inner: output })
         })
@@ -28832,21 +29442,29 @@ impl CloudWatchLogsClient {
                 .delete_subscription_filter()
                 .set_log_group_name(log_group_name_value)
                 .set_filter_name(filter_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSubscriptionFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteSubscriptionFilter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteSubscriptionFilter",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28906,21 +29524,29 @@ impl CloudWatchLogsClient {
                 .delete_syslog_configuration()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_vpc_endpoint_id(vpc_endpoint_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSyslogConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteSyslogConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteSyslogConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28959,21 +29585,29 @@ impl CloudWatchLogsClient {
             let request = client
                 .delete_transformer()
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTransformer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteTransformer",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteTransformer",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29100,20 +29734,24 @@ impl CloudWatchLogsClient {
                 .set_policy_name(policy_name_value)
                 .set_account_identifiers(account_identifiers_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeAccountPolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeAccountPolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeAccountPoliciesOutput {
                 inner: output.into(),
@@ -29325,20 +29963,24 @@ impl CloudWatchLogsClient {
                 .set_delivery_destination_types(delivery_destination_types_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeConfigurationTemplates"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeConfigurationTemplates",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeConfigurationTemplatesOutput {
                 inner: output.into(),
@@ -29441,20 +30083,24 @@ impl CloudWatchLogsClient {
                 .set_next_token(next_token_value)
                 .set_limit(limit_value)
                 .set_delivery_source_names(delivery_source_names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDeliveries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDeliveriesOutput {
                 inner: output.into(),
@@ -29556,20 +30202,24 @@ impl CloudWatchLogsClient {
                 .set_next_token(next_token_value)
                 .set_limit(limit_value)
                 .set_names(names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliveryDestinations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDeliveryDestinations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDeliveryDestinationsOutput {
                 inner: output.into(),
@@ -29671,20 +30321,24 @@ impl CloudWatchLogsClient {
                 .set_next_token(next_token_value)
                 .set_limit(limit_value)
                 .set_resource_arns(resource_arns_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDeliverySources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDeliverySources",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDeliverySourcesOutput {
                 inner: output.into(),
@@ -29764,20 +30418,24 @@ impl CloudWatchLogsClient {
                 .set_destination_name_prefix(destination_name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeDestinations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeDestinations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeDestinationsOutput {
                 inner: output.into(),
@@ -29876,20 +30534,24 @@ impl CloudWatchLogsClient {
                 .set_status_code(status_code_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExportTasks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeExportTasks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeExportTasksOutput {
                 inner: output.into(),
@@ -30023,20 +30685,24 @@ impl CloudWatchLogsClient {
                 .set_log_group_identifiers(log_group_identifiers_value)
                 .set_index_categories(index_categories_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeFieldIndexes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeFieldIndexes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeFieldIndexesOutput {
                 inner: output.into(),
@@ -30164,20 +30830,24 @@ impl CloudWatchLogsClient {
                 .set_batch_import_status(batch_import_status_value)
                 .set_limit(limit_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTaskBatches"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeImportTaskBatches",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeImportTaskBatchesOutput {
                 inner: output.into(),
@@ -30301,20 +30971,24 @@ impl CloudWatchLogsClient {
                 .set_import_source_arn(import_source_arn_value)
                 .set_limit(limit_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImportTasks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeImportTasks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeImportTasksOutput {
                 inner: output.into(),
@@ -30400,20 +31074,24 @@ impl CloudWatchLogsClient {
                 .describe_index_policies()
                 .set_log_group_identifiers(log_group_identifiers_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIndexPolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeIndexPolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeIndexPoliciesOutput {
                 inner: output.into(),
@@ -30650,20 +31328,24 @@ impl CloudWatchLogsClient {
                 .set_include_linked_accounts(include_linked_accounts_value)
                 .set_log_group_class(log_group_class_value)
                 .set_log_group_identifiers(log_group_identifiers_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogGroups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeLogGroups",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeLogGroupsOutput {
                 inner: output.into(),
@@ -30830,20 +31512,24 @@ impl CloudWatchLogsClient {
                 .set_descending(descending_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLogStreams"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeLogStreams",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeLogStreamsOutput {
                 inner: output.into(),
@@ -30927,20 +31613,24 @@ impl CloudWatchLogsClient {
                 .set_lookup_table_name_prefix(lookup_table_name_prefix_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLookupTables"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeLookupTables",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeLookupTablesOutput {
                 inner: output.into(),
@@ -31083,20 +31773,24 @@ impl CloudWatchLogsClient {
                 .set_limit(limit_value)
                 .set_metric_name(metric_name_value)
                 .set_metric_namespace(metric_namespace_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMetricFilters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMetricFilters",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeMetricFiltersOutput {
                 inner: output.into(),
@@ -31225,20 +31919,19 @@ impl CloudWatchLogsClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_query_language(query_language_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeQueries", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeQueriesOutput {
                 inner: output.into(),
@@ -31345,20 +32038,24 @@ impl CloudWatchLogsClient {
                 .set_query_definition_name_prefix(query_definition_name_prefix_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQueryDefinitions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeQueryDefinitions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeQueryDefinitionsOutput {
                 inner: output.into(),
@@ -31460,20 +32157,24 @@ impl CloudWatchLogsClient {
                 .set_limit(limit_value)
                 .set_resource_arn(resource_arn_value)
                 .set_policy_scope(policy_scope_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeResourcePolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeResourcePolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeResourcePoliciesOutput {
                 inner: output.into(),
@@ -31574,20 +32275,24 @@ impl CloudWatchLogsClient {
                 .set_filter_name_prefix(filter_name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSubscriptionFilters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeSubscriptionFilters",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeSubscriptionFiltersOutput {
                 inner: output.into(),
@@ -31650,21 +32355,29 @@ impl CloudWatchLogsClient {
                 .disassociate_kms_key()
                 .set_log_group_name(log_group_name_value)
                 .set_resource_identifier(resource_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateKmsKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateKmsKey",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DisassociateKmsKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -31702,21 +32415,23 @@ impl CloudWatchLogsClient {
             let request = client
                 .disassociate_source_from_s3_table_integration()
                 .set_identifier(identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DisassociateSourceFromS3TableIntegration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateSourceFromS3TableIntegration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDisassociateSourceFromS3TableIntegrationOutput { inner: output })
@@ -32000,20 +32715,19 @@ impl CloudWatchLogsClient {
                 .set_start_from_head(start_from_head_value)
                 .set_interleaved(interleaved_value)
                 .set_unmask(unmask_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "FilterLogEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "FilterLogEvents", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationFilterLogEventsOutput {
                 inner: output.into(),
@@ -32055,20 +32769,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDataProtectionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDataProtectionPolicyOutput { inner: output })
         })
@@ -32101,20 +32819,20 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery().set_id(id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDelivery")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDelivery", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetDeliveryOutput {
                 inner: output.into(),
             })
@@ -32148,20 +32866,24 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery_destination().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeliveryDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDeliveryDestinationOutput {
                 inner: output.into(),
@@ -32203,20 +32925,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliveryDestinationPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeliveryDestinationPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDeliveryDestinationPolicyOutput {
                 inner: output.into(),
@@ -32251,20 +32977,24 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_delivery_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverySource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeliverySource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDeliverySourceOutput {
                 inner: output.into(),
@@ -32305,20 +33035,19 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_integration()
                 .set_integration_name(integration_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetIntegration", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetIntegrationOutput { inner: output })
         })
@@ -32358,20 +33087,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_log_anomaly_detector()
                 .set_anomaly_detector_arn(anomaly_detector_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogAnomalyDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetLogAnomalyDetector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetLogAnomalyDetectorOutput { inner: output })
         })
@@ -32567,20 +33300,19 @@ impl CloudWatchLogsClient {
                 .set_limit(limit_value)
                 .set_start_from_head(start_from_head_value)
                 .set_unmask(unmask_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLogEvents", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetLogEventsOutput {
                 inner: output.into(),
@@ -32642,20 +33374,19 @@ impl CloudWatchLogsClient {
                 .get_log_fields()
                 .set_data_source_name(data_source_name_value)
                 .set_data_source_type(data_source_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogFields"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLogFields", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetLogFieldsOutput {
                 inner: output.into(),
@@ -32735,20 +33466,24 @@ impl CloudWatchLogsClient {
                 .set_log_group_name(log_group_name_value)
                 .set_time(time_value)
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogGroupFields"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetLogGroupFields",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetLogGroupFieldsOutput {
                 inner: output.into(),
@@ -32807,26 +33542,29 @@ impl CloudWatchLogsClient {
                 .get_log_object()
                 .set_unmask(unmask_value)
                 .set_log_object_pointer(log_object_pointer_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogObject"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLogObject", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "GetLogObject",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyGetLogObjectResponseStreamReceiver::new(output.field_stream, "GetLogObject"),
+                    PyGetLogObjectResponseStreamReceiver::new(output.field_stream, context.clone()),
                 )?;
                 result.set_item("field_stream", stream)?;
                 Ok(result.into_any().unbind())
@@ -32885,20 +33623,19 @@ impl CloudWatchLogsClient {
                 .get_log_record()
                 .set_log_record_pointer(log_record_pointer_value)
                 .set_unmask(unmask_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLogRecord"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLogRecord", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetLogRecordOutput { inner: output })
         })
@@ -32937,20 +33674,19 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_lookup_table()
                 .set_lookup_table_arn(lookup_table_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLookupTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLookupTable", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetLookupTableOutput { inner: output })
         })
@@ -33027,20 +33763,19 @@ impl CloudWatchLogsClient {
                 .set_query_id(query_id_value)
                 .set_next_token(next_token_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetQueryResults", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetQueryResultsOutput {
                 inner: output.into(),
@@ -33081,20 +33816,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_scheduled_query()
                 .set_identifier(identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetScheduledQuery",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetScheduledQueryOutput {
                 inner: output.into(),
@@ -33264,20 +34003,24 @@ impl CloudWatchLogsClient {
                 .set_execution_statuses(execution_statuses_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduledQueryHistory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetScheduledQueryHistory",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetScheduledQueryHistoryOutput {
                 inner: output.into(),
@@ -33296,20 +34039,24 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_storage_tier_policy();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetStorageTierPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetStorageTierPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetStorageTierPolicyOutput { inner: output })
         })
@@ -33349,20 +34096,19 @@ impl CloudWatchLogsClient {
             let request = client
                 .get_transformer()
                 .set_log_group_identifier(log_group_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetTransformer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetTransformer", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetTransformerOutput {
                 inner: output.into(),
@@ -33601,20 +34347,24 @@ impl CloudWatchLogsClient {
                 .set_group_by(group_by_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAggregateLogGroupSummaries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAggregateLogGroupSummaries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListAggregateLogGroupSummariesOutput {
                 inner: output.into(),
@@ -33718,20 +34468,19 @@ impl CloudWatchLogsClient {
                 .set_suppression_state(suppression_state_value)
                 .set_limit(limit_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAnomalies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListAnomalies", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListAnomaliesOutput {
                 inner: output.into(),
@@ -33821,20 +34570,24 @@ impl CloudWatchLogsClient {
                 .set_integration_name_prefix(integration_name_prefix_value)
                 .set_integration_type(integration_type_value)
                 .set_integration_status(integration_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListIntegrations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListIntegrations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListIntegrationsOutput {
                 inner: output.into(),
@@ -33914,20 +34667,24 @@ impl CloudWatchLogsClient {
                 .set_filter_log_group_arn(filter_log_group_arn_value)
                 .set_limit(limit_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListLogAnomalyDetectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListLogAnomalyDetectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListLogAnomalyDetectorsOutput {
                 inner: output.into(),
@@ -34230,20 +34987,19 @@ impl CloudWatchLogsClient {
                 .set_data_sources(data_sources_value)
                 .set_field_index_names(field_index_names_value)
                 .set_log_group_tags(log_group_tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListLogGroups", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListLogGroupsOutput {
                 inner: output.into(),
@@ -34322,20 +35078,24 @@ impl CloudWatchLogsClient {
                 .set_query_id(query_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListLogGroupsForQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListLogGroupsForQuery",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListLogGroupsForQueryOutput { inner: output })
         })
@@ -34442,20 +35202,24 @@ impl CloudWatchLogsClient {
                 .set_next_token(next_token_value)
                 .set_state(state_value)
                 .set_schedule_type(schedule_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduledQueries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListScheduledQueries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListScheduledQueriesOutput {
                 inner: output.into(),
@@ -34538,20 +35302,24 @@ impl CloudWatchLogsClient {
                 .set_integration_arn(integration_arn_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSourcesForS3TableIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSourcesForS3TableIntegration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSourcesForS3TableIntegrationOutput {
                 inner: output.into(),
@@ -34656,20 +35424,24 @@ impl CloudWatchLogsClient {
                 .set_vpc_endpoint_id(vpc_endpoint_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSyslogConfigurations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSyslogConfigurations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSyslogConfigurationsOutput {
                 inner: output.into(),
@@ -34710,20 +35482,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -34762,20 +35538,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .list_tags_log_group()
                 .set_log_group_name(log_group_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsLogGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsLogGroup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsLogGroupOutput { inner: output })
         })
@@ -34903,20 +35683,24 @@ impl CloudWatchLogsClient {
                 .set_policy_type(policy_type_value)
                 .set_scope(scope_value)
                 .set_selection_criteria(selection_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountPolicyOutput {
                 inner: output.into(),
@@ -34980,21 +35764,29 @@ impl CloudWatchLogsClient {
                 .put_bearer_token_authentication()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_bearer_token_authentication_enabled(bearer_token_authentication_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBearerTokenAuthentication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBearerTokenAuthentication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBearerTokenAuthentication",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35054,20 +35846,24 @@ impl CloudWatchLogsClient {
                 .put_data_protection_policy()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_policy_document(policy_document_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDataProtectionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDataProtectionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDataProtectionPolicyOutput { inner: output })
         })
@@ -35233,20 +36029,24 @@ impl CloudWatchLogsClient {
                 .set_delivery_destination_type(delivery_destination_type_value)
                 .set_role_arn(role_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDeliveryDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDeliveryDestinationOutput {
                 inner: output.into(),
@@ -35310,20 +36110,24 @@ impl CloudWatchLogsClient {
                 .put_delivery_destination_policy()
                 .set_delivery_destination_name(delivery_destination_name_value)
                 .set_delivery_destination_policy(delivery_destination_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliveryDestinationPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDeliveryDestinationPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDeliveryDestinationPolicyOutput {
                 inner: output.into(),
@@ -35489,20 +36293,24 @@ impl CloudWatchLogsClient {
                 .set_log_type(log_type_value)
                 .set_tags(tags_value)
                 .set_delivery_source_configuration(delivery_source_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverySource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDeliverySource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDeliverySourceOutput {
                 inner: output.into(),
@@ -35624,20 +36432,19 @@ impl CloudWatchLogsClient {
                 .set_target_arn(target_arn_value)
                 .set_role_arn(role_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutDestination", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutDestinationOutput {
                 inner: output.into(),
@@ -35720,21 +36527,29 @@ impl CloudWatchLogsClient {
                 .set_destination_name(destination_name_value)
                 .set_access_policy(access_policy_value)
                 .set_force_update(force_update_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDestinationPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDestinationPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutDestinationPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35794,20 +36609,19 @@ impl CloudWatchLogsClient {
                 .put_index_policy()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_policy_document(policy_document_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutIndexPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutIndexPolicy", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutIndexPolicyOutput {
                 inner: output.into(),
@@ -35892,20 +36706,19 @@ impl CloudWatchLogsClient {
                 .set_integration_name(integration_name_value)
                 .set_resource_config(resource_config_value)
                 .set_integration_type(integration_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutIntegration", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutIntegrationOutput { inner: output })
         })
@@ -36051,20 +36864,19 @@ impl CloudWatchLogsClient {
                 .set_log_events(log_events_value)
                 .set_sequence_token(sequence_token_value)
                 .set_entity(entity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutLogEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutLogEvents", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutLogEventsOutput {
                 inner: output.into(),
@@ -36128,21 +36940,29 @@ impl CloudWatchLogsClient {
                 .put_log_group_deletion_protection()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_deletion_protection_enabled(deletion_protection_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutLogGroupDeletionProtection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutLogGroupDeletionProtection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutLogGroupDeletionProtection",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36356,21 +37176,24 @@ impl CloudWatchLogsClient {
                 .set_apply_on_transformed_logs(apply_on_transformed_logs_value)
                 .set_field_selection_criteria(field_selection_criteria_value)
                 .set_emit_system_field_dimensions(emit_system_field_dimensions_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutMetricFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutMetricFilter", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutMetricFilter",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36579,20 +37402,24 @@ impl CloudWatchLogsClient {
                 .set_query_string(query_string_value)
                 .set_client_token(client_token_value)
                 .set_parameters(parameters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutQueryDefinition"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutQueryDefinition",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutQueryDefinitionOutput { inner: output })
         })
@@ -36695,20 +37522,24 @@ impl CloudWatchLogsClient {
                 .set_policy_document(policy_document_value)
                 .set_resource_arn(resource_arn_value)
                 .set_expected_revision_id(expected_revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput {
                 inner: output.into(),
@@ -36771,21 +37602,29 @@ impl CloudWatchLogsClient {
                 .put_retention_policy()
                 .set_log_group_name(log_group_name_value)
                 .set_retention_in_days(retention_in_days_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutRetentionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutRetentionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutRetentionPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36825,20 +37664,24 @@ impl CloudWatchLogsClient {
             let request = client
                 .put_storage_tier_policy()
                 .set_storage_tier(storage_tier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutStorageTierPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutStorageTierPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutStorageTierPolicyOutput { inner: output })
         })
@@ -37069,21 +37912,29 @@ impl CloudWatchLogsClient {
                 .set_apply_on_transformed_logs(apply_on_transformed_logs_value)
                 .set_field_selection_criteria(field_selection_criteria_value)
                 .set_emit_system_fields(emit_system_fields_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutSubscriptionFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutSubscriptionFilter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutSubscriptionFilter",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37143,21 +37994,29 @@ impl CloudWatchLogsClient {
                 .put_syslog_configuration()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_vpc_endpoint_id(vpc_endpoint_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutSyslogConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutSyslogConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutSyslogConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37241,21 +38100,24 @@ impl CloudWatchLogsClient {
                 .put_transformer()
                 .set_log_group_identifier(log_group_identifier_value)
                 .set_transformer_config(transformer_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutTransformer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutTransformer", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutTransformer",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37428,28 +38290,31 @@ impl CloudWatchLogsClient {
                 .set_log_stream_names(log_stream_names_value)
                 .set_log_stream_name_prefixes(log_stream_name_prefixes_value)
                 .set_log_event_filter_pattern(log_event_filter_pattern_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartLiveTail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartLiveTail", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartLiveTail",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyStartLiveTailResponseStreamReceiver::new(
                         output.response_stream,
-                        "StartLiveTail",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("response_stream", stream)?;
@@ -37679,20 +38544,20 @@ impl CloudWatchLogsClient {
                 .set_end_time(end_time_value)
                 .set_query_string(query_string_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartQuery", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStartQueryOutput { inner: output })
         })
     }
@@ -37724,20 +38589,20 @@ impl CloudWatchLogsClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_query().set_query_id(query_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopQuery")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StopQuery", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStopQueryOutput { inner: output })
         })
     }
@@ -37818,20 +38683,24 @@ impl CloudWatchLogsClient {
                 .tag_log_group()
                 .set_log_group_name(log_group_name_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagLogGroup")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagLogGroup", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagLogGroup",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37912,20 +38781,24 @@ impl CloudWatchLogsClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -38008,20 +38881,24 @@ impl CloudWatchLogsClient {
                 .test_metric_filter()
                 .set_filter_pattern(filter_pattern_value)
                 .set_log_event_messages(log_event_messages_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestMetricFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TestMetricFilter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTestMetricFilterOutput {
                 inner: output.into(),
@@ -38131,20 +39008,19 @@ impl CloudWatchLogsClient {
                 .test_transformer()
                 .set_transformer_config(transformer_config_value)
                 .set_log_event_messages(log_event_messages_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestTransformer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TestTransformer", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationTestTransformerOutput {
                 inner: output.into(),
@@ -38229,21 +39105,24 @@ impl CloudWatchLogsClient {
                 .untag_log_group()
                 .set_log_group_name(log_group_name_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagLogGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagLogGroup", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagLogGroup",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -38325,21 +39204,24 @@ impl CloudWatchLogsClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -38486,21 +39368,24 @@ impl CloudWatchLogsClient {
                 .set_suppression_type(suppression_type_value)
                 .set_suppression_period(suppression_period_value)
                 .set_baseline(baseline_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAnomaly"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateAnomaly", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateAnomaly",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -38621,20 +39506,24 @@ impl CloudWatchLogsClient {
                 .set_record_fields(record_fields_value)
                 .set_field_delimiter(field_delimiter_value)
                 .set_s3_delivery_configuration(s3_delivery_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeliveryConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDeliveryConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDeliveryConfigurationOutput { inner: output })
         })
@@ -38759,21 +39648,29 @@ impl CloudWatchLogsClient {
                 .set_filter_pattern(filter_pattern_value)
                 .set_anomaly_visibility_time(anomaly_visibility_time_value)
                 .set_enabled(enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateLogAnomalyDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateLogAnomalyDetector",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateLogAnomalyDetector",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -38891,20 +39788,24 @@ impl CloudWatchLogsClient {
                 .set_table_body(table_body_value)
                 .set_query_id(query_id_value)
                 .set_kms_key_id(kms_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateLookupTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateLookupTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateLookupTableOutput { inner: output })
         })
@@ -39247,20 +40148,24 @@ impl CloudWatchLogsClient {
                 .set_schedule_end_time(schedule_end_time_value)
                 .set_execution_role_arn(execution_role_arn_value)
                 .set_state(state_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateScheduledQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateScheduledQuery",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateScheduledQueryOutput {
                 inner: output.into(),

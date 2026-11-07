@@ -1863,6 +1863,20 @@ MessageStopEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/MessageStopEvent/)."""
 
+class ModelErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ModelErrorDetails/)."""
+    """Decoded fields of ModelError; values may contain application data."""
+    original_status_code: int
+    resource_name: str
+
+
+class ModelStreamErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ModelStreamErrorDetails/)."""
+    """Decoded fields of ModelStreamError; values may contain application data."""
+    original_status_code: int
+    original_message: str
+
+
 OutputConfig = TypedDict(
     "OutputConfig",
     {

@@ -5197,6 +5197,27 @@ impl PyOperationRecognizeUtteranceOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionError {}
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::get_session::GetSessionError {}
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::put_session::PutSessionError {}
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextError {}
+impl ModeledErrorDetails
+    for aws_sdk_lexruntimev2::operation::recognize_utterance::RecognizeUtteranceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_lexruntimev2::operation::start_conversation::StartConversationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_lexruntimev2::types::error::StartConversationRequestEventStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError
+{
+}
+
 #[pyclass(
     name = "StartConversationResponseEventStreamReceiver",
     module = "rboto_lex_runtime_v2._native"
@@ -5210,7 +5231,7 @@ struct PyStartConversationResponseEventStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyStartConversationResponseEventStreamReceiver {
@@ -5219,11 +5240,11 @@ impl PyStartConversationResponseEventStreamReceiver {
             aws_sdk_lexruntimev2::types::StartConversationResponseEventStream,
             aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5257,7 +5278,7 @@ impl PyStartConversationResponseEventStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5290,7 +5311,7 @@ impl PyStartConversationResponseEventStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5474,20 +5495,19 @@ impl LexRuntimeV2Client {
                 .set_bot_alias_id(bot_alias_id_value)
                 .set_locale_id(locale_id_value)
                 .set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteSessionOutput { inner: output })
         })
@@ -5585,20 +5605,20 @@ impl LexRuntimeV2Client {
                 .set_bot_alias_id(bot_alias_id_value)
                 .set_locale_id(locale_id_value)
                 .set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSession", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetSessionOutput {
                 inner: output.into(),
             })
@@ -5832,23 +5852,28 @@ impl LexRuntimeV2Client {
                 .set_session_state(session_state_value)
                 .set_request_attributes(request_attributes_value)
                 .set_response_content_type(response_content_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let mut output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutSession")))?;
+            let mut output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutSession", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "PutSession",
+                metadata: observer.response_metadata(),
+            };
             let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
+                let py_audio_stream =
+                    Py::new(py, PyByteStream::new(audio_stream, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationPutSessionOutput {
@@ -6038,20 +6063,19 @@ impl LexRuntimeV2Client {
                 .set_text(text_value)
                 .set_session_state(session_state_value)
                 .set_request_attributes(request_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeText"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RecognizeText", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRecognizeTextOutput {
                 inner: output.into(),
@@ -6259,24 +6283,33 @@ impl LexRuntimeV2Client {
                 .set_request_content_type(request_content_type_value)
                 .set_response_content_type(response_content_type_value)
                 .set_input_stream(input_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let mut output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RecognizeUtterance"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RecognizeUtterance",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RecognizeUtterance",
+                metadata: observer.response_metadata(),
+            };
             let audio_stream = std::mem::take(&mut output.audio_stream);
             Python::attach(|py| {
-                let py_audio_stream = Py::new(py, PyByteStream::new(audio_stream))?;
+                let py_audio_stream =
+                    Py::new(py, PyByteStream::new(audio_stream, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationRecognizeUtteranceOutput {
@@ -6419,28 +6452,36 @@ impl LexRuntimeV2Client {
                 .set_session_id(session_id_value)
                 .set_conversation_mode(conversation_mode_value)
                 .set_request_event_stream(request_event_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartConversation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartConversation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartConversation",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyStartConversationResponseEventStreamReceiver::new(
                         output.response_event_stream,
-                        "StartConversation",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("response_event_stream", stream)?;

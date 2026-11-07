@@ -56673,6 +56673,1395 @@ impl PyOperationUpdateTrustedEntitySetOutput {
     }
 }
 
+fn access_denied_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_guardduty::types::error::AccessDeniedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_6336 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_6336)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn bad_request_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_guardduty::types::error::BadRequestException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_6337 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_6337)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn conflict_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_guardduty::types::error::ConflictException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_6338 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_6338)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn internal_server_error_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_guardduty::types::error::InternalServerErrorException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_6339 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_6339)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_guardduty::types::error::ResourceNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_6340 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_6340)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::accept_administrator_invitation::AcceptAdministratorInvitationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::accept_invitation::AcceptInvitationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::archive_findings::ArchiveFindingsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detection_rule_association::CreateCustomDetectionRuleAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detection_rule_org_configuration::CreateCustomDetectionRuleOrgConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_detector::CreateDetectorError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_filter::CreateFilterError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_ip_set::CreateIPSetError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::create_investigation::CreateInvestigationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_malware_protection_plan::CreateMalwareProtectionPlanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_members::CreateMembersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_publishing_destination::CreatePublishingDestinationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::create_sample_findings::CreateSampleFindingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::create_threat_entity_set::CreateThreatEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::create_threat_intel_set::CreateThreatIntelSetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::create_trusted_entity_set::CreateTrustedEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::decline_invitations::DeclineInvitationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detection_rule_association::DeleteCustomDetectionRuleAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detection_rule_org_configuration::DeleteCustomDetectionRuleOrgConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_detector::DeleteDetectorError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_filter::DeleteFilterError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_ip_set::DeleteIPSetError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::delete_invitations::DeleteInvitationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_malware_protection_plan::DeleteMalwareProtectionPlanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_members::DeleteMembersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_publishing_destination::DeletePublishingDestinationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::delete_threat_entity_set::DeleteThreatEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::delete_threat_intel_set::DeleteThreatIntelSetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::delete_trusted_entity_set::DeleteTrustedEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::describe_malware_scans::DescribeMalwareScansError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_organization_configuration::DescribeOrganizationConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_publishing_destination::DescribePublishingDestinationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::disable_organization_admin_account::DisableOrganizationAdminAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_administrator_account::DisassociateFromAdministratorAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_master_account::DisassociateFromMasterAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::disassociate_members::DisassociateMembersError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::enable_organization_admin_account::EnableOrganizationAdminAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_administrator_account::GetAdministratorAccountError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_coverage_statistics::GetCoverageStatisticsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_custom_detection_rule::GetCustomDetectionRuleError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_rule_association::GetCustomDetectionRuleAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_rule_org_configuration::GetCustomDetectionRuleOrgConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_detector::GetDetectorError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_filter::GetFilterError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_findings::GetFindingsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_findings_statistics::GetFindingsStatisticsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_ip_set::GetIPSetError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_investigation::GetInvestigationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_invitations_count::GetInvitationsCountError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_malware_protection_plan::GetMalwareProtectionPlanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_malware_scan::GetMalwareScanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_malware_scan_settings::GetMalwareScanSettingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_master_account::GetMasterAccountError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_member_detectors::GetMemberDetectorsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_members::GetMembersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_organization_statistics::GetOrganizationStatisticsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_remaining_free_trial_days::GetRemainingFreeTrialDaysError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_threat_entity_set::GetThreatEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_threat_intel_set::GetThreatIntelSetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_trusted_entity_set::GetTrustedEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::get_usage_statistics::GetUsageStatisticsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::invite_members::InviteMembersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_coverage::ListCoverageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection_rule_associations::ListCustomDetectionRuleAssociationsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection_rule_org_configurations::ListCustomDetectionRuleOrgConfigurationsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_custom_detection_rules::ListCustomDetectionRulesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_detectors::ListDetectorsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_filters::ListFiltersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_findings::ListFindingsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_ip_sets::ListIPSetsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_investigations::ListInvestigationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_invitations::ListInvitationsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_malware_protection_plans::ListMalwareProtectionPlansError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_malware_scans::ListMalwareScansError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_members::ListMembersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_organization_admin_accounts::ListOrganizationAdminAccountsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_publishing_destinations::ListPublishingDestinationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_tags_for_resource::ListTagsForResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_threat_entity_sets::ListThreatEntitySetsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_threat_intel_sets::ListThreatIntelSetsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::list_trusted_entity_sets::ListTrustedEntitySetsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::send_object_malware_scan::SendObjectMalwareScanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::start_malware_scan::StartMalwareScanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::start_monitoring_members::StartMonitoringMembersError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::stop_monitoring_members::StopMonitoringMembersError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::unarchive_findings::UnarchiveFindingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detection_rule_association::UpdateCustomDetectionRuleAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detection_rule_org_configuration::UpdateCustomDetectionRuleOrgConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_detector::UpdateDetectorError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_filter::UpdateFilterError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_findings_feedback::UpdateFindingsFeedbackError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_ip_set::UpdateIPSetError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_malware_protection_plan::UpdateMalwareProtectionPlanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_malware_scan_settings::UpdateMalwareScanSettingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_member_detectors::UpdateMemberDetectorsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_organization_configuration::UpdateOrganizationConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_publishing_destination::UpdatePublishingDestinationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => internal_server_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_threat_entity_set::UpdateThreatEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_threat_intel_set::UpdateThreatIntelSetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_guardduty::operation::update_trusted_entity_set::UpdateTrustedEntitySetError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
+            Self::InternalServerErrorException(value) => {
+                internal_server_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccessControlList>()?;
     module.add_class::<PyAccessKey>()?;
@@ -57146,20 +58535,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_administrator_id(administrator_id_value)
                 .set_invitation_id(invitation_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AcceptAdministratorInvitation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AcceptAdministratorInvitation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAcceptAdministratorInvitationOutput { inner: output })
         })
@@ -57240,20 +58633,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_master_id(master_id_value)
                 .set_invitation_id(invitation_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AcceptInvitation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AcceptInvitation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAcceptInvitationOutput { inner: output })
         })
@@ -57336,20 +58733,19 @@ impl GuardDutyClient {
                 .archive_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ArchiveFindings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ArchiveFindings", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationArchiveFindingsOutput { inner: output })
         })
@@ -57471,21 +58867,23 @@ impl GuardDutyClient {
                 .set_mode(mode_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateCustomDetectionRuleAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomDetectionRuleAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateCustomDetectionRuleAssociationOutput {
@@ -57657,21 +59055,23 @@ impl GuardDutyClient {
                 .set_include_account_ids(include_account_ids_value)
                 .set_exclude_account_ids(exclude_account_ids_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateCustomDetectionRuleOrgConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomDetectionRuleOrgConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateCustomDetectionRuleOrgConfigurationOutput { inner: output })
@@ -57862,20 +59262,19 @@ impl GuardDutyClient {
                 .set_data_sources(data_sources_value)
                 .set_tags(tags_value)
                 .set_features(features_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDetector", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateDetectorOutput {
                 inner: output.into(),
@@ -58079,20 +59478,19 @@ impl GuardDutyClient {
                 .set_finding_criteria(finding_criteria_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateFilter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateFilterOutput { inner: output })
         })
@@ -58295,20 +59693,20 @@ impl GuardDutyClient {
                 .set_client_token(client_token_value)
                 .set_tags(tags_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIPSet")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateIPSet", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateIPSetOutput { inner: output })
         })
     }
@@ -58388,20 +59786,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_trigger_prompt(trigger_prompt_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvestigation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateInvestigation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateInvestigationOutput { inner: output })
         })
@@ -58543,20 +59945,24 @@ impl GuardDutyClient {
                 .set_protected_resource(protected_resource_value)
                 .set_actions(actions_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMalwareProtectionPlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateMalwareProtectionPlan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateMalwareProtectionPlanOutput { inner: output })
         })
@@ -58639,20 +60045,19 @@ impl GuardDutyClient {
                 .create_members()
                 .set_detector_id(detector_id_value)
                 .set_account_details(account_details_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateMembers", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateMembersOutput {
                 inner: output.into(),
@@ -58802,20 +60207,24 @@ impl GuardDutyClient {
                 .set_destination_properties(destination_properties_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePublishingDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePublishingDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePublishingDestinationOutput { inner: output })
         })
@@ -58898,20 +60307,24 @@ impl GuardDutyClient {
                 .create_sample_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_types(finding_types_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSampleFindings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateSampleFindings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateSampleFindingsOutput { inner: output })
         })
@@ -59114,20 +60527,24 @@ impl GuardDutyClient {
                 .set_activate(activate_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateThreatEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateThreatEntitySetOutput { inner: output })
         })
@@ -59330,20 +60747,24 @@ impl GuardDutyClient {
                 .set_client_token(client_token_value)
                 .set_tags(tags_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateThreatIntelSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateThreatIntelSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateThreatIntelSetOutput { inner: output })
         })
@@ -59547,20 +60968,24 @@ impl GuardDutyClient {
                 .set_activate(activate_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrustedEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateTrustedEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateTrustedEntitySetOutput { inner: output })
         })
@@ -59622,20 +61047,24 @@ impl GuardDutyClient {
             let request = client
                 .decline_invitations()
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeclineInvitations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeclineInvitations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeclineInvitationsOutput {
                 inner: output.into(),
@@ -59693,21 +61122,23 @@ impl GuardDutyClient {
                 .delete_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomDetectionRuleAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteCustomDetectionRuleAssociationOutput { inner: output })
@@ -59766,21 +61197,23 @@ impl GuardDutyClient {
                 .delete_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteCustomDetectionRuleOrgConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomDetectionRuleOrgConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteCustomDetectionRuleOrgConfigurationOutput { inner: output })
@@ -59818,20 +61251,19 @@ impl GuardDutyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_detector().set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDetector", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteDetectorOutput { inner: output })
         })
@@ -59891,20 +61323,19 @@ impl GuardDutyClient {
                 .delete_filter()
                 .set_detector_id(detector_id_value)
                 .set_filter_name(filter_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteFilter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteFilterOutput { inner: output })
         })
@@ -59964,20 +61395,20 @@ impl GuardDutyClient {
                 .delete_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_ip_set_id(ip_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIPSet")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteIPSet", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteIPSetOutput { inner: output })
         })
     }
@@ -60038,20 +61469,24 @@ impl GuardDutyClient {
             let request = client
                 .delete_invitations()
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInvitations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteInvitations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteInvitationsOutput {
                 inner: output.into(),
@@ -60093,21 +61528,29 @@ impl GuardDutyClient {
             let request = client
                 .delete_malware_protection_plan()
                 .set_malware_protection_plan_id(malware_protection_plan_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMalwareProtectionPlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMalwareProtectionPlan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteMalwareProtectionPlan",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -60189,20 +61632,19 @@ impl GuardDutyClient {
                 .delete_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteMembers", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteMembersOutput {
                 inner: output.into(),
@@ -60264,20 +61706,24 @@ impl GuardDutyClient {
                 .delete_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePublishingDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePublishingDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeletePublishingDestinationOutput { inner: output })
         })
@@ -60338,20 +61784,24 @@ impl GuardDutyClient {
                 .delete_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_entity_set_id(threat_entity_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteThreatEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteThreatEntitySetOutput { inner: output })
         })
@@ -60412,20 +61862,24 @@ impl GuardDutyClient {
                 .delete_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_intel_set_id(threat_intel_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteThreatIntelSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteThreatIntelSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteThreatIntelSetOutput { inner: output })
         })
@@ -60486,20 +61940,24 @@ impl GuardDutyClient {
                 .delete_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_trusted_entity_set_id(trusted_entity_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrustedEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteTrustedEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteTrustedEntitySetOutput { inner: output })
         })
@@ -60622,20 +62080,24 @@ impl GuardDutyClient {
                 .set_max_results(max_results_value)
                 .set_filter_criteria(filter_criteria_value)
                 .set_sort_criteria(sort_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeMalwareScans"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeMalwareScans",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeMalwareScansOutput {
                 inner: output.into(),
@@ -60718,21 +62180,23 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeOrganizationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeOrganizationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeOrganizationConfigurationOutput {
@@ -60795,20 +62259,24 @@ impl GuardDutyClient {
                 .describe_publishing_destination()
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePublishingDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePublishingDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePublishingDestinationOutput {
                 inner: output.into(),
@@ -60849,20 +62317,24 @@ impl GuardDutyClient {
             let request = client
                 .disable_organization_admin_account()
                 .set_admin_account_id(admin_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisableOrganizationAdminAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisableOrganizationAdminAccount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisableOrganizationAdminAccountOutput { inner: output })
         })
@@ -60901,21 +62373,23 @@ impl GuardDutyClient {
             let request = client
                 .disassociate_from_administrator_account()
                 .set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DisassociateFromAdministratorAccount")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateFromAdministratorAccount",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDisassociateFromAdministratorAccountOutput { inner: output })
@@ -60955,20 +62429,24 @@ impl GuardDutyClient {
             let request = client
                 .disassociate_from_master_account()
                 .set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateFromMasterAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateFromMasterAccount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisassociateFromMasterAccountOutput { inner: output })
         })
@@ -61051,20 +62529,24 @@ impl GuardDutyClient {
                 .disassociate_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisassociateMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateMembers",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisassociateMembersOutput {
                 inner: output.into(),
@@ -61105,20 +62587,24 @@ impl GuardDutyClient {
             let request = client
                 .enable_organization_admin_account()
                 .set_admin_account_id(admin_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "EnableOrganizationAdminAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "EnableOrganizationAdminAccount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationEnableOrganizationAdminAccountOutput { inner: output })
         })
@@ -61157,20 +62643,24 @@ impl GuardDutyClient {
             let request = client
                 .get_administrator_account()
                 .set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAdministratorAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAdministratorAccount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAdministratorAccountOutput {
                 inner: output.into(),
@@ -61280,20 +62770,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_filter_criteria(filter_criteria_value)
                 .set_statistics_type(statistics_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCoverageStatistics"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCoverageStatistics",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCoverageStatisticsOutput {
                 inner: output.into(),
@@ -61330,20 +62824,24 @@ impl GuardDutyClient {
             let request = client
                 .get_custom_detection_rule()
                 .set_rule_id(rule_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomDetectionRule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCustomDetectionRule",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCustomDetectionRuleOutput {
                 inner: output.into(),
@@ -61401,21 +62899,23 @@ impl GuardDutyClient {
                 .get_custom_detection_rule_association()
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetCustomDetectionRuleAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCustomDetectionRuleAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetCustomDetectionRuleAssociationOutput {
@@ -61476,21 +62976,23 @@ impl GuardDutyClient {
                 .get_custom_detection_rule_org_configuration()
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetCustomDetectionRuleOrgConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCustomDetectionRuleOrgConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetCustomDetectionRuleOrgConfigurationOutput {
@@ -61530,20 +63032,20 @@ impl GuardDutyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_detector().set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDetector")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDetector", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetDetectorOutput {
                 inner: output.into(),
             })
@@ -61604,20 +63106,20 @@ impl GuardDutyClient {
                 .get_filter()
                 .set_detector_id(detector_id_value)
                 .set_filter_name(filter_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFilter")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetFilter", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetFilterOutput {
                 inner: output.into(),
             })
@@ -61722,20 +63224,20 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value)
                 .set_sort_criteria(sort_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFindings")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetFindings", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetFindingsOutput {
                 inner: output.into(),
             })
@@ -61912,20 +63414,24 @@ impl GuardDutyClient {
                 .set_group_by(group_by_value)
                 .set_order_by(order_by_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFindingsStatistics"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFindingsStatistics",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFindingsStatisticsOutput {
                 inner: output.into(),
@@ -61987,20 +63493,20 @@ impl GuardDutyClient {
                 .get_ip_set()
                 .set_detector_id(detector_id_value)
                 .set_ip_set_id(ip_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIPSet")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetIPSet", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetIPSetOutput { inner: output })
         })
     }
@@ -62059,20 +63565,24 @@ impl GuardDutyClient {
                 .get_investigation()
                 .set_detector_id(detector_id_value)
                 .set_investigation_id(investigation_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInvestigation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInvestigation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInvestigationOutput {
                 inner: output.into(),
@@ -62091,20 +63601,24 @@ impl GuardDutyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_invitations_count();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInvitationsCount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInvitationsCount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInvitationsCountOutput { inner: output })
         })
@@ -62144,20 +63658,24 @@ impl GuardDutyClient {
             let request = client
                 .get_malware_protection_plan()
                 .set_malware_protection_plan_id(malware_protection_plan_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareProtectionPlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMalwareProtectionPlan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMalwareProtectionPlanOutput {
                 inner: output.into(),
@@ -62192,20 +63710,19 @@ impl GuardDutyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_malware_scan().set_scan_id(scan_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetMalwareScan", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetMalwareScanOutput {
                 inner: output.into(),
@@ -62246,20 +63763,24 @@ impl GuardDutyClient {
             let request = client
                 .get_malware_scan_settings()
                 .set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMalwareScanSettings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMalwareScanSettings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMalwareScanSettingsOutput {
                 inner: output.into(),
@@ -62300,20 +63821,24 @@ impl GuardDutyClient {
             let request = client
                 .get_master_account()
                 .set_detector_id(detector_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMasterAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMasterAccount",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMasterAccountOutput {
                 inner: output.into(),
@@ -62398,20 +63923,24 @@ impl GuardDutyClient {
                 .get_member_detectors()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMemberDetectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMemberDetectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMemberDetectorsOutput {
                 inner: output.into(),
@@ -62496,20 +64025,20 @@ impl GuardDutyClient {
                 .get_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMembers")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetMembers", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetMembersOutput {
                 inner: output.into(),
             })
@@ -62527,20 +64056,24 @@ impl GuardDutyClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_organization_statistics();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetOrganizationStatistics"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetOrganizationStatistics",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetOrganizationStatisticsOutput {
                 inner: output.into(),
@@ -62625,20 +64158,24 @@ impl GuardDutyClient {
                 .get_remaining_free_trial_days()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRemainingFreeTrialDays"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetRemainingFreeTrialDays",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetRemainingFreeTrialDaysOutput {
                 inner: output.into(),
@@ -62701,20 +64238,24 @@ impl GuardDutyClient {
                 .get_threat_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_entity_set_id(threat_entity_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetThreatEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetThreatEntitySetOutput { inner: output })
         })
@@ -62775,20 +64316,24 @@ impl GuardDutyClient {
                 .get_threat_intel_set()
                 .set_detector_id(detector_id_value)
                 .set_threat_intel_set_id(threat_intel_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetThreatIntelSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetThreatIntelSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetThreatIntelSetOutput { inner: output })
         })
@@ -62849,20 +64394,24 @@ impl GuardDutyClient {
                 .get_trusted_entity_set()
                 .set_detector_id(detector_id_value)
                 .set_trusted_entity_set_id(trusted_entity_set_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetTrustedEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetTrustedEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetTrustedEntitySetOutput { inner: output })
         })
@@ -63006,20 +64555,24 @@ impl GuardDutyClient {
                 .set_unit(unit_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUsageStatistics"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetUsageStatistics",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetUsageStatisticsOutput {
                 inner: output.into(),
@@ -63143,20 +64696,19 @@ impl GuardDutyClient {
                 .set_account_ids(account_ids_value)
                 .set_disable_email_notification(disable_email_notification_value)
                 .set_message(message_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "InviteMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "InviteMembers", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationInviteMembersOutput {
                 inner: output.into(),
@@ -63281,20 +64833,19 @@ impl GuardDutyClient {
                 .set_max_results(max_results_value)
                 .set_filter_criteria(filter_criteria_value)
                 .set_sort_criteria(sort_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCoverage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListCoverage", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListCoverageOutput {
                 inner: output.into(),
@@ -63396,21 +64947,23 @@ impl GuardDutyClient {
                 .set_next_token(next_token_value)
                 .set_rule_id(rule_id_value)
                 .set_mode(mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListCustomDetectionRuleAssociations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomDetectionRuleAssociations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListCustomDetectionRuleAssociationsOutput {
@@ -63498,21 +65051,23 @@ impl GuardDutyClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_status(status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListCustomDetectionRuleOrgConfigurations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomDetectionRuleOrgConfigurations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListCustomDetectionRuleOrgConfigurationsOutput {
@@ -63619,20 +65174,24 @@ impl GuardDutyClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_filters(filters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomDetectionRules"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomDetectionRules",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCustomDetectionRulesOutput {
                 inner: output.into(),
@@ -63694,20 +65253,19 @@ impl GuardDutyClient {
                 .list_detectors()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDetectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDetectors", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListDetectorsOutput { inner: output })
         })
@@ -63788,20 +65346,20 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListFilters")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListFilters", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListFiltersOutput { inner: output })
         })
     }
@@ -63923,20 +65481,19 @@ impl GuardDutyClient {
                 .set_sort_criteria(sort_criteria_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFindings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListFindings", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListFindingsOutput { inner: output })
         })
@@ -64017,20 +65574,20 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIPSets")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListIPSets", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListIPSetsOutput { inner: output })
         })
     }
@@ -64131,20 +65688,24 @@ impl GuardDutyClient {
                 .set_sort_criteria(sort_criteria_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInvestigations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInvestigations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInvestigationsOutput {
                 inner: output.into(),
@@ -64206,20 +65767,19 @@ impl GuardDutyClient {
                 .list_invitations()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInvitations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListInvitations", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListInvitationsOutput {
                 inner: output.into(),
@@ -64260,20 +65820,24 @@ impl GuardDutyClient {
             let request = client
                 .list_malware_protection_plans()
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareProtectionPlans"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMalwareProtectionPlans",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMalwareProtectionPlansOutput {
                 inner: output.into(),
@@ -64377,20 +65941,24 @@ impl GuardDutyClient {
                 .set_next_token(next_token_value)
                 .set_filter_criteria(filter_criteria_value)
                 .set_sort_criteria(sort_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMalwareScans"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMalwareScans",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMalwareScansOutput {
                 inner: output.into(),
@@ -64494,20 +66062,20 @@ impl GuardDutyClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_only_associated(only_associated_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListMembers")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListMembers", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListMembersOutput {
                 inner: output.into(),
             })
@@ -64568,20 +66136,24 @@ impl GuardDutyClient {
                 .list_organization_admin_accounts()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListOrganizationAdminAccounts"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListOrganizationAdminAccounts",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListOrganizationAdminAccountsOutput {
                 inner: output.into(),
@@ -64664,20 +66236,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPublishingDestinations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPublishingDestinations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPublishingDestinationsOutput {
                 inner: output.into(),
@@ -64718,20 +66294,24 @@ impl GuardDutyClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -64812,20 +66392,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatEntitySets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListThreatEntitySets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListThreatEntitySetsOutput { inner: output })
         })
@@ -64906,20 +66490,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListThreatIntelSets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListThreatIntelSets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListThreatIntelSetsOutput { inner: output })
         })
@@ -65000,20 +66588,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTrustedEntitySets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTrustedEntitySets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTrustedEntitySetsOutput { inner: output })
         })
@@ -65052,20 +66644,24 @@ impl GuardDutyClient {
             let request = client
                 .send_object_malware_scan()
                 .set_s3_object(s3_object_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SendObjectMalwareScan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendObjectMalwareScan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSendObjectMalwareScanOutput { inner: output })
         })
@@ -65147,20 +66743,24 @@ impl GuardDutyClient {
                 .set_resource_arn(resource_arn_value)
                 .set_client_token(client_token_value)
                 .set_scan_configuration(scan_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartMalwareScan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMalwareScan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartMalwareScanOutput { inner: output })
         })
@@ -65243,20 +66843,24 @@ impl GuardDutyClient {
                 .start_monitoring_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartMonitoringMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMonitoringMembers",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartMonitoringMembersOutput {
                 inner: output.into(),
@@ -65341,20 +66945,24 @@ impl GuardDutyClient {
                 .stop_monitoring_members()
                 .set_detector_id(detector_id_value)
                 .set_account_ids(account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopMonitoringMembers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopMonitoringMembers",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopMonitoringMembersOutput {
                 inner: output.into(),
@@ -65438,20 +67046,20 @@ impl GuardDutyClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -65533,20 +67141,24 @@ impl GuardDutyClient {
                 .unarchive_findings()
                 .set_detector_id(detector_id_value)
                 .set_finding_ids(finding_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UnarchiveFindings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UnarchiveFindings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUnarchiveFindingsOutput { inner: output })
         })
@@ -65629,20 +67241,19 @@ impl GuardDutyClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -65721,21 +67332,23 @@ impl GuardDutyClient {
                 .set_rule_id(rule_id_value)
                 .set_association_id(association_id_value)
                 .set_mode(mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCustomDetectionRuleAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateCustomDetectionRuleAssociationOutput { inner: output })
@@ -65884,21 +67497,23 @@ impl GuardDutyClient {
                 .set_mode(mode_value)
                 .set_include_account_ids(include_account_ids_value)
                 .set_exclude_account_ids(exclude_account_ids_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateCustomDetectionRuleOrgConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCustomDetectionRuleOrgConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateCustomDetectionRuleOrgConfigurationOutput { inner: output })
@@ -66046,20 +67661,19 @@ impl GuardDutyClient {
                 .set_finding_publishing_frequency(finding_publishing_frequency_value)
                 .set_data_sources(data_sources_value)
                 .set_features(features_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDetector"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateDetector", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateDetectorOutput { inner: output })
         })
@@ -66201,20 +67815,19 @@ impl GuardDutyClient {
                 .set_action(action_value)
                 .set_rank(rank_value)
                 .set_finding_criteria(finding_criteria_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFilter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateFilter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateFilterOutput { inner: output })
         })
@@ -66337,20 +67950,24 @@ impl GuardDutyClient {
                 .set_finding_ids(finding_ids_value)
                 .set_feedback(feedback_value)
                 .set_comments(comments_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFindingsFeedback"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateFindingsFeedback",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateFindingsFeedbackOutput { inner: output })
         })
@@ -66487,20 +68104,20 @@ impl GuardDutyClient {
                 .set_location(location_value)
                 .set_activate(activate_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIPSet")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateIPSet", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateIPSetOutput { inner: output })
         })
     }
@@ -66599,21 +68216,29 @@ impl GuardDutyClient {
                 .set_role(role_value)
                 .set_actions(actions_value)
                 .set_protected_resource(protected_resource_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMalwareProtectionPlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMalwareProtectionPlan",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateMalwareProtectionPlan",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -66698,20 +68323,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_scan_resource_criteria(scan_resource_criteria_value)
                 .set_ebs_snapshot_preservation(ebs_snapshot_preservation_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMalwareScanSettings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMalwareScanSettings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMalwareScanSettingsOutput { inner: output })
         })
@@ -66860,20 +68489,24 @@ impl GuardDutyClient {
                 .set_account_ids(account_ids_value)
                 .set_data_sources(data_sources_value)
                 .set_features(features_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMemberDetectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMemberDetectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMemberDetectorsOutput {
                 inner: output.into(),
@@ -67025,20 +68658,24 @@ impl GuardDutyClient {
                 .set_data_sources(data_sources_value)
                 .set_features(features_value)
                 .set_auto_enable_organization_members(auto_enable_organization_members_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateOrganizationConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateOrganizationConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateOrganizationConfigurationOutput { inner: output })
         })
@@ -67120,20 +68757,24 @@ impl GuardDutyClient {
                 .set_detector_id(detector_id_value)
                 .set_destination_id(destination_id_value)
                 .set_destination_properties(destination_properties_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePublishingDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdatePublishingDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdatePublishingDestinationOutput { inner: output })
         })
@@ -67271,20 +68912,24 @@ impl GuardDutyClient {
                 .set_location(location_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_activate(activate_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateThreatEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateThreatEntitySetOutput { inner: output })
         })
@@ -67422,20 +69067,24 @@ impl GuardDutyClient {
                 .set_location(location_value)
                 .set_activate(activate_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateThreatIntelSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateThreatIntelSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateThreatIntelSetOutput { inner: output })
         })
@@ -67573,20 +69222,24 @@ impl GuardDutyClient {
                 .set_location(location_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_activate(activate_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrustedEntitySet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateTrustedEntitySet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateTrustedEntitySetOutput { inner: output })
         })

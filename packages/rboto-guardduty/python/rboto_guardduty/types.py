@@ -1074,6 +1074,12 @@ AccessControlList = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessControlList/)."""
 
+class AccessDeniedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessDeniedErrorDetails/)."""
+    """Decoded fields of AccessDeniedError; values may contain application data."""
+    type: str
+
+
 AccessKey = TypedDict(
     "AccessKey",
     {
@@ -1343,6 +1349,12 @@ AwsApiCallAction = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AwsApiCallAction/)."""
 
+class BadRequestErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/BadRequestErrorDetails/)."""
+    """Decoded fields of BadRequestError; values may contain application data."""
+    type: str
+
+
 BedrockGuardrail = TypedDict(
     "BedrockGuardrail",
     {
@@ -1459,6 +1471,12 @@ Condition = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Condition/)."""
+
+class ConflictErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ConflictErrorDetails/)."""
+    """Decoded fields of ConflictError; values may contain application data."""
+    type: str
+
 
 Container = TypedDict(
     "Container",
@@ -2851,6 +2869,12 @@ InstanceDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InstanceDetails/)."""
 
+class InternalServerErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InternalServerErrorDetails/)."""
+    """Decoded fields of InternalServerError; values may contain application data."""
+    type: str
+
+
 Investigation = TypedDict(
     "Investigation",
     {
@@ -4074,6 +4098,12 @@ ResourceDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDetails/)."""
+
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    type: str
+
 
 ResourceStatistics = TypedDict(
     "ResourceStatistics",

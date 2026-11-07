@@ -13,7 +13,7 @@ from .model import ServiceDescriptor
 from .pagination import resolve_pagination
 from .reference import document_types, package_version, reference_url, render_reference
 from .registry import list_services
-from .rust_crate import RustField, RustOperation, RustType, parse_crate
+from .rust_crate import RustField, RustOperation, RustType, parse_crate, parse_error_variants
 from .smithy import SmithyMember, SmithyShape, load_model, to_snake_case
 from .waiters import resolve_waiters
 
@@ -204,6 +204,10 @@ class ServiceGenerator:
             operation.output_target
             for operation in self.service.operations
             if operation.rust_name not in native_names
+        )
+        dictionary_roots.extend(
+            member.target for shape in self.service.shapes.values()
+            if shape.error for member in shape.members
         )
         self._dictionary_output_targets = self._reachable_shapes(dictionary_roots)
         self._dictionary_operation_outputs: dict[str, list[str]] = {}
@@ -1386,16 +1390,13 @@ class ServiceGenerator:
         lines[-1] += ";"
         lines.extend(
             [
-                "            let result = if let Some(sink) = observation {",
-                "                let observer = rboto_core::OperationObservation::default();",
-                "                let result = request.customize().interceptor(observer.clone()).send().await;",
+                "            let observer = rboto_core::OperationObservation::new(observation.is_some());",
+                "            let result = request.customize().interceptor(observer.clone()).send().await;",
+                "            if let Some(sink) = observation {",
                 "                observer.publish(sink, client.config().region().map(|region| region.as_ref()));",
-                "                result",
-                "            } else {",
-                "                request.send().await",
                 "            };",
                 f"            let {'mut ' if has_native_stream else ''}output = result.map_err(|error| {{",
-                f'                Python::attach(|py| sdk_error_to_py(py, &error, "{smithy.name}"))',
+                f'                Python::attach(|py| sdk_error_to_py(py, &error, "{smithy.name}", &observer.response_metadata()))',
                 "            })?;",
             ]
         )
@@ -1413,6 +1414,7 @@ class ServiceGenerator:
             return "\n".join(lines)
 
         if native_metadata is not None:
+            lines.append(f'            let context = StreamErrorContext {{ operation: "{smithy.name}", metadata: observer.response_metadata() }};')
             output_class = native_metadata["rust_class"]
             constructor_fields: list[str] = ["inner: output"]
             stream_setup: list[str] = []
@@ -1421,9 +1423,9 @@ class ServiceGenerator:
                     continue
                 stream_name = f"py_{field.name}"
                 constructor = (
-                    f"{field.name}.map(|stream| Py::new(py, PyByteStream::new(stream))).transpose()?"
+                    f"{field.name}.map(|stream| Py::new(py, PyByteStream::new(stream, context.clone()))).transpose()?"
                     if field.optional
-                    else f"Py::new(py, PyByteStream::new({field.name}))?"
+                    else f"Py::new(py, PyByteStream::new({field.name}, context.clone()))?"
                 )
                 lines.append(
                     f"            let {field.name} = std::mem::take(&mut output.{field.rust_name});"
@@ -1444,6 +1446,7 @@ class ServiceGenerator:
             )
             return "\n".join(lines)
 
+        lines.append(f'            let context = StreamErrorContext {{ operation: "{smithy.name}", metadata: observer.response_metadata() }};')
         lines.append("            Python::attach(|py| {")
         if smithy.output_target is None or smithy.output_target == "smithy.api#Unit":
             lines.extend([
@@ -1457,7 +1460,7 @@ class ServiceGenerator:
             kind = self._kind(field.rust_type)
             if kind == "byte_stream":
                 lines.append(
-                    f"                let stream = Py::new(py, PyByteStream::new(output.{field.rust_name}))?;"
+                    f"                let stream = Py::new(py, PyByteStream::new(output.{field.rust_name}, context.clone()))?;"
                 )
                 lines.append(f'                result.set_item("{field.name}", stream)?;')
                 continue
@@ -1468,7 +1471,7 @@ class ServiceGenerator:
                 event_name = _crate_type_name(arguments[0])
                 if event_name is None:
                     raise GenerationError(f"invalid event type: {arguments[0]}")
-                constructor = f'Py::new(py, Py{event_name}Receiver::new(stream, "{smithy.name}"))'
+                constructor = f"Py::new(py, Py{event_name}Receiver::new(stream, context.clone()))"
                 expression = (
                     f"output.{field.rust_name}.map(|stream| {constructor}).transpose()?"
                     if field.optional
@@ -1530,6 +1533,7 @@ class ServiceGenerator:
         native_classes = [f"Py{rust.name}" for rust in native_structs]
         native_classes.extend(metadata["rust_class"] for metadata in native_outputs)
         return self.templates.get_template("generated.rs.j2").render(
+            error_bindings=self._render_error_bindings(),
             converters="\n".join(converters),
             native_class_code="\n\n".join(native_class_code),
             native_classes=native_classes,
@@ -1538,6 +1542,66 @@ class ServiceGenerator:
             python_package=self.descriptor.python_package,
             event_streams=self._event_streams(),
         )
+
+    def _error_fields(self, name: str) -> tuple[RustField, ...]:
+        return tuple(field for field in self.crate.errors.get(name, ()) if field.name != "message")
+
+    def _error_rust_name(self, shape: SmithyShape) -> str:
+        for name in self.crate.errors:
+            if self._shape_for_rust(name) == shape:
+                return name
+        return shape.name
+
+    def _render_error_bindings(self) -> str:
+        lines: list[str] = []
+        for name in sorted(self.crate.errors):
+            if not self._error_fields(name):
+                continue
+            lines.extend([
+                f"fn {to_snake_case(name)}_error_details(py: Python<'_>, value: &{self.rust_module}::types::error::{name}) -> PyResult<Py<PyAny>> {{",
+                "    let result = PyDict::new(py);",
+            ])
+            for field in self._error_fields(name):
+                source = "value" if field.optional else f"&value.{field.rust_name}"
+                if field.optional:
+                    lines.append(f"    if let Some(value) = &value.{field.rust_name} {{")
+                converted = self._next("detail")
+                lines.extend(self._to_py(field.rust_type, source, converted, "        "))
+                lines.append(f'        result.set_item("{field.name}", {converted})?;')
+                if field.optional:
+                    lines.append("    }")
+            lines.extend(["    Ok(result.into_any().unbind())", "}", ""])
+        enum_sources = [
+            (f"{self.rust_module}::operation::{operation.rust_name}",
+             self.crate.path / "src/operation" / f"{operation.rust_name}.rs")
+            for operation in self.service.operations
+        ]
+        enum_sources.append((f"{self.rust_module}::types::error", self.crate.path / "src/types/error.rs"))
+        for module, path in enum_sources:
+            if not path.exists():
+                raise GenerationError(f"missing SDK error enum source: {path}")
+            for name, variants in parse_error_variants(path.read_text()).items():
+                for _, error in variants:
+                    if error not in self.crate.errors:
+                        raise GenerationError(f"missing modeled error fields: {error}")
+                variants = tuple((variant, error) for variant, error in variants if self._error_fields(error))
+                if not variants:
+                    lines.append(f"impl ModeledErrorDetails for {module}::{name} {{}}")
+                    continue
+                lines.extend([
+                    f"impl ModeledErrorDetails for {module}::{name} {{",
+                    "    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {",
+                    "        match self {",
+                ])
+                for variant, error in variants:
+                    lines.append(
+                        f"            Self::{variant}(value) => {to_snake_case(error)}_error_details(py, value),"
+                    )
+                lines.extend([
+                    "            _ => Ok(PyDict::new(py).into_any().unbind()),",
+                    "        }", "    }", "}", "",
+                ])
+        return "\n".join(lines)
 
     def _render_rust_runtime(self) -> str:
         return self.templates.get_template("lib.rs.j2").render(
@@ -1759,7 +1823,30 @@ class ServiceGenerator:
                 reserved.update((name, self._output_type_name(shape)))
         lines.append("")
         for shape in shapes:
-            if shape.error or shape.kind not in {"structure", "union"}:
+            if shape.error:
+                fields = self._error_fields(self._error_rust_name(shape))
+                if fields:
+                    stem = shape.name.removesuffix("Exception").removesuffix("Error")
+                    name = f"{stem}ErrorDetails"
+                    if name in reserved or name in self._shapes_by_name:
+                        raise GenerationError(f"error details type name collision: {name}")
+                    lines.extend([
+                        f"class {name}(TypedDict, total=False):",
+                        f'    """Decoded fields of {stem}Error; values may contain application data."""',
+                    ])
+                    for field in fields:
+                        member = next(
+                            (member for member in shape.members if member.rust_name == field.name),
+                            None,
+                        )
+                        if member is None:
+                            raise GenerationError(f"missing modeled error member: {shape.name}.{field.name}")
+                        annotation = self._python_type(member.target, output=True)
+                        lines.append(f"    {field.name}: {annotation}")
+                    lines.extend(["", ""])
+                    reserved.add(name)
+                continue
+            if shape.kind not in {"structure", "union"}:
                 continue
             contexts: list[bool] = []
             if shape.shape_id not in native_output_targets and (
@@ -1812,7 +1899,7 @@ class ServiceGenerator:
             *(f"{public}: TypeAlias = _native.{native}" for native, public in sorted(exports)),
             "",
         ])
-        return "\n".join([*imports, *lines])
+        return "\n".join([*imports, *lines]).rstrip() + "\n"
 
     def _python_shape_definition(
         self, shape: SmithyShape, *, output: bool, name: str | None = None,
@@ -2033,7 +2120,9 @@ class ServiceGenerator:
         )
         lines = [
             "# Generated by rboto-codegen. DO NOT EDIT.",
+            *(["from typing import cast", ""] if any(self._error_fields(name) for name in self.crate.errors) else []),
             "from rboto.exceptions import ServiceError as BaseServiceError",
+            *(["", "from . import types as _types"] if any(self._error_fields(name) for name in self.crate.errors) else []),
             "",
             "",
             f"class {self.descriptor.native_class.removesuffix('Client')}Error(BaseServiceError):",
@@ -2050,6 +2139,14 @@ class ServiceGenerator:
                     "",
                 ]
             )
+            shape = self._shapes_by_name[error]
+            if self._error_fields(self._error_rust_name(shape)):
+                lines.extend([
+                    "    @property",
+                    f"    def details(self) -> _types.{stem}ErrorDetails:",
+                    f"        return cast(_types.{stem}ErrorDetails, self._details)",
+                    "",
+                ])
         return "\n".join(lines)
 
 

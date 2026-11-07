@@ -4868,6 +4868,12 @@ ValidateFlowDefinitionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ValidateFlowDefinitionRequest/)."""
 
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    field_list: list[ValidationExceptionField]
+
+
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",
     {

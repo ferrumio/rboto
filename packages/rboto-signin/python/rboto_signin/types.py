@@ -51,6 +51,12 @@ OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED'
 OAuth2ErrorCodeOutput: TypeAlias = OAuth2ErrorCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCodeOutput/)."""
 
+class AccessDeniedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessDeniedErrorDetails/)."""
+    """Decoded fields of AccessDeniedError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
 AccessToken = TypedDict(
     "AccessToken",
     {
@@ -60,6 +66,12 @@ AccessToken = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/AccessToken/)."""
+
+class ConflictErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ConflictErrorDetails/)."""
+    """Decoded fields of ConflictError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
 
 CreateOAuth2TokenRequest = TypedDict(
     "CreateOAuth2TokenRequest",
@@ -135,6 +147,12 @@ GetResourcePolicyInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/GetResourcePolicyInput/)."""
 
+class InternalServerErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/InternalServerErrorDetails/)."""
+    """Decoded fields of InternalServerError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
 IntrospectOAuth2TokenWithIAMRequest = TypedDict(
     "IntrospectOAuth2TokenWithIAMRequest",
     {
@@ -197,6 +215,12 @@ PutResourcePermissionStatementInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/PutResourcePermissionStatementInput/)."""
 
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
 RevokeOAuth2TokenWithIAMRequest = TypedDict(
     "RevokeOAuth2TokenWithIAMRequest",
     {
@@ -204,6 +228,12 @@ RevokeOAuth2TokenWithIAMRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/RevokeOAuth2TokenWithIAMRequest/)."""
+
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
 
 SigninResourceBasedPolicy = TypedDict(
     "SigninResourceBasedPolicy",
@@ -213,3 +243,14 @@ SigninResourceBasedPolicy = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/SigninResourceBasedPolicy/)."""
+
+class TooManyRequestsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/TooManyRequestsErrorDetails/)."""
+    """Decoded fields of TooManyRequestsError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput

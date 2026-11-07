@@ -13,6 +13,8 @@ use aws_smithy_types::config_bag::ConfigBag;
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
+use crate::error::ResponseMetadata;
+
 const MAX_RECORDED_ATTEMPTS: usize = 32;
 type Attempt = (usize, f64, Option<u16>, Option<String>);
 
@@ -22,15 +24,37 @@ struct Record {
     attempt_count: usize,
     status_code: Option<u16>,
     request_id: Option<String>,
+    extended_request_id: Option<String>,
     attempts: Vec<Attempt>,
 }
 
 #[derive(Clone, Debug, Default)]
 pub struct OperationObservation {
     record: Arc<Mutex<Record>>,
+    detailed: bool,
 }
 
 impl OperationObservation {
+    /// Always retain bounded error context; detailed timing is opt-in.
+    pub fn new(detailed: bool) -> Self {
+        Self {
+            record: Arc::default(),
+            detailed,
+        }
+    }
+
+    pub fn response_metadata(&self) -> ResponseMetadata {
+        self.record
+            .lock()
+            .map(|record| ResponseMetadata {
+                status_code: record.status_code,
+                request_id: record.request_id.clone(),
+                extended_request_id: record.extended_request_id.clone(),
+                retry_attempts: Some(record.attempt_count.saturating_sub(1)),
+            })
+            .unwrap_or_default()
+    }
+
     /// Copy metadata once, before delivering the operation result to Python.
     /// Cancellation can prevent publication; Python then reports unknown values.
     pub fn publish(&self, sink: Py<PyDict>, region: Option<&str>) {
@@ -69,9 +93,10 @@ impl Intercept for OperationObservation {
     ) -> Result<(), BoxError> {
         if let Ok(mut record) = self.record.lock() {
             record.attempt_count += 1;
-            record.started = Some(Instant::now());
+            record.started = self.detailed.then(Instant::now);
             record.status_code = None;
             record.request_id = None;
+            record.extended_request_id = None;
         }
         Ok(())
     }
@@ -84,11 +109,10 @@ impl Intercept for OperationObservation {
     ) -> Result<(), BoxError> {
         if let Ok(mut record) = self.record.lock() {
             if let Some(response) = context.response() {
-                record.status_code = Some(response.status().as_u16());
-                record.request_id = ["x-amzn-requestid", "x-amz-request-id", "x-amzn-request-id"]
-                    .into_iter()
-                    .find_map(|header| response.headers().get(header))
-                    .map(str::to_owned);
+                let metadata = ResponseMetadata::from_response(response);
+                record.status_code = metadata.status_code;
+                record.request_id = metadata.request_id;
+                record.extended_request_id = metadata.extended_request_id;
             }
             if let Some(started) = record.started.take()
                 && record.attempts.len() < MAX_RECORDED_ATTEMPTS

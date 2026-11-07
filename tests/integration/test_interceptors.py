@@ -6,7 +6,9 @@ import json
 import logging
 import os
 import socket
+import struct
 import threading
+import zlib
 from collections.abc import Iterator
 from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -34,6 +36,125 @@ def service(*names: str) -> pytest.MarkDecorator:
     )
 
 
+def encoded_event(message_type: str, name: str, payload: bytes) -> bytes:
+    headers = bytearray()
+    for key, value in {
+        ":message-type": message_type,
+        ":exception-type" if message_type == "exception" else ":event-type": name,
+        ":content-type": "application/json",
+    }.items():
+        key_bytes, value_bytes = key.encode(), value.encode()
+        headers += bytes([len(key_bytes)]) + key_bytes
+        headers += b"\x07" + struct.pack(">H", len(value_bytes)) + value_bytes
+    prelude = struct.pack(">II", 16 + len(headers) + len(payload), len(headers))
+    frame = prelude + struct.pack(">I", zlib.crc32(prelude)) + headers + payload
+    return frame + struct.pack(">I", zlib.crc32(frame))
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+@pytest.mark.parametrize("observed", [False, True])
+async def test_modeled_details_and_metadata_are_typed_and_isolated(
+    peer: "Peer", observed: bool,
+) -> None:
+    from rboto import DynamoDBClient
+    from rboto_dynamodb.exceptions import ConditionalCheckFailedError
+
+    peer.status = 400
+    peer.body = json.dumps({
+        "__type": "ConditionalCheckFailedException", "message": "condition failed",
+        "Item": {"pk": {"S": "private item"}, "nested": {"M": {"ok": {"BOOL": True}}}},
+        "unknownSecret": "discard this",
+    }).encode()
+    recorder = Recorder()
+    async with DynamoDBClient(
+        endpoint_url=peer.endpoint, interceptors=[recorder] if observed else [],
+    ) as client:
+        with pytest.raises(ConditionalCheckFailedError) as caught:
+            await client.put_item(table_name="example", item={"pk": {"s": "key"}})
+    error = caught.value
+    assert error.details["item"] == {
+        "pk": {"s": "private item"}, "nested": {"m": {"ok": {"bool": True}}},
+    }
+    assert "unknownSecret" not in error.details
+    assert "private item" not in str(error) + repr(error.response)
+    assert error.response_metadata == {
+        "HTTPStatusCode": 400, "RequestId": "request-1", "HostId": None, "RetryAttempts": 0,
+    }
+    if observed:
+        metadata = recorder.requests[0].metadata
+        assert metadata.status_code == error.response_metadata["HTTPStatusCode"]
+        assert metadata.retry_count == error.response_metadata["RetryAttempts"]
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_connection_interrupted_during_buffered_operation_response(peer: "Peer") -> None:
+    from rboto import ClientConfig, DynamoDBClient
+    from rboto.exceptions import ConnectionError
+
+    peer.truncate = True
+    async with DynamoDBClient(
+        endpoint_url=peer.endpoint, config=ClientConfig(max_attempts=1),
+    ) as client:
+        with pytest.raises(ConnectionError) as caught:
+            await client.list_tables()
+    assert caught.value.operation_name == "ListTables"
+    assert caught.value.response_metadata["HTTPStatusCode"] == 200
+    assert caught.value.request_id == "request-1"
+
+
+@pytest.mark.asyncio
+@service("bedrock-runtime")
+@pytest.mark.parametrize("failure", ["modeled", "crc", "json", "truncated", "partial-frame"])
+async def test_event_stream_errors_retain_initial_response_context(
+    peer: "Peer", failure: str,
+) -> None:
+    from rboto import BedrockRuntimeClient
+    from rboto.exceptions import ConnectionError, ResponseError
+    from rboto_bedrock_runtime import ResponseStreamReceiver
+    from rboto_bedrock_runtime.exceptions import ModelStreamError
+
+    peer.content_type = "application/vnd.amazon.eventstream"
+    peer.body = encoded_event("event", "chunk", b'{"bytes":"Zmlyc3Q="}')
+    if failure == "modeled":
+        peer.body += encoded_event("exception", "modelStreamErrorException", json.dumps({
+            "message": "model stream failed", "originalStatusCode": 503,
+            "originalMessage": "private model response", "unknownSecret": "discard this",
+        }).encode())
+    elif failure == "crc":
+        peer.body += encoded_event("event", "chunk", b"private undecodable response")[:-1] + b"\xff"
+    elif failure == "json":
+        peer.body += encoded_event("event", "chunk", b"private undecodable response")
+    elif failure == "partial-frame":
+        peer.body += encoded_event("event", "chunk", b"private undecodable response")[:10]
+    else:
+        peer.truncate = True
+    async with BedrockRuntimeClient(endpoint_url=peer.endpoint) as client:
+        output = await client.invoke_model_with_response_stream(model_id="example", body=b"{}")
+    receiver = output["body"]
+    assert isinstance(receiver, ResponseStreamReceiver)
+    assert await anext(receiver) == {"chunk": {"bytes": b"first"}}
+    expected = ModelStreamError if failure == "modeled" else (
+        ConnectionError if failure == "truncated" else ResponseError
+    )
+    with pytest.raises(expected) as caught:
+        await anext(receiver)
+    error = caught.value
+    assert error.operation_name == "InvokeModelWithResponseStream"
+    assert error.request_id == "request-1"
+    assert error.response_metadata["HTTPStatusCode"] == 200
+    assert error.response_metadata["RetryAttempts"] == 0
+    assert "private" not in str(error) + repr(error.response)
+    if isinstance(error, ModelStreamError):
+        assert error.details["original_status_code"] == 503
+        assert error.details["original_message"] == "private model response"
+        assert "unknownSecret" not in error.details
+    with pytest.raises(StopAsyncIteration):
+        await anext(receiver)
+    await receiver.aclose()
+
+
 @dataclass
 class Peer:
     endpoint: str = ""
@@ -48,6 +169,7 @@ class Peer:
     received: threading.Event = field(default_factory=threading.Event)
     header_gate: threading.Event | None = None
     body_gate: threading.Event | None = None
+    truncate: bool = False
 
 
 @pytest.fixture
@@ -96,7 +218,7 @@ def peer(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Iterator[Peer]:
             )
             self.send_response(status)
             self.send_header("Content-Type", state.content_type)
-            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Content-Length", str(len(body) + (10 if state.truncate else 0)))
             self.send_header("x-amzn-requestid", f"request-{number}")
             self.end_headers()
             if state.body_gate is not None:
@@ -105,6 +227,8 @@ def peer(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Iterator[Peer]:
                 try:
                     self.wfile.write(body)
                     self.wfile.flush()
+                    if state.truncate:
+                        self.close_connection = True
                 except (BrokenPipeError, ConnectionResetError):
                     pass
 

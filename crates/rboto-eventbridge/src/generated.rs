@@ -14996,6 +14996,145 @@ impl PyOperationUpdateEventBusOutput {
     }
 }
 
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::activate_event_source::ActivateEventSourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::cancel_replay::CancelReplayError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::create_api_destination::CreateApiDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_archive::CreateArchiveError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::create_connection::CreateConnectionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_endpoint::CreateEndpointError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_event_bus::CreateEventBusError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::create_partner_event_source::CreatePartnerEventSourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::deactivate_event_source::DeactivateEventSourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::deauthorize_connection::DeauthorizeConnectionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::delete_api_destination::DeleteApiDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_archive::DeleteArchiveError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::delete_connection::DeleteConnectionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_endpoint::DeleteEndpointError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_event_bus::DeleteEventBusError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::delete_partner_event_source::DeletePartnerEventSourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_rule::DeleteRuleError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_api_destination::DescribeApiDestinationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_archive::DescribeArchiveError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_connection::DescribeConnectionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_endpoint::DescribeEndpointError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_event_bus::DescribeEventBusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::describe_event_source::DescribeEventSourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_partner_event_source::DescribePartnerEventSourceError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_replay::DescribeReplayError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_rule::DescribeRuleError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::disable_rule::DisableRuleError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::enable_rule::EnableRuleError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_api_destinations::ListApiDestinationsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_archives::ListArchivesError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_connections::ListConnectionsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_endpoints::ListEndpointsError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_event_buses::ListEventBusesError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_event_sources::ListEventSourcesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_partner_event_source_accounts::ListPartnerEventSourceAccountsError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_partner_event_sources::ListPartnerEventSourcesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_replays::ListReplaysError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_rule_names_by_target::ListRuleNamesByTargetError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_rules::ListRulesError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::list_targets_by_rule::ListTargetsByRuleError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_events::PutEventsError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::put_partner_events::PutPartnerEventsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_permission::PutPermissionError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_rule::PutRuleError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_targets::PutTargetsError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::remove_permission::RemovePermissionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::remove_targets::RemoveTargetsError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::start_replay::StartReplayError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::test_event_pattern::TestEventPatternError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::update_api_destination::UpdateApiDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_archive::UpdateArchiveError {}
+impl ModeledErrorDetails
+    for aws_sdk_eventbridge::operation::update_connection::UpdateConnectionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_endpoint::UpdateEndpointError {}
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_event_bus::UpdateEventBusError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyApiDestination>()?;
     module.add_class::<PyAppSyncParameters>()?;
@@ -15186,21 +15325,29 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.activate_event_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ActivateEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ActivateEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "ActivateEventSource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -15236,20 +15383,19 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_replay().set_replay_name(replay_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelReplay"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CancelReplay", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCancelReplayOutput { inner: output })
         })
@@ -15394,20 +15540,24 @@ impl EventBridgeClient {
                 .set_invocation_endpoint(invocation_endpoint_value)
                 .set_http_method(http_method_value)
                 .set_invocation_rate_limit_per_second(invocation_rate_limit_per_second_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateApiDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateApiDestinationOutput { inner: output })
         })
@@ -15552,20 +15702,19 @@ impl EventBridgeClient {
                 .set_event_pattern(event_pattern_value)
                 .set_retention_days(retention_days_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateArchive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateArchive", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateArchiveOutput { inner: output })
         })
@@ -15712,20 +15861,24 @@ impl EventBridgeClient {
                 .set_auth_parameters(auth_parameters_value)
                 .set_invocation_connectivity_parameters(invocation_connectivity_parameters_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateConnection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateConnection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateConnectionOutput { inner: output })
         })
@@ -15885,20 +16038,19 @@ impl EventBridgeClient {
                 .set_replication_config(replication_config_value)
                 .set_event_buses(event_buses_value)
                 .set_role_arn(role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateEndpoint", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateEndpointOutput {
                 inner: output.into(),
@@ -16087,20 +16239,19 @@ impl EventBridgeClient {
                 .set_dead_letter_config(dead_letter_config_value)
                 .set_log_config(log_config_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventBus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateEventBus", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateEventBusOutput {
                 inner: output.into(),
@@ -16154,20 +16305,24 @@ impl EventBridgeClient {
                 .create_partner_event_source()
                 .set_name(name_value)
                 .set_account(account_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePartnerEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePartnerEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePartnerEventSourceOutput { inner: output })
         })
@@ -16200,21 +16355,29 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.deactivate_event_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeactivateEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeactivateEventSource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -16246,20 +16409,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.deauthorize_connection().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeauthorizeConnection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeauthorizeConnection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeauthorizeConnectionOutput { inner: output })
         })
@@ -16292,20 +16459,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_api_destination().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApiDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteApiDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteApiDestinationOutput { inner: output })
         })
@@ -16342,20 +16513,19 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_archive().set_archive_name(archive_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteArchive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteArchive", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteArchiveOutput { inner: output })
         })
@@ -16388,20 +16558,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_connection().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConnection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteConnection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteConnectionOutput { inner: output })
         })
@@ -16434,20 +16608,19 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_endpoint().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteEndpoint", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteEndpointOutput { inner: output })
         })
@@ -16480,21 +16653,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_event_bus().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventBus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteEventBus", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteEventBus",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -16545,21 +16721,29 @@ impl EventBridgeClient {
                 .delete_partner_event_source()
                 .set_name(name_value)
                 .set_account(account_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePartnerEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePartnerEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeletePartnerEventSource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -16631,20 +16815,24 @@ impl EventBridgeClient {
                 .set_name(name_value)
                 .set_event_bus_name(event_bus_name_value)
                 .set_force(force_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRule")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteRule", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteRule",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -16676,20 +16864,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_api_destination().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeApiDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeApiDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeApiDestinationOutput { inner: output })
         })
@@ -16728,20 +16920,19 @@ impl EventBridgeClient {
             let request = client
                 .describe_archive()
                 .set_archive_name(archive_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeArchive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeArchive", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeArchiveOutput { inner: output })
         })
@@ -16774,20 +16965,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_connection().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeConnection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeConnection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeConnectionOutput {
                 inner: output.into(),
@@ -16845,20 +17040,24 @@ impl EventBridgeClient {
                 .describe_endpoint()
                 .set_name(name_value)
                 .set_home_region(home_region_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeEndpointOutput {
                 inner: output.into(),
@@ -16893,20 +17092,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_event_bus().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEventBus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEventBus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeEventBusOutput {
                 inner: output.into(),
@@ -16941,20 +17144,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_event_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeEventSourceOutput { inner: output })
         })
@@ -16987,20 +17194,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_partner_event_source().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePartnerEventSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribePartnerEventSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribePartnerEventSourceOutput { inner: output })
         })
@@ -17037,20 +17248,19 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_replay().set_replay_name(replay_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeReplay"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeReplay", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeReplayOutput {
                 inner: output.into(),
@@ -17108,20 +17318,19 @@ impl EventBridgeClient {
                 .describe_rule()
                 .set_name(name_value)
                 .set_event_bus_name(event_bus_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeRule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeRule", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeRuleOutput { inner: output })
         })
@@ -17177,20 +17386,24 @@ impl EventBridgeClient {
                 .disable_rule()
                 .set_name(name_value)
                 .set_event_bus_name(event_bus_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DisableRule")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DisableRule", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DisableRule",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -17245,20 +17458,24 @@ impl EventBridgeClient {
                 .enable_rule()
                 .set_name(name_value)
                 .set_event_bus_name(event_bus_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EnableRule")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "EnableRule", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "EnableRule",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -17355,20 +17572,24 @@ impl EventBridgeClient {
                 .set_connection_arn(connection_arn_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListApiDestinations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListApiDestinations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListApiDestinationsOutput {
                 inner: output.into(),
@@ -17491,20 +17712,19 @@ impl EventBridgeClient {
                 .set_state(state_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListArchives"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListArchives", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListArchivesOutput {
                 inner: output.into(),
@@ -17606,20 +17826,19 @@ impl EventBridgeClient {
                 .set_connection_state(connection_state_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListConnections"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListConnections", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListConnectionsOutput {
                 inner: output.into(),
@@ -17723,20 +17942,19 @@ impl EventBridgeClient {
                 .set_home_region(home_region_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEndpoints"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListEndpoints", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListEndpointsOutput {
                 inner: output.into(),
@@ -17815,20 +18033,19 @@ impl EventBridgeClient {
                 .set_name_prefix(name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEventBuses"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListEventBuses", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListEventBusesOutput {
                 inner: output.into(),
@@ -17907,20 +18124,24 @@ impl EventBridgeClient {
                 .set_name_prefix(name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEventSources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEventSources",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEventSourcesOutput {
                 inner: output.into(),
@@ -18000,20 +18221,24 @@ impl EventBridgeClient {
                 .set_event_source_name(event_source_name_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPartnerEventSourceAccounts"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPartnerEventSourceAccounts",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPartnerEventSourceAccountsOutput {
                 inner: output.into(),
@@ -18092,20 +18317,24 @@ impl EventBridgeClient {
                 .set_name_prefix(name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPartnerEventSources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPartnerEventSources",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPartnerEventSourcesOutput {
                 inner: output.into(),
@@ -18228,20 +18457,20 @@ impl EventBridgeClient {
                 .set_event_source_arn(event_source_arn_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListReplays")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListReplays", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListReplaysOutput {
                 inner: output.into(),
             })
@@ -18340,20 +18569,24 @@ impl EventBridgeClient {
                 .set_event_bus_name(event_bus_name_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListRuleNamesByTarget"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListRuleNamesByTarget",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListRuleNamesByTargetOutput { inner: output })
         })
@@ -18451,20 +18684,20 @@ impl EventBridgeClient {
                 .set_event_bus_name(event_bus_name_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListRules")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListRules", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListRulesOutput {
                 inner: output.into(),
             })
@@ -18504,20 +18737,24 @@ impl EventBridgeClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -18613,20 +18850,24 @@ impl EventBridgeClient {
                 .set_event_bus_name(event_bus_name_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTargetsByRule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTargetsByRule",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTargetsByRuleOutput {
                 inner: output.into(),
@@ -18711,20 +18952,20 @@ impl EventBridgeClient {
                 .put_events()
                 .set_entries(entries_value)
                 .set_endpoint_id(endpoint_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutEvents")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutEvents", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutEventsOutput {
                 inner: output.into(),
             })
@@ -18786,20 +19027,24 @@ impl EventBridgeClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.put_partner_events().set_entries(entries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutPartnerEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutPartnerEvents",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutPartnerEventsOutput {
                 inner: output.into(),
@@ -18937,21 +19182,24 @@ impl EventBridgeClient {
                 .set_statement_id(statement_id_value)
                 .set_condition(condition_value)
                 .set_policy(policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutPermission", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutPermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -19154,20 +19402,20 @@ impl EventBridgeClient {
                 .set_role_arn(role_arn_value)
                 .set_tags(tags_value)
                 .set_event_bus_name(event_bus_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutRule")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutRule", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutRuleOutput { inner: output })
         })
     }
@@ -19266,20 +19514,20 @@ impl EventBridgeClient {
                 .set_rule(rule_value)
                 .set_event_bus_name(event_bus_name_value)
                 .set_targets(targets_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutTargets")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutTargets", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutTargetsOutput {
                 inner: output.into(),
             })
@@ -19362,21 +19610,29 @@ impl EventBridgeClient {
                 .set_statement_id(statement_id_value)
                 .set_remove_all_permissions(remove_all_permissions_value)
                 .set_event_bus_name(event_bus_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemovePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemovePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RemovePermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -19488,20 +19744,19 @@ impl EventBridgeClient {
                 .set_event_bus_name(event_bus_name_value)
                 .set_ids(ids_value)
                 .set_force(force_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTargets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RemoveTargets", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRemoveTargetsOutput {
                 inner: output.into(),
@@ -19657,20 +19912,20 @@ impl EventBridgeClient {
                 .set_event_start_time(event_start_time_value)
                 .set_event_end_time(event_end_time_value)
                 .set_destination(destination_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartReplay")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartReplay", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStartReplayOutput { inner: output })
         })
     }
@@ -19752,20 +20007,20 @@ impl EventBridgeClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -19820,20 +20075,24 @@ impl EventBridgeClient {
                 .test_event_pattern()
                 .set_event_pattern(event_pattern_value)
                 .set_event(event_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestEventPattern"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TestEventPattern",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTestEventPatternOutput { inner: output })
         })
@@ -19916,20 +20175,19 @@ impl EventBridgeClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -20074,20 +20332,24 @@ impl EventBridgeClient {
                 .set_invocation_endpoint(invocation_endpoint_value)
                 .set_http_method(http_method_value)
                 .set_invocation_rate_limit_per_second(invocation_rate_limit_per_second_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateApiDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateApiDestinationOutput { inner: output })
         })
@@ -20211,20 +20473,19 @@ impl EventBridgeClient {
                 .set_event_pattern(event_pattern_value)
                 .set_retention_days(retention_days_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateArchive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateArchive", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateArchiveOutput { inner: output })
         })
@@ -20371,20 +20632,24 @@ impl EventBridgeClient {
                 .set_auth_parameters(auth_parameters_value)
                 .set_invocation_connectivity_parameters(invocation_connectivity_parameters_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConnection"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateConnection",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateConnectionOutput { inner: output })
         })
@@ -20544,20 +20809,19 @@ impl EventBridgeClient {
                 .set_replication_config(replication_config_value)
                 .set_event_buses(event_buses_value)
                 .set_role_arn(role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateEndpoint", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateEndpointOutput {
                 inner: output.into(),
@@ -20680,20 +20944,19 @@ impl EventBridgeClient {
                 .set_description(description_value)
                 .set_dead_letter_config(dead_letter_config_value)
                 .set_log_config(log_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventBus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateEventBus", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateEventBusOutput {
                 inner: output.into(),

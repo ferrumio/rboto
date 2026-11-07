@@ -27452,6 +27452,402 @@ impl PyOperationUpdateTimeToLiveOutput {
     }
 }
 
+fn conditional_check_failed_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_dynamodb::types::error::ConditionalCheckFailedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.item {
+        let detail_3698_dict = PyDict::new(py);
+        for (key_3699, value_3700) in value {
+            let converted_key_3701 = (key_3699).as_str().into_py_any(py)?;
+            let converted_value_3702 = attribute_value_to_py(py, value_3700)?;
+            detail_3698_dict.set_item(converted_key_3701, converted_value_3702)?;
+        }
+        let detail_3698 = detail_3698_dict.into_any().unbind();
+        result.set_item("item", detail_3698)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn provisioned_throughput_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_dynamodb::types::error::ProvisionedThroughputExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.throttling_reasons {
+        let detail_3703_list = PyList::empty(py);
+        for item_3704 in value {
+            let converted_item_3705 = throttling_reason_to_py(py, item_3704)?;
+            detail_3703_list.append(converted_item_3705)?;
+        }
+        let detail_3703 = detail_3703_list.into_any().unbind();
+        result.set_item("throttling_reasons", detail_3703)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn request_limit_exceeded_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_dynamodb::types::error::RequestLimitExceeded,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.throttling_reasons {
+        let detail_3706_list = PyList::empty(py);
+        for item_3707 in value {
+            let converted_item_3708 = throttling_reason_to_py(py, item_3707)?;
+            detail_3706_list.append(converted_item_3708)?;
+        }
+        let detail_3706 = detail_3706_list.into_any().unbind();
+        result.set_item("throttling_reasons", detail_3706)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn throttling_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_dynamodb::types::error::ThrottlingException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.throttling_reasons {
+        let detail_3709_list = PyList::empty(py);
+        for item_3710 in value {
+            let converted_item_3711 = throttling_reason_to_py(py, item_3710)?;
+            detail_3709_list.append(converted_item_3711)?;
+        }
+        let detail_3709 = detail_3709_list.into_any().unbind();
+        result.set_item("throttling_reasons", detail_3709)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn transaction_canceled_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_dynamodb::types::error::TransactionCanceledException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.cancellation_reasons {
+        let detail_3712_list = PyList::empty(py);
+        for item_3713 in value {
+            let converted_item_3714 = cancellation_reason_to_py(py, item_3713)?;
+            detail_3712_list.append(converted_item_3714)?;
+        }
+        let detail_3712 = detail_3712_list.into_any().unbind();
+        result.set_item("cancellation_reasons", detail_3712)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_backup::CreateBackupError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_table::CreateTableError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_backup::DeleteBackupError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_item::DeleteItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConditionalCheckFailedException(value) => {
+                conditional_check_failed_exception_error_details(py, value)
+            }
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_table::DeleteTableError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_backup::DescribeBackupError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_export::DescribeExportError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_import::DescribeImportError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table::DescribeTableError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConditionalCheckFailedException(value) => {
+                conditional_check_failed_exception_error_details(py, value)
+            }
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::TransactionCanceledException(value) => {
+                transaction_canceled_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::get_item::GetItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::get_resource_policy::GetResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::import_table::ImportTableError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_backups::ListBackupsError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_exports::ListExportsError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_imports::ListImportsError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_tables::ListTablesError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::put_item::PutItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConditionalCheckFailedException(value) => {
+                conditional_check_failed_exception_error_details(py, value)
+            }
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::put_resource_policy::PutResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::query::QueryError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::scan::ScanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::search_vectors::SearchVectorsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::TransactionCanceledException(value) => {
+                transaction_canceled_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::TransactionCanceledException(value) => {
+                transaction_canceled_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::update_contributor_insights::UpdateContributorInsightsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_item::UpdateItemError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConditionalCheckFailedException(value) => {
+                conditional_check_failed_exception_error_details(py, value)
+            }
+            Self::ProvisionedThroughputExceededException(value) => {
+                provisioned_throughput_exceeded_exception_error_details(py, value)
+            }
+            Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table::UpdateTableError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingError {}
+impl ModeledErrorDetails
+    for aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyArchivalSummary>()?;
     module.add_class::<PyAttributeDefinition>()?;
@@ -27729,20 +28125,24 @@ impl DynamoDBClient {
                 .batch_execute_statement()
                 .set_statements(statements_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchExecuteStatement"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchExecuteStatement",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchExecuteStatementOutput {
                 inner: output.into(),
@@ -27834,20 +28234,19 @@ impl DynamoDBClient {
                 .batch_get_item()
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "BatchGetItem", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationBatchGetItemOutput {
                 inner: output.into(),
@@ -27988,20 +28387,19 @@ impl DynamoDBClient {
                 .set_request_items(request_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_return_item_collection_metrics(return_item_collection_metrics_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchWriteItem"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "BatchWriteItem", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationBatchWriteItemOutput {
                 inner: output.into(),
@@ -28063,20 +28461,19 @@ impl DynamoDBClient {
                 .create_backup()
                 .set_table_name(table_name_value)
                 .set_backup_name(backup_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateBackup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateBackup", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateBackupOutput {
                 inner: output.into(),
@@ -28163,20 +28560,24 @@ impl DynamoDBClient {
                 .create_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replication_group(replication_group_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateGlobalTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateGlobalTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateGlobalTableOutput {
                 inner: output.into(),
@@ -28732,20 +29133,20 @@ impl DynamoDBClient {
                     global_table_settings_replication_mode_value,
                 )
                 .set_vector_indexes(vector_indexes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTable")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateTable", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateTableOutput {
                 inner: output.into(),
             })
@@ -28783,20 +29184,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_backup().set_backup_arn(backup_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBackup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteBackup", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteBackupOutput {
                 inner: output.into(),
@@ -29172,20 +29572,20 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteItem")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteItem", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteItemOutput {
                 inner: output.into(),
             })
@@ -29247,20 +29647,24 @@ impl DynamoDBClient {
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_expected_revision_id(expected_revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
@@ -29297,20 +29701,20 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_table().set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTable")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteTable", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteTableOutput {
                 inner: output.into(),
             })
@@ -29348,20 +29752,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_backup().set_backup_arn(backup_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeBackup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeBackup", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeBackupOutput {
                 inner: output.into(),
@@ -29402,20 +29805,24 @@ impl DynamoDBClient {
             let request = client
                 .describe_continuous_backups()
                 .set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContinuousBackups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeContinuousBackups",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeContinuousBackupsOutput {
                 inner: output.into(),
@@ -29477,20 +29884,24 @@ impl DynamoDBClient {
                 .describe_contributor_insights()
                 .set_table_name(table_name_value)
                 .set_index_name(index_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeContributorInsights"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeContributorInsights",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeContributorInsightsOutput {
                 inner: output.into(),
@@ -29509,20 +29920,24 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_endpoints();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeEndpoints"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeEndpoints",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeEndpointsOutput {
                 inner: output.into(),
@@ -29561,20 +29976,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_export().set_export_arn(export_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeExport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeExport", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeExportOutput {
                 inner: output.into(),
@@ -29616,20 +30030,24 @@ impl DynamoDBClient {
             let request = client
                 .describe_global_table()
                 .set_global_table_name(global_table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeGlobalTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeGlobalTableOutput {
                 inner: output.into(),
@@ -29671,20 +30089,24 @@ impl DynamoDBClient {
             let request = client
                 .describe_global_table_settings()
                 .set_global_table_name(global_table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeGlobalTableSettings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeGlobalTableSettings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeGlobalTableSettingsOutput {
                 inner: output.into(),
@@ -29723,20 +30145,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_import().set_import_arn(import_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeImport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeImport", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeImportOutput {
                 inner: output.into(),
@@ -29777,21 +30198,23 @@ impl DynamoDBClient {
             let request = client
                 .describe_kinesis_streaming_destination()
                 .set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DescribeKinesisStreamingDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeKinesisStreamingDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDescribeKinesisStreamingDestinationOutput {
@@ -29811,20 +30234,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_limits();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeLimits"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeLimits", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeLimitsOutput { inner: output })
         })
@@ -29861,20 +30283,19 @@ impl DynamoDBClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_table().set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeTable", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeTableOutput {
                 inner: output.into(),
@@ -29915,20 +30336,24 @@ impl DynamoDBClient {
             let request = client
                 .describe_table_replica_auto_scaling()
                 .set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTableReplicaAutoScaling"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeTableReplicaAutoScaling",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeTableReplicaAutoScalingOutput {
                 inner: output.into(),
@@ -29969,20 +30394,24 @@ impl DynamoDBClient {
             let request = client
                 .describe_time_to_live()
                 .set_table_name(table_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTimeToLive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeTimeToLive",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeTimeToLiveOutput {
                 inner: output.into(),
@@ -30068,21 +30497,23 @@ impl DynamoDBClient {
                 .set_enable_kinesis_streaming_configuration(
                     enable_kinesis_streaming_configuration_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DisableKinesisStreamingDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisableKinesisStreamingDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDisableKinesisStreamingDestinationOutput {
@@ -30169,21 +30600,23 @@ impl DynamoDBClient {
                 .set_enable_kinesis_streaming_configuration(
                     enable_kinesis_streaming_configuration_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "EnableKinesisStreamingDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "EnableKinesisStreamingDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationEnableKinesisStreamingDestinationOutput {
@@ -30382,20 +30815,24 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteStatement"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ExecuteStatement",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationExecuteStatementOutput {
                 inner: output.into(),
@@ -30507,20 +30944,24 @@ impl DynamoDBClient {
                 .set_transact_statements(transact_statements_value)
                 .set_client_request_token(client_request_token_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ExecuteTransaction"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ExecuteTransaction",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationExecuteTransactionOutput {
                 inner: output.into(),
@@ -30806,20 +31247,24 @@ impl DynamoDBClient {
                 .set_export_type(export_type_value)
                 .set_incremental_export_specification(incremental_export_specification_value)
                 .set_filter_specification(filter_specification_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ExportTableToPointInTime"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ExportTableToPointInTime",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationExportTableToPointInTimeOutput {
                 inner: output.into(),
@@ -31064,20 +31509,20 @@ impl DynamoDBClient {
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_projection_expression(projection_expression_value)
                 .set_expression_attribute_names(expression_attribute_names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetItem")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetItem", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetItemOutput {
                 inner: output.into(),
             })
@@ -31117,20 +31562,24 @@ impl DynamoDBClient {
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
@@ -31282,20 +31731,20 @@ impl DynamoDBClient {
                 .set_input_format_options(input_format_options_value)
                 .set_input_compression_type(input_compression_type_value)
                 .set_table_creation_parameters(table_creation_parameters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ImportTable")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ImportTable", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationImportTableOutput {
                 inner: output.into(),
             })
@@ -31451,20 +31900,20 @@ impl DynamoDBClient {
                 .set_time_range_upper_bound(time_range_upper_bound_value)
                 .set_exclusive_start_backup_arn(exclusive_start_backup_arn_value)
                 .set_backup_type(backup_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBackups")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListBackups", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListBackupsOutput {
                 inner: output.into(),
             })
@@ -31546,20 +31995,24 @@ impl DynamoDBClient {
                 .set_table_name(table_name_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListContributorInsights"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListContributorInsights",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListContributorInsightsOutput {
                 inner: output.into(),
@@ -31642,20 +32095,20 @@ impl DynamoDBClient {
                 .set_table_arn(table_arn_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListExports")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListExports", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListExportsOutput {
                 inner: output.into(),
             })
@@ -31734,20 +32187,24 @@ impl DynamoDBClient {
                 .set_exclusive_start_global_table_name(exclusive_start_global_table_name_value)
                 .set_limit(limit_value)
                 .set_region_name(region_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListGlobalTables"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListGlobalTables",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListGlobalTablesOutput {
                 inner: output.into(),
@@ -31830,20 +32287,20 @@ impl DynamoDBClient {
                 .set_table_arn(table_arn_value)
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListImports", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListImportsOutput {
                 inner: output.into(),
             })
@@ -31901,20 +32358,20 @@ impl DynamoDBClient {
                 .list_tables()
                 .set_exclusive_start_table_name(exclusive_start_table_name_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTables")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTables", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTablesOutput { inner: output })
         })
     }
@@ -31973,20 +32430,24 @@ impl DynamoDBClient {
                 .list_tags_of_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsOfResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsOfResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsOfResourceOutput {
                 inner: output.into(),
@@ -32362,20 +32823,20 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutItem")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutItem", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutItemOutput {
                 inner: output.into(),
             })
@@ -32476,20 +32937,24 @@ impl DynamoDBClient {
                 .set_policy(policy_value)
                 .set_expected_revision_id(expected_revision_id_value)
                 .set_confirm_remove_self_resource_access(confirm_remove_self_resource_access_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -33031,20 +33496,20 @@ impl DynamoDBClient {
                 .set_key_condition_expression(key_condition_expression_value)
                 .set_expression_attribute_names(expression_attribute_names_value)
                 .set_expression_attribute_values(expression_attribute_values_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Query")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Query", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationQueryOutput {
                 inner: output.into(),
             })
@@ -33331,20 +33796,24 @@ impl DynamoDBClient {
                 .set_on_demand_throughput_override(on_demand_throughput_override_value)
                 .set_sse_specification_override(sse_specification_override_value)
                 .set_vector_index_override(vector_index_override_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableFromBackup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RestoreTableFromBackup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRestoreTableFromBackupOutput {
                 inner: output.into(),
@@ -33703,20 +34172,24 @@ impl DynamoDBClient {
                 .set_on_demand_throughput_override(on_demand_throughput_override_value)
                 .set_sse_specification_override(sse_specification_override_value)
                 .set_vector_index_override(vector_index_override_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RestoreTableToPointInTime"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RestoreTableToPointInTime",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRestoreTableToPointInTimeOutput {
                 inner: output.into(),
@@ -34207,20 +34680,20 @@ impl DynamoDBClient {
                 .set_expression_attribute_names(expression_attribute_names_value)
                 .set_expression_attribute_values(expression_attribute_values_value)
                 .set_consistent_read(consistent_read_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output =
-                result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Scan")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Scan", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationScanOutput {
                 inner: output.into(),
             })
@@ -34507,20 +34980,19 @@ impl DynamoDBClient {
                 .set_search_vector(search_vector_value)
                 .set_search_condition_expression(search_condition_expression_value)
                 .set_top_k(top_k_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SearchVectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SearchVectors", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationSearchVectorsOutput {
                 inner: output.into(),
@@ -34605,20 +35077,24 @@ impl DynamoDBClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34704,20 +35180,24 @@ impl DynamoDBClient {
                 .transact_get_items()
                 .set_transact_items(transact_items_value)
                 .set_return_consumed_capacity(return_consumed_capacity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TransactGetItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TransactGetItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTransactGetItemsOutput {
                 inner: output.into(),
@@ -34853,20 +35333,24 @@ impl DynamoDBClient {
                 .set_return_consumed_capacity(return_consumed_capacity_value)
                 .set_return_item_collection_metrics(return_item_collection_metrics_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TransactWriteItems"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TransactWriteItems",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTransactWriteItemsOutput {
                 inner: output.into(),
@@ -34951,21 +35435,24 @@ impl DynamoDBClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35027,20 +35514,24 @@ impl DynamoDBClient {
                 .set_point_in_time_recovery_specification(
                     point_in_time_recovery_specification_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContinuousBackups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateContinuousBackups",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateContinuousBackupsOutput {
                 inner: output.into(),
@@ -35152,20 +35643,24 @@ impl DynamoDBClient {
                 .set_index_name(index_name_value)
                 .set_contributor_insights_action(contributor_insights_action_value)
                 .set_contributor_insights_mode(contributor_insights_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContributorInsights"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateContributorInsights",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateContributorInsightsOutput { inner: output })
         })
@@ -35249,20 +35744,24 @@ impl DynamoDBClient {
                 .update_global_table()
                 .set_global_table_name(global_table_name_value)
                 .set_replica_updates(replica_updates_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTable"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateGlobalTable",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateGlobalTableOutput {
                 inner: output.into(),
@@ -35471,20 +35970,24 @@ impl DynamoDBClient {
                     global_table_global_secondary_index_settings_update_value,
                 )
                 .set_replica_settings_update(replica_settings_update_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGlobalTableSettings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateGlobalTableSettings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateGlobalTableSettingsOutput {
                 inner: output.into(),
@@ -35930,20 +36433,20 @@ impl DynamoDBClient {
                 .set_return_values_on_condition_check_failure(
                     return_values_on_condition_check_failure_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateItem")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateItem", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateItemOutput {
                 inner: output.into(),
             })
@@ -36028,21 +36531,23 @@ impl DynamoDBClient {
                 .set_update_kinesis_streaming_configuration(
                     update_kinesis_streaming_configuration_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateKinesisStreamingDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateKinesisStreamingDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateKinesisStreamingDestinationOutput {
@@ -36562,20 +37067,20 @@ impl DynamoDBClient {
                 )
                 .set_disassociation_protection_enabled(disassociation_protection_enabled_value)
                 .set_vector_index_updates(vector_index_updates_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTable")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateTable", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateTableOutput {
                 inner: output.into(),
             })
@@ -36732,20 +37237,24 @@ impl DynamoDBClient {
                     provisioned_write_capacity_auto_scaling_update_value,
                 )
                 .set_replica_updates(replica_updates_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTableReplicaAutoScaling"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateTableReplicaAutoScaling",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateTableReplicaAutoScalingOutput {
                 inner: output.into(),
@@ -36808,20 +37317,24 @@ impl DynamoDBClient {
                 .update_time_to_live()
                 .set_table_name(table_name_value)
                 .set_time_to_live_specification(time_to_live_specification_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTimeToLive"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateTimeToLive",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateTimeToLiveOutput {
                 inner: output.into(),

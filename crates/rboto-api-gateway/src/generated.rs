@@ -25605,6 +25605,1694 @@ impl PyOperationUpdateVpcLinkOutput {
     }
 }
 
+fn limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_apigateway::types::error::LimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_4422 = (value).as_str().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_4422)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_unavailable_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_apigateway::types::error::ServiceUnavailableException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_4423 = (value).as_str().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_4423)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn too_many_requests_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_apigateway::types::error::TooManyRequestsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_4424 = (value).as_str().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_4424)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_api_key::CreateApiKeyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_authorizer::CreateAuthorizerError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_base_path_mapping::CreateBasePathMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_deployment::CreateDeploymentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::ServiceUnavailableException(value) => {
+                service_unavailable_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_documentation_part::CreateDocumentationPartError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_documentation_version::CreateDocumentationVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_domain_name::CreateDomainNameError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_domain_name_access_association::CreateDomainNameAccessAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => limit_exceeded_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_model::CreateModelError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_request_validator::CreateRequestValidatorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_resource::CreateResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_rest_api::CreateRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_stage::CreateStageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_usage_plan::CreateUsagePlanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::create_usage_plan_key::CreateUsagePlanKeyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_vpc_link::CreateVpcLinkError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_api_key::DeleteApiKeyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_authorizer::DeleteAuthorizerError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_base_path_mapping::DeleteBasePathMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_client_certificate::DeleteClientCertificateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_deployment::DeleteDeploymentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_documentation_part::DeleteDocumentationPartError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_documentation_version::DeleteDocumentationVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_domain_name::DeleteDomainNameError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_domain_name_access_association::DeleteDomainNameAccessAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_gateway_response::DeleteGatewayResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_integration::DeleteIntegrationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_integration_response::DeleteIntegrationResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_method::DeleteMethodError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_method_response::DeleteMethodResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_model::DeleteModelError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_request_validator::DeleteRequestValidatorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_resource::DeleteResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_rest_api::DeleteRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_stage::DeleteStageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_usage_plan::DeleteUsagePlanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::delete_usage_plan_key::DeleteUsagePlanKeyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_vpc_link::DeleteVpcLinkError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::flush_stage_authorizers_cache::FlushStageAuthorizersCacheError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => limit_exceeded_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::flush_stage_cache::FlushStageCacheError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::generate_client_certificate::GenerateClientCertificateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_account::GetAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_key::GetApiKeyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_keys::GetApiKeysError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizer::GetAuthorizerError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizers::GetAuthorizersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_base_path_mapping::GetBasePathMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_base_path_mappings::GetBasePathMappingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_client_certificate::GetClientCertificateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_client_certificates::GetClientCertificatesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployment::GetDeploymentError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceUnavailableException(value) => {
+                service_unavailable_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployments::GetDeploymentsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceUnavailableException(value) => {
+                service_unavailable_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_documentation_part::GetDocumentationPartError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_documentation_parts::GetDocumentationPartsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_documentation_version::GetDocumentationVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_documentation_versions::GetDocumentationVersionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name::GetDomainNameError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name_access_associations::GetDomainNameAccessAssociationsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_names::GetDomainNamesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_export::GetExportError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_gateway_response::GetGatewayResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_gateway_responses::GetGatewayResponsesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_integration::GetIntegrationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_integration_response::GetIntegrationResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_method::GetMethodError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_method_response::GetMethodResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_model::GetModelError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_model_template::GetModelTemplateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_models::GetModelsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_request_validator::GetRequestValidatorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_request_validators::GetRequestValidatorsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resource::GetResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resources::GetResourcesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_api::GetRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_apis::GetRestApisError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk::GetSdkError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_type::GetSdkTypeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_types::GetSdkTypesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stage::GetStageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stages::GetStagesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_tags::GetTagsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage::GetUsageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plan::GetUsagePlanError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_usage_plan_key::GetUsagePlanKeyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::get_usage_plan_keys::GetUsagePlanKeysError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plans::GetUsagePlansError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_link::GetVpcLinkError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_links::GetVpcLinksError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_api_keys::ImportApiKeysError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::import_documentation_parts::ImportDocumentationPartsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_rest_api::ImportRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::put_gateway_response::PutGatewayResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_integration::PutIntegrationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::put_integration_response::PutIntegrationResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_method::PutMethodError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::put_method_response::PutMethodResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_rest_api::PutRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::reject_domain_name_access_association::RejectDomainNameAccessAssociationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::test_invoke_authorizer::TestInvokeAuthorizerError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::test_invoke_method::TestInvokeMethodError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_account::UpdateAccountError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_api_key::UpdateApiKeyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_authorizer::UpdateAuthorizerError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_base_path_mapping::UpdateBasePathMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_client_certificate::UpdateClientCertificateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_deployment::UpdateDeploymentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::ServiceUnavailableException(value) => {
+                service_unavailable_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_documentation_part::UpdateDocumentationPartError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_documentation_version::UpdateDocumentationVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_domain_name::UpdateDomainNameError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_gateway_response::UpdateGatewayResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_integration::UpdateIntegrationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_integration_response::UpdateIntegrationResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_method::UpdateMethodError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_method_response::UpdateMethodResponseError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_model::UpdateModelError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_request_validator::UpdateRequestValidatorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_resource::UpdateResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_rest_api::UpdateRestApiError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_stage::UpdateStageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_usage::UpdateUsageError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_apigateway::operation::update_usage_plan::UpdateUsagePlanError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_vpc_link::UpdateVpcLinkError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::LimitExceededException(value) => {
+                limit_exceeded_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccessLogSettings>()?;
     module.add_class::<PyApiKey>()?;
@@ -26010,20 +27698,19 @@ impl APIGatewayClient {
                 .set_stage_keys(stage_keys_value)
                 .set_customer_id(customer_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateApiKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateApiKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateApiKeyOutput { inner: output })
         })
@@ -26275,20 +27962,24 @@ impl APIGatewayClient {
                 .set_identity_source(identity_source_value)
                 .set_identity_validation_expression(identity_validation_expression_value)
                 .set_authorizer_result_ttl_in_seconds(authorizer_result_ttl_in_seconds_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateAuthorizer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAuthorizer",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateAuthorizerOutput { inner: output })
         })
@@ -26407,20 +28098,24 @@ impl APIGatewayClient {
                 .set_base_path(base_path_value)
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage(stage_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateBasePathMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateBasePathMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateBasePathMappingOutput { inner: output })
         })
@@ -26658,20 +28353,24 @@ impl APIGatewayClient {
                 .set_variables(variables_value)
                 .set_canary_settings(canary_settings_value)
                 .set_tracing_enabled(tracing_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDeploymentOutput {
                 inner: output.into(),
@@ -26754,20 +28453,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_location(location_value)
                 .set_properties(properties_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationPart"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDocumentationPart",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDocumentationPartOutput {
                 inner: output.into(),
@@ -26872,20 +28575,24 @@ impl APIGatewayClient {
                 .set_documentation_version(documentation_version_value)
                 .set_stage_name(stage_name_value)
                 .set_description(description_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDocumentationVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDocumentationVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDocumentationVersionOutput { inner: output })
         })
@@ -27274,20 +28981,24 @@ impl APIGatewayClient {
                 )
                 .set_policy(policy_value)
                 .set_routing_mode(routing_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomainName"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDomainName",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDomainNameOutput {
                 inner: output.into(),
@@ -27419,21 +29130,23 @@ impl APIGatewayClient {
                 .set_access_association_source_type(access_association_source_type_value)
                 .set_access_association_source(access_association_source_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateDomainNameAccessAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDomainNameAccessAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateDomainNameAccessAssociationOutput { inner: output })
@@ -27549,20 +29262,20 @@ impl APIGatewayClient {
                 .set_description(description_value)
                 .set_schema(schema_value)
                 .set_content_type(content_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateModel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateModel", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateModelOutput { inner: output })
         })
     }
@@ -27661,20 +29374,24 @@ impl APIGatewayClient {
                 .set_name(name_value)
                 .set_validate_request_body(validate_request_body_value)
                 .set_validate_request_parameters(validate_request_parameters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateRequestValidator"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateRequestValidator",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateRequestValidatorOutput { inner: output })
         })
@@ -27755,20 +29472,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_parent_id(parent_id_value)
                 .set_path_part(path_part_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateResourceOutput {
                 inner: output.into(),
@@ -28106,20 +29822,19 @@ impl APIGatewayClient {
                 .set_disable_execute_api_endpoint(disable_execute_api_endpoint_value)
                 .set_security_policy(security_policy_value)
                 .set_endpoint_access_mode(endpoint_access_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateRestApi"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateRestApi", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateRestApiOutput {
                 inner: output.into(),
@@ -28423,20 +30138,20 @@ impl APIGatewayClient {
                 .set_canary_settings(canary_settings_value)
                 .set_tracing_enabled(tracing_enabled_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateStage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateStage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateStageOutput {
                 inner: output.into(),
             })
@@ -28622,20 +30337,19 @@ impl APIGatewayClient {
                 .set_throttle(throttle_value)
                 .set_quota(quota_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateUsagePlan", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateUsagePlanOutput {
                 inner: output.into(),
@@ -28710,20 +30424,24 @@ impl APIGatewayClient {
                 .set_usage_plan_id(usage_plan_id_value)
                 .set_key_id(key_id_value)
                 .set_key_type(key_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateUsagePlanKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateUsagePlanKey",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateUsagePlanKeyOutput { inner: output })
         })
@@ -28866,20 +30584,19 @@ impl APIGatewayClient {
                 .set_description(description_value)
                 .set_target_arns(target_arns_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateVpcLink"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateVpcLink", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateVpcLinkOutput { inner: output })
         })
@@ -28912,21 +30629,24 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_api_key().set_api_key(api_key_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApiKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteApiKey", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteApiKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -28985,21 +30705,29 @@ impl APIGatewayClient {
                 .delete_authorizer()
                 .set_rest_api_id(rest_api_id_value)
                 .set_authorizer_id(authorizer_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAuthorizer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAuthorizer",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteAuthorizer",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29079,21 +30807,29 @@ impl APIGatewayClient {
                 .set_domain_name(domain_name_value)
                 .set_domain_name_id(domain_name_id_value)
                 .set_base_path(base_path_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBasePathMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBasePathMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBasePathMapping",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29132,21 +30868,29 @@ impl APIGatewayClient {
             let request = client
                 .delete_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteClientCertificate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteClientCertificate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteClientCertificate",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29205,21 +30949,29 @@ impl APIGatewayClient {
                 .delete_deployment()
                 .set_rest_api_id(rest_api_id_value)
                 .set_deployment_id(deployment_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDeployment",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29279,21 +31031,29 @@ impl APIGatewayClient {
                 .delete_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_part_id(documentation_part_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDocumentationPart"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDocumentationPart",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDocumentationPart",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29353,21 +31113,29 @@ impl APIGatewayClient {
                 .delete_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_version(documentation_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDocumentationVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDocumentationVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDocumentationVersion",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29426,21 +31194,29 @@ impl APIGatewayClient {
                 .delete_domain_name()
                 .set_domain_name(domain_name_value)
                 .set_domain_name_id(domain_name_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDomainName"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDomainName",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDomainName",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29479,23 +31255,29 @@ impl APIGatewayClient {
             let request = client
                 .delete_domain_name_access_association()
                 .set_domain_name_access_association_arn(domain_name_access_association_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteDomainNameAccessAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDomainNameAccessAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteDomainNameAccessAssociation",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29556,21 +31338,29 @@ impl APIGatewayClient {
                 .delete_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
                 .set_response_type(response_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGatewayResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteGatewayResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteGatewayResponse",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29650,21 +31440,29 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIntegration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteIntegration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29765,21 +31563,29 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIntegrationResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIntegrationResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteIntegrationResponse",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29859,21 +31665,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMethod"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteMethod", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteMethod",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -29974,21 +31783,29 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMethodResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMethodResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteMethodResponse",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30047,20 +31864,24 @@ impl APIGatewayClient {
                 .delete_model()
                 .set_rest_api_id(rest_api_id_value)
                 .set_model_name(model_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteModel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteModel", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteModel",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30120,21 +31941,29 @@ impl APIGatewayClient {
                 .delete_request_validator()
                 .set_rest_api_id(rest_api_id_value)
                 .set_request_validator_id(request_validator_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRequestValidator"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteRequestValidator",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteRequestValidator",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30193,21 +32022,24 @@ impl APIGatewayClient {
                 .delete_resource()
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30243,21 +32075,24 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_rest_api().set_rest_api_id(rest_api_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRestApi"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteRestApi", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteRestApi",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30316,20 +32151,24 @@ impl APIGatewayClient {
                 .delete_stage()
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage_name(stage_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteStage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteStage", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteStage",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30367,21 +32206,24 @@ impl APIGatewayClient {
             let request = client
                 .delete_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteUsagePlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteUsagePlan", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteUsagePlan",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30436,21 +32278,29 @@ impl APIGatewayClient {
                 .delete_usage_plan_key()
                 .set_usage_plan_id(usage_plan_id_value)
                 .set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteUsagePlanKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteUsagePlanKey",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteUsagePlanKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30486,21 +32336,24 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_vpc_link().set_vpc_link_id(vpc_link_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteVpcLink"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteVpcLink", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteVpcLink",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30559,21 +32412,29 @@ impl APIGatewayClient {
                 .flush_stage_authorizers_cache()
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage_name(stage_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "FlushStageAuthorizersCache"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "FlushStageAuthorizersCache",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "FlushStageAuthorizersCache",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30632,21 +32493,24 @@ impl APIGatewayClient {
                 .flush_stage_cache()
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage_name(stage_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "FlushStageCache"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "FlushStageCache", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "FlushStageCache",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -30727,20 +32591,24 @@ impl APIGatewayClient {
                 .generate_client_certificate()
                 .set_description(description_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateClientCertificate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GenerateClientCertificate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGenerateClientCertificateOutput { inner: output })
         })
@@ -30757,20 +32625,20 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAccount", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetAccountOutput {
                 inner: output.into(),
             })
@@ -30827,20 +32695,20 @@ impl APIGatewayClient {
                 .get_api_key()
                 .set_api_key(api_key_value)
                 .set_include_value(include_value_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKey")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetApiKey", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetApiKeyOutput { inner: output })
         })
     }
@@ -30954,20 +32822,20 @@ impl APIGatewayClient {
                 .set_name_query(name_query_value)
                 .set_customer_id(customer_id_value)
                 .set_include_values(include_values_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetApiKeys")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetApiKeys", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetApiKeysOutput {
                 inner: output.into(),
             })
@@ -31028,20 +32896,19 @@ impl APIGatewayClient {
                 .get_authorizer()
                 .set_rest_api_id(rest_api_id_value)
                 .set_authorizer_id(authorizer_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAuthorizer", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetAuthorizerOutput { inner: output })
         })
@@ -31114,20 +32981,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAuthorizers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAuthorizers", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetAuthorizersOutput {
                 inner: output.into(),
@@ -31210,20 +33076,24 @@ impl APIGatewayClient {
                 .set_domain_name(domain_name_value)
                 .set_domain_name_id(domain_name_id_value)
                 .set_base_path(base_path_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBasePathMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBasePathMappingOutput { inner: output })
         })
@@ -31317,20 +33187,24 @@ impl APIGatewayClient {
                 .set_domain_name_id(domain_name_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBasePathMappings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBasePathMappings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBasePathMappingsOutput {
                 inner: output.into(),
@@ -31372,20 +33246,24 @@ impl APIGatewayClient {
             let request = client
                 .get_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetClientCertificate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetClientCertificateOutput { inner: output })
         })
@@ -31437,20 +33315,24 @@ impl APIGatewayClient {
                 .get_client_certificates()
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetClientCertificates"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetClientCertificates",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetClientCertificatesOutput {
                 inner: output.into(),
@@ -31556,20 +33438,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_deployment_id(deployment_id_value)
                 .set_embed(embed_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDeployment", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDeploymentOutput {
                 inner: output.into(),
@@ -31644,20 +33525,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeployments"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDeployments", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDeploymentsOutput {
                 inner: output.into(),
@@ -31720,20 +33600,24 @@ impl APIGatewayClient {
                 .get_documentation_part()
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_part_id(documentation_part_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationPart"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentationPart",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentationPartOutput {
                 inner: output.into(),
@@ -31893,20 +33777,24 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_limit(limit_value)
                 .set_location_status(location_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationParts"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentationParts",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentationPartsOutput {
                 inner: output.into(),
@@ -31969,20 +33857,24 @@ impl APIGatewayClient {
                 .get_documentation_version()
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_version(documentation_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentationVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentationVersionOutput { inner: output })
         })
@@ -32055,20 +33947,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentationVersions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentationVersions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentationVersionsOutput {
                 inner: output.into(),
@@ -32130,20 +34026,19 @@ impl APIGatewayClient {
                 .get_domain_name()
                 .set_domain_name(domain_name_value)
                 .set_domain_name_id(domain_name_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainName"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDomainName", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDomainNameOutput {
                 inner: output.into(),
@@ -32220,20 +34115,24 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_limit(limit_value)
                 .set_resource_owner(resource_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNameAccessAssociations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDomainNameAccessAssociations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDomainNameAccessAssociationsOutput {
                 inner: output.into(),
@@ -32310,20 +34209,19 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_limit(limit_value)
                 .set_resource_owner(resource_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainNames"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDomainNames", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDomainNamesOutput {
                 inner: output.into(),
@@ -32470,20 +34368,20 @@ impl APIGatewayClient {
                 .set_export_type(export_type_value)
                 .set_parameters(parameters_value)
                 .set_accepts(accepts_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetExport")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetExport", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetExportOutput { inner: output })
         })
     }
@@ -32544,20 +34442,24 @@ impl APIGatewayClient {
                 .get_gateway_response()
                 .set_rest_api_id(rest_api_id_value)
                 .set_response_type(response_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetGatewayResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetGatewayResponseOutput { inner: output })
         })
@@ -32630,20 +34532,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetGatewayResponses"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetGatewayResponses",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetGatewayResponsesOutput {
                 inner: output.into(),
@@ -32726,20 +34632,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetIntegration", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetIntegrationOutput {
                 inner: output.into(),
@@ -32843,20 +34748,24 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetIntegrationResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetIntegrationResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetIntegrationResponseOutput { inner: output })
         })
@@ -32937,20 +34846,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMethod")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetMethod", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetMethodOutput {
                 inner: output.into(),
             })
@@ -33053,20 +34962,24 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMethodResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMethodResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMethodResponseOutput { inner: output })
         })
@@ -33143,20 +35056,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_model_name(model_name_value)
                 .set_flatten(flatten_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetModel", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetModelOutput { inner: output })
         })
     }
@@ -33215,20 +35128,24 @@ impl APIGatewayClient {
                 .get_model_template()
                 .set_rest_api_id(rest_api_id_value)
                 .set_model_name(model_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetModelTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetModelTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetModelTemplateOutput { inner: output })
         })
@@ -33301,20 +35218,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetModels")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetModels", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetModelsOutput {
                 inner: output.into(),
             })
@@ -33376,20 +35293,24 @@ impl APIGatewayClient {
                 .get_request_validator()
                 .set_rest_api_id(rest_api_id_value)
                 .set_request_validator_id(request_validator_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidator"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetRequestValidator",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetRequestValidatorOutput { inner: output })
         })
@@ -33462,20 +35383,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRequestValidators"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetRequestValidators",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetRequestValidatorsOutput {
                 inner: output.into(),
@@ -33581,20 +35506,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_embed(embed_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetResourceOutput {
                 inner: output.into(),
             })
@@ -33712,20 +35637,19 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_limit(limit_value)
                 .set_embed(embed_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetResources", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetResourcesOutput {
                 inner: output.into(),
@@ -33764,20 +35688,20 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_rest_api().set_rest_api_id(rest_api_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApi")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetRestApi", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetRestApiOutput {
                 inner: output.into(),
             })
@@ -33830,20 +35754,20 @@ impl APIGatewayClient {
                 .get_rest_apis()
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetRestApis")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetRestApis", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetRestApisOutput {
                 inner: output.into(),
             })
@@ -33968,20 +35892,20 @@ impl APIGatewayClient {
                 .set_stage_name(stage_name_value)
                 .set_sdk_type(sdk_type_value)
                 .set_parameters(parameters_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdk")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSdk", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetSdkOutput { inner: output })
         })
     }
@@ -34013,20 +35937,20 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_sdk_type().set_id(id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkType")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSdkType", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetSdkTypeOutput {
                 inner: output.into(),
             })
@@ -34079,20 +36003,20 @@ impl APIGatewayClient {
                 .get_sdk_types()
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSdkTypes")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSdkTypes", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetSdkTypesOutput {
                 inner: output.into(),
             })
@@ -34153,20 +36077,20 @@ impl APIGatewayClient {
                 .get_stage()
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage_name(stage_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetStage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetStageOutput {
                 inner: output.into(),
             })
@@ -34227,20 +36151,20 @@ impl APIGatewayClient {
                 .get_stages()
                 .set_rest_api_id(rest_api_id_value)
                 .set_deployment_id(deployment_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetStages")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetStages", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetStagesOutput {
                 inner: output.into(),
             })
@@ -34314,20 +36238,20 @@ impl APIGatewayClient {
                 .set_resource_arn(resource_arn_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTags")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetTags", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetTagsOutput { inner: output })
         })
     }
@@ -34454,20 +36378,20 @@ impl APIGatewayClient {
                 .set_end_date(end_date_value)
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUsage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetUsage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetUsageOutput { inner: output })
         })
     }
@@ -34505,20 +36429,19 @@ impl APIGatewayClient {
             let request = client
                 .get_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetUsagePlan", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetUsagePlanOutput {
                 inner: output.into(),
@@ -34576,20 +36499,19 @@ impl APIGatewayClient {
                 .get_usage_plan_key()
                 .set_usage_plan_id(usage_plan_id_value)
                 .set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetUsagePlanKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetUsagePlanKeyOutput { inner: output })
         })
@@ -34683,20 +36605,24 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_limit(limit_value)
                 .set_name_query(name_query_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlanKeys"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetUsagePlanKeys",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetUsagePlanKeysOutput {
                 inner: output.into(),
@@ -34767,20 +36693,19 @@ impl APIGatewayClient {
                 .set_position(position_value)
                 .set_key_id(key_id_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUsagePlans"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetUsagePlans", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetUsagePlansOutput {
                 inner: output.into(),
@@ -34819,20 +36744,20 @@ impl APIGatewayClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_vpc_link().set_vpc_link_id(vpc_link_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLink")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetVpcLink", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetVpcLinkOutput { inner: output })
         })
     }
@@ -34883,20 +36808,20 @@ impl APIGatewayClient {
                 .get_vpc_links()
                 .set_position(position_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetVpcLinks")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetVpcLinks", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetVpcLinksOutput {
                 inner: output.into(),
             })
@@ -34977,20 +36902,19 @@ impl APIGatewayClient {
                 .set_body(body_value)
                 .set_format(format_value)
                 .set_fail_on_warnings(fail_on_warnings_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ImportApiKeys"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ImportApiKeys", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationImportApiKeysOutput { inner: output })
         })
@@ -35091,20 +37015,24 @@ impl APIGatewayClient {
                 .set_mode(mode_value)
                 .set_fail_on_warnings(fail_on_warnings_value)
                 .set_body(body_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ImportDocumentationParts"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ImportDocumentationParts",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationImportDocumentationPartsOutput { inner: output })
         })
@@ -35208,20 +37136,19 @@ impl APIGatewayClient {
                 .set_fail_on_warnings(fail_on_warnings_value)
                 .set_parameters(parameters_value)
                 .set_body(body_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ImportRestApi"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ImportRestApi", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationImportRestApiOutput {
                 inner: output.into(),
@@ -35402,20 +37329,24 @@ impl APIGatewayClient {
                 .set_status_code(status_code_value)
                 .set_response_parameters(response_parameters_value)
                 .set_response_templates(response_templates_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutGatewayResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutGatewayResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutGatewayResponseOutput { inner: output })
         })
@@ -35921,20 +37852,19 @@ impl APIGatewayClient {
                 .set_tls_config(tls_config_value)
                 .set_response_transfer_mode(response_transfer_mode_value)
                 .set_integration_target(integration_target_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutIntegration", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutIntegrationOutput {
                 inner: output.into(),
@@ -36180,20 +38110,24 @@ impl APIGatewayClient {
                 .set_response_parameters(response_parameters_value)
                 .set_response_templates(response_templates_value)
                 .set_content_handling(content_handling_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutIntegrationResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutIntegrationResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutIntegrationResponseOutput { inner: output })
         })
@@ -36521,20 +38455,20 @@ impl APIGatewayClient {
                 .set_request_models(request_models_value)
                 .set_request_validator_id(request_validator_id_value)
                 .set_authorization_scopes(authorization_scopes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutMethod")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutMethod", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutMethodOutput {
                 inner: output.into(),
             })
@@ -36732,20 +38666,24 @@ impl APIGatewayClient {
                 .set_status_code(status_code_value)
                 .set_response_parameters(response_parameters_value)
                 .set_response_models(response_models_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutMethodResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutMethodResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutMethodResponseOutput { inner: output })
         })
@@ -36893,20 +38831,20 @@ impl APIGatewayClient {
                 .set_fail_on_warnings(fail_on_warnings_value)
                 .set_parameters(parameters_value)
                 .set_body(body_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutRestApi")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutRestApi", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutRestApiOutput {
                 inner: output.into(),
             })
@@ -36968,23 +38906,29 @@ impl APIGatewayClient {
                 .reject_domain_name_access_association()
                 .set_domain_name_access_association_arn(domain_name_access_association_arn_value)
                 .set_domain_name_arn(domain_name_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "RejectDomainNameAccessAssociation")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RejectDomainNameAccessAssociation",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "RejectDomainNameAccessAssociation",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37065,20 +39009,24 @@ impl APIGatewayClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37387,20 +39335,24 @@ impl APIGatewayClient {
                 .set_body(body_value)
                 .set_stage_variables(stage_variables_value)
                 .set_additional_context(additional_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeAuthorizer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TestInvokeAuthorizer",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTestInvokeAuthorizerOutput { inner: output })
         })
@@ -37705,20 +39657,24 @@ impl APIGatewayClient {
                 .set_multi_value_headers(multi_value_headers_value)
                 .set_client_certificate_id(client_certificate_id_value)
                 .set_stage_variables(stage_variables_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestInvokeMethod"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TestInvokeMethod",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTestInvokeMethodOutput { inner: output })
         })
@@ -37801,21 +39757,24 @@ impl APIGatewayClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -37876,20 +39835,19 @@ impl APIGatewayClient {
             let request = client
                 .update_account()
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAccount"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateAccount", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateAccountOutput {
                 inner: output.into(),
@@ -37970,20 +39928,19 @@ impl APIGatewayClient {
                 .update_api_key()
                 .set_api_key(api_key_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApiKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateApiKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateApiKeyOutput { inner: output })
         })
@@ -38087,20 +40044,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_authorizer_id(authorizer_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAuthorizer"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAuthorizer",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateAuthorizerOutput { inner: output })
         })
@@ -38225,20 +40186,24 @@ impl APIGatewayClient {
                 .set_domain_name_id(domain_name_id_value)
                 .set_base_path(base_path_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateBasePathMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateBasePathMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateBasePathMappingOutput { inner: output })
         })
@@ -38322,20 +40287,24 @@ impl APIGatewayClient {
                 .update_client_certificate()
                 .set_client_certificate_id(client_certificate_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateClientCertificate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateClientCertificate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateClientCertificateOutput { inner: output })
         })
@@ -38439,20 +40408,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_deployment_id(deployment_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDeploymentOutput {
                 inner: output.into(),
@@ -38559,20 +40532,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_part_id(documentation_part_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationPart"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDocumentationPart",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDocumentationPartOutput {
                 inner: output.into(),
@@ -38679,20 +40656,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_documentation_version(documentation_version_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDocumentationVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDocumentationVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDocumentationVersionOutput { inner: output })
         })
@@ -38796,20 +40777,24 @@ impl APIGatewayClient {
                 .set_domain_name(domain_name_value)
                 .set_domain_name_id(domain_name_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDomainName"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDomainName",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDomainNameOutput {
                 inner: output.into(),
@@ -38917,20 +40902,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_response_type(response_type_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGatewayResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateGatewayResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateGatewayResponseOutput { inner: output })
         })
@@ -39055,20 +41044,24 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateIntegration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateIntegrationOutput {
                 inner: output.into(),
@@ -39216,20 +41209,24 @@ impl APIGatewayClient {
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIntegrationResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateIntegrationResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateIntegrationResponseOutput { inner: output })
         })
@@ -39354,20 +41351,19 @@ impl APIGatewayClient {
                 .set_resource_id(resource_id_value)
                 .set_http_method(http_method_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethod"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateMethod", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateMethodOutput {
                 inner: output.into(),
@@ -39515,20 +41511,24 @@ impl APIGatewayClient {
                 .set_http_method(http_method_value)
                 .set_status_code(status_code_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMethodResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMethodResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMethodResponseOutput { inner: output })
         })
@@ -39632,20 +41632,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_model_name(model_name_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateModel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateModel", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateModelOutput { inner: output })
         })
     }
@@ -39749,20 +41749,24 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_request_validator_id(request_validator_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRequestValidator"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateRequestValidator",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateRequestValidatorOutput { inner: output })
         })
@@ -39866,20 +41870,19 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_resource_id(resource_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateResourceOutput {
                 inner: output.into(),
@@ -39964,20 +41967,19 @@ impl APIGatewayClient {
                 .update_rest_api()
                 .set_rest_api_id(rest_api_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRestApi"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateRestApi", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateRestApiOutput {
                 inner: output.into(),
@@ -40083,20 +42085,20 @@ impl APIGatewayClient {
                 .set_rest_api_id(rest_api_id_value)
                 .set_stage_name(stage_name_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateStage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateStage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateStageOutput {
                 inner: output.into(),
             })
@@ -40197,20 +42199,20 @@ impl APIGatewayClient {
                 .set_usage_plan_id(usage_plan_id_value)
                 .set_key_id(key_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateUsage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateUsageOutput { inner: output })
         })
     }
@@ -40292,20 +42294,19 @@ impl APIGatewayClient {
                 .update_usage_plan()
                 .set_usage_plan_id(usage_plan_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUsagePlan"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateUsagePlan", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateUsagePlanOutput {
                 inner: output.into(),
@@ -40390,20 +42391,19 @@ impl APIGatewayClient {
                 .update_vpc_link()
                 .set_vpc_link_id(vpc_link_id_value)
                 .set_patch_operations(patch_operations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateVpcLink"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateVpcLink", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateVpcLinkOutput { inner: output })
         })

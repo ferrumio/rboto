@@ -629,6 +629,12 @@ AddPermissionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AddPermissionRequest/)."""
 
+class AliasLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/AliasLimitExceededErrorDetails/)."""
+    """Decoded fields of AliasLimitExceededError; values may contain application data."""
+    type: str
+
+
 AliasRoutingConfiguration = TypedDict(
     "AliasRoutingConfiguration",
     {
@@ -707,6 +713,12 @@ CallbackTimedOutDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackTimedOutDetails/)."""
 
+class CallbackTimeoutErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CallbackTimeoutErrorDetails/)."""
+    """Decoded fields of CallbackTimeoutError; values may contain application data."""
+    type: str
+
+
 CapacityProvider = TypedDict(
     "CapacityProvider",
     {
@@ -731,6 +743,12 @@ CapacityProviderConfig = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderConfig/)."""
+
+class CapacityProviderLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CapacityProviderLimitExceededErrorDetails/)."""
+    """Decoded fields of CapacityProviderLimitExceededError; values may contain application data."""
+    type: str
+
 
 CapacityProviderLoggingConfig = TypedDict(
     "CapacityProviderLoggingConfig",
@@ -859,6 +877,24 @@ CheckpointUpdatedExecutionState = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CheckpointUpdatedExecutionState/)."""
 
+class CodeArtifactUserDeletedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeArtifactUserDeletedErrorDetails/)."""
+    """Decoded fields of CodeArtifactUserDeletedError; values may contain application data."""
+    type: str
+
+
+class CodeArtifactUserFailedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeArtifactUserFailedErrorDetails/)."""
+    """Decoded fields of CodeArtifactUserFailedError; values may contain application data."""
+    type: str
+
+
+class CodeArtifactUserPendingErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeArtifactUserPendingErrorDetails/)."""
+    """Decoded fields of CodeArtifactUserPendingError; values may contain application data."""
+    type: str
+
+
 CodeSigningConfig = TypedDict(
     "CodeSigningConfig",
     {
@@ -872,6 +908,12 @@ CodeSigningConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeSigningConfig/)."""
 
+class CodeSigningConfigNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeSigningConfigNotFoundErrorDetails/)."""
+    """Decoded fields of CodeSigningConfigNotFoundError; values may contain application data."""
+    type: str
+
+
 CodeSigningPolicies = TypedDict(
     "CodeSigningPolicies",
     {
@@ -879,6 +921,18 @@ CodeSigningPolicies = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeSigningPolicies/)."""
+
+class CodeStorageExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeStorageExceededErrorDetails/)."""
+    """Decoded fields of CodeStorageExceededError; values may contain application data."""
+    type: str
+
+
+class CodeVerificationFailedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/CodeVerificationFailedErrorDetails/)."""
+    """Decoded fields of CodeVerificationFailedError; values may contain application data."""
+    type: str
+
 
 ContextDetails = TypedDict(
     "ContextDetails",
@@ -1195,6 +1249,67 @@ DurableConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DurableConfig/)."""
 
+class DurableExecutionAlreadyStartedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/DurableExecutionAlreadyStartedErrorDetails/)."""
+    """Decoded fields of DurableExecutionAlreadyStartedError; values may contain application data."""
+    type: str
+
+
+class EC2AccessDeniedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EC2AccessDeniedErrorDetails/)."""
+    """Decoded fields of EC2AccessDeniedError; values may contain application data."""
+    type: str
+
+
+class EC2ThrottledErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EC2ThrottledErrorDetails/)."""
+    """Decoded fields of EC2ThrottledError; values may contain application data."""
+    type: str
+
+
+class EC2UnexpectedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EC2UnexpectedErrorDetails/)."""
+    """Decoded fields of EC2UnexpectedError; values may contain application data."""
+    type: str
+    ec2_error_code: str
+
+
+class EFSIOErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EFSIOErrorDetails/)."""
+    """Decoded fields of EFSIOError; values may contain application data."""
+    type: str
+
+
+class EFSMountConnectivityErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EFSMountConnectivityErrorDetails/)."""
+    """Decoded fields of EFSMountConnectivityError; values may contain application data."""
+    type: str
+
+
+class EFSMountFailureErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EFSMountFailureErrorDetails/)."""
+    """Decoded fields of EFSMountFailureError; values may contain application data."""
+    type: str
+
+
+class EFSMountTimeoutErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/EFSMountTimeoutErrorDetails/)."""
+    """Decoded fields of EFSMountTimeoutError; values may contain application data."""
+    type: str
+
+
+class ENILimitReachedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ENILimitReachedErrorDetails/)."""
+    """Decoded fields of ENILimitReachedError; values may contain application data."""
+    type: str
+
+
+class ENINotReadyErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ENINotReadyErrorDetails/)."""
+    """Decoded fields of ENINotReadyError; values may contain application data."""
+    type: str
+
+
 Environment = TypedDict(
     "Environment",
     {
@@ -1488,6 +1603,12 @@ FunctionVersionsByCapacityProviderListItem = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionVersionsByCapacityProviderListItem/)."""
 
+class FunctionVersionsPerCapacityProviderLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/FunctionVersionsPerCapacityProviderLimitExceededErrorDetails/)."""
+    """Decoded fields of FunctionVersionsPerCapacityProviderLimitExceededError; values may contain application data."""
+    type: str
+
+
 GetAccountSettingsRequest = TypedDict(
     "GetAccountSettingsRequest",
     {
@@ -1728,6 +1849,48 @@ InstanceRequirements = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InstanceRequirements/)."""
 
+class InvalidCodeSignatureErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidCodeSignatureErrorDetails/)."""
+    """Decoded fields of InvalidCodeSignatureError; values may contain application data."""
+    type: str
+
+
+class InvalidParameterValueErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidParameterValueErrorDetails/)."""
+    """Decoded fields of InvalidParameterValueError; values may contain application data."""
+    type: str
+
+
+class InvalidRequestContentErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidRequestContentErrorDetails/)."""
+    """Decoded fields of InvalidRequestContentError; values may contain application data."""
+    type: str
+
+
+class InvalidRuntimeErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidRuntimeErrorDetails/)."""
+    """Decoded fields of InvalidRuntimeError; values may contain application data."""
+    type: str
+
+
+class InvalidSecurityGroupIDErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidSecurityGroupIDErrorDetails/)."""
+    """Decoded fields of InvalidSecurityGroupIDError; values may contain application data."""
+    type: str
+
+
+class InvalidSubnetIDErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidSubnetIDErrorDetails/)."""
+    """Decoded fields of InvalidSubnetIDError; values may contain application data."""
+    type: str
+
+
+class InvalidZipFileErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvalidZipFileErrorDetails/)."""
+    """Decoded fields of InvalidZipFileError; values may contain application data."""
+    type: str
+
+
 InvocationCompletedDetails = TypedDict(
     "InvocationCompletedDetails",
     {
@@ -1814,6 +1977,30 @@ InvokeWithResponseStreamResponseEventUnknown = TypedDict("InvokeWithResponseStre
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEventUnknown/)."""
 InvokeWithResponseStreamResponseEvent: TypeAlias = InvokeWithResponseStreamResponseEventPayloadChunk | InvokeWithResponseStreamResponseEventInvokeComplete | InvokeWithResponseStreamResponseEventUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEvent/)."""
+
+class KMSAccessDeniedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KMSAccessDeniedErrorDetails/)."""
+    """Decoded fields of KMSAccessDeniedError; values may contain application data."""
+    type: str
+
+
+class KMSDisabledErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KMSDisabledErrorDetails/)."""
+    """Decoded fields of KMSDisabledError; values may contain application data."""
+    type: str
+
+
+class KMSInvalidStateErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KMSInvalidStateErrorDetails/)."""
+    """Decoded fields of KMSInvalidStateError; values may contain application data."""
+    type: str
+
+
+class KMSNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KMSNotFoundErrorDetails/)."""
+    """Decoded fields of KMSNotFoundError; values may contain application data."""
+    type: str
+
 
 KafkaSchemaRegistryAccessConfig = TypedDict(
     "KafkaSchemaRegistryAccessConfig",
@@ -2083,6 +2270,18 @@ LoggingConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/LoggingConfig/)."""
 
+class ModeNotSupportedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ModeNotSupportedErrorDetails/)."""
+    """Decoded fields of ModeNotSupportedError; values may contain application data."""
+    type: str
+
+
+class NoPublishedVersionErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/NoPublishedVersionErrorDetails/)."""
+    """Decoded fields of NoPublishedVersionError; values may contain application data."""
+    type: str
+
+
 OnFailure = TypedDict(
     "OnFailure",
     {
@@ -2140,6 +2339,18 @@ OperationUpdate = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/OperationUpdate/)."""
 
+class PolicyLengthExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PolicyLengthExceededErrorDetails/)."""
+    """Decoded fields of PolicyLengthExceededError; values may contain application data."""
+    type: str
+
+
+class PreconditionFailedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PreconditionFailedErrorDetails/)."""
+    """Decoded fields of PreconditionFailedError; values may contain application data."""
+    type: str
+
+
 PropagateTags = TypedDict(
     "PropagateTags",
     {
@@ -2163,6 +2374,12 @@ ProvisionedConcurrencyConfigListItem = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ProvisionedConcurrencyConfigListItem/)."""
 
+class ProvisionedConcurrencyConfigNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ProvisionedConcurrencyConfigNotFoundErrorDetails/)."""
+    """Decoded fields of ProvisionedConcurrencyConfigNotFoundError; values may contain application data."""
+    type: str
+
+
 ProvisionedPollerConfig = TypedDict(
     "ProvisionedPollerConfig",
     {
@@ -2172,6 +2389,12 @@ ProvisionedPollerConfig = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ProvisionedPollerConfig/)."""
+
+class PublicPolicyErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PublicPolicyErrorDetails/)."""
+    """Decoded fields of PublicPolicyError; values may contain application data."""
+    type: str
+
 
 PublishLayerVersionRequest = TypedDict(
     "PublishLayerVersionRequest",
@@ -2278,6 +2501,12 @@ PutRuntimeManagementConfigRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/PutRuntimeManagementConfigRequest/)."""
 
+class RecursiveInvocationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RecursiveInvocationErrorDetails/)."""
+    """Decoded fields of RecursiveInvocationError; values may contain application data."""
+    type: str
+
+
 RemoveLayerVersionPermissionRequest = TypedDict(
     "RemoveLayerVersionPermissionRequest",
     {
@@ -2300,6 +2529,12 @@ RemovePermissionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RemovePermissionRequest/)."""
 
+class RequestTooLargeErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/RequestTooLargeErrorDetails/)."""
+    """Decoded fields of RequestTooLargeError; values may contain application data."""
+    type: str
+
+
 ResolvedS3Object = TypedDict(
     "ResolvedS3Object",
     {
@@ -2309,6 +2544,30 @@ ResolvedS3Object = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResolvedS3Object/)."""
+
+class ResourceConflictErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResourceConflictErrorDetails/)."""
+    """Decoded fields of ResourceConflictError; values may contain application data."""
+    type: str
+
+
+class ResourceInUseErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResourceInUseErrorDetails/)."""
+    """Decoded fields of ResourceInUseError; values may contain application data."""
+    type: str
+
+
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    type: str
+
+
+class ResourceNotReadyErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ResourceNotReadyErrorDetails/)."""
+    """Decoded fields of ResourceNotReadyError; values may contain application data."""
+    type: str
+
 
 RetryDetails = TypedDict(
     "RetryDetails",
@@ -2344,6 +2603,24 @@ S3FilesConfig = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/S3FilesConfig/)."""
+
+class S3FilesMountConnectivityErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/S3FilesMountConnectivityErrorDetails/)."""
+    """Decoded fields of S3FilesMountConnectivityError; values may contain application data."""
+    type: str
+
+
+class S3FilesMountFailureErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/S3FilesMountFailureErrorDetails/)."""
+    """Decoded fields of S3FilesMountFailureError; values may contain application data."""
+    type: str
+
+
+class S3FilesMountTimeoutErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/S3FilesMountTimeoutErrorDetails/)."""
+    """Decoded fields of S3FilesMountTimeoutError; values may contain application data."""
+    type: str
+
 
 ScalingConfig = TypedDict(
     "ScalingConfig",
@@ -2396,6 +2673,24 @@ SendDurableExecutionCallbackSuccessRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SendDurableExecutionCallbackSuccessRequest/)."""
 
+class SerializedRequestEntityTooLargeErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SerializedRequestEntityTooLargeErrorDetails/)."""
+    """Decoded fields of SerializedRequestEntityTooLargeError; values may contain application data."""
+    type: str
+
+
+class ServiceErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ServiceErrorDetails/)."""
+    """Decoded fields of ServiceError; values may contain application data."""
+    type: str
+
+
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    type: str
+
+
 SnapStart = TypedDict(
     "SnapStart",
     {
@@ -2403,6 +2698,24 @@ SnapStart = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStart/)."""
+
+class SnapStartErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartErrorDetails/)."""
+    """Decoded fields of SnapStartError; values may contain application data."""
+    type: str
+
+
+class SnapStartNotReadyErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartNotReadyErrorDetails/)."""
+    """Decoded fields of SnapStartNotReadyError; values may contain application data."""
+    type: str
+
+
+class SnapStartRegenerationFailureErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartRegenerationFailureErrorDetails/)."""
+    """Decoded fields of SnapStartRegenerationFailureError; values may contain application data."""
+    type: str
+
 
 SnapStartResponse = TypedDict(
     "SnapStartResponse",
@@ -2412,6 +2725,12 @@ SnapStartResponse = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartResponse/)."""
+
+class SnapStartTimeoutErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SnapStartTimeoutErrorDetails/)."""
+    """Decoded fields of SnapStartTimeoutError; values may contain application data."""
+    type: str
+
 
 SourceAccessConfiguration = TypedDict(
     "SourceAccessConfiguration",
@@ -2475,6 +2794,12 @@ StopDurableExecutionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/StopDurableExecutionRequest/)."""
 
+class SubnetIPAddressLimitReachedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SubnetIPAddressLimitReachedErrorDetails/)."""
+    """Decoded fields of SubnetIPAddressLimitReachedError; values may contain application data."""
+    type: str
+
+
 TagResourceRequest = TypedDict(
     "TagResourceRequest",
     {
@@ -2510,6 +2835,14 @@ TenancyConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TenancyConfig/)."""
 
+class TooManyRequestsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TooManyRequestsErrorDetails/)."""
+    """Decoded fields of TooManyRequestsError; values may contain application data."""
+    retry_after_seconds: str
+    type: str
+    reason: ThrottleReasonOutput
+
+
 TraceHeader = TypedDict(
     "TraceHeader",
     {
@@ -2533,6 +2866,12 @@ TracingConfigResponse = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/TracingConfigResponse/)."""
+
+class UnsupportedMediaTypeErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/UnsupportedMediaTypeErrorDetails/)."""
+    """Decoded fields of UnsupportedMediaTypeError; values may contain application data."""
+    type: str
+
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",

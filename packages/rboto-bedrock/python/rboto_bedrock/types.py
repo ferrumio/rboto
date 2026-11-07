@@ -5113,6 +5113,12 @@ TextInferenceConfigOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TextInferenceConfigOutput/)."""
 
+class TooManyTagsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock/types/TooManyTagsErrorDetails/)."""
+    """Decoded fields of TooManyTagsError; values may contain application data."""
+    resource_name: str
+
+
 TrainingDataConfig = TypedDict(
     "TrainingDataConfig",
     {

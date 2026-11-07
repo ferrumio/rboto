@@ -3076,6 +3076,12 @@ InstancePropertyStringFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InstancePropertyStringFilter/)."""
 
+class InvalidItemContentErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InvalidItemContentErrorDetails/)."""
+    """Decoded fields of InvalidItemContentError; values may contain application data."""
+    type_name: str
+
+
 InventoryAggregator = TypedDict(
     "InventoryAggregator",
     {
@@ -3192,6 +3198,18 @@ InventoryResultItem = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/InventoryResultItem/)."""
+
+class ItemContentMismatchErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ItemContentMismatchErrorDetails/)."""
+    """Decoded fields of ItemContentMismatchError; values may contain application data."""
+    type_name: str
+
+
+class ItemSizeLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ItemSizeLimitExceededErrorDetails/)."""
+    """Decoded fields of ItemSizeLimitExceededError; values may contain application data."""
+    type_name: str
+
 
 LabelParameterVersionRequest = TypedDict(
     "LabelParameterVersionRequest",
@@ -3764,6 +3782,12 @@ OpsItem = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItem/)."""
 
+class OpsItemAlreadyExistsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemAlreadyExistsErrorDetails/)."""
+    """Decoded fields of OpsItemAlreadyExistsError; values may contain application data."""
+    ops_item_id: str
+
+
 OpsItemDataValue = TypedDict(
     "OpsItemDataValue",
     {
@@ -3815,6 +3839,20 @@ OpsItemIdentity = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemIdentity/)."""
 
+class OpsItemInvalidParameterErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemInvalidParameterErrorDetails/)."""
+    """Decoded fields of OpsItemInvalidParameterError; values may contain application data."""
+    parameter_names: list[str]
+
+
+class OpsItemLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemLimitExceededErrorDetails/)."""
+    """Decoded fields of OpsItemLimitExceededError; values may contain application data."""
+    resource_types: list[str]
+    limit: int
+    limit_type: str
+
+
 OpsItemNotification = TypedDict(
     "OpsItemNotification",
     {
@@ -3822,6 +3860,13 @@ OpsItemNotification = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemNotification/)."""
+
+class OpsItemRelatedItemAlreadyExistsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/OpsItemRelatedItemAlreadyExistsErrorDetails/)."""
+    """Decoded fields of OpsItemRelatedItemAlreadyExistsError; values may contain application data."""
+    resource_uri: str
+    ops_item_id: str
+
 
 OpsItemRelatedItemSummary = TypedDict(
     "OpsItemRelatedItemSummary",
@@ -4315,6 +4360,12 @@ ResourceComplianceSummaryItem = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceComplianceSummaryItem/)."""
 
+class ResourceDataSyncAlreadyExistsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncAlreadyExistsErrorDetails/)."""
+    """Decoded fields of ResourceDataSyncAlreadyExistsError; values may contain application data."""
+    sync_name: str
+
+
 ResourceDataSyncAwsOrganizationsSource = TypedDict(
     "ResourceDataSyncAwsOrganizationsSource",
     {
@@ -4348,6 +4399,13 @@ ResourceDataSyncItem = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncItem/)."""
+
+class ResourceDataSyncNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceDataSyncNotFoundError; values may contain application data."""
+    sync_name: str
+    sync_type: str
+
 
 ResourceDataSyncOrganizationalUnit = TypedDict(
     "ResourceDataSyncOrganizationalUnit",
@@ -4394,6 +4452,19 @@ ResourceDataSyncSourceWithState = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourceDataSyncSourceWithState/)."""
+
+class ResourcePolicyInvalidParameterErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourcePolicyInvalidParameterErrorDetails/)."""
+    """Decoded fields of ResourcePolicyInvalidParameterError; values may contain application data."""
+    parameter_names: list[str]
+
+
+class ResourcePolicyLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ResourcePolicyLimitExceededErrorDetails/)."""
+    """Decoded fields of ResourcePolicyLimitExceededError; values may contain application data."""
+    limit: int
+    limit_type: str
+
 
 ResultAttribute = TypedDict(
     "ResultAttribute",
@@ -4499,6 +4570,15 @@ SendCommandRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/SendCommandRequest/)."""
+
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+    quota_code: str
+    service_code: str
+
 
 ServiceSetting = TypedDict(
     "ServiceSetting",
@@ -4744,6 +4824,13 @@ TerminateSessionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/TerminateSessionRequest/)."""
 
+class ThrottlingErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ThrottlingErrorDetails/)."""
+    """Decoded fields of ThrottlingError; values may contain application data."""
+    quota_code: str
+    service_code: str
+
+
 UnlabelParameterVersionRequest = TypedDict(
     "UnlabelParameterVersionRequest",
     {
@@ -4753,6 +4840,12 @@ UnlabelParameterVersionRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnlabelParameterVersionRequest/)."""
+
+class UnsupportedInventoryItemContextErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/UnsupportedInventoryItemContextErrorDetails/)."""
+    """Decoded fields of UnsupportedInventoryItemContextError; values may contain application data."""
+    type_name: str
+
 
 UpdateAssociationRequest = TypedDict(
     "UpdateAssociationRequest",
@@ -4985,6 +5078,12 @@ ValidateCloudConnectorRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidateCloudConnectorRequest/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason_code: str
+
 
 ValidationFinding = TypedDict(
     "ValidationFinding",

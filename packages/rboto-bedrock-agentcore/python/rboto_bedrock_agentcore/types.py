@@ -4055,6 +4055,13 @@ StripePrivyTokenResponseOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StripePrivyTokenResponseOutput/)."""
 
+class SubscriptionRequiredErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SubscriptionRequiredErrorDetails/)."""
+    """Decoded fields of SubscriptionRequiredError; values may contain application data."""
+    subscription_url: str
+    product_name: str
+
+
 SystemPromptConfigtext = TypedDict("SystemPromptConfigtext", {"text": Required["str"]})
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigtext/)."""
 SystemPromptConfigconfigurationBundle = TypedDict("SystemPromptConfigconfigurationBundle", {"configuration_bundle": Required["SystemPromptConfigurationBundle"]})
@@ -4391,6 +4398,13 @@ UserIntentClusteringResultContent = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIntentClusteringResultContent/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason: ValidationExceptionReasonOutput
+    field_list: list[ValidationExceptionField]
+
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",

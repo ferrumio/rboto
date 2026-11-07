@@ -1585,6 +1585,33 @@ impl PyOperationGetWebIdentityTokenOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_sts::operation::assume_role::AssumeRoleError {}
+impl ModeledErrorDetails
+    for aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSAMLError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sts::operation::assume_root::AssumeRootError {}
+impl ModeledErrorDetails
+    for aws_sdk_sts::operation::decode_authorization_message::DecodeAuthorizationMessageError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_access_key_info::GetAccessKeyInfoError {}
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_caller_identity::GetCallerIdentityError {}
+impl ModeledErrorDetails
+    for aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_federation_token::GetFederationTokenError {}
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_session_token::GetSessionTokenError {}
+impl ModeledErrorDetails
+    for aws_sdk_sts::operation::get_web_identity_token::GetWebIdentityTokenError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAssumedRoleUser>()?;
     module.add_class::<PyCredentials>()?;
@@ -2031,20 +2058,20 @@ impl STSClient {
                 .set_source_identity(source_identity_value)
                 .set_provided_contexts(provided_contexts_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRole")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AssumeRole", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationAssumeRoleOutput {
                 inner: output.into(),
             })
@@ -2226,20 +2253,24 @@ impl STSClient {
                 .set_policy(policy_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithSAML"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssumeRoleWithSAML",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAssumeRoleWithSAMLOutput {
                 inner: output.into(),
@@ -2445,20 +2476,24 @@ impl STSClient {
                 .set_policy(policy_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoleWithWebIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssumeRoleWithWebIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAssumeRoleWithWebIdentityOutput {
                 inner: output.into(),
@@ -2563,20 +2598,20 @@ impl STSClient {
                 .set_task_policy_arn(task_policy_arn_value)
                 .set_duration_seconds(duration_seconds_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AssumeRoot")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AssumeRoot", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationAssumeRootOutput {
                 inner: output.into(),
             })
@@ -2616,20 +2651,24 @@ impl STSClient {
             let request = client
                 .decode_authorization_message()
                 .set_encoded_message(encoded_message_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DecodeAuthorizationMessage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DecodeAuthorizationMessage",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDecodeAuthorizationMessageOutput { inner: output })
         })
@@ -2668,20 +2707,24 @@ impl STSClient {
             let request = client
                 .get_access_key_info()
                 .set_access_key_id(access_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAccessKeyInfo"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAccessKeyInfo",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAccessKeyInfoOutput { inner: output })
         })
@@ -2698,20 +2741,24 @@ impl STSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_caller_identity();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCallerIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCallerIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCallerIdentityOutput { inner: output })
         })
@@ -2750,20 +2797,24 @@ impl STSClient {
             let request = client
                 .get_delegated_access_token()
                 .set_trade_in_token(trade_in_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDelegatedAccessToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDelegatedAccessToken",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDelegatedAccessTokenOutput {
                 inner: output.into(),
@@ -2948,20 +2999,24 @@ impl STSClient {
                 .set_duration_seconds(duration_seconds_value)
                 .set_tags(tags_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFederationToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFederationToken",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFederationTokenOutput {
                 inner: output.into(),
@@ -3066,20 +3121,19 @@ impl STSClient {
                 .set_serial_number(serial_number_value)
                 .set_token_code(token_code_value)
                 .set_minimum_session_token_size(minimum_session_token_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSessionToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSessionToken", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetSessionTokenOutput {
                 inner: output.into(),
@@ -3230,20 +3284,24 @@ impl STSClient {
                 .set_duration_seconds(duration_seconds_value)
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetWebIdentityToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetWebIdentityToken",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetWebIdentityTokenOutput { inner: output })
         })

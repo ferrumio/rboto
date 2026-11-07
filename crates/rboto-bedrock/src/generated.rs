@@ -38314,6 +38314,370 @@ impl PyOperationUpdateProvisionedModelThroughputOutput {
     }
 }
 
+fn too_many_tags_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrock::types::error::TooManyTagsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_name {
+        let detail_4710 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_4710)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::batch_delete_advanced_prompt_optimization_job::BatchDeleteAdvancedPromptOptimizationJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::batch_delete_evaluation_job::BatchDeleteEvaluationJobError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::cancel_automated_reasoning_policy_build_workflow::CancelAutomatedReasoningPolicyBuildWorkflowError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_advanced_prompt_optimization_job::CreateAdvancedPromptOptimizationJobError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_automated_reasoning_policy::CreateAutomatedReasoningPolicyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_automated_reasoning_policy_test_case::CreateAutomatedReasoningPolicyTestCaseError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_automated_reasoning_policy_version::CreateAutomatedReasoningPolicyVersionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_custom_model::CreateCustomModelError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_custom_model_deployment::CreateCustomModelDeploymentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_evaluation_job::CreateEvaluationJobError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_foundation_model_agreement::CreateFoundationModelAgreementError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_guardrail::CreateGuardrailError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_guardrail_version::CreateGuardrailVersionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_inference_profile::CreateInferenceProfileError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_marketplace_model_endpoint::CreateMarketplaceModelEndpointError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_model_copy_job::CreateModelCopyJobError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_model_customization_job::CreateModelCustomizationJobError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_model_import_job::CreateModelImportJobError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_model_invocation_job::CreateModelInvocationJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::create_prompt_router::CreatePromptRouterError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::create_provisioned_model_throughput::CreateProvisionedModelThroughputError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_automated_reasoning_policy::DeleteAutomatedReasoningPolicyError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_automated_reasoning_policy_build_workflow::DeleteAutomatedReasoningPolicyBuildWorkflowError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_automated_reasoning_policy_test_case::DeleteAutomatedReasoningPolicyTestCaseError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_custom_model::DeleteCustomModelError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_custom_model_deployment::DeleteCustomModelDeploymentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_enforced_guardrail_configuration::DeleteEnforcedGuardrailConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_foundation_model_agreement::DeleteFoundationModelAgreementError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_guardrail::DeleteGuardrailError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_imported_model::DeleteImportedModelError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_inference_profile::DeleteInferenceProfileError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_marketplace_model_endpoint::DeleteMarketplaceModelEndpointError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_model_invocation_logging_configuration::DeleteModelInvocationLoggingConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_prompt_router::DeletePromptRouterError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::delete_provisioned_model_throughput::DeleteProvisionedModelThroughputError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::deregister_marketplace_model_endpoint::DeregisterMarketplaceModelEndpointError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::export_automated_reasoning_policy_version::ExportAutomatedReasoningPolicyVersionError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_account_data_retention::GetAccountDataRetentionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_advanced_prompt_optimization_job::GetAdvancedPromptOptimizationJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_automated_reasoning_policy::GetAutomatedReasoningPolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_annotations::GetAutomatedReasoningPolicyAnnotationsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow::GetAutomatedReasoningPolicyBuildWorkflowError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_build_workflow_result_assets::GetAutomatedReasoningPolicyBuildWorkflowResultAssetsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_next_scenario::GetAutomatedReasoningPolicyNextScenarioError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_case::GetAutomatedReasoningPolicyTestCaseError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_automated_reasoning_policy_test_result::GetAutomatedReasoningPolicyTestResultError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_custom_model::GetCustomModelError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_custom_model_deployment::GetCustomModelDeploymentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_evaluation_job::GetEvaluationJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_foundation_model::GetFoundationModelError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_foundation_model_availability::GetFoundationModelAvailabilityError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_guardrail::GetGuardrailError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_imported_model::GetImportedModelError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_inference_profile::GetInferenceProfileError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_marketplace_model_endpoint::GetMarketplaceModelEndpointError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_model_copy_job::GetModelCopyJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_model_customization_job::GetModelCustomizationJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_model_import_job::GetModelImportJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_model_invocation_job::GetModelInvocationJobError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_model_invocation_logging_configuration::GetModelInvocationLoggingConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_prompt_router::GetPromptRouterError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::get_provisioned_model_throughput::GetProvisionedModelThroughputError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_resource_policy::GetResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::get_use_case_for_model_access::GetUseCaseForModelAccessError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_advanced_prompt_optimization_jobs::ListAdvancedPromptOptimizationJobsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_automated_reasoning_policies::ListAutomatedReasoningPoliciesError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_automated_reasoning_policy_build_workflows::ListAutomatedReasoningPolicyBuildWorkflowsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_cases::ListAutomatedReasoningPolicyTestCasesError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_automated_reasoning_policy_test_results::ListAutomatedReasoningPolicyTestResultsError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_custom_model_deployments::ListCustomModelDeploymentsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_custom_models::ListCustomModelsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_enforced_guardrails_configuration::ListEnforcedGuardrailsConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_evaluation_jobs::ListEvaluationJobsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_foundation_model_agreement_offers::ListFoundationModelAgreementOffersError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_foundation_models::ListFoundationModelsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_guardrails::ListGuardrailsError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_imported_models::ListImportedModelsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_inference_profiles::ListInferenceProfilesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_marketplace_model_endpoints::ListMarketplaceModelEndpointsError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_model_copy_jobs::ListModelCopyJobsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_model_customization_jobs::ListModelCustomizationJobsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_model_import_jobs::ListModelImportJobsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_model_invocation_jobs::ListModelInvocationJobsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_prompt_routers::ListPromptRoutersError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::list_provisioned_model_throughputs::ListProvisionedModelThroughputsError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::put_account_data_retention::PutAccountDataRetentionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::put_enforced_guardrail_configuration::PutEnforcedGuardrailConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::put_model_invocation_logging_configuration::PutModelInvocationLoggingConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::put_resource_policy::PutResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::put_use_case_for_model_access::PutUseCaseForModelAccessError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::register_marketplace_model_endpoint::RegisterMarketplaceModelEndpointError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::start_automated_reasoning_policy_build_workflow::StartAutomatedReasoningPolicyBuildWorkflowError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::start_automated_reasoning_policy_test_workflow::StartAutomatedReasoningPolicyTestWorkflowError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::stop_advanced_prompt_optimization_job::StopAdvancedPromptOptimizationJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::stop_evaluation_job::StopEvaluationJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::stop_model_customization_job::StopModelCustomizationJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::stop_model_invocation_job::StopModelInvocationJobError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_automated_reasoning_policy::UpdateAutomatedReasoningPolicyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_automated_reasoning_policy_annotations::UpdateAutomatedReasoningPolicyAnnotationsError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_automated_reasoning_policy_test_case::UpdateAutomatedReasoningPolicyTestCaseError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrock::operation::update_custom_model_deployment::UpdateCustomModelDeploymentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_guardrail::UpdateGuardrailError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_marketplace_model_endpoint::UpdateMarketplaceModelEndpointError {}
+impl ModeledErrorDetails for aws_sdk_bedrock::operation::update_provisioned_model_throughput::UpdateProvisionedModelThroughputError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccountEnforcedGuardrailOutputConfiguration>()?;
     module.add_class::<PyAdvancedPromptOptimizationInputConfig>()?;
@@ -38626,21 +38990,23 @@ impl BedrockClient {
             let request = client
                 .batch_delete_advanced_prompt_optimization_job()
                 .set_job_identifiers(job_identifiers_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "BatchDeleteAdvancedPromptOptimizationJob")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchDeleteAdvancedPromptOptimizationJob",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationBatchDeleteAdvancedPromptOptimizationJobOutput {
@@ -38705,20 +39071,24 @@ impl BedrockClient {
             let request = client
                 .batch_delete_evaluation_job()
                 .set_job_identifiers(job_identifiers_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteEvaluationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchDeleteEvaluationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchDeleteEvaluationJobOutput {
                 inner: output.into(),
@@ -38781,21 +39151,23 @@ impl BedrockClient {
                 .cancel_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CancelAutomatedReasoningPolicyBuildWorkflow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelAutomatedReasoningPolicyBuildWorkflow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCancelAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
@@ -39026,21 +39398,23 @@ impl BedrockClient {
                 .set_encryption_key_arn(encryption_key_arn_value)
                 .set_tags(tags_value)
                 .set_model_configurations(model_configurations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateAdvancedPromptOptimizationJob")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAdvancedPromptOptimizationJob",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateAdvancedPromptOptimizationJobOutput { inner: output })
@@ -39206,20 +39580,24 @@ impl BedrockClient {
                 .set_policy_definition(policy_definition_value)
                 .set_kms_key_id(kms_key_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAutomatedReasoningPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateAutomatedReasoningPolicyOutput { inner: output })
         })
@@ -39370,21 +39748,23 @@ impl BedrockClient {
                 .set_expected_aggregated_findings_result(expected_aggregated_findings_result_value)
                 .set_client_request_token(client_request_token_value)
                 .set_confidence_threshold(confidence_threshold_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicyTestCase")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAutomatedReasoningPolicyTestCase",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateAutomatedReasoningPolicyTestCaseOutput { inner: output })
@@ -39512,21 +39892,23 @@ impl BedrockClient {
                 .set_client_request_token(client_request_token_value)
                 .set_last_updated_definition_hash(last_updated_definition_hash_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateAutomatedReasoningPolicyVersion")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAutomatedReasoningPolicyVersion",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateAutomatedReasoningPolicyVersionOutput { inner: output })
@@ -39715,20 +40097,24 @@ impl BedrockClient {
                 .set_role_arn(role_arn_value)
                 .set_model_tags(model_tags_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomModel",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCustomModelOutput { inner: output })
         })
@@ -39876,20 +40262,24 @@ impl BedrockClient {
                 .set_description(description_value)
                 .set_tags(tags_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomModelDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomModelDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCustomModelDeploymentOutput { inner: output })
         })
@@ -40138,20 +40528,24 @@ impl BedrockClient {
                 .set_evaluation_config(evaluation_config_value)
                 .set_inference_config(inference_config_value)
                 .set_output_data_config(output_data_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEvaluationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEvaluationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEvaluationJobOutput { inner: output })
         })
@@ -40207,20 +40601,24 @@ impl BedrockClient {
                 .create_foundation_model_agreement()
                 .set_offer_token(offer_token_value)
                 .set_model_id(model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateFoundationModelAgreement"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateFoundationModelAgreement",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateFoundationModelAgreementOutput { inner: output })
         })
@@ -40564,20 +40962,19 @@ impl BedrockClient {
                 .set_kms_key_id(kms_key_id_value)
                 .set_tags(tags_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateGuardrail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateGuardrail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateGuardrailOutput { inner: output })
         })
@@ -40660,20 +41057,24 @@ impl BedrockClient {
                 .set_guardrail_identifier(guardrail_identifier_value)
                 .set_description(description_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateGuardrailVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateGuardrailVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateGuardrailVersionOutput { inner: output })
         })
@@ -40821,20 +41222,24 @@ impl BedrockClient {
                 .set_client_request_token(client_request_token_value)
                 .set_model_source(model_source_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateInferenceProfile"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateInferenceProfile",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateInferenceProfileOutput { inner: output })
         })
@@ -41003,20 +41408,24 @@ impl BedrockClient {
                 .set_endpoint_name(endpoint_name_value)
                 .set_client_request_token(client_request_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMarketplaceModelEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateMarketplaceModelEndpointOutput {
                 inner: output.into(),
@@ -41167,20 +41576,24 @@ impl BedrockClient {
                 .set_model_kms_key_id(model_kms_key_id_value)
                 .set_target_model_tags(target_model_tags_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelCopyJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateModelCopyJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateModelCopyJobOutput { inner: output })
         })
@@ -41589,20 +42002,24 @@ impl BedrockClient {
                 .set_hyper_parameters(hyper_parameters_value)
                 .set_vpc_config(vpc_config_value)
                 .set_customization_config(customization_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelCustomizationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateModelCustomizationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateModelCustomizationJobOutput { inner: output })
         })
@@ -41852,20 +42269,24 @@ impl BedrockClient {
                 .set_client_request_token(client_request_token_value)
                 .set_vpc_config(vpc_config_value)
                 .set_imported_model_kms_key_id(imported_model_kms_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelImportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateModelImportJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateModelImportJobOutput { inner: output })
         })
@@ -42111,20 +42532,24 @@ impl BedrockClient {
                 .set_timeout_duration_in_hours(timeout_duration_in_hours_value)
                 .set_tags(tags_value)
                 .set_model_invocation_type(model_invocation_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateModelInvocationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateModelInvocationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateModelInvocationJobOutput { inner: output })
         })
@@ -42337,20 +42762,24 @@ impl BedrockClient {
                 .set_routing_criteria(routing_criteria_value)
                 .set_fallback_model(fallback_model_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePromptRouter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePromptRouter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePromptRouterOutput { inner: output })
         })
@@ -42518,20 +42947,24 @@ impl BedrockClient {
                 .set_model_id(model_id_value)
                 .set_commitment_duration(commitment_duration_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateProvisionedModelThroughput"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateProvisionedModelThroughput",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateProvisionedModelThroughputOutput { inner: output })
         })
@@ -42587,20 +43020,24 @@ impl BedrockClient {
                 .delete_automated_reasoning_policy()
                 .set_policy_arn(policy_arn_value)
                 .set_force(force_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAutomatedReasoningPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteAutomatedReasoningPolicyOutput { inner: output })
         })
@@ -42687,21 +43124,23 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_last_updated_at(last_updated_at_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicyBuildWorkflow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAutomatedReasoningPolicyBuildWorkflow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
@@ -42788,21 +43227,23 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_test_case_id(test_case_id_value)
                 .set_last_updated_at(last_updated_at_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteAutomatedReasoningPolicyTestCase")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAutomatedReasoningPolicyTestCase",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteAutomatedReasoningPolicyTestCaseOutput { inner: output })
@@ -42842,20 +43283,24 @@ impl BedrockClient {
             let request = client
                 .delete_custom_model()
                 .set_model_identifier(model_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomModel",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCustomModelOutput { inner: output })
         })
@@ -42895,20 +43340,24 @@ impl BedrockClient {
             let request = client
                 .delete_custom_model_deployment()
                 .set_custom_model_deployment_identifier(custom_model_deployment_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomModelDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomModelDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCustomModelDeploymentOutput { inner: output })
         })
@@ -42947,21 +43396,23 @@ impl BedrockClient {
             let request = client
                 .delete_enforced_guardrail_configuration()
                 .set_config_id(config_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteEnforcedGuardrailConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEnforcedGuardrailConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteEnforcedGuardrailConfigurationOutput { inner: output })
@@ -42997,20 +43448,24 @@ impl BedrockClient {
             let request = client
                 .delete_foundation_model_agreement()
                 .set_model_id(model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFoundationModelAgreement"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteFoundationModelAgreement",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteFoundationModelAgreementOutput { inner: output })
         })
@@ -43072,20 +43527,19 @@ impl BedrockClient {
                 .delete_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
                 .set_guardrail_version(guardrail_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGuardrail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteGuardrail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteGuardrailOutput { inner: output })
         })
@@ -43124,20 +43578,24 @@ impl BedrockClient {
             let request = client
                 .delete_imported_model()
                 .set_model_identifier(model_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteImportedModel",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteImportedModelOutput { inner: output })
         })
@@ -43177,20 +43635,24 @@ impl BedrockClient {
             let request = client
                 .delete_inference_profile()
                 .set_inference_profile_identifier(inference_profile_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteInferenceProfile"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteInferenceProfile",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteInferenceProfileOutput { inner: output })
         })
@@ -43229,20 +43691,24 @@ impl BedrockClient {
             let request = client
                 .delete_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMarketplaceModelEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteMarketplaceModelEndpointOutput { inner: output })
         })
@@ -43259,21 +43725,23 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_model_invocation_logging_configuration();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteModelInvocationLoggingConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteModelInvocationLoggingConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteModelInvocationLoggingConfigurationOutput { inner: output })
@@ -43314,20 +43782,24 @@ impl BedrockClient {
             let request = client
                 .delete_prompt_router()
                 .set_prompt_router_arn(prompt_router_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePromptRouter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePromptRouter",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeletePromptRouterOutput { inner: output })
         })
@@ -43367,20 +43839,24 @@ impl BedrockClient {
             let request = client
                 .delete_provisioned_model_throughput()
                 .set_provisioned_model_id(provisioned_model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteProvisionedModelThroughput"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteProvisionedModelThroughput",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteProvisionedModelThroughputOutput { inner: output })
         })
@@ -43419,20 +43895,24 @@ impl BedrockClient {
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
@@ -43471,21 +43951,23 @@ impl BedrockClient {
             let request = client
                 .deregister_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeregisterMarketplaceModelEndpoint")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeregisterMarketplaceModelEndpointOutput { inner: output })
@@ -43525,21 +44007,23 @@ impl BedrockClient {
             let request = client
                 .export_automated_reasoning_policy_version()
                 .set_policy_arn(policy_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ExportAutomatedReasoningPolicyVersion")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ExportAutomatedReasoningPolicyVersion",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationExportAutomatedReasoningPolicyVersionOutput {
@@ -43559,20 +44043,24 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account_data_retention();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAccountDataRetention"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAccountDataRetention",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAccountDataRetentionOutput { inner: output })
         })
@@ -43611,20 +44099,24 @@ impl BedrockClient {
             let request = client
                 .get_advanced_prompt_optimization_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAdvancedPromptOptimizationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAdvancedPromptOptimizationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAdvancedPromptOptimizationJobOutput {
                 inner: output.into(),
@@ -43665,20 +44157,24 @@ impl BedrockClient {
             let request = client
                 .get_automated_reasoning_policy()
                 .set_policy_arn(policy_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyOutput { inner: output })
         })
@@ -43739,21 +44235,23 @@ impl BedrockClient {
                 .get_automated_reasoning_policy_annotations()
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyAnnotations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicyAnnotations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyAnnotationsOutput { inner: output })
@@ -43815,21 +44313,23 @@ impl BedrockClient {
                 .get_automated_reasoning_policy_build_workflow()
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyBuildWorkflow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicyBuildWorkflow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
@@ -43933,17 +44433,14 @@ impl BedrockClient {
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_asset_type(asset_type_value)
                 .set_asset_id(asset_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
@@ -43951,6 +44448,7 @@ impl BedrockClient {
                         py,
                         &error,
                         "GetAutomatedReasoningPolicyBuildWorkflowResultAssets",
+                        &observer.response_metadata(),
                     )
                 })
             })?;
@@ -44017,21 +44515,23 @@ impl BedrockClient {
                 .get_automated_reasoning_policy_next_scenario()
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyNextScenario")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicyNextScenario",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyNextScenarioOutput {
@@ -44094,21 +44594,23 @@ impl BedrockClient {
                 .get_automated_reasoning_policy_test_case()
                 .set_policy_arn(policy_arn_value)
                 .set_test_case_id(test_case_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestCase")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicyTestCase",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyTestCaseOutput {
@@ -44193,21 +44695,23 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_test_case_id(test_case_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetAutomatedReasoningPolicyTestResult")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAutomatedReasoningPolicyTestResult",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetAutomatedReasoningPolicyTestResultOutput {
@@ -44249,20 +44753,19 @@ impl BedrockClient {
             let request = client
                 .get_custom_model()
                 .set_model_identifier(model_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetCustomModel", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetCustomModelOutput {
                 inner: output.into(),
@@ -44304,20 +44807,24 @@ impl BedrockClient {
             let request = client
                 .get_custom_model_deployment()
                 .set_custom_model_deployment_identifier(custom_model_deployment_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCustomModelDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCustomModelDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCustomModelDeploymentOutput {
                 inner: output.into(),
@@ -44358,20 +44865,24 @@ impl BedrockClient {
             let request = client
                 .get_evaluation_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEvaluationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEvaluationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEvaluationJobOutput {
                 inner: output.into(),
@@ -44412,20 +44923,24 @@ impl BedrockClient {
             let request = client
                 .get_foundation_model()
                 .set_model_identifier(model_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFoundationModel",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFoundationModelOutput {
                 inner: output.into(),
@@ -44462,20 +44977,24 @@ impl BedrockClient {
             let request = client
                 .get_foundation_model_availability()
                 .set_model_id(model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFoundationModelAvailability"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFoundationModelAvailability",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFoundationModelAvailabilityOutput {
                 inner: output.into(),
@@ -44539,20 +45058,19 @@ impl BedrockClient {
                 .get_guardrail()
                 .set_guardrail_identifier(guardrail_identifier_value)
                 .set_guardrail_version(guardrail_version_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetGuardrail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetGuardrail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetGuardrailOutput {
                 inner: output.into(),
@@ -44593,20 +45111,24 @@ impl BedrockClient {
             let request = client
                 .get_imported_model()
                 .set_model_identifier(model_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetImportedModel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetImportedModel",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetImportedModelOutput {
                 inner: output.into(),
@@ -44648,20 +45170,24 @@ impl BedrockClient {
             let request = client
                 .get_inference_profile()
                 .set_inference_profile_identifier(inference_profile_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInferenceProfile"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInferenceProfile",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInferenceProfileOutput {
                 inner: output.into(),
@@ -44702,20 +45228,24 @@ impl BedrockClient {
             let request = client
                 .get_marketplace_model_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMarketplaceModelEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMarketplaceModelEndpointOutput {
                 inner: output.into(),
@@ -44750,20 +45280,19 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_model_copy_job().set_job_arn(job_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCopyJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetModelCopyJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetModelCopyJobOutput {
                 inner: output.into(),
@@ -44804,20 +45333,24 @@ impl BedrockClient {
             let request = client
                 .get_model_customization_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetModelCustomizationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetModelCustomizationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetModelCustomizationJobOutput {
                 inner: output.into(),
@@ -44858,20 +45391,24 @@ impl BedrockClient {
             let request = client
                 .get_model_import_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetModelImportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetModelImportJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetModelImportJobOutput {
                 inner: output.into(),
@@ -44912,20 +45449,24 @@ impl BedrockClient {
             let request = client
                 .get_model_invocation_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetModelInvocationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetModelInvocationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetModelInvocationJobOutput {
                 inner: output.into(),
@@ -44944,21 +45485,23 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_model_invocation_logging_configuration();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetModelInvocationLoggingConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetModelInvocationLoggingConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetModelInvocationLoggingConfigurationOutput {
@@ -45001,20 +45544,19 @@ impl BedrockClient {
             let request = client
                 .get_prompt_router()
                 .set_prompt_router_arn(prompt_router_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPromptRouter"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetPromptRouter", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetPromptRouterOutput {
                 inner: output.into(),
@@ -45056,20 +45598,24 @@ impl BedrockClient {
             let request = client
                 .get_provisioned_model_throughput()
                 .set_provisioned_model_id(provisioned_model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetProvisionedModelThroughput"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetProvisionedModelThroughput",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetProvisionedModelThroughputOutput { inner: output })
         })
@@ -45108,20 +45654,24 @@ impl BedrockClient {
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
@@ -45138,20 +45688,24 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_use_case_for_model_access();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetUseCaseForModelAccess"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetUseCaseForModelAccess",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetUseCaseForModelAccessOutput { inner: output })
         })
@@ -45257,21 +45811,23 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListAdvancedPromptOptimizationJobs")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAdvancedPromptOptimizationJobs",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListAdvancedPromptOptimizationJobsOutput {
@@ -45355,20 +45911,24 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAutomatedReasoningPolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListAutomatedReasoningPoliciesOutput {
                 inner: output.into(),
@@ -45451,21 +46011,23 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyBuildWorkflows")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAutomatedReasoningPolicyBuildWorkflows",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(
@@ -45551,21 +46113,23 @@ impl BedrockClient {
                 .set_policy_arn(policy_arn_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestCases")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAutomatedReasoningPolicyTestCases",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListAutomatedReasoningPolicyTestCasesOutput {
@@ -45671,21 +46235,23 @@ impl BedrockClient {
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListAutomatedReasoningPolicyTestResults")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAutomatedReasoningPolicyTestResults",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListAutomatedReasoningPolicyTestResultsOutput {
@@ -45912,20 +46478,24 @@ impl BedrockClient {
                 .set_sort_order(sort_order_value)
                 .set_status_equals(status_equals_value)
                 .set_model_arn_equals(model_arn_equals_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModelDeployments"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomModelDeployments",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCustomModelDeploymentsOutput {
                 inner: output.into(),
@@ -46196,20 +46766,24 @@ impl BedrockClient {
                 .set_sort_order(sort_order_value)
                 .set_is_owned(is_owned_value)
                 .set_model_status(model_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCustomModels"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomModels",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCustomModelsOutput {
                 inner: output.into(),
@@ -46250,21 +46824,23 @@ impl BedrockClient {
             let request = client
                 .list_enforced_guardrails_configuration()
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListEnforcedGuardrailsConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEnforcedGuardrailsConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListEnforcedGuardrailsConfigurationOutput {
@@ -46495,20 +47071,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEvaluationJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEvaluationJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEvaluationJobsOutput {
                 inner: output.into(),
@@ -46568,21 +47148,23 @@ impl BedrockClient {
                 .list_foundation_model_agreement_offers()
                 .set_model_id(model_id_value)
                 .set_offer_type(offer_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListFoundationModelAgreementOffers")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFoundationModelAgreementOffers",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListFoundationModelAgreementOffersOutput {
@@ -46696,20 +47278,24 @@ impl BedrockClient {
                 .set_by_customization_type(by_customization_type_value)
                 .set_by_output_modality(by_output_modality_value)
                 .set_by_inference_type(by_inference_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFoundationModels"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFoundationModels",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFoundationModelsOutput {
                 inner: output.into(),
@@ -46793,20 +47379,19 @@ impl BedrockClient {
                 .set_guardrail_identifier(guardrail_identifier_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListGuardrails"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListGuardrails", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListGuardrailsOutput {
                 inner: output.into(),
@@ -46989,20 +47574,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListImportedModels"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListImportedModels",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListImportedModelsOutput {
                 inner: output.into(),
@@ -47087,20 +47676,24 @@ impl BedrockClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_type_equals(type_equals_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInferenceProfiles"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInferenceProfiles",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInferenceProfilesOutput {
                 inner: output.into(),
@@ -47184,20 +47777,24 @@ impl BedrockClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_model_source_equals(model_source_equals_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMarketplaceModelEndpoints"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMarketplaceModelEndpoints",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMarketplaceModelEndpointsOutput {
                 inner: output.into(),
@@ -47448,20 +48045,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCopyJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListModelCopyJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListModelCopyJobsOutput {
                 inner: output.into(),
@@ -47667,20 +48268,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListModelCustomizationJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListModelCustomizationJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListModelCustomizationJobsOutput {
                 inner: output.into(),
@@ -47886,20 +48491,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListModelImportJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListModelImportJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListModelImportJobsOutput {
                 inner: output.into(),
@@ -48106,20 +48715,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListModelInvocationJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListModelInvocationJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListModelInvocationJobsOutput {
                 inner: output.into(),
@@ -48204,20 +48817,24 @@ impl BedrockClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_type(type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPromptRouters"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPromptRouters",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPromptRoutersOutput {
                 inner: output.into(),
@@ -48444,20 +49061,24 @@ impl BedrockClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListProvisionedModelThroughputs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListProvisionedModelThroughputs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListProvisionedModelThroughputsOutput {
                 inner: output.into(),
@@ -48498,20 +49119,24 @@ impl BedrockClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -48552,20 +49177,24 @@ impl BedrockClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.put_account_data_retention().set_mode(mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountDataRetention"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountDataRetention",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountDataRetentionOutput { inner: output })
         })
@@ -48627,21 +49256,23 @@ impl BedrockClient {
                 .put_enforced_guardrail_configuration()
                 .set_config_id(config_id_value)
                 .set_guardrail_inference_config(guardrail_inference_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutEnforcedGuardrailConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEnforcedGuardrailConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutEnforcedGuardrailConfigurationOutput { inner: output })
@@ -48681,21 +49312,23 @@ impl BedrockClient {
             let request = client
                 .put_model_invocation_logging_configuration()
                 .set_logging_config(logging_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutModelInvocationLoggingConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutModelInvocationLoggingConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutModelInvocationLoggingConfigurationOutput { inner: output })
@@ -48756,20 +49389,24 @@ impl BedrockClient {
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_resource_policy(resource_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -48809,20 +49446,24 @@ impl BedrockClient {
             let request = client
                 .put_use_case_for_model_access()
                 .set_form_data(form_data_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutUseCaseForModelAccess"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutUseCaseForModelAccess",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutUseCaseForModelAccessOutput { inner: output })
         })
@@ -48884,20 +49525,24 @@ impl BedrockClient {
                 .register_marketplace_model_endpoint()
                 .set_endpoint_identifier(endpoint_identifier_value)
                 .set_model_source_identifier(model_source_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RegisterMarketplaceModelEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRegisterMarketplaceModelEndpointOutput {
                 inner: output.into(),
@@ -49008,21 +49653,23 @@ impl BedrockClient {
                 .set_build_workflow_type(build_workflow_type_value)
                 .set_client_request_token(client_request_token_value)
                 .set_source_content(source_content_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "StartAutomatedReasoningPolicyBuildWorkflow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAutomatedReasoningPolicyBuildWorkflow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationStartAutomatedReasoningPolicyBuildWorkflowOutput { inner: output })
@@ -49150,21 +49797,23 @@ impl BedrockClient {
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_test_case_ids(test_case_ids_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "StartAutomatedReasoningPolicyTestWorkflow")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAutomatedReasoningPolicyTestWorkflow",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationStartAutomatedReasoningPolicyTestWorkflowOutput { inner: output })
@@ -49204,21 +49853,23 @@ impl BedrockClient {
             let request = client
                 .stop_advanced_prompt_optimization_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "StopAdvancedPromptOptimizationJob")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopAdvancedPromptOptimizationJob",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationStopAdvancedPromptOptimizationJobOutput { inner: output })
@@ -49258,20 +49909,24 @@ impl BedrockClient {
             let request = client
                 .stop_evaluation_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopEvaluationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopEvaluationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopEvaluationJobOutput { inner: output })
         })
@@ -49310,20 +49965,24 @@ impl BedrockClient {
             let request = client
                 .stop_model_customization_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopModelCustomizationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopModelCustomizationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopModelCustomizationJobOutput { inner: output })
         })
@@ -49362,20 +50021,24 @@ impl BedrockClient {
             let request = client
                 .stop_model_invocation_job()
                 .set_job_identifier(job_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopModelInvocationJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopModelInvocationJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopModelInvocationJobOutput { inner: output })
         })
@@ -49458,20 +50121,20 @@ impl BedrockClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -49553,20 +50216,19 @@ impl BedrockClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -49665,20 +50327,24 @@ impl BedrockClient {
                 .set_policy_definition(policy_definition_value)
                 .set_name(name_value)
                 .set_description(description_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAutomatedReasoningPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateAutomatedReasoningPolicyOutput { inner: output })
         })
@@ -49806,21 +50472,23 @@ impl BedrockClient {
                 .set_build_workflow_id(build_workflow_id_value)
                 .set_annotations(annotations_value)
                 .set_last_updated_annotation_set_hash(last_updated_annotation_set_hash_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicyAnnotations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAutomatedReasoningPolicyAnnotations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateAutomatedReasoningPolicyAnnotationsOutput { inner: output })
@@ -50019,21 +50687,23 @@ impl BedrockClient {
                 .set_expected_aggregated_findings_result(expected_aggregated_findings_result_value)
                 .set_confidence_threshold(confidence_threshold_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateAutomatedReasoningPolicyTestCase")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateAutomatedReasoningPolicyTestCase",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateAutomatedReasoningPolicyTestCaseOutput { inner: output })
@@ -50095,20 +50765,24 @@ impl BedrockClient {
                 .update_custom_model_deployment()
                 .set_model_arn(model_arn_value)
                 .set_custom_model_deployment_identifier(custom_model_deployment_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomModelDeployment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCustomModelDeployment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateCustomModelDeploymentOutput { inner: output })
         })
@@ -50408,20 +51082,19 @@ impl BedrockClient {
                 .set_blocked_input_messaging(blocked_input_messaging_value)
                 .set_blocked_outputs_messaging(blocked_outputs_messaging_value)
                 .set_kms_key_id(kms_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateGuardrail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateGuardrail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateGuardrailOutput { inner: output })
         })
@@ -50503,20 +51176,24 @@ impl BedrockClient {
                 .set_endpoint_arn(endpoint_arn_value)
                 .set_endpoint_config(endpoint_config_value)
                 .set_client_request_token(client_request_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateMarketplaceModelEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateMarketplaceModelEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateMarketplaceModelEndpointOutput {
                 inner: output.into(),
@@ -50601,20 +51278,24 @@ impl BedrockClient {
                 .set_provisioned_model_id(provisioned_model_id_value)
                 .set_desired_provisioned_model_name(desired_provisioned_model_name_value)
                 .set_desired_model_id(desired_model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateProvisionedModelThroughput"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateProvisionedModelThroughput",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateProvisionedModelThroughputOutput { inner: output })
         })

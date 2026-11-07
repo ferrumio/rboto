@@ -205,6 +205,13 @@ PutLexiconInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconInput/)."""
 
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    quota_code: QuotaCodeOutput
+    service_code: ServiceCodeOutput
+
+
 StartSpeechSynthesisStreamActionStreamTextEvent = TypedDict("StartSpeechSynthesisStreamActionStreamTextEvent", {"text_event": Required["TextEvent"]})
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStreamTextEvent/)."""
 StartSpeechSynthesisStreamActionStreamCloseStreamEvent = TypedDict("StartSpeechSynthesisStreamActionStreamCloseStreamEvent", {"close_stream_event": Required["CloseStreamEvent"]})
@@ -318,14 +325,27 @@ TextEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TextEvent/)."""
 
+class ThrottlingErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ThrottlingErrorDetails/)."""
+    """Decoded fields of ThrottlingError; values may contain application data."""
+    throttling_reasons: list[ThrottlingReason]
+
+
 ThrottlingReason = TypedDict(
     "ThrottlingReason",
     {
-    "reason": NotRequired["str"],
-    "resource": NotRequired["str"],
+    "reason": Required["str | None"],
+    "resource": Required["str | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ThrottlingReason/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason: ValidationExceptionReasonOutput
+    fields: list[ValidationExceptionField]
+
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",

@@ -17,6 +17,18 @@ type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, J
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/JSONValue/)."""
 
 
+class InputValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/InputValidationErrorDetails/)."""
+    """Decoded fields of InputValidationError; values may contain application data."""
+    error_code: str
+
+
+class InternalServerErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/InternalServerErrorDetails/)."""
+    """Decoded fields of InternalServerError; values may contain application data."""
+    error_code: str
+
+
 InvokeEndpointWithBidirectionalStreamInput = TypedDict(
     "InvokeEndpointWithBidirectionalStreamInput",
     {
@@ -37,6 +49,21 @@ InvokeEndpointWithBidirectionalStreamOutput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/InvokeEndpointWithBidirectionalStreamOutput/)."""
+
+class ModelErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ModelErrorDetails/)."""
+    """Decoded fields of ModelError; values may contain application data."""
+    original_status_code: int
+    original_message: str
+    log_stream_arn: str
+    error_code: str
+
+
+class ModelStreamErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ModelStreamErrorDetails/)."""
+    """Decoded fields of ModelStreamError; values may contain application data."""
+    error_code: str
+
 
 RequestPayloadPart = TypedDict(
     "RequestPayloadPart",
@@ -71,3 +98,8 @@ ResponseStreamEventUnknown = TypedDict("ResponseStreamEventUnknown", {"unknown":
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventUnknown/)."""
 ResponseStreamEvent: TypeAlias = ResponseStreamEventPayloadPart | ResponseStreamEventUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEvent/)."""
+
+class ServiceUnavailableErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ServiceUnavailableErrorDetails/)."""
+    """Decoded fields of ServiceUnavailableError; values may contain application data."""
+    error_code: str

@@ -593,6 +593,12 @@ UntagResourceRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/UntagResourceRequest/)."""
 
+class VerificationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sns/types/VerificationErrorDetails/)."""
+    """Decoded fields of VerificationError; values may contain application data."""
+    status: str
+
+
 VerifySMSSandboxPhoneNumberInput = TypedDict(
     "VerifySMSSandboxPhoneNumberInput",
     {

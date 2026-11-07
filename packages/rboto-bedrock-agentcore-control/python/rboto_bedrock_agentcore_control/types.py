@@ -7816,6 +7816,13 @@ SubmitRegistryRecordForApprovalRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SubmitRegistryRecordForApprovalRequest/)."""
 
+class SubscriptionRequiredErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/SubscriptionRequiredErrorDetails/)."""
+    """Decoded fields of SubscriptionRequiredError; values may contain application data."""
+    subscription_url: str
+    product_name: str
+
+
 SummaryConsolidationOverride = TypedDict(
     "SummaryConsolidationOverride",
     {
@@ -8721,6 +8728,13 @@ ValidationOutputUnknown = TypedDict("ValidationOutputUnknown", {"unknown": Requi
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ValidationOutputUnknown/)."""
 ValidationOutput: TypeAlias = ValidationOutputstringValidation | ValidationOutputstringListValidation | ValidationOutputnumberValidation | ValidationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ValidationOutput/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason: ValidationExceptionReasonOutput
+    field_list: list[ValidationExceptionField]
+
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",

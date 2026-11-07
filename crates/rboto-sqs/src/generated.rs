@@ -2572,6 +2572,48 @@ impl PyOperationStartMessageMoveTaskOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_sqs::operation::add_permission::AddPermissionError {}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::change_message_visibility::ChangeMessageVisibilityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::create_queue::CreateQueueError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message::DeleteMessageError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_queue::DeleteQueueError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_url::GetQueueUrlError {}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queues::ListQueuesError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::purge_queue::PurgeQueueError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::receive_message::ReceiveMessageError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::remove_permission::RemovePermissionError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message::SendMessageError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message_batch::SendMessageBatchError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::set_queue_attributes::SetQueueAttributesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::tag_queue::TagQueueError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::untag_queue::UntagQueueError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyBatchResultErrorEntry>()?;
     module.add_class::<PyChangeMessageVisibilityBatchResultEntry>()?;
@@ -2790,21 +2832,24 @@ impl SQSClient {
                 .set_label(label_value)
                 .set_aws_account_ids(aws_account_ids_value)
                 .set_actions(actions_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AddPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AddPermission", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "AddPermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -2842,20 +2887,24 @@ impl SQSClient {
             let request = client
                 .cancel_message_move_task()
                 .set_task_handle(task_handle_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelMessageMoveTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelMessageMoveTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelMessageMoveTaskOutput { inner: output })
         })
@@ -2937,21 +2986,29 @@ impl SQSClient {
                 .set_queue_url(queue_url_value)
                 .set_receipt_handle(receipt_handle_value)
                 .set_visibility_timeout(visibility_timeout_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibility"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ChangeMessageVisibility",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "ChangeMessageVisibility",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3034,20 +3091,24 @@ impl SQSClient {
                 .change_message_visibility_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ChangeMessageVisibilityBatch"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ChangeMessageVisibilityBatch",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationChangeMessageVisibilityBatchOutput {
                 inner: output.into(),
@@ -3180,20 +3241,20 @@ impl SQSClient {
                 .set_queue_name(queue_name_value)
                 .set_attributes(attributes_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateQueue")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateQueue", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateQueueOutput { inner: output })
         })
     }
@@ -3252,21 +3313,24 @@ impl SQSClient {
                 .delete_message()
                 .set_queue_url(queue_url_value)
                 .set_receipt_handle(receipt_handle_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteMessage", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteMessage",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3349,20 +3413,24 @@ impl SQSClient {
                 .delete_message_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMessageBatch"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMessageBatch",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteMessageBatchOutput {
                 inner: output.into(),
@@ -3401,20 +3469,24 @@ impl SQSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_queue().set_queue_url(queue_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteQueue")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteQueue", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteQueue",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3498,20 +3570,24 @@ impl SQSClient {
                 .get_queue_attributes()
                 .set_queue_url(queue_url_value)
                 .set_attribute_names(attribute_names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetQueueAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetQueueAttributesOutput { inner: output })
         })
@@ -3572,20 +3648,20 @@ impl SQSClient {
                 .get_queue_url()
                 .set_queue_name(queue_name_value)
                 .set_queue_owner_aws_account_id(queue_owner_aws_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetQueueUrl")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetQueueUrl", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetQueueUrlOutput { inner: output })
         })
     }
@@ -3665,20 +3741,24 @@ impl SQSClient {
                 .set_queue_url(queue_url_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDeadLetterSourceQueues"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDeadLetterSourceQueues",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDeadLetterSourceQueuesOutput { inner: output })
         })
@@ -3738,20 +3818,24 @@ impl SQSClient {
                 .list_message_move_tasks()
                 .set_source_arn(source_arn_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMessageMoveTasks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMessageMoveTasks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMessageMoveTasksOutput {
                 inner: output.into(),
@@ -3790,20 +3874,19 @@ impl SQSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_queue_tags().set_queue_url(queue_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListQueueTags"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListQueueTags", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListQueueTagsOutput { inner: output })
         })
@@ -3885,20 +3968,20 @@ impl SQSClient {
                 .set_queue_name_prefix(queue_name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueues")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListQueues", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListQueuesOutput { inner: output })
         })
     }
@@ -3934,20 +4017,24 @@ impl SQSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.purge_queue().set_queue_url(queue_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PurgeQueue")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PurgeQueue", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "PurgeQueue",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -4213,20 +4300,19 @@ impl SQSClient {
                 .set_visibility_timeout(visibility_timeout_value)
                 .set_wait_time_seconds(wait_time_seconds_value)
                 .set_receive_request_attempt_id(receive_request_attempt_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ReceiveMessage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ReceiveMessage", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationReceiveMessageOutput {
                 inner: output.into(),
@@ -4284,21 +4370,29 @@ impl SQSClient {
                 .remove_permission()
                 .set_queue_url(queue_url_value)
                 .set_label(label_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemovePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemovePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RemovePermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -4522,20 +4616,20 @@ impl SQSClient {
                 .set_message_system_attributes(message_system_attributes_value)
                 .set_message_deduplication_id(message_deduplication_id_value)
                 .set_message_group_id(message_group_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendMessage")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SendMessage", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationSendMessageOutput { inner: output })
         })
     }
@@ -4618,20 +4712,24 @@ impl SQSClient {
                 .send_message_batch()
                 .set_queue_url(queue_url_value)
                 .set_entries(entries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SendMessageBatch"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendMessageBatch",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSendMessageBatchOutput {
                 inner: output.into(),
@@ -4721,21 +4819,29 @@ impl SQSClient {
                 .set_queue_attributes()
                 .set_queue_url(queue_url_value)
                 .set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetQueueAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetQueueAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetQueueAttributes",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -4816,20 +4922,24 @@ impl SQSClient {
                 .set_source_arn(source_arn_value)
                 .set_destination_arn(destination_arn_value)
                 .set_max_number_of_messages_per_second(max_number_of_messages_per_second_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartMessageMoveTask"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMessageMoveTask",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartMessageMoveTaskOutput { inner: output })
         })
@@ -4911,20 +5021,24 @@ impl SQSClient {
                 .tag_queue()
                 .set_queue_url(queue_url_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagQueue")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagQueue", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagQueue",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5006,20 +5120,24 @@ impl SQSClient {
                 .untag_queue()
                 .set_queue_url(queue_url_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UntagQueue")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagQueue", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "UntagQueue",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }

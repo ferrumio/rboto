@@ -732,6 +732,12 @@ InspectionErrorDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/InspectionErrorDetails/)."""
 
+class KmsInvalidStateErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/KmsInvalidStateErrorDetails/)."""
+    """Decoded fields of KmsInvalidStateError; values may contain application data."""
+    kms_key_state: KmsKeyStateOutput
+
+
 LambdaFunctionFailedEventDetails = TypedDict(
     "LambdaFunctionFailedEventDetails",
     {
@@ -1003,6 +1009,12 @@ RedriveExecutionInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/RedriveExecutionInput/)."""
 
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    resource_name: str
+
+
 RoutingConfigurationListItem = TypedDict(
     "RoutingConfigurationListItem",
     {
@@ -1266,6 +1278,12 @@ TestStateInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TestStateInput/)."""
 
+class TooManyTagsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/TooManyTagsErrorDetails/)."""
+    """Decoded fields of TooManyTagsError; values may contain application data."""
+    resource_name: str
+
+
 TracingConfiguration = TypedDict(
     "TracingConfiguration",
     {
@@ -1340,3 +1358,8 @@ ValidateStateMachineDefinitionInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidateStateMachineDefinitionInput/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/sfn/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason: ValidationExceptionReasonOutput

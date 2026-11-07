@@ -337,6 +337,13 @@ CloudwatchLogsLogDestinationParameters = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/CloudwatchLogsLogDestinationParameters/)."""
 
+class ConflictErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ConflictErrorDetails/)."""
+    """Decoded fields of ConflictError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+
+
 CreatePipeRequest = TypedDict(
     "CreatePipeRequest",
     {
@@ -495,6 +502,12 @@ FirehoseLogDestinationParameters = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/FirehoseLogDestinationParameters/)."""
+
+class InternalErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/InternalErrorDetails/)."""
+    """Decoded fields of InternalError; values may contain application data."""
+    retry_after_seconds: int
+
 
 ListPipesRequest = TypedDict(
     "ListPipesRequest",
@@ -978,6 +991,15 @@ SelfManagedKafkaAccessConfigurationVpc = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationVpc/)."""
 
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+    service_code: str
+    quota_code: str
+
+
 SingleMeasureMapping = TypedDict(
     "SingleMeasureMapping",
     {
@@ -1021,6 +1043,14 @@ TagResourceRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/TagResourceRequest/)."""
+
+class ThrottlingErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ThrottlingErrorDetails/)."""
+    """Decoded fields of ThrottlingError; values may contain application data."""
+    service_code: str
+    quota_code: str
+    retry_after_seconds: int
+
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",
@@ -1142,6 +1172,12 @@ UpdatePipeSourceSqsQueueParameters = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/UpdatePipeSourceSqsQueueParameters/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    field_list: list[ValidationExceptionField]
+
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",

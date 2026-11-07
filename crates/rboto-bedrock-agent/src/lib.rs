@@ -12,11 +12,13 @@ use aws_smithy_runtime_api::client::result::SdkError;
 use aws_smithy_types::byte_stream::ByteStream as AwsByteStream;
 use aws_smithy_types::error::metadata::ProvideErrorMetadata;
 use pyo3::conversion::IntoPyObjectExt;
-use pyo3::exceptions::{PyOSError, PyStopAsyncIteration};
+use pyo3::exceptions::PyStopAsyncIteration;
 use pyo3::prelude::*;
 #[allow(unused_imports)]
 use pyo3::types::{PyBytes, PyDict, PyList};
-use rboto_core::{ManagedResource, RequestConfig, future_into_py};
+use rboto_core::{
+    ManagedResource, RequestConfig, ResponseMetadata, StreamErrorContext, future_into_py,
+};
 use tokio::sync::OnceCell;
 
 #[derive(Clone)]
@@ -57,13 +59,15 @@ impl ClientState {
 #[pyclass(name = "ByteStream", module = "rboto_bedrock_agent._native")]
 struct PyByteStream {
     inner: Arc<ManagedResource<AwsByteStream>>,
+    context: Arc<StreamErrorContext>,
 }
 
 #[allow(dead_code)]
 impl PyByteStream {
-    fn new(stream: AwsByteStream) -> Self {
+    fn new(stream: AwsByteStream, context: StreamErrorContext) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
+            context: Arc::new(context),
         }
     }
 }
@@ -97,6 +101,7 @@ impl PyByteStream {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -118,7 +123,9 @@ impl PyByteStream {
                         }
                         Err(error) => {
                             stream.discard();
-                            Err(PyOSError::new_err(format!("stream failed: {error}")))
+                            Err(Python::attach(|py| {
+                                rboto_core::stream_error_to_py(py, &error, &context)
+                            }))
                         }
                     }
                 })
@@ -129,6 +136,7 @@ impl PyByteStream {
 
     fn read<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Python::attach(|py| Ok(PyBytes::new(py, b"").unbind()));
@@ -142,10 +150,9 @@ impl PyByteStream {
                     let Some(stream) = stream else {
                         return Python::attach(|py| Ok(PyBytes::new(py, b"").unbind()));
                     };
-                    let body = stream
-                        .collect()
-                        .await
-                        .map_err(|error| PyOSError::new_err(error.to_string()))?;
+                    let body = stream.collect().await.map_err(|error| {
+                        Python::attach(|py| rboto_core::stream_error_to_py(py, &error, &context))
+                    })?;
                     Python::attach(|py| rboto_core::collected_body_to_bytes(py, body))
                 })
                 .await
@@ -163,20 +170,46 @@ fn dict_value<'py>(values: &Bound<'py, PyDict>, name: &str) -> PyResult<Option<B
     Ok(values.get_item(name)?.filter(|value| !value.is_none()))
 }
 
+trait ModeledErrorDetails {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        Ok(PyDict::new(py).into_any().unbind())
+    }
+}
+
+fn with_modeled_details<E: ModeledErrorDetails>(
+    py: Python<'_>,
+    error: PyErr,
+    service: Option<&E>,
+) -> PyErr {
+    // Supplemental metadata must never replace the original exception.
+    if let Some(service) = service
+        && let Ok(details) = service.details(py)
+    {
+        let _ = error.value(py).setattr("_details", details);
+    }
+    error
+}
+
 fn sdk_error_to_py<E>(
     py: Python<'_>,
     error: &SdkError<E, aws_smithy_runtime_api::client::orchestrator::HttpResponse>,
     operation: &str,
+    metadata: &ResponseMetadata,
 ) -> PyErr
 where
-    E: ProvideErrorMetadata + Error + 'static,
+    E: ProvideErrorMetadata + ModeledErrorDetails + Error + 'static,
 {
-    rboto_core::http_sdk_error_to_py(
+    with_modeled_details(
         py,
-        error,
-        operation,
-        "rboto_bedrock_agent.exceptions",
-        "BedrockAgentError",
+        rboto_core::http_sdk_error_to_py(
+            py,
+            error,
+            operation,
+            "rboto_bedrock_agent.exceptions",
+            "BedrockAgentError",
+            metadata,
+        ),
+        error.as_service_error(),
     )
 }
 
@@ -184,21 +217,31 @@ where
 fn sdk_error_to_py_with_code<E, R>(
     py: Python<'_>,
     error: &SdkError<E, R>,
-    operation: &str,
+    context: &StreamErrorContext,
     fallback_code: Option<&str>,
 ) -> PyErr
 where
-    E: ProvideErrorMetadata + Error + 'static,
+    E: ProvideErrorMetadata + ModeledErrorDetails + Error + 'static,
     R: Debug + 'static,
 {
-    rboto_core::sdk_error_to_py(
+    if let SdkError::DispatchFailure(failure) = error
+        && let Some(cause) = failure.as_connector_error()
+    {
+        return rboto_core::stream_error_to_py(py, cause, context);
+    }
+    with_modeled_details(
         py,
-        error,
-        operation,
-        "rboto_bedrock_agent.exceptions",
-        "BedrockAgentError",
-        fallback_code,
-        None,
+        rboto_core::sdk_error_to_py(
+            py,
+            error,
+            context.operation,
+            "rboto_bedrock_agent.exceptions",
+            "BedrockAgentError",
+            fallback_code,
+            context.metadata.request_id.as_deref(),
+            &context.metadata,
+        ),
+        error.as_service_error(),
     )
 }
 

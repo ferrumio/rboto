@@ -1124,6 +1124,13 @@ ConfigurationEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ConfigurationEvent/)."""
 
+class ConflictErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ConflictErrorDetails/)."""
+    """Decoded fields of ConflictError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+
+
 ContentBlockerRule = TypedDict(
     "ContentBlockerRule",
     {
@@ -2714,6 +2721,13 @@ RelevantContent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RelevantContent/)."""
 
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+
+
 ResponseConfiguration = TypedDict(
     "ResponseConfiguration",
     {
@@ -2861,6 +2875,13 @@ SearchRelevantContentRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SearchRelevantContentRequest/)."""
+
+class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ServiceQuotaExceededErrorDetails/)."""
+    """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    resource_id: str
+    resource_type: str
+
 
 SnippetExcerpt = TypedDict(
     "SnippetExcerpt",
@@ -3238,6 +3259,13 @@ UsersAndGroups = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/UsersAndGroups/)."""
+
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    reason: ValidationExceptionReasonOutput
+    fields: list[ValidationExceptionField]
+
 
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",

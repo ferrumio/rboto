@@ -12785,6 +12785,136 @@ impl PyOperationUpdateTrailOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::add_tags::AddTagsError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::cancel_query::CancelQueryError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_channel::CreateChannelError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDataStoreError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_trail::CreateTrailError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::delete_event_data_store::DeleteEventDataStoreError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_query::DescribeQueryError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::disable_federation::DisableFederationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::enable_federation::EnableFederationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::generate_query::GenerateQueryError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_channel::GetChannelError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfigurationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStoreError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_import::GetImportError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelectorsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_query_results::GetQueryResultsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::get_resource_policy::GetResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail::GetTrailError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_channels::ListChannelsError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataStoresError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailuresError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_imports::ListImportsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::list_insights_metric_data::ListInsightsMetricDataError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_queries::ListQueriesError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_tags::ListTagsError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_trails::ListTrailsError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::lookup_events::LookupEventsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfigurationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelectorsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::put_resource_policy::PutResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventDataStoreError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQueriesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::start_dashboard_refresh::StartDashboardRefreshError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_import::StartImportError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_logging::StartLoggingError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_query::StartQueryError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_import::StopImportError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_logging::StopLoggingError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_channel::UpdateChannelError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardError {}
+impl ModeledErrorDetails
+    for aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDataStoreError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_trail::UpdateTrailError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAdvancedEventSelector>()?;
     module.add_class::<PyAdvancedFieldSelector>()?;
@@ -13014,20 +13144,20 @@ impl CloudTrailClient {
                 .add_tags()
                 .set_resource_id(resource_id_value)
                 .set_tags_list(tags_list_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "AddTags")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AddTags", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationAddTagsOutput { inner: output })
         })
     }
@@ -13104,20 +13234,20 @@ impl CloudTrailClient {
                 .set_event_data_store(event_data_store_value)
                 .set_query_id(query_id_value)
                 .set_event_data_store_owner_account_id(event_data_store_owner_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CancelQuery")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CancelQuery", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCancelQueryOutput { inner: output })
         })
     }
@@ -13256,20 +13386,19 @@ impl CloudTrailClient {
                 .set_source(source_value)
                 .set_destinations(destinations_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateChannel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateChannel", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateChannelOutput {
                 inner: output.into(),
@@ -13437,20 +13566,19 @@ impl CloudTrailClient {
                 .set_tags_list(tags_list_value)
                 .set_termination_protection_enabled(termination_protection_enabled_value)
                 .set_widgets(widgets_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDashboard"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDashboard", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateDashboardOutput {
                 inner: output.into(),
@@ -13728,20 +13856,24 @@ impl CloudTrailClient {
                 .set_kms_key_id(kms_key_id_value)
                 .set_start_ingestion(start_ingestion_value)
                 .set_billing_mode(billing_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventDataStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEventDataStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEventDataStoreOutput {
                 inner: output.into(),
@@ -14060,20 +14192,20 @@ impl CloudTrailClient {
                 .set_is_organization_trail(is_organization_trail_value)
                 .set_tags_list(tags_list_value)
                 .set_recursive_logging(recursive_logging_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTrail")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateTrail", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateTrailOutput { inner: output })
         })
     }
@@ -14105,20 +14237,19 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_channel().set_channel(channel_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChannel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteChannel", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteChannelOutput { inner: output })
         })
@@ -14157,20 +14288,19 @@ impl CloudTrailClient {
             let request = client
                 .delete_dashboard()
                 .set_dashboard_id(dashboard_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDashboard"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDashboard", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteDashboardOutput { inner: output })
         })
@@ -14209,20 +14339,24 @@ impl CloudTrailClient {
             let request = client
                 .delete_event_data_store()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventDataStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEventDataStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteEventDataStoreOutput { inner: output })
         })
@@ -14261,20 +14395,24 @@ impl CloudTrailClient {
             let request = client
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
@@ -14307,20 +14445,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_trail().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTrail")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteTrail", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteTrailOutput { inner: output })
         })
     }
@@ -14359,21 +14497,23 @@ impl CloudTrailClient {
             let request = client
                 .deregister_organization_delegated_admin()
                 .set_delegated_admin_account_id(delegated_admin_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeregisterOrganizationDelegatedAdmin")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeregisterOrganizationDelegatedAdmin",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeregisterOrganizationDelegatedAdminOutput { inner: output })
@@ -14494,20 +14634,19 @@ impl CloudTrailClient {
                 .set_query_alias(query_alias_value)
                 .set_refresh_id(refresh_id_value)
                 .set_event_data_store_owner_account_id(event_data_store_owner_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeQuery", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeQueryOutput {
                 inner: output.into(),
@@ -14593,20 +14732,19 @@ impl CloudTrailClient {
                 .describe_trails()
                 .set_trail_name_list(trail_name_list_value)
                 .set_include_shadow_trails(include_shadow_trails_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeTrails"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeTrails", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeTrailsOutput {
                 inner: output.into(),
@@ -14647,20 +14785,24 @@ impl CloudTrailClient {
             let request = client
                 .disable_federation()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisableFederation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisableFederation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisableFederationOutput { inner: output })
         })
@@ -14721,20 +14863,24 @@ impl CloudTrailClient {
                 .enable_federation()
                 .set_event_data_store(event_data_store_value)
                 .set_federation_role_arn(federation_role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "EnableFederation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "EnableFederation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationEnableFederationOutput { inner: output })
         })
@@ -14814,20 +14960,19 @@ impl CloudTrailClient {
                 .generate_query()
                 .set_event_data_stores(event_data_stores_value)
                 .set_prompt(prompt_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GenerateQuery", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGenerateQueryOutput { inner: output })
         })
@@ -14860,20 +15005,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_channel().set_channel(channel_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetChannel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetChannel", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetChannelOutput {
                 inner: output.into(),
             })
@@ -14911,20 +15056,19 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_dashboard().set_dashboard_id(dashboard_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDashboard"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDashboard", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDashboardOutput {
                 inner: output.into(),
@@ -14986,20 +15130,24 @@ impl CloudTrailClient {
                 .get_event_configuration()
                 .set_trail_name(trail_name_value)
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEventConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEventConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEventConfigurationOutput {
                 inner: output.into(),
@@ -15040,20 +15188,24 @@ impl CloudTrailClient {
             let request = client
                 .get_event_data_store()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEventDataStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEventDataStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEventDataStoreOutput {
                 inner: output.into(),
@@ -15094,20 +15246,24 @@ impl CloudTrailClient {
             let request = client
                 .get_event_selectors()
                 .set_trail_name(trail_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSelectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEventSelectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEventSelectorsOutput {
                 inner: output.into(),
@@ -15146,20 +15302,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_import().set_import_id(import_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetImport")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetImport", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetImportOutput {
                 inner: output.into(),
             })
@@ -15220,20 +15376,24 @@ impl CloudTrailClient {
                 .get_insight_selectors()
                 .set_trail_name(trail_name_value)
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInsightSelectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInsightSelectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInsightSelectorsOutput {
                 inner: output.into(),
@@ -15356,20 +15516,19 @@ impl CloudTrailClient {
                 .set_next_token(next_token_value)
                 .set_max_query_results(max_query_results_value)
                 .set_event_data_store_owner_account_id(event_data_store_owner_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetQueryResults"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetQueryResults", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetQueryResultsOutput {
                 inner: output.into(),
@@ -15410,20 +15569,24 @@ impl CloudTrailClient {
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
@@ -15456,20 +15619,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_trail().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTrail")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetTrail", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetTrailOutput {
                 inner: output.into(),
             })
@@ -15503,20 +15666,19 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_trail_status().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetTrailStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetTrailStatus", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetTrailStatusOutput { inner: output })
         })
@@ -15576,20 +15738,19 @@ impl CloudTrailClient {
                 .list_channels()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListChannels"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListChannels", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListChannelsOutput {
                 inner: output.into(),
@@ -15695,20 +15856,19 @@ impl CloudTrailClient {
                 .set_type(type_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDashboards"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDashboards", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListDashboardsOutput {
                 inner: output.into(),
@@ -15770,20 +15930,24 @@ impl CloudTrailClient {
                 .list_event_data_stores()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEventDataStores"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEventDataStores",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEventDataStoresOutput {
                 inner: output.into(),
@@ -15866,20 +16030,24 @@ impl CloudTrailClient {
                 .set_import_id(import_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListImportFailures"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListImportFailures",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListImportFailuresOutput {
                 inner: output.into(),
@@ -15985,20 +16153,20 @@ impl CloudTrailClient {
                 .set_destination(destination_value)
                 .set_import_status(import_status_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListImports")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListImports", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListImportsOutput {
                 inner: output.into(),
             })
@@ -16206,20 +16374,24 @@ impl CloudTrailClient {
                 .set_end_time(end_time_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsData"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInsightsData",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInsightsDataOutput {
                 inner: output.into(),
@@ -16481,20 +16653,24 @@ impl CloudTrailClient {
                 .set_data_type(data_type_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInsightsMetricData"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInsightsMetricData",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInsightsMetricDataOutput { inner: output })
         })
@@ -16585,20 +16761,19 @@ impl CloudTrailClient {
                 .set_start_time(start_time_value)
                 .set_end_time(end_time_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPublicKeys"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListPublicKeys", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListPublicKeysOutput {
                 inner: output.into(),
@@ -16756,20 +16931,20 @@ impl CloudTrailClient {
                 .set_start_time(start_time_value)
                 .set_end_time(end_time_value)
                 .set_query_status(query_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListQueries")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListQueries", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListQueriesOutput {
                 inner: output.into(),
             })
@@ -16853,20 +17028,20 @@ impl CloudTrailClient {
                 .list_tags()
                 .set_resource_id_list(resource_id_list_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTags", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTagsOutput {
                 inner: output.into(),
             })
@@ -16904,20 +17079,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_trails().set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTrails")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTrails", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTrailsOutput {
                 inner: output.into(),
             })
@@ -17098,20 +17273,19 @@ impl CloudTrailClient {
                 .set_event_category(event_category_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "LookupEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "LookupEvents", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationLookupEventsOutput {
                 inner: output.into(),
@@ -17286,20 +17460,24 @@ impl CloudTrailClient {
                 .set_max_event_size(max_event_size_value)
                 .set_context_key_selectors(context_key_selectors_value)
                 .set_aggregation_configurations(aggregation_configurations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutEventConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEventConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutEventConfigurationOutput {
                 inner: output.into(),
@@ -17429,20 +17607,24 @@ impl CloudTrailClient {
                 .set_trail_name(trail_name_value)
                 .set_event_selectors(event_selectors_value)
                 .set_advanced_event_selectors(advanced_event_selectors_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutEventSelectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEventSelectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutEventSelectorsOutput {
                 inner: output.into(),
@@ -17571,20 +17753,24 @@ impl CloudTrailClient {
                 .set_insight_selectors(insight_selectors_value)
                 .set_event_data_store(event_data_store_value)
                 .set_insights_destination(insights_destination_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutInsightSelectors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutInsightSelectors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutInsightSelectorsOutput {
                 inner: output.into(),
@@ -17646,20 +17832,24 @@ impl CloudTrailClient {
                 .put_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_resource_policy(resource_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -17699,21 +17889,23 @@ impl CloudTrailClient {
             let request = client
                 .register_organization_delegated_admin()
                 .set_member_account_id(member_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "RegisterOrganizationDelegatedAdmin")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RegisterOrganizationDelegatedAdmin",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationRegisterOrganizationDelegatedAdminOutput { inner: output })
@@ -17797,20 +17989,20 @@ impl CloudTrailClient {
                 .remove_tags()
                 .set_resource_id(resource_id_value)
                 .set_tags_list(tags_list_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RemoveTags")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RemoveTags", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationRemoveTagsOutput { inner: output })
         })
     }
@@ -17848,20 +18040,24 @@ impl CloudTrailClient {
             let request = client
                 .restore_event_data_store()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RestoreEventDataStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RestoreEventDataStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRestoreEventDataStoreOutput {
                 inner: output.into(),
@@ -17944,20 +18140,24 @@ impl CloudTrailClient {
                 .set_search_phrase(search_phrase_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SearchSampleQueries"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SearchSampleQueries",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSearchSampleQueriesOutput {
                 inner: output.into(),
@@ -18046,20 +18246,24 @@ impl CloudTrailClient {
                 .start_dashboard_refresh()
                 .set_dashboard_id(dashboard_id_value)
                 .set_query_parameter_values(query_parameter_values_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartDashboardRefresh"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartDashboardRefresh",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartDashboardRefreshOutput { inner: output })
         })
@@ -18098,20 +18302,24 @@ impl CloudTrailClient {
             let request = client
                 .start_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartEventDataStoreIngestion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartEventDataStoreIngestion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartEventDataStoreIngestionOutput { inner: output })
         })
@@ -18267,20 +18475,20 @@ impl CloudTrailClient {
                 .set_start_event_time(start_event_time_value)
                 .set_end_event_time(end_event_time_value)
                 .set_import_id(import_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartImport")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartImport", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStartImportOutput {
                 inner: output.into(),
             })
@@ -18314,20 +18522,19 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.start_logging().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartLogging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartLogging", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationStartLoggingOutput { inner: output })
         })
@@ -18474,20 +18681,20 @@ impl CloudTrailClient {
                 .set_query_alias(query_alias_value)
                 .set_query_parameters(query_parameters_value)
                 .set_event_data_store_owner_account_id(event_data_store_owner_account_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartQuery")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartQuery", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStartQueryOutput { inner: output })
         })
     }
@@ -18525,20 +18732,24 @@ impl CloudTrailClient {
             let request = client
                 .stop_event_data_store_ingestion()
                 .set_event_data_store(event_data_store_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopEventDataStoreIngestion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopEventDataStoreIngestion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopEventDataStoreIngestionOutput { inner: output })
         })
@@ -18575,20 +18786,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_import().set_import_id(import_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopImport")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StopImport", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStopImportOutput {
                 inner: output.into(),
             })
@@ -18622,20 +18833,20 @@ impl CloudTrailClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_logging().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopLogging")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StopLogging", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStopLoggingOutput { inner: output })
         })
     }
@@ -18730,20 +18941,19 @@ impl CloudTrailClient {
                 .set_channel(channel_value)
                 .set_destinations(destinations_value)
                 .set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChannel"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateChannel", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateChannelOutput {
                 inner: output.into(),
@@ -18871,20 +19081,19 @@ impl CloudTrailClient {
                 .set_widgets(widgets_value)
                 .set_refresh_schedule(refresh_schedule_value)
                 .set_termination_protection_enabled(termination_protection_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDashboard"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateDashboard", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateDashboardOutput {
                 inner: output.into(),
@@ -19118,20 +19327,24 @@ impl CloudTrailClient {
                 .set_termination_protection_enabled(termination_protection_enabled_value)
                 .set_kms_key_id(kms_key_id_value)
                 .set_billing_mode(billing_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventDataStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateEventDataStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateEventDataStoreOutput {
                 inner: output.into(),
@@ -19406,20 +19619,20 @@ impl CloudTrailClient {
                 .set_kms_key_id(kms_key_id_value)
                 .set_is_organization_trail(is_organization_trail_value)
                 .set_recursive_logging(recursive_logging_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateTrail")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateTrail", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateTrailOutput { inner: output })
         })
     }

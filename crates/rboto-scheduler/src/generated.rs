@@ -3782,6 +3782,34 @@ impl PyOperationUpdateScheduleOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::create_schedule::CreateScheduleError {}
+impl ModeledErrorDetails
+    for aws_sdk_scheduler::operation::create_schedule_group::CreateScheduleGroupError
+{
+}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::delete_schedule::DeleteScheduleError {}
+impl ModeledErrorDetails
+    for aws_sdk_scheduler::operation::delete_schedule_group::DeleteScheduleGroupError
+{
+}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::get_schedule::GetScheduleError {}
+impl ModeledErrorDetails
+    for aws_sdk_scheduler::operation::get_schedule_group::GetScheduleGroupError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_scheduler::operation::list_schedule_groups::ListScheduleGroupsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::list_schedules::ListSchedulesError {}
+impl ModeledErrorDetails
+    for aws_sdk_scheduler::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_scheduler::operation::update_schedule::UpdateScheduleError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAwsVpcConfiguration>()?;
     module.add_class::<PyCapacityProviderStrategyItem>()?;
@@ -4172,20 +4200,19 @@ impl SchedulerClient {
                 .set_flexible_time_window(flexible_time_window_value)
                 .set_client_token(client_token_value)
                 .set_action_after_completion(action_after_completion_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSchedule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateSchedule", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateScheduleOutput { inner: output })
         })
@@ -4285,20 +4312,24 @@ impl SchedulerClient {
                 .set_name(name_value)
                 .set_tags(tags_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateScheduleGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateScheduleGroup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateScheduleGroupOutput { inner: output })
         })
@@ -4375,20 +4406,19 @@ impl SchedulerClient {
                 .set_name(name_value)
                 .set_group_name(group_name_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSchedule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteSchedule", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteScheduleOutput { inner: output })
         })
@@ -4444,20 +4474,24 @@ impl SchedulerClient {
                 .delete_schedule_group()
                 .set_name(name_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteScheduleGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteScheduleGroup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteScheduleGroupOutput { inner: output })
         })
@@ -4513,20 +4547,20 @@ impl SchedulerClient {
                 .get_schedule()
                 .set_name(name_value)
                 .set_group_name(group_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSchedule")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSchedule", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetScheduleOutput {
                 inner: output.into(),
             })
@@ -4560,20 +4594,24 @@ impl SchedulerClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_schedule_group().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetScheduleGroup"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetScheduleGroup",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetScheduleGroupOutput { inner: output })
         })
@@ -4654,20 +4692,24 @@ impl SchedulerClient {
                 .set_name_prefix(name_prefix_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListScheduleGroups"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListScheduleGroups",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListScheduleGroupsOutput {
                 inner: output.into(),
@@ -4794,20 +4836,19 @@ impl SchedulerClient {
                 .set_state(state_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSchedules"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListSchedules", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListSchedulesOutput {
                 inner: output.into(),
@@ -4848,20 +4889,24 @@ impl SchedulerClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -4946,20 +4991,20 @@ impl SchedulerClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -5041,20 +5086,19 @@ impl SchedulerClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -5360,20 +5404,19 @@ impl SchedulerClient {
                 .set_flexible_time_window(flexible_time_window_value)
                 .set_client_token(client_token_value)
                 .set_action_after_completion(action_after_completion_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSchedule"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateSchedule", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateScheduleOutput { inner: output })
         })

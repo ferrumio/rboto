@@ -980,6 +980,12 @@ ImportNotebookInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ImportNotebookInput/)."""
 
+class InvalidRequestErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/InvalidRequestErrorDetails/)."""
+    """Decoded fields of InvalidRequestError; values may contain application data."""
+    athena_error_code: str
+
+
 ListApplicationDPUSizesInput = TypedDict(
     "ListApplicationDPUSizesInput",
     {
@@ -1385,6 +1391,12 @@ QueryStagePlanNode = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/QueryStagePlanNode/)."""
 
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    resource_name: str
+
+
 ResultConfiguration = TypedDict(
     "ResultConfiguration",
     {
@@ -1615,6 +1627,12 @@ TerminateSessionRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/TerminateSessionRequest/)."""
+
+class TooManyRequestsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/TooManyRequestsErrorDetails/)."""
+    """Decoded fields of TooManyRequestsError; values may contain application data."""
+    reason: ThrottleReasonOutput
+
 
 UnprocessedNamedQueryId = TypedDict(
     "UnprocessedNamedQueryId",

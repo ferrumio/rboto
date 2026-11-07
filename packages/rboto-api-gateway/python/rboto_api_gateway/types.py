@@ -1381,6 +1381,12 @@ ImportRestApiRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ImportRestApiRequest/)."""
 
+class LimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/LimitExceededErrorDetails/)."""
+    """Decoded fields of LimitExceededError; values may contain application data."""
+    retry_after_seconds: str
+
+
 MethodSetting = TypedDict(
     "MethodSetting",
     {
@@ -1564,6 +1570,12 @@ SdkConfigurationProperty = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/SdkConfigurationProperty/)."""
 
+class ServiceUnavailableErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/ServiceUnavailableErrorDetails/)."""
+    """Decoded fields of ServiceUnavailableError; values may contain application data."""
+    retry_after_seconds: str
+
+
 StageKey = TypedDict(
     "StageKey",
     {
@@ -1629,6 +1641,12 @@ TlsConfig = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TlsConfig/)."""
+
+class TooManyRequestsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/types/TooManyRequestsErrorDetails/)."""
+    """Decoded fields of TooManyRequestsError; values may contain application data."""
+    retry_after_seconds: str
+
 
 UntagResourceRequest = TypedDict(
     "UntagResourceRequest",

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import os
 import re
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from .model import ServiceDescriptor
@@ -41,6 +41,19 @@ class RustCrate:
     path: Path
     operations: dict[str, RustOperation]
     types: dict[str, RustType]
+    errors: dict[str, tuple[RustField, ...]] = field(
+        default_factory=lambda: dict[str, tuple[RustField, ...]](),
+    )
+
+
+def parse_error_variants(content: str) -> dict[str, tuple[tuple[str, str], ...]]:
+    """Read modeled variants only; unhandled SDK errors never expose raw data."""
+    return {
+        name: tuple(re.findall(
+            r"^\s*(\w+)\(\s*crate::types::error::(\w+)\s*\),", body, re.MULTILINE,
+        ))
+        for name, body in re.findall(r"pub enum (\w+)\s*\{(.*?)\n\}", content, re.DOTALL)
+    }
 
 
 def find_crate(descriptor: ServiceDescriptor) -> Path:
@@ -189,4 +202,10 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
         name = enum_match.group(1)
         types[name] = RustType(name, (), tuple(variants), union, False, False, tuple(variant_types))
 
-    return RustCrate(path=path, operations=operations, types=types)
+    errors: dict[str, tuple[RustField, ...]] = {}
+    error_dir = path / "src" / "types" / "error"
+    if error_dir.is_dir():
+        for error_path in sorted(error_dir.glob("*.rs")):
+            if (error_name := parse_struct_name(error_path)) is not None:
+                errors[error_name] = parse_fields(error_path)
+    return RustCrate(path=path, operations=operations, types=types, errors=errors)

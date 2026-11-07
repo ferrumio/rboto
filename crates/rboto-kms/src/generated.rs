@@ -6586,6 +6586,103 @@ impl PyOperationVerifyMacOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::connect_custom_key_store::ConnectCustomKeyStoreError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_alias::CreateAliasError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::create_custom_key_store::CreateCustomKeyStoreError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_grant::CreateGrantError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_key::CreateKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::decrypt::DecryptError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::delete_alias::DeleteAliasError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::delete_custom_key_store::DeleteCustomKeyStoreError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::delete_imported_key_material::DeleteImportedKeyMaterialError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyStoresError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::describe_key::DescribeKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key::DisableKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key_rotation::DisableKeyRotationError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::disconnect_custom_key_store::DisconnectCustomKeyStoreError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key::EnableKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key_rotation::EnableKeyRotationError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::encrypt::EncryptError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key::GenerateDataKeyError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::generate_data_key_pair::GenerateDataKeyPairError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_mac::GenerateMacError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_random::GenerateRandomError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_policy::GetKeyPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::get_key_rotation_status::GetKeyRotationStatusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::get_parameters_for_import::GetParametersForImportError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_public_key::GetPublicKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::import_key_material::ImportKeyMaterialError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_aliases::ListAliasesError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_grants::ListGrantsError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_keys::ListKeysError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_resource_tags::ListResourceTagsError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::put_key_policy::PutKeyPolicyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::re_encrypt::ReEncryptError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::replicate_key::ReplicateKeyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::retire_grant::RetireGrantError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::revoke_grant::RevokeGrantError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::schedule_key_deletion::ScheduleKeyDeletionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::sign::SignError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::update_alias::UpdateAliasError {}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::update_custom_key_store::UpdateCustomKeyStoreError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::update_key_description::UpdateKeyDescriptionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_kms::operation::update_primary_region::UpdatePrimaryRegionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_kms::operation::verify::VerifyError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::verify_mac::VerifyMacError {}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAliasListEntry>()?;
     module.add_class::<PyCustomKeyStoresListEntry>()?;
@@ -6725,20 +6822,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_key_deletion().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelKeyDeletion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelKeyDeletion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelKeyDeletionOutput { inner: output })
         })
@@ -6778,20 +6879,24 @@ impl KMSClient {
             let request = client
                 .connect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ConnectCustomKeyStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ConnectCustomKeyStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationConnectCustomKeyStoreOutput { inner: output })
         })
@@ -6851,20 +6956,24 @@ impl KMSClient {
                 .create_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateAlias", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "CreateAlias",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -7129,20 +7238,24 @@ impl KMSClient {
                 )
                 .set_xks_proxy_authentication_credential(xks_proxy_authentication_credential_value)
                 .set_xks_proxy_connectivity(xks_proxy_connectivity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCustomKeyStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomKeyStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCustomKeyStoreOutput { inner: output })
         })
@@ -7410,20 +7523,20 @@ impl KMSClient {
                 .set_dry_run(dry_run_value)
                 .set_grantee_service_principal(grantee_service_principal_value)
                 .set_retiring_service_principal(retiring_service_principal_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateGrant")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateGrant", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateGrantOutput { inner: output })
         })
     }
@@ -7698,20 +7811,20 @@ impl KMSClient {
                 .set_tags(tags_value)
                 .set_multi_region(multi_region_value)
                 .set_xks_key_id(xks_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateKey")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateKey", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateKeyOutput {
                 inner: output.into(),
             })
@@ -7970,20 +8083,20 @@ impl KMSClient {
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value)
                 .set_dry_run_modifiers(dry_run_modifiers_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Decrypt")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Decrypt", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDecryptOutput { inner: output })
         })
     }
@@ -8019,20 +8132,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_alias().set_alias_name(alias_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteAlias", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteAlias",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -8071,20 +8188,24 @@ impl KMSClient {
             let request = client
                 .delete_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCustomKeyStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomKeyStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCustomKeyStoreOutput { inner: output })
         })
@@ -8140,20 +8261,24 @@ impl KMSClient {
                 .delete_imported_key_material()
                 .set_key_id(key_id_value)
                 .set_key_material_id(key_material_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteImportedKeyMaterial"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteImportedKeyMaterial",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteImportedKeyMaterialOutput { inner: output })
         })
@@ -8317,20 +8442,24 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value)
                 .set_recipient(recipient_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeriveSharedSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeriveSharedSecret",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeriveSharedSecretOutput { inner: output })
         })
@@ -8426,20 +8555,24 @@ impl KMSClient {
                 .set_custom_key_store_name(custom_key_store_name_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeCustomKeyStores"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeCustomKeyStores",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeCustomKeyStoresOutput {
                 inner: output.into(),
@@ -8520,20 +8653,20 @@ impl KMSClient {
                 .describe_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DescribeKey")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeKey", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDescribeKeyOutput {
                 inner: output.into(),
             })
@@ -8567,20 +8700,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.disable_key().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DisableKey")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DisableKey", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DisableKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -8612,21 +8749,29 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.disable_key_rotation().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisableKeyRotation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisableKeyRotation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DisableKeyRotation",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -8665,20 +8810,24 @@ impl KMSClient {
             let request = client
                 .disconnect_custom_key_store()
                 .set_custom_key_store_id(custom_key_store_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisconnectCustomKeyStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisconnectCustomKeyStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisconnectCustomKeyStoreOutput { inner: output })
         })
@@ -8711,20 +8860,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.enable_key().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EnableKey")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "EnableKey", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "EnableKey",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -8780,21 +8933,29 @@ impl KMSClient {
                 .enable_key_rotation()
                 .set_key_id(key_id_value)
                 .set_rotation_period_in_days(rotation_period_in_days_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "EnableKeyRotation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "EnableKeyRotation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "EnableKeyRotation",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -8983,20 +9144,20 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_encryption_algorithm(encryption_algorithm_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Encrypt")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Encrypt", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationEncryptOutput { inner: output })
         })
     }
@@ -9203,20 +9364,19 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GenerateDataKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGenerateDataKeyOutput { inner: output })
         })
@@ -9404,20 +9564,24 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_recipient(recipient_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyPair"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GenerateDataKeyPair",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGenerateDataKeyPairOutput { inner: output })
         })
@@ -9584,21 +9748,23 @@ impl KMSClient {
                 .set_key_pair_spec(key_pair_spec_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GenerateDataKeyPairWithoutPlaintext")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GenerateDataKeyPairWithoutPlaintext",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGenerateDataKeyPairWithoutPlaintextOutput { inner: output })
@@ -9786,20 +9952,24 @@ impl KMSClient {
                 .set_number_of_bytes(number_of_bytes_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateDataKeyWithoutPlaintext"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GenerateDataKeyWithoutPlaintext",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGenerateDataKeyWithoutPlaintextOutput { inner: output })
         })
@@ -9940,20 +10110,20 @@ impl KMSClient {
                 .set_mac_algorithm(mac_algorithm_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GenerateMac")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GenerateMac", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGenerateMacOutput { inner: output })
         })
     }
@@ -10034,20 +10204,19 @@ impl KMSClient {
                 .set_number_of_bytes(number_of_bytes_value)
                 .set_custom_key_store_id(custom_key_store_id_value)
                 .set_recipient(recipient_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateRandom"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GenerateRandom", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGenerateRandomOutput { inner: output })
         })
@@ -10080,20 +10249,19 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_key_last_usage().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyLastUsage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetKeyLastUsage", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetKeyLastUsageOutput {
                 inner: output.into(),
@@ -10151,20 +10319,19 @@ impl KMSClient {
                 .get_key_policy()
                 .set_key_id(key_id_value)
                 .set_policy_name(policy_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetKeyPolicy", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetKeyPolicyOutput { inner: output })
         })
@@ -10197,20 +10364,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_key_rotation_status().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetKeyRotationStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetKeyRotationStatus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetKeyRotationStatusOutput { inner: output })
         })
@@ -10293,20 +10464,24 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_wrapping_algorithm(wrapping_algorithm_value)
                 .set_wrapping_key_spec(wrapping_key_spec_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetParametersForImport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetParametersForImport",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetParametersForImportOutput { inner: output })
         })
@@ -10385,20 +10560,19 @@ impl KMSClient {
                 .get_public_key()
                 .set_key_id(key_id_value)
                 .set_grant_tokens(grant_tokens_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetPublicKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetPublicKeyOutput { inner: output })
         })
@@ -10592,20 +10766,24 @@ impl KMSClient {
                 .set_import_type(import_type_value)
                 .set_key_material_description(key_material_description_value)
                 .set_key_material_id(key_material_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ImportKeyMaterial"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ImportKeyMaterial",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationImportKeyMaterialOutput { inner: output })
         })
@@ -10674,20 +10852,20 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListAliases", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListAliasesOutput {
                 inner: output.into(),
             })
@@ -10818,20 +10996,20 @@ impl KMSClient {
                 .set_grant_id(grant_id_value)
                 .set_grantee_principal(grantee_principal_value)
                 .set_grantee_service_principal(grantee_service_principal_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGrants")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListGrants", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListGrantsOutput {
                 inner: output.into(),
             })
@@ -10901,20 +11079,19 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyPolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListKeyPolicies", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListKeyPoliciesOutput { inner: output })
         })
@@ -11007,20 +11184,24 @@ impl KMSClient {
                 .set_include_key_material(include_key_material_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListKeyRotations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListKeyRotations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListKeyRotationsOutput {
                 inner: output.into(),
@@ -11074,20 +11255,20 @@ impl KMSClient {
                 .list_keys()
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListKeys")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListKeys", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListKeysOutput {
                 inner: output.into(),
             })
@@ -11157,20 +11338,24 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_limit(limit_value)
                 .set_marker(marker_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTags"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListResourceTags",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListResourceTagsOutput {
                 inner: output.into(),
@@ -11268,20 +11453,24 @@ impl KMSClient {
                 .set_marker(marker_value)
                 .set_retiring_principal(retiring_principal_value)
                 .set_retiring_service_principal(retiring_service_principal_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListRetirableGrants"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListRetirableGrants",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListRetirableGrantsOutput {
                 inner: output.into(),
@@ -11378,21 +11567,24 @@ impl KMSClient {
                 .set_policy_name(policy_name_value)
                 .set_policy(policy_value)
                 .set_bypass_policy_lockout_safety_check(bypass_policy_lockout_safety_check_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutKeyPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutKeyPolicy", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutKeyPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -11726,20 +11918,20 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value)
                 .set_dry_run_modifiers(dry_run_modifiers_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ReEncrypt")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ReEncrypt", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationReEncryptOutput { inner: output })
         })
     }
@@ -11898,20 +12090,19 @@ impl KMSClient {
                 .set_bypass_policy_lockout_safety_check(bypass_policy_lockout_safety_check_value)
                 .set_description(description_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateKey"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ReplicateKey", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationReplicateKeyOutput {
                 inner: output.into(),
@@ -12003,20 +12194,24 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_grant_id(grant_id_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RetireGrant")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RetireGrant", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "RetireGrant",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -12084,20 +12279,24 @@ impl KMSClient {
                 .set_key_id(key_id_value)
                 .set_grant_id(grant_id_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "RevokeGrant")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RevokeGrant", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "RevokeGrant",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -12129,20 +12328,24 @@ impl KMSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.rotate_key_on_demand().set_key_id(key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RotateKeyOnDemand"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RotateKeyOnDemand",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRotateKeyOnDemandOutput { inner: output })
         })
@@ -12199,20 +12402,24 @@ impl KMSClient {
                 .schedule_key_deletion()
                 .set_key_id(key_id_value)
                 .set_pending_window_in_days(pending_window_in_days_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ScheduleKeyDeletion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ScheduleKeyDeletion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationScheduleKeyDeletionOutput { inner: output })
         })
@@ -12376,20 +12583,20 @@ impl KMSClient {
                 .set_grant_tokens(grant_tokens_value)
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output =
-                result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Sign")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Sign", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationSignOutput { inner: output })
         })
     }
@@ -12467,20 +12674,24 @@ impl KMSClient {
                 .tag_resource()
                 .set_key_id(key_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -12558,21 +12769,24 @@ impl KMSClient {
                 .untag_resource()
                 .set_key_id(key_id_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -12631,20 +12845,24 @@ impl KMSClient {
                 .update_alias()
                 .set_alias_name(alias_name_value)
                 .set_target_key_id(target_key_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateAlias", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "UpdateAlias",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -12885,20 +13103,24 @@ impl KMSClient {
                 )
                 .set_xks_proxy_authentication_credential(xks_proxy_authentication_credential_value)
                 .set_xks_proxy_connectivity(xks_proxy_connectivity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCustomKeyStore"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCustomKeyStore",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateCustomKeyStoreOutput { inner: output })
         })
@@ -12954,21 +13176,29 @@ impl KMSClient {
                 .update_key_description()
                 .set_key_id(key_id_value)
                 .set_description(description_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateKeyDescription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateKeyDescription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateKeyDescription",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -13023,21 +13253,29 @@ impl KMSClient {
                 .update_primary_region()
                 .set_key_id(key_id_value)
                 .set_primary_region(primary_region_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePrimaryRegion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdatePrimaryRegion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdatePrimaryRegion",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -13222,20 +13460,20 @@ impl KMSClient {
                 .set_signing_algorithm(signing_algorithm_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Verify")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Verify", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationVerifyOutput { inner: output })
         })
     }
@@ -13393,20 +13631,20 @@ impl KMSClient {
                 .set_mac(mac_value)
                 .set_grant_tokens(grant_tokens_value)
                 .set_dry_run(dry_run_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "VerifyMac")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "VerifyMac", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationVerifyMacOutput { inner: output })
         })
     }
