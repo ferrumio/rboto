@@ -95,6 +95,9 @@ them. This avoids building a full Python dictionary for every response.
 Byte streams support async iteration, so you can consume chunks without loading
 the whole body into memory. Calling `read()` collects the full body;
 `to_dict()` explicitly converts a regular output into Python dictionaries.
+Uploads stream too: S3 `put_object` and `upload_part` accept an async iterable of
+`bytes` with `content_length`, so you can send an object without loading it all
+into memory first.
 
 These choices reduce eager conversion and buffering. Input conversion, output
 property access, logging, and application callbacks can still do synchronous
@@ -103,7 +106,8 @@ Measure latency, CPU, and memory with your payloads and concurrency; network
 conditions, service quotas, and retries also affect request time.
 
 See the [async guide](docs/guides/async-only.md) for concurrency and deadlines,
-and [streaming](docs/guides/streaming.md) for consuming response bodies.
+and [streaming](docs/guides/streaming.md) for consuming response bodies and
+streaming request bodies.
 
 ## Typed inputs and responses
 

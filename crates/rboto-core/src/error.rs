@@ -20,6 +20,26 @@ pub fn raise_core_error(py: Python<'_>, class: &str, message: &str) -> PyErr {
     }
 }
 
+/// A Python exception raised while the SDK consumed a streamed request body surfaces as a
+/// dispatch failure whose source chain carries the original `PyErr`.
+fn python_error_source<E, R>(error: &SdkError<E, R>) -> Option<&PyErr>
+where
+    E: Error + 'static,
+    R: Debug + 'static,
+{
+    let SdkError::DispatchFailure(failure) = error else {
+        return None;
+    };
+    let mut source: Option<&(dyn Error + 'static)> = Some(failure.as_connector_error()?);
+    while let Some(current) = source {
+        if let Some(py_error) = current.downcast_ref::<PyErr>() {
+            return Some(py_error);
+        }
+        source = current.source();
+    }
+    None
+}
+
 fn credentials_failure(mut error: &(dyn Error + 'static)) -> bool {
     loop {
         if error.is::<CredentialsError>() || error.is::<TokenError>() {
@@ -103,6 +123,9 @@ where
             operation,
             request_id,
         );
+    }
+    if let Some(py_error) = python_error_source(error) {
+        return py_error.clone_ref(py);
     }
     if credentials_failure(error) {
         return raise_core_error(

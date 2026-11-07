@@ -44,6 +44,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0027: Optional operation tracing and metrics](0027-optional-opentelemetry.md)
 - [ADR-0028: Report field paths on input conversion failures](0028-input-conversion-context.md)
 - [ADR-0029: Explicit async client and stream lifetimes](0029-async-resource-lifecycle.md)
+- [ADR-0030: Stream request bodies from Python async iterables](0030-streamed-request-bodies.md)
 
 ## Creating an ADR
 

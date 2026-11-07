@@ -223,7 +223,7 @@ class LexRuntimeV2Client:
         session_state: str | None = None,
         request_attributes: str | None = None,
         response_content_type: str | None = None,
-        input_stream: bytes | None = None,
+        input_stream: bytes | AsyncIterator[bytes] | None = None,
     ) -> RecognizeUtteranceOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/recognize_utterance/)."""
         params: dict[str, object] = {

@@ -1,6 +1,8 @@
 use pyo3::prelude::*;
 use pyo3::types::PyDict;
 
+mod async_iter;
+mod byte_stream;
 mod config;
 mod document;
 mod error;
@@ -12,6 +14,7 @@ mod runtime;
 mod stream;
 mod transport;
 
+pub use byte_stream::python_byte_stream;
 pub use config::RequestConfig;
 pub use document::{document_from_py, document_to_py};
 pub use error::{http_sdk_error_to_py, raise_core_error, sdk_error_to_py};

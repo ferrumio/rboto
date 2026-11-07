@@ -176,7 +176,7 @@ async def recognize_utterance(
     session_state: str | None = None,
     request_attributes: str | None = None,
     response_content_type: str | None = None,
-    input_stream: bytes | None = None,
+    input_stream: bytes | AsyncIterator[bytes] | None = None,
 ) -> RecognizeUtteranceOutput: ...
 ```
 
