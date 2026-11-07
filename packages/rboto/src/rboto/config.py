@@ -17,6 +17,8 @@ class ClientConfig:
     Timeouts are in seconds. ``max_attempts`` includes the initial request.
     Explicit credentials or a profile can supply the source credentials for
     ``role_arn``. Credential values are excluded from the representation.
+    ``ca_bundle`` overrides ``AWS_CA_BUNDLE``. Without ``proxy_url``, custom
+    trust retains environment proxy settings. Resolution happens on first use.
     """
 
     access_key_id: str | None = field(default=None, repr=False)

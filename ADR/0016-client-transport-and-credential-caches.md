@@ -3,6 +3,7 @@
 - Status: Accepted
 - Date: 2026-10-29
 - Extends: ADR-0012
+- Extended by: [ADR-0031](0031-configuration-and-authentication-contract.md), which supersedes proxy inheritance for CA-only configuration
 
 ## Decision
 

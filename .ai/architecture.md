@@ -104,6 +104,9 @@ See ADR-0001 through ADR-0004 for the rationale behind these boundaries.
 ADR-0012 defines client configuration and typed failure mapping. Settings resolve
 once per native client; Session does not share native caches across wheels.
 ADR-0016 defines per-client proxy/TLS transport and the credential-cache boundary.
+ADR-0031 adds console-login credentials and the public configuration/authentication
+matrix. Explicit CA trust precedes `AWS_CA_BUNDLE`; CA-only transports inherit
+environment proxies, while an explicit proxy keeps its own bypass rules.
 
 ADR-0018 separates request types from dictionary response types recursively.
 Response nullability follows Rust fields; unknown union variants are output-only.

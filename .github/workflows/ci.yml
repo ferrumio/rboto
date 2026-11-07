@@ -131,6 +131,7 @@ jobs:
           tests/integration/test_input_conversion.py
           tests/integration/test_interceptors.py
           tests/integration/test_client_configuration.py
+          tests/integration/test_credential_providers.py
           tests/integration/test_byte_stream.py
           tests/integration/test_runtime_workers.py
           tests/integration/test_output_ownership.py

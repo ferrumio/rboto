@@ -79,7 +79,9 @@ impl RequestConfig {
         ) {
             return Err("retry_mode must be 'standard' or 'adaptive'");
         }
-        crate::transport::proxy(self)?;
+        if self.proxy_url.is_some() || self.no_proxy.is_some() {
+            crate::transport::proxy(self)?;
+        }
         Ok(())
     }
 
@@ -91,8 +93,25 @@ impl RequestConfig {
         if let Some(profile) = profile {
             loader = loader.profile_name(profile);
         }
-        if self.proxy_url.is_some() || self.ca_bundle.is_some() {
-            let config = self.clone();
+        let ca_bundle = match &self.ca_bundle {
+            Some(path) => Some(path.clone()),
+            None => match std::env::var("AWS_CA_BUNDLE") {
+                Ok(path) if !path.trim().is_empty() => Some(path),
+                Err(std::env::VarError::NotPresent) => None,
+                _ => {
+                    return Err(Python::attach(|py| {
+                        raise_core_error(
+                            py,
+                            "ConfigurationError",
+                            "AWS_CA_BUNDLE must be a nonempty UTF-8 path",
+                        )
+                    }));
+                }
+            },
+        };
+        if self.proxy_url.is_some() || ca_bundle.is_some() {
+            let mut config = self.clone();
+            config.ca_bundle = ca_bundle;
             let transport = tokio::task::spawn_blocking(move || crate::transport::build(&config))
                 .await
                 .map_err(|_| {

@@ -13,14 +13,14 @@ use crate::RequestConfig;
 const INVALID_PROXY: &str = "proxy_url must be an HTTP(S) URL with a host";
 
 pub(crate) fn proxy(config: &RequestConfig) -> Result<ProxyConfig, &'static str> {
+    if config.no_proxy.is_some() && config.proxy_url.is_none() {
+        return Err("no_proxy requires proxy_url");
+    }
     let mut proxy = match &config.proxy_url {
         Some(url) => ProxyConfig::all(url).map_err(|_| INVALID_PROXY)?,
-        None => ProxyConfig::disabled(),
+        None => ProxyConfig::from_env(),
     };
     if let Some(rules) = &config.no_proxy {
-        if config.proxy_url.is_none() {
-            return Err("no_proxy requires proxy_url");
-        }
         proxy = proxy.no_proxy(rules);
     }
     Ok(proxy)
