@@ -6,7 +6,7 @@ import asyncio
 import importlib
 import os
 import socket
-from collections.abc import Iterator
+from collections.abc import AsyncIterator, Iterator
 
 import pytest
 from rboto.exceptions import ConversionErrorContext, get_conversion_context
@@ -101,6 +101,23 @@ def test_overflow_keeps_its_exception_class() -> None:
         "dynamodb", "DynamoDBClient", "list_tables", {"limit": 2**100},
         OverflowError, "limit", "overflow",
     )
+
+
+@service("s3")
+@pytest.mark.parametrize("method", ["put_object", "upload_part", "write_get_object_response"])
+def test_streaming_body_requires_length_before_polling_or_dispatch(method: str) -> None:
+    async def chunks() -> AsyncIterator[bytes]:
+        pytest.fail("missing content_length must fail before polling the body")
+        yield b"CANARY"
+
+    error = conversion_failure(
+        "s3", "S3Client", method, {"body": chunks()},
+        ValueError, "body", "missing",
+    )
+    context = get_conversion_context(error)
+    assert context is not None
+    assert context.expected == "async iterable with content_length"
+    assert "content_length" in str(error)
 
 
 @service("s3")

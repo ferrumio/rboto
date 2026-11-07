@@ -31,13 +31,16 @@ Streaming blob inputs accept `bytes | AsyncIterator[bytes]`.
 - When the operation models a `content_length` member next to the streaming body, the
   generated method forwards it as the body's exact size hint and raises `ValueError` before
   sending if an async iterable arrives without it. Operations without `content_length`
-  send an unsized body.
+  send an unsized body. The hint tracks the remaining bytes as chunks are consumed.
+  A missing length keeps the body field path and the specific requirement in the
+  ADR-0028 conversion context.
 - A Python exception raised by the producer propagates unchanged. `sdk_error_to_py` walks
   the dispatch failure's source chain, finds the `PyErr`, and re-raises it instead of
   mapping it to `ConnectionError`.
 
 Event-stream inputs and streamed bodies share one async-iterator driver in `rboto-core`,
-so both input stream kinds have one ownership, cancellation, and error model.
+so both input stream kinds have one ownership, cancellation, and error model. After a
+conversion failure, the stream ends without requesting another item from the producer.
 
 ## Consequences
 
@@ -45,8 +48,8 @@ so both input stream kinds have one ownership, cancellation, and error model.
   by a payload-sized copy.
 - Streamed bodies are not retried by the SDK on transient failures; callers who need
   retries keep using `bytes` or re-run the upload themselves.
-- `content_length` must match the bytes actually yielded. A mismatch is reported by the
-  service, not detected locally.
+- `content_length` must match the bytes actually yielded. rboto does not buffer the
+  producer to validate the length in advance.
 - Invariant 7 widens: streaming blob inputs are typed mappings, literals, tagged unions, or
   `bytes | AsyncIterator[bytes]`.
 - Generated Python signatures changed for the affected operations only.

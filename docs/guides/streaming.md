@@ -29,13 +29,17 @@ See [Closing clients and streams](lifecycle.md) for cancellation and ownership.
 
 Operations that upload a body, such as S3 `put_object` and `upload_part`, accept `bytes`
 or any async iterable of `bytes`. An async iterable is pulled one chunk at a time as the
-SDK sends the request, with no buffer beyond the chunk in flight. S3 requires
+SDK sends the request; rboto does not collect the whole iterable before sending. S3 requires
 `content_length` for a streamed body. A response `ByteStream` is itself an async
 iterator, so one object can be copied into another without buffering:
 
 ```python
 --8<-- "examples/docs/s3_copy_stream.py"
 ```
+
+The producer runs on the calling event loop, and each chunk is copied into Rust.
+Keep chunks bounded and move blocking work, such as file reads, to a worker thread.
+Cancelling the request cancels its pending producer poll.
 
 Streamed bodies are consumed once and are not retried by the SDK; `bytes` bodies remain
 replayable. See [S3](s3.md) for a file upload. Multipart operations are individual service
