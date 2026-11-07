@@ -30,6 +30,9 @@ class Peer:
     pause_after_first: bool = False
     truncate: bool = False
     missing_key: bool = False
+    failures: int = 0
+    requests: int = 0
+    headers: dict[str, str] = field(default_factory=dict)
     first_sent: threading.Event = field(default_factory=threading.Event)
     resume: threading.Event = field(default_factory=threading.Event)
 
@@ -51,17 +54,26 @@ def peer(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
             pass
 
         def do_GET(self) -> None:
-            if state.missing_key:
+            state.requests += 1
+            if state.missing_key or state.requests <= state.failures:
                 body = b"<Error><Code>NoSuchKey</Code><Message>Missing object</Message></Error>"
-                self.send_response(404)
+                self.send_response(503 if state.requests <= state.failures else 404)
                 self.send_header("Content-Type", "application/xml")
                 self.send_header("Content-Length", str(len(body)))
+                self.send_header("x-amz-request-id", f"request-{state.requests}")
+                self.send_header("x-amz-id-2", "extended-request")
+                for name, value in state.headers.items():
+                    self.send_header(name, value)
                 self.end_headers()
                 self.wfile.write(body)
                 return
             self.send_response(200)
             self.send_header("Transfer-Encoding", "chunked")
             self.send_header("Content-Type", "application/octet-stream")
+            self.send_header("x-amz-request-id", f"request-{state.requests}")
+            self.send_header("x-amz-id-2", "extended-request")
+            for name, value in state.headers.items():
+                self.send_header(name, value)
             self.end_headers()
             try:
                 for index, chunk in enumerate(state.chunks):
@@ -95,7 +107,7 @@ def peer(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
         thread.join(5)
 
 
-def client_for(peer: Peer) -> S3Client:
+def client_for(peer: Peer, *, max_attempts: int = 1) -> S3Client:
     from rboto import ClientConfig, S3Client
 
     return S3Client(
@@ -104,7 +116,7 @@ def client_for(peer: Peer) -> S3Client:
         config=ClientConfig(
             access_key_id="testing",
             secret_access_key="testing",
-            max_attempts=1,
+            max_attempts=max_attempts,
             read_timeout=5,
         ),
     )
@@ -197,11 +209,32 @@ async def test_cancelling_pending_read_keeps_stream_consumed(peer: Peer) -> None
         await asyncio.gather(*reads, return_exceptions=True)
 
 
-async def test_interrupted_body_raises_and_cannot_be_reused(peer: Peer) -> None:
+@pytest.mark.parametrize("collect", [False, True])
+async def test_interrupted_body_raises_and_cannot_be_reused(peer: Peer, collect: bool) -> None:
+    from rboto.exceptions import ConnectionError
+
     peer.truncate = True
-    response = await client_for(peer).get_object(bucket="bucket", key="key")
-    with pytest.raises(OSError):
-        await response.body.read()
+    peer.failures = 1
+    peer.headers = {"x-private-data": "private header", "Set-Cookie": "private cookie"}
+    async with client_for(peer, max_attempts=2) as client:
+        response = await client.get_object(bucket="bucket", key="key")
+    # Context must belong to the response, even after its client is gone.
+    with pytest.raises(ConnectionError) as caught:
+        if collect:
+            await response.body.read()
+        else:
+            _ = [chunk async for chunk in response.body]
+    error = caught.value
+    assert error.operation_name == "GetObject"
+    assert error.request_id == "request-2"
+    assert error.response_metadata == {
+        "HTTPStatusCode": 200, "RequestId": "request-2",
+        "HostId": "extended-request", "RetryAttempts": 1,
+    }
+    assert error.response["ResponseMetadata"] == error.response_metadata
+    assert not error.details
+    assert "private" not in str(error) + repr(error.response)
+    assert peer.requests == 2  # Reading a stream never dispatches a retry.
     assert await response.body.read() == b""
     with pytest.raises(StopAsyncIteration):
         await anext(response.body)
@@ -211,5 +244,28 @@ async def test_missing_object_keeps_modeled_exception(peer: Peer) -> None:
     from rboto_s3.exceptions import NoSuchKeyError
 
     peer.missing_key = True
-    with pytest.raises(NoSuchKeyError):
+    with pytest.raises(NoSuchKeyError) as caught:
         await client_for(peer).get_object(bucket="bucket", key="missing")
+    assert caught.value.response_metadata["HTTPStatusCode"] == 404
+    assert caught.value.response_metadata["RetryAttempts"] == 0
+
+
+@pytest.mark.parametrize("collect", [False, True])
+async def test_checksum_failure_is_a_bounded_response_error(peer: Peer, collect: bool) -> None:
+    from rboto.exceptions import ResponseError
+
+    # CRC32 of empty bytes, deliberately wrong for this nonempty response.
+    peer.headers = {"x-amz-checksum-crc32": "AAAAAA=="}
+    response = await client_for(peer).get_object(
+        bucket="bucket", key="key", checksum_mode="ENABLED",
+    )
+    with pytest.raises(ResponseError) as caught:
+        if collect:
+            await response.body.read()
+        else:
+            _ = [chunk async for chunk in response.body]
+    assert caught.value.operation_name == "GetObject"
+    assert caught.value.response_metadata["HTTPStatusCode"] == 200
+    assert caught.value.request_id == "request-1"
+    assert "AAAA" not in str(caught.value)
+    assert await response.body.read() == b""

@@ -5022,6 +5022,49 @@ impl PyOperationStartPatientInsightsJobOutput {
     }
 }
 
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::create_domain::CreateDomainError {}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::create_subscription::CreateSubscriptionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_domain::DeleteDomainError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_domain::GetDomainError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionError {}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::list_domains::ListDomainsError {}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::start_medical_scribe_listening_session::StartMedicalScribeListeningSessionError {}
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::start_patient_insights_job::StartPatientInsightsJobError
+{
+}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError {}
+
 #[pyclass(
     name = "MedicalScribeOutputStreamReceiver",
     module = "rboto_connecthealth._native"
@@ -5035,7 +5078,7 @@ struct PyMedicalScribeOutputStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyMedicalScribeOutputStreamReceiver {
@@ -5044,11 +5087,11 @@ impl PyMedicalScribeOutputStreamReceiver {
             aws_sdk_connecthealth::types::MedicalScribeOutputStream,
             aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5082,7 +5125,7 @@ impl PyMedicalScribeOutputStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5109,7 +5152,7 @@ impl PyMedicalScribeOutputStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5264,20 +5307,24 @@ impl ConnectHealthClient {
                 .activate_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ActivateSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ActivateSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationActivateSubscriptionOutput {
                 inner: output.into(),
@@ -5400,20 +5447,19 @@ impl ConnectHealthClient {
                 .set_kms_key_arn(kms_key_arn_value)
                 .set_web_app_setup_configuration(web_app_setup_configuration_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDomain"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDomain", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateDomainOutput {
                 inner: output.into(),
@@ -5452,20 +5498,24 @@ impl ConnectHealthClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.create_subscription().set_domain_id(domain_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateSubscriptionOutput { inner: output })
         })
@@ -5525,20 +5575,24 @@ impl ConnectHealthClient {
                 .deactivate_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeactivateSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeactivateSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeactivateSubscriptionOutput {
                 inner: output.into(),
@@ -5577,20 +5631,19 @@ impl ConnectHealthClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_domain().set_domain_id(domain_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDomain"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDomain", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteDomainOutput { inner: output })
         })
@@ -5627,20 +5680,20 @@ impl ConnectHealthClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_domain().set_domain_id(domain_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetDomain")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDomain", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetDomainOutput {
                 inner: output.into(),
             })
@@ -5722,20 +5775,24 @@ impl ConnectHealthClient {
                 .set_session_id(session_id_value)
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeListeningSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMedicalScribeListeningSession",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMedicalScribeListeningSessionOutput {
                 inner: output.into(),
@@ -5793,20 +5850,24 @@ impl ConnectHealthClient {
                 .get_patient_insights_job()
                 .set_domain_id(domain_id_value)
                 .set_job_id(job_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPatientInsightsJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPatientInsightsJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPatientInsightsJobOutput {
                 inner: output.into(),
@@ -5868,20 +5929,19 @@ impl ConnectHealthClient {
                 .get_subscription()
                 .set_domain_id(domain_id_value)
                 .set_subscription_id(subscription_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSubscription", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetSubscriptionOutput {
                 inner: output.into(),
@@ -5966,20 +6026,20 @@ impl ConnectHealthClient {
                 .set_status(status_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListDomains")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDomains", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListDomainsOutput {
                 inner: output.into(),
             })
@@ -6061,20 +6121,24 @@ impl ConnectHealthClient {
                 .set_domain_id(domain_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSubscriptions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSubscriptionsOutput {
                 inner: output.into(),
@@ -6115,20 +6179,24 @@ impl ConnectHealthClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -6292,23 +6360,29 @@ impl ConnectHealthClient {
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
                 .set_media_encoding(media_encoding_value)
                 .set_input_stream(input_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "StartMedicalScribeListeningSession")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMedicalScribeListeningSession",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartMedicalScribeListeningSession",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.session_id {
@@ -6357,7 +6431,7 @@ impl ConnectHealthClient {
                     py,
                     PyMedicalScribeOutputStreamReceiver::new(
                         output.response_stream,
-                        "StartMedicalScribeListeningSession",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("response_stream", stream)?;
@@ -6549,20 +6623,24 @@ impl ConnectHealthClient {
                 .set_input_data_config(input_data_config_value)
                 .set_output_data_config(output_data_config_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartPatientInsightsJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartPatientInsightsJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartPatientInsightsJobOutput { inner: output })
         })
@@ -6644,20 +6722,24 @@ impl ConnectHealthClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -6739,21 +6821,24 @@ impl ConnectHealthClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }

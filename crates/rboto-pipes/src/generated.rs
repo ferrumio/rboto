@@ -12831,6 +12831,200 @@ impl PyOperationUpdatePipeOutput {
     }
 }
 
+fn conflict_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_pipes::types::error::ConflictException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_1452 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_1452)?;
+    let detail_1453 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_1453)?;
+    Ok(result.into_any().unbind())
+}
+
+fn internal_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_pipes::types::error::InternalException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_1454 = (value).to_owned().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_1454)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_pipes::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_1455 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_1455)?;
+    let detail_1456 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_1456)?;
+    let detail_1457 = (&value.service_code).as_str().into_py_any(py)?;
+    result.set_item("service_code", detail_1457)?;
+    let detail_1458 = (&value.quota_code).as_str().into_py_any(py)?;
+    result.set_item("quota_code", detail_1458)?;
+    Ok(result.into_any().unbind())
+}
+
+fn throttling_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_pipes::types::error::ThrottlingException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.service_code {
+        let detail_1459 = (value).as_str().into_py_any(py)?;
+        result.set_item("service_code", detail_1459)?;
+    }
+    if let Some(value) = &value.quota_code {
+        let detail_1460 = (value).as_str().into_py_any(py)?;
+        result.set_item("quota_code", detail_1460)?;
+    }
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_1461 = (value).to_owned().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_1461)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn validation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_pipes::types::error::ValidationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.field_list {
+        let detail_1462_list = PyList::empty(py);
+        for item_1463 in value {
+            let converted_item_1464 = validation_exception_field_to_py(py, item_1463)?;
+            detail_1462_list.append(converted_item_1464)?;
+        }
+        let detail_1462 = detail_1462_list.into_any().unbind();
+        result.set_item("field_list", detail_1462)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::create_pipe::CreatePipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::delete_pipe::DeletePipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::describe_pipe::DescribePipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::list_pipes::ListPipesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_pipes::operation::list_tags_for_resource::ListTagsForResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::start_pipe::StartPipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::stop_pipe::StopPipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_pipes::operation::update_pipe::UpdatePipeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalException(value) => internal_exception_error_details(py, value),
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAwsVpcConfiguration>()?;
     module.add_class::<PyBatchArrayProperties>()?;
@@ -13254,20 +13448,20 @@ impl PipesClient {
                 .set_tags(tags_value)
                 .set_log_configuration(log_configuration_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreatePipe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreatePipe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreatePipeOutput { inner: output })
         })
     }
@@ -13299,20 +13493,20 @@ impl PipesClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_pipe().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeletePipe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeletePipe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeletePipeOutput { inner: output })
         })
     }
@@ -13344,20 +13538,19 @@ impl PipesClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_pipe().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribePipe"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribePipe", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribePipeOutput {
                 inner: output.into(),
@@ -13523,20 +13716,20 @@ impl PipesClient {
                 .set_target_prefix(target_prefix_value)
                 .set_next_token(next_token_value)
                 .set_limit(limit_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPipes")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListPipes", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListPipesOutput {
                 inner: output.into(),
             })
@@ -13576,20 +13769,24 @@ impl PipesClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -13622,20 +13819,20 @@ impl PipesClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.start_pipe().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StartPipe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StartPipe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStartPipeOutput { inner: output })
         })
     }
@@ -13667,20 +13864,20 @@ impl PipesClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.stop_pipe().set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "StopPipe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "StopPipe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationStopPipeOutput { inner: output })
         })
     }
@@ -13761,20 +13958,20 @@ impl PipesClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -13856,20 +14053,19 @@ impl PipesClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -14113,20 +14309,20 @@ impl PipesClient {
                 .set_role_arn(role_arn_value)
                 .set_log_configuration(log_configuration_value)
                 .set_kms_key_identifier(kms_key_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePipe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdatePipe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdatePipeOutput { inner: output })
         })
     }

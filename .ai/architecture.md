@@ -107,6 +107,10 @@ ADR-0016 defines per-client proxy/TLS transport and the credential-cache boundar
 ADR-0031 adds console-login credentials and the public configuration/authentication
 matrix. Explicit CA trust precedes `AWS_CA_BUNDLE`; CA-only transports inherit
 environment proxies, while an explicit proxy keeps its own bypass rules.
+ADR-0032 unifies operation and stream errors. A bounded native collector counts
+attempts even without Python observation; detailed attempt timing remains opt-in.
+Returned streams own an independent context snapshot. Shared errors expose typed
+response metadata, and generated modeled exceptions expose typed `details`.
 
 ADR-0018 separates request types from dictionary response types recursively.
 Response nullability follows Rust fields; unknown union variants are output-only.

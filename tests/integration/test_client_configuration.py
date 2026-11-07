@@ -213,6 +213,9 @@ async def test_service_error_retains_request_id(peer: Peer) -> None:
     assert caught.value.error_code == "AccessDenied"
     assert caught.value.operation_name == "GetCallerIdentity"
     assert caught.value.message == "denied"
+    assert caught.value.response_metadata["HTTPStatusCode"] == 403
+    assert caught.value.response_metadata["RequestId"] == "peer-request-id"
+    assert caught.value.response_metadata["RetryAttempts"] == 0
 
 
 async def test_undecodable_response_has_a_typed_bounded_error(peer: Peer) -> None:
@@ -229,6 +232,7 @@ async def test_undecodable_response_has_a_typed_bounded_error(peer: Peer) -> Non
     assert caught.value.request_id == "peer-request-id"
     assert caught.value.operation_name == "GetCallerIdentity"
     assert "private payload" not in str(caught.value)
+    assert caught.value.response_metadata["HTTPStatusCode"] == 200
 
 
 async def test_credential_failure_reaches_global_logging_without_secrets(
@@ -269,9 +273,11 @@ async def test_retry_override_counts_total_attempts(peer: Peer) -> None:
             max_attempts=2,
         ),
     )
-    with pytest.raises(STSError):
+    with pytest.raises(STSError) as caught:
         await client.get_caller_identity()
     assert len(peer.requests) == 2
+    assert caught.value.response_metadata["HTTPStatusCode"] == 503
+    assert caught.value.response_metadata["RetryAttempts"] == 1
 
 
 @pytest.mark.parametrize("setting", ["operation_timeout", "attempt_timeout", "read_timeout"])
@@ -289,9 +295,12 @@ async def test_timeout_is_typed_and_does_not_block_event_loop(peer: Peer, settin
         ),
     )
     async with asyncio.timeout(3):
-        with pytest.raises(TimeoutError):
+        with pytest.raises(TimeoutError) as caught:
             await client.get_caller_identity()
     assert len(peer.requests) == 1
+    assert caught.value.operation_name == "GetCallerIdentity"
+    assert caught.value.response_metadata["HTTPStatusCode"] is None
+    assert caught.value.response_metadata["RequestId"] is None
 
 
 async def test_unreachable_endpoint_has_connection_error(peer: Peer) -> None:
@@ -311,6 +320,8 @@ async def test_unreachable_endpoint_has_connection_error(peer: Peer) -> None:
         await client.get_caller_identity()
     assert "secret" not in str(caught.value)
     assert caught.value.operation_name == "GetCallerIdentity"
+    assert caught.value.response_metadata["HTTPStatusCode"] is None
+    assert caught.value.request_id is None
 
 
 async def test_credential_process_is_cached(peer: Peer, tmp_path: Path) -> None:

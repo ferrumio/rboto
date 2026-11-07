@@ -288,6 +288,101 @@ fn response_stream_event_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn input_validation_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sagemakerruntimehttp2::types::error::InputValidationError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.error_code {
+        let detail_29 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", detail_29)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn internal_server_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sagemakerruntimehttp2::types::error::InternalServerError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.error_code {
+        let detail_30 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", detail_30)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn model_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sagemakerruntimehttp2::types::error::ModelError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.original_status_code {
+        let detail_31 = (value).to_owned().into_py_any(py)?;
+        result.set_item("original_status_code", detail_31)?;
+    }
+    if let Some(value) = &value.original_message {
+        let detail_32 = (value).as_str().into_py_any(py)?;
+        result.set_item("original_message", detail_32)?;
+    }
+    if let Some(value) = &value.log_stream_arn {
+        let detail_33 = (value).as_str().into_py_any(py)?;
+        result.set_item("log_stream_arn", detail_33)?;
+    }
+    if let Some(value) = &value.error_code {
+        let detail_34 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", detail_34)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn model_stream_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sagemakerruntimehttp2::types::error::ModelStreamError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.error_code {
+        let detail_35 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", detail_35)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_unavailable_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sagemakerruntimehttp2::types::error::ServiceUnavailableError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.error_code {
+        let detail_36 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", detail_36)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::operation::invoke_endpoint_with_bidirectional_stream::InvokeEndpointWithBidirectionalStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InputValidationError(value) => input_validation_error_error_details(py, value),
+            Self::InternalServerError(value) => internal_server_error_error_details(py, value),
+            Self::ModelError(value) => model_error_error_details(py, value),
+            Self::ModelStreamError(value) => model_stream_error_error_details(py, value),
+            Self::ServiceUnavailableError(value) => service_unavailable_error_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError {}
+impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelStreamError(value) => model_stream_error_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 #[pyclass(
     name = "ResponseStreamEventReceiver",
     module = "rboto_sagemaker_runtime_http2._native"
@@ -301,7 +396,7 @@ struct PyResponseStreamEventReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyResponseStreamEventReceiver {
@@ -310,11 +405,11 @@ impl PyResponseStreamEventReceiver {
             aws_sdk_sagemakerruntimehttp2::types::ResponseStreamEvent,
             aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -348,7 +443,7 @@ impl PyResponseStreamEventReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -375,7 +470,7 @@ impl PyResponseStreamEventReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -553,31 +648,34 @@ impl SageMakerRuntimeHTTP2Client {
                 .set_target_variant(target_variant_value)
                 .set_model_invocation_path(model_invocation_path_value)
                 .set_model_query_string(model_query_string_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "InvokeEndpointWithBidirectionalStream")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeEndpointWithBidirectionalStream",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "InvokeEndpointWithBidirectionalStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyResponseStreamEventReceiver::new(
-                        output.body,
-                        "InvokeEndpointWithBidirectionalStream",
-                    ),
+                    PyResponseStreamEventReceiver::new(output.body, context.clone()),
                 )?;
                 result.set_item("body", stream)?;
                 if let Some(value) = &output.invoked_production_variant {

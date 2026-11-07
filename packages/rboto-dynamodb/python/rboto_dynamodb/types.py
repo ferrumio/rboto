@@ -725,9 +725,9 @@ BillingModeSummary = TypedDict(
 CancellationReason = TypedDict(
     "CancellationReason",
     {
-    "item": NotRequired["dict[str, AttributeValue]"],
-    "code": NotRequired["str"],
-    "message": NotRequired["str"],
+    "item": Required["dict[str, AttributeValueOutput] | None"],
+    "code": Required["str | None"],
+    "message": Required["str | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CancellationReason/)."""
@@ -763,6 +763,12 @@ ConditionCheck = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ConditionCheck/)."""
+
+class ConditionalCheckFailedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ConditionalCheckFailedErrorDetails/)."""
+    """Decoded fields of ConditionalCheckFailedError; values may contain application data."""
+    item: dict[str, AttributeValueOutput]
+
 
 ConsumedCapacity = TypedDict(
     "ConsumedCapacity",
@@ -1719,6 +1725,12 @@ ProvisionedThroughputDescription = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProvisionedThroughputDescription/)."""
 
+class ProvisionedThroughputExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ProvisionedThroughputExceededErrorDetails/)."""
+    """Decoded fields of ProvisionedThroughputExceededError; values may contain application data."""
+    throttling_reasons: list[ThrottlingReason]
+
+
 ProvisionedThroughputOverride = TypedDict(
     "ProvisionedThroughputOverride",
     {
@@ -1962,6 +1974,12 @@ ReplicationGroupUpdate = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ReplicationGroupUpdate/)."""
+
+class RequestLimitExceededErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/RequestLimitExceededErrorDetails/)."""
+    """Decoded fields of RequestLimitExceededError; values may contain application data."""
+    throttling_reasons: list[ThrottlingReason]
+
 
 RestoreSummary = TypedDict(
     "RestoreSummary",
@@ -2236,11 +2254,17 @@ TagResourceInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TagResourceInput/)."""
 
+class ThrottlingErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ThrottlingErrorDetails/)."""
+    """Decoded fields of ThrottlingError; values may contain application data."""
+    throttling_reasons: list[ThrottlingReason]
+
+
 ThrottlingReason = TypedDict(
     "ThrottlingReason",
     {
-    "reason": NotRequired["str"],
-    "resource": NotRequired["str"],
+    "reason": Required["str | None"],
+    "resource": Required["str | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ThrottlingReason/)."""
@@ -2301,6 +2325,12 @@ TransactWriteItemsInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TransactWriteItemsInput/)."""
+
+class TransactionCanceledErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/TransactionCanceledErrorDetails/)."""
+    """Decoded fields of TransactionCanceledError; values may contain application data."""
+    cancellation_reasons: list[CancellationReason]
+
 
 UntagResourceInput = TypedDict(
     "UntagResourceInput",

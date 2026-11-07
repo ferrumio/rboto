@@ -17,7 +17,10 @@ mod transport;
 pub use byte_stream::python_byte_stream;
 pub use config::RequestConfig;
 pub use document::{document_from_py, document_to_py};
-pub use error::{http_sdk_error_to_py, raise_core_error, sdk_error_to_py};
+pub use error::{
+    ResponseMetadata, StreamErrorContext, http_sdk_error_to_py, raise_core_error, sdk_error_to_py,
+    stream_error_to_py,
+};
 pub use event_stream::python_event_stream;
 pub use input_error::{InputPath, input_builder_error, input_error, input_operation, input_rule};
 pub use lifecycle::{
@@ -27,6 +30,7 @@ pub use observation::OperationObservation;
 pub use runtime::{future_into_py, runtime_worker_threads};
 pub use stream::collected_body_to_bytes;
 
+#[allow(clippy::too_many_arguments)]
 pub fn raise_service_error(
     py: Python<'_>,
     exception_module: &str,
@@ -35,6 +39,7 @@ pub fn raise_service_error(
     message: &str,
     operation_name: &str,
     request_id: Option<&str>,
+    metadata: &ResponseMetadata,
 ) -> PyErr {
     let class_name = normalize_error_class(error_code);
     let exception_class = py
@@ -55,6 +60,10 @@ pub fn raise_service_error(
         || kwargs.set_item("error_code", error_code).is_err()
         || kwargs.set_item("operation_name", operation_name).is_err()
         || kwargs.set_item("request_id", request_id).is_err()
+        || metadata
+            .to_py(py)
+            .and_then(|value| kwargs.set_item("response_metadata", value))
+            .is_err()
     {
         return pyo3::exceptions::PyRuntimeError::new_err(message.to_owned());
     }
@@ -66,10 +75,9 @@ pub fn raise_service_error(
 }
 
 fn normalize_error_class(error_code: &str) -> String {
-    let stem = error_code
-        .strip_suffix("Exception")
-        .or_else(|| error_code.strip_suffix("Error"))
-        .unwrap_or(error_code);
+    // Match Python generation for names such as ModelStreamErrorException.
+    let stem = error_code.strip_suffix("Exception").unwrap_or(error_code);
+    let stem = stem.strip_suffix("Error").unwrap_or(stem);
     format!("{stem}Error")
 }
 
@@ -85,5 +93,10 @@ mod tests {
             "ResourceNotFoundError"
         );
         assert_eq!(normalize_error_class("InternalError"), "InternalError");
+        assert_eq!(normalize_error_class("ModelErrorException"), "ModelError");
+        assert_eq!(
+            normalize_error_class("ModelStreamErrorException"),
+            "ModelStreamError"
+        );
     }
 }

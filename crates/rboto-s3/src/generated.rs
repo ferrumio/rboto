@@ -29935,6 +29935,258 @@ impl PyOperationUploadPartCopyOutput {
     }
 }
 
+fn invalid_object_state_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_s3::types::error::InvalidObjectState,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.storage_class {
+        let detail_3894 = (value).as_str().into_py_any(py)?;
+        result.set_item("storage_class", detail_3894)?;
+    }
+    if let Some(value) = &value.access_tier {
+        let detail_3895 = (value).as_str().into_py_any(py)?;
+        result.set_item("access_tier", detail_3895)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::abort_multipart_upload::AbortMultipartUploadError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::complete_multipart_upload::CompleteMultipartUploadError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::copy_object::CopyObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket::CreateBucketError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket_metadata_configuration::CreateBucketMetadataConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket_metadata_table_configuration::CreateBucketMetadataTableConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::create_multipart_upload::CreateMultipartUploadError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_session::CreateSessionError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket::DeleteBucketError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_analytics_configuration::DeleteBucketAnalyticsConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_cors::DeleteBucketCorsError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_encryption::DeleteBucketEncryptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_intelligent_tiering_configuration::DeleteBucketIntelligentTieringConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_inventory_configuration::DeleteBucketInventoryConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_lifecycle::DeleteBucketLifecycleError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_metadata_configuration::DeleteBucketMetadataConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_metadata_table_configuration::DeleteBucketMetadataTableConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_metrics_configuration::DeleteBucketMetricsConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_ownership_controls::DeleteBucketOwnershipControlsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_policy::DeleteBucketPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_replication::DeleteBucketReplicationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_tagging::DeleteBucketTaggingError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_bucket_website::DeleteBucketWebsiteError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_object::DeleteObjectError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_object_annotation::DeleteObjectAnnotationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_object_tagging::DeleteObjectTaggingError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::delete_objects::DeleteObjectsError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::delete_public_access_block::DeletePublicAccessBlockError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_abac::GetBucketAbacError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_accelerate_configuration::GetBucketAccelerateConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_acl::GetBucketAclError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_analytics_configuration::GetBucketAnalyticsConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_cors::GetBucketCorsError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_encryption::GetBucketEncryptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_intelligent_tiering_configuration::GetBucketIntelligentTieringConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_inventory_configuration::GetBucketInventoryConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_lifecycle_configuration::GetBucketLifecycleConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_location::GetBucketLocationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_logging::GetBucketLoggingError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_metadata_configuration::GetBucketMetadataConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_metadata_table_configuration::GetBucketMetadataTableConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_metrics_configuration::GetBucketMetricsConfigurationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_notification_configuration::GetBucketNotificationConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_ownership_controls::GetBucketOwnershipControlsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_policy::GetBucketPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_policy_status::GetBucketPolicyStatusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_replication::GetBucketReplicationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_request_payment::GetBucketRequestPaymentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_tagging::GetBucketTaggingError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_bucket_versioning::GetBucketVersioningError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_website::GetBucketWebsiteError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object::GetObjectError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidObjectState(value) => invalid_object_state_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_acl::GetObjectAclError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_object_annotation::GetObjectAnnotationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_object_attributes::GetObjectAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_legal_hold::GetObjectLegalHoldError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_object_lock_configuration::GetObjectLockConfigurationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_retention::GetObjectRetentionError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_tagging::GetObjectTaggingError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_torrent::GetObjectTorrentError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::get_public_access_block::GetPublicAccessBlockError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::head_bucket::HeadBucketError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::head_object::HeadObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_analytics_configurations::ListBucketAnalyticsConfigurationsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_intelligent_tiering_configurations::ListBucketIntelligentTieringConfigurationsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_inventory_configurations::ListBucketInventoryConfigurationsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_metrics_configurations::ListBucketMetricsConfigurationsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_buckets::ListBucketsError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::list_directory_buckets::ListDirectoryBucketsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::list_multipart_uploads::ListMultipartUploadsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::list_object_annotations::ListObjectAnnotationsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_object_versions::ListObjectVersionsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects::ListObjectsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Error {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_parts::ListPartsError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_abac::PutBucketAbacError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_accelerate_configuration::PutBucketAccelerateConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_acl::PutBucketAclError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_analytics_configuration::PutBucketAnalyticsConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_cors::PutBucketCorsError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_encryption::PutBucketEncryptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_intelligent_tiering_configuration::PutBucketIntelligentTieringConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_inventory_configuration::PutBucketInventoryConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_lifecycle_configuration::PutBucketLifecycleConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_logging::PutBucketLoggingError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_metrics_configuration::PutBucketMetricsConfigurationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_notification_configuration::PutBucketNotificationConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_ownership_controls::PutBucketOwnershipControlsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_policy::PutBucketPolicyError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_replication::PutBucketReplicationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_request_payment::PutBucketRequestPaymentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_tagging::PutBucketTaggingError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_bucket_versioning::PutBucketVersioningError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_website::PutBucketWebsiteError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object::PutObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_acl::PutObjectAclError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_object_annotation::PutObjectAnnotationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_legal_hold::PutObjectLegalHoldError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_object_lock_configuration::PutObjectLockConfigurationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_retention::PutObjectRetentionError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_tagging::PutObjectTaggingError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::put_public_access_block::PutPublicAccessBlockError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::rename_object::RenameObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::restore_object::RestoreObjectError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::select_object_content::SelectObjectContentError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::update_bucket_metadata_annotation_table_configuration::UpdateBucketMetadataAnnotationTableConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::update_bucket_metadata_inventory_table_configuration::UpdateBucketMetadataInventoryTableConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::update_bucket_metadata_journal_table_configuration::UpdateBucketMetadataJournalTableConfigurationError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::update_object_encryption::UpdateObjectEncryptionError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::operation::upload_part::UploadPartError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::upload_part_copy::UploadPartCopyError {}
+impl ModeledErrorDetails
+    for aws_sdk_s3::operation::write_get_object_response::WriteGetObjectResponseError
+{
+}
+impl ModeledErrorDetails for aws_sdk_s3::types::error::SelectObjectContentEventStreamError {}
+
 #[pyclass(
     name = "SelectObjectContentEventStreamReceiver",
     module = "rboto_s3._native"
@@ -29948,7 +30200,7 @@ struct PySelectObjectContentEventStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PySelectObjectContentEventStreamReceiver {
@@ -29957,11 +30209,11 @@ impl PySelectObjectContentEventStreamReceiver {
             aws_sdk_s3::types::SelectObjectContentEventStream,
             aws_sdk_s3::types::error::SelectObjectContentEventStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -29995,7 +30247,7 @@ impl PySelectObjectContentEventStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -30022,7 +30274,7 @@ impl PySelectObjectContentEventStreamReceiver {
                             let code = None;
 
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, operation, code)
+                                sdk_error_to_py_with_code(py, &error, &context, code)
                             }))
                         }
                     }
@@ -30410,20 +30662,24 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_if_match_initiated_time(if_match_initiated_time_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AbortMultipartUpload"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AbortMultipartUpload",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAbortMultipartUploadOutput { inner: output })
         })
@@ -30922,20 +31178,24 @@ impl S3Client {
                 .set_sse_customer_algorithm(sse_customer_algorithm_value)
                 .set_sse_customer_key(sse_customer_key_value)
                 .set_sse_customer_key_md5(sse_customer_key_md5_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CompleteMultipartUpload"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CompleteMultipartUpload",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCompleteMultipartUploadOutput { inner: output })
         })
@@ -32023,20 +32283,20 @@ impl S3Client {
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_expected_source_bucket_owner(expected_source_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CopyObject")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CopyObject", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCopyObjectOutput {
                 inner: output.into(),
             })
@@ -32291,20 +32551,19 @@ impl S3Client {
                 .set_object_lock_enabled_for_bucket(object_lock_enabled_for_bucket_value)
                 .set_object_ownership(object_ownership_value)
                 .set_bucket_namespace(bucket_namespace_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateBucket"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateBucket", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateBucketOutput { inner: output })
         })
@@ -32428,23 +32687,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_metadata_configuration(metadata_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateBucketMetadataConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateBucketMetadataConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "CreateBucketMetadataConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -32567,23 +32832,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_metadata_table_configuration(metadata_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateBucketMetadataTableConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateBucketMetadataTableConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "CreateBucketMetadataTableConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33376,20 +33647,24 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_checksum_type(checksum_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultipartUpload"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateMultipartUpload",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateMultipartUploadOutput { inner: output })
         })
@@ -33535,20 +33810,19 @@ impl S3Client {
                 .set_ssekms_key_id(ssekms_key_id_value)
                 .set_ssekms_encryption_context(ssekms_encryption_context_value)
                 .set_bucket_key_enabled(bucket_key_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateSessionOutput {
                 inner: output.into(),
@@ -33607,21 +33881,24 @@ impl S3Client {
                 .delete_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucket"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteBucket", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucket",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33694,23 +33971,29 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteBucketAnalyticsConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketAnalyticsConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketAnalyticsConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33766,21 +34049,29 @@ impl S3Client {
                 .delete_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketCors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketCors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketCors",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33836,21 +34127,29 @@ impl S3Client {
                 .delete_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketEncryption"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketEncryption",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketEncryption",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33923,23 +34222,29 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteBucketIntelligentTieringConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketIntelligentTieringConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketIntelligentTieringConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34012,23 +34317,29 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteBucketInventoryConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketInventoryConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketInventoryConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34084,21 +34395,29 @@ impl S3Client {
                 .delete_bucket_lifecycle()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketLifecycle"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketLifecycle",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketLifecycle",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34154,23 +34473,29 @@ impl S3Client {
                 .delete_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteBucketMetadataConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketMetadataConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketMetadataConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34226,23 +34551,29 @@ impl S3Client {
                 .delete_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteBucketMetadataTableConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketMetadataTableConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketMetadataTableConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34315,21 +34646,29 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketMetricsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketMetricsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketMetricsConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34385,21 +34724,29 @@ impl S3Client {
                 .delete_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketOwnershipControls"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketOwnershipControls",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketOwnershipControls",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34455,21 +34802,29 @@ impl S3Client {
                 .delete_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34525,21 +34880,29 @@ impl S3Client {
                 .delete_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketReplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketReplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketReplication",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34595,21 +34958,29 @@ impl S3Client {
                 .delete_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketTagging",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34665,21 +35036,29 @@ impl S3Client {
                 .delete_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteBucketWebsite"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteBucketWebsite",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteBucketWebsite",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -34900,20 +35279,19 @@ impl S3Client {
                 .set_if_match(if_match_value)
                 .set_if_match_last_modified_time(if_match_last_modified_time_value)
                 .set_if_match_size(if_match_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObject"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteObject", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteObjectOutput { inner: output })
         })
@@ -35073,20 +35451,24 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_object_if_match(object_if_match_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectAnnotation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteObjectAnnotation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteObjectAnnotationOutput { inner: output })
         })
@@ -35181,20 +35563,24 @@ impl S3Client {
                 .set_key(key_value)
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjectTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteObjectTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteObjectTaggingOutput { inner: output })
         })
@@ -35358,20 +35744,19 @@ impl S3Client {
                 .set_bypass_governance_retention(bypass_governance_retention_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteObjects"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteObjects", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteObjectsOutput {
                 inner: output.into(),
@@ -35430,21 +35815,29 @@ impl S3Client {
                 .delete_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePublicAccessBlock"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePublicAccessBlock",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeletePublicAccessBlock",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35500,20 +35893,19 @@ impl S3Client {
                 .get_bucket_abac()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAbac"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetBucketAbac", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetBucketAbacOutput {
                 inner: output.into(),
@@ -35595,20 +35987,24 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAccelerateConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketAccelerateConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketAccelerateConfigurationOutput { inner: output })
         })
@@ -35665,20 +36061,19 @@ impl S3Client {
                 .get_bucket_acl()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetBucketAcl", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetBucketAclOutput {
                 inner: output.into(),
@@ -35754,20 +36149,24 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketAnalyticsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketAnalyticsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketAnalyticsConfigurationOutput {
                 inner: output.into(),
@@ -35826,20 +36225,19 @@ impl S3Client {
                 .get_bucket_cors()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketCors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetBucketCors", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetBucketCorsOutput {
                 inner: output.into(),
@@ -35898,20 +36296,24 @@ impl S3Client {
                 .get_bucket_encryption()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketEncryption"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketEncryption",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketEncryptionOutput {
                 inner: output.into(),
@@ -35987,21 +36389,23 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetBucketIntelligentTieringConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketIntelligentTieringConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetBucketIntelligentTieringConfigurationOutput {
@@ -36078,20 +36482,24 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketInventoryConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketInventoryConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketInventoryConfigurationOutput {
                 inner: output.into(),
@@ -36150,20 +36558,24 @@ impl S3Client {
                 .get_bucket_lifecycle_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLifecycleConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketLifecycleConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketLifecycleConfigurationOutput {
                 inner: output.into(),
@@ -36222,20 +36634,24 @@ impl S3Client {
                 .get_bucket_location()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLocation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketLocation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketLocationOutput { inner: output })
         })
@@ -36292,20 +36708,24 @@ impl S3Client {
                 .get_bucket_logging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketLogging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketLogging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketLoggingOutput {
                 inner: output.into(),
@@ -36364,20 +36784,24 @@ impl S3Client {
                 .get_bucket_metadata_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetadataConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketMetadataConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketMetadataConfigurationOutput {
                 inner: output.into(),
@@ -36436,21 +36860,23 @@ impl S3Client {
                 .get_bucket_metadata_table_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetBucketMetadataTableConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketMetadataTableConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetBucketMetadataTableConfigurationOutput {
@@ -36527,20 +36953,24 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketMetricsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketMetricsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketMetricsConfigurationOutput {
                 inner: output.into(),
@@ -36599,21 +37029,23 @@ impl S3Client {
                 .get_bucket_notification_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetBucketNotificationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketNotificationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetBucketNotificationConfigurationOutput {
@@ -36673,20 +37105,24 @@ impl S3Client {
                 .get_bucket_ownership_controls()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketOwnershipControls"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketOwnershipControls",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketOwnershipControlsOutput {
                 inner: output.into(),
@@ -36745,20 +37181,19 @@ impl S3Client {
                 .get_bucket_policy()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetBucketPolicy", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetBucketPolicyOutput { inner: output })
         })
@@ -36815,20 +37250,24 @@ impl S3Client {
                 .get_bucket_policy_status()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketPolicyStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketPolicyStatus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketPolicyStatusOutput {
                 inner: output.into(),
@@ -36887,20 +37326,24 @@ impl S3Client {
                 .get_bucket_replication()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketReplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketReplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketReplicationOutput {
                 inner: output.into(),
@@ -36959,20 +37402,24 @@ impl S3Client {
                 .get_bucket_request_payment()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketRequestPayment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketRequestPayment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketRequestPaymentOutput { inner: output })
         })
@@ -37029,20 +37476,24 @@ impl S3Client {
                 .get_bucket_tagging()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketTaggingOutput {
                 inner: output.into(),
@@ -37101,20 +37552,24 @@ impl S3Client {
                 .get_bucket_versioning()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketVersioning"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketVersioning",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketVersioningOutput { inner: output })
         })
@@ -37171,20 +37626,24 @@ impl S3Client {
                 .get_bucket_website()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBucketWebsite"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBucketWebsite",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBucketWebsiteOutput {
                 inner: output.into(),
@@ -37658,23 +38117,27 @@ impl S3Client {
                 .set_part_number(part_number_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let mut output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetObject")))?;
+            let mut output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetObject", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "GetObject",
+                metadata: observer.response_metadata(),
+            };
             let body = std::mem::take(&mut output.body);
             Python::attach(|py| {
-                let py_body = Py::new(py, PyByteStream::new(body))?;
+                let py_body = Py::new(py, PyByteStream::new(body, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationGetObjectOutput {
@@ -37798,20 +38261,19 @@ impl S3Client {
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetObjectAcl", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetObjectAclOutput {
                 inner: output.into(),
@@ -37975,24 +38437,33 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let mut output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAnnotation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectAnnotation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "GetObjectAnnotation",
+                metadata: observer.response_metadata(),
+            };
             let annotation_payload = std::mem::take(&mut output.annotation_payload);
             Python::attach(|py| {
-                let py_annotation_payload = Py::new(py, PyByteStream::new(annotation_payload))?;
+                let py_annotation_payload =
+                    Py::new(py, PyByteStream::new(annotation_payload, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationGetObjectAnnotationOutput {
@@ -38271,20 +38742,24 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_object_attributes(object_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetObjectAttributesOutput {
                 inner: output.into(),
@@ -38404,20 +38879,24 @@ impl S3Client {
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLegalHold"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectLegalHold",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetObjectLegalHoldOutput {
                 inner: output.into(),
@@ -38476,20 +38955,24 @@ impl S3Client {
                 .get_object_lock_configuration()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectLockConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectLockConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetObjectLockConfigurationOutput {
                 inner: output.into(),
@@ -38609,20 +39092,24 @@ impl S3Client {
                 .set_version_id(version_id_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectRetention"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectRetention",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetObjectRetentionOutput {
                 inner: output.into(),
@@ -38742,20 +39229,24 @@ impl S3Client {
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetObjectTaggingOutput {
                 inner: output.into(),
@@ -38854,24 +39345,32 @@ impl S3Client {
                 .set_key(key_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let mut output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetObjectTorrent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetObjectTorrent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "GetObjectTorrent",
+                metadata: observer.response_metadata(),
+            };
             let body = std::mem::take(&mut output.body);
             Python::attach(|py| {
-                let py_body = Py::new(py, PyByteStream::new(body))?;
+                let py_body = Py::new(py, PyByteStream::new(body, context.clone()))?;
                 Py::new(
                     py,
                     PyOperationGetObjectTorrentOutput {
@@ -38934,20 +39433,24 @@ impl S3Client {
                 .get_public_access_block()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPublicAccessBlock"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPublicAccessBlock",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPublicAccessBlockOutput {
                 inner: output.into(),
@@ -39006,20 +39509,20 @@ impl S3Client {
                 .head_bucket()
                 .set_bucket(bucket_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadBucket")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "HeadBucket", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationHeadBucketOutput { inner: output })
         })
     }
@@ -39490,20 +39993,20 @@ impl S3Client {
                 .set_part_number(part_number_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_mode(checksum_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "HeadObject")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "HeadObject", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationHeadObjectOutput { inner: output })
         })
     }
@@ -39581,21 +40084,23 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListBucketAnalyticsConfigurations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListBucketAnalyticsConfigurations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListBucketAnalyticsConfigurationsOutput {
@@ -39677,21 +40182,23 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListBucketIntelligentTieringConfigurations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListBucketIntelligentTieringConfigurations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(
@@ -39775,21 +40282,23 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListBucketInventoryConfigurations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListBucketInventoryConfigurations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListBucketInventoryConfigurationsOutput {
@@ -39871,20 +40380,24 @@ impl S3Client {
                 .set_bucket(bucket_value)
                 .set_continuation_token(continuation_token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListBucketMetricsConfigurations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListBucketMetricsConfigurations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListBucketMetricsConfigurationsOutput {
                 inner: output.into(),
@@ -39985,20 +40498,20 @@ impl S3Client {
                 .set_continuation_token(continuation_token_value)
                 .set_prefix(prefix_value)
                 .set_bucket_region(bucket_region_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListBuckets")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListBuckets", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListBucketsOutput {
                 inner: output.into(),
             })
@@ -40061,20 +40574,24 @@ impl S3Client {
                 .list_directory_buckets()
                 .set_continuation_token(continuation_token_value)
                 .set_max_directory_buckets(max_directory_buckets_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDirectoryBuckets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDirectoryBuckets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDirectoryBucketsOutput {
                 inner: output.into(),
@@ -40280,20 +40797,24 @@ impl S3Client {
                 .set_upload_id_marker(upload_id_marker_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMultipartUploads"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMultipartUploads",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMultipartUploadsOutput {
                 inner: output.into(),
@@ -40479,20 +41000,24 @@ impl S3Client {
                 .set_continuation_token(continuation_token_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectAnnotations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListObjectAnnotations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListObjectAnnotationsOutput {
                 inner: output.into(),
@@ -40744,20 +41269,24 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectVersions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListObjectVersions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListObjectVersionsOutput {
                 inner: output.into(),
@@ -40983,20 +41512,20 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListObjects")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListObjects", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListObjectsOutput {
                 inner: output.into(),
             })
@@ -41268,20 +41797,19 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_optional_object_attributes(optional_object_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListObjectsV2"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListObjectsV2", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListObjectsV2Output {
                 inner: output.into(),
@@ -41509,20 +42037,20 @@ impl S3Client {
                 .set_sse_customer_algorithm(sse_customer_algorithm_value)
                 .set_sse_customer_key(sse_customer_key_value)
                 .set_sse_customer_key_md5(sse_customer_key_md5_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListParts")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListParts", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListPartsOutput {
                 inner: output.into(),
             })
@@ -41646,21 +42174,24 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_abac_status(abac_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAbac"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutBucketAbac", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketAbac",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -41762,21 +42293,29 @@ impl S3Client {
                 .set_accelerate_configuration(accelerate_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAccelerateConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketAccelerateConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketAccelerateConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42028,21 +42567,24 @@ impl S3Client {
                 .set_grant_write(grant_write_value)
                 .set_grant_write_acp(grant_write_acp_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutBucketAcl", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketAcl",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42137,21 +42679,29 @@ impl S3Client {
                 .set_id(id_value)
                 .set_analytics_configuration(analytics_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketAnalyticsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketAnalyticsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketAnalyticsConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42274,21 +42824,24 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketCors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutBucketCors", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketCors",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42413,21 +42966,29 @@ impl S3Client {
                     server_side_encryption_configuration_value,
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketEncryption"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketEncryption",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketEncryption",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42522,23 +43083,29 @@ impl S3Client {
                 .set_id(id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_intelligent_tiering_configuration(intelligent_tiering_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutBucketIntelligentTieringConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketIntelligentTieringConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketIntelligentTieringConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42633,21 +43200,29 @@ impl S3Client {
                 .set_id(id_value)
                 .set_inventory_configuration(inventory_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketInventoryConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketInventoryConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketInventoryConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -42777,20 +43352,24 @@ impl S3Client {
                 .set_transition_default_minimum_object_size(
                     transition_default_minimum_object_size_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLifecycleConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketLifecycleConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutBucketLifecycleConfigurationOutput { inner: output })
         })
@@ -42914,21 +43493,29 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketLogging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketLogging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketLogging",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43023,21 +43610,29 @@ impl S3Client {
                 .set_id(id_value)
                 .set_metrics_configuration(metrics_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketMetricsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketMetricsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketMetricsConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43137,23 +43732,29 @@ impl S3Client {
                 .set_notification_configuration(notification_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_skip_destination_validation(skip_destination_validation_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutBucketNotificationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketNotificationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketNotificationConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43276,21 +43877,29 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_ownership_controls(ownership_controls_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketOwnershipControls"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketOwnershipControls",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketOwnershipControls",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43430,21 +44039,24 @@ impl S3Client {
                 .set_confirm_remove_self_bucket_access(confirm_remove_self_bucket_access_value)
                 .set_policy(policy_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutBucketPolicy", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43584,21 +44196,29 @@ impl S3Client {
                 .set_replication_configuration(replication_configuration_value)
                 .set_token(token_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketReplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketReplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketReplication",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43721,21 +44341,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_request_payment_configuration(request_payment_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketRequestPayment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketRequestPayment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketRequestPayment",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -43857,21 +44485,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_tagging(tagging_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketTagging",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -44011,21 +44647,29 @@ impl S3Client {
                 .set_mfa(mfa_value)
                 .set_versioning_configuration(versioning_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketVersioning"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketVersioning",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketVersioning",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -44148,21 +44792,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_website_configuration(website_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutBucketWebsite"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutBucketWebsite",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutBucketWebsite",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -45283,20 +45935,20 @@ impl S3Client {
                     object_lock_event_hold_duration_years_value,
                 )
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutObject")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutObject", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutObjectOutput { inner: output })
         })
     }
@@ -45609,20 +46261,19 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_version_id(version_id_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutObjectAcl", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutObjectAclOutput { inner: output })
         })
@@ -46062,20 +46713,24 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectAnnotation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutObjectAnnotation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutObjectAnnotationOutput { inner: output })
         })
@@ -46259,20 +46914,24 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLegalHold"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutObjectLegalHold",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutObjectLegalHoldOutput { inner: output })
         })
@@ -46436,20 +47095,24 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectLockConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutObjectLockConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutObjectLockConfigurationOutput { inner: output })
         })
@@ -46655,20 +47318,24 @@ impl S3Client {
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectRetention"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutObjectRetention",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutObjectRetentionOutput { inner: output })
         })
@@ -46852,20 +47519,24 @@ impl S3Client {
                 .set_tagging(tagging_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_request_payer(request_payer_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutObjectTagging"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutObjectTagging",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutObjectTaggingOutput { inner: output })
         })
@@ -46989,21 +47660,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_public_access_block_configuration(public_access_block_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutPublicAccessBlock"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutPublicAccessBlock",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutPublicAccessBlock",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -47291,20 +47970,19 @@ impl S3Client {
                 .set_source_if_modified_since(source_if_modified_since_value)
                 .set_source_if_unmodified_since(source_if_unmodified_since_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RenameObject"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RenameObject", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRenameObjectOutput { inner: output })
         })
@@ -47467,20 +48145,19 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RestoreObject"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RestoreObject", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRestoreObjectOutput { inner: output })
         })
@@ -47749,29 +48426,34 @@ impl S3Client {
                 .set_output_serialization(output_serialization_value)
                 .set_scan_range(scan_range_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SelectObjectContent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SelectObjectContent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SelectObjectContent",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PySelectObjectContentEventStreamReceiver::new(
-                        output.payload,
-                        "SelectObjectContent",
-                    ),
+                    PySelectObjectContentEventStreamReceiver::new(output.payload, context.clone()),
                 )?;
                 result.set_item("payload", stream)?;
                 Ok(result.into_any().unbind())
@@ -47897,17 +48579,14 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_annotation_table_configuration(annotation_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
@@ -47915,9 +48594,14 @@ impl S3Client {
                         py,
                         &error,
                         "UpdateBucketMetadataAnnotationTableConfiguration",
+                        &observer.response_metadata(),
                     )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateBucketMetadataAnnotationTableConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -48040,17 +48724,14 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_inventory_table_configuration(inventory_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
@@ -48058,9 +48739,14 @@ impl S3Client {
                         py,
                         &error,
                         "UpdateBucketMetadataInventoryTableConfiguration",
+                        &observer.response_metadata(),
                     )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateBucketMetadataInventoryTableConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -48183,23 +48869,29 @@ impl S3Client {
                 .set_checksum_algorithm(checksum_algorithm_value)
                 .set_journal_table_configuration(journal_table_configuration_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateBucketMetadataJournalTableConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateBucketMetadataJournalTableConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "UpdateBucketMetadataJournalTableConfiguration",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -48383,20 +49075,24 @@ impl S3Client {
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_content_md5(content_md5_value)
                 .set_checksum_algorithm(checksum_algorithm_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateObjectEncryption"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateObjectEncryption",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateObjectEncryptionOutput { inner: output })
         })
@@ -48915,20 +49611,20 @@ impl S3Client {
                 .set_sse_customer_key_md5(sse_customer_key_md5_value)
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UploadPart")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UploadPart", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUploadPartOutput { inner: output })
         })
     }
@@ -49360,20 +50056,19 @@ impl S3Client {
                 .set_request_payer(request_payer_value)
                 .set_expected_bucket_owner(expected_bucket_owner_value)
                 .set_expected_source_bucket_owner(expected_source_bucket_owner_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UploadPartCopy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UploadPartCopy", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUploadPartCopyOutput {
                 inner: output.into(),
@@ -50431,21 +51126,29 @@ impl S3Client {
                 .set_tag_count(tag_count_value)
                 .set_version_id(version_id_value)
                 .set_bucket_key_enabled(bucket_key_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "WriteGetObjectResponse"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "WriteGetObjectResponse",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "WriteGetObjectResponse",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }

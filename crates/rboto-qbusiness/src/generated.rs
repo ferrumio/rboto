@@ -24898,6 +24898,1205 @@ impl PyOperationUpdateWebExperienceOutput {
     }
 }
 
+fn conflict_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_qbusiness::types::error::ConflictException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_2908 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_2908)?;
+    let detail_2909 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_2909)?;
+    Ok(result.into_any().unbind())
+}
+
+fn resource_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_qbusiness::types::error::ResourceNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_2910 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_2910)?;
+    let detail_2911 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_2911)?;
+    Ok(result.into_any().unbind())
+}
+
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_qbusiness::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_2912 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_2912)?;
+    let detail_2913 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_2913)?;
+    Ok(result.into_any().unbind())
+}
+
+fn validation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_qbusiness::types::error::ValidationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_2914 = (&value.reason).as_str().into_py_any(py)?;
+    result.set_item("reason", detail_2914)?;
+    if let Some(value) = &value.fields {
+        let detail_2915_list = PyList::empty(py);
+        for item_2916 in value {
+            let converted_item_2917 = validation_exception_field_to_py(py, item_2916)?;
+            detail_2915_list.append(converted_item_2917)?;
+        }
+        let detail_2915 = detail_2915_list.into_any().unbind();
+        result.set_item("fields", detail_2915)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::associate_permission::AssociatePermissionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::batch_delete_document::BatchDeleteDocumentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::batch_put_document::BatchPutDocumentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::cancel_subscription::CancelSubscriptionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat::ChatError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat_sync::ChatSyncError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::check_document_access::CheckDocumentAccessError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_anonymous_web_experience_url::CreateAnonymousWebExperienceUrlError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => service_quota_exceeded_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::create_application::CreateApplicationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_chat_response_configuration::CreateChatResponseConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => service_quota_exceeded_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::create_data_accessor::CreateDataAccessorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::create_data_source::CreateDataSourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_index::CreateIndexError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_plugin::CreatePluginError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_retriever::CreateRetrieverError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::create_subscription::CreateSubscriptionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_user::CreateUserError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::create_web_experience::CreateWebExperienceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_application::DeleteApplicationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_attachment::DeleteAttachmentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_controls_configuration::DeleteChatControlsConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_response_configuration::DeleteChatResponseConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_conversation::DeleteConversationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_data_accessor::DeleteDataAccessorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_data_source::DeleteDataSourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_group::DeleteGroupError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_index::DeleteIndexError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_plugin::DeletePluginError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_retriever::DeleteRetrieverError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_user::DeleteUserError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::delete_web_experience::DeleteWebExperienceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::disassociate_permission::DisassociatePermissionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_application::GetApplicationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_controls_configuration::GetChatControlsConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_response_configuration::GetChatResponseConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_accessor::GetDataAccessorError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_source::GetDataSourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::get_document_content::GetDocumentContentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_group::GetGroupError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_index::GetIndexError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_media::GetMediaError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_plugin::GetPluginError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_policy::GetPolicyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_retriever::GetRetrieverError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_user::GetUserError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::get_web_experience::GetWebExperienceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_applications::ListApplicationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_attachments::ListAttachmentsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_chat_response_configurations::ListChatResponseConfigurationsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_conversations::ListConversationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_data_accessors::ListDataAccessorsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_data_source_sync_jobs::ListDataSourceSyncJobsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_data_sources::ListDataSourcesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_documents::ListDocumentsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_groups::ListGroupsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_indices::ListIndicesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_messages::ListMessagesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_plugin_actions::ListPluginActionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_plugin_type_actions::ListPluginTypeActionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_plugin_type_metadata::ListPluginTypeMetadataError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_plugins::ListPluginsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_retrievers::ListRetrieversError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_subscriptions::ListSubscriptionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_tags_for_resource::ListTagsForResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::list_web_experiences::ListWebExperiencesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_feedback::PutFeedbackError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_group::PutGroupError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::search_relevant_content::SearchRelevantContentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::start_data_source_sync_job::StartDataSourceSyncJobError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::stop_data_source_sync_job::StopDataSourceSyncJobError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::update_application::UpdateApplicationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_controls_configuration::UpdateChatControlsConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => service_quota_exceeded_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_response_configuration::UpdateChatResponseConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::update_data_accessor::UpdateDataAccessorError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::update_data_source::UpdateDataSourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_index::UpdateIndexError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_plugin::UpdatePluginError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_retriever::UpdateRetrieverError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::update_subscription::UpdateSubscriptionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_user::UpdateUserError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_qbusiness::operation::update_web_experience::UpdateWebExperienceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_qbusiness::types::error::ChatInputStreamError {}
+impl ModeledErrorDetails for aws_sdk_qbusiness::types::error::ChatOutputStreamError {}
+
 #[pyclass(name = "ChatOutputStreamReceiver", module = "rboto_qbusiness._native")]
 struct PyChatOutputStreamReceiver {
     inner: Arc<
@@ -24908,7 +26107,7 @@ struct PyChatOutputStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyChatOutputStreamReceiver {
@@ -24917,11 +26116,11 @@ impl PyChatOutputStreamReceiver {
             aws_sdk_qbusiness::types::ChatOutputStream,
             aws_sdk_qbusiness::types::error::ChatOutputStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -24955,7 +26154,7 @@ impl PyChatOutputStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -24980,7 +26179,7 @@ impl PyChatOutputStreamReceiver {
                             let code = None;
 
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, operation, code)
+                                sdk_error_to_py_with_code(py, &error, &context, code)
                             }))
                         }
                     }
@@ -25376,20 +26575,24 @@ impl QBusinessClient {
                 .set_actions(actions_value)
                 .set_conditions(conditions_value)
                 .set_principal(principal_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AssociatePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssociatePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAssociatePermissionOutput { inner: output })
         })
@@ -25511,20 +26714,24 @@ impl QBusinessClient {
                 .set_index_id(index_id_value)
                 .set_documents(documents_value)
                 .set_data_source_sync_id(data_source_sync_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchDeleteDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchDeleteDocument",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchDeleteDocumentOutput {
                 inner: output.into(),
@@ -25665,20 +26872,24 @@ impl QBusinessClient {
                 .set_documents(documents_value)
                 .set_role_arn(role_arn_value)
                 .set_data_source_sync_id(data_source_sync_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchPutDocument"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchPutDocument",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchPutDocumentOutput {
                 inner: output.into(),
@@ -25740,20 +26951,24 @@ impl QBusinessClient {
                 .cancel_subscription()
                 .set_application_id(application_id_value)
                 .set_subscription_id(subscription_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelSubscriptionOutput {
                 inner: output.into(),
@@ -25948,25 +27163,29 @@ impl QBusinessClient {
                 .set_parent_message_id(parent_message_id_value)
                 .set_client_token(client_token_value)
                 .set_input_stream(input_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output =
-                result.map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Chat")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Chat", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "Chat",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyChatOutputStreamReceiver::new(output.output_stream, "Chat"),
+                    PyChatOutputStreamReceiver::new(output.output_stream, context.clone()),
                 )?;
                 result.set_item("output_stream", stream)?;
                 Ok(result.into_any().unbind())
@@ -26306,20 +27525,20 @@ impl QBusinessClient {
                 .set_chat_mode(chat_mode_value)
                 .set_chat_mode_configuration(chat_mode_configuration_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ChatSync")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ChatSync", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationChatSyncOutput {
                 inner: output.into(),
             })
@@ -26435,20 +27654,24 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_document_id(document_id_value)
                 .set_data_source_id(data_source_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CheckDocumentAccess"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CheckDocumentAccess",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCheckDocumentAccessOutput {
                 inner: output.into(),
@@ -26533,20 +27756,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value)
                 .set_session_duration_in_minutes(session_duration_in_minutes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateAnonymousWebExperienceUrl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateAnonymousWebExperienceUrl",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateAnonymousWebExperienceUrlOutput { inner: output })
         })
@@ -26910,20 +28137,24 @@ impl QBusinessClient {
                 .set_q_apps_configuration(q_apps_configuration_value)
                 .set_personalization_configuration(personalization_configuration_value)
                 .set_quick_sight_configuration(quick_sight_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateApplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateApplicationOutput { inner: output })
         })
@@ -27100,20 +28331,24 @@ impl QBusinessClient {
                 .set_client_token(client_token_value)
                 .set_response_configurations(response_configurations_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateChatResponseConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateChatResponseConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateChatResponseConfigurationOutput { inner: output })
         })
@@ -27326,20 +28561,24 @@ impl QBusinessClient {
                 .set_display_name(display_name_value)
                 .set_authentication_detail(authentication_detail_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataAccessor"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDataAccessor",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDataAccessorOutput { inner: output })
         })
@@ -27627,20 +28866,24 @@ impl QBusinessClient {
                 .set_client_token(client_token_value)
                 .set_document_enrichment_configuration(document_enrichment_configuration_value)
                 .set_media_extraction_configuration(media_extraction_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDataSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDataSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDataSourceOutput { inner: output })
         })
@@ -27831,20 +29074,20 @@ impl QBusinessClient {
                 .set_tags(tags_value)
                 .set_capacity_configuration(capacity_configuration_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateIndex")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateIndex", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateIndexOutput { inner: output })
         })
     }
@@ -28056,20 +29299,19 @@ impl QBusinessClient {
                 .set_custom_plugin_configuration(custom_plugin_configuration_value)
                 .set_tags(tags_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlugin"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreatePlugin", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreatePluginOutput { inner: output })
         })
@@ -28255,20 +29497,19 @@ impl QBusinessClient {
                 .set_role_arn(role_arn_value)
                 .set_client_token(client_token_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateRetriever"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateRetriever", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateRetrieverOutput { inner: output })
         })
@@ -28372,20 +29613,24 @@ impl QBusinessClient {
                 .set_principal(principal_value)
                 .set_type(type_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateSubscriptionOutput {
                 inner: output.into(),
@@ -28508,20 +29753,20 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_user_aliases(user_aliases_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateUser")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateUser", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateUserOutput { inner: output })
         })
     }
@@ -28832,20 +30077,24 @@ impl QBusinessClient {
                 .set_identity_provider_configuration(identity_provider_configuration_value)
                 .set_browser_extension_configuration(browser_extension_configuration_value)
                 .set_customization_configuration(customization_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateWebExperience"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateWebExperience",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateWebExperienceOutput { inner: output })
         })
@@ -28884,20 +30133,24 @@ impl QBusinessClient {
             let request = client
                 .delete_application()
                 .set_application_id(application_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteApplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteApplicationOutput { inner: output })
         })
@@ -28995,20 +30248,24 @@ impl QBusinessClient {
                 .set_conversation_id(conversation_id_value)
                 .set_attachment_id(attachment_id_value)
                 .set_user_id(user_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAttachment"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAttachment",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteAttachmentOutput { inner: output })
         })
@@ -29047,20 +30304,24 @@ impl QBusinessClient {
             let request = client
                 .delete_chat_controls_configuration()
                 .set_application_id(application_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatControlsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteChatControlsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteChatControlsConfigurationOutput { inner: output })
         })
@@ -29121,20 +30382,24 @@ impl QBusinessClient {
                 .delete_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_chat_response_configuration_id(chat_response_configuration_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteChatResponseConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteChatResponseConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteChatResponseConfigurationOutput { inner: output })
         })
@@ -29211,20 +30476,24 @@ impl QBusinessClient {
                 .set_conversation_id(conversation_id_value)
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConversation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteConversation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteConversationOutput { inner: output })
         })
@@ -29284,20 +30553,24 @@ impl QBusinessClient {
                 .delete_data_accessor()
                 .set_application_id(application_id_value)
                 .set_data_accessor_id(data_accessor_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataAccessor"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDataAccessor",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteDataAccessorOutput { inner: output })
         })
@@ -29374,20 +30647,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
                 .set_data_source_id(data_source_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDataSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDataSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteDataSourceOutput { inner: output })
         })
@@ -29485,20 +30762,20 @@ impl QBusinessClient {
                 .set_index_id(index_id_value)
                 .set_group_name(group_name_value)
                 .set_data_source_id(data_source_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteGroup")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteGroup", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteGroupOutput { inner: output })
         })
     }
@@ -29553,20 +30830,20 @@ impl QBusinessClient {
                 .delete_index()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIndex")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteIndex", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteIndexOutput { inner: output })
         })
     }
@@ -29625,20 +30902,19 @@ impl QBusinessClient {
                 .delete_plugin()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePlugin"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeletePlugin", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeletePluginOutput { inner: output })
         })
@@ -29698,20 +30974,19 @@ impl QBusinessClient {
                 .delete_retriever()
                 .set_application_id(application_id_value)
                 .set_retriever_id(retriever_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteRetriever"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteRetriever", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteRetrieverOutput { inner: output })
         })
@@ -29767,20 +31042,20 @@ impl QBusinessClient {
                 .delete_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteUser")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteUser", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationDeleteUserOutput { inner: output })
         })
     }
@@ -29840,20 +31115,24 @@ impl QBusinessClient {
                 .delete_web_experience()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteWebExperience"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteWebExperience",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteWebExperienceOutput { inner: output })
         })
@@ -29913,20 +31192,24 @@ impl QBusinessClient {
                 .disassociate_permission()
                 .set_application_id(application_id_value)
                 .set_statement_id(statement_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DisassociatePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociatePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDisassociatePermissionOutput { inner: output })
         })
@@ -29965,20 +31248,19 @@ impl QBusinessClient {
             let request = client
                 .get_application()
                 .set_application_id(application_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetApplication", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetApplicationOutput {
                 inner: output.into(),
@@ -30061,20 +31343,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetChatControlsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetChatControlsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetChatControlsConfigurationOutput {
                 inner: output.into(),
@@ -30137,20 +31423,24 @@ impl QBusinessClient {
                 .get_chat_response_configuration()
                 .set_application_id(application_id_value)
                 .set_chat_response_configuration_id(chat_response_configuration_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetChatResponseConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetChatResponseConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetChatResponseConfigurationOutput {
                 inner: output.into(),
@@ -30212,20 +31502,19 @@ impl QBusinessClient {
                 .get_data_accessor()
                 .set_application_id(application_id_value)
                 .set_data_accessor_id(data_accessor_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDataAccessor"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDataAccessor", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDataAccessorOutput {
                 inner: output.into(),
@@ -30304,20 +31593,19 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value)
                 .set_data_source_id(data_source_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDataSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDataSource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDataSourceOutput {
                 inner: output.into(),
@@ -30440,20 +31728,24 @@ impl QBusinessClient {
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value)
                 .set_output_format(output_format_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentContent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentContentOutput { inner: output })
         })
@@ -30551,20 +31843,20 @@ impl QBusinessClient {
                 .set_index_id(index_id_value)
                 .set_group_name(group_name_value)
                 .set_data_source_id(data_source_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetGroup")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetGroup", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetGroupOutput {
                 inner: output.into(),
             })
@@ -30621,20 +31913,20 @@ impl QBusinessClient {
                 .get_index()
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetIndex")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetIndex", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetIndexOutput {
                 inner: output.into(),
             })
@@ -30733,20 +32025,20 @@ impl QBusinessClient {
                 .set_conversation_id(conversation_id_value)
                 .set_message_id(message_id_value)
                 .set_media_id(media_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetMedia")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetMedia", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetMediaOutput { inner: output })
         })
     }
@@ -30805,20 +32097,20 @@ impl QBusinessClient {
                 .get_plugin()
                 .set_application_id(application_id_value)
                 .set_plugin_id(plugin_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPlugin")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetPlugin", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetPluginOutput {
                 inner: output.into(),
             })
@@ -30856,20 +32148,20 @@ impl QBusinessClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_policy().set_application_id(application_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetPolicy", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetPolicyOutput { inner: output })
         })
     }
@@ -30928,20 +32220,19 @@ impl QBusinessClient {
                 .get_retriever()
                 .set_application_id(application_id_value)
                 .set_retriever_id(retriever_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRetriever"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetRetriever", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetRetrieverOutput { inner: output })
         })
@@ -30997,20 +32288,20 @@ impl QBusinessClient {
                 .get_user()
                 .set_application_id(application_id_value)
                 .set_user_id(user_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetUser")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetUser", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetUserOutput {
                 inner: output.into(),
             })
@@ -31072,20 +32363,24 @@ impl QBusinessClient {
                 .get_web_experience()
                 .set_application_id(application_id_value)
                 .set_web_experience_id(web_experience_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetWebExperience"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetWebExperience",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetWebExperienceOutput {
                 inner: output.into(),
@@ -31147,20 +32442,24 @@ impl QBusinessClient {
                 .list_applications()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListApplications"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListApplications",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListApplicationsOutput {
                 inner: output.into(),
@@ -31281,20 +32580,19 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAttachments"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListAttachments", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListAttachmentsOutput {
                 inner: output.into(),
@@ -31377,20 +32675,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListChatResponseConfigurations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListChatResponseConfigurations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListChatResponseConfigurationsOutput {
                 inner: output.into(),
@@ -31490,20 +32792,24 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListConversations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListConversations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListConversationsOutput {
                 inner: output.into(),
@@ -31586,20 +32892,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDataAccessors"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDataAccessors",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDataAccessorsOutput {
                 inner: output.into(),
@@ -31796,20 +33106,24 @@ impl QBusinessClient {
                 .set_start_time(start_time_value)
                 .set_end_time(end_time_value)
                 .set_status_filter(status_filter_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSourceSyncJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDataSourceSyncJobs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDataSourceSyncJobsOutput {
                 inner: output.into(),
@@ -31909,20 +33223,19 @@ impl QBusinessClient {
                 .set_index_id(index_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDataSources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDataSources", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListDataSourcesOutput {
                 inner: output.into(),
@@ -32066,20 +33379,19 @@ impl QBusinessClient {
                 .set_data_source_ids(data_source_ids_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDocuments"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDocuments", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListDocumentsOutput {
                 inner: output.into(),
@@ -32227,20 +33539,20 @@ impl QBusinessClient {
                 .set_data_source_id(data_source_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListGroups")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListGroups", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListGroupsOutput {
                 inner: output.into(),
             })
@@ -32322,20 +33634,20 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListIndices")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListIndices", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListIndicesOutput {
                 inner: output.into(),
             })
@@ -32455,20 +33767,19 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMessages"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListMessages", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListMessagesOutput {
                 inner: output.into(),
@@ -32572,20 +33883,24 @@ impl QBusinessClient {
                 .set_plugin_id(plugin_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginActions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPluginActions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPluginActionsOutput {
                 inner: output.into(),
@@ -32670,20 +33985,24 @@ impl QBusinessClient {
                 .set_plugin_type(plugin_type_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeActions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPluginTypeActions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPluginTypeActionsOutput {
                 inner: output.into(),
@@ -32745,20 +34064,24 @@ impl QBusinessClient {
                 .list_plugin_type_metadata()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPluginTypeMetadata"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPluginTypeMetadata",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPluginTypeMetadataOutput {
                 inner: output.into(),
@@ -32841,20 +34164,20 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListPlugins")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListPlugins", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListPluginsOutput {
                 inner: output.into(),
             })
@@ -32936,20 +34259,19 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListRetrievers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListRetrievers", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListRetrieversOutput {
                 inner: output.into(),
@@ -33032,20 +34354,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSubscriptions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSubscriptionsOutput {
                 inner: output.into(),
@@ -33086,20 +34412,24 @@ impl QBusinessClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -33182,20 +34512,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListWebExperiences"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListWebExperiences",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListWebExperiencesOutput {
                 inner: output.into(),
@@ -33344,20 +34678,24 @@ impl QBusinessClient {
                 .set_message_id(message_id_value)
                 .set_message_copied_at(message_copied_at_value)
                 .set_message_usefulness(message_usefulness_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutFeedback")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutFeedback", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "PutFeedback",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -33515,20 +34853,20 @@ impl QBusinessClient {
                 .set_type(type_value)
                 .set_group_members(group_members_value)
                 .set_role_arn(role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "PutGroup")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutGroup", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPutGroupOutput { inner: output })
         })
     }
@@ -33671,20 +35009,24 @@ impl QBusinessClient {
                 .set_attribute_filter(attribute_filter_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SearchRelevantContent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SearchRelevantContent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSearchRelevantContentOutput {
                 inner: output.into(),
@@ -33763,20 +35105,24 @@ impl QBusinessClient {
                 .set_data_source_id(data_source_id_value)
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartDataSourceSyncJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartDataSourceSyncJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartDataSourceSyncJobOutput { inner: output })
         })
@@ -33853,20 +35199,24 @@ impl QBusinessClient {
                 .set_data_source_id(data_source_id_value)
                 .set_application_id(application_id_value)
                 .set_index_id(index_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopDataSourceSyncJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopDataSourceSyncJob",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopDataSourceSyncJobOutput { inner: output })
         })
@@ -33949,20 +35299,20 @@ impl QBusinessClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -34044,20 +35394,19 @@ impl QBusinessClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -34265,20 +35614,24 @@ impl QBusinessClient {
                 .set_q_apps_configuration(q_apps_configuration_value)
                 .set_personalization_configuration(personalization_configuration_value)
                 .set_auto_subscription_configuration(auto_subscription_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateApplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateApplicationOutput { inner: output })
         })
@@ -34546,20 +35899,24 @@ impl QBusinessClient {
                 .set_hallucination_reduction_configuration(
                     hallucination_reduction_configuration_value,
                 );
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatControlsConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateChatControlsConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateChatControlsConfigurationOutput { inner: output })
         })
@@ -34714,20 +36071,24 @@ impl QBusinessClient {
                 .set_display_name(display_name_value)
                 .set_response_configurations(response_configurations_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateChatResponseConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateChatResponseConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateChatResponseConfigurationOutput { inner: output })
         })
@@ -34875,20 +36236,24 @@ impl QBusinessClient {
                 .set_action_configurations(action_configurations_value)
                 .set_authentication_detail(authentication_detail_value)
                 .set_display_name(display_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataAccessor"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDataAccessor",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDataAccessorOutput { inner: output })
         })
@@ -35132,20 +36497,24 @@ impl QBusinessClient {
                 .set_role_arn(role_arn_value)
                 .set_document_enrichment_configuration(document_enrichment_configuration_value)
                 .set_media_extraction_configuration(media_extraction_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateDataSource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateDataSource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateDataSourceOutput { inner: output })
         })
@@ -35311,20 +36680,20 @@ impl QBusinessClient {
                 .set_description(description_value)
                 .set_capacity_configuration(capacity_configuration_value)
                 .set_document_attribute_configurations(document_attribute_configurations_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIndex")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateIndex", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateIndexOutput { inner: output })
         })
     }
@@ -35492,20 +36861,19 @@ impl QBusinessClient {
                 .set_server_url(server_url_value)
                 .set_custom_plugin_configuration(custom_plugin_configuration_value)
                 .set_auth_configuration(auth_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdatePlugin"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdatePlugin", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdatePluginOutput { inner: output })
         })
@@ -35624,20 +36992,19 @@ impl QBusinessClient {
                 .set_configuration(configuration_value)
                 .set_display_name(display_name_value)
                 .set_role_arn(role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateRetriever"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateRetriever", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateRetrieverOutput { inner: output })
         })
@@ -35720,20 +37087,24 @@ impl QBusinessClient {
                 .set_application_id(application_id_value)
                 .set_subscription_id(subscription_id_value)
                 .set_type(type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateSubscriptionOutput {
                 inner: output.into(),
@@ -35881,20 +37252,20 @@ impl QBusinessClient {
                 .set_user_id(user_id_value)
                 .set_user_aliases_to_update(user_aliases_to_update_value)
                 .set_user_aliases_to_delete(user_aliases_to_delete_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateUser")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateUser", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateUserOutput {
                 inner: output.into(),
             })
@@ -36186,20 +37557,24 @@ impl QBusinessClient {
                 .set_origins(origins_value)
                 .set_browser_extension_configuration(browser_extension_configuration_value)
                 .set_customization_configuration(customization_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateWebExperience"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateWebExperience",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateWebExperienceOutput { inner: output })
         })

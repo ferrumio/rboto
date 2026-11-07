@@ -1754,6 +1754,234 @@ impl PyOperationRevokeOAuth2TokenWithIAMOutput {
     }
 }
 
+fn access_denied_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::AccessDeniedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_264 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_264)?;
+    Ok(result.into_any().unbind())
+}
+
+fn conflict_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::ConflictException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_265 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_265)?;
+    Ok(result.into_any().unbind())
+}
+
+fn internal_server_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::InternalServerException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_266 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_266)?;
+    Ok(result.into_any().unbind())
+}
+
+fn resource_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::ResourceNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_267 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_267)?;
+    Ok(result.into_any().unbind())
+}
+
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_268 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_268)?;
+    Ok(result.into_any().unbind())
+}
+
+fn too_many_requests_error_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::TooManyRequestsError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_269 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_269)?;
+    Ok(result.into_any().unbind())
+}
+
+fn validation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::ValidationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_270 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_270)?;
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::create_o_auth2_token::CreateOAuth2TokenError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::create_o_auth2_token_with_iam::CreateOAuth2TokenWithIAMError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::delete_console_authorization_configuration::DeleteConsoleAuthorizationConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::delete_resource_permission_statement::DeleteResourcePermissionStatementError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::get_console_authorization_configuration::GetConsoleAuthorizationConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::get_resource_policy::GetResourcePolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIAMError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::put_console_authorization_configuration::PutConsoleAuthorizationConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::put_resource_permission_statement::PutResourcePermissionStatementError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::ConflictException(value) => conflict_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => service_quota_exceeded_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::revoke_o_auth2_token_with_iam::RevokeOAuth2TokenWithIAMError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccessToken>()?;
     module.add_class::<PyCreateOAuth2TokenResponseBody>()?;
@@ -1862,20 +2090,24 @@ impl SignInClient {
             let request = client
                 .create_o_auth2_token()
                 .set_token_input(token_input_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2Token"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateOAuth2Token",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateOAuth2TokenOutput {
                 inner: output.into(),
@@ -1933,20 +2165,24 @@ impl SignInClient {
                 .create_o_auth2_token_with_iam()
                 .set_grant_type(grant_type_value)
                 .set_resource(resource_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateOAuth2TokenWithIAM"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateOAuth2TokenWithIAM",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateOAuth2TokenWithIAMOutput { inner: output })
         })
@@ -1985,21 +2221,23 @@ impl SignInClient {
             let request = client
                 .delete_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteConsoleAuthorizationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteConsoleAuthorizationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteConsoleAuthorizationConfigurationOutput { inner: output })
@@ -2060,21 +2298,23 @@ impl SignInClient {
                 .delete_resource_permission_statement()
                 .set_statement_id(statement_id_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteResourcePermissionStatement")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePermissionStatement",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteResourcePermissionStatementOutput { inner: output })
@@ -2114,21 +2354,23 @@ impl SignInClient {
             let request = client
                 .get_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetConsoleAuthorizationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetConsoleAuthorizationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetConsoleAuthorizationConfigurationOutput { inner: output })
@@ -2146,20 +2388,24 @@ impl SignInClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_resource_policy();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput {
                 inner: output.into(),
@@ -2217,20 +2463,24 @@ impl SignInClient {
                 .introspect_o_auth2_token_with_iam()
                 .set_token(token_value)
                 .set_token_type_hint(token_type_hint_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "IntrospectOAuth2TokenWithIAM"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "IntrospectOAuth2TokenWithIAM",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationIntrospectOAuth2TokenWithIAMOutput { inner: output })
         })
@@ -2290,20 +2540,24 @@ impl SignInClient {
                 .list_resource_permission_statements()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListResourcePermissionStatements"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListResourcePermissionStatements",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListResourcePermissionStatementsOutput {
                 inner: output.into(),
@@ -2344,21 +2598,23 @@ impl SignInClient {
             let request = client
                 .put_console_authorization_configuration()
                 .set_target_id(target_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConsoleAuthorizationConfiguration")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConsoleAuthorizationConfiguration",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConsoleAuthorizationConfigurationOutput { inner: output })
@@ -2548,20 +2804,24 @@ impl SignInClient {
                 .set_requested_region(requested_region_value)
                 .set_excluded_principal(excluded_principal_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePermissionStatement"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePermissionStatement",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePermissionStatementOutput { inner: output })
         })
@@ -2596,20 +2856,24 @@ impl SignInClient {
             let request = client
                 .revoke_o_auth2_token_with_iam()
                 .set_token(token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RevokeOAuth2TokenWithIAM"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RevokeOAuth2TokenWithIAM",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRevokeOAuth2TokenWithIAMOutput { inner: output })
         })

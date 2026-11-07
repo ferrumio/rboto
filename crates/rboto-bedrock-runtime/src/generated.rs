@@ -15238,6 +15238,150 @@ impl PyOperationStartAsyncInvokeOutput {
     }
 }
 
+fn model_error_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockruntime::types::error::ModelErrorException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.original_status_code {
+        let detail_1633 = (value).to_owned().into_py_any(py)?;
+        result.set_item("original_status_code", detail_1633)?;
+    }
+    if let Some(value) = &value.resource_name {
+        let detail_1634 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_1634)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn model_stream_error_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockruntime::types::error::ModelStreamErrorException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.original_status_code {
+        let detail_1635 = (value).to_owned().into_py_any(py)?;
+        result.set_item("original_status_code", detail_1635)?;
+    }
+    if let Some(value) = &value.original_message {
+        let detail_1636 = (value).as_str().into_py_any(py)?;
+        result.set_item("original_message", detail_1636)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::converse::ConverseError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::converse_stream::ConverseStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
+            Self::ModelStreamErrorException(value) => {
+                model_stream_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::count_tokens::CountTokensError {}
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::get_async_invoke::GetAsyncInvokeError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::invoke_guardrail_checks::InvokeGuardrailChecksError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model::InvokeModelError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_with_bidirectional_stream::InvokeModelWithBidirectionalStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
+            Self::ModelStreamErrorException(value) => model_stream_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_with_response_stream::InvokeModelWithResponseStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
+            Self::ModelStreamErrorException(value) => model_stream_error_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvokesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::operation::start_async_invoke::StartAsyncInvokeError
+{
+}
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelStreamErrorException(value) => {
+                model_stream_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelStreamErrorException(value) => {
+                model_stream_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::types::error::ResponseStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ModelStreamErrorException(value) => {
+                model_stream_error_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 #[pyclass(
     name = "ConverseStreamOutputReceiver",
     module = "rboto_bedrock_runtime._native"
@@ -15251,7 +15395,7 @@ struct PyConverseStreamOutputReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyConverseStreamOutputReceiver {
@@ -15260,11 +15404,11 @@ impl PyConverseStreamOutputReceiver {
             aws_sdk_bedrockruntime::types::ConverseStreamOutput,
             aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -15298,7 +15442,7 @@ impl PyConverseStreamOutputReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -15328,7 +15472,7 @@ impl PyConverseStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -15349,7 +15493,7 @@ struct PyInvokeModelWithBidirectionalStreamOutputReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
@@ -15358,11 +15502,11 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
             aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamOutput,
             aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -15396,7 +15540,7 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -15427,7 +15571,7 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -15448,7 +15592,7 @@ struct PyResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyResponseStreamReceiver {
@@ -15457,11 +15601,11 @@ impl PyResponseStreamReceiver {
             aws_sdk_bedrockruntime::types::ResponseStream,
             aws_sdk_bedrockruntime::types::error::ResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -15495,7 +15639,7 @@ impl PyResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -15526,7 +15670,7 @@ impl PyResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -15793,20 +15937,19 @@ impl BedrockRuntimeClient {
                 .set_source(source_value)
                 .set_content(content_value)
                 .set_output_scope(output_scope_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ApplyGuardrail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ApplyGuardrail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationApplyGuardrailOutput {
                 inner: output.into(),
@@ -16221,20 +16364,20 @@ impl BedrockRuntimeClient {
                 .set_performance_config(performance_config_value)
                 .set_service_tier(service_tier_value)
                 .set_output_config(output_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Converse")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Converse", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationConverseOutput {
                 inner: output.into(),
             })
@@ -16648,26 +16791,29 @@ impl BedrockRuntimeClient {
                 .set_performance_config(performance_config_value)
                 .set_service_tier(service_tier_value)
                 .set_output_config(output_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ConverseStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ConverseStream", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "ConverseStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyConverseStreamOutputReceiver::new(output.stream, "ConverseStream"),
+                    PyConverseStreamOutputReceiver::new(output.stream, context.clone()),
                 )?;
                 result.set_item("stream", stream)?;
                 Ok(result.into_any().unbind())
@@ -16725,20 +16871,20 @@ impl BedrockRuntimeClient {
                 .count_tokens()
                 .set_model_id(model_id_value)
                 .set_input(input_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CountTokens")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CountTokens", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCountTokensOutput { inner: output })
         })
     }
@@ -16776,20 +16922,19 @@ impl BedrockRuntimeClient {
             let request = client
                 .get_async_invoke()
                 .set_invocation_arn(invocation_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAsyncInvoke"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAsyncInvoke", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetAsyncInvokeOutput { inner: output })
         })
@@ -16872,20 +17017,24 @@ impl BedrockRuntimeClient {
                 .invoke_guardrail_checks()
                 .set_messages(messages_value)
                 .set_checks(checks_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "InvokeGuardrailChecks"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeGuardrailChecks",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationInvokeGuardrailChecksOutput {
                 inner: output.into(),
@@ -17115,20 +17264,20 @@ impl BedrockRuntimeClient {
                 .set_performance_config_latency(performance_config_latency_value)
                 .set_service_tier(service_tier_value)
                 .set_request_metadata(request_metadata_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeModel")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "InvokeModel", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationInvokeModelOutput { inner: output })
         })
     }
@@ -17175,30 +17324,36 @@ impl BedrockRuntimeClient {
                 .invoke_model_with_bidirectional_stream()
                 .set_model_id(model_id_value)
                 .set_body(body_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "InvokeModelWithBidirectionalStream")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeModelWithBidirectionalStream",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "InvokeModelWithBidirectionalStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyInvokeModelWithBidirectionalStreamOutputReceiver::new(
                         output.body,
-                        "InvokeModelWithBidirectionalStream",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("body", stream)?;
@@ -17429,26 +17584,34 @@ impl BedrockRuntimeClient {
                 .set_performance_config_latency(performance_config_latency_value)
                 .set_service_tier(service_tier_value)
                 .set_request_metadata(request_metadata_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "InvokeModelWithResponseStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeModelWithResponseStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "InvokeModelWithResponseStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyResponseStreamReceiver::new(output.body, "InvokeModelWithResponseStream"),
+                    PyResponseStreamReceiver::new(output.body, context.clone()),
                 )?;
                 result.set_item("body", stream)?;
                 let converted_1280 = (&output.content_type).as_str().into_py_any(py)?;
@@ -17649,20 +17812,24 @@ impl BedrockRuntimeClient {
                 .set_next_token(next_token_value)
                 .set_sort_by(sort_by_value)
                 .set_sort_order(sort_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListAsyncInvokes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListAsyncInvokes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListAsyncInvokesOutput {
                 inner: output.into(),
@@ -17808,20 +17975,24 @@ impl BedrockRuntimeClient {
                 .set_model_input(model_input_value)
                 .set_output_data_config(output_data_config_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartAsyncInvoke"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartAsyncInvoke",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartAsyncInvokeOutput { inner: output })
         })

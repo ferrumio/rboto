@@ -22520,6 +22520,264 @@ impl PyOperationUpdateReputationEntityPolicyOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::batch_get_metric_data::BatchGetMetricDataError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_configuration_set::CreateConfigurationSetError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact::CreateContactError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact_list::CreateContactListError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_dedicated_ip_pool::CreateDedicatedIpPoolError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_email_identity::CreateEmailIdentityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_email_identity_policy::CreateEmailIdentityPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_email_template::CreateEmailTemplateError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_export_job::CreateExportJobError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_import_job::CreateImportJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::create_multi_region_endpoint::CreateMultiRegionEndpointError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant::CreateTenantError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_configuration_set::DeleteConfigurationSetError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact::DeleteContactError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_dedicated_ip_pool::DeleteDedicatedIpPoolError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_email_identity::DeleteEmailIdentityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_email_identity_policy::DeleteEmailIdentityPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_email_template::DeleteEmailTemplateError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_multi_region_endpoint::DeleteMultiRegionEndpointError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::delete_suppressed_destination::DeleteSuppressedDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant::DeleteTenantError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_account::GetAccountError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_blacklist_reports::GetBlacklistReportsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_configuration_set::GetConfigurationSetError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact::GetContactError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact_list::GetContactListError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_dedicated_ip_pool::GetDedicatedIpPoolError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_deliverability_test_report::GetDeliverabilityTestReportError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_domain_statistics_report::GetDomainStatisticsReportError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_email_address_insights::GetEmailAddressInsightsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_email_identity_policies::GetEmailIdentityPoliciesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_export_job::GetExportJobError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_import_job::GetImportJobError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_message_insights::GetMessageInsightsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_multi_region_endpoint::GetMultiRegionEndpointError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_reputation_entity::GetReputationEntityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::get_suppressed_destination::GetSuppressedDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_tenant::GetTenantError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_configuration_sets::ListConfigurationSetsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contact_lists::ListContactListsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contacts::ListContactsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_dedicated_ip_pools::ListDedicatedIpPoolsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_email_identities::ListEmailIdentitiesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_email_templates::ListEmailTemplatesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_multi_region_endpoints::ListMultiRegionEndpointsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_recommendations::ListRecommendationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_reputation_entities::ListReputationEntitiesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_resource_tenants::ListResourceTenantsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_suppressed_destinations::ListSuppressedDestinationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::list_tenant_resources::ListTenantResourcesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_tenants::ListTenantsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::put_account_pricing_attributes::PutAccountPricingAttributesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::put_account_sending_attributes::PutAccountSendingAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::put_account_vdm_attributes::PutAccountVdmAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::put_dedicated_ip_in_pool::PutDedicatedIpInPoolError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::put_suppressed_destination::PutSuppressedDestinationError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::send_custom_verification_email::SendCustomVerificationEmailError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_email::SendEmailError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::test_render_email_template::TestRenderEmailTemplateError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::update_configuration_set::UpdateConfigurationSetError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact::UpdateContactError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact_list::UpdateContactListError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::update_email_identity_policy::UpdateEmailIdentityPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::update_email_template::UpdateEmailTemplateError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusError {}
+impl ModeledErrorDetails
+    for aws_sdk_sesv2::operation::update_reputation_entity_policy::UpdateReputationEntityPolicyError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccountDetails>()?;
     module.add_class::<PyArchivingOptions>()?;
@@ -22865,21 +23123,23 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_from_address(from_address_value)
                 .set_certificate_arn(certificate_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "AssociateEmailIdentityCertificate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AssociateEmailIdentityCertificate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationAssociateEmailIdentityCertificateOutput { inner: output })
@@ -22940,20 +23200,24 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.batch_get_metric_data().set_queries(queries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetMetricData"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchGetMetricData",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchGetMetricDataOutput {
                 inner: output.into(),
@@ -22988,20 +23252,19 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_export_job().set_job_id(job_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelExportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CancelExportJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCancelExportJobOutput { inner: output })
         })
@@ -23257,20 +23520,24 @@ impl SESv2Client {
                 .set_vdm_options(vdm_options_value)
                 .set_archiving_options(archiving_options_value)
                 .set_message_security_options(message_security_options_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateConfigurationSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateConfigurationSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateConfigurationSetOutput { inner: output })
         })
@@ -23354,21 +23621,23 @@ impl SESv2Client {
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_event_destination_name(event_destination_name_value)
                 .set_event_destination(event_destination_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateConfigurationSetEventDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateConfigurationSetEventDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateConfigurationSetEventDestinationOutput { inner: output })
@@ -23517,20 +23786,19 @@ impl SESv2Client {
                 .set_topic_preferences(topic_preferences_value)
                 .set_unsubscribe_all(unsubscribe_all_value)
                 .set_attributes_data(attributes_data_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateContact"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateContact", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateContactOutput { inner: output })
         })
@@ -23679,20 +23947,24 @@ impl SESv2Client {
                 .set_topics(topics_value)
                 .set_description(description_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateContactList"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateContactList",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateContactListOutput { inner: output })
         })
@@ -23883,21 +24155,23 @@ impl SESv2Client {
                 .set_tags(tags_value)
                 .set_success_redirection_url(success_redirection_url_value)
                 .set_failure_redirection_url(failure_redirection_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "CreateCustomVerificationEmailTemplate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCustomVerificationEmailTemplate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationCreateCustomVerificationEmailTemplateOutput { inner: output })
@@ -24004,20 +24278,24 @@ impl SESv2Client {
                 .set_pool_name(pool_name_value)
                 .set_tags(tags_value)
                 .set_scaling_mode(scaling_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDedicatedIpPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDedicatedIpPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDedicatedIpPoolOutput { inner: output })
         })
@@ -24143,20 +24421,24 @@ impl SESv2Client {
                 .set_from_email_address(from_email_address_value)
                 .set_content(content_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateDeliverabilityTestReport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateDeliverabilityTestReport",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateDeliverabilityTestReportOutput { inner: output })
         })
@@ -24283,20 +24565,24 @@ impl SESv2Client {
                 .set_tags(tags_value)
                 .set_dkim_signing_attributes(dkim_signing_attributes_value)
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEmailIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEmailIdentityOutput {
                 inner: output.into(),
@@ -24375,20 +24661,24 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_policy_name(policy_name_value)
                 .set_policy(policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailIdentityPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEmailIdentityPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEmailIdentityPolicyOutput { inner: output })
         })
@@ -24492,20 +24782,24 @@ impl SESv2Client {
                 .set_template_name(template_name_value)
                 .set_template_content(template_content_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEmailTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEmailTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEmailTemplateOutput { inner: output })
         })
@@ -24567,20 +24861,19 @@ impl SESv2Client {
                 .create_export_job()
                 .set_export_data_source(export_data_source_value)
                 .set_export_destination(export_destination_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateExportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateExportJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateExportJobOutput { inner: output })
         })
@@ -24642,20 +24935,19 @@ impl SESv2Client {
                 .create_import_job()
                 .set_import_destination(import_destination_value)
                 .set_import_data_source(import_data_source_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateImportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateImportJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateImportJobOutput { inner: output })
         })
@@ -24759,20 +25051,24 @@ impl SESv2Client {
                 .set_endpoint_name(endpoint_name_value)
                 .set_details(details_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateMultiRegionEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateMultiRegionEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateMultiRegionEndpointOutput { inner: output })
         })
@@ -24877,20 +25173,19 @@ impl SESv2Client {
                 .set_tenant_name(tenant_name_value)
                 .set_tags(tags_value)
                 .set_suppression_attributes(suppression_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenant"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateTenant", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateTenantOutput {
                 inner: output.into(),
@@ -24952,20 +25247,24 @@ impl SESv2Client {
                 .create_tenant_resource_association()
                 .set_tenant_name(tenant_name_value)
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateTenantResourceAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateTenantResourceAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateTenantResourceAssociationOutput { inner: output })
         })
@@ -25005,20 +25304,24 @@ impl SESv2Client {
             let request = client
                 .delete_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteConfigurationSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteConfigurationSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteConfigurationSetOutput { inner: output })
         })
@@ -25080,21 +25383,23 @@ impl SESv2Client {
                 .delete_configuration_set_event_destination()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_event_destination_name(event_destination_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteConfigurationSetEventDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteConfigurationSetEventDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteConfigurationSetEventDestinationOutput { inner: output })
@@ -25156,20 +25461,19 @@ impl SESv2Client {
                 .delete_contact()
                 .set_contact_list_name(contact_list_name_value)
                 .set_email_address(email_address_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContact"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteContact", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteContactOutput { inner: output })
         })
@@ -25209,20 +25513,24 @@ impl SESv2Client {
             let request = client
                 .delete_contact_list()
                 .set_contact_list_name(contact_list_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteContactList"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteContactList",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteContactListOutput { inner: output })
         })
@@ -25261,21 +25569,23 @@ impl SESv2Client {
             let request = client
                 .delete_custom_verification_email_template()
                 .set_template_name(template_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteCustomVerificationEmailTemplate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCustomVerificationEmailTemplate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDeleteCustomVerificationEmailTemplateOutput { inner: output })
@@ -25315,20 +25625,24 @@ impl SESv2Client {
             let request = client
                 .delete_dedicated_ip_pool()
                 .set_pool_name(pool_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteDedicatedIpPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteDedicatedIpPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteDedicatedIpPoolOutput { inner: output })
         })
@@ -25367,20 +25681,24 @@ impl SESv2Client {
             let request = client
                 .delete_email_identity()
                 .set_email_identity(email_identity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEmailIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteEmailIdentityOutput { inner: output })
         })
@@ -25440,20 +25758,24 @@ impl SESv2Client {
                 .delete_email_identity_policy()
                 .set_email_identity(email_identity_value)
                 .set_policy_name(policy_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailIdentityPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEmailIdentityPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteEmailIdentityPolicyOutput { inner: output })
         })
@@ -25492,20 +25814,24 @@ impl SESv2Client {
             let request = client
                 .delete_email_template()
                 .set_template_name(template_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEmailTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEmailTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteEmailTemplateOutput { inner: output })
         })
@@ -25544,20 +25870,24 @@ impl SESv2Client {
             let request = client
                 .delete_multi_region_endpoint()
                 .set_endpoint_name(endpoint_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteMultiRegionEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteMultiRegionEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteMultiRegionEndpointOutput { inner: output })
         })
@@ -25617,20 +25947,24 @@ impl SESv2Client {
                 .delete_suppressed_destination()
                 .set_email_address(email_address_value)
                 .set_tenant_name(tenant_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSuppressedDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteSuppressedDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteSuppressedDestinationOutput { inner: output })
         })
@@ -25667,20 +26001,19 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_tenant().set_tenant_name(tenant_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenant"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteTenant", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteTenantOutput { inner: output })
         })
@@ -25740,20 +26073,24 @@ impl SESv2Client {
                 .delete_tenant_resource_association()
                 .set_tenant_name(tenant_name_value)
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTenantResourceAssociation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteTenantResourceAssociation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteTenantResourceAssociationOutput { inner: output })
         })
@@ -25813,21 +26150,23 @@ impl SESv2Client {
                 .disassociate_email_identity_certificate()
                 .set_email_identity(email_identity_value)
                 .set_from_address(from_address_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DisassociateEmailIdentityCertificate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DisassociateEmailIdentityCertificate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationDisassociateEmailIdentityCertificateOutput { inner: output })
@@ -25845,20 +26184,20 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAccount")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAccount", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetAccountOutput {
                 inner: output.into(),
             })
@@ -25922,20 +26261,24 @@ impl SESv2Client {
             let request = client
                 .get_blacklist_reports()
                 .set_blacklist_item_names(blacklist_item_names_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetBlacklistReports"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetBlacklistReports",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetBlacklistReportsOutput {
                 inner: output.into(),
@@ -25977,20 +26320,24 @@ impl SESv2Client {
             let request = client
                 .get_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetConfigurationSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetConfigurationSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetConfigurationSetOutput {
                 inner: output.into(),
@@ -26032,21 +26379,23 @@ impl SESv2Client {
             let request = client
                 .get_configuration_set_event_destinations()
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetConfigurationSetEventDestinations")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetConfigurationSetEventDestinations",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetConfigurationSetEventDestinationsOutput {
@@ -26110,20 +26459,20 @@ impl SESv2Client {
                 .get_contact()
                 .set_contact_list_name(contact_list_name_value)
                 .set_email_address(email_address_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetContact")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetContact", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetContactOutput {
                 inner: output.into(),
             })
@@ -26164,20 +26513,19 @@ impl SESv2Client {
             let request = client
                 .get_contact_list()
                 .set_contact_list_name(contact_list_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetContactList"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetContactList", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetContactListOutput {
                 inner: output.into(),
@@ -26218,21 +26566,23 @@ impl SESv2Client {
             let request = client
                 .get_custom_verification_email_template()
                 .set_template_name(template_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetCustomVerificationEmailTemplate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCustomVerificationEmailTemplate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetCustomVerificationEmailTemplateOutput {
@@ -26268,20 +26618,19 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_dedicated_ip().set_ip(ip_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIp"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDedicatedIp", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDedicatedIpOutput {
                 inner: output.into(),
@@ -26322,20 +26671,24 @@ impl SESv2Client {
             let request = client
                 .get_dedicated_ip_pool()
                 .set_pool_name(pool_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIpPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDedicatedIpPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDedicatedIpPoolOutput {
                 inner: output.into(),
@@ -26418,20 +26771,19 @@ impl SESv2Client {
                 .set_pool_name(pool_name_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDedicatedIps"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDedicatedIps", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetDedicatedIpsOutput {
                 inner: output.into(),
@@ -26450,21 +26802,23 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_deliverability_dashboard_options();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetDeliverabilityDashboardOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeliverabilityDashboardOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetDeliverabilityDashboardOptionsOutput {
@@ -26506,20 +26860,24 @@ impl SESv2Client {
             let request = client
                 .get_deliverability_test_report()
                 .set_report_id(report_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDeliverabilityTestReport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDeliverabilityTestReport",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDeliverabilityTestReportOutput {
                 inner: output.into(),
@@ -26560,20 +26918,24 @@ impl SESv2Client {
             let request = client
                 .get_domain_deliverability_campaign()
                 .set_campaign_id(campaign_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainDeliverabilityCampaign"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDomainDeliverabilityCampaign",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDomainDeliverabilityCampaignOutput {
                 inner: output.into(),
@@ -26662,20 +27024,24 @@ impl SESv2Client {
                 .set_domain(domain_value)
                 .set_start_date(start_date_value)
                 .set_end_date(end_date_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDomainStatisticsReport"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDomainStatisticsReport",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDomainStatisticsReportOutput {
                 inner: output.into(),
@@ -26716,20 +27082,24 @@ impl SESv2Client {
             let request = client
                 .get_email_address_insights()
                 .set_email_address(email_address_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailAddressInsights"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEmailAddressInsights",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEmailAddressInsightsOutput {
                 inner: output.into(),
@@ -26770,20 +27140,24 @@ impl SESv2Client {
             let request = client
                 .get_email_identity()
                 .set_email_identity(email_identity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEmailIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEmailIdentityOutput {
                 inner: output.into(),
@@ -26824,20 +27198,24 @@ impl SESv2Client {
             let request = client
                 .get_email_identity_policies()
                 .set_email_identity(email_identity_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailIdentityPolicies"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEmailIdentityPolicies",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEmailIdentityPoliciesOutput { inner: output })
         })
@@ -26876,20 +27254,24 @@ impl SESv2Client {
             let request = client
                 .get_email_template()
                 .set_template_name(template_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEmailTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEmailTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEmailTemplateOutput {
                 inner: output.into(),
@@ -26924,20 +27306,19 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_export_job().set_job_id(job_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetExportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetExportJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetExportJobOutput {
                 inner: output.into(),
@@ -26972,20 +27353,19 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_import_job().set_job_id(job_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetImportJob"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetImportJob", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetImportJobOutput {
                 inner: output.into(),
@@ -27026,20 +27406,24 @@ impl SESv2Client {
             let request = client
                 .get_message_insights()
                 .set_message_id(message_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMessageInsights"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMessageInsights",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMessageInsightsOutput {
                 inner: output.into(),
@@ -27080,20 +27464,24 @@ impl SESv2Client {
             let request = client
                 .get_multi_region_endpoint()
                 .set_endpoint_name(endpoint_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMultiRegionEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMultiRegionEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMultiRegionEndpointOutput {
                 inner: output.into(),
@@ -27159,20 +27547,24 @@ impl SESv2Client {
                 .get_reputation_entity()
                 .set_reputation_entity_reference(reputation_entity_reference_value)
                 .set_reputation_entity_type(reputation_entity_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetReputationEntity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetReputationEntity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetReputationEntityOutput {
                 inner: output.into(),
@@ -27234,20 +27626,24 @@ impl SESv2Client {
                 .get_suppressed_destination()
                 .set_email_address(email_address_value)
                 .set_tenant_name(tenant_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSuppressedDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSuppressedDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetSuppressedDestinationOutput {
                 inner: output.into(),
@@ -27286,20 +27682,20 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_tenant().set_tenant_name(tenant_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetTenant")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetTenant", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetTenantOutput {
                 inner: output.into(),
             })
@@ -27407,20 +27803,24 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListConfigurationSets"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListConfigurationSets",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListConfigurationSetsOutput { inner: output })
         })
@@ -27480,20 +27880,24 @@ impl SESv2Client {
                 .list_contact_lists()
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListContactLists"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListContactLists",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListContactListsOutput {
                 inner: output.into(),
@@ -27598,20 +28002,19 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListContacts"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListContacts", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListContactsOutput {
                 inner: output.into(),
@@ -27673,21 +28076,23 @@ impl SESv2Client {
                 .list_custom_verification_email_templates()
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListCustomVerificationEmailTemplates")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCustomVerificationEmailTemplates",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListCustomVerificationEmailTemplatesOutput {
@@ -27750,20 +28155,24 @@ impl SESv2Client {
                 .list_dedicated_ip_pools()
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDedicatedIpPools"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDedicatedIpPools",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDedicatedIpPoolsOutput { inner: output })
         })
@@ -27823,20 +28232,24 @@ impl SESv2Client {
                 .list_deliverability_test_reports()
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDeliverabilityTestReports"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDeliverabilityTestReports",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDeliverabilityTestReportsOutput {
                 inner: output.into(),
@@ -27972,21 +28385,23 @@ impl SESv2Client {
                 .set_subscribed_domain(subscribed_domain_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListDomainDeliverabilityCampaigns")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDomainDeliverabilityCampaigns",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListDomainDeliverabilityCampaignsOutput {
@@ -28094,20 +28509,24 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentities"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEmailIdentities",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEmailIdentitiesOutput {
                 inner: output.into(),
@@ -28190,20 +28609,24 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailIdentityCertificates"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEmailIdentityCertificates",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEmailIdentityCertificatesOutput {
                 inner: output.into(),
@@ -28265,20 +28688,24 @@ impl SESv2Client {
                 .list_email_templates()
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEmailTemplates"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEmailTemplates",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEmailTemplatesOutput {
                 inner: output.into(),
@@ -28387,20 +28814,19 @@ impl SESv2Client {
                 .set_page_size(page_size_value)
                 .set_export_source_type(export_source_type_value)
                 .set_job_status(job_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListExportJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListExportJobs", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListExportJobsOutput {
                 inner: output.into(),
@@ -28486,20 +28912,19 @@ impl SESv2Client {
                 .set_import_destination_type(import_destination_type_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListImportJobs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListImportJobs", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListImportJobsOutput {
                 inner: output.into(),
@@ -28561,20 +28986,24 @@ impl SESv2Client {
                 .list_multi_region_endpoints()
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListMultiRegionEndpoints"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListMultiRegionEndpoints",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListMultiRegionEndpointsOutput {
                 inner: output.into(),
@@ -28683,20 +29112,24 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListRecommendations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListRecommendations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListRecommendationsOutput {
                 inner: output.into(),
@@ -28805,20 +29238,24 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListReputationEntities"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListReputationEntities",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListReputationEntitiesOutput {
                 inner: output.into(),
@@ -28901,20 +29338,24 @@ impl SESv2Client {
                 .set_resource_arn(resource_arn_value)
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListResourceTenants"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListResourceTenants",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListResourceTenantsOutput {
                 inner: output.into(),
@@ -29096,20 +29537,24 @@ impl SESv2Client {
                 .set_end_date(end_date_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSuppressedDestinations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSuppressedDestinations",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSuppressedDestinationsOutput {
                 inner: output.into(),
@@ -29150,20 +29595,24 @@ impl SESv2Client {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -29293,20 +29742,24 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_page_size(page_size_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTenantResources"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTenantResources",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTenantResourcesOutput {
                 inner: output.into(),
@@ -29414,20 +29867,20 @@ impl SESv2Client {
                 .set_filter(filter_value)
                 .set_next_token(next_token_value)
                 .set_page_size(page_size_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTenants")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTenants", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTenantsOutput {
                 inner: output.into(),
             })
@@ -29468,21 +29921,23 @@ impl SESv2Client {
             let request = client
                 .put_account_dedicated_ip_warmup_attributes()
                 .set_auto_warmup_enabled(auto_warmup_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutAccountDedicatedIpWarmupAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountDedicatedIpWarmupAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutAccountDedicatedIpWarmupAttributesOutput { inner: output })
@@ -29656,20 +30111,24 @@ impl SESv2Client {
                 .set_use_case_description(use_case_description_value)
                 .set_additional_contact_email_addresses(additional_contact_email_addresses_value)
                 .set_production_access_enabled(production_access_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountDetails"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountDetails",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountDetailsOutput { inner: output })
         })
@@ -29708,20 +30167,24 @@ impl SESv2Client {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.put_account_pricing_attributes().set_plan(plan_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountPricingAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountPricingAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountPricingAttributesOutput { inner: output })
         })
@@ -29760,20 +30223,24 @@ impl SESv2Client {
             let request = client
                 .put_account_sending_attributes()
                 .set_sending_enabled(sending_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSendingAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountSendingAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountSendingAttributesOutput { inner: output })
         })
@@ -29862,20 +30329,24 @@ impl SESv2Client {
                 .put_account_suppression_attributes()
                 .set_suppressed_reasons(suppressed_reasons_value)
                 .set_validation_attributes(validation_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountSuppressionAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountSuppressionAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountSuppressionAttributesOutput { inner: output })
         })
@@ -29914,20 +30385,24 @@ impl SESv2Client {
             let request = client
                 .put_account_vdm_attributes()
                 .set_vdm_attributes(vdm_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutAccountVdmAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutAccountVdmAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutAccountVdmAttributesOutput { inner: output })
         })
@@ -29988,21 +30463,23 @@ impl SESv2Client {
                 .put_configuration_set_archiving_options()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_archive_arn(archive_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetArchivingOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetArchivingOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetArchivingOptionsOutput { inner: output })
@@ -30110,21 +30587,23 @@ impl SESv2Client {
                 .set_tls_policy(tls_policy_value)
                 .set_sending_pool_name(sending_pool_name_value)
                 .set_max_delivery_seconds(max_delivery_seconds_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetDeliveryOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetDeliveryOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetDeliveryOptionsOutput { inner: output })
@@ -30187,21 +30666,23 @@ impl SESv2Client {
                 .put_configuration_set_reputation_options()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_reputation_metrics_enabled(reputation_metrics_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetReputationOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetReputationOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetReputationOptionsOutput { inner: output })
@@ -30263,21 +30744,23 @@ impl SESv2Client {
                 .put_configuration_set_sending_options()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_sending_enabled(sending_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetSendingOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetSendingOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetSendingOptionsOutput { inner: output })
@@ -30413,21 +30896,23 @@ impl SESv2Client {
                 .set_suppression_scope(suppression_scope_value)
                 .set_suppressed_reasons(suppressed_reasons_value)
                 .set_validation_options(validation_options_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetSuppressionOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetSuppressionOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetSuppressionOptionsOutput { inner: output })
@@ -30513,21 +30998,23 @@ impl SESv2Client {
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_custom_redirect_domain(custom_redirect_domain_value)
                 .set_https_policy(https_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutConfigurationSetTrackingOptions")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetTrackingOptions",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutConfigurationSetTrackingOptionsOutput { inner: output })
@@ -30589,20 +31076,24 @@ impl SESv2Client {
                 .put_configuration_set_vdm_options()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_vdm_options(vdm_options_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutConfigurationSetVdmOptions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutConfigurationSetVdmOptions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutConfigurationSetVdmOptionsOutput { inner: output })
         })
@@ -30659,20 +31150,24 @@ impl SESv2Client {
                 .put_dedicated_ip_in_pool()
                 .set_ip(ip_value)
                 .set_destination_pool_name(destination_pool_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpInPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDedicatedIpInPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDedicatedIpInPoolOutput { inner: output })
         })
@@ -30734,21 +31229,23 @@ impl SESv2Client {
                 .put_dedicated_ip_pool_scaling_attributes()
                 .set_pool_name(pool_name_value)
                 .set_scaling_mode(scaling_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutDedicatedIpPoolScalingAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDedicatedIpPoolScalingAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutDedicatedIpPoolScalingAttributesOutput { inner: output })
@@ -30806,20 +31303,24 @@ impl SESv2Client {
                 .put_dedicated_ip_warmup_attributes()
                 .set_ip(ip_value)
                 .set_warmup_percentage(warmup_percentage_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDedicatedIpWarmupAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDedicatedIpWarmupAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDedicatedIpWarmupAttributesOutput { inner: output })
         })
@@ -30905,20 +31406,24 @@ impl SESv2Client {
                 .put_deliverability_dashboard_option()
                 .set_dashboard_enabled(dashboard_enabled_value)
                 .set_subscribed_domains(subscribed_domains_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDeliverabilityDashboardOption"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDeliverabilityDashboardOption",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutDeliverabilityDashboardOptionOutput { inner: output })
         })
@@ -30979,21 +31484,23 @@ impl SESv2Client {
                 .put_email_identity_configuration_set_attributes()
                 .set_email_identity(email_identity_value)
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutEmailIdentityConfigurationSetAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEmailIdentityConfigurationSetAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutEmailIdentityConfigurationSetAttributesOutput { inner: output })
@@ -31054,20 +31561,24 @@ impl SESv2Client {
                 .put_email_identity_dkim_attributes()
                 .set_email_identity(email_identity_value)
                 .set_signing_enabled(signing_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutEmailIdentityDkimAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEmailIdentityDkimAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutEmailIdentityDkimAttributesOutput { inner: output })
         })
@@ -31153,21 +31664,23 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_signing_attributes_origin(signing_attributes_origin_value)
                 .set_signing_attributes(signing_attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutEmailIdentityDkimSigningAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEmailIdentityDkimSigningAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutEmailIdentityDkimSigningAttributesOutput { inner: output })
@@ -31229,21 +31742,23 @@ impl SESv2Client {
                 .put_email_identity_feedback_attributes()
                 .set_email_identity(email_identity_value)
                 .set_email_forwarding_enabled(email_forwarding_enabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutEmailIdentityFeedbackAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEmailIdentityFeedbackAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutEmailIdentityFeedbackAttributesOutput { inner: output })
@@ -31328,21 +31843,23 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_mail_from_domain(mail_from_domain_value)
                 .set_behavior_on_mx_failure(behavior_on_mx_failure_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "PutEmailIdentityMailFromAttributes")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutEmailIdentityMailFromAttributes",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationPutEmailIdentityMailFromAttributesOutput { inner: output })
@@ -31426,20 +31943,24 @@ impl SESv2Client {
                 .set_email_address(email_address_value)
                 .set_reason(reason_value)
                 .set_tenant_name(tenant_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutSuppressedDestination"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutSuppressedDestination",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutSuppressedDestinationOutput { inner: output })
         })
@@ -31551,20 +32072,24 @@ impl SESv2Client {
                 .set_tenant_name(tenant_name_value)
                 .set_suppressed_reasons(suppressed_reasons_value)
                 .set_suppression_scope(suppression_scope_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutTenantSuppressionAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutTenantSuppressionAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutTenantSuppressionAttributesOutput { inner: output })
         })
@@ -31917,20 +32442,19 @@ impl SESv2Client {
                 .set_endpoint_id(endpoint_id_value)
                 .set_tenant_name(tenant_name_value)
                 .set_configuration_overrides(configuration_overrides_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SendBulkEmail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SendBulkEmail", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationSendBulkEmailOutput {
                 inner: output.into(),
@@ -32014,20 +32538,24 @@ impl SESv2Client {
                 .set_email_address(email_address_value)
                 .set_template_name(template_name_value)
                 .set_configuration_set_name(configuration_set_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SendCustomVerificationEmail"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendCustomVerificationEmail",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSendCustomVerificationEmailOutput { inner: output })
         })
@@ -32377,20 +32905,20 @@ impl SESv2Client {
                 .set_tenant_name(tenant_name_value)
                 .set_list_management_options(list_management_options_value)
                 .set_configuration_overrides(configuration_overrides_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "SendEmail")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SendEmail", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationSendEmailOutput { inner: output })
         })
     }
@@ -32472,20 +33000,20 @@ impl SESv2Client {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -32544,20 +33072,24 @@ impl SESv2Client {
                 .test_render_email_template()
                 .set_template_name(template_name_value)
                 .set_template_data(template_data_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "TestRenderEmailTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "TestRenderEmailTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationTestRenderEmailTemplateOutput { inner: output })
         })
@@ -32640,20 +33172,19 @@ impl SESv2Client {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -32715,20 +33246,24 @@ impl SESv2Client {
                 .update_configuration_set()
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_message_security_options(message_security_options_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateConfigurationSet"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateConfigurationSet",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateConfigurationSetOutput { inner: output })
         })
@@ -32812,21 +33347,23 @@ impl SESv2Client {
                 .set_configuration_set_name(configuration_set_name_value)
                 .set_event_destination_name(event_destination_name_value)
                 .set_event_destination(event_destination_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateConfigurationSetEventDestination")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateConfigurationSetEventDestination",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateConfigurationSetEventDestinationOutput { inner: output })
@@ -32975,20 +33512,19 @@ impl SESv2Client {
                 .set_topic_preferences(topic_preferences_value)
                 .set_unsubscribe_all(unsubscribe_all_value)
                 .set_attributes_data(attributes_data_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContact"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateContact", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateContactOutput { inner: output })
         })
@@ -33093,20 +33629,24 @@ impl SESv2Client {
                 .set_contact_list_name(contact_list_name_value)
                 .set_topics(topics_value)
                 .set_description(description_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateContactList"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateContactList",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateContactListOutput { inner: output })
         })
@@ -33253,21 +33793,23 @@ impl SESv2Client {
                 .set_template_content(template_content_value)
                 .set_success_redirection_url(success_redirection_url_value)
                 .set_failure_redirection_url(failure_redirection_url_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateCustomVerificationEmailTemplate")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCustomVerificationEmailTemplate",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateCustomVerificationEmailTemplateOutput { inner: output })
@@ -33345,20 +33887,24 @@ impl SESv2Client {
                 .set_email_identity(email_identity_value)
                 .set_policy_name(policy_name_value)
                 .set_policy(policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailIdentityPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateEmailIdentityPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateEmailIdentityPolicyOutput { inner: output })
         })
@@ -33418,20 +33964,24 @@ impl SESv2Client {
                 .update_email_template()
                 .set_template_name(template_name_value)
                 .set_template_content(template_content_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEmailTemplate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateEmailTemplate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateEmailTemplateOutput { inner: output })
         })
@@ -33518,21 +34068,23 @@ impl SESv2Client {
                 .set_reputation_entity_type(reputation_entity_type_value)
                 .set_reputation_entity_reference(reputation_entity_reference_value)
                 .set_sending_status(sending_status_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "UpdateReputationEntityCustomerManagedStatus")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateReputationEntityCustomerManagedStatus",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationUpdateReputationEntityCustomerManagedStatusOutput { inner: output })
@@ -33619,20 +34171,24 @@ impl SESv2Client {
                 .set_reputation_entity_type(reputation_entity_type_value)
                 .set_reputation_entity_reference(reputation_entity_reference_value)
                 .set_reputation_entity_policy(reputation_entity_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateReputationEntityPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateReputationEntityPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateReputationEntityPolicyOutput { inner: output })
         })

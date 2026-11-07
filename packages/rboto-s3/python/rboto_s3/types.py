@@ -2103,6 +2103,13 @@ IntelligentTieringFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/IntelligentTieringFilter/)."""
 
+class InvalidObjectStateErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/InvalidObjectStateErrorDetails/)."""
+    """Decoded fields of InvalidObjectStateError; values may contain application data."""
+    storage_class: StorageClassOutput
+    access_tier: IntelligentTieringAccessTierOutput
+
+
 InventoryConfiguration = TypedDict(
     "InventoryConfiguration",
     {

@@ -1051,6 +1051,12 @@ AudioSegment = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AudioSegment/)."""
 
+class BadGatewayErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BadGatewayErrorDetails/)."""
+    """Decoded fields of BadGatewayError; values may contain application data."""
+    resource_name: str
+
+
 BedrockFoundationModelConfiguration = TypedDict(
     "BedrockFoundationModelConfiguration",
     {
@@ -1319,6 +1325,12 @@ DeleteSessionRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DeleteSessionRequest/)."""
+
+class DependencyFailedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/DependencyFailedErrorDetails/)."""
+    """Decoded fields of DependencyFailedError; values may contain application data."""
+    resource_name: str
+
 
 DocumentAcl = TypedDict(
     "DocumentAcl",
@@ -2315,6 +2327,12 @@ InputPrompttextPrompt = TypedDict("InputPrompttextPrompt", {"text_prompt": Requi
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InputPrompttextPrompt/)."""
 InputPrompt: TypeAlias = InputPrompttextPrompt
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InputPrompt/)."""
+
+class InternalServerErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InternalServerErrorDetails/)."""
+    """Decoded fields of InternalServerError; values may contain application data."""
+    reason: str
+
 
 InvocationInput = TypedDict(
     "InvocationInput",

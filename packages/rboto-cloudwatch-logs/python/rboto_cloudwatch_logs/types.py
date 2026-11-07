@@ -824,6 +824,12 @@ CreateScheduledQueryRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/CreateScheduledQueryRequest/)."""
 
+class DataAlreadyAcceptedErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataAlreadyAcceptedErrorDetails/)."""
+    """Decoded fields of DataAlreadyAcceptedError; values may contain application data."""
+    expected_sequence_token: str
+
+
 DataSource = TypedDict(
     "DataSource",
     {
@@ -1733,6 +1739,12 @@ IntegrationSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationSummary/)."""
 
+class InvalidSequenceTokenErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/InvalidSequenceTokenErrorDetails/)."""
+    """Decoded fields of InvalidSequenceTokenError; values may contain application data."""
+    expected_sequence_token: str
+
+
 ListAggregateLogGroupSummariesRequest = TypedDict(
     "ListAggregateLogGroupSummariesRequest",
     {
@@ -2024,6 +2036,12 @@ LowerCaseString = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LowerCaseString/)."""
+
+class MalformedQueryErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/MalformedQueryErrorDetails/)."""
+    """Decoded fields of MalformedQueryError; values may contain application data."""
+    query_compile_error: QueryCompileError
+
 
 MetricFilter = TypedDict(
     "MetricFilter",
@@ -2544,8 +2562,8 @@ PutTransformerRequest = TypedDict(
 QueryCompileError = TypedDict(
     "QueryCompileError",
     {
-    "location": NotRequired["QueryCompileErrorLocation"],
-    "message": NotRequired["str"],
+    "location": Required["QueryCompileErrorLocation | None"],
+    "message": Required["str | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryCompileError/)."""
@@ -2553,8 +2571,8 @@ QueryCompileError = TypedDict(
 QueryCompileErrorLocation = TypedDict(
     "QueryCompileErrorLocation",
     {
-    "start_char_offset": NotRequired["int"],
-    "end_char_offset": NotRequired["int"],
+    "start_char_offset": Required["int | None"],
+    "end_char_offset": Required["int | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/QueryCompileErrorLocation/)."""
@@ -2933,6 +2951,12 @@ TestTransformerRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TestTransformerRequest/)."""
+
+class TooManyTagsErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/TooManyTagsErrorDetails/)."""
+    """Decoded fields of TooManyTagsError; values may contain application data."""
+    resource_name: str
+
 
 TransformedLogRecord = TypedDict(
     "TransformedLogRecord",

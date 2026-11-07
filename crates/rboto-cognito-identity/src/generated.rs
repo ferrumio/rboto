@@ -2889,6 +2889,78 @@ impl PyOperationUpdateIdentityPoolOutput {
     }
 }
 
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::delete_identity_pool::DeleteIdentityPoolError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::describe_identity::DescribeIdentityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityError {}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_id::GetIdError {}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::get_open_id_token::GetOpenIdTokenError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityError {}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapError {}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::lookup_developer_identity::LookupDeveloperIdentityError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesError {}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::set_identity_pool_roles::SetIdentityPoolRolesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapError {}
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::unlink_developer_identity::UnlinkDeveloperIdentityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::unlink_identity::UnlinkIdentityError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::untag_resource::UntagResourceError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyCognitoIdentityProvider>()?;
     module.add_class::<PyCredentials>()?;
@@ -3306,20 +3378,24 @@ impl CognitoIdentityClient {
                 .set_cognito_identity_providers(cognito_identity_providers_value)
                 .set_saml_provider_arns(saml_provider_arns_value)
                 .set_identity_pool_tags(identity_pool_tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateIdentityPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateIdentityPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateIdentityPoolOutput {
                 inner: output.into(),
@@ -3384,20 +3460,24 @@ impl CognitoIdentityClient {
             let request = client
                 .delete_identities()
                 .set_identity_ids_to_delete(identity_ids_to_delete_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIdentities"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIdentities",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteIdentitiesOutput {
                 inner: output.into(),
@@ -3438,21 +3518,29 @@ impl CognitoIdentityClient {
             let request = client
                 .delete_identity_pool()
                 .set_identity_pool_id(identity_pool_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteIdentityPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteIdentityPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteIdentityPool",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3490,20 +3578,24 @@ impl CognitoIdentityClient {
             let request = client
                 .describe_identity()
                 .set_identity_id(identity_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeIdentityOutput { inner: output })
         })
@@ -3542,20 +3634,24 @@ impl CognitoIdentityClient {
             let request = client
                 .describe_identity_pool()
                 .set_identity_pool_id(identity_pool_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeIdentityPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DescribeIdentityPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDescribeIdentityPoolOutput {
                 inner: output.into(),
@@ -3660,20 +3756,24 @@ impl CognitoIdentityClient {
                 .set_identity_id(identity_id_value)
                 .set_logins(logins_value)
                 .set_custom_role_arn(custom_role_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCredentialsForIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCredentialsForIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCredentialsForIdentityOutput {
                 inner: output.into(),
@@ -3778,20 +3878,20 @@ impl CognitoIdentityClient {
                 .set_account_id(account_id_value)
                 .set_identity_pool_id(identity_pool_id_value)
                 .set_logins(logins_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetId")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetId", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetIdOutput { inner: output })
         })
     }
@@ -3829,20 +3929,24 @@ impl CognitoIdentityClient {
             let request = client
                 .get_identity_pool_roles()
                 .set_identity_pool_id(identity_pool_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetIdentityPoolRoles"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetIdentityPoolRoles",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetIdentityPoolRolesOutput {
                 inner: output.into(),
@@ -3926,20 +4030,19 @@ impl CognitoIdentityClient {
                 .get_open_id_token()
                 .set_identity_id(identity_id_value)
                 .set_logins(logins_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetOpenIdToken"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetOpenIdToken", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetOpenIdTokenOutput { inner: output })
         })
@@ -4110,21 +4213,23 @@ impl CognitoIdentityClient {
                 .set_logins(logins_value)
                 .set_principal_tags(principal_tags_value)
                 .set_token_duration(token_duration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "GetOpenIdTokenForDeveloperIdentity")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetOpenIdTokenForDeveloperIdentity",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationGetOpenIdTokenForDeveloperIdentityOutput { inner: output })
@@ -4186,20 +4291,24 @@ impl CognitoIdentityClient {
                 .get_principal_tag_attribute_map()
                 .set_identity_pool_id(identity_pool_id_value)
                 .set_identity_provider_name(identity_provider_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPrincipalTagAttributeMap"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPrincipalTagAttributeMap",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPrincipalTagAttributeMapOutput { inner: output })
         })
@@ -4301,20 +4410,19 @@ impl CognitoIdentityClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_hide_disabled(hide_disabled_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentities"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListIdentities", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListIdentitiesOutput {
                 inner: output.into(),
@@ -4376,20 +4484,24 @@ impl CognitoIdentityClient {
                 .list_identity_pools()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListIdentityPools"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListIdentityPools",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListIdentityPoolsOutput {
                 inner: output.into(),
@@ -4430,20 +4542,24 @@ impl CognitoIdentityClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -4567,20 +4683,24 @@ impl CognitoIdentityClient {
                 .set_developer_user_identifier(developer_user_identifier_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "LookupDeveloperIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "LookupDeveloperIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationLookupDeveloperIdentityOutput { inner: output })
         })
@@ -4685,20 +4805,24 @@ impl CognitoIdentityClient {
                 .set_destination_user_identifier(destination_user_identifier_value)
                 .set_developer_provider_name(developer_provider_name_value)
                 .set_identity_pool_id(identity_pool_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "MergeDeveloperIdentities"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "MergeDeveloperIdentities",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationMergeDeveloperIdentitiesOutput { inner: output })
         })
@@ -4827,21 +4951,29 @@ impl CognitoIdentityClient {
                 .set_identity_pool_id(identity_pool_id_value)
                 .set_roles(roles_value)
                 .set_role_mappings(role_mappings_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetIdentityPoolRoles"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetIdentityPoolRoles",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetIdentityPoolRoles",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -4969,20 +5101,24 @@ impl CognitoIdentityClient {
                 .set_identity_provider_name(identity_provider_name_value)
                 .set_use_defaults(use_defaults_value)
                 .set_principal_tags(principal_tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetPrincipalTagAttributeMap"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetPrincipalTagAttributeMap",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSetPrincipalTagAttributeMapOutput { inner: output })
         })
@@ -5064,20 +5200,20 @@ impl CognitoIdentityClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -5180,21 +5316,29 @@ impl CognitoIdentityClient {
                 .set_identity_pool_id(identity_pool_id_value)
                 .set_developer_provider_name(developer_provider_name_value)
                 .set_developer_user_identifier(developer_user_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UnlinkDeveloperIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UnlinkDeveloperIdentity",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UnlinkDeveloperIdentity",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5319,21 +5463,24 @@ impl CognitoIdentityClient {
                 .set_identity_id(identity_id_value)
                 .set_logins(logins_value)
                 .set_logins_to_remove(logins_to_remove_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UnlinkIdentity"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UnlinkIdentity", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UnlinkIdentity",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5415,20 +5562,19 @@ impl CognitoIdentityClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -5786,20 +5932,24 @@ impl CognitoIdentityClient {
                 .set_cognito_identity_providers(cognito_identity_providers_value)
                 .set_saml_provider_arns(saml_provider_arns_value)
                 .set_identity_pool_tags(identity_pool_tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateIdentityPool"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateIdentityPool",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateIdentityPoolOutput {
                 inner: output.into(),

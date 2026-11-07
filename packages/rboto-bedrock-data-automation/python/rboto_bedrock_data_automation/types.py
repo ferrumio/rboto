@@ -1214,6 +1214,12 @@ UpsertEntityInfovocabulary = TypedDict("UpsertEntityInfovocabulary", {"vocabular
 UpsertEntityInfo: TypeAlias = UpsertEntityInfovocabulary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpsertEntityInfo/)."""
 
+class ValidationErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ValidationErrorDetails/)."""
+    """Decoded fields of ValidationError; values may contain application data."""
+    field_list: list[ValidationExceptionField]
+
+
 ValidationExceptionField = TypedDict(
     "ValidationExceptionField",
     {

@@ -4337,6 +4337,63 @@ impl PyOperationValidateResourcePolicyOutput {
     }
 }
 
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::batch_get_secret_value::BatchGetSecretValueError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::cancel_rotate_secret::CancelRotateSecretError
+{
+}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::create_secret::CreateSecretError {}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::delete_secret::DeleteSecretError {}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::describe_secret::DescribeSecretError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::get_random_password::GetRandomPasswordError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::get_resource_policy::GetResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::get_secret_value::GetSecretValueError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::list_secret_version_ids::ListSecretVersionIdsError
+{
+}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::list_secrets::ListSecretsError {}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::put_resource_policy::PutResourcePolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::put_secret_value::PutSecretValueError
+{
+}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::remove_regions_from_replication::RemoveRegionsFromReplicationError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::replicate_secret_to_regions::ReplicateSecretToRegionsError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::restore_secret::RestoreSecretError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::rotate_secret::RotateSecretError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::stop_replication_to_replica::StopReplicationToReplicaError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret::UpdateSecretError {}
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret_version_stage::UpdateSecretVersionStageError {}
+impl ModeledErrorDetails
+    for aws_sdk_secretsmanager::operation::validate_resource_policy::ValidateResourcePolicyError
+{
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyApiErrorType>()?;
     module.add_class::<PyExternalSecretRotationMetadataItem>()?;
@@ -4568,20 +4625,24 @@ impl SecretsManagerClient {
                 .set_filters(filters_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "BatchGetSecretValue"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchGetSecretValue",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationBatchGetSecretValueOutput {
                 inner: output.into(),
@@ -4620,20 +4681,24 @@ impl SecretsManagerClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.cancel_rotate_secret().set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CancelRotateSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CancelRotateSecret",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCancelRotateSecretOutput { inner: output })
         })
@@ -4903,20 +4968,19 @@ impl SecretsManagerClient {
                 .set_add_replica_regions(add_replica_regions_value)
                 .set_force_overwrite_replica_secret(force_overwrite_replica_secret_value)
                 .set_type(type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateSecretOutput {
                 inner: output.into(),
@@ -4957,20 +5021,24 @@ impl SecretsManagerClient {
             let request = client
                 .delete_resource_policy()
                 .set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteResourcePolicyOutput { inner: output })
         })
@@ -5053,20 +5121,19 @@ impl SecretsManagerClient {
                 .set_secret_id(secret_id_value)
                 .set_recovery_window_in_days(recovery_window_in_days_value)
                 .set_force_delete_without_recovery(force_delete_without_recovery_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteSecretOutput { inner: output })
         })
@@ -5103,20 +5170,19 @@ impl SecretsManagerClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.describe_secret().set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DescribeSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DescribeSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDescribeSecretOutput {
                 inner: output.into(),
@@ -5309,20 +5375,24 @@ impl SecretsManagerClient {
                 .set_exclude_lowercase(exclude_lowercase_value)
                 .set_include_space(include_space_value)
                 .set_require_each_included_type(require_each_included_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRandomPassword"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetRandomPassword",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetRandomPasswordOutput { inner: output })
         })
@@ -5359,20 +5429,24 @@ impl SecretsManagerClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_resource_policy().set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
@@ -5453,20 +5527,19 @@ impl SecretsManagerClient {
                 .set_secret_id(secret_id_value)
                 .set_version_id(version_id_value)
                 .set_version_stage(version_stage_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSecretValue"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSecretValue", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetSecretValueOutput { inner: output })
         })
@@ -5569,20 +5642,24 @@ impl SecretsManagerClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_include_deprecated(include_deprecated_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSecretVersionIds"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSecretVersionIds",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSecretVersionIdsOutput {
                 inner: output.into(),
@@ -5756,20 +5833,20 @@ impl SecretsManagerClient {
                 .set_filters(filters_value)
                 .set_sort_order(sort_order_value)
                 .set_sort_by(sort_by_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListSecrets")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListSecrets", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListSecretsOutput {
                 inner: output.into(),
             })
@@ -5852,20 +5929,24 @@ impl SecretsManagerClient {
                 .set_secret_id(secret_id_value)
                 .set_resource_policy(resource_policy_value)
                 .set_block_public_policy(block_public_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -6034,20 +6115,19 @@ impl SecretsManagerClient {
                 .set_secret_string(secret_string_value)
                 .set_version_stages(version_stages_value)
                 .set_rotation_token(rotation_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutSecretValue"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PutSecretValue", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPutSecretValueOutput { inner: output })
         })
@@ -6131,20 +6211,24 @@ impl SecretsManagerClient {
                 .remove_regions_from_replication()
                 .set_secret_id(secret_id_value)
                 .set_remove_replica_regions(remove_replica_regions_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemoveRegionsFromReplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemoveRegionsFromReplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRemoveRegionsFromReplicationOutput {
                 inner: output.into(),
@@ -6252,20 +6336,24 @@ impl SecretsManagerClient {
                 .set_secret_id(secret_id_value)
                 .set_add_replica_regions(add_replica_regions_value)
                 .set_force_overwrite_replica_secret(force_overwrite_replica_secret_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ReplicateSecretToRegions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ReplicateSecretToRegions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationReplicateSecretToRegionsOutput {
                 inner: output.into(),
@@ -6304,20 +6392,19 @@ impl SecretsManagerClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.restore_secret().set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RestoreSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RestoreSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRestoreSecretOutput { inner: output })
         })
@@ -6511,20 +6598,19 @@ impl SecretsManagerClient {
                 .set_external_secret_rotation_metadata(external_secret_rotation_metadata_value)
                 .set_external_secret_rotation_role_arn(external_secret_rotation_role_arn_value)
                 .set_rotate_immediately(rotate_immediately_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RotateSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "RotateSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationRotateSecretOutput { inner: output })
         })
@@ -6563,20 +6649,24 @@ impl SecretsManagerClient {
             let request = client
                 .stop_replication_to_replica()
                 .set_secret_id(secret_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopReplicationToReplica"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopReplicationToReplica",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopReplicationToReplicaOutput { inner: output })
         })
@@ -6659,20 +6749,24 @@ impl SecretsManagerClient {
                 .tag_resource()
                 .set_secret_id(secret_id_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -6754,21 +6848,24 @@ impl SecretsManagerClient {
                 .untag_resource()
                 .set_secret_id(secret_id_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -6930,20 +7027,19 @@ impl SecretsManagerClient {
                 .set_secret_binary(secret_binary_value)
                 .set_secret_string(secret_string_value)
                 .set_type(type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecret"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateSecret", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateSecretOutput { inner: output })
         })
@@ -7047,20 +7143,24 @@ impl SecretsManagerClient {
                 .set_version_stage(version_stage_value)
                 .set_remove_from_version_id(remove_from_version_id_value)
                 .set_move_to_version_id(move_to_version_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSecretVersionStage"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateSecretVersionStage",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateSecretVersionStageOutput { inner: output })
         })
@@ -7120,20 +7220,24 @@ impl SecretsManagerClient {
                 .validate_resource_policy()
                 .set_secret_id(secret_id_value)
                 .set_resource_policy(resource_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ValidateResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ValidateResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationValidateResourcePolicyOutput {
                 inner: output.into(),

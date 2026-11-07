@@ -79,7 +79,9 @@ Service exceptions inherit from `rboto.exceptions.ClientError`.
 | `message` | Error message |
 | `operation_name` | Operation, such as `GetObject` |
 | `request_id` | Request identifier when populated |
-| `response` | `Error.Code`, `Error.Message`, and optional `RequestId` |
+| `response_metadata` | Typed, allowlisted HTTP and retry context |
+| `details` | Additional decoded fields of the modeled error |
+| `response` | `Error.Code`, `Error.Message`, optional `RequestId`, and `ResponseMetadata` |
 
 Unknown codes fall back to the service base exception and retain the original code
 and operation name.
@@ -92,13 +94,119 @@ response use shared exceptions from `rboto.exceptions`:
 | `ConfigurationError` | Invalid settings, missing region, or request construction failure |
 | `CredentialsError` | Credentials could not be loaded or refreshed |
 | `ConnectionError` | Connection, proxy, or TLS failure |
-| `TimeoutError` | Connection, read, attempt, or operation deadline |
-| `ResponseError` | The service response could not be decoded |
+| `TimeoutError` | Native connection, read, attempt, operation, or stream timeout |
+| `ResponseError` | Response decoding, validation, or an otherwise unclassified body failure |
 
 `TimeoutError` inherits from `ConnectionError`; both and `ResponseError` inherit
 from `ClientError`. `ConfigurationError` and `CredentialsError` inherit directly
 from `RbotoError`. Transport messages do not include request bodies or signing
 headers.
+
+### Response metadata
+
+`error.response_metadata` and `error.response["ResponseMetadata"]` expose the same
+`ResponseMetadata` typed dictionary from `rboto.exceptions`:
+
+| Key | Type | Meaning |
+|---|---|---|
+| `HTTPStatusCode` | `int \| None` | Status of the final HTTP response |
+| `RequestId` | `str \| None` | Service request ID; also available as `error.request_id` |
+| `HostId` | `str \| None` | Extended S3 request ID, when supplied |
+| `RetryAttempts` | `int \| None` | Native retries made before returning, excluding the initial attempt |
+
+Unknown values are `None`. Native dispatch records retries even when logging,
+interceptors and tracing are disabled. An exception constructed by application
+code has unknown retry metadata unless that code supplies it. A connection
+failure before headers has no HTTP status or request ID. Metadata describes the
+final attempt; an earlier retry's response does not substitute for a missing final
+response.
+
+Only request ID headers and HTTP status are retained. rboto does not expose a
+header dump, cookies, authorization, or the raw error body. Request IDs with
+whitespace, non-ASCII characters, or more than 1,024 bytes are omitted.
+
+### Modeled details
+
+Additional modeled fields are available through `details`, with a generated
+`TypedDict` specific to the exception. Field names use the same Python spelling
+as client inputs and outputs. Missing fields are omitted:
+
+```python
+from rboto_dynamodb.exceptions import ConditionalCheckFailedError
+
+try:
+    await client.put_item(
+        table_name="jobs",
+        item={"pk": {"s": "job-123"}, "status": {"s": "running"}},
+        condition_expression="attribute_not_exists(pk)",
+        return_values_on_condition_check_failure="ALL_OLD",
+    )
+except ConditionalCheckFailedError as error:
+    previous = error.details.get("item")
+    print(error.response_metadata["HTTPStatusCode"])
+    # previous is a typed mapping of attribute names to AttributeValueOutput.
+```
+
+For a `ModelStreamError`, `details.get("original_status_code")` returns
+`int | None`. Its schema is available as
+`rboto_bedrock_runtime.types.ModelStreamErrorDetails`.
+
+Nested structures in error details are dictionaries, with the corresponding
+generated output types. Unknown service errors have empty details; unknown
+payload fields are ignored. These fields can contain application data, such as
+the item returned by a failed DynamoDB condition. rboto keeps them out of
+`str(error)`, `repr(error)`, response metadata, automatic logging and tracing.
+Service-provided error messages and application exceptions can still contain
+sensitive data.
+
+## Errors while reading streams
+
+The same shared exceptions apply before and after an operation returns:
+
+```python
+from rboto.exceptions import ConnectionError, ResponseError
+
+try:
+    output = await s3.get_object(bucket="my-bucket", key="report.csv")
+    async with output.body as body:
+        async for chunk in body:
+            await consume(chunk)
+except ConnectionError as error:
+    print(error.operation_name, error.request_id)
+except ResponseError as error:
+    print(error.response_metadata["HTTPStatusCode"])
+```
+
+Both byte iteration and `read()` normalize transport failures, recognizable
+native timeouts, and decoding/validation failures. This replaces the earlier
+`OSError` from byte streams. A failed checksum raises `ResponseError`.
+Event receivers retain modeled exception classes, including their typed details.
+An invalid event frame or payload raises `ResponseError`; a connection interrupted
+while receiving events raises `ConnectionError`.
+
+Returned streams retain their operation and initial HTTP response context even
+after the client closes. A stream error can therefore have HTTP status `200`:
+the request succeeded before consumption failed. Retry metadata covers the
+original operation. rboto does not retry or replay a partially consumed response.
+After a terminal stream failure, iteration is exhausted and a byte `read()`
+returns empty bytes.
+
+Classification uses typed native causes, not exception text. Some SDK body
+failures expose only an opaque private error, including the SDK's minimum
+download throughput check. Those raise `ResponseError` rather than guessing a
+timeout from their message.
+
+Client operation/attempt/read timeouts do not introduce a deadline around later
+response consumption. Use `asyncio.timeout()` for an application deadline;
+its `TimeoutError` remains Python's built-in exception. `asyncio.CancelledError`
+is never converted to an rboto network error. Exceptions from Python upload or
+event producers retain their original identity, traceback and cause.
+
+Explicit closure retains the [lifecycle contract](lifecycle.md): closing a pending
+byte collection raises `StreamClosedError`, closing a pending iterator ends it,
+and entering a closed stream raises `StreamClosedError`. These are separate from
+transport failures. Input conversion continues to raise the documented
+`TypeError`, `ValueError`, `OverflowError`, or original application exception.
 
 ## Partial failures
 

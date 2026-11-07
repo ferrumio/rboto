@@ -32472,6 +32472,2735 @@ impl PyOperationUpdateFunctionUrlConfigOutput {
     }
 }
 
+fn alias_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::AliasLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3685 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3685)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn callback_timeout_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CallbackTimeoutException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3686 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3686)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn capacity_provider_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CapacityProviderLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3687 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3687)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_artifact_user_deleted_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeArtifactUserDeletedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3688 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3688)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_artifact_user_failed_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeArtifactUserFailedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3689 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3689)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_artifact_user_pending_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeArtifactUserPendingException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3690 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3690)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_signing_config_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeSigningConfigNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3691 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3691)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_storage_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeStorageExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3692 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3692)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn code_verification_failed_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::CodeVerificationFailedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3693 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3693)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn durable_execution_already_started_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::DurableExecutionAlreadyStartedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3694 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3694)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ec2_access_denied_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::Ec2AccessDeniedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3695 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3695)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ec2_throttled_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::Ec2ThrottledException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3696 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3696)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn ec2_unexpected_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::Ec2UnexpectedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3697 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3697)?;
+    }
+    if let Some(value) = &value.ec2_error_code {
+        let detail_3698 = (value).as_str().into_py_any(py)?;
+        result.set_item("ec2_error_code", detail_3698)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn efs_mount_connectivity_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EfsMountConnectivityException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3699 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3699)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn efs_mount_failure_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EfsMountFailureException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3700 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3700)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn efs_mount_timeout_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EfsMountTimeoutException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3701 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3701)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn efsio_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EfsioException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3702 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3702)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn eni_limit_reached_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EniLimitReachedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3703 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3703)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn eni_not_ready_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::EniNotReadyException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3704 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3704)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn function_versions_per_capacity_provider_limit_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::FunctionVersionsPerCapacityProviderLimitExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3705 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3705)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_code_signature_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidCodeSignatureException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3706 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3706)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_parameter_value_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidParameterValueException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3707 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3707)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_request_content_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidRequestContentException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3708 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3708)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_runtime_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidRuntimeException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3709 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3709)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_security_group_id_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidSecurityGroupIdException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3710 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3710)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_subnet_id_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidSubnetIdException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3711 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3711)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_zip_file_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::InvalidZipFileException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3712 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3712)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn kms_access_denied_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::KmsAccessDeniedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3713 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3713)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn kms_disabled_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::KmsDisabledException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3714 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3714)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn kms_invalid_state_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::KmsInvalidStateException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3715 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3715)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn kms_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::KmsNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3716 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3716)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn mode_not_supported_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ModeNotSupportedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3717 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3717)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn no_published_version_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::NoPublishedVersionException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3718 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3718)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn policy_length_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::PolicyLengthExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3719 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3719)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn precondition_failed_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::PreconditionFailedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3720 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3720)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn provisioned_concurrency_config_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ProvisionedConcurrencyConfigNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3721 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3721)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn public_policy_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::PublicPolicyException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3722 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3722)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn recursive_invocation_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::RecursiveInvocationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3723 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3723)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn request_too_large_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::RequestTooLargeException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3724 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3724)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_conflict_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ResourceConflictException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3725 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3725)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_in_use_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ResourceInUseException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3726 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3726)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ResourceNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3727 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3727)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn resource_not_ready_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ResourceNotReadyException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3728 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3728)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn s3_files_mount_connectivity_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::S3FilesMountConnectivityException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3729 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3729)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn s3_files_mount_failure_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::S3FilesMountFailureException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3730 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3730)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn s3_files_mount_timeout_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::S3FilesMountTimeoutException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3731 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3731)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn serialized_request_entity_too_large_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SerializedRequestEntityTooLargeException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3732 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3732)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ServiceException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3733 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3733)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn service_quota_exceeded_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::ServiceQuotaExceededException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3734 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3734)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn snap_start_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SnapStartException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3735 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3735)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn snap_start_not_ready_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SnapStartNotReadyException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3736 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3736)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn snap_start_regeneration_failure_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SnapStartRegenerationFailureException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3737 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3737)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn snap_start_timeout_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SnapStartTimeoutException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3738 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3738)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn subnet_ip_address_limit_reached_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::SubnetIpAddressLimitReachedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3739 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3739)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn too_many_requests_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::TooManyRequestsException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.retry_after_seconds {
+        let detail_3740 = (value).as_str().into_py_any(py)?;
+        result.set_item("retry_after_seconds", detail_3740)?;
+    }
+    if let Some(value) = &value.r#type {
+        let detail_3741 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3741)?;
+    }
+    if let Some(value) = &value.reason {
+        let detail_3742 = (value).as_str().into_py_any(py)?;
+        result.set_item("reason", detail_3742)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn unsupported_media_type_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_lambda::types::error::UnsupportedMediaTypeException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.r#type {
+        let detail_3743 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", detail_3743)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::add_layer_version_permission::AddLayerVersionPermissionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PolicyLengthExceededException(value) => {
+                policy_length_exceeded_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::add_permission::AddPermissionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PolicyLengthExceededException(value) => {
+                policy_length_exceeded_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::PublicPolicyException(value) => public_policy_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::checkpoint_durable_execution::CheckpointDurableExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::create_alias::CreateAliasError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AliasLimitExceededException(value) => {
+                alias_limit_exceeded_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::create_capacity_provider::CreateCapacityProviderError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CapacityProviderLimitExceededException(value) => {
+                capacity_provider_limit_exceeded_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::create_code_signing_config::CreateCodeSigningConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::create_event_source_mapping::CreateEventSourceMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::create_function::CreateFunctionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => {
+                code_signing_config_not_found_exception_error_details(py, value)
+            }
+            Self::CodeStorageExceededException(value) => {
+                code_storage_exceeded_exception_error_details(py, value)
+            }
+            Self::CodeVerificationFailedException(value) => {
+                code_verification_failed_exception_error_details(py, value)
+            }
+            Self::FunctionVersionsPerCapacityProviderLimitExceededException(value) => {
+                function_versions_per_capacity_provider_limit_exceeded_exception_error_details(
+                    py, value,
+                )
+            }
+            Self::InvalidCodeSignatureException(value) => {
+                invalid_code_signature_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::create_function_url_config::CreateFunctionUrlConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_alias::DeleteAliasError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_capacity_provider::DeleteCapacityProviderError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_code_signing_config::DeleteCodeSigningConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_event_source_mapping::DeleteEventSourceMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceInUseException(value) => {
+                resource_in_use_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function::DeleteFunctionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_code_signing_config::DeleteFunctionCodeSigningConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_function_concurrency::DeleteFunctionConcurrencyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_event_invoke_config::DeleteFunctionEventInvokeConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_function_url_config::DeleteFunctionUrlConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_layer_version::DeleteLayerVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_provisioned_concurrency_config::DeleteProvisionedConcurrencyConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::delete_resource_policy::DeleteResourcePolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_account_settings::GetAccountSettingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_alias::GetAliasError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_capacity_provider::GetCapacityProviderError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_code_signing_config::GetCodeSigningConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_durable_execution::GetDurableExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_durable_execution_history::GetDurableExecutionHistoryError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_durable_execution_state::GetDurableExecutionStateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_event_source_mapping::GetEventSourceMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function::GetFunctionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_code_signing_config::GetFunctionCodeSigningConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_function_concurrency::GetFunctionConcurrencyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_function_configuration::GetFunctionConfigurationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_event_invoke_config::GetFunctionEventInvokeConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_function_recursion_config::GetFunctionRecursionConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_function_scaling_config::GetFunctionScalingConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_function_url_config::GetFunctionUrlConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_layer_version::GetLayerVersionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_layer_version_by_arn::GetLayerVersionByArnError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_layer_version_policy::GetLayerVersionPolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_policy::GetPolicyError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::get_provisioned_concurrency_config::GetProvisionedConcurrencyConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ProvisionedConcurrencyConfigNotFoundException(value) => provisioned_concurrency_config_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_resource_policy::GetResourcePolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::get_runtime_management_config::GetRuntimeManagementConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke::InvokeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeArtifactUserDeletedException(value) => {
+                code_artifact_user_deleted_exception_error_details(py, value)
+            }
+            Self::CodeArtifactUserFailedException(value) => {
+                code_artifact_user_failed_exception_error_details(py, value)
+            }
+            Self::CodeArtifactUserPendingException(value) => {
+                code_artifact_user_pending_exception_error_details(py, value)
+            }
+            Self::DurableExecutionAlreadyStartedException(value) => {
+                durable_execution_already_started_exception_error_details(py, value)
+            }
+            Self::Ec2AccessDeniedException(value) => {
+                ec2_access_denied_exception_error_details(py, value)
+            }
+            Self::Ec2ThrottledException(value) => ec2_throttled_exception_error_details(py, value),
+            Self::Ec2UnexpectedException(value) => {
+                ec2_unexpected_exception_error_details(py, value)
+            }
+            Self::EfsioException(value) => efsio_exception_error_details(py, value),
+            Self::EfsMountConnectivityException(value) => {
+                efs_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::EfsMountFailureException(value) => {
+                efs_mount_failure_exception_error_details(py, value)
+            }
+            Self::EfsMountTimeoutException(value) => {
+                efs_mount_timeout_exception_error_details(py, value)
+            }
+            Self::EniLimitReachedException(value) => {
+                eni_limit_reached_exception_error_details(py, value)
+            }
+            Self::EniNotReadyException(value) => eni_not_ready_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::InvalidRequestContentException(value) => {
+                invalid_request_content_exception_error_details(py, value)
+            }
+            Self::InvalidRuntimeException(value) => {
+                invalid_runtime_exception_error_details(py, value)
+            }
+            Self::InvalidSecurityGroupIdException(value) => {
+                invalid_security_group_id_exception_error_details(py, value)
+            }
+            Self::InvalidSubnetIdException(value) => {
+                invalid_subnet_id_exception_error_details(py, value)
+            }
+            Self::InvalidZipFileException(value) => {
+                invalid_zip_file_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ModeNotSupportedException(value) => {
+                mode_not_supported_exception_error_details(py, value)
+            }
+            Self::NoPublishedVersionException(value) => {
+                no_published_version_exception_error_details(py, value)
+            }
+            Self::RecursiveInvocationException(value) => {
+                recursive_invocation_exception_error_details(py, value)
+            }
+            Self::RequestTooLargeException(value) => {
+                request_too_large_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ResourceNotReadyException(value) => {
+                resource_not_ready_exception_error_details(py, value)
+            }
+            Self::S3FilesMountConnectivityException(value) => {
+                s3_files_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::S3FilesMountFailureException(value) => {
+                s3_files_mount_failure_exception_error_details(py, value)
+            }
+            Self::S3FilesMountTimeoutException(value) => {
+                s3_files_mount_timeout_exception_error_details(py, value)
+            }
+            Self::SerializedRequestEntityTooLargeException(value) => {
+                serialized_request_entity_too_large_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::SnapStartException(value) => snap_start_exception_error_details(py, value),
+            Self::SnapStartNotReadyException(value) => {
+                snap_start_not_ready_exception_error_details(py, value)
+            }
+            Self::SnapStartRegenerationFailureException(value) => {
+                snap_start_regeneration_failure_exception_error_details(py, value)
+            }
+            Self::SnapStartTimeoutException(value) => {
+                snap_start_timeout_exception_error_details(py, value)
+            }
+            Self::SubnetIpAddressLimitReachedException(value) => {
+                subnet_ip_address_limit_reached_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            Self::UnsupportedMediaTypeException(value) => {
+                unsupported_media_type_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke_async::InvokeAsyncError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::Ec2AccessDeniedException(value) => {
+                ec2_access_denied_exception_error_details(py, value)
+            }
+            Self::Ec2ThrottledException(value) => ec2_throttled_exception_error_details(py, value),
+            Self::Ec2UnexpectedException(value) => {
+                ec2_unexpected_exception_error_details(py, value)
+            }
+            Self::EfsioException(value) => efsio_exception_error_details(py, value),
+            Self::EfsMountConnectivityException(value) => {
+                efs_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::EfsMountFailureException(value) => {
+                efs_mount_failure_exception_error_details(py, value)
+            }
+            Self::EfsMountTimeoutException(value) => {
+                efs_mount_timeout_exception_error_details(py, value)
+            }
+            Self::EniLimitReachedException(value) => {
+                eni_limit_reached_exception_error_details(py, value)
+            }
+            Self::InvalidRequestContentException(value) => {
+                invalid_request_content_exception_error_details(py, value)
+            }
+            Self::InvalidRuntimeException(value) => {
+                invalid_runtime_exception_error_details(py, value)
+            }
+            Self::InvalidSecurityGroupIdException(value) => {
+                invalid_security_group_id_exception_error_details(py, value)
+            }
+            Self::InvalidSubnetIdException(value) => {
+                invalid_subnet_id_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ModeNotSupportedException(value) => {
+                mode_not_supported_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::S3FilesMountConnectivityException(value) => {
+                s3_files_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::S3FilesMountFailureException(value) => {
+                s3_files_mount_failure_exception_error_details(py, value)
+            }
+            Self::S3FilesMountTimeoutException(value) => {
+                s3_files_mount_timeout_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::SnapStartException(value) => snap_start_exception_error_details(py, value),
+            Self::SnapStartNotReadyException(value) => {
+                snap_start_not_ready_exception_error_details(py, value)
+            }
+            Self::SnapStartRegenerationFailureException(value) => {
+                snap_start_regeneration_failure_exception_error_details(py, value)
+            }
+            Self::SnapStartTimeoutException(value) => {
+                snap_start_timeout_exception_error_details(py, value)
+            }
+            Self::SubnetIpAddressLimitReachedException(value) => {
+                subnet_ip_address_limit_reached_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::invoke_with_response_stream::InvokeWithResponseStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeArtifactUserDeletedException(value) => {
+                code_artifact_user_deleted_exception_error_details(py, value)
+            }
+            Self::CodeArtifactUserFailedException(value) => {
+                code_artifact_user_failed_exception_error_details(py, value)
+            }
+            Self::CodeArtifactUserPendingException(value) => {
+                code_artifact_user_pending_exception_error_details(py, value)
+            }
+            Self::Ec2AccessDeniedException(value) => {
+                ec2_access_denied_exception_error_details(py, value)
+            }
+            Self::Ec2ThrottledException(value) => ec2_throttled_exception_error_details(py, value),
+            Self::Ec2UnexpectedException(value) => {
+                ec2_unexpected_exception_error_details(py, value)
+            }
+            Self::EfsioException(value) => efsio_exception_error_details(py, value),
+            Self::EfsMountConnectivityException(value) => {
+                efs_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::EfsMountFailureException(value) => {
+                efs_mount_failure_exception_error_details(py, value)
+            }
+            Self::EfsMountTimeoutException(value) => {
+                efs_mount_timeout_exception_error_details(py, value)
+            }
+            Self::EniLimitReachedException(value) => {
+                eni_limit_reached_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::InvalidRequestContentException(value) => {
+                invalid_request_content_exception_error_details(py, value)
+            }
+            Self::InvalidRuntimeException(value) => {
+                invalid_runtime_exception_error_details(py, value)
+            }
+            Self::InvalidSecurityGroupIdException(value) => {
+                invalid_security_group_id_exception_error_details(py, value)
+            }
+            Self::InvalidSubnetIdException(value) => {
+                invalid_subnet_id_exception_error_details(py, value)
+            }
+            Self::InvalidZipFileException(value) => {
+                invalid_zip_file_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::NoPublishedVersionException(value) => {
+                no_published_version_exception_error_details(py, value)
+            }
+            Self::RecursiveInvocationException(value) => {
+                recursive_invocation_exception_error_details(py, value)
+            }
+            Self::RequestTooLargeException(value) => {
+                request_too_large_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ResourceNotReadyException(value) => {
+                resource_not_ready_exception_error_details(py, value)
+            }
+            Self::S3FilesMountConnectivityException(value) => {
+                s3_files_mount_connectivity_exception_error_details(py, value)
+            }
+            Self::S3FilesMountFailureException(value) => {
+                s3_files_mount_failure_exception_error_details(py, value)
+            }
+            Self::S3FilesMountTimeoutException(value) => {
+                s3_files_mount_timeout_exception_error_details(py, value)
+            }
+            Self::SerializedRequestEntityTooLargeException(value) => {
+                serialized_request_entity_too_large_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::ServiceQuotaExceededException(value) => {
+                service_quota_exceeded_exception_error_details(py, value)
+            }
+            Self::SnapStartException(value) => snap_start_exception_error_details(py, value),
+            Self::SnapStartNotReadyException(value) => {
+                snap_start_not_ready_exception_error_details(py, value)
+            }
+            Self::SnapStartRegenerationFailureException(value) => {
+                snap_start_regeneration_failure_exception_error_details(py, value)
+            }
+            Self::SnapStartTimeoutException(value) => {
+                snap_start_timeout_exception_error_details(py, value)
+            }
+            Self::SubnetIpAddressLimitReachedException(value) => {
+                subnet_ip_address_limit_reached_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            Self::UnsupportedMediaTypeException(value) => {
+                unsupported_media_type_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_aliases::ListAliasesError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_capacity_providers::ListCapacityProvidersError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_code_signing_configs::ListCodeSigningConfigsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_durable_executions_by_function::ListDurableExecutionsByFunctionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_event_source_mappings::ListEventSourceMappingsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_event_invoke_configs::ListFunctionEventInvokeConfigsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_function_url_configs::ListFunctionUrlConfigsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_versions_by_capacity_provider::ListFunctionVersionsByCapacityProviderError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions::ListFunctionsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions_by_code_signing_config::ListFunctionsByCodeSigningConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_layer_versions::ListLayerVersionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_layers::ListLayersError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_provisioned_concurrency_configs::ListProvisionedConcurrencyConfigsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::list_tags::ListTagsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::list_versions_by_function::ListVersionsByFunctionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::publish_layer_version::PublishLayerVersionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeStorageExceededException(value) => {
+                code_storage_exceeded_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::publish_version::PublishVersionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeStorageExceededException(value) => {
+                code_storage_exceeded_exception_error_details(py, value)
+            }
+            Self::FunctionVersionsPerCapacityProviderLimitExceededException(value) => {
+                function_versions_per_capacity_provider_limit_exceeded_exception_error_details(
+                    py, value,
+                )
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_code_signing_config::PutFunctionCodeSigningConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::put_function_concurrency::PutFunctionConcurrencyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_event_invoke_config::PutFunctionEventInvokeConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::put_function_recursion_config::PutFunctionRecursionConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::put_function_scaling_config::PutFunctionScalingConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::put_provisioned_concurrency_config::PutProvisionedConcurrencyConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::put_resource_policy::PutResourcePolicyError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PolicyLengthExceededException(value) => {
+                policy_length_exceeded_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::PublicPolicyException(value) => public_policy_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::put_runtime_management_config::PutRuntimeManagementConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_layer_version_permission::RemoveLayerVersionPermissionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::PreconditionFailedException(value) => precondition_failed_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_permission::RemovePermissionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::PublicPolicyException(value) => public_policy_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_failure::SendDurableExecutionCallbackFailureError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::KmsAccessDeniedException(value) => kms_access_denied_exception_error_details(py, value),
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => kms_invalid_state_exception_error_details(py, value),
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_heartbeat::SendDurableExecutionCallbackHeartbeatError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_success::SendDurableExecutionCallbackSuccessError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::KmsAccessDeniedException(value) => kms_access_denied_exception_error_details(py, value),
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => kms_invalid_state_exception_error_details(py, value),
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::stop_durable_execution::StopDurableExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::KmsAccessDeniedException(value) => {
+                kms_access_denied_exception_error_details(py, value)
+            }
+            Self::KmsDisabledException(value) => kms_disabled_exception_error_details(py, value),
+            Self::KmsInvalidStateException(value) => {
+                kms_invalid_state_exception_error_details(py, value)
+            }
+            Self::KmsNotFoundException(value) => kms_not_found_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::update_alias::UpdateAliasError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_capacity_provider::UpdateCapacityProviderError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_code_signing_config::UpdateCodeSigningConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_event_source_mapping::UpdateEventSourceMappingError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceInUseException(value) => {
+                resource_in_use_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_function_code::UpdateFunctionCodeError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => {
+                code_signing_config_not_found_exception_error_details(py, value)
+            }
+            Self::CodeStorageExceededException(value) => {
+                code_storage_exceeded_exception_error_details(py, value)
+            }
+            Self::CodeVerificationFailedException(value) => {
+                code_verification_failed_exception_error_details(py, value)
+            }
+            Self::InvalidCodeSignatureException(value) => {
+                invalid_code_signature_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_function_configuration::UpdateFunctionConfigurationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(value) => {
+                code_signing_config_not_found_exception_error_details(py, value)
+            }
+            Self::CodeVerificationFailedException(value) => {
+                code_verification_failed_exception_error_details(py, value)
+            }
+            Self::InvalidCodeSignatureException(value) => {
+                invalid_code_signature_exception_error_details(py, value)
+            }
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::PreconditionFailedException(value) => {
+                precondition_failed_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lambda::operation::update_function_event_invoke_config::UpdateFunctionEventInvokeConfigError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
+            Self::ResourceConflictException(value) => resource_conflict_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::operation::update_function_url_config::UpdateFunctionUrlConfigError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidParameterValueException(value) => {
+                invalid_parameter_value_exception_error_details(py, value)
+            }
+            Self::ResourceConflictException(value) => {
+                resource_conflict_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ServiceException(value) => service_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_lambda::types::error::InvokeWithResponseStreamResponseEventError
+{
+}
+
 #[pyclass(
     name = "InvokeWithResponseStreamResponseEventReceiver",
     module = "rboto_lambda._native"
@@ -32485,7 +35214,7 @@ struct PyInvokeWithResponseStreamResponseEventReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyInvokeWithResponseStreamResponseEventReceiver {
@@ -32494,11 +35223,11 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
             aws_sdk_lambda::types::InvokeWithResponseStreamResponseEvent,
             aws_sdk_lambda::types::error::InvokeWithResponseStreamResponseEventError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -32532,7 +35261,7 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -32559,7 +35288,7 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
                             let code = None;
 
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, operation, code)
+                                sdk_error_to_py_with_code(py, &error, &context, code)
                             }))
                         }
                     }
@@ -32970,20 +35699,24 @@ impl LambdaClient {
                 .set_principal(principal_value)
                 .set_organization_id(organization_id_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AddLayerVersionPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AddLayerVersionPermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationAddLayerVersionPermissionOutput { inner: output })
         })
@@ -33254,20 +35987,19 @@ impl LambdaClient {
                 .set_qualifier(qualifier_value)
                 .set_revision_id(revision_id_value)
                 .set_principal_org_id(principal_org_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AddPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AddPermission", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationAddPermissionOutput { inner: output })
         })
@@ -33393,20 +36125,24 @@ impl LambdaClient {
                 .set_checkpoint_token(checkpoint_token_value)
                 .set_updates(updates_value)
                 .set_client_token(client_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CheckpointDurableExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CheckpointDurableExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCheckpointDurableExecutionOutput {
                 inner: output.into(),
@@ -33527,20 +36263,20 @@ impl LambdaClient {
                 .set_function_version(function_version_value)
                 .set_description(description_value)
                 .set_routing_config(routing_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateAlias", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateAliasOutput {
                 inner: output.into(),
             })
@@ -33774,20 +36510,24 @@ impl LambdaClient {
                 .set_tags(tags_value)
                 .set_propagate_tags(propagate_tags_value)
                 .set_telemetry_config(telemetry_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCapacityProvider"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCapacityProvider",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCapacityProviderOutput {
                 inner: output.into(),
@@ -33915,20 +36655,24 @@ impl LambdaClient {
                 .set_allowed_publishers(allowed_publishers_value)
                 .set_code_signing_policies(code_signing_policies_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateCodeSigningConfigOutput {
                 inner: output.into(),
@@ -34679,20 +37423,24 @@ impl LambdaClient {
                 )
                 .set_document_db_event_source_config(document_db_event_source_config_value)
                 .set_provisioned_poller_config(provisioned_poller_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateEventSourceMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateEventSourceMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateEventSourceMappingOutput {
                 inner: output.into(),
@@ -35388,20 +38136,19 @@ impl LambdaClient {
                 .set_tenancy_config(tenancy_config_value)
                 .set_capacity_provider_config(capacity_provider_config_value)
                 .set_durable_config(durable_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunction"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateFunction", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateFunctionOutput {
                 inner: output.into(),
@@ -35530,20 +38277,24 @@ impl LambdaClient {
                 .set_auth_type(auth_type_value)
                 .set_cors(cors_value)
                 .set_invoke_mode(invoke_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateFunctionUrlConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateFunctionUrlConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateFunctionUrlConfigOutput {
                 inner: output.into(),
@@ -35601,20 +38352,24 @@ impl LambdaClient {
                 .delete_alias()
                 .set_function_name(function_name_value)
                 .set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteAlias", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteAlias",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35653,20 +38408,24 @@ impl LambdaClient {
             let request = client
                 .delete_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCapacityProvider"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCapacityProvider",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCapacityProviderOutput {
                 inner: output.into(),
@@ -35708,20 +38467,24 @@ impl LambdaClient {
             let request = client
                 .delete_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteCodeSigningConfigOutput { inner: output })
         })
@@ -35754,20 +38517,24 @@ impl LambdaClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_event_source_mapping().set_uuid(uuid_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEventSourceMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteEventSourceMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteEventSourceMappingOutput {
                 inner: output.into(),
@@ -35829,20 +38596,19 @@ impl LambdaClient {
                 .delete_function()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunction"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteFunction", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteFunctionOutput { inner: output })
         })
@@ -35881,21 +38647,29 @@ impl LambdaClient {
             let request = client
                 .delete_function_code_signing_config()
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunctionCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteFunctionCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteFunctionCodeSigningConfig",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -35933,21 +38707,29 @@ impl LambdaClient {
             let request = client
                 .delete_function_concurrency()
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunctionConcurrency"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteFunctionConcurrency",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteFunctionConcurrency",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36006,21 +38788,29 @@ impl LambdaClient {
                 .delete_function_event_invoke_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunctionEventInvokeConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteFunctionEventInvokeConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteFunctionEventInvokeConfig",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36079,21 +38869,29 @@ impl LambdaClient {
                 .delete_function_url_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteFunctionUrlConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteFunctionUrlConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteFunctionUrlConfig",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36152,21 +38950,29 @@ impl LambdaClient {
                 .delete_layer_version()
                 .set_layer_name(layer_name_value)
                 .set_version_number(version_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteLayerVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteLayerVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteLayerVersion",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36225,23 +39031,29 @@ impl LambdaClient {
                 .delete_provisioned_concurrency_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "DeleteProvisionedConcurrencyConfig")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteProvisionedConcurrencyConfig",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteProvisionedConcurrencyConfig",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36300,21 +39112,29 @@ impl LambdaClient {
                 .delete_resource_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteResourcePolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -36330,20 +39150,24 @@ impl LambdaClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_account_settings();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAccountSettings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetAccountSettings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetAccountSettingsOutput {
                 inner: output.into(),
@@ -36401,20 +39225,20 @@ impl LambdaClient {
                 .get_alias()
                 .set_function_name(function_name_value)
                 .set_name(name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAlias", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetAliasOutput {
                 inner: output.into(),
             })
@@ -36455,20 +39279,24 @@ impl LambdaClient {
             let request = client
                 .get_capacity_provider()
                 .set_capacity_provider_name(capacity_provider_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCapacityProvider"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCapacityProvider",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCapacityProviderOutput {
                 inner: output.into(),
@@ -36510,20 +39338,24 @@ impl LambdaClient {
             let request = client
                 .get_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetCodeSigningConfigOutput {
                 inner: output.into(),
@@ -36587,20 +39419,24 @@ impl LambdaClient {
                 .get_durable_execution()
                 .set_durable_execution_arn(durable_execution_arn_value)
                 .set_include_execution_data(include_execution_data_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDurableExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDurableExecutionOutput {
                 inner: output.into(),
@@ -36723,20 +39559,24 @@ impl LambdaClient {
                 .set_max_items(max_items_value)
                 .set_marker(marker_value)
                 .set_reverse_order(reverse_order_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionHistory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDurableExecutionHistory",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDurableExecutionHistoryOutput {
                 inner: output.into(),
@@ -36837,20 +39677,24 @@ impl LambdaClient {
                 .set_checkpoint_token(checkpoint_token_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDurableExecutionState"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDurableExecutionState",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDurableExecutionStateOutput {
                 inner: output.into(),
@@ -36885,20 +39729,24 @@ impl LambdaClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_event_source_mapping().set_uuid(uuid_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEventSourceMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEventSourceMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEventSourceMappingOutput {
                 inner: output.into(),
@@ -36960,20 +39808,20 @@ impl LambdaClient {
                 .get_function()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetFunction")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetFunction", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetFunctionOutput {
                 inner: output.into(),
             })
@@ -37013,20 +39861,24 @@ impl LambdaClient {
             let request = client
                 .get_function_code_signing_config()
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionCodeSigningConfigOutput { inner: output })
         })
@@ -37065,20 +39917,24 @@ impl LambdaClient {
             let request = client
                 .get_function_concurrency()
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConcurrency"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionConcurrency",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionConcurrencyOutput { inner: output })
         })
@@ -37138,20 +39994,24 @@ impl LambdaClient {
                 .get_function_configuration()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionConfigurationOutput {
                 inner: output.into(),
@@ -37213,20 +40073,24 @@ impl LambdaClient {
                 .get_function_event_invoke_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionEventInvokeConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionEventInvokeConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionEventInvokeConfigOutput {
                 inner: output.into(),
@@ -37267,20 +40131,24 @@ impl LambdaClient {
             let request = client
                 .get_function_recursion_config()
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionRecursionConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionRecursionConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionRecursionConfigOutput { inner: output })
         })
@@ -37340,20 +40208,24 @@ impl LambdaClient {
                 .get_function_scaling_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionScalingConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionScalingConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionScalingConfigOutput {
                 inner: output.into(),
@@ -37415,20 +40287,24 @@ impl LambdaClient {
                 .get_function_url_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFunctionUrlConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFunctionUrlConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFunctionUrlConfigOutput {
                 inner: output.into(),
@@ -37490,20 +40366,19 @@ impl LambdaClient {
                 .get_layer_version()
                 .set_layer_name(layer_name_value)
                 .set_version_number(version_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetLayerVersion", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetLayerVersionOutput {
                 inner: output.into(),
@@ -37538,20 +40413,24 @@ impl LambdaClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_layer_version_by_arn().set_arn(arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionByArn"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetLayerVersionByArn",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetLayerVersionByArnOutput {
                 inner: output.into(),
@@ -37613,20 +40492,24 @@ impl LambdaClient {
                 .get_layer_version_policy()
                 .set_layer_name(layer_name_value)
                 .set_version_number(version_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetLayerVersionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetLayerVersionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetLayerVersionPolicyOutput { inner: output })
         })
@@ -37686,20 +40569,20 @@ impl LambdaClient {
                 .get_policy()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetPolicy")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetPolicy", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetPolicyOutput { inner: output })
         })
     }
@@ -37758,20 +40641,24 @@ impl LambdaClient {
                 .get_provisioned_concurrency_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetProvisionedConcurrencyConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetProvisionedConcurrencyConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetProvisionedConcurrencyConfigOutput { inner: output })
         })
@@ -37810,20 +40697,24 @@ impl LambdaClient {
             let request = client
                 .get_resource_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetResourcePolicyOutput { inner: output })
         })
@@ -37883,20 +40774,24 @@ impl LambdaClient {
                 .get_runtime_management_config()
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetRuntimeManagementConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetRuntimeManagementConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetRuntimeManagementConfigOutput { inner: output })
         })
@@ -38087,20 +40982,20 @@ impl LambdaClient {
                 .set_payload(payload_value)
                 .set_qualifier(qualifier_value)
                 .set_tenant_id(tenant_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Invoke")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Invoke", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationInvokeOutput { inner: output })
         })
     }
@@ -38159,20 +41054,20 @@ impl LambdaClient {
                 .invoke_async()
                 .set_function_name(function_name_value)
                 .set_invoke_args(invoke_args_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeAsync")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "InvokeAsync", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationInvokeAsyncOutput { inner: output })
         })
     }
@@ -38341,21 +41236,29 @@ impl LambdaClient {
                 .set_payload(payload_value)
                 .set_tenant_id(tenant_id_value)
                 .set_invocation_type(invocation_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "InvokeWithResponseStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeWithResponseStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "InvokeWithResponseStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let converted_1398 = (&output.status_code).to_owned().into_py_any(py)?;
@@ -38370,7 +41273,7 @@ impl LambdaClient {
                     py,
                     PyInvokeWithResponseStreamResponseEventReceiver::new(
                         output.event_stream,
-                        "InvokeWithResponseStream",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("event_stream", stream)?;
@@ -38477,20 +41380,20 @@ impl LambdaClient {
                 .set_function_version(function_version_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListAliases")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListAliases", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListAliasesOutput {
                 inner: output.into(),
             })
@@ -38570,20 +41473,24 @@ impl LambdaClient {
                 .set_state(state_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCapacityProviders"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCapacityProviders",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCapacityProvidersOutput {
                 inner: output.into(),
@@ -38641,20 +41548,24 @@ impl LambdaClient {
                 .list_code_signing_configs()
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListCodeSigningConfigs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListCodeSigningConfigs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListCodeSigningConfigsOutput {
                 inner: output.into(),
@@ -38895,20 +41806,24 @@ impl LambdaClient {
                 .set_reverse_order(reverse_order_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListDurableExecutionsByFunction"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListDurableExecutionsByFunction",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListDurableExecutionsByFunctionOutput {
                 inner: output.into(),
@@ -39008,20 +41923,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListEventSourceMappings"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEventSourceMappings",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListEventSourceMappingsOutput {
                 inner: output.into(),
@@ -39100,20 +42019,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionEventInvokeConfigs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFunctionEventInvokeConfigs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFunctionEventInvokeConfigsOutput {
                 inner: output.into(),
@@ -39192,20 +42115,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionUrlConfigs"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFunctionUrlConfigs",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFunctionUrlConfigsOutput {
                 inner: output.into(),
@@ -39285,21 +42212,23 @@ impl LambdaClient {
                 .set_capacity_provider_name(capacity_provider_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListFunctionVersionsByCapacityProvider")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFunctionVersionsByCapacityProvider",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListFunctionVersionsByCapacityProviderOutput {
@@ -39402,20 +42331,19 @@ impl LambdaClient {
                 .set_function_version(function_version_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListFunctions", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListFunctionsOutput {
                 inner: output.into(),
@@ -39495,20 +42423,24 @@ impl LambdaClient {
                 .set_code_signing_config_arn(code_signing_config_arn_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFunctionsByCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFunctionsByCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFunctionsByCodeSigningConfigOutput { inner: output })
         })
@@ -39633,20 +42565,24 @@ impl LambdaClient {
                 .set_layer_name(layer_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListLayerVersions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListLayerVersions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListLayerVersionsOutput {
                 inner: output.into(),
@@ -39752,20 +42688,20 @@ impl LambdaClient {
                 .set_compatible_runtime(compatible_runtime_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListLayers")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListLayers", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListLayersOutput {
                 inner: output.into(),
             })
@@ -39843,21 +42779,23 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListProvisionedConcurrencyConfigs")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListProvisionedConcurrencyConfigs",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListProvisionedConcurrencyConfigsOutput {
@@ -39893,20 +42831,20 @@ impl LambdaClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_tags().set_resource(resource_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTags")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTags", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTagsOutput { inner: output })
         })
     }
@@ -39982,20 +42920,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_marker(marker_value)
                 .set_max_items(max_items_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListVersionsByFunction"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListVersionsByFunction",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListVersionsByFunctionOutput {
                 inner: output.into(),
@@ -40193,20 +43135,24 @@ impl LambdaClient {
                 .set_compatible_architectures(compatible_architectures_value)
                 .set_compatible_runtimes(compatible_runtimes_value)
                 .set_license_info(license_info_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PublishLayerVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PublishLayerVersion",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPublishLayerVersionOutput {
                 inner: output.into(),
@@ -40334,20 +43280,19 @@ impl LambdaClient {
                 .set_description(description_value)
                 .set_revision_id(revision_id_value)
                 .set_publish_to(publish_to_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PublishVersion"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PublishVersion", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPublishVersionOutput {
                 inner: output.into(),
@@ -40410,20 +43355,24 @@ impl LambdaClient {
                 .put_function_code_signing_config()
                 .set_code_signing_config_arn(code_signing_config_arn_value)
                 .set_function_name(function_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutFunctionCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutFunctionCodeSigningConfigOutput { inner: output })
         })
@@ -40484,20 +43433,24 @@ impl LambdaClient {
                 .put_function_concurrency()
                 .set_function_name(function_name_value)
                 .set_reserved_concurrent_executions(reserved_concurrent_executions_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionConcurrency"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutFunctionConcurrency",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutFunctionConcurrencyOutput { inner: output })
         })
@@ -40623,20 +43576,24 @@ impl LambdaClient {
                 .set_maximum_retry_attempts(maximum_retry_attempts_value)
                 .set_maximum_event_age_in_seconds(maximum_event_age_in_seconds_value)
                 .set_destination_config(destination_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionEventInvokeConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutFunctionEventInvokeConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutFunctionEventInvokeConfigOutput {
                 inner: output.into(),
@@ -40700,20 +43657,24 @@ impl LambdaClient {
                 .put_function_recursion_config()
                 .set_function_name(function_name_value)
                 .set_recursive_loop(recursive_loop_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionRecursionConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutFunctionRecursionConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutFunctionRecursionConfigOutput { inner: output })
         })
@@ -40795,20 +43756,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value)
                 .set_function_scaling_config(function_scaling_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutFunctionScalingConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutFunctionScalingConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutFunctionScalingConfigOutput { inner: output })
         })
@@ -40890,20 +43855,24 @@ impl LambdaClient {
                 .set_function_name(function_name_value)
                 .set_qualifier(qualifier_value)
                 .set_provisioned_concurrent_executions(provisioned_concurrent_executions_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutProvisionedConcurrencyConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutProvisionedConcurrencyConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutProvisionedConcurrencyConfigOutput { inner: output })
         })
@@ -40980,20 +43949,24 @@ impl LambdaClient {
                 .set_resource_arn(resource_arn_value)
                 .set_policy(policy_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutResourcePolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutResourcePolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutResourcePolicyOutput { inner: output })
         })
@@ -41099,20 +44072,24 @@ impl LambdaClient {
                 .set_qualifier(qualifier_value)
                 .set_update_runtime_on(update_runtime_on_value)
                 .set_runtime_version_arn(runtime_version_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutRuntimeManagementConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutRuntimeManagementConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutRuntimeManagementConfigOutput { inner: output })
         })
@@ -41214,21 +44191,29 @@ impl LambdaClient {
                 .set_version_number(version_number_value)
                 .set_statement_id(statement_id_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemoveLayerVersionPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemoveLayerVersionPermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RemoveLayerVersionPermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -41329,21 +44314,29 @@ impl LambdaClient {
                 .set_statement_id(statement_id_value)
                 .set_qualifier(qualifier_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemovePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemovePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RemovePermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -41402,21 +44395,23 @@ impl LambdaClient {
                 .send_durable_execution_callback_failure()
                 .set_callback_id(callback_id_value)
                 .set_error(error_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "SendDurableExecutionCallbackFailure")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendDurableExecutionCallbackFailure",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationSendDurableExecutionCallbackFailureOutput { inner: output })
@@ -41456,21 +44451,23 @@ impl LambdaClient {
             let request = client
                 .send_durable_execution_callback_heartbeat()
                 .set_callback_id(callback_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "SendDurableExecutionCallbackHeartbeat")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendDurableExecutionCallbackHeartbeat",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationSendDurableExecutionCallbackHeartbeatOutput { inner: output })
@@ -41528,21 +44525,23 @@ impl LambdaClient {
                 .send_durable_execution_callback_success()
                 .set_callback_id(callback_id_value)
                 .set_result(result_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "SendDurableExecutionCallbackSuccess")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SendDurableExecutionCallbackSuccess",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationSendDurableExecutionCallbackSuccessOutput { inner: output })
@@ -41604,20 +44603,24 @@ impl LambdaClient {
                 .stop_durable_execution()
                 .set_durable_execution_arn(durable_execution_arn_value)
                 .set_error(error_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopDurableExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopDurableExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopDurableExecutionOutput { inner: output })
         })
@@ -41695,20 +44698,24 @@ impl LambdaClient {
                 .tag_resource()
                 .set_resource(resource_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "TagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -41786,21 +44793,24 @@ impl LambdaClient {
                 .untag_resource()
                 .set_resource(resource_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "UntagResource",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -41939,20 +44949,20 @@ impl LambdaClient {
                 .set_description(description_value)
                 .set_routing_config(routing_config_value)
                 .set_revision_id(revision_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "UpdateAlias")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateAlias", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationUpdateAliasOutput {
                 inner: output.into(),
             })
@@ -42057,20 +45067,24 @@ impl LambdaClient {
                 .set_capacity_provider_scaling_config(capacity_provider_scaling_config_value)
                 .set_propagate_tags(propagate_tags_value)
                 .set_telemetry_config(telemetry_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCapacityProvider"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCapacityProvider",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateCapacityProviderOutput {
                 inner: output.into(),
@@ -42177,20 +45191,24 @@ impl LambdaClient {
                 .set_description(description_value)
                 .set_allowed_publishers(allowed_publishers_value)
                 .set_code_signing_policies(code_signing_policies_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateCodeSigningConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateCodeSigningConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateCodeSigningConfigOutput {
                 inner: output.into(),
@@ -42733,20 +45751,24 @@ impl LambdaClient {
                 )
                 .set_document_db_event_source_config(document_db_event_source_config_value)
                 .set_provisioned_poller_config(provisioned_poller_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateEventSourceMapping"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateEventSourceMapping",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateEventSourceMappingOutput {
                 inner: output.into(),
@@ -43061,20 +46083,24 @@ impl LambdaClient {
                 .set_dry_run(dry_run_value)
                 .set_revision_id(revision_id_value)
                 .set_source_kms_key_arn(source_kms_key_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionCode"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateFunctionCode",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateFunctionCodeOutput {
                 inner: output.into(),
@@ -43574,20 +46600,24 @@ impl LambdaClient {
                 .set_logging_config(logging_config_value)
                 .set_capacity_provider_config(capacity_provider_config_value)
                 .set_durable_config(durable_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionConfiguration"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateFunctionConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateFunctionConfigurationOutput {
                 inner: output.into(),
@@ -43715,20 +46745,24 @@ impl LambdaClient {
                 .set_maximum_retry_attempts(maximum_retry_attempts_value)
                 .set_maximum_event_age_in_seconds(maximum_event_age_in_seconds_value)
                 .set_destination_config(destination_config_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionEventInvokeConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateFunctionEventInvokeConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateFunctionEventInvokeConfigOutput {
                 inner: output.into(),
@@ -43857,20 +46891,24 @@ impl LambdaClient {
                 .set_auth_type(auth_type_value)
                 .set_cors(cors_value)
                 .set_invoke_mode(invoke_mode_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateFunctionUrlConfig"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateFunctionUrlConfig",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationUpdateFunctionUrlConfigOutput {
                 inner: output.into(),

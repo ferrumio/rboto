@@ -27617,6 +27617,617 @@ impl PyOperationUpdateSessionOutput {
     }
 }
 
+fn bad_gateway_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockagentruntime::types::error::BadGatewayException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_name {
+        let detail_3067 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_3067)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn dependency_failed_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockagentruntime::types::error::DependencyFailedException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.resource_name {
+        let detail_3068 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_3068)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn internal_server_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_bedrockagentruntime::types::error::InternalServerException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.reason {
+        let detail_3069 = (value).as_str().into_py_any(py)?;
+        result.set_item("reason", detail_3069)?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::agentic_retrieve_stream::AgenticRetrieveStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::check_ingested_document_acl::CheckIngestedDocumentAclError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::create_invocation::CreateInvocationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::create_session::CreateSessionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::delete_agent_memory::DeleteAgentMemoryError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::delete_session::DeleteSessionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::end_session::EndSessionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::generate_query::GenerateQueryError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::get_agent_memory::GetAgentMemoryError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::get_document_content::GetDocumentContentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_execution_flow_snapshot::GetExecutionFlowSnapshotError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::get_flow_execution::GetFlowExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_ingested_document_acl::GetIngestedDocumentAclError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::get_invocation_step::GetInvocationStepError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_session::GetSessionError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::invoke_agent::InvokeAgentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::invoke_flow::InvokeFlowError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::invoke_inline_agent::InvokeInlineAgentError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::list_flow_execution_events::ListFlowExecutionEventsError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::list_flow_executions::ListFlowExecutionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::list_invocation_steps::ListInvocationStepsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::list_invocations::ListInvocationsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::list_sessions::ListSessionsError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::list_tags_for_resource::ListTagsForResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::optimize_prompt::OptimizePromptError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::put_invocation_step::PutInvocationStepError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::rerank::RerankError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve::RetrieveError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::retrieve_and_generate::RetrieveAndGenerateError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve_and_generate_stream::RetrieveAndGenerateStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => dependency_failed_exception_error_details(py, value),
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::start_flow_execution::StartFlowExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::stop_flow_execution::StopFlowExecutionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::tag_resource::TagResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::untag_resource::UntagResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::operation::update_session::UpdateSessionError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::ResponseStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::DependencyFailedException(value) => {
+                dependency_failed_exception_error_details(py, value)
+            }
+            Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 #[pyclass(
     name = "AgenticRetrieveStreamResponseOutputReceiver",
     module = "rboto_bedrock_agent_runtime._native"
@@ -27630,7 +28241,7 @@ struct PyAgenticRetrieveStreamResponseOutputReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyAgenticRetrieveStreamResponseOutputReceiver {
@@ -27639,11 +28250,11 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
             aws_sdk_bedrockagentruntime::types::AgenticRetrieveStreamResponseOutput,
             aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -27677,7 +28288,7 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -27711,7 +28322,7 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -27732,7 +28343,7 @@ struct PyFlowResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyFlowResponseStreamReceiver {
@@ -27741,11 +28352,11 @@ impl PyFlowResponseStreamReceiver {
             aws_sdk_bedrockagentruntime::types::FlowResponseStream,
             aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -27779,7 +28390,7 @@ impl PyFlowResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -27813,7 +28424,7 @@ impl PyFlowResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -27834,7 +28445,7 @@ struct PyInlineAgentResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyInlineAgentResponseStreamReceiver {
@@ -27843,11 +28454,11 @@ impl PyInlineAgentResponseStreamReceiver {
             aws_sdk_bedrockagentruntime::types::InlineAgentResponseStream,
             aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -27881,7 +28492,7 @@ impl PyInlineAgentResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -27915,7 +28526,7 @@ impl PyInlineAgentResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -27936,7 +28547,7 @@ struct PyOptimizedPromptStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyOptimizedPromptStreamReceiver {
@@ -27945,11 +28556,11 @@ impl PyOptimizedPromptStreamReceiver {
             aws_sdk_bedrockagentruntime::types::OptimizedPromptStream,
             aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -27983,7 +28594,7 @@ impl PyOptimizedPromptStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -28014,7 +28625,7 @@ impl PyOptimizedPromptStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -28035,7 +28646,7 @@ struct PyResponseStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyResponseStreamReceiver {
@@ -28044,11 +28655,11 @@ impl PyResponseStreamReceiver {
             aws_sdk_bedrockagentruntime::types::ResponseStream,
             aws_sdk_bedrockagentruntime::types::error::ResponseStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -28082,7 +28693,7 @@ impl PyResponseStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -28117,7 +28728,7 @@ impl PyResponseStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -28131,7 +28742,7 @@ impl PyResponseStreamReceiver {
 )]
 struct PyRetrieveAndGenerateStreamResponseOutputReceiver {
     inner: Arc<ManagedResource<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError, >>>,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
@@ -28140,11 +28751,11 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
             aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput,
             aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -28178,7 +28789,7 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -28212,7 +28823,7 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -28604,28 +29215,36 @@ impl BedrockAgentRuntimeClient {
                 .set_memory_configuration(memory_configuration_value)
                 .set_retrieval_instruction_configuration(retrieval_instruction_configuration_value)
                 .set_generate_response(generate_response_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AgenticRetrieveStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "AgenticRetrieveStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "AgenticRetrieveStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyAgenticRetrieveStreamResponseOutputReceiver::new(
                         output.stream,
-                        "AgenticRetrieveStream",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("stream", stream)?;
@@ -28731,20 +29350,24 @@ impl BedrockAgentRuntimeClient {
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value)
                 .set_user_context(user_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CheckIngestedDocumentAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CheckIngestedDocumentAcl",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCheckIngestedDocumentAclOutput { inner: output })
         })
@@ -28826,20 +29449,24 @@ impl BedrockAgentRuntimeClient {
                 .set_invocation_id(invocation_id_value)
                 .set_description(description_value)
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateInvocation"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateInvocation",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateInvocationOutput { inner: output })
         })
@@ -28969,20 +29596,19 @@ impl BedrockAgentRuntimeClient {
                 .set_session_metadata(session_metadata_value)
                 .set_encryption_key_arn(encryption_key_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationCreateSessionOutput { inner: output })
         })
@@ -29080,20 +29706,24 @@ impl BedrockAgentRuntimeClient {
                 .set_agent_alias_id(agent_alias_id_value)
                 .set_memory_id(memory_id_value)
                 .set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteAgentMemory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteAgentMemory",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteAgentMemoryOutput { inner: output })
         })
@@ -29133,20 +29763,19 @@ impl BedrockAgentRuntimeClient {
             let request = client
                 .delete_session()
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationDeleteSessionOutput { inner: output })
         })
@@ -29186,20 +29815,20 @@ impl BedrockAgentRuntimeClient {
             let request = client
                 .end_session()
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "EndSession")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "EndSession", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationEndSessionOutput { inner: output })
         })
     }
@@ -29260,20 +29889,19 @@ impl BedrockAgentRuntimeClient {
                 .generate_query()
                 .set_query_generation_input(query_generation_input_value)
                 .set_transformation_configuration(transformation_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GenerateQuery"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GenerateQuery", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGenerateQueryOutput {
                 inner: output.into(),
@@ -29417,20 +30045,19 @@ impl BedrockAgentRuntimeClient {
                 .set_agent_alias_id(agent_alias_id_value)
                 .set_memory_type(memory_type_value)
                 .set_memory_id(memory_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetAgentMemory"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetAgentMemory", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationGetAgentMemoryOutput { inner: output })
         })
@@ -29557,20 +30184,24 @@ impl BedrockAgentRuntimeClient {
                 .set_document_id(document_id_value)
                 .set_output_format(output_format_value)
                 .set_user_context(user_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDocumentContent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDocumentContent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDocumentContentOutput { inner: output })
         })
@@ -29653,20 +30284,24 @@ impl BedrockAgentRuntimeClient {
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetExecutionFlowSnapshot"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetExecutionFlowSnapshot",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetExecutionFlowSnapshotOutput { inner: output })
         })
@@ -29749,20 +30384,24 @@ impl BedrockAgentRuntimeClient {
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetFlowExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetFlowExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetFlowExecutionOutput {
                 inner: output.into(),
@@ -29846,20 +30485,24 @@ impl BedrockAgentRuntimeClient {
                 .set_knowledge_base_id(knowledge_base_id_value)
                 .set_data_source_id(data_source_id_value)
                 .set_document_id(document_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetIngestedDocumentAcl"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetIngestedDocumentAcl",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetIngestedDocumentAclOutput {
                 inner: output.into(),
@@ -29945,20 +30588,24 @@ impl BedrockAgentRuntimeClient {
                 .set_invocation_identifier(invocation_identifier_value)
                 .set_invocation_step_id(invocation_step_id_value)
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetInvocationStep"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetInvocationStep",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetInvocationStepOutput {
                 inner: output.into(),
@@ -30000,20 +30647,20 @@ impl BedrockAgentRuntimeClient {
             let request = client
                 .get_session()
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "GetSession")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSession", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationGetSessionOutput { inner: output })
         })
     }
@@ -30281,25 +30928,29 @@ impl BedrockAgentRuntimeClient {
                 .set_streaming_configurations(streaming_configurations_value)
                 .set_prompt_creation_configurations(prompt_creation_configurations_value)
                 .set_source_arn(source_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeAgent")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "InvokeAgent", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "InvokeAgent",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyResponseStreamReceiver::new(output.completion, "InvokeAgent"),
+                    PyResponseStreamReceiver::new(output.completion, context.clone()),
                 )?;
                 result.set_item("completion", stream)?;
                 let converted_2531 = (&output.content_type).as_str().into_py_any(py)?;
@@ -30480,25 +31131,29 @@ impl BedrockAgentRuntimeClient {
                 .set_enable_trace(enable_trace_value)
                 .set_model_performance_configuration(model_performance_configuration_value)
                 .set_execution_id(execution_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "InvokeFlow")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "InvokeFlow", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "InvokeFlow",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyFlowResponseStreamReceiver::new(output.response_stream, "InvokeFlow"),
+                    PyFlowResponseStreamReceiver::new(output.response_stream, context.clone()),
                 )?;
                 result.set_item("response_stream", stream)?;
                 if let Some(value) = &output.execution_id {
@@ -31099,29 +31754,34 @@ impl BedrockAgentRuntimeClient {
                 .set_bedrock_model_configurations(bedrock_model_configurations_value)
                 .set_orchestration_type(orchestration_type_value)
                 .set_custom_orchestration(custom_orchestration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "InvokeInlineAgent"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "InvokeInlineAgent",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "InvokeInlineAgent",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyInlineAgentResponseStreamReceiver::new(
-                        output.completion,
-                        "InvokeInlineAgent",
-                    ),
+                    PyInlineAgentResponseStreamReceiver::new(output.completion, context.clone()),
                 )?;
                 result.set_item("completion", stream)?;
                 let converted_2585 = (&output.content_type).as_str().into_py_any(py)?;
@@ -31277,20 +31937,24 @@ impl BedrockAgentRuntimeClient {
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value)
                 .set_event_type(event_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutionEvents"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFlowExecutionEvents",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFlowExecutionEventsOutput { inner: output })
         })
@@ -31393,20 +32057,24 @@ impl BedrockAgentRuntimeClient {
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListFlowExecutions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListFlowExecutions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListFlowExecutionsOutput {
                 inner: output.into(),
@@ -31512,20 +32180,24 @@ impl BedrockAgentRuntimeClient {
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocationSteps"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListInvocationSteps",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListInvocationStepsOutput {
                 inner: output.into(),
@@ -31609,20 +32281,19 @@ impl BedrockAgentRuntimeClient {
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value)
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListInvocations"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListInvocations", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListInvocationsOutput {
                 inner: output.into(),
@@ -31684,20 +32355,19 @@ impl BedrockAgentRuntimeClient {
                 .list_sessions()
                 .set_max_results(max_results_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSessions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListSessions", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationListSessionsOutput {
                 inner: output.into(),
@@ -31738,20 +32408,24 @@ impl BedrockAgentRuntimeClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput { inner: output })
         })
@@ -31811,26 +32485,29 @@ impl BedrockAgentRuntimeClient {
                 .optimize_prompt()
                 .set_input(input_value)
                 .set_target_model_id(target_model_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "OptimizePrompt"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "OptimizePrompt", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "OptimizePrompt",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
-                    PyOptimizedPromptStreamReceiver::new(output.optimized_prompt, "OptimizePrompt"),
+                    PyOptimizedPromptStreamReceiver::new(output.optimized_prompt, context.clone()),
                 )?;
                 result.set_item("optimized_prompt", stream)?;
                 Ok(result.into_any().unbind())
@@ -31964,20 +32641,24 @@ impl BedrockAgentRuntimeClient {
                 .set_invocation_step_time(invocation_step_time_value)
                 .set_payload(payload_value)
                 .set_invocation_step_id(invocation_step_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutInvocationStep"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutInvocationStep",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationPutInvocationStepOutput { inner: output })
         })
@@ -32126,20 +32807,20 @@ impl BedrockAgentRuntimeClient {
                 .set_sources(sources_value)
                 .set_reranking_configuration(reranking_configuration_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Rerank")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Rerank", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationRerankOutput {
                 inner: output.into(),
             })
@@ -32287,20 +32968,20 @@ impl BedrockAgentRuntimeClient {
                 .set_guardrail_configuration(guardrail_configuration_value)
                 .set_next_token(next_token_value)
                 .set_user_context(user_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Retrieve")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Retrieve", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationRetrieveOutput {
                 inner: output.into(),
             })
@@ -32427,20 +33108,24 @@ impl BedrockAgentRuntimeClient {
                 .set_retrieve_and_generate_configuration(retrieve_and_generate_configuration_value)
                 .set_session_configuration(session_configuration_value)
                 .set_user_context(user_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveAndGenerate"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RetrieveAndGenerate",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationRetrieveAndGenerateOutput {
                 inner: output.into(),
@@ -32568,28 +33253,36 @@ impl BedrockAgentRuntimeClient {
                 .set_retrieve_and_generate_configuration(retrieve_and_generate_configuration_value)
                 .set_session_configuration(session_configuration_value)
                 .set_user_context(user_context_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RetrieveAndGenerateStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RetrieveAndGenerateStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RetrieveAndGenerateStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 let stream = Py::new(
                     py,
                     PyRetrieveAndGenerateStreamResponseOutputReceiver::new(
                         output.stream,
-                        "RetrieveAndGenerateStream",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("stream", stream)?;
@@ -32743,20 +33436,24 @@ impl BedrockAgentRuntimeClient {
                 .set_flow_execution_name(flow_execution_name_value)
                 .set_inputs(inputs_value)
                 .set_model_performance_configuration(model_performance_configuration_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartFlowExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartFlowExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStartFlowExecutionOutput { inner: output })
         })
@@ -32839,20 +33536,24 @@ impl BedrockAgentRuntimeClient {
                 .set_flow_identifier(flow_identifier_value)
                 .set_flow_alias_identifier(flow_alias_identifier_value)
                 .set_execution_identifier(execution_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StopFlowExecution"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StopFlowExecution",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationStopFlowExecutionOutput { inner: output })
         })
@@ -32934,20 +33635,20 @@ impl BedrockAgentRuntimeClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -33029,20 +33730,19 @@ impl BedrockAgentRuntimeClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -33129,20 +33829,19 @@ impl BedrockAgentRuntimeClient {
                 .update_session()
                 .set_session_metadata(session_metadata_value)
                 .set_session_identifier(session_identifier_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UpdateSession"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UpdateSession", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUpdateSessionOutput { inner: output })
         })

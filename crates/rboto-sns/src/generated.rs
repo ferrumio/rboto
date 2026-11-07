@@ -2725,6 +2725,125 @@ impl PyOperationVerifySMSSandboxPhoneNumberOutput {
     }
 }
 
+fn verification_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_sns::types::error::VerificationException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_475 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", detail_475)?;
+    Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::add_permission::AddPermissionError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::check_if_phone_number_is_opted_out::CheckIfPhoneNumberIsOptedOutError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::confirm_subscription::ConfirmSubscriptionError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::create_platform_application::CreatePlatformApplicationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::create_platform_endpoint::CreatePlatformEndpointError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::create_sms_sandbox_phone_number::CreateSMSSandboxPhoneNumberError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::create_topic::CreateTopicError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::delete_endpoint::DeleteEndpointError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::delete_platform_application::DeletePlatformApplicationError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::delete_sms_sandbox_phone_number::DeleteSMSSandboxPhoneNumberError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::delete_topic::DeleteTopicError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::get_data_protection_policy::GetDataProtectionPolicyError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::get_endpoint_attributes::GetEndpointAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_platform_application_attributes::GetPlatformApplicationAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_sms_attributes::GetSMSAttributesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::get_sms_sandbox_account_status::GetSMSSandboxAccountStatusError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::get_subscription_attributes::GetSubscriptionAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_topic_attributes::GetTopicAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_phone_numbers_opted_out::ListPhoneNumbersOptedOutError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSMSSandboxPhoneNumbersError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_topics::ListTopicsError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::opt_in_phone_number::OptInPhoneNumberError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::publish::PublishError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::publish_batch::PublishBatchError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::put_data_protection_policy::PutDataProtectionPolicyError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::remove_permission::RemovePermissionError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::set_endpoint_attributes::SetEndpointAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_platform_application_attributes::SetPlatformApplicationAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_sms_attributes::SetSMSAttributesError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::set_subscription_attributes::SetSubscriptionAttributesError
+{
+}
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_topic_attributes::SetTopicAttributesError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::subscribe::SubscribeError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::tag_resource::TagResourceError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::unsubscribe::UnsubscribeError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails
+    for aws_sdk_sns::operation::verify_sms_sandbox_phone_number::VerifySMSSandboxPhoneNumberError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::VerificationException(value) => verification_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyBatchResultErrorEntry>()?;
     module.add_class::<PyEndpoint>()?;
@@ -2962,21 +3081,24 @@ impl SNSClient {
                 .set_label(label_value)
                 .set_aws_account_id(aws_account_id_value)
                 .set_action_name(action_name_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "AddPermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "AddPermission", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "AddPermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3014,20 +3136,24 @@ impl SNSClient {
             let request = client
                 .check_if_phone_number_is_opted_out()
                 .set_phone_number(phone_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CheckIfPhoneNumberIsOptedOut"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CheckIfPhoneNumberIsOptedOut",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCheckIfPhoneNumberIsOptedOutOutput { inner: output })
         })
@@ -3105,20 +3231,24 @@ impl SNSClient {
                 .set_topic_arn(topic_arn_value)
                 .set_token(token_value)
                 .set_authenticate_on_unsubscribe(authenticate_on_unsubscribe_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ConfirmSubscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ConfirmSubscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationConfirmSubscriptionOutput { inner: output })
         })
@@ -3217,20 +3347,24 @@ impl SNSClient {
                 .set_name(name_value)
                 .set_platform(platform_value)
                 .set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePlatformApplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePlatformApplicationOutput { inner: output })
         })
@@ -3355,20 +3489,24 @@ impl SNSClient {
                 .set_token(token_value)
                 .set_custom_user_data(custom_user_data_value)
                 .set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreatePlatformEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreatePlatformEndpoint",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreatePlatformEndpointOutput { inner: output })
         })
@@ -3430,20 +3568,24 @@ impl SNSClient {
                 .create_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value)
                 .set_language_code(language_code_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "CreateSMSSandboxPhoneNumber"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateSMSSandboxPhoneNumber",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationCreateSMSSandboxPhoneNumberOutput { inner: output })
         })
@@ -3591,20 +3733,20 @@ impl SNSClient {
                 .set_attributes(attributes_value)
                 .set_tags(tags_value)
                 .set_data_protection_policy(data_protection_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "CreateTopic")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateTopic", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationCreateTopicOutput { inner: output })
         })
     }
@@ -3642,21 +3784,24 @@ impl SNSClient {
             let request = client
                 .delete_endpoint()
                 .set_endpoint_arn(endpoint_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteEndpoint"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteEndpoint", &observer.response_metadata())
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeleteEndpoint",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3695,21 +3840,29 @@ impl SNSClient {
             let request = client
                 .delete_platform_application()
                 .set_platform_application_arn(platform_application_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeletePlatformApplication"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeletePlatformApplication",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "DeletePlatformApplication",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3747,20 +3900,24 @@ impl SNSClient {
             let request = client
                 .delete_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "DeleteSMSSandboxPhoneNumber"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteSMSSandboxPhoneNumber",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationDeleteSMSSandboxPhoneNumberOutput { inner: output })
         })
@@ -3797,20 +3954,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.delete_topic().set_topic_arn(topic_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "DeleteTopic")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteTopic", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "DeleteTopic",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -3848,20 +4009,24 @@ impl SNSClient {
             let request = client
                 .get_data_protection_policy()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetDataProtectionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetDataProtectionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetDataProtectionPolicyOutput { inner: output })
         })
@@ -3900,20 +4065,24 @@ impl SNSClient {
             let request = client
                 .get_endpoint_attributes()
                 .set_endpoint_arn(endpoint_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetEndpointAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetEndpointAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetEndpointAttributesOutput { inner: output })
         })
@@ -3953,20 +4122,24 @@ impl SNSClient {
             let request = client
                 .get_platform_application_attributes()
                 .set_platform_application_arn(platform_application_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetPlatformApplicationAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetPlatformApplicationAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetPlatformApplicationAttributesOutput { inner: output })
         })
@@ -4026,20 +4199,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_sms_attributes().set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSMSAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetSMSAttributesOutput { inner: output })
         })
@@ -4056,20 +4233,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_sms_sandbox_account_status();
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSMSSandboxAccountStatus"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSMSSandboxAccountStatus",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetSMSSandboxAccountStatusOutput { inner: output })
         })
@@ -4108,20 +4289,24 @@ impl SNSClient {
             let request = client
                 .get_subscription_attributes()
                 .set_subscription_arn(subscription_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetSubscriptionAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSubscriptionAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetSubscriptionAttributesOutput { inner: output })
         })
@@ -4158,20 +4343,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.get_topic_attributes().set_topic_arn(topic_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetTopicAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetTopicAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetTopicAttributesOutput { inner: output })
         })
@@ -4232,21 +4421,23 @@ impl SNSClient {
                 .list_endpoints_by_platform_application()
                 .set_platform_application_arn(platform_application_arn_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "ListEndpointsByPlatformApplication")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListEndpointsByPlatformApplication",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
             Ok(PyOperationListEndpointsByPlatformApplicationOutput {
@@ -4309,20 +4500,24 @@ impl SNSClient {
                 .list_origination_numbers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListOriginationNumbers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListOriginationNumbers",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListOriginationNumbersOutput {
                 inner: output.into(),
@@ -4363,20 +4558,24 @@ impl SNSClient {
             let request = client
                 .list_phone_numbers_opted_out()
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPhoneNumbersOptedOut"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPhoneNumbersOptedOut",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPhoneNumbersOptedOutOutput { inner: output })
         })
@@ -4415,20 +4614,24 @@ impl SNSClient {
             let request = client
                 .list_platform_applications()
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListPlatformApplications"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListPlatformApplications",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListPlatformApplicationsOutput {
                 inner: output.into(),
@@ -4490,20 +4693,24 @@ impl SNSClient {
                 .list_sms_sandbox_phone_numbers()
                 .set_next_token(next_token_value)
                 .set_max_results(max_results_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSMSSandboxPhoneNumbers"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSMSSandboxPhoneNumbers",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSMSSandboxPhoneNumbersOutput {
                 inner: output.into(),
@@ -4542,20 +4749,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_subscriptions().set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptions"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSubscriptions",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSubscriptionsOutput {
                 inner: output.into(),
@@ -4617,20 +4828,24 @@ impl SNSClient {
                 .list_subscriptions_by_topic()
                 .set_topic_arn(topic_arn_value)
                 .set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListSubscriptionsByTopic"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSubscriptionsByTopic",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListSubscriptionsByTopicOutput {
                 inner: output.into(),
@@ -4671,20 +4886,24 @@ impl SNSClient {
             let request = client
                 .list_tags_for_resource()
                 .set_resource_arn(resource_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "ListTagsForResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationListTagsForResourceOutput {
                 inner: output.into(),
@@ -4723,20 +4942,20 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.list_topics().set_next_token(next_token_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "ListTopics")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListTopics", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationListTopicsOutput {
                 inner: output.into(),
             })
@@ -4776,20 +4995,24 @@ impl SNSClient {
             let request = client
                 .opt_in_phone_number()
                 .set_phone_number(phone_number_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "OptInPhoneNumber"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "OptInPhoneNumber",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationOptInPhoneNumberOutput { inner: output })
         })
@@ -5017,20 +5240,20 @@ impl SNSClient {
                 .set_message_attributes(message_attributes_value)
                 .set_message_deduplication_id(message_deduplication_id_value)
                 .set_message_group_id(message_group_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Publish")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Publish", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationPublishOutput { inner: output })
         })
     }
@@ -5114,20 +5337,19 @@ impl SNSClient {
                 .publish_batch()
                 .set_topic_arn(topic_arn_value)
                 .set_publish_batch_request_entries(publish_batch_request_entries_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PublishBatch"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "PublishBatch", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationPublishBatchOutput {
                 inner: output.into(),
@@ -5190,21 +5412,29 @@ impl SNSClient {
                 .put_data_protection_policy()
                 .set_resource_arn(resource_arn_value)
                 .set_data_protection_policy(data_protection_policy_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "PutDataProtectionPolicy"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "PutDataProtectionPolicy",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "PutDataProtectionPolicy",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5259,21 +5489,29 @@ impl SNSClient {
                 .remove_permission()
                 .set_topic_arn(topic_arn_value)
                 .set_label(label_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "RemovePermission"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "RemovePermission",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "RemovePermission",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5358,21 +5596,29 @@ impl SNSClient {
                 .set_endpoint_attributes()
                 .set_endpoint_arn(endpoint_arn_value)
                 .set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetEndpointAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetEndpointAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetEndpointAttributes",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5458,21 +5704,29 @@ impl SNSClient {
                 .set_platform_application_attributes()
                 .set_platform_application_arn(platform_application_arn_value)
                 .set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetPlatformApplicationAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetPlatformApplicationAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetPlatformApplicationAttributes",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5534,20 +5788,24 @@ impl SNSClient {
         rboto_core::client_future_into_py(py, lease, async move {
             let client = state.client().await?;
             let request = client.set_sms_attributes().set_attributes(attributes_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetSMSAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetSMSAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationSetSMSAttributesOutput { inner: output })
         })
@@ -5628,21 +5886,29 @@ impl SNSClient {
                 .set_subscription_arn(subscription_arn_value)
                 .set_attribute_name(attribute_name_value)
                 .set_attribute_value(attribute_value_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetSubscriptionAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetSubscriptionAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetSubscriptionAttributes",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5722,21 +5988,29 @@ impl SNSClient {
                 .set_topic_arn(topic_arn_value)
                 .set_attribute_name(attribute_name_value)
                 .set_attribute_value(attribute_value_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "SetTopicAttributes"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "SetTopicAttributes",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "SetTopicAttributes",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -5877,20 +6151,20 @@ impl SNSClient {
                 .set_endpoint(endpoint_value)
                 .set_attributes(attributes_value)
                 .set_return_subscription_arn(return_subscription_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Subscribe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Subscribe", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationSubscribeOutput { inner: output })
         })
     }
@@ -5972,20 +6246,20 @@ impl SNSClient {
                 .tag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tags(tags_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "TagResource")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
             Ok(PyOperationTagResourceOutput { inner: output })
         })
     }
@@ -6023,20 +6297,24 @@ impl SNSClient {
             let request = client
                 .unsubscribe()
                 .set_subscription_arn(subscription_arn_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
-            let output = result
-                .map_err(|error| Python::attach(|py| sdk_error_to_py(py, &error, "Unsubscribe")))?;
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "Unsubscribe", &observer.response_metadata())
+                })
+            })?;
+            let context = StreamErrorContext {
+                operation: "Unsubscribe",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| Ok(py.None()))
         })
     }
@@ -6118,20 +6396,19 @@ impl SNSClient {
                 .untag_resource()
                 .set_resource_arn(resource_arn_value)
                 .set_tag_keys(tag_keys_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "UntagResource"))
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
             })?;
             Ok(PyOperationUntagResourceOutput { inner: output })
         })
@@ -6192,20 +6469,24 @@ impl SNSClient {
                 .verify_sms_sandbox_phone_number()
                 .set_phone_number(phone_number_value)
                 .set_one_time_password(one_time_password_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "VerifySMSSandboxPhoneNumber"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "VerifySMSSandboxPhoneNumber",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationVerifySMSSandboxPhoneNumberOutput { inner: output })
         })

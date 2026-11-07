@@ -5058,6 +5058,33 @@ impl PyOperationGetMedicalScribeStreamOutput {
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_call_analytics_stream_transcription::StartCallAnalyticsStreamTranscriptionError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_scribe_stream::StartMedicalScribeStreamError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_stream_transcription::StartMedicalStreamTranscriptionError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_stream_transcription::StartStreamTranscriptionError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::types::error::AudioStreamError {}
+impl ModeledErrorDetails
+    for aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError
+{
+}
+impl ModeledErrorDetails
+    for aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError
+{
+}
+
 #[pyclass(
     name = "CallAnalyticsTranscriptResultStreamReceiver",
     module = "rboto_transcribe_streaming._native"
@@ -5071,7 +5098,7 @@ struct PyCallAnalyticsTranscriptResultStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyCallAnalyticsTranscriptResultStreamReceiver {
@@ -5080,11 +5107,11 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
             aws_sdk_transcribestreaming::types::CallAnalyticsTranscriptResultStream,
             aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5118,7 +5145,7 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5148,7 +5175,7 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5169,7 +5196,7 @@ struct PyMedicalScribeResultStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyMedicalScribeResultStreamReceiver {
@@ -5178,11 +5205,11 @@ impl PyMedicalScribeResultStreamReceiver {
             aws_sdk_transcribestreaming::types::MedicalScribeResultStream,
             aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5216,7 +5243,7 @@ impl PyMedicalScribeResultStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5246,7 +5273,7 @@ impl PyMedicalScribeResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5267,7 +5294,7 @@ struct PyMedicalTranscriptResultStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyMedicalTranscriptResultStreamReceiver {
@@ -5276,11 +5303,11 @@ impl PyMedicalTranscriptResultStreamReceiver {
             aws_sdk_transcribestreaming::types::MedicalTranscriptResultStream,
             aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5314,7 +5341,7 @@ impl PyMedicalTranscriptResultStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5344,7 +5371,7 @@ impl PyMedicalTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5365,7 +5392,7 @@ struct PyTranscriptResultStreamReceiver {
             >,
         >,
     >,
-    operation: &'static str,
+    context: Arc<StreamErrorContext>,
 }
 
 impl PyTranscriptResultStreamReceiver {
@@ -5374,11 +5401,11 @@ impl PyTranscriptResultStreamReceiver {
             aws_sdk_transcribestreaming::types::TranscriptResultStream,
             aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError,
         >,
-        operation: &'static str,
+        context: StreamErrorContext,
     ) -> Self {
         Self {
             inner: Arc::new(ManagedResource::new(stream)),
-            operation,
+            context: Arc::new(context),
         }
     }
 }
@@ -5412,7 +5439,7 @@ impl PyTranscriptResultStreamReceiver {
 
     fn __anext__<'py>(&self, py: Python<'py>) -> PyResult<Bound<'py, PyAny>> {
         let inner = self.inner.clone();
-        let operation = self.operation;
+        let context = self.context.clone();
         future_into_py(py, async move {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
@@ -5442,7 +5469,7 @@ impl PyTranscriptResultStreamReceiver {
                         _ => None,
                     };
 
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, operation, code)))
+                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
                 }
             }
             }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
@@ -5554,20 +5581,24 @@ impl TranscribeStreamingClient {
             let request = client
                 .get_medical_scribe_stream()
                 .set_session_id(session_id_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "GetMedicalScribeStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMedicalScribeStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
             Ok(PyOperationGetMedicalScribeStreamOutput {
                 inner: output.into(),
@@ -6018,23 +6049,29 @@ impl TranscribeStreamingClient {
                 .set_content_identification_type(content_identification_type_value)
                 .set_content_redaction_type(content_redaction_type_value)
                 .set_pii_entity_types(pii_entity_types_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
                 Python::attach(|py| {
-                    sdk_error_to_py(py, &error, "StartCallAnalyticsStreamTranscription")
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartCallAnalyticsStreamTranscription",
+                        &observer.response_metadata(),
+                    )
                 })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartCallAnalyticsStreamTranscription",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
@@ -6077,7 +6114,7 @@ impl TranscribeStreamingClient {
                     py,
                     PyCallAnalyticsTranscriptResultStreamReceiver::new(
                         output.call_analytics_transcript_result_stream,
-                        "StartCallAnalyticsStreamTranscription",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("call_analytics_transcript_result_stream", stream)?;
@@ -6276,21 +6313,29 @@ impl TranscribeStreamingClient {
                 .set_media_sample_rate_hertz(media_sample_rate_hertz_value)
                 .set_media_encoding(media_encoding_value)
                 .set_input_stream(input_stream_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartMedicalScribeStream"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMedicalScribeStream",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartMedicalScribeStream",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.session_id {
@@ -6325,10 +6370,7 @@ impl TranscribeStreamingClient {
                 }
                 let stream = Py::new(
                     py,
-                    PyMedicalScribeResultStreamReceiver::new(
-                        output.result_stream,
-                        "StartMedicalScribeStream",
-                    ),
+                    PyMedicalScribeResultStreamReceiver::new(output.result_stream, context.clone()),
                 )?;
                 result.set_item("result_stream", stream)?;
                 Ok(result.into_any().unbind())
@@ -6610,21 +6652,29 @@ impl TranscribeStreamingClient {
                 .set_enable_channel_identification(enable_channel_identification_value)
                 .set_number_of_channels(number_of_channels_value)
                 .set_content_identification_type(content_identification_type_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartMedicalStreamTranscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMedicalStreamTranscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartMedicalStreamTranscription",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
@@ -6681,7 +6731,7 @@ impl TranscribeStreamingClient {
                     py,
                     PyMedicalTranscriptResultStreamReceiver::new(
                         output.transcript_result_stream,
-                        "StartMedicalStreamTranscription",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("transcript_result_stream", stream)?;
@@ -7281,21 +7331,29 @@ impl TranscribeStreamingClient {
                 .set_vocabulary_filter_names(vocabulary_filter_names_value)
                 .set_session_resume_window(session_resume_window_value)
                 .set_transcript_format(transcript_format_value);
-            let result = if let Some(sink) = observation {
-                let observer = rboto_core::OperationObservation::default();
-                let result = request
-                    .customize()
-                    .interceptor(observer.clone())
-                    .send()
-                    .await;
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
                 observer.publish(sink, client.config().region().map(|region| region.as_ref()));
-                result
-            } else {
-                request.send().await
             };
             let output = result.map_err(|error| {
-                Python::attach(|py| sdk_error_to_py(py, &error, "StartStreamTranscription"))
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartStreamTranscription",
+                        &observer.response_metadata(),
+                    )
+                })
             })?;
+            let context = StreamErrorContext {
+                operation: "StartStreamTranscription",
+                metadata: observer.response_metadata(),
+            };
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.request_id {
@@ -7338,7 +7396,7 @@ impl TranscribeStreamingClient {
                     py,
                     PyTranscriptResultStreamReceiver::new(
                         output.transcript_result_stream,
-                        "StartStreamTranscription",
+                        context.clone(),
                     ),
                 )?;
                 result.set_item("transcript_result_stream", stream)?;
