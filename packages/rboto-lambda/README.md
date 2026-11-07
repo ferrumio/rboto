@@ -155,7 +155,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
 | [`get_runtime_management_config`](#get_runtime_management_config) | <code>function_name: str</code> | <code>GetRuntimeManagementConfigOutput</code> |
 | [`invoke`](#invoke) | <code>function_name: str</code> | <code>InvokeOutput</code> |
-| [`invoke_async`](#invoke_async) | <code>function_name: str</code>, <code>invoke_args: bytes</code> | <code>InvokeAsyncOutput</code> |
+| [`invoke_async`](#invoke_async) | <code>function_name: str</code>, <code>invoke_args: bytes &#124; AsyncIterator[bytes]</code> | <code>InvokeAsyncOutput</code> |
 | [`invoke_with_response_stream`](#invoke_with_response_stream) | <code>function_name: str</code> | <code>InvokeWithResponseStreamOutput</code> |
 | [`list_aliases`](#list_aliases) | <code>function_name: str</code> | <code>ListAliasesOutput</code> |
 | [`list_capacity_providers`](#list_capacity_providers) | None | <code>ListCapacityProvidersOutput</code> |
@@ -786,7 +786,7 @@ async def invoke(
 async def invoke_async(
     *,
     function_name: str,
-    invoke_args: bytes,
+    invoke_args: bytes | AsyncIterator[bytes],
 ) -> InvokeAsyncOutput: ...
 ```
 

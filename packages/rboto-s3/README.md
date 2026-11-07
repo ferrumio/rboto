@@ -208,7 +208,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_bucket_website`](#put_bucket_website) | <code>bucket: str</code>, <code>website_configuration: WebsiteConfiguration</code> | <code>None</code> |
 | [`put_object`](#put_object) | <code>bucket: str</code>, <code>key: str</code> | <code>PutObjectOutput</code> |
 | [`put_object_acl`](#put_object_acl) | <code>bucket: str</code>, <code>key: str</code> | <code>PutObjectAclOutput</code> |
-| [`put_object_annotation`](#put_object_annotation) | <code>bucket: str</code>, <code>key: str</code>, <code>annotation_name: str</code>, <code>annotation_payload: bytes</code> | <code>PutObjectAnnotationOutput</code> |
+| [`put_object_annotation`](#put_object_annotation) | <code>bucket: str</code>, <code>key: str</code>, <code>annotation_name: str</code>, <code>annotation_payload: bytes &#124; AsyncIterator[bytes]</code> | <code>PutObjectAnnotationOutput</code> |
 | [`put_object_legal_hold`](#put_object_legal_hold) | <code>bucket: str</code>, <code>key: str</code> | <code>PutObjectLegalHoldOutput</code> |
 | [`put_object_lock_configuration`](#put_object_lock_configuration) | <code>bucket: str</code> | <code>PutObjectLockConfigurationOutput</code> |
 | [`put_object_retention`](#put_object_retention) | <code>bucket: str</code>, <code>key: str</code> | <code>PutObjectRetentionOutput</code> |
@@ -1620,7 +1620,7 @@ async def put_object(
     bucket: str,
     key: str,
     acl: ObjectCannedACL | None = None,
-    body: bytes | None = None,
+    body: bytes | AsyncIterator[bytes] | None = None,
     cache_control: str | None = None,
     content_disposition: str | None = None,
     content_encoding: str | None = None,
@@ -1701,7 +1701,7 @@ async def put_object_annotation(
     bucket: str,
     key: str,
     annotation_name: str,
-    annotation_payload: bytes,
+    annotation_payload: bytes | AsyncIterator[bytes],
     version_id: str | None = None,
     object_if_match: str | None = None,
     checksum_algorithm: ChecksumAlgorithm | None = None,
@@ -1930,7 +1930,7 @@ async def upload_part(
     key: str,
     part_number: int,
     upload_id: str,
-    body: bytes | None = None,
+    body: bytes | AsyncIterator[bytes] | None = None,
     content_length: int | None = None,
     content_md5: str | None = None,
     checksum_algorithm: ChecksumAlgorithm | None = None,
@@ -1988,7 +1988,7 @@ async def write_get_object_response(
     *,
     request_route: str,
     request_token: str,
-    body: bytes | None = None,
+    body: bytes | AsyncIterator[bytes] | None = None,
     status_code: int | None = None,
     error_code: str | None = None,
     error_message: str | None = None,

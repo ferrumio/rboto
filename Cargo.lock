@@ -2657,6 +2657,7 @@ dependencies = [
  "aws-smithy-types",
  "bytes",
  "futures-util",
+ "http-body",
  "pyo3",
  "pyo3-async-runtimes",
  "rustls",

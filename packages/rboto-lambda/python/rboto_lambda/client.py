@@ -1622,7 +1622,7 @@ class LambdaClient:
         self,
         *,
         function_name: str,
-        invoke_args: bytes,
+        invoke_args: bytes | AsyncIterator[bytes],
     ) -> InvokeAsyncOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/invoke_async/)."""
         params: dict[str, object] = {

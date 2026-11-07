@@ -14,4 +14,6 @@ This file is generated from conventional commit messages by
 - One native wheel per service with a pure-Python `rboto` facade providing `Session`,
   shared exceptions, and service factories.
 - Streaming S3 response bodies exposed as Python async iterators.
+- Streaming request bodies: S3, Lambda, and Lex streaming inputs accept async iterables of
+  `bytes` in addition to `bytes`, forwarding `content_length` as the body size.
 - Modeled AWS errors raised as generated Python exception subclasses.

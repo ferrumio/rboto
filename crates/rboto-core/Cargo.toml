@@ -20,8 +20,9 @@ aws-smithy-http-client = { workspace = true, features = ["rustls-aws-lc"] }
 rustls = { version = "0.23", default-features = false, features = ["std"] }
 tokio.workspace = true
 aws-smithy-runtime-api = { workspace = true, features = ["client"] }
-aws-smithy-types.workspace = true
+aws-smithy-types = { workspace = true, features = ["http-body-1-x"] }
 bytes = "1"
 futures-util.workspace = true
+http-body = "1"
 pyo3.workspace = true
 pyo3-async-runtimes.workspace = true

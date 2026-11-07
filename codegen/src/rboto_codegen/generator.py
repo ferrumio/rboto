@@ -489,6 +489,20 @@ class ServiceGenerator:
             return "enum"
         raise GenerationError(f"unsupported Rust type: {rust_type}")
 
+    # Name of the declared body length while emitting an operation whose streaming body
+    # must forward `content_length` as its exact size (see ADR-0030).
+    _stream_length: str | None = None
+
+    def _stream_length_hint(self, operation: RustOperation) -> str | None:
+        has_stream = any(
+            self._kind(field.rust_type) == "byte_stream" for field in operation.input_fields
+        )
+        has_length = any(
+            field.name == "content_length" and self._kind(field.rust_type) == "i64"
+            for field in operation.input_fields
+        )
+        return "content_length_hint" if has_stream and has_length else None
+
     def _input_expected(self, rust_type: str) -> str:
         kind = self._kind(rust_type)
         if kind in {"struct", "enum"}:
@@ -498,7 +512,7 @@ class ServiceGenerator:
             "string": "str", "bool": "bool", "i8": "int", "i16": "int",
             "i32": "int", "i64": "int", "f32": "float", "f64": "float",
             "document": "JSONValue", "datetime": "ISO 8601 timestamp string",
-            "blob": "bytes", "byte_stream": "bytes", "vec": "sequence",
+            "blob": "bytes", "byte_stream": "bytes or async iterable of bytes", "vec": "sequence",
             "map": "dict", "union": "exactly one known union variant",
             "event_sender": "async iterator", "box": "valid boxed value",
             "option": "valid optional value",
@@ -576,10 +590,11 @@ class ServiceGenerator:
                 f"{indent}let {target} = ::aws_smithy_types::Blob::new({raw});",
             ]
         if kind == "byte_stream":
-            raw = self._next("bytes")
+            stream_arguments = (
+                f"{self._stream_length}, true" if self._stream_length is not None else "None, false"
+            )
             return [
-                f"{indent}let {raw}: Vec<u8> = {source}.extract()?;",
-                f"{indent}let {target} = AwsByteStream::from({raw});",
+                f"{indent}let {target} = rboto_core::python_byte_stream(&{source}, {stream_arguments})?;",
             ]
         if kind == "enum":
             name = _crate_type_name(rust_type)
@@ -1330,6 +1345,19 @@ class ServiceGenerator:
             "        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;",
         ]
         converted_fields: list[tuple[RustField, str]] = []
+        self._stream_length = self._stream_length_hint(operation)
+        if self._stream_length is not None:
+            lines.extend(
+                [
+                    f'        let {self._stream_length}: Option<u64> = match dict_value(params, "content_length")? {{',
+                    "            Some(value) => Some(value.extract().map_err(|error| rboto_core::input_operation(",
+                    '                rboto_core::input_error(error, rboto_core::InputPath::Field("content_length"), "int"),',
+                    f'                "{self.descriptor.service_id}", "{smithy.name}",',
+                    "            ))?),",
+                    "            None => None,",
+                    "        };",
+                ]
+            )
         for field in operation.input_fields:
             converted = f"{field.name}_value"
             inner = self._next("converted")
@@ -1344,6 +1372,7 @@ class ServiceGenerator:
             lines.append(f"            Some({inner})")
             lines.append("        } else { None };")
             converted_fields.append((field, converted))
+        self._stream_length = None
 
         lines.extend(
             [
@@ -1599,7 +1628,7 @@ class ServiceGenerator:
     def _python_input_type(self, target: str) -> str:
         shape = self.service.shapes.get(target)
         if shape is not None and shape.kind == "blob" and shape.streaming:
-            return "bytes"
+            return "bytes | AsyncIterator[bytes]"
         return self._python_type(target)
 
     def _rust_output_annotation(self, rust_type: str, optional: bool = False) -> str:
