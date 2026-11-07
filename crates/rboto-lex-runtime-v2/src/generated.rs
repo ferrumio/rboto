@@ -6432,7 +6432,7 @@ impl LexRuntimeV2Client {
             dict_value(params, "request_event_stream")?
         {
             let converted_416 = (|| -> PyResult<_> {
-                let converted_416: aws_sdk_lexruntimev2::primitives::event_stream::EventStreamSender< aws_sdk_lexruntimev2::types::StartConversationRequestEventStream, aws_sdk_lexruntimev2::types::error::StartConversationRequestEventStreamError, > = rboto_core::python_event_stream(
+                let converted_416: aws_sdk_lexruntimev2::primitives::event_stream::EventStreamSender<aws_sdk_lexruntimev2::types::StartConversationRequestEventStream, aws_sdk_lexruntimev2::types::error::StartConversationRequestEventStreamError> = rboto_core::python_event_stream(
                     &value, start_conversation_request_event_stream_from_py,
                     aws_sdk_lexruntimev2::types::error::StartConversationRequestEventStreamError::unhandled,
                 )?.into();

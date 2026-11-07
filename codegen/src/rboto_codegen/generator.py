@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
+from .alignment import align
 from .documentation import CLIENT_LIFECYCLE_METHODS, render_service_readme
 from .manifests import render_cargo, render_pyproject, template_environment
 from .model import ServiceDescriptor
@@ -126,6 +127,12 @@ class ServiceGenerator:
         self.descriptor = descriptor
         self.service = load_model(model_path, descriptor)
         self.crate = parse_crate(descriptor)
+        try:
+            align(
+                self.service, self.crate, descriptor.alignment_extras, descriptor.alignment_types,
+            ).require_aligned(descriptor.service_id)
+        except ValueError as error:
+            raise GenerationError(str(error)) from error
         collisions = self.crate.operations.keys() & (CLIENT_LIFECYCLE_METHODS | {"_ensure_open"})
         if collisions:
             raise GenerationError(f"operations conflict with client lifecycle: {sorted(collisions)}")
@@ -429,19 +436,11 @@ class ServiceGenerator:
                 error_type = self._public_rust_type(arguments[1])
                 error_name = arguments[1].rsplit("::", 1)[-1]
                 error_source = (self.crate.path / "src/types/error.rs").read_text()
-                error_enum = re.search(
-                    rf"pub enum {re.escape(error_name)}\s*\{{(.*?)\n\}}",
-                    error_source,
-                    re.DOTALL,
-                )
+                error_enum = parse_error_variants(error_source).get(error_name)
                 if error_enum is None:
                     raise GenerationError(f"missing event error enum: {error_name}")
                 error_arms: list[str] = []
-                for variant, error_shape_name in re.findall(
-                    r"^\s*(\w+)\(crate::types::error::(\w+)\),",
-                    error_enum.group(1),
-                    re.MULTILINE,
-                ):
+                for variant, error_shape_name in error_enum:
                     shape = self._shape_for_rust(error_shape_name)
                     if shape is None or not shape.error:
                         raise GenerationError(f"missing modeled event error: {error_shape_name}")

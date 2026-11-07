@@ -68,4 +68,14 @@ crate defines concrete module paths, builders, output structs, and ownership con
 Generation must respect both. Do not silence an alignment mismatch without documenting why
 the SDK representation is intentionally different.
 
-See ADR-0002 and ADR-0003.
+Both `report` and generation enforce semantic alignment before writing service
+artifacts. `rust_source.py` parses the supported declaration subset; add positive
+and rejecting fixtures for new upstream syntax. Never turn an unrecognized
+declaration or missing file into an empty shape.
+
+Descriptor `alignment_extras` lists additional SDK output fields by exact
+operation, member, type and optionality. `alignment_types` declares a concrete
+representation of a modeled scalar shape. Both require a reason; stale or unused
+entries fail validation. Do not use these for unexplained model/crate drift.
+
+See ADR-0002, ADR-0003 and ADR-0033.

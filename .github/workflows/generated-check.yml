@@ -53,5 +53,11 @@ jobs:
           git diff --exit-code
           test -z "$(git ls-files --others --exclude-standard)"
 
+      - name: Verify deterministic regeneration of the complete catalog
+        run: |
+          .venv/bin/rboto-codegen generate --all
+          git diff --exit-code
+          test -z "$(git ls-files --others --exclude-standard)"
+
       - name: Compile generated workspace
         run: cargo check --workspace --locked

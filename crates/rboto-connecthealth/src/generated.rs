@@ -6339,7 +6339,7 @@ impl ConnectHealthClient {
         };
         let input_stream_value = if let Some(value) = dict_value(params, "input_stream")? {
             let converted_279 = (|| -> PyResult<_> {
-                let converted_279: aws_sdk_connecthealth::primitives::event_stream::EventStreamSender< aws_sdk_connecthealth::types::MedicalScribeInputStream, aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError, > = rboto_core::python_event_stream(
+                let converted_279: aws_sdk_connecthealth::primitives::event_stream::EventStreamSender<aws_sdk_connecthealth::types::MedicalScribeInputStream, aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError> = rboto_core::python_event_stream(
                     &value, medical_scribe_input_stream_from_py,
                     aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError::unhandled,
                 )?.into();

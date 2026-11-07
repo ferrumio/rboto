@@ -6294,7 +6294,7 @@ impl TranscribeStreamingClient {
         };
         let input_stream_value = if let Some(value) = dict_value(params, "input_stream")? {
             let converted_531 = (|| -> PyResult<_> {
-                let converted_531: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender< aws_sdk_transcribestreaming::types::MedicalScribeInputStream, aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError, > = rboto_core::python_event_stream(
+                let converted_531: aws_sdk_transcribestreaming::primitives::event_stream::EventStreamSender<aws_sdk_transcribestreaming::types::MedicalScribeInputStream, aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError> = rboto_core::python_event_stream(
                     &value, medical_scribe_input_stream_from_py,
                     aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError::unhandled,
                 )?.into();

@@ -33,6 +33,25 @@ def test_all_services_enable_native_outputs() -> None:
     assert all(service.native_outputs for service in list_services())
 
 
+@pytest.mark.parametrize("replacement", [
+    'reason = ""',
+    'reason = "   "',
+    'reason = false',
+    'ignored = "missing required reason"',
+])
+def test_alignment_exceptions_require_an_explanation(
+    tmp_path: Path, replacement: str,
+) -> None:
+    source = Path(__file__).parents[1] / "src/rboto_codegen/services/s3.toml"
+    path = tmp_path / "s3.toml"
+    path.write_text(source.read_text().replace(
+        'reason = "Raw Expires header retained alongside the modeled timestamp."',
+        replacement,
+    ))
+    with pytest.raises(ValueError, match="reason"):
+        load_service(path)
+
+
 def test_filename_must_match_service_id(tmp_path: Path) -> None:
     config = tmp_path / "wrong.toml"
     config.write_text(

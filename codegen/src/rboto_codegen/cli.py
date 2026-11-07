@@ -84,7 +84,7 @@ def main() -> None:
         if args.command == "report":
             service = load_model(model_path, descriptor)
             crate = parse_crate(descriptor)
-            result = align(service, crate)
+            result = align(service, crate, descriptor.alignment_extras, descriptor.alignment_types)
             print(f"[{descriptor.service_id}]")
             print(f"smithy operations: {len(service.operations)}")
             print(f"rust operations: {len(crate.operations)}")
@@ -94,10 +94,8 @@ def main() -> None:
             print(f"rust-only operations: {len(result.rust_only_operations)}")
             for mismatch in result.mismatched:
                 print(f"mismatch {mismatch.name}: {mismatch}")
-            if result.smithy_only_operations or result.rust_only_operations:
-                raise RuntimeError(
-                    f"operation alignment failed for {descriptor.service_id}"
-                )
+            print(f"semantic mismatches: {len(result.semantic_mismatches)}")
+            result.require_aligned(descriptor.service_id)
             continue
 
         if args.command == "generate":

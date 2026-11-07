@@ -3077,7 +3077,7 @@ impl PollyClient {
         };
         let action_stream_value = if let Some(value) = dict_value(params, "action_stream")? {
             let converted_164 = (|| -> PyResult<_> {
-                let converted_164: aws_sdk_polly::primitives::event_stream::EventStreamSender< aws_sdk_polly::types::StartSpeechSynthesisStreamActionStream, aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError, > = rboto_core::python_event_stream(
+                let converted_164: aws_sdk_polly::primitives::event_stream::EventStreamSender<aws_sdk_polly::types::StartSpeechSynthesisStreamActionStream, aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError> = rboto_core::python_event_stream(
                     &value, start_speech_synthesis_stream_action_stream_from_py,
                     aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError::unhandled,
                 )?.into();
