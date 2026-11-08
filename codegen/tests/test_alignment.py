@@ -24,20 +24,12 @@ def test_s3_model_and_crate_expose_the_same_operations() -> None:
 def test_all_registered_services_align(descriptor: ServiceDescriptor) -> None:
     service = load_model(MODEL_DIR / f"{descriptor.service_id}.json", descriptor)
     crate = parse_crate(descriptor)
-    report = align(service, crate)
+    report = align(service, crate, descriptor.alignment_extras, descriptor.alignment_types)
     assert service.operations
     assert not report.smithy_only_operations
     assert not report.rust_only_operations
-    if descriptor.service_id == "s3":
-        # The Rust SDK retains the raw Expires header alongside its parsed timestamp.
-        assert {item.name for item in report.mismatched} == {"get_object", "head_object"}
-        assert all(
-            item.rust_only_outputs == ("expires_string",)
-            and not (item.smithy_only_inputs or item.rust_only_inputs or item.smithy_only_outputs)
-            for item in report.mismatched
-        )
-    else:
-        assert not report.mismatched
+    assert not report.mismatched
+    report.require_aligned(descriptor.service_id)
 
 
 def test_sqs_proves_the_same_pipeline_accepts_another_service() -> None:

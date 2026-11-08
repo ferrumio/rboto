@@ -12,6 +12,7 @@ from collections.abc import AsyncIterator, Iterator
 from dataclasses import dataclass, field
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from urllib.parse import parse_qs, urlsplit
+from xml.etree import ElementTree
 
 import pytest
 from rboto import Next, OperationRequest, OperationResponse
@@ -108,6 +109,7 @@ class Peer:
     content_type: str = "application/json"
     duplex: bool = False
     requests: list[tuple[str, bytes]] = field(default_factory=list)
+    request_headers: list[dict[str, str]] = field(default_factory=list)
     request_received: threading.Event = field(default_factory=threading.Event)
     response_gate: threading.Event | None = None
 
@@ -148,6 +150,9 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
             self.wfile.flush()
 
         def do_POST(self) -> None:
+            config.request_headers.append({
+                name.lower(): value for name, value in self.headers.items()
+            })
             if config.duplex:
                 self.send_response(200)
                 self.send_header("Content-Type", "application/vnd.amazon.eventstream")
@@ -189,6 +194,144 @@ def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
         server.shutdown()
         server.server_close()
         thread.join(timeout=5)
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_json_protocol_nested_batch_unions_and_binary_content(peer: Peer) -> None:
+    from rboto import DynamoDBClient
+    from rboto_dynamodb.types import AttributeValue
+
+    item: dict[str, AttributeValue] = {
+        "pk": {"s": "café"},
+        "nested": {"m": {
+            "values": {"l": [
+                {"n": "9007199254740993"}, {"bool": False}, {"null": True},
+                {"b": b"\x00\xff"}, {"ss": ("a", "b")}, {"bs": (b"\x00", b"\xff")},
+            ]},
+        }},
+    }
+    wire_item = {
+        "pk": {"S": "café"},
+        "nested": {"M": {"values": {"L": [
+            {"N": "9007199254740993"}, {"BOOL": False}, {"NULL": True},
+            {"B": "AP8="}, {"SS": ["a", "b"]}, {"BS": ["AA==", "/w=="]},
+        ]}}},
+    }
+    entries = [
+        {"PutRequest": {"Item": wire_item}},
+        {"DeleteRequest": {"Key": {"pk": {"S": "old"}}}},
+    ]
+    peer.body = json.dumps({
+        "UnprocessedItems": {"example": entries},
+        "ConsumedCapacity": [{"TableName": "example", "CapacityUnits": 0.5}],
+    }).encode()
+    async with DynamoDBClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        output = await client.batch_write_item(
+            request_items={"example": [
+                {"put_request": {"item": item}},
+                {"delete_request": {"key": {"pk": {"s": "old"}}}},
+            ]},
+            return_consumed_capacity="TOTAL",
+        )
+    request = json.loads(peer.requests[0][1])
+    assert request == {"RequestItems": {"example": entries}, "ReturnConsumedCapacity": "TOTAL"}
+    assert peer.request_headers[0]["x-amz-target"] == "DynamoDB_20120810.BatchWriteItem"
+    assert output.unprocessed_items is not None
+    put, delete = output.unprocessed_items["example"]
+    assert put.put_request is not None and put.delete_request is None
+    assert delete.delete_request is not None and delete.put_request is None
+    assert delete.delete_request.key == {"pk": {"s": "old"}}
+    assert put.put_request.item == {
+        "pk": {"s": "café"},
+        "nested": {"m": {"values": {"l": [
+            {"n": "9007199254740993"}, {"bool": False}, {"null": True},
+            {"b": b"\x00\xff"}, {"ss": ["a", "b"]}, {"bs": [b"\x00", b"\xff"]},
+        ]}}},
+    }
+    assert output.consumed_capacity is not None
+    assert output.consumed_capacity[0].capacity_units == 0.5
+
+
+@pytest.mark.asyncio
+@service("sts")
+async def test_query_protocol_nested_lists_and_timestamp_response(peer: Peer) -> None:
+    from rboto import STSClient
+
+    peer.content_type = "text/xml"
+    peer.body = b"""<AssumeRoleResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
+      <AssumeRoleResult>
+        <Credentials>
+          <AccessKeyId>fixture-key</AccessKeyId><SecretAccessKey>fixture-secret</SecretAccessKey>
+          <SessionToken>fixture-token</SessionToken><Expiration>2030-01-02T03:04:05Z</Expiration>
+        </Credentials>
+        <AssumedRoleUser><AssumedRoleId>fixture:session</AssumedRoleId>
+          <Arn>arn:aws:sts::123456789012:assumed-role/example/session</Arn></AssumedRoleUser>
+        <PackedPolicySize>7</PackedPolicySize>
+      </AssumeRoleResult>
+      <ResponseMetadata><RequestId>query-fixture</RequestId></ResponseMetadata>
+    </AssumeRoleResponse>"""
+    role = "arn:aws:iam::123456789012:role/example"
+    policy = "arn:aws:iam::123456789012:policy/example"
+    async with STSClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        output = await client.assume_role(
+            role_arn=role, role_session_name="session",
+            duration_seconds=900, policy_arns=[{"arn": policy}],
+            tags=[{"key": "name", "value": "café & +"}], transitive_tag_keys=["name"],
+        )
+    assert parse_qs(peer.requests[0][1].decode()) == {
+        "Action": ["AssumeRole"], "Version": ["2011-06-15"],
+        "RoleArn": [role], "RoleSessionName": ["session"], "DurationSeconds": ["900"],
+        "PolicyArns.member.1.arn": [policy], "Tags.member.1.Key": ["name"],
+        "Tags.member.1.Value": ["café & +"], "TransitiveTagKeys.member.1": ["name"],
+    }
+    assert output.credentials is not None
+    assert output.credentials.access_key_id == "fixture-key"
+    assert output.credentials.expiration == "2030-01-02T03:04:05Z"
+    assert output.packed_policy_size == 7
+    assert output.assumed_role_user is not None
+    assert output.assumed_role_user.assumed_role_id == "fixture:session"
+
+
+@pytest.mark.asyncio
+@service("s3")
+async def test_rest_xml_timestamp_serialization_and_nested_output(peer: Peer) -> None:
+    from urllib.parse import unquote
+
+    from rboto import S3Client
+
+    peer.content_type = "application/xml"
+    peer.body = b""
+    timestamp = "2030-01-02T03:04:05.125Z"
+    async with S3Client(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        await client.put_object_retention(
+            bucket="example", key="a b/ü+?.txt", bypass_governance_retention=True,
+            retention={"mode": "GOVERNANCE", "retain_until_date": timestamp},
+        )
+        path, body = peer.requests[0]
+        assert unquote(urlsplit(path).path) == "/example/a b/ü+?.txt"
+        assert "retention" in parse_qs(urlsplit(path).query, keep_blank_values=True)
+        xml = ElementTree.fromstring(body)
+        assert {child.tag.rsplit("}", 1)[-1]: child.text for child in xml} == {
+            "Mode": "GOVERNANCE", "RetainUntilDate": timestamp,
+        }
+        assert peer.request_headers[0]["x-amz-bypass-governance-retention"] == "true"
+        peer.body = f"""<ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
+          <IsTruncated>false</IsTruncated><Name>example</Name><KeyCount>1</KeyCount>
+          <Contents><Key>café &amp; data</Key><Size>9007199254740993</Size>
+            <LastModified>{timestamp}</LastModified><StorageClass>STANDARD</StorageClass>
+          </Contents>
+        </ListBucketResult>""".encode()
+        output = await client.list_objects_v2(bucket="example", prefix="café & +")
+    assert parse_qs(urlsplit(peer.requests[1][0]).query)["prefix"] == ["café & +"]
+    assert output.contents is not None
+    entry = output.contents[0]
+    assert entry.key == "café & data"
+    assert entry.size == 9007199254740993
+    assert entry.last_modified == timestamp
+    assert entry.storage_class == "STANDARD"
+    assert entry.owner is None
+    assert output.to_dict()["contents"] == [entry.to_dict()]
 
 
 @pytest.mark.asyncio

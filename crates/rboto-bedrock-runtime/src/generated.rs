@@ -17308,7 +17308,7 @@ impl BedrockRuntimeClient {
         };
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_1265 = (|| -> PyResult<_> {
-                let converted_1265: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender< aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError, > = rboto_core::python_event_stream(
+                let converted_1265: aws_sdk_bedrockruntime::primitives::event_stream::EventStreamSender<aws_sdk_bedrockruntime::types::InvokeModelWithBidirectionalStreamInput, aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError> = rboto_core::python_event_stream(
                     &value, invoke_model_with_bidirectional_stream_input_from_py,
                     aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamInputError::unhandled,
                 )?.into();

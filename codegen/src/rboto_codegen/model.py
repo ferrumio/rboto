@@ -29,6 +29,23 @@ class Pagination:
 
 
 @dataclass(frozen=True, slots=True)
+class AlignmentExtra:
+    operation: str
+    member: str
+    rust_type: str
+    optional: bool
+    reason: str
+
+
+@dataclass(frozen=True, slots=True)
+class AlignmentType:
+    shape: str
+    kind: str
+    rust_type: str
+    reason: str
+
+
+@dataclass(frozen=True, slots=True)
 class ServiceDescriptor:
     service_id: str
     python_name: str
@@ -52,6 +69,8 @@ class ServiceDescriptor:
     documentation_path: str = "clients/"
     pagination: tuple[tuple[str, Pagination], ...] = ()
     waiters: tuple[Waiter, ...] = ()
+    alignment_extras: tuple[AlignmentExtra, ...] = ()
+    alignment_types: tuple[AlignmentType, ...] = ()
 
     @property
     def public_name(self) -> str:

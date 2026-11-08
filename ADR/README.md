@@ -47,6 +47,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0030: Stream request bodies from Python async iterables](0030-streamed-request-bodies.md)
 - [ADR-0031: Define configuration and credential-provider compatibility](0031-configuration-and-authentication-contract.md)
 - [ADR-0032: Preserve typed error context across response consumption](0032-operation-and-stream-error-context.md)
+- [ADR-0033: Validate model and SDK semantics before generation](0033-validate-codegen-semantics-before-generation.md)
 
 ## Creating an ADR
 

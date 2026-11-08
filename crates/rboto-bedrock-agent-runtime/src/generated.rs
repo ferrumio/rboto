@@ -28741,7 +28741,7 @@ impl PyResponseStreamReceiver {
     module = "rboto_bedrock_agent_runtime._native"
 )]
 struct PyRetrieveAndGenerateStreamResponseOutputReceiver {
-    inner: Arc<ManagedResource<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver< aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError, >>>,
+    inner: Arc<ManagedResource<aws_sdk_bedrockagentruntime::primitives::event_stream::EventReceiver<aws_sdk_bedrockagentruntime::types::RetrieveAndGenerateStreamResponseOutput, aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError>>>,
     context: Arc<StreamErrorContext>,
 }
 

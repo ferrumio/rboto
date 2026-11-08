@@ -4,7 +4,7 @@ import tomllib
 from pathlib import Path
 from typing import cast
 
-from .model import Pagination, ServiceDescriptor
+from .model import AlignmentExtra, AlignmentType, Pagination, ServiceDescriptor
 from .waiter_metadata import parse_waiters
 
 
@@ -107,6 +107,8 @@ def load_service(path: Path) -> ServiceDescriptor:
         documentation_path=_optional_string(data, "documentation_path") or "clients/",
         pagination=_pagination(data),
         waiters=parse_waiters(data.get("waiters", {})),
+        alignment_extras=_alignment_extras(data),
+        alignment_types=_alignment_types(data),
     )
     if path.stem != descriptor.service_id:
         raise ValueError(
@@ -114,6 +116,53 @@ def load_service(path: Path) -> ServiceDescriptor:
             f"service_id {descriptor.service_id!r}"
         )
     return descriptor
+
+
+def _alignment_extras(data: dict[str, object]) -> tuple[AlignmentExtra, ...]:
+    raw = data.get("alignment_extras", [])
+    if not isinstance(raw, list):
+        raise ValueError("alignment_extras must be an array of tables")
+    result: list[AlignmentExtra] = []
+    for value in cast(list[object], raw):
+        if not isinstance(value, dict):
+            raise ValueError("alignment_extras entries must be tables")
+        entry = cast(dict[str, object], value)
+        expected = {"operation", "member", "rust_type", "optional", "reason"}
+        if entry.keys() != expected:
+            raise ValueError(f"alignment_extras requires exactly {sorted(expected)}")
+        extra = AlignmentExtra(
+            _string(entry, "operation"), _string(entry, "member"),
+            _string(entry, "rust_type"), _boolean(entry, "optional"), _string(entry, "reason"),
+        )
+        if not all((extra.operation, extra.member, extra.rust_type, extra.reason.strip())):
+            raise ValueError("alignment_extras values and reasons must be nonempty")
+        if any((item.operation, item.member) == (extra.operation, extra.member) for item in result):
+            raise ValueError("duplicate alignment_extras operation/member")
+        result.append(extra)
+    return tuple(result)
+
+
+def _alignment_types(data: dict[str, object]) -> tuple[AlignmentType, ...]:
+    raw = data.get("alignment_types", [])
+    if not isinstance(raw, list):
+        raise ValueError("alignment_types must be an array of tables")
+    result: list[AlignmentType] = []
+    for value in cast(list[object], raw):
+        if not isinstance(value, dict):
+            raise ValueError("alignment_types entries must be tables")
+        entry = cast(dict[str, object], value)
+        if entry.keys() != {"shape", "kind", "rust_type", "reason"}:
+            raise ValueError("alignment_types requires shape, kind, rust_type and reason")
+        override = AlignmentType(
+            _string(entry, "shape"), _string(entry, "kind"),
+            _string(entry, "rust_type"), _string(entry, "reason"),
+        )
+        if not all((override.shape, override.kind, override.rust_type, override.reason.strip())):
+            raise ValueError("alignment_types values and reasons must be nonempty")
+        if any(item.shape == override.shape for item in result):
+            raise ValueError("duplicate alignment_types shape")
+        result.append(override)
+    return tuple(result)
 
 
 def list_services(directory: Path | None = None) -> tuple[ServiceDescriptor, ...]:

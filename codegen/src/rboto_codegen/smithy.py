@@ -20,6 +20,8 @@ class SmithyMember:
     required: bool
     streaming: bool
     documentation: str
+    defaulted: bool = False
+    client_optional: bool = False
 
 
 @dataclass(frozen=True, slots=True)
@@ -134,6 +136,8 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
                     required="smithy.api#required" in member_traits,
                     streaming="smithy.api#streaming" in member_traits,
                     documentation=str(member_traits.get("smithy.api#documentation", "")),
+                    defaulted=member_traits.get("smithy.api#default") is not None,
+                    client_optional="smithy.api#clientOptional" in member_traits,
                 )
             )
 
