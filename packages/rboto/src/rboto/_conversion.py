@@ -7,6 +7,7 @@ from typing import Literal
 
 ConversionErrorCategory = Literal[
     "type", "value", "missing", "union", "overflow", "iteration", "unknown_parameter",
+    "unknown_field",
 ]
 
 

@@ -16,6 +16,15 @@ fn account_enforced_guardrail_inference_input_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AccountEnforcedGuardrailInferenceInputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "guardrail_identifier",
+            "guardrail_version",
+            "model_enforcement",
+            "selective_content_guarding",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AccountEnforcedGuardrailInferenceInputConfiguration::builder();
     if let Some(value) = dict_value(values, "guardrail_identifier")? {
@@ -113,6 +122,23 @@ fn account_enforced_guardrail_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "config_id",
+            "created_at",
+            "created_by",
+            "guardrail_arn",
+            "guardrail_id",
+            "guardrail_version",
+            "input_tags",
+            "model_enforcement",
+            "owner",
+            "selective_content_guarding",
+            "updated_at",
+            "updated_by",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AccountEnforcedGuardrailOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "config_id")? {
@@ -363,6 +389,7 @@ fn advanced_prompt_optimization_input_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationInputConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_37 = (|| -> PyResult<_> {
@@ -393,6 +420,16 @@ fn advanced_prompt_optimization_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "job_arn",
+            "job_name",
+            "job_status",
+            "last_modified_time",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_39 = (|| -> PyResult<_> {
@@ -508,6 +545,7 @@ fn advanced_prompt_optimization_output_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::AdvancedPromptOptimizationOutputConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_52 = (|| -> PyResult<_> {
@@ -538,6 +576,7 @@ fn agreement_availability_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AgreementAvailability> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_message", "status"])?;
     let mut builder = aws_sdk_bedrock::types::AgreementAvailability::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_54 = (|| -> PyResult<_> {
@@ -590,6 +629,14 @@ fn automated_evaluation_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedEvaluationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "custom_metric_config",
+            "dataset_metric_configs",
+            "evaluator_model_config",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedEvaluationConfig::builder();
     if let Some(value) = dict_value(values, "dataset_metric_configs")? {
         let converted_59 = (|| -> PyResult<_> {
@@ -695,6 +742,7 @@ fn automated_evaluation_custom_metric_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["custom_metrics", "evaluator_model_config"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedEvaluationCustomMetricConfig::builder();
     if let Some(value) = dict_value(values, "custom_metrics")? {
         let converted_71 = (|| -> PyResult<_> {
@@ -1010,6 +1058,10 @@ fn automated_reasoning_check_impossible_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckImpossibleFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["contradicting_rules", "logic_warning", "translation"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckImpossibleFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
         let converted_97 = (|| -> PyResult<_> {
@@ -1114,6 +1166,7 @@ fn automated_reasoning_check_input_text_reference_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckInputTextReference> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckInputTextReference::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_109 = (|| -> PyResult<_> {
@@ -1146,6 +1199,10 @@ fn automated_reasoning_check_invalid_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckInvalidFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["contradicting_rules", "logic_warning", "translation"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckInvalidFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
         let converted_111 = (|| -> PyResult<_> {
@@ -1250,6 +1307,7 @@ fn automated_reasoning_check_logic_warning_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckLogicWarning> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["claims", "premises", "type"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckLogicWarning::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_123 = (|| -> PyResult<_> {
@@ -1380,6 +1438,7 @@ fn automated_reasoning_check_no_translations_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckNoTranslationsFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningCheckNoTranslationsFinding::builder();
     Ok(builder.build())
@@ -1397,6 +1456,7 @@ fn automated_reasoning_check_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "policy_version_arn"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckRule::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_142 = (|| -> PyResult<_> {
@@ -1449,6 +1509,15 @@ fn automated_reasoning_check_satisfiable_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckSatisfiableFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "claims_false_scenario",
+            "claims_true_scenario",
+            "logic_warning",
+            "translation",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckSatisfiableFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
         let converted_146 = (|| -> PyResult<_> {
@@ -1545,6 +1614,7 @@ fn automated_reasoning_check_scenario_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckScenario> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["statements"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckScenario::builder();
     if let Some(value) = dict_value(values, "statements")? {
         let converted_154 = (|| -> PyResult<_> {
@@ -1610,6 +1680,7 @@ fn automated_reasoning_check_too_complex_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTooComplexFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTooComplexFinding::builder();
     Ok(builder.build())
 }
@@ -1626,6 +1697,16 @@ fn automated_reasoning_check_translation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "claims",
+            "confidence",
+            "premises",
+            "untranslated_claims",
+            "untranslated_premises",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTranslation::builder();
     if let Some(value) = dict_value(values, "premises")? {
         let converted_162 = (|| -> PyResult<_> {
@@ -1845,6 +1926,7 @@ fn automated_reasoning_check_translation_ambiguous_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationAmbiguousFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["difference_scenarios", "options"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationAmbiguousFinding::builder();
     if let Some(value) = dict_value(values, "options")? {
@@ -1956,6 +2038,7 @@ fn automated_reasoning_check_translation_option_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationOption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["translations"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckTranslationOption::builder();
     if let Some(value) = dict_value(values, "translations")? {
         let converted_212 = (|| -> PyResult<_> {
@@ -2021,6 +2104,15 @@ fn automated_reasoning_check_valid_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningCheckValidFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "claims_true_scenario",
+            "logic_warning",
+            "supporting_rules",
+            "translation",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningCheckValidFinding::builder();
     if let Some(value) = dict_value(values, "translation")? {
         let converted_220 = (|| -> PyResult<_> {
@@ -2145,6 +2237,7 @@ fn automated_reasoning_logic_statement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningLogicStatement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["logic", "natural_language"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningLogicStatement::builder();
     if let Some(value) = dict_value(values, "logic")? {
         let converted_234 = (|| -> PyResult<_> {
@@ -2195,6 +2288,7 @@ fn automated_reasoning_policy_add_rule_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleAnnotation::builder();
     if let Some(value) = dict_value(values, "expression")? {
         let converted_238 = (|| -> PyResult<_> {
@@ -2226,6 +2320,7 @@ fn automated_reasoning_policy_add_rule_from_natural_language_annotation_from_py(
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation>
 {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["natural_language"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleFromNaturalLanguageAnnotation::builder();
     if let Some(value) = dict_value(values, "natural_language")? {
         let converted_240 = (|| -> PyResult<_> {
@@ -2260,6 +2355,7 @@ fn automated_reasoning_policy_add_rule_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rule"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddRuleMutation::builder();
     if let Some(value) = dict_value(values, "rule")? {
         let converted_242 = (|| -> PyResult<_> {
@@ -2296,6 +2392,7 @@ fn automated_reasoning_policy_add_type_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "values"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_244 = (|| -> PyResult<_> {
@@ -2387,6 +2484,7 @@ fn automated_reasoning_policy_add_type_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeMutation::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_256 = (|| -> PyResult<_> {
@@ -2423,6 +2521,7 @@ fn automated_reasoning_policy_add_type_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "value"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAddTypeValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_258 = (|| -> PyResult<_> {
@@ -2469,6 +2568,7 @@ fn automated_reasoning_policy_add_variable_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "type"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -2531,6 +2631,7 @@ fn automated_reasoning_policy_add_variable_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["variable"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyAddVariableMutation::builder();
     if let Some(value) = dict_value(values, "variable")? {
@@ -2568,6 +2669,7 @@ fn automated_reasoning_policy_annotated_chunk_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedChunk> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content", "page_number"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedChunk::builder();
     if let Some(value) = dict_value(values, "page_number")? {
         let converted_270 = (|| -> PyResult<_> {
@@ -2698,6 +2800,7 @@ fn automated_reasoning_policy_annotated_line_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedLine> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["line_number", "line_text"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAnnotatedLine::builder();
     if let Some(value) = dict_value(values, "line_number")? {
         let converted_282 = (|| -> PyResult<_> {
@@ -3080,6 +3183,7 @@ fn automated_reasoning_policy_atomic_statement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyAtomicStatement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "location", "text"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyAtomicStatement::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_312 = (|| -> PyResult<_> {
@@ -3142,6 +3246,7 @@ fn automated_reasoning_policy_build_log_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLog> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLog::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_318 = (|| -> PyResult<_> {
@@ -3201,6 +3306,7 @@ fn automated_reasoning_policy_build_log_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLogEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["annotation", "build_steps", "status"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildLogEntry::builder();
     if let Some(value) = dict_value(values, "annotation")? {
         let converted_326 = (|| -> PyResult<_> {
@@ -3307,6 +3413,7 @@ fn automated_reasoning_policy_build_result_asset_manifest_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifest::builder();
     if let Some(value) = dict_value(values, "entries")? {
@@ -3370,6 +3477,7 @@ fn automated_reasoning_policy_build_result_asset_manifest_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["asset_id", "asset_name", "asset_type"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildResultAssetManifestEntry::builder();
     if let Some(value) = dict_value(values, "asset_type")? {
@@ -3664,6 +3772,7 @@ fn automated_reasoning_policy_build_step_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStep> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["context", "messages", "prior_element"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStep::builder();
     if let Some(value) = dict_value(values, "context")? {
         let converted_370 = (|| -> PyResult<_> {
@@ -3842,6 +3951,7 @@ fn automated_reasoning_policy_build_step_message_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepMessage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "message_type"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildStepMessage::builder();
     if let Some(value) = dict_value(values, "message")? {
         let converted_386 = (|| -> PyResult<_> {
@@ -3895,6 +4005,15 @@ fn automated_reasoning_policy_build_workflow_document_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "document",
+            "document_content_type",
+            "document_description",
+            "document_name",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowDocument::builder();
     if let Some(value) = dict_value(values, "document")? {
@@ -3988,6 +4107,7 @@ fn automated_reasoning_policy_build_workflow_repair_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowRepairContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["annotations"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowRepairContent::builder();
     if let Some(value) = dict_value(values, "annotations")? {
@@ -4052,6 +4172,7 @@ fn automated_reasoning_policy_build_workflow_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_definition", "workflow_content"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSource::builder();
     if let Some(value) = dict_value(values, "policy_definition")? {
@@ -4109,6 +4230,17 @@ fn automated_reasoning_policy_build_workflow_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "build_workflow_id",
+            "build_workflow_type",
+            "created_at",
+            "policy_arn",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyBuildWorkflowSummary::builder();
     if let Some(value) = dict_value(values, "policy_arn")? {
@@ -4248,6 +4380,7 @@ fn automated_reasoning_policy_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules", "types", "variables", "version"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinition::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_429 = (|| -> PyResult<_> {
@@ -4509,6 +4642,19 @@ fn automated_reasoning_policy_definition_quality_report_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionQualityReport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "conflicting_rules",
+            "disjoint_rule_sets",
+            "rule_count",
+            "type_count",
+            "unused_type_values",
+            "unused_types",
+            "unused_variables",
+            "variable_count",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionQualityReport::builder();
     if let Some(value) = dict_value(values, "type_count")? {
@@ -4787,6 +4933,7 @@ fn automated_reasoning_policy_definition_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["alternate_expression", "expression", "id"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionRule::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_507 = (|| -> PyResult<_> {
@@ -4849,6 +4996,7 @@ fn automated_reasoning_policy_definition_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "values"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionType::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_513 = (|| -> PyResult<_> {
@@ -4937,6 +5085,7 @@ fn automated_reasoning_policy_definition_type_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "value"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValue::builder();
     if let Some(value) = dict_value(values, "value")? {
@@ -4984,6 +5133,7 @@ fn automated_reasoning_policy_definition_type_value_pair_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValuePair> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type_name", "value_name"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionTypeValuePair::builder();
     if let Some(value) = dict_value(values, "type_name")? {
@@ -5030,6 +5180,7 @@ fn automated_reasoning_policy_definition_variable_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "type"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDefinitionVariable::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_533 = (|| -> PyResult<_> {
@@ -5091,6 +5242,7 @@ fn automated_reasoning_policy_delete_rule_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rule_id"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleAnnotation::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
@@ -5122,6 +5274,7 @@ fn automated_reasoning_policy_delete_rule_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteRuleMutation::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_541 = (|| -> PyResult<_> {
@@ -5152,6 +5305,7 @@ fn automated_reasoning_policy_delete_type_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -5183,6 +5337,7 @@ fn automated_reasoning_policy_delete_type_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeMutation::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_545 = (|| -> PyResult<_> {
@@ -5213,6 +5368,7 @@ fn automated_reasoning_policy_delete_type_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["value"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteTypeValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_547 = (|| -> PyResult<_> {
@@ -5243,6 +5399,7 @@ fn automated_reasoning_policy_delete_variable_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -5274,6 +5431,7 @@ fn automated_reasoning_policy_delete_variable_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyDeleteVariableMutation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -5305,6 +5463,7 @@ fn automated_reasoning_policy_disjoint_rule_set_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyDisjointRuleSet> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules", "variables"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyDisjointRuleSet::builder();
     if let Some(value) = dict_value(values, "variables")? {
         let converted_553 = (|| -> PyResult<_> {
@@ -5395,6 +5554,16 @@ fn automated_reasoning_policy_fidelity_report_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyFidelityReport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "accuracy_score",
+            "coverage_score",
+            "document_sources",
+            "rule_reports",
+            "variable_reports",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyFidelityReport::builder();
     if let Some(value) = dict_value(values, "coverage_score")? {
         let converted_569 = (|| -> PyResult<_> {
@@ -5662,6 +5831,14 @@ fn automated_reasoning_policy_generated_test_case_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCase> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expected_aggregated_findings_result",
+            "guard_content",
+            "query_content",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCase::builder();
     if let Some(value) = dict_value(values, "query_content")? {
         let converted_613 = (|| -> PyResult<_> {
@@ -5735,6 +5912,7 @@ fn automated_reasoning_policy_generated_test_cases_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCases> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["generated_test_cases"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyGeneratedTestCases::builder();
     if let Some(value) = dict_value(values, "generated_test_cases")? {
         let converted_620 = (|| -> PyResult<_> {
@@ -5799,6 +5977,7 @@ fn automated_reasoning_policy_ingest_content_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyIngestContentAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyIngestContentAnnotation::builder();
     if let Some(value) = dict_value(values, "content")? {
@@ -5830,6 +6009,7 @@ fn automated_reasoning_policy_iterative_refinement_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyIterativeRefinementContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["documents", "feedback"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyIterativeRefinementContent::builder();
     if let Some(value) = dict_value(values, "documents")? {
@@ -6126,6 +6306,7 @@ fn automated_reasoning_policy_planning_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyPlanning> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyPlanning::builder();
     Ok(builder.build())
 }
@@ -6142,6 +6323,16 @@ fn automated_reasoning_policy_report_source_document_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyReportSourceDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "atomic_statements",
+            "document_content",
+            "document_hash",
+            "document_id",
+            "document_name",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyReportSourceDocument::builder();
     if let Some(value) = dict_value(values, "document_name")? {
@@ -6296,6 +6487,16 @@ fn automated_reasoning_policy_rule_report_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyRuleReport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "accuracy_justification",
+            "accuracy_score",
+            "grounding_justifications",
+            "grounding_statements",
+            "rule",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyRuleReport::builder();
     if let Some(value) = dict_value(values, "rule")? {
         let converted_680 = (|| -> PyResult<_> {
@@ -6460,6 +6661,15 @@ fn automated_reasoning_policy_scenario_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alternate_expression",
+            "expected_result",
+            "expression",
+            "rule_ids",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyScenario::builder();
     if let Some(value) = dict_value(values, "expression")? {
         let converted_702 = (|| -> PyResult<_> {
@@ -6569,6 +6779,7 @@ fn automated_reasoning_policy_scenarios_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyScenarios> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_scenarios"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyScenarios::builder();
     if let Some(value) = dict_value(values, "policy_scenarios")? {
         let converted_717 = (|| -> PyResult<_> {
@@ -6632,6 +6843,16 @@ fn automated_reasoning_policy_source_document_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicySourceDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "document",
+            "document_content_type",
+            "document_description",
+            "document_hash",
+            "document_name",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicySourceDocument::builder();
     if let Some(value) = dict_value(values, "document")? {
         let converted_725 = (|| -> PyResult<_> {
@@ -6737,6 +6958,7 @@ fn automated_reasoning_policy_statement_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["lines"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementLocation::builder();
     if let Some(value) = dict_value(values, "lines")? {
         let converted_737 = (|| -> PyResult<_> {
@@ -6791,6 +7013,7 @@ fn automated_reasoning_policy_statement_reference_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementReference> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["document_id", "statement_id"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyStatementReference::builder();
     if let Some(value) = dict_value(values, "document_id")? {
         let converted_745 = (|| -> PyResult<_> {
@@ -6839,6 +7062,18 @@ fn automated_reasoning_policy_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicySummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "description",
+            "name",
+            "policy_arn",
+            "policy_id",
+            "updated_at",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicySummary::builder();
     if let Some(value) = dict_value(values, "policy_arn")? {
         let converted_749 = (|| -> PyResult<_> {
@@ -6973,6 +7208,18 @@ fn automated_reasoning_policy_test_case_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "confidence_threshold",
+            "created_at",
+            "expected_aggregated_findings_result",
+            "guard_content",
+            "query_content",
+            "test_case_id",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestCase::builder();
     if let Some(value) = dict_value(values, "test_case_id")? {
         let converted_765 = (|| -> PyResult<_> {
@@ -7124,6 +7371,18 @@ fn automated_reasoning_policy_test_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aggregated_test_findings_result",
+            "policy_arn",
+            "test_case",
+            "test_findings",
+            "test_run_result",
+            "test_run_status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyTestResult::builder();
     if let Some(value) = dict_value(values, "test_case")? {
         let converted_782 = (|| -> PyResult<_> {
@@ -7422,6 +7681,7 @@ fn automated_reasoning_policy_update_from_rule_feedback_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["feedback", "rule_ids"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromRuleFeedbackAnnotation::builder();
     if let Some(value) = dict_value(values, "rule_ids")? {
@@ -7494,6 +7754,7 @@ fn automated_reasoning_policy_update_from_scenario_feedback_annotation_from_py(
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation>
 {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["feedback", "rule_ids", "scenario_expression"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateFromScenarioFeedbackAnnotation::builder();
     if let Some(value) = dict_value(values, "rule_ids")? {
         let converted_822 = (|| -> PyResult<_> {
@@ -7584,6 +7845,7 @@ fn automated_reasoning_policy_update_rule_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression", "rule_id"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleAnnotation::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
@@ -7630,6 +7892,7 @@ fn automated_reasoning_policy_update_rule_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rule"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateRuleMutation::builder();
     if let Some(value) = dict_value(values, "rule")? {
         let converted_838 = (|| -> PyResult<_> {
@@ -7666,6 +7929,7 @@ fn automated_reasoning_policy_update_type_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "new_name", "values"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -7771,6 +8035,7 @@ fn automated_reasoning_policy_update_type_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeMutation::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_854 = (|| -> PyResult<_> {
@@ -7807,6 +8072,7 @@ fn automated_reasoning_policy_update_type_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "new_value", "value"])?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateTypeValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_856 = (|| -> PyResult<_> {
@@ -7869,6 +8135,7 @@ fn automated_reasoning_policy_update_variable_annotation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableAnnotation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "new_name"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableAnnotation::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -7932,6 +8199,7 @@ fn automated_reasoning_policy_update_variable_mutation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableMutation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["variable"])?;
     let mut builder =
         aws_sdk_bedrock::types::AutomatedReasoningPolicyUpdateVariableMutation::builder();
     if let Some(value) = dict_value(values, "variable")? {
@@ -7969,6 +8237,16 @@ fn automated_reasoning_policy_variable_report_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::AutomatedReasoningPolicyVariableReport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "accuracy_justification",
+            "accuracy_score",
+            "grounding_justifications",
+            "grounding_statements",
+            "policy_variable",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::AutomatedReasoningPolicyVariableReport::builder();
     if let Some(value) = dict_value(values, "policy_variable")? {
         let converted_870 = (|| -> PyResult<_> {
@@ -8278,6 +8556,7 @@ fn batch_delete_advanced_prompt_optimization_job_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "job_identifier", "message"])?;
     let mut builder =
         aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobError::builder();
     if let Some(value) = dict_value(values, "job_identifier")? {
@@ -8340,6 +8619,7 @@ fn batch_delete_advanced_prompt_optimization_job_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["job_identifier", "job_status"])?;
     let mut builder =
         aws_sdk_bedrock::types::BatchDeleteAdvancedPromptOptimizationJobItem::builder();
     if let Some(value) = dict_value(values, "job_identifier")? {
@@ -8396,6 +8676,7 @@ fn batch_delete_evaluation_job_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::BatchDeleteEvaluationJobError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "job_identifier", "message"])?;
     let mut builder = aws_sdk_bedrock::types::BatchDeleteEvaluationJobError::builder();
     if let Some(value) = dict_value(values, "job_identifier")? {
         let converted_917 = (|| -> PyResult<_> {
@@ -8457,6 +8738,7 @@ fn batch_delete_evaluation_job_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["job_identifier", "job_status"])?;
     let mut builder = aws_sdk_bedrock::types::BatchDeleteEvaluationJobItem::builder();
     if let Some(value) = dict_value(values, "job_identifier")? {
         let converted_923 = (|| -> PyResult<_> {
@@ -8511,6 +8793,7 @@ fn bedrock_evaluator_model_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::BedrockEvaluatorModel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_identifier"])?;
     let mut builder = aws_sdk_bedrock::types::BedrockEvaluatorModel::builder();
     if let Some(value) = dict_value(values, "model_identifier")? {
         let converted_928 = (|| -> PyResult<_> {
@@ -8545,6 +8828,7 @@ fn byte_content_doc_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ByteContentDoc> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content_type", "data", "identifier"])?;
     let mut builder = aws_sdk_bedrock::types::ByteContentDoc::builder();
     if let Some(value) = dict_value(values, "identifier")? {
         let converted_930 = (|| -> PyResult<_> {
@@ -8607,6 +8891,14 @@ fn cloud_watch_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CloudWatchConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "large_data_delivery_s3_config",
+            "log_group_name",
+            "role_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::CloudWatchConfig::builder();
     if let Some(value) = dict_value(values, "log_group_name")? {
         let converted_937 = (|| -> PyResult<_> {
@@ -8675,6 +8967,7 @@ fn custom_metric_bedrock_evaluator_model_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomMetricBedrockEvaluatorModel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_identifier"])?;
     let mut builder = aws_sdk_bedrock::types::CustomMetricBedrockEvaluatorModel::builder();
     if let Some(value) = dict_value(values, "model_identifier")? {
         let converted_943 = (|| -> PyResult<_> {
@@ -8709,6 +9002,7 @@ fn custom_metric_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomMetricDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["instructions", "name", "rating_scale"])?;
     let mut builder = aws_sdk_bedrock::types::CustomMetricDefinition::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_945 = (|| -> PyResult<_> {
@@ -8802,6 +9096,7 @@ fn custom_metric_evaluator_model_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomMetricEvaluatorModelConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bedrock_evaluator_models"])?;
     let mut builder = aws_sdk_bedrock::types::CustomMetricEvaluatorModelConfig::builder();
     if let Some(value) = dict_value(values, "bedrock_evaluator_models")? {
         let converted_957 = (|| -> PyResult<_> {
@@ -8921,6 +9216,18 @@ fn custom_model_deployment_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomModelDeploymentSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "custom_model_deployment_arn",
+            "custom_model_deployment_name",
+            "failure_message",
+            "last_updated_at",
+            "model_arn",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::CustomModelDeploymentSummary::builder();
     if let Some(value) = dict_value(values, "custom_model_deployment_arn")? {
         let converted_967 = (|| -> PyResult<_> {
@@ -9083,6 +9390,7 @@ fn custom_model_deployment_update_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_arn", "update_status"])?;
     let mut builder = aws_sdk_bedrock::types::CustomModelDeploymentUpdateDetails::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_984 = (|| -> PyResult<_> {
@@ -9138,6 +9446,19 @@ fn custom_model_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomModelSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "base_model_arn",
+            "base_model_name",
+            "creation_time",
+            "customization_type",
+            "model_arn",
+            "model_name",
+            "model_status",
+            "owner_account_id",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::CustomModelSummary::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_989 = (|| -> PyResult<_> {
@@ -9301,6 +9622,13 @@ fn custom_model_units_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::CustomModelUnits> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "custom_model_units_per_model_copy",
+            "custom_model_units_version",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::CustomModelUnits::builder();
     if let Some(value) = dict_value(values, "custom_model_units_per_model_copy")? {
         let converted_1008 = (|| -> PyResult<_> {
@@ -9428,6 +9756,7 @@ fn data_processing_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::DataProcessingDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "last_modified_time", "status"])?;
     let mut builder = aws_sdk_bedrock::types::DataProcessingDetails::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1016 = (|| -> PyResult<_> {
@@ -9516,6 +9845,7 @@ fn dimensional_price_rate_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::DimensionalPriceRate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "dimension", "price", "unit"])?;
     let mut builder = aws_sdk_bedrock::types::DimensionalPriceRate::builder();
     if let Some(value) = dict_value(values, "dimension")? {
         let converted_1025 = (|| -> PyResult<_> {
@@ -9596,6 +9926,7 @@ fn distillation_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::DistillationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["teacher_model_config"])?;
     let mut builder = aws_sdk_bedrock::types::DistillationConfig::builder();
     if let Some(value) = dict_value(values, "teacher_model_config")? {
         let converted_1033 = (|| -> PyResult<_> {
@@ -9685,6 +10016,10 @@ fn evaluation_bedrock_model_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationBedrockModel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["inference_params", "model_identifier", "performance_config"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::EvaluationBedrockModel::builder();
     if let Some(value) = dict_value(values, "model_identifier")? {
         let converted_1037 = (|| -> PyResult<_> {
@@ -9828,6 +10163,7 @@ fn evaluation_dataset_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationDataset> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dataset_location", "name"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationDataset::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1047 = (|| -> PyResult<_> {
@@ -9927,6 +10263,7 @@ fn evaluation_dataset_metric_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationDatasetMetricConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dataset", "metric_names", "task_type"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationDatasetMetricConfig::builder();
     if let Some(value) = dict_value(values, "task_type")? {
         let converted_1053 = (|| -> PyResult<_> {
@@ -10149,6 +10486,7 @@ fn evaluation_inference_config_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationInferenceConfigSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_config_summary", "rag_config_summary"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationInferenceConfigSummary::builder();
     if let Some(value) = dict_value(values, "model_config_summary")? {
         let converted_1082 = (|| -> PyResult<_> {
@@ -10280,6 +10618,13 @@ fn evaluation_model_config_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationModelConfigSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bedrock_model_identifiers",
+            "precomputed_inference_source_identifiers",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::EvaluationModelConfigSummary::builder();
     if let Some(value) = dict_value(values, "bedrock_model_identifiers")? {
         let converted_1090 = (|| -> PyResult<_> {
@@ -10384,6 +10729,7 @@ fn evaluation_output_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationOutputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationOutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_1106 = (|| -> PyResult<_> {
@@ -10414,6 +10760,7 @@ fn evaluation_precomputed_inference_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedInferenceSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["inference_source_identifier"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationPrecomputedInferenceSource::builder();
     if let Some(value) = dict_value(values, "inference_source_identifier")? {
         let converted_1108 = (|| -> PyResult<_> {
@@ -10527,6 +10874,7 @@ fn evaluation_precomputed_retrieve_and_generate_source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveAndGenerateSourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rag_source_identifier"])?;
     let mut builder =
         aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveAndGenerateSourceConfig::builder();
     if let Some(value) = dict_value(values, "rag_source_identifier")? {
@@ -10565,6 +10913,7 @@ fn evaluation_precomputed_retrieve_source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveSourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rag_source_identifier"])?;
     let mut builder = aws_sdk_bedrock::types::EvaluationPrecomputedRetrieveSourceConfig::builder();
     if let Some(value) = dict_value(values, "rag_source_identifier")? {
         let converted_1116 = (|| -> PyResult<_> {
@@ -10602,6 +10951,13 @@ fn evaluation_rag_config_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationRagConfigSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bedrock_knowledge_base_identifiers",
+            "precomputed_rag_source_identifiers",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::EvaluationRagConfigSummary::builder();
     if let Some(value) = dict_value(values, "bedrock_knowledge_base_identifiers")? {
         let converted_1118 = (|| -> PyResult<_> {
@@ -10706,6 +11062,23 @@ fn evaluation_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::EvaluationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_type",
+            "creation_time",
+            "custom_metrics_evaluator_model_identifiers",
+            "evaluation_task_types",
+            "evaluator_model_identifiers",
+            "inference_config_summary",
+            "job_arn",
+            "job_name",
+            "job_type",
+            "model_identifiers",
+            "rag_identifiers",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::EvaluationSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_1134 = (|| -> PyResult<_> {
@@ -11156,6 +11529,7 @@ fn external_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ExternalSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["byte_content", "s3_location", "source_type"])?;
     let mut builder = aws_sdk_bedrock::types::ExternalSource::builder();
     if let Some(value) = dict_value(values, "source_type")? {
         let converted_1201 = (|| -> PyResult<_> {
@@ -11232,6 +11606,15 @@ fn external_sources_generation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ExternalSourcesGenerationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_model_request_fields",
+            "guardrail_configuration",
+            "kb_inference_config",
+            "prompt_template",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ExternalSourcesGenerationConfiguration::builder();
     if let Some(value) = dict_value(values, "prompt_template")? {
         let converted_1208 = (|| -> PyResult<_> {
@@ -11356,6 +11739,10 @@ fn external_sources_retrieve_and_generate_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ExternalSourcesRetrieveAndGenerateConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["generation_configuration", "model_arn", "sources"],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::ExternalSourcesRetrieveAndGenerateConfiguration::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
@@ -11450,6 +11837,7 @@ fn field_for_reranking_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::FieldForReranking> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field_name"])?;
     let mut builder = aws_sdk_bedrock::types::FieldForReranking::builder();
     if let Some(value) = dict_value(values, "field_name")? {
         let converted_1238 = (|| -> PyResult<_> {
@@ -11480,6 +11868,7 @@ fn filter_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::FilterAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_bedrock::types::FilterAttribute::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1240 = (|| -> PyResult<_> {
@@ -11522,6 +11911,21 @@ fn foundation_model_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::FoundationModelDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "customizations_supported",
+            "inference_types_supported",
+            "input_modalities",
+            "model_arn",
+            "model_id",
+            "model_lifecycle",
+            "model_name",
+            "output_modalities",
+            "provider_name",
+            "response_streaming_supported",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::FoundationModelDetails::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_1244 = (|| -> PyResult<_> {
@@ -11839,6 +12243,16 @@ fn foundation_model_lifecycle_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::FoundationModelLifecycle> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_of_life_time",
+            "legacy_time",
+            "public_extended_access_time",
+            "start_of_life_time",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::FoundationModelLifecycle::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1292 = (|| -> PyResult<_> {
@@ -11976,6 +12390,21 @@ fn foundation_model_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::FoundationModelSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "customizations_supported",
+            "inference_types_supported",
+            "input_modalities",
+            "model_arn",
+            "model_id",
+            "model_lifecycle",
+            "model_name",
+            "output_modalities",
+            "provider_name",
+            "response_streaming_supported",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::FoundationModelSummary::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_1307 = (|| -> PyResult<_> {
@@ -12293,6 +12722,15 @@ fn generation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GenerationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_model_request_fields",
+            "guardrail_configuration",
+            "kb_inference_config",
+            "prompt_template",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GenerationConfiguration::builder();
     if let Some(value) = dict_value(values, "prompt_template")? {
         let converted_1355 = (|| -> PyResult<_> {
@@ -12470,6 +12908,7 @@ fn guardrail_automated_reasoning_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["confidence_threshold", "policies"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicy::builder();
     if let Some(value) = dict_value(values, "policies")? {
         let converted_1375 = (|| -> PyResult<_> {
@@ -12544,6 +12983,7 @@ fn guardrail_automated_reasoning_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["confidence_threshold", "policies"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailAutomatedReasoningPolicyConfig::builder();
     if let Some(value) = dict_value(values, "policies")? {
         let converted_1385 = (|| -> PyResult<_> {
@@ -12618,6 +13058,7 @@ fn guardrail_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["guardrail_id", "guardrail_version"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailConfiguration::builder();
     if let Some(value) = dict_value(values, "guardrail_id")? {
         let converted_1395 = (|| -> PyResult<_> {
@@ -12670,6 +13111,20 @@ fn guardrail_content_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "input_modalities",
+            "input_strength",
+            "output_action",
+            "output_enabled",
+            "output_modalities",
+            "output_strength",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1399 = (|| -> PyResult<_> {
@@ -12931,6 +13386,20 @@ fn guardrail_content_filter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFilterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "input_modalities",
+            "input_strength",
+            "output_action",
+            "output_enabled",
+            "output_modalities",
+            "output_strength",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentFilterConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1436 = (|| -> PyResult<_> {
@@ -13192,6 +13661,7 @@ fn guardrail_content_filters_tier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFiltersTier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentFiltersTier::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1473 = (|| -> PyResult<_> {
@@ -13229,6 +13699,7 @@ fn guardrail_content_filters_tier_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentFiltersTierConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentFiltersTierConfig::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1476 = (|| -> PyResult<_> {
@@ -13266,6 +13737,7 @@ fn guardrail_content_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters", "tier"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentPolicy::builder();
     if let Some(value) = dict_value(values, "filters")? {
         let converted_1479 = (|| -> PyResult<_> {
@@ -13346,6 +13818,7 @@ fn guardrail_content_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContentPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters_config", "tier_config"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContentPolicyConfig::builder();
     if let Some(value) = dict_value(values, "filters_config")? {
         let converted_1489 = (|| -> PyResult<_> {
@@ -13428,6 +13901,7 @@ fn guardrail_contextual_grounding_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "enabled", "threshold", "type"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1499 = (|| -> PyResult<_> {
@@ -13517,6 +13991,7 @@ fn guardrail_contextual_grounding_filter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingFilterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "enabled", "threshold", "type"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingFilterConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1509 = (|| -> PyResult<_> {
@@ -13606,6 +14081,7 @@ fn guardrail_contextual_grounding_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters", "tier"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingPolicy::builder();
     if let Some(value) = dict_value(values, "filters")? {
         let converted_1519 = (|| -> PyResult<_> {
@@ -13685,6 +14161,7 @@ fn guardrail_contextual_grounding_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters_config", "tier_config"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingPolicyConfig::builder();
     if let Some(value) = dict_value(values, "filters_config")? {
         let converted_1529 = (|| -> PyResult<_> {
@@ -13769,6 +14246,7 @@ fn guardrail_contextual_grounding_tier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingTier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingTier::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1539 = (|| -> PyResult<_> {
@@ -13806,6 +14284,7 @@ fn guardrail_contextual_grounding_tier_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailContextualGroundingTierConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailContextualGroundingTierConfig::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1542 = (|| -> PyResult<_> {
@@ -13843,6 +14322,7 @@ fn guardrail_cross_region_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailCrossRegionConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["guardrail_profile_identifier"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailCrossRegionConfig::builder();
     if let Some(value) = dict_value(values, "guardrail_profile_identifier")? {
         let converted_1545 = (|| -> PyResult<_> {
@@ -13885,6 +14365,7 @@ fn guardrail_cross_region_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailCrossRegionDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["guardrail_profile_arn", "guardrail_profile_id"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailCrossRegionDetails::builder();
     if let Some(value) = dict_value(values, "guardrail_profile_id")? {
         let converted_1547 = (|| -> PyResult<_> {
@@ -13941,6 +14422,16 @@ fn guardrail_managed_words_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailManagedWords> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailManagedWords::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1551 = (|| -> PyResult<_> {
@@ -14057,6 +14548,16 @@ fn guardrail_managed_words_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailManagedWordsConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailManagedWordsConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1564 = (|| -> PyResult<_> {
@@ -14173,6 +14674,17 @@ fn guardrail_pii_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailPiiEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailPiiEntity::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1577 = (|| -> PyResult<_> {
@@ -14310,6 +14822,17 @@ fn guardrail_pii_entity_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailPiiEntityConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailPiiEntityConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1593 = (|| -> PyResult<_> {
@@ -14447,6 +14970,19 @@ fn guardrail_regex_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailRegex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "description",
+            "input_action",
+            "input_enabled",
+            "name",
+            "output_action",
+            "output_enabled",
+            "pattern",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailRegex::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1609 = (|| -> PyResult<_> {
@@ -14613,6 +15149,19 @@ fn guardrail_regex_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailRegexConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "description",
+            "input_action",
+            "input_enabled",
+            "name",
+            "output_action",
+            "output_enabled",
+            "pattern",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailRegexConfig::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1628 = (|| -> PyResult<_> {
@@ -14779,6 +15328,7 @@ fn guardrail_sensitive_information_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pii_entities", "regexes"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicy::builder();
     if let Some(value) = dict_value(values, "pii_entities")? {
         let converted_1647 = (|| -> PyResult<_> {
@@ -14887,6 +15437,7 @@ fn guardrail_sensitive_information_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pii_entities_config", "regexes_config"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailSensitiveInformationPolicyConfig::builder();
     if let Some(value) = dict_value(values, "pii_entities_config")? {
         let converted_1663 = (|| -> PyResult<_> {
@@ -14999,6 +15550,20 @@ fn guardrail_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_at",
+            "cross_region_details",
+            "description",
+            "id",
+            "name",
+            "status",
+            "updated_at",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailSummary::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1679 = (|| -> PyResult<_> {
@@ -15172,6 +15737,19 @@ fn guardrail_topic_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopic> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "definition",
+            "examples",
+            "input_action",
+            "input_enabled",
+            "name",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopic::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1700 = (|| -> PyResult<_> {
@@ -15356,6 +15934,19 @@ fn guardrail_topic_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "definition",
+            "examples",
+            "input_action",
+            "input_enabled",
+            "name",
+            "output_action",
+            "output_enabled",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopicConfig::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1725 = (|| -> PyResult<_> {
@@ -15543,6 +16134,7 @@ fn guardrail_topic_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier", "topics"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopicPolicy::builder();
     if let Some(value) = dict_value(values, "topics")? {
         let converted_1750 = (|| -> PyResult<_> {
@@ -15621,6 +16213,7 @@ fn guardrail_topic_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_config", "topics_config"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopicPolicyConfig::builder();
     if let Some(value) = dict_value(values, "topics_config")? {
         let converted_1760 = (|| -> PyResult<_> {
@@ -15703,6 +16296,7 @@ fn guardrail_topics_tier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicsTier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopicsTier::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1770 = (|| -> PyResult<_> {
@@ -15739,6 +16333,7 @@ fn guardrail_topics_tier_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailTopicsTierConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier_name"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailTopicsTierConfig::builder();
     if let Some(value) = dict_value(values, "tier_name")? {
         let converted_1773 = (|| -> PyResult<_> {
@@ -15775,6 +16370,16 @@ fn guardrail_word_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailWord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "text",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailWord::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_1776 = (|| -> PyResult<_> {
@@ -15885,6 +16490,16 @@ fn guardrail_word_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailWordConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input_action",
+            "input_enabled",
+            "output_action",
+            "output_enabled",
+            "text",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::GuardrailWordConfig::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_1788 = (|| -> PyResult<_> {
@@ -15995,6 +16610,7 @@ fn guardrail_word_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailWordPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["managed_word_lists", "words"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailWordPolicy::builder();
     if let Some(value) = dict_value(values, "words")? {
         let converted_1800 = (|| -> PyResult<_> {
@@ -16103,6 +16719,7 @@ fn guardrail_word_policy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::GuardrailWordPolicyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["managed_word_lists_config", "words_config"])?;
     let mut builder = aws_sdk_bedrock::types::GuardrailWordPolicyConfig::builder();
     if let Some(value) = dict_value(values, "words_config")? {
         let converted_1816 = (|| -> PyResult<_> {
@@ -16215,6 +16832,14 @@ fn human_evaluation_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::HumanEvaluationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "custom_metrics",
+            "dataset_metric_configs",
+            "human_workflow_config",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::HumanEvaluationConfig::builder();
     if let Some(value) = dict_value(values, "human_workflow_config")? {
         let converted_1832 = (|| -> PyResult<_> {
@@ -16348,6 +16973,7 @@ fn human_evaluation_custom_metric_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::HumanEvaluationCustomMetric> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "rating_method"])?;
     let mut builder = aws_sdk_bedrock::types::HumanEvaluationCustomMetric::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1850 = (|| -> PyResult<_> {
@@ -16409,6 +17035,7 @@ fn human_workflow_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::HumanWorkflowConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["flow_definition_arn", "instructions"])?;
     let mut builder = aws_sdk_bedrock::types::HumanWorkflowConfig::builder();
     if let Some(value) = dict_value(values, "flow_definition_arn")? {
         let converted_1856 = (|| -> PyResult<_> {
@@ -16459,6 +17086,7 @@ fn implicit_filter_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ImplicitFilterConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["metadata_attributes", "model_arn"])?;
     let mut builder = aws_sdk_bedrock::types::ImplicitFilterConfiguration::builder();
     if let Some(value) = dict_value(values, "metadata_attributes")? {
         let converted_1860 = (|| -> PyResult<_> {
@@ -16539,6 +17167,16 @@ fn imported_model_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ImportedModelSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "instruct_supported",
+            "model_architecture",
+            "model_arn",
+            "model_name",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ImportedModelSummary::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_1870 = (|| -> PyResult<_> {
@@ -16649,6 +17287,10 @@ fn inference_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::InferenceConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_tokens", "stop_sequences", "temperature", "top_p"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::InferenceConfiguration::builder();
     if let Some(value) = dict_value(values, "max_tokens")? {
         let converted_1881 = (|| -> PyResult<_> {
@@ -16757,6 +17399,7 @@ fn inference_profile_model_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::InferenceProfileModel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_arn"])?;
     let mut builder = aws_sdk_bedrock::types::InferenceProfileModel::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_1895 = (|| -> PyResult<_> {
@@ -16836,6 +17479,20 @@ fn inference_profile_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::InferenceProfileSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "description",
+            "inference_profile_arn",
+            "inference_profile_id",
+            "inference_profile_name",
+            "models",
+            "status",
+            "type",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::InferenceProfileSummary::builder();
     if let Some(value) = dict_value(values, "inference_profile_name")? {
         let converted_1899 = (|| -> PyResult<_> {
@@ -17103,6 +17760,14 @@ fn invocation_logs_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::InvocationLogsConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "invocation_log_source",
+            "request_metadata_filters",
+            "use_prompt_response",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::InvocationLogsConfig::builder();
     if let Some(value) = dict_value(values, "use_prompt_response")? {
         let converted_1929 = (|| -> PyResult<_> {
@@ -17175,6 +17840,7 @@ fn kb_inference_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::KbInferenceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text_inference_config"])?;
     let mut builder = aws_sdk_bedrock::types::KbInferenceConfig::builder();
     if let Some(value) = dict_value(values, "text_inference_config")? {
         let converted_1935 = (|| -> PyResult<_> {
@@ -17284,6 +17950,7 @@ fn knowledge_base_retrieval_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseRetrievalConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["vector_search_configuration"])?;
     let mut builder = aws_sdk_bedrock::types::KnowledgeBaseRetrievalConfiguration::builder();
     if let Some(value) = dict_value(values, "vector_search_configuration")? {
         let converted_1941 = (|| -> PyResult<_> {
@@ -17320,6 +17987,16 @@ fn knowledge_base_retrieve_and_generate_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseRetrieveAndGenerateConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "generation_configuration",
+            "knowledge_base_id",
+            "model_arn",
+            "orchestration_configuration",
+            "retrieval_configuration",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrock::types::KnowledgeBaseRetrieveAndGenerateConfiguration::builder();
     if let Some(value) = dict_value(values, "knowledge_base_id")? {
@@ -17433,6 +18110,16 @@ fn knowledge_base_vector_search_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::KnowledgeBaseVectorSearchConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "filter",
+            "implicit_filter_configuration",
+            "number_of_results",
+            "override_search_type",
+            "reranking_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::KnowledgeBaseVectorSearchConfiguration::builder();
     if let Some(value) = dict_value(values, "number_of_results")? {
         let converted_1953 = (|| -> PyResult<_> {
@@ -17550,6 +18237,7 @@ fn lambda_grader_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::LambdaGraderConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["lambda_arn"])?;
     let mut builder = aws_sdk_bedrock::types::LambdaGraderConfig::builder();
     if let Some(value) = dict_value(values, "lambda_arn")? {
         let converted_1964 = (|| -> PyResult<_> {
@@ -17578,6 +18266,7 @@ fn lambda_grader_config_to_py(
 
 fn legal_term_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::LegalTerm> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["url"])?;
     let mut builder = aws_sdk_bedrock::types::LegalTerm::builder();
     if let Some(value) = dict_value(values, "url")? {
         let converted_1966 = (|| -> PyResult<_> {
@@ -17610,6 +18299,18 @@ fn logging_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::LoggingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "audio_data_delivery_enabled",
+            "cloud_watch_config",
+            "embedding_data_delivery_enabled",
+            "image_data_delivery_enabled",
+            "s3_config",
+            "text_data_delivery_enabled",
+            "video_data_delivery_enabled",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::LoggingConfig::builder();
     if let Some(value) = dict_value(values, "cloud_watch_config")? {
         let converted_1968 = (|| -> PyResult<_> {
@@ -17766,6 +18467,20 @@ fn marketplace_model_endpoint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::MarketplaceModelEndpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "endpoint_arn",
+            "endpoint_config",
+            "endpoint_status",
+            "endpoint_status_message",
+            "model_source_identifier",
+            "status",
+            "status_message",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::MarketplaceModelEndpoint::builder();
     if let Some(value) = dict_value(values, "endpoint_arn")? {
         let converted_1982 = (|| -> PyResult<_> {
@@ -17956,6 +18671,17 @@ fn marketplace_model_endpoint_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::MarketplaceModelEndpointSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "endpoint_arn",
+            "model_source_identifier",
+            "status",
+            "status_message",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::MarketplaceModelEndpointSummary::builder();
     if let Some(value) = dict_value(values, "endpoint_arn")? {
         let converted_2003 = (|| -> PyResult<_> {
@@ -18089,6 +18815,7 @@ fn metadata_attribute_schema_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::MetadataAttributeSchema> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "key", "type"])?;
     let mut builder = aws_sdk_bedrock::types::MetadataAttributeSchema::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2018 = (|| -> PyResult<_> {
@@ -18156,6 +18883,7 @@ fn metadata_configuration_for_reranking_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::MetadataConfigurationForReranking> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["selection_mode", "selective_mode_configuration"])?;
     let mut builder = aws_sdk_bedrock::types::MetadataConfigurationForReranking::builder();
     if let Some(value) = dict_value(values, "selection_mode")? {
         let converted_2025 = (|| -> PyResult<_> {
@@ -18213,6 +18941,14 @@ fn model_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_model_request_fields",
+            "inference_config",
+            "model_id",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelConfiguration::builder();
     if let Some(value) = dict_value(values, "model_id")? {
         let converted_2030 = (|| -> PyResult<_> {
@@ -18311,6 +19047,22 @@ fn model_copy_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelCopyJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "failure_message",
+            "job_arn",
+            "source_account_id",
+            "source_model_arn",
+            "source_model_name",
+            "status",
+            "target_model_arn",
+            "target_model_kms_key_arn",
+            "target_model_name",
+            "target_model_tags",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelCopyJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_2046 = (|| -> PyResult<_> {
@@ -18566,6 +19318,22 @@ fn model_customization_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelCustomizationJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "base_model_arn",
+            "creation_time",
+            "custom_model_arn",
+            "custom_model_name",
+            "customization_type",
+            "end_time",
+            "job_arn",
+            "job_name",
+            "last_modified_time",
+            "status",
+            "status_details",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelCustomizationJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_2076 = (|| -> PyResult<_> {
@@ -18853,6 +19621,7 @@ fn model_enforcement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelEnforcement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["excluded_models", "included_models"])?;
     let mut builder = aws_sdk_bedrock::types::ModelEnforcement::builder();
     if let Some(value) = dict_value(values, "included_models")? {
         let converted_2105 = (|| -> PyResult<_> {
@@ -18957,6 +19726,19 @@ fn model_import_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelImportJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "end_time",
+            "imported_model_arn",
+            "imported_model_name",
+            "job_arn",
+            "job_name",
+            "last_modified_time",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelImportJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_2121 = (|| -> PyResult<_> {
@@ -19250,6 +20032,7 @@ fn model_invocation_job_s3_input_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobS3InputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket_owner", "s3_input_format", "s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::ModelInvocationJobS3InputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_input_format")? {
         let converted_2145 = (|| -> PyResult<_> {
@@ -19322,6 +20105,10 @@ fn model_invocation_job_s3_output_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobS3OutputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["s3_bucket_owner", "s3_encryption_key_id", "s3_uri"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelInvocationJobS3OutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_2152 = (|| -> PyResult<_> {
@@ -19392,6 +20179,31 @@ fn model_invocation_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelInvocationJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_request_token",
+            "end_time",
+            "error_record_count",
+            "input_data_config",
+            "job_arn",
+            "job_expiration_time",
+            "job_name",
+            "last_modified_time",
+            "message",
+            "model_id",
+            "model_invocation_type",
+            "output_data_config",
+            "processed_record_count",
+            "role_arn",
+            "status",
+            "submit_time",
+            "success_record_count",
+            "timeout_duration_in_hours",
+            "total_record_count",
+            "vpc_config",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ModelInvocationJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
         let converted_2158 = (|| -> PyResult<_> {
@@ -19803,6 +20615,7 @@ fn model_package_arn_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ModelPackageArnDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_package_arn"])?;
     let mut builder = aws_sdk_bedrock::types::ModelPackageArnDataSource::builder();
     if let Some(value) = dict_value(values, "model_package_arn")? {
         let converted_2204 = (|| -> PyResult<_> {
@@ -19835,6 +20648,7 @@ fn model_package_arn_data_source_to_py(
 
 fn offer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::Offer> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["offer_id", "offer_token", "term_details"])?;
     let mut builder = aws_sdk_bedrock::types::Offer::builder();
     if let Some(value) = dict_value(values, "offer_id")? {
         let converted_2206 = (|| -> PyResult<_> {
@@ -19898,6 +20712,7 @@ fn orchestration_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::OrchestrationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["query_transformation_configuration"])?;
     let mut builder = aws_sdk_bedrock::types::OrchestrationConfiguration::builder();
     if let Some(value) = dict_value(values, "query_transformation_configuration")? {
         let converted_2212 = (|| -> PyResult<_> {
@@ -19934,6 +20749,7 @@ fn output_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::OutputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::OutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_2214 = (|| -> PyResult<_> {
@@ -19964,6 +20780,7 @@ fn performance_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::PerformanceConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["latency"])?;
     let mut builder = aws_sdk_bedrock::types::PerformanceConfiguration::builder();
     if let Some(value) = dict_value(values, "latency")? {
         let converted_2216 = (|| -> PyResult<_> {
@@ -20000,6 +20817,7 @@ fn performance_configuration_to_py(
 
 fn pricing_term_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::PricingTerm> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rate_card"])?;
     let mut builder = aws_sdk_bedrock::types::PricingTerm::builder();
     if let Some(value) = dict_value(values, "rate_card")? {
         let converted_2219 = (|| -> PyResult<_> {
@@ -20058,6 +20876,21 @@ fn prompt_router_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::PromptRouterSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "description",
+            "fallback_model",
+            "models",
+            "prompt_router_arn",
+            "prompt_router_name",
+            "routing_criteria",
+            "status",
+            "type",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::PromptRouterSummary::builder();
     if let Some(value) = dict_value(values, "prompt_router_name")? {
         let converted_2227 = (|| -> PyResult<_> {
@@ -20299,6 +21132,7 @@ fn prompt_router_target_model_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::PromptRouterTargetModel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_arn"])?;
     let mut builder = aws_sdk_bedrock::types::PromptRouterTargetModel::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
         let converted_2257 = (|| -> PyResult<_> {
@@ -20331,6 +21165,7 @@ fn prompt_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::PromptTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text_prompt_template"])?;
     let mut builder = aws_sdk_bedrock::types::PromptTemplate::builder();
     if let Some(value) = dict_value(values, "text_prompt_template")? {
         let converted_2259 = (|| -> PyResult<_> {
@@ -20367,6 +21202,23 @@ fn provisioned_model_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ProvisionedModelSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "commitment_duration",
+            "commitment_expiration_time",
+            "creation_time",
+            "desired_model_arn",
+            "desired_model_units",
+            "foundation_model_arn",
+            "last_modified_time",
+            "model_arn",
+            "model_units",
+            "provisioned_model_arn",
+            "provisioned_model_name",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::ProvisionedModelSummary::builder();
     if let Some(value) = dict_value(values, "provisioned_model_name")? {
         let converted_2261 = (|| -> PyResult<_> {
@@ -20610,6 +21462,7 @@ fn query_transformation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::QueryTransformationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_bedrock::types::QueryTransformationConfiguration::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_2290 = (|| -> PyResult<_> {
@@ -20715,6 +21568,7 @@ fn rating_scale_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RatingScaleItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["definition", "value"])?;
     let mut builder = aws_sdk_bedrock::types::RatingScaleItem::builder();
     if let Some(value) = dict_value(values, "definition")? {
         let converted_2297 = (|| -> PyResult<_> {
@@ -20830,6 +21684,7 @@ fn request_metadata_base_filters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RequestMetadataBaseFilters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["equals", "not_equals"])?;
     let mut builder = aws_sdk_bedrock::types::RequestMetadataBaseFilters::builder();
     if let Some(value) = dict_value(values, "equals")? {
         let converted_2305 = (|| -> PyResult<_> {
@@ -21619,6 +22474,14 @@ fn retrieve_and_generate_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RetrieveAndGenerateConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "external_sources_configuration",
+            "knowledge_base_configuration",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::RetrieveAndGenerateConfiguration::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_2423 = (|| -> PyResult<_> {
@@ -21697,6 +22560,13 @@ fn retrieve_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RetrieveConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "knowledge_base_id",
+            "knowledge_base_retrieval_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::RetrieveConfig::builder();
     if let Some(value) = dict_value(values, "knowledge_base_id")? {
         let converted_2430 = (|| -> PyResult<_> {
@@ -21749,6 +22619,7 @@ fn retrieve_config_to_py(
 
 fn rft_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::RftConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["grader_config", "hyper_parameters"])?;
     let mut builder = aws_sdk_bedrock::types::RftConfig::builder();
     if let Some(value) = dict_value(values, "grader_config")? {
         let converted_2434 = (|| -> PyResult<_> {
@@ -21805,6 +22676,19 @@ fn rft_hyper_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RftHyperParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "epoch_count",
+            "eval_interval",
+            "inference_max_tokens",
+            "learning_rate",
+            "max_prompt_length",
+            "reasoning_effort",
+            "training_sample_per_prompt",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::RftHyperParameters::builder();
     if let Some(value) = dict_value(values, "epoch_count")? {
         let converted_2438 = (|| -> PyResult<_> {
@@ -21971,6 +22855,7 @@ fn routing_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::RoutingCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["response_quality_difference"])?;
     let mut builder = aws_sdk_bedrock::types::RoutingCriteria::builder();
     if let Some(value) = dict_value(values, "response_quality_difference")? {
         let converted_2455 = (|| -> PyResult<_> {
@@ -22008,6 +22893,7 @@ fn routing_criteria_to_py(
 
 fn s3_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::S3Config> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bucket_name", "key_prefix"])?;
     let mut builder = aws_sdk_bedrock::types::S3Config::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_2457 = (|| -> PyResult<_> {
@@ -22054,6 +22940,7 @@ fn s3_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::S3DataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::S3DataSource::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_2461 = (|| -> PyResult<_> {
@@ -22084,6 +22971,7 @@ fn s3_object_doc_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::S3ObjectDoc> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["uri"])?;
     let mut builder = aws_sdk_bedrock::types::S3ObjectDoc::builder();
     if let Some(value) = dict_value(values, "uri")? {
         let converted_2463 = (|| -> PyResult<_> {
@@ -22114,6 +23002,16 @@ fn sage_maker_endpoint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::SageMakerEndpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "execution_role",
+            "initial_instance_count",
+            "instance_type",
+            "kms_encryption_key",
+            "vpc",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::SageMakerEndpoint::builder();
     if let Some(value) = dict_value(values, "initial_instance_count")? {
         let converted_2465 = (|| -> PyResult<_> {
@@ -22219,6 +23117,7 @@ fn selective_content_guarding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::SelectiveContentGuarding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["messages", "system"])?;
     let mut builder = aws_sdk_bedrock::types::SelectiveContentGuarding::builder();
     if let Some(value) = dict_value(values, "system")? {
         let converted_2475 = (|| -> PyResult<_> {
@@ -22279,6 +23178,14 @@ fn status_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::StatusDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "data_processing_details",
+            "training_details",
+            "validation_details",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::StatusDetails::builder();
     if let Some(value) = dict_value(values, "validation_details")? {
         let converted_2481 = (|| -> PyResult<_> {
@@ -22353,6 +23260,7 @@ fn status_details_to_py(
 
 fn support_term_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::SupportTerm> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["refund_policy_description"])?;
     let mut builder = aws_sdk_bedrock::types::SupportTerm::builder();
     if let Some(value) = dict_value(values, "refund_policy_description")? {
         let converted_2487 = (|| -> PyResult<_> {
@@ -22387,6 +23295,7 @@ fn support_term_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_bedrock::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2489 = (|| -> PyResult<_> {
@@ -22426,6 +23335,13 @@ fn teacher_model_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::TeacherModelConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "max_response_length_for_inference",
+            "teacher_model_identifier",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::TeacherModelConfig::builder();
     if let Some(value) = dict_value(values, "teacher_model_identifier")? {
         let converted_2493 = (|| -> PyResult<_> {
@@ -22481,6 +23397,15 @@ fn teacher_model_config_to_py(
 
 fn term_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::TermDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "legal_term",
+            "support_term",
+            "usage_based_pricing_term",
+            "validity_term",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::TermDetails::builder();
     if let Some(value) = dict_value(values, "usage_based_pricing_term")? {
         let converted_2497 = (|| -> PyResult<_> {
@@ -22577,6 +23502,10 @@ fn text_inference_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::TextInferenceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_tokens", "stop_sequences", "temperature", "top_p"],
+    )?;
     let mut builder = aws_sdk_bedrock::types::TextInferenceConfig::builder();
     if let Some(value) = dict_value(values, "temperature")? {
         let converted_2505 = (|| -> PyResult<_> {
@@ -22685,6 +23614,7 @@ fn training_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::TrainingDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["invocation_logs_config", "s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::TrainingDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_2519 = (|| -> PyResult<_> {
@@ -22737,6 +23667,7 @@ fn training_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::TrainingDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "last_modified_time", "status"])?;
     let mut builder = aws_sdk_bedrock::types::TrainingDetails::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_2523 = (|| -> PyResult<_> {
@@ -22825,6 +23756,7 @@ fn training_metrics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::TrainingMetrics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["training_loss"])?;
     let mut builder = aws_sdk_bedrock::types::TrainingMetrics::builder();
     if let Some(value) = dict_value(values, "training_loss")? {
         let converted_2532 = (|| -> PyResult<_> {
@@ -22861,6 +23793,7 @@ fn validation_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ValidationDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["validators"])?;
     let mut builder = aws_sdk_bedrock::types::ValidationDataConfig::builder();
     if let Some(value) = dict_value(values, "validators")? {
         let converted_2534 = (|| -> PyResult<_> {
@@ -22923,6 +23856,7 @@ fn validation_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ValidationDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "last_modified_time", "status"])?;
     let mut builder = aws_sdk_bedrock::types::ValidationDetails::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_2542 = (|| -> PyResult<_> {
@@ -23009,6 +23943,7 @@ fn validation_details_to_py(
 
 fn validator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::Validator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrock::types::Validator::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_2551 = (|| -> PyResult<_> {
@@ -23039,6 +23974,7 @@ fn validator_metric_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ValidatorMetric> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["validation_loss"])?;
     let mut builder = aws_sdk_bedrock::types::ValidatorMetric::builder();
     if let Some(value) = dict_value(values, "validation_loss")? {
         let converted_2553 = (|| -> PyResult<_> {
@@ -23075,6 +24011,7 @@ fn validity_term_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::ValidityTerm> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["agreement_duration"])?;
     let mut builder = aws_sdk_bedrock::types::ValidityTerm::builder();
     if let Some(value) = dict_value(values, "agreement_duration")? {
         let converted_2555 = (|| -> PyResult<_> {
@@ -23111,6 +24048,14 @@ fn vector_search_bedrock_reranking_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::VectorSearchBedrockRerankingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "metadata_configuration",
+            "model_configuration",
+            "number_of_reranked_results",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrock::types::VectorSearchBedrockRerankingConfiguration::builder();
     if let Some(value) = dict_value(values, "model_configuration")? {
         let converted_2557 = (|| -> PyResult<_> {
@@ -23188,6 +24133,7 @@ fn vector_search_bedrock_reranking_model_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::VectorSearchBedrockRerankingModelConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_model_request_fields", "model_arn"])?;
     let mut builder =
         aws_sdk_bedrock::types::VectorSearchBedrockRerankingModelConfiguration::builder();
     if let Some(value) = dict_value(values, "model_arn")? {
@@ -23267,6 +24213,7 @@ fn vector_search_reranking_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrock::types::VectorSearchRerankingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bedrock_reranking_configuration", "type"])?;
     let mut builder = aws_sdk_bedrock::types::VectorSearchRerankingConfiguration::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_2577 = (|| -> PyResult<_> {
@@ -23323,6 +24270,7 @@ fn vector_search_reranking_configuration_to_py(
 
 fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrock::types::VpcConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["security_group_ids", "subnet_ids"])?;
     let mut builder = aws_sdk_bedrock::types::VpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_2582 = (|| -> PyResult<_> {

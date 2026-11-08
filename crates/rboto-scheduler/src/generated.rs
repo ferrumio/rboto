@@ -16,6 +16,7 @@ fn aws_vpc_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::AwsVpcConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["assign_public_ip", "security_groups", "subnets"])?;
     let mut builder = aws_sdk_scheduler::types::AwsVpcConfiguration::builder();
     if let Some(value) = dict_value(values, "subnets")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -136,6 +137,7 @@ fn capacity_provider_strategy_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::CapacityProviderStrategyItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["base", "capacity_provider", "weight"])?;
     let mut builder = aws_sdk_scheduler::types::CapacityProviderStrategyItem::builder();
     if let Some(value) = dict_value(values, "capacity_provider")? {
         let converted_20 = (|| -> PyResult<_> {
@@ -194,6 +196,7 @@ fn dead_letter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::DeadLetterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_scheduler::types::DeadLetterConfig::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_26 = (|| -> PyResult<_> {
@@ -226,6 +229,25 @@ fn ecs_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::EcsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_provider_strategy",
+            "enable_ecs_managed_tags",
+            "enable_execute_command",
+            "group",
+            "launch_type",
+            "network_configuration",
+            "placement_constraints",
+            "placement_strategy",
+            "platform_version",
+            "propagate_tags",
+            "reference_id",
+            "tags",
+            "task_count",
+            "task_definition_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_scheduler::types::EcsParameters::builder();
     if let Some(value) = dict_value(values, "task_definition_arn")? {
         let converted_28 = (|| -> PyResult<_> {
@@ -647,6 +669,7 @@ fn event_bridge_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::EventBridgeParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["detail_type", "source"])?;
     let mut builder = aws_sdk_scheduler::types::EventBridgeParameters::builder();
     if let Some(value) = dict_value(values, "detail_type")? {
         let converted_92 = (|| -> PyResult<_> {
@@ -692,6 +715,7 @@ fn flexible_time_window_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::FlexibleTimeWindow> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["maximum_window_in_minutes", "mode"])?;
     let mut builder = aws_sdk_scheduler::types::FlexibleTimeWindow::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_96 = (|| -> PyResult<_> {
@@ -748,6 +772,7 @@ fn kinesis_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::KinesisParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["partition_key"])?;
     let mut builder = aws_sdk_scheduler::types::KinesisParameters::builder();
     if let Some(value) = dict_value(values, "partition_key")? {
         let converted_101 = (|| -> PyResult<_> {
@@ -778,6 +803,7 @@ fn network_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::NetworkConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["awsvpc_configuration"])?;
     let mut builder = aws_sdk_scheduler::types::NetworkConfiguration::builder();
     if let Some(value) = dict_value(values, "awsvpc_configuration")? {
         let converted_103 = (|| -> PyResult<_> {
@@ -814,6 +840,7 @@ fn placement_constraint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::PlacementConstraint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression", "type"])?;
     let mut builder = aws_sdk_scheduler::types::PlacementConstraint::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_105 = (|| -> PyResult<_> {
@@ -868,6 +895,7 @@ fn placement_strategy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::PlacementStrategy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field", "type"])?;
     let mut builder = aws_sdk_scheduler::types::PlacementStrategy::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_110 = (|| -> PyResult<_> {
@@ -922,6 +950,10 @@ fn retry_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::RetryPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["maximum_event_age_in_seconds", "maximum_retry_attempts"],
+    )?;
     let mut builder = aws_sdk_scheduler::types::RetryPolicy::builder();
     if let Some(value) = dict_value(values, "maximum_event_age_in_seconds")? {
         let converted_115 = (|| -> PyResult<_> {
@@ -978,6 +1010,7 @@ fn sage_maker_pipeline_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::SageMakerPipelineParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_scheduler::types::SageMakerPipelineParameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_119 = (|| -> PyResult<_> {
@@ -1020,6 +1053,7 @@ fn sage_maker_pipeline_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::SageMakerPipelineParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pipeline_parameter_list"])?;
     let mut builder = aws_sdk_scheduler::types::SageMakerPipelineParameters::builder();
     if let Some(value) = dict_value(values, "pipeline_parameter_list")? {
         let converted_123 = (|| -> PyResult<_> {
@@ -1084,6 +1118,16 @@ fn schedule_group_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::ScheduleGroupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_date",
+            "last_modification_date",
+            "name",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_scheduler::types::ScheduleGroupSummary::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_131 = (|| -> PyResult<_> {
@@ -1204,6 +1248,18 @@ fn schedule_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::ScheduleSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_date",
+            "group_name",
+            "last_modification_date",
+            "name",
+            "state",
+            "target",
+        ],
+    )?;
     let mut builder = aws_sdk_scheduler::types::ScheduleSummary::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_144 = (|| -> PyResult<_> {
@@ -1360,6 +1416,7 @@ fn sqs_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::SqsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message_group_id"])?;
     let mut builder = aws_sdk_scheduler::types::SqsParameters::builder();
     if let Some(value) = dict_value(values, "message_group_id")? {
         let converted_161 = (|| -> PyResult<_> {
@@ -1394,6 +1451,7 @@ fn sqs_parameters_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_scheduler::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_scheduler::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_163 = (|| -> PyResult<_> {
@@ -1431,6 +1489,21 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_scheduler::types::Tag) -> PyResult<
 
 fn target_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_scheduler::types::Target> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "dead_letter_config",
+            "ecs_parameters",
+            "event_bridge_parameters",
+            "input",
+            "kinesis_parameters",
+            "retry_policy",
+            "role_arn",
+            "sage_maker_pipeline_parameters",
+            "sqs_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_scheduler::types::Target::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_167 = (|| -> PyResult<_> {
@@ -1626,6 +1699,7 @@ fn target_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_scheduler::types::TargetSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_scheduler::types::TargetSummary::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_187 = (|| -> PyResult<_> {

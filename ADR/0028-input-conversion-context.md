@@ -2,6 +2,7 @@
 
 - Status: Accepted
 - Date: 2026-11-03
+- Amended by: [ADR-0034](0034-reject-unknown-input-structure-fields.md) for unknown structure fields
 
 ## Decision
 

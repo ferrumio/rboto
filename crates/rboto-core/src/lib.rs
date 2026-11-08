@@ -22,7 +22,9 @@ pub use error::{
     stream_error_to_py,
 };
 pub use event_stream::python_event_stream;
-pub use input_error::{InputPath, input_builder_error, input_error, input_operation, input_rule};
+pub use input_error::{
+    InputPath, input_builder_error, input_error, input_operation, input_rule, validate_input_fields,
+};
 pub use lifecycle::{
     ManagedResource, client_closed, client_future_into_py, ready_future, stream_closed,
 };

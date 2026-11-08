@@ -16,6 +16,7 @@ fn alternative_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::Alternative> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entities", "items", "transcript"])?;
     let mut builder = aws_sdk_transcribestreaming::types::Alternative::builder();
     if let Some(value) = dict_value(values, "transcript")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -136,6 +137,7 @@ fn audio_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::AudioEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_transcribestreaming::types::AudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_19 = (|| -> PyResult<_> {
@@ -242,6 +244,17 @@ fn call_analytics_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::CallAnalyticsEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_offset_millis",
+            "category",
+            "confidence",
+            "content",
+            "end_offset_millis",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsEntity::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
         let converted_26 = (|| -> PyResult<_> {
@@ -362,6 +375,18 @@ fn call_analytics_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::CallAnalyticsItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_offset_millis",
+            "confidence",
+            "content",
+            "end_offset_millis",
+            "stable",
+            "type",
+            "vocabulary_filter_match",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsItem::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -506,6 +531,7 @@ fn call_analytics_language_with_score_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::CallAnalyticsLanguageWithScore> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["language_code", "score"])?;
     let mut builder = aws_sdk_transcribestreaming::types::CallAnalyticsLanguageWithScore::builder();
     if let Some(value) = dict_value(values, "language_code")? {
         let converted_53 = (|| -> PyResult<_> {
@@ -640,6 +666,7 @@ fn category_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::CategoryEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["matched_categories", "matched_details"])?;
     let mut builder = aws_sdk_transcribestreaming::types::CategoryEvent::builder();
     if let Some(value) = dict_value(values, "matched_categories")? {
         let converted_62 = (|| -> PyResult<_> {
@@ -748,6 +775,7 @@ fn channel_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::ChannelDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["channel_id", "participant_role"])?;
     let mut builder = aws_sdk_transcribestreaming::types::ChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
         let converted_82 = (|| -> PyResult<_> {
@@ -796,6 +824,7 @@ fn character_offsets_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::CharacterOffsets> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["begin", "end"])?;
     let mut builder = aws_sdk_transcribestreaming::types::CharacterOffsets::builder();
     if let Some(value) = dict_value(values, "begin")? {
         let converted_87 = (|| -> PyResult<_> {
@@ -844,6 +873,15 @@ fn clinical_note_generation_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "clinical_note_output_location",
+            "failure_reason",
+            "status",
+            "transcript_output_location",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_output_location")? {
         let converted_91 = (|| -> PyResult<_> {
@@ -940,6 +978,7 @@ fn clinical_note_generation_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["note_template", "output_bucket_name"])?;
     let mut builder = aws_sdk_transcribestreaming::types::ClinicalNoteGenerationSettings::builder();
     if let Some(value) = dict_value(values, "output_bucket_name")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -997,6 +1036,10 @@ fn configuration_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::ConfigurationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["channel_definitions", "post_call_analytics_settings"],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "channel_definitions")? {
         let converted_105 = (|| -> PyResult<_> {
@@ -1081,6 +1124,17 @@ fn entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::Entity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "category",
+            "confidence",
+            "content",
+            "end_time",
+            "start_time",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::Entity::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_115 = (|| -> PyResult<_> {
@@ -1185,6 +1239,7 @@ fn issue_detected_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::IssueDetected> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["character_offsets"])?;
     let mut builder = aws_sdk_transcribestreaming::types::IssueDetected::builder();
     if let Some(value) = dict_value(values, "character_offsets")? {
         let converted_127 = (|| -> PyResult<_> {
@@ -1219,6 +1274,19 @@ fn issue_detected_to_py(
 
 fn item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_transcribestreaming::types::Item> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "confidence",
+            "content",
+            "end_time",
+            "speaker",
+            "stable",
+            "start_time",
+            "type",
+            "vocabulary_filter_match",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::Item::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_129 = (|| -> PyResult<_> {
@@ -1363,6 +1431,7 @@ fn language_with_score_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::LanguageWithScore> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["language_code", "score"])?;
     let mut builder = aws_sdk_transcribestreaming::types::LanguageWithScore::builder();
     if let Some(value) = dict_value(values, "language_code")? {
         let converted_146 = (|| -> PyResult<_> {
@@ -1413,6 +1482,7 @@ fn medical_alternative_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalAlternative> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entities", "items", "transcript"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalAlternative::builder();
     if let Some(value) = dict_value(values, "transcript")? {
         let converted_151 = (|| -> PyResult<_> {
@@ -1533,6 +1603,16 @@ fn medical_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "category",
+            "confidence",
+            "content",
+            "end_time",
+            "start_time",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalEntity::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_169 = (|| -> PyResult<_> {
@@ -1621,6 +1701,17 @@ fn medical_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "confidence",
+            "content",
+            "end_time",
+            "speaker",
+            "start_time",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalItem::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_179 = (|| -> PyResult<_> {
@@ -1731,6 +1822,17 @@ fn medical_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alternatives",
+            "channel_id",
+            "end_time",
+            "is_partial",
+            "result_id",
+            "start_time",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalResult::builder();
     if let Some(value) = dict_value(values, "result_id")? {
         let converted_192 = (|| -> PyResult<_> {
@@ -1863,6 +1965,7 @@ fn medical_scribe_audio_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeAudioEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_210 = (|| -> PyResult<_> {
@@ -1896,6 +1999,7 @@ fn medical_scribe_channel_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["channel_id", "participant_role"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
         let converted_213 = (|| -> PyResult<_> {
@@ -1946,6 +2050,19 @@ fn medical_scribe_configuration_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeConfigurationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "channel_definitions",
+            "encryption_settings",
+            "medical_scribe_context",
+            "post_stream_analytics_settings",
+            "resource_access_role_arn",
+            "vocabulary_filter_method",
+            "vocabulary_filter_name",
+            "vocabulary_name",
+        ],
+    )?;
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "vocabulary_name")? {
@@ -2156,6 +2273,7 @@ fn medical_scribe_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["patient_context"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeContext::builder();
     if let Some(value) = dict_value(values, "patient_context")? {
         let converted_241 = (|| -> PyResult<_> {
@@ -2192,6 +2310,7 @@ fn medical_scribe_encryption_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_encryption_context", "kms_key_id"])?;
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeEncryptionSettings::builder();
     if let Some(value) = dict_value(values, "kms_encryption_context")? {
@@ -2370,6 +2489,7 @@ fn medical_scribe_patient_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribePatientContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pronouns"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribePatientContext::builder();
     if let Some(value) = dict_value(values, "pronouns")? {
         let converted_263 = (|| -> PyResult<_> {
@@ -2408,6 +2528,7 @@ fn medical_scribe_post_stream_analytics_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["clinical_note_generation_result"])?;
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
@@ -2445,6 +2566,7 @@ fn medical_scribe_post_stream_analytics_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["clinical_note_generation_settings"])?;
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribePostStreamAnalyticsSettings::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
@@ -2537,6 +2659,7 @@ fn medical_scribe_session_control_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder =
         aws_sdk_transcribestreaming::types::MedicalScribeSessionControlEvent::builder();
     if let Some(value) = dict_value(values, "type")? {
@@ -2576,6 +2699,27 @@ fn medical_scribe_stream_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "channel_definitions",
+            "encryption_settings",
+            "language_code",
+            "media_encoding",
+            "media_sample_rate_hertz",
+            "medical_scribe_context_provided",
+            "post_stream_analytics_result",
+            "post_stream_analytics_settings",
+            "resource_access_role_arn",
+            "session_id",
+            "stream_created_at",
+            "stream_ended_at",
+            "stream_status",
+            "vocabulary_filter_method",
+            "vocabulary_filter_name",
+            "vocabulary_name",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeStreamDetails::builder();
     if let Some(value) = dict_value(values, "session_id")? {
         let converted_275 = (|| -> PyResult<_> {
@@ -2960,6 +3104,7 @@ fn medical_scribe_transcript_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeTranscriptEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["transcript_segment"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript_segment")? {
         let converted_319 = (|| -> PyResult<_> {
@@ -2996,6 +3141,17 @@ fn medical_scribe_transcript_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_audio_time",
+            "confidence",
+            "content",
+            "end_audio_time",
+            "type",
+            "vocabulary_filter_match",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptItem::builder();
     if let Some(value) = dict_value(values, "begin_audio_time")? {
         let converted_321 = (|| -> PyResult<_> {
@@ -3120,6 +3276,18 @@ fn medical_scribe_transcript_segment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalScribeTranscriptSegment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_audio_time",
+            "channel_id",
+            "content",
+            "end_audio_time",
+            "is_partial",
+            "items",
+            "segment_id",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalScribeTranscriptSegment::builder();
     if let Some(value) = dict_value(values, "segment_id")? {
         let converted_334 = (|| -> PyResult<_> {
@@ -3272,6 +3440,7 @@ fn medical_transcript_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalTranscript> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["results"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalTranscript::builder();
     if let Some(value) = dict_value(values, "results")? {
         let converted_354 = (|| -> PyResult<_> {
@@ -3332,6 +3501,7 @@ fn medical_transcript_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::MedicalTranscriptEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["transcript"])?;
     let mut builder = aws_sdk_transcribestreaming::types::MedicalTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript")? {
         let converted_362 = (|| -> PyResult<_> {
@@ -3425,6 +3595,7 @@ fn points_of_interest_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::PointsOfInterest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["timestamp_ranges"])?;
     let mut builder = aws_sdk_transcribestreaming::types::PointsOfInterest::builder();
     if let Some(value) = dict_value(values, "timestamp_ranges")? {
         let converted_366 = (|| -> PyResult<_> {
@@ -3489,6 +3660,15 @@ fn post_call_analytics_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::PostCallAnalyticsSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "content_redaction_output",
+            "data_access_role_arn",
+            "output_encryption_kms_key_id",
+            "output_location",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::PostCallAnalyticsSettings::builder();
     if let Some(value) = dict_value(values, "output_location")? {
         let converted_374 = (|| -> PyResult<_> {
@@ -3588,6 +3768,19 @@ fn result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::Result> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alternatives",
+            "channel_id",
+            "end_time",
+            "is_partial",
+            "language_code",
+            "language_identification",
+            "result_id",
+            "start_time",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::Result::builder();
     if let Some(value) = dict_value(values, "result_id")? {
         let converted_383 = (|| -> PyResult<_> {
@@ -3790,6 +3983,7 @@ fn timestamp_range_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::TimestampRange> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["begin_offset_millis", "end_offset_millis"])?;
     let mut builder = aws_sdk_transcribestreaming::types::TimestampRange::builder();
     if let Some(value) = dict_value(values, "begin_offset_millis")? {
         let converted_412 = (|| -> PyResult<_> {
@@ -3846,6 +4040,7 @@ fn transcript_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::Transcript> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["results"])?;
     let mut builder = aws_sdk_transcribestreaming::types::Transcript::builder();
     if let Some(value) = dict_value(values, "results")? {
         let converted_416 = (|| -> PyResult<_> {
@@ -3906,6 +4101,7 @@ fn transcript_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::TranscriptEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["transcript"])?;
     let mut builder = aws_sdk_transcribestreaming::types::TranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript")? {
         let converted_424 = (|| -> PyResult<_> {
@@ -3997,6 +4193,23 @@ fn utterance_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_transcribestreaming::types::UtteranceEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_offset_millis",
+            "end_offset_millis",
+            "entities",
+            "is_partial",
+            "issues_detected",
+            "items",
+            "language_code",
+            "language_identification",
+            "participant_role",
+            "sentiment",
+            "transcript",
+            "utterance_id",
+        ],
+    )?;
     let mut builder = aws_sdk_transcribestreaming::types::UtteranceEvent::builder();
     if let Some(value) = dict_value(values, "utterance_id")? {
         let converted_428 = (|| -> PyResult<_> {

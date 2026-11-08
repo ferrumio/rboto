@@ -16,6 +16,7 @@ fn acl_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::AclConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_acl_option"])?;
     let mut builder = aws_sdk_athena::types::AclConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_acl_option")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -51,6 +52,7 @@ fn application_dpu_sizes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ApplicationDpuSizes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["application_runtime_id", "supported_dpu_sizes"])?;
     let mut builder = aws_sdk_athena::types::ApplicationDpuSizes::builder();
     if let Some(value) = dict_value(values, "application_runtime_id")? {
         let converted_4 = (|| -> PyResult<_> {
@@ -129,6 +131,10 @@ fn application_dpu_sizes_to_py(
 
 fn athena_error_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::AthenaError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["error_category", "error_message", "error_type", "retryable"],
+    )?;
     let mut builder = aws_sdk_athena::types::AthenaError::builder();
     if let Some(value) = dict_value(values, "error_category")? {
         let converted_14 = (|| -> PyResult<_> {
@@ -205,6 +211,7 @@ fn calculation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CalculationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code_block"])?;
     let mut builder = aws_sdk_athena::types::CalculationConfiguration::builder();
     if let Some(value) = dict_value(values, "code_block")? {
         let converted_22 = (|| -> PyResult<_> {
@@ -237,6 +244,15 @@ fn calculation_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CalculationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "result_s3_uri",
+            "result_type",
+            "std_error_s3_uri",
+            "std_out_s3_uri",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::CalculationResult::builder();
     if let Some(value) = dict_value(values, "std_out_s3_uri")? {
         let converted_24 = (|| -> PyResult<_> {
@@ -321,6 +337,7 @@ fn calculation_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CalculationStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dpu_execution_in_millis", "progress"])?;
     let mut builder = aws_sdk_athena::types::CalculationStatistics::builder();
     if let Some(value) = dict_value(values, "dpu_execution_in_millis")? {
         let converted_32 = (|| -> PyResult<_> {
@@ -373,6 +390,15 @@ fn calculation_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CalculationStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "completion_date_time",
+            "state",
+            "state_change_reason",
+            "submission_date_time",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::CalculationStatus::builder();
     if let Some(value) = dict_value(values, "submission_date_time")? {
         let converted_36 = (|| -> PyResult<_> {
@@ -481,6 +507,10 @@ fn calculation_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CalculationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["calculation_execution_id", "description", "status"],
+    )?;
     let mut builder = aws_sdk_athena::types::CalculationSummary::builder();
     if let Some(value) = dict_value(values, "calculation_execution_id")? {
         let converted_47 = (|| -> PyResult<_> {
@@ -553,6 +583,15 @@ fn capacity_allocation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CapacityAllocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "request_completion_time",
+            "request_time",
+            "status",
+            "status_message",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::CapacityAllocation::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_53 = (|| -> PyResult<_> {
@@ -654,6 +693,7 @@ fn capacity_assignment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CapacityAssignment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["work_group_names"])?;
     let mut builder = aws_sdk_athena::types::CapacityAssignment::builder();
     if let Some(value) = dict_value(values, "work_group_names")? {
         let converted_64 = (|| -> PyResult<_> {
@@ -714,6 +754,10 @@ fn capacity_assignment_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CapacityAssignmentConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["capacity_assignments", "capacity_reservation_name"],
+    )?;
     let mut builder = aws_sdk_athena::types::CapacityAssignmentConfiguration::builder();
     if let Some(value) = dict_value(values, "capacity_reservation_name")? {
         let converted_72 = (|| -> PyResult<_> {
@@ -798,6 +842,18 @@ fn capacity_reservation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CapacityReservation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allocated_dpus",
+            "creation_time",
+            "last_allocation",
+            "last_successful_allocation_time",
+            "name",
+            "status",
+            "target_dpus",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::CapacityReservation::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_82 = (|| -> PyResult<_> {
@@ -945,6 +1001,7 @@ fn classification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::Classification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "properties"])?;
     let mut builder = aws_sdk_athena::types::Classification::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_99 = (|| -> PyResult<_> {
@@ -1021,6 +1078,15 @@ fn cloud_watch_logging_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CloudWatchLoggingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "enabled",
+            "log_group",
+            "log_stream_name_prefix",
+            "log_types",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::CloudWatchLoggingConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_113 = (|| -> PyResult<_> {
@@ -1158,6 +1224,7 @@ fn cloud_watch_logging_configuration_to_py(
 
 fn column_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Column> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["comment", "name", "type"])?;
     let mut builder = aws_sdk_athena::types::Column::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_137 = (|| -> PyResult<_> {
@@ -1215,6 +1282,21 @@ fn column_to_py(py: Python<'_>, value: &aws_sdk_athena::types::Column) -> PyResu
 
 fn column_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::ColumnInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "case_sensitive",
+            "catalog_name",
+            "label",
+            "name",
+            "nullable",
+            "precision",
+            "scale",
+            "schema_name",
+            "table_name",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::ColumnInfo::builder();
     if let Some(value) = dict_value(values, "catalog_name")? {
         let converted_143 = (|| -> PyResult<_> {
@@ -1383,6 +1465,7 @@ fn customer_content_encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::CustomerContentEncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_key"])?;
     let mut builder = aws_sdk_athena::types::CustomerContentEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key")? {
         let converted_164 = (|| -> PyResult<_> {
@@ -1411,6 +1494,18 @@ fn customer_content_encryption_configuration_to_py(
 
 fn data_catalog_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::DataCatalog> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "connection_type",
+            "description",
+            "error",
+            "name",
+            "parameters",
+            "status",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::DataCatalog::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_166 = (|| -> PyResult<_> {
@@ -1579,6 +1674,10 @@ fn data_catalog_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::DataCatalogSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["catalog_name", "connection_type", "error", "status", "type"],
+    )?;
     let mut builder = aws_sdk_athena::types::DataCatalogSummary::builder();
     if let Some(value) = dict_value(values, "catalog_name")? {
         let converted_193 = (|| -> PyResult<_> {
@@ -1691,6 +1790,7 @@ fn data_catalog_summary_to_py(
 
 fn database_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Database> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "parameters"])?;
     let mut builder = aws_sdk_athena::types::Database::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_206 = (|| -> PyResult<_> {
@@ -1776,6 +1876,7 @@ fn database_to_py(py: Python<'_>, value: &aws_sdk_athena::types::Database) -> Py
 
 fn datum_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Datum> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["var_char_value"])?;
     let mut builder = aws_sdk_athena::types::Datum::builder();
     if let Some(value) = dict_value(values, "var_char_value")? {
         let converted_222 = (|| -> PyResult<_> {
@@ -1805,6 +1906,7 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_option", "kms_key"])?;
     let mut builder = aws_sdk_athena::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "encryption_option")? {
         let converted_224 = (|| -> PyResult<_> {
@@ -1857,6 +1959,17 @@ fn engine_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::EngineConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_configs",
+            "classifications",
+            "coordinator_dpu_size",
+            "default_executor_dpu_size",
+            "max_concurrent_dpus",
+            "spark_properties",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::EngineConfiguration::builder();
     if let Some(value) = dict_value(values, "coordinator_dpu_size")? {
         let converted_229 = (|| -> PyResult<_> {
@@ -2073,6 +2186,10 @@ fn engine_version_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::EngineVersion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["effective_engine_version", "selected_engine_version"],
+    )?;
     let mut builder = aws_sdk_athena::types::EngineVersion::builder();
     if let Some(value) = dict_value(values, "selected_engine_version")? {
         let converted_267 = (|| -> PyResult<_> {
@@ -2129,6 +2246,17 @@ fn executors_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ExecutorsSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "executor_id",
+            "executor_size",
+            "executor_state",
+            "executor_type",
+            "start_date_time",
+            "termination_date_time",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::ExecutorsSummary::builder();
     if let Some(value) = dict_value(values, "executor_id")? {
         let converted_271 = (|| -> PyResult<_> {
@@ -2257,6 +2385,7 @@ fn filter_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::FilterDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder = aws_sdk_athena::types::FilterDefinition::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_285 = (|| -> PyResult<_> {
@@ -2289,6 +2418,10 @@ fn identity_center_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::IdentityCenterConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["enable_identity_center", "identity_center_instance_arn"],
+    )?;
     let mut builder = aws_sdk_athena::types::IdentityCenterConfiguration::builder();
     if let Some(value) = dict_value(values, "enable_identity_center")? {
         let converted_287 = (|| -> PyResult<_> {
@@ -2345,6 +2478,7 @@ fn managed_logging_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ManagedLoggingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "kms_key"])?;
     let mut builder = aws_sdk_athena::types::ManagedLoggingConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_291 = (|| -> PyResult<_> {
@@ -2391,6 +2525,7 @@ fn managed_query_results_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ManagedQueryResultsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "encryption_configuration"])?;
     let mut builder = aws_sdk_athena::types::ManagedQueryResultsConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_295 = (|| -> PyResult<_> {
@@ -2439,6 +2574,14 @@ fn managed_query_results_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ManagedQueryResultsConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "enabled",
+            "encryption_configuration",
+            "remove_encryption_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::ManagedQueryResultsConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_299 = (|| -> PyResult<_> {
@@ -2511,6 +2654,7 @@ fn managed_query_results_encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ManagedQueryResultsEncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_key"])?;
     let mut builder = aws_sdk_athena::types::ManagedQueryResultsEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key")? {
         let converted_305 = (|| -> PyResult<_> {
@@ -2541,6 +2685,14 @@ fn monitoring_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::MonitoringConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_logging_configuration",
+            "managed_logging_configuration",
+            "s3_logging_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::MonitoringConfiguration::builder();
     if let Some(value) = dict_value(values, "cloud_watch_logging_configuration")? {
         let converted_307 = (|| -> PyResult<_> {
@@ -2615,6 +2767,17 @@ fn monitoring_configuration_to_py(
 
 fn named_query_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::NamedQuery> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "database",
+            "description",
+            "name",
+            "named_query_id",
+            "query_string",
+            "work_group",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::NamedQuery::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_313 = (|| -> PyResult<_> {
@@ -2724,6 +2887,17 @@ fn notebook_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::NotebookMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "last_modified_time",
+            "name",
+            "notebook_id",
+            "type",
+            "work_group",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::NotebookMetadata::builder();
     if let Some(value) = dict_value(values, "notebook_id")? {
         let converted_325 = (|| -> PyResult<_> {
@@ -2859,6 +3033,7 @@ fn notebook_session_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::NotebookSessionSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "session_id"])?;
     let mut builder = aws_sdk_athena::types::NotebookSessionSummary::builder();
     if let Some(value) = dict_value(values, "session_id")? {
         let converted_340 = (|| -> PyResult<_> {
@@ -2916,6 +3091,16 @@ fn prepared_statement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::PreparedStatement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "last_modified_time",
+            "query_statement",
+            "statement_name",
+            "work_group_name",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::PreparedStatement::builder();
     if let Some(value) = dict_value(values, "statement_name")? {
         let converted_345 = (|| -> PyResult<_> {
@@ -3029,6 +3214,7 @@ fn prepared_statement_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::PreparedStatementSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["last_modified_time", "statement_name"])?;
     let mut builder = aws_sdk_athena::types::PreparedStatementSummary::builder();
     if let Some(value) = dict_value(values, "statement_name")? {
         let converted_356 = (|| -> PyResult<_> {
@@ -3086,6 +3272,25 @@ fn query_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "engine_version",
+            "execution_parameters",
+            "managed_query_results_configuration",
+            "query",
+            "query_execution_context",
+            "query_execution_id",
+            "query_results_s3_access_grants_configuration",
+            "result_configuration",
+            "result_reuse_configuration",
+            "statement_type",
+            "statistics",
+            "status",
+            "substatement_type",
+            "work_group",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryExecution::builder();
     if let Some(value) = dict_value(values, "query_execution_id")? {
         let converted_361 = (|| -> PyResult<_> {
@@ -3402,6 +3607,7 @@ fn query_execution_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryExecutionContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["catalog", "database"])?;
     let mut builder = aws_sdk_athena::types::QueryExecutionContext::builder();
     if let Some(value) = dict_value(values, "database")? {
         let converted_396 = (|| -> PyResult<_> {
@@ -3450,6 +3656,21 @@ fn query_execution_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryExecutionStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "data_manifest_location",
+            "data_scanned_in_bytes",
+            "dpu_count",
+            "engine_execution_time_in_millis",
+            "query_planning_time_in_millis",
+            "query_queue_time_in_millis",
+            "result_reuse_information",
+            "service_pre_processing_time_in_millis",
+            "service_processing_time_in_millis",
+            "total_execution_time_in_millis",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryExecutionStatistics::builder();
     if let Some(value) = dict_value(values, "engine_execution_time_in_millis")? {
         let converted_400 = (|| -> PyResult<_> {
@@ -3662,6 +3883,16 @@ fn query_execution_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryExecutionStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "athena_error",
+            "completion_date_time",
+            "state",
+            "state_change_reason",
+            "submission_date_time",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryExecutionStatus::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_420 = (|| -> PyResult<_> {
@@ -3790,6 +4021,14 @@ fn query_results_s3_access_grants_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryResultsS3AccessGrantsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authentication_type",
+            "create_user_level_prefix",
+            "enable_s3_access_grants",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryResultsS3AccessGrantsConfiguration::builder();
     if let Some(value) = dict_value(values, "enable_s3_access_grants")? {
         let converted_433 = (|| -> PyResult<_> {
@@ -3870,6 +4109,7 @@ fn query_runtime_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryRuntimeStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output_stage", "rows", "timeline"])?;
     let mut builder = aws_sdk_athena::types::QueryRuntimeStatistics::builder();
     if let Some(value) = dict_value(values, "timeline")? {
         let converted_440 = (|| -> PyResult<_> {
@@ -3946,6 +4186,10 @@ fn query_runtime_statistics_rows_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryRuntimeStatisticsRows> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["input_bytes", "input_rows", "output_bytes", "output_rows"],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryRuntimeStatisticsRows::builder();
     if let Some(value) = dict_value(values, "input_rows")? {
         let converted_446 = (|| -> PyResult<_> {
@@ -4026,6 +4270,17 @@ fn query_runtime_statistics_timeline_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryRuntimeStatisticsTimeline> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "engine_execution_time_in_millis",
+            "query_planning_time_in_millis",
+            "query_queue_time_in_millis",
+            "service_pre_processing_time_in_millis",
+            "service_processing_time_in_millis",
+            "total_execution_time_in_millis",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryRuntimeStatisticsTimeline::builder();
     if let Some(value) = dict_value(values, "query_queue_time_in_millis")? {
         let converted_454 = (|| -> PyResult<_> {
@@ -4160,6 +4415,20 @@ fn query_runtime_statistics_timeline_to_py(
 
 fn query_stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::QueryStage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "execution_time",
+            "input_bytes",
+            "input_rows",
+            "output_bytes",
+            "output_rows",
+            "query_stage_plan",
+            "stage_id",
+            "state",
+            "sub_stages",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryStage::builder();
     if let Some(value) = dict_value(values, "stage_id")? {
         let converted_466 = (|| -> PyResult<_> {
@@ -4356,6 +4625,10 @@ fn query_stage_plan_node_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::QueryStagePlanNode> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["children", "identifier", "name", "remote_sources"],
+    )?;
     let mut builder = aws_sdk_athena::types::QueryStagePlanNode::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_490 = (|| -> PyResult<_> {
@@ -4492,6 +4765,15 @@ fn result_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "acl_configuration",
+            "encryption_configuration",
+            "expected_bucket_owner",
+            "output_location",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::ResultConfiguration::builder();
     if let Some(value) = dict_value(values, "output_location")? {
         let converted_510 = (|| -> PyResult<_> {
@@ -4588,6 +4870,19 @@ fn result_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "acl_configuration",
+            "encryption_configuration",
+            "expected_bucket_owner",
+            "output_location",
+            "remove_acl_configuration",
+            "remove_encryption_configuration",
+            "remove_expected_bucket_owner",
+            "remove_output_location",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::ResultConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "output_location")? {
         let converted_518 = (|| -> PyResult<_> {
@@ -4764,6 +5059,7 @@ fn result_reuse_by_age_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultReuseByAgeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "max_age_in_minutes"])?;
     let mut builder = aws_sdk_athena::types::ResultReuseByAgeConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_534 = (|| -> PyResult<_> {
@@ -4812,6 +5108,7 @@ fn result_reuse_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultReuseConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result_reuse_by_age_configuration"])?;
     let mut builder = aws_sdk_athena::types::ResultReuseConfiguration::builder();
     if let Some(value) = dict_value(values, "result_reuse_by_age_configuration")? {
         let converted_538 = (|| -> PyResult<_> {
@@ -4848,6 +5145,7 @@ fn result_reuse_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultReuseInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reused_previous_result"])?;
     let mut builder = aws_sdk_athena::types::ResultReuseInformation::builder();
     if let Some(value) = dict_value(values, "reused_previous_result")? {
         let converted_540 = (|| -> PyResult<_> {
@@ -4878,6 +5176,7 @@ fn result_reuse_information_to_py(
 
 fn result_set_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::ResultSet> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result_set_metadata", "rows"])?;
     let mut builder = aws_sdk_athena::types::ResultSet::builder();
     if let Some(value) = dict_value(values, "rows")? {
         let converted_542 = (|| -> PyResult<_> {
@@ -4958,6 +5257,7 @@ fn result_set_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::ResultSetMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["column_info"])?;
     let mut builder = aws_sdk_athena::types::ResultSetMetadata::builder();
     if let Some(value) = dict_value(values, "column_info")? {
         let converted_552 = (|| -> PyResult<_> {
@@ -5020,6 +5320,7 @@ fn result_set_metadata_to_py(
 
 fn row_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Row> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data"])?;
     let mut builder = aws_sdk_athena::types::Row::builder();
     if let Some(value) = dict_value(values, "data")? {
         let converted_560 = (|| -> PyResult<_> {
@@ -5077,6 +5378,7 @@ fn s3_logging_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::S3LoggingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "kms_key", "log_location"])?;
     let mut builder = aws_sdk_athena::types::S3LoggingConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_568 = (|| -> PyResult<_> {
@@ -5139,6 +5441,16 @@ fn session_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::SessionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "encryption_configuration",
+            "execution_role",
+            "idle_timeout_seconds",
+            "session_idle_timeout_in_minutes",
+            "working_directory",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::SessionConfiguration::builder();
     if let Some(value) = dict_value(values, "execution_role")? {
         let converted_574 = (|| -> PyResult<_> {
@@ -5251,6 +5563,7 @@ fn session_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::SessionStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dpu_execution_in_millis"])?;
     let mut builder = aws_sdk_athena::types::SessionStatistics::builder();
     if let Some(value) = dict_value(values, "dpu_execution_in_millis")? {
         let converted_584 = (|| -> PyResult<_> {
@@ -5287,6 +5600,17 @@ fn session_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::SessionStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_date_time",
+            "idle_since_date_time",
+            "last_modified_date_time",
+            "start_date_time",
+            "state",
+            "state_change_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::SessionStatus::builder();
     if let Some(value) = dict_value(values, "start_date_time")? {
         let converted_586 = (|| -> PyResult<_> {
@@ -5444,6 +5768,16 @@ fn session_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::SessionSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "engine_version",
+            "notebook_version",
+            "session_id",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::SessionSummary::builder();
     if let Some(value) = dict_value(values, "session_id")? {
         let converted_603 = (|| -> PyResult<_> {
@@ -5552,6 +5886,18 @@ fn table_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::TableMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "columns",
+            "create_time",
+            "last_access_time",
+            "name",
+            "parameters",
+            "partition_keys",
+            "table_type",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::TableMetadata::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_613 = (|| -> PyResult<_> {
@@ -5782,6 +6128,7 @@ fn table_metadata_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_athena::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_651 = (|| -> PyResult<_> {
@@ -5827,6 +6174,7 @@ fn unprocessed_named_query_id_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::UnprocessedNamedQueryId> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "named_query_id"])?;
     let mut builder = aws_sdk_athena::types::UnprocessedNamedQueryId::builder();
     if let Some(value) = dict_value(values, "named_query_id")? {
         let converted_655 = (|| -> PyResult<_> {
@@ -5891,6 +6239,7 @@ fn unprocessed_prepared_statement_name_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::UnprocessedPreparedStatementName> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "statement_name"])?;
     let mut builder = aws_sdk_athena::types::UnprocessedPreparedStatementName::builder();
     if let Some(value) = dict_value(values, "statement_name")? {
         let converted_661 = (|| -> PyResult<_> {
@@ -5955,6 +6304,10 @@ fn unprocessed_query_execution_id_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::UnprocessedQueryExecutionId> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["error_code", "error_message", "query_execution_id"],
+    )?;
     let mut builder = aws_sdk_athena::types::UnprocessedQueryExecutionId::builder();
     if let Some(value) = dict_value(values, "query_execution_id")? {
         let converted_667 = (|| -> PyResult<_> {
@@ -6021,6 +6374,17 @@ fn unprocessed_query_execution_id_to_py(
 
 fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::WorkGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "configuration",
+            "creation_time",
+            "description",
+            "identity_center_application_arn",
+            "name",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::WorkGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_673 = (|| -> PyResult<_> {
@@ -6154,6 +6518,26 @@ fn work_group_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::WorkGroupConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_configuration",
+            "bytes_scanned_cutoff_per_query",
+            "customer_content_encryption_configuration",
+            "enable_minimum_encryption_configuration",
+            "enforce_work_group_configuration",
+            "engine_configuration",
+            "engine_version",
+            "execution_role",
+            "identity_center_configuration",
+            "managed_query_results_configuration",
+            "monitoring_configuration",
+            "publish_cloud_watch_metrics_enabled",
+            "query_results_s3_access_grants_configuration",
+            "requester_pays_enabled",
+            "result_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::WorkGroupConfiguration::builder();
     if let Some(value) = dict_value(values, "result_configuration")? {
         let converted_687 = (|| -> PyResult<_> {
@@ -6469,6 +6853,27 @@ fn work_group_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::WorkGroupConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_configuration",
+            "bytes_scanned_cutoff_per_query",
+            "customer_content_encryption_configuration",
+            "enable_minimum_encryption_configuration",
+            "enforce_work_group_configuration",
+            "engine_configuration",
+            "engine_version",
+            "execution_role",
+            "managed_query_results_configuration_updates",
+            "monitoring_configuration",
+            "publish_cloud_watch_metrics_enabled",
+            "query_results_s3_access_grants_configuration",
+            "remove_bytes_scanned_cutoff_per_query",
+            "remove_customer_content_encryption_configuration",
+            "requester_pays_enabled",
+            "result_configuration_updates",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::WorkGroupConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "enforce_work_group_configuration")? {
         let converted_717 = (|| -> PyResult<_> {
@@ -6810,6 +7215,17 @@ fn work_group_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::WorkGroupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "description",
+            "engine_version",
+            "identity_center_application_arn",
+            "name",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_athena::types::WorkGroupSummary::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_749 = (|| -> PyResult<_> {

@@ -114,6 +114,69 @@ class Peer:
     response_gate: threading.Event | None = None
 
 
+@pytest.mark.asyncio
+@service("dynamodb")
+@pytest.mark.parametrize("middleware", [False, True])
+@pytest.mark.parametrize("field", ["ProjectionExpression", "projection_expresion"])
+async def test_unknown_nested_fields_fail_before_send(
+    peer: Peer, middleware: bool, field: str,
+) -> None:
+    from rboto import DynamoDBClient
+    from rboto.exceptions import get_conversion_context
+
+    async def inject(request: OperationRequest, call_next: Next) -> OperationResponse:
+        request.parameters["request_items"] = {
+            "Orders": {"keys": [{"pk": {"s": "ORDER#9"}}], field: "pk, total"},
+        }
+        return await call_next(request)
+
+    peer.body = b'{"Responses": {}}'
+    async with DynamoDBClient(
+        region="eu-west-2", endpoint_url=peer.endpoint,
+        interceptors=(inject,) if middleware else (),
+    ) as client:
+        parameters: dict[str, object] = {"request_items": {
+            "Orders": {"keys": [{"pk": {"s": "ORDER#9"}}], field: "pk, total"},
+        }}
+        if middleware:
+            parameters = {"request_items": {"Orders": {"keys": [{"pk": {"s": "ORDER#9"}}]}}}
+        with pytest.raises(TypeError) as caught:
+            await getattr(client, "batch_get_item")(**parameters)
+        context = get_conversion_context(caught.value)
+        assert context is not None
+        assert context.path == "request_items[value#0][key#1]"
+        assert context.category == "unknown_field"
+        assert context.operation == "BatchGetItem"
+        assert peer.requests == []
+
+
+@pytest.mark.asyncio
+@service("dynamodb")
+async def test_known_structure_fields_and_arbitrary_map_keys_reach_the_wire(peer: Peer) -> None:
+    from rboto import DynamoDBClient
+
+    class FieldName(str):
+        pass
+
+    peer.body = b'{"Responses": {}}'
+    async with DynamoDBClient(region="eu-west-2", endpoint_url=peer.endpoint) as client:
+        await client.batch_get_item(request_items={
+            "Orders": {
+                FieldName("keys"): [{"arbitrary-key": {"s": "ORDER#9"}}],
+                "projection_expression": "#pk, total",
+                "expression_attribute_names": {"#pk": "arbitrary-key"},
+                "consistent_read": None,
+            },
+        })
+    assert len(peer.requests) == 1
+    body = json.loads(peer.requests[0][1])
+    assert body["RequestItems"] == {"Orders": {
+        "Keys": [{"arbitrary-key": {"S": "ORDER#9"}}],
+        "ProjectionExpression": "#pk, total",
+        "ExpressionAttributeNames": {"#pk": "arbitrary-key"},
+    }}
+
+
 @pytest.fixture
 def peer(monkeypatch: pytest.MonkeyPatch) -> Iterator[Peer]:
     monkeypatch.setenv("AWS_ACCESS_KEY_ID", "testing")

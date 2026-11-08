@@ -1,7 +1,7 @@
 //! Failure-only paths: successful conversion does not construct diagnostic state.
 use pyo3::exceptions::{PyOverflowError, PyTypeError, PyValueError};
 use pyo3::prelude::*;
-use pyo3::types::PyDict;
+use pyo3::types::{PyDict, PyString};
 
 const DETAIL: &str = "_rboto_input_detail";
 const PATH_LIMIT: usize = 512;
@@ -108,6 +108,34 @@ pub fn input_operation(error: PyErr, service: &'static str, operation: &'static 
         }
     });
     error
+}
+
+/// Check only structure keys. The generator supplies sorted schema field names.
+/// Successful checks borrow Python strings and do not build diagnostic state.
+pub fn validate_input_fields(values: &Bound<'_, PyDict>, allowed: &[&str]) -> PyResult<()> {
+    for (index, (key, _)) in values.iter().enumerate() {
+        let key = key.cast::<PyString>().map_err(|_| {
+            input_error(
+                PyTypeError::new_err("structure field names must be strings"),
+                InputPath::MapKey(index),
+                "str (structure field)",
+            )
+        })?;
+        // An unpaired surrogate cannot name a generated field. Do not expose
+        // the Unicode conversion error, which could contain the original key.
+        if !key
+            .to_str()
+            .is_ok_and(|name| allowed.binary_search(&name).is_ok())
+        {
+            return Err(input_rule(
+                PyTypeError::new_err("unknown structure field"),
+                InputPath::MapKey(index),
+                "known structure field",
+                Some("unknown_field"),
+            ));
+        }
+    }
+    Ok(())
 }
 
 /// The SDK builder has already rejected this structure. Inspect only schema

@@ -16,6 +16,7 @@ fn asset_processing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::AssetProcessingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["video"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::AssetProcessingConfiguration::builder();
     if let Some(value) = dict_value(values, "video")? {
@@ -53,6 +54,7 @@ fn blueprint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::Blueprint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["blueprint_arn", "stage", "version"])?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::Blueprint::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_3 = (|| -> PyResult<_> {
@@ -122,6 +124,7 @@ fn data_automation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::DataAutomationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_automation_project_arn", "stage"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::DataAutomationConfiguration::builder();
     if let Some(value) = dict_value(values, "data_automation_project_arn")? {
@@ -186,6 +189,7 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_encryption_context", "kms_key_id"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key_id")? {
@@ -261,6 +265,7 @@ fn event_bridge_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::EventBridgeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bridge_enabled"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::EventBridgeConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_enabled")? {
@@ -296,6 +301,7 @@ fn input_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::InputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["asset_processing_configuration", "s3_uri"])?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::InputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_31 = (|| -> PyResult<_> {
@@ -346,6 +352,7 @@ fn notification_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::NotificationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bridge_configuration"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::NotificationConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_configuration")? {
@@ -383,6 +390,7 @@ fn output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::OutputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_37 = (|| -> PyResult<_> {
@@ -413,6 +421,10 @@ fn output_segment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::OutputSegment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["custom_output", "custom_output_status", "standard_output"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::OutputSegment::builder();
     if let Some(value) = dict_value(values, "custom_output_status")? {
         let converted_39 = (|| -> PyResult<_> {
@@ -489,6 +501,7 @@ fn sync_input_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::SyncInputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bytes", "s3_uri"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::SyncInputConfiguration::builder();
     if let Some(value) = dict_value(values, "bytes")? {
@@ -539,6 +552,7 @@ fn tag_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_51 = (|| -> PyResult<_> {
@@ -581,6 +595,7 @@ fn timestamp_segment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::TimestampSegment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end_time_millis", "start_time_millis"])?;
     let mut builder = aws_sdk_bedrockdataautomationruntime::types::TimestampSegment::builder();
     if let Some(value) = dict_value(values, "start_time_millis")? {
         let converted_55 = (|| -> PyResult<_> {
@@ -637,6 +652,7 @@ fn video_asset_processing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomationruntime::types::VideoAssetProcessingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["segment_configuration"])?;
     let mut builder =
         aws_sdk_bedrockdataautomationruntime::types::VideoAssetProcessingConfiguration::builder();
     if let Some(value) = dict_value(values, "segment_configuration")? {

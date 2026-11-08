@@ -16,6 +16,16 @@ fn account_limit_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AccountLimit> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "code_size_unzipped",
+            "code_size_zipped",
+            "concurrent_executions",
+            "total_code_size",
+            "unreserved_concurrent_executions",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::AccountLimit::builder();
     if let Some(value) = dict_value(values, "total_code_size")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -116,6 +126,7 @@ fn account_usage_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AccountUsage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["function_count", "total_code_size"])?;
     let mut builder = aws_sdk_lambda::types::AccountUsage::builder();
     if let Some(value) = dict_value(values, "total_code_size")? {
         let converted_11 = (|| -> PyResult<_> {
@@ -160,6 +171,17 @@ fn alias_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AliasConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alias_arn",
+            "description",
+            "function_version",
+            "name",
+            "revision_id",
+            "routing_config",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::AliasConfiguration::builder();
     if let Some(value) = dict_value(values, "alias_arn")? {
         let converted_15 = (|| -> PyResult<_> {
@@ -280,6 +302,7 @@ fn alias_routing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AliasRoutingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_version_weights"])?;
     let mut builder = aws_sdk_lambda::types::AliasRoutingConfiguration::builder();
     if let Some(value) = dict_value(values, "additional_version_weights")? {
         let converted_27 = (|| -> PyResult<_> {
@@ -344,6 +367,7 @@ fn allowed_publishers_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AllowedPublishers> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["signing_profile_version_arns"])?;
     let mut builder = aws_sdk_lambda::types::AllowedPublishers::builder();
     if let Some(value) = dict_value(values, "signing_profile_version_arns")? {
         let converted_39 = (|| -> PyResult<_> {
@@ -408,6 +432,7 @@ fn amazon_managed_kafka_event_source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::AmazonManagedKafkaEventSourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["consumer_group_id", "schema_registry_config"])?;
     let mut builder = aws_sdk_lambda::types::AmazonManagedKafkaEventSourceConfig::builder();
     if let Some(value) = dict_value(values, "consumer_group_id")? {
         let converted_47 = (|| -> PyResult<_> {
@@ -464,6 +489,7 @@ fn callback_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["callback_id", "error", "result"])?;
     let mut builder = aws_sdk_lambda::types::CallbackDetails::builder();
     if let Some(value) = dict_value(values, "callback_id")? {
         let converted_51 = (|| -> PyResult<_> {
@@ -532,6 +558,7 @@ fn callback_failed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackFailedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::CallbackFailedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_57 = (|| -> PyResult<_> {
@@ -568,6 +595,7 @@ fn callback_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["heartbeat_timeout_seconds", "timeout_seconds"])?;
     let mut builder = aws_sdk_lambda::types::CallbackOptions::builder();
     if let Some(value) = dict_value(values, "timeout_seconds")? {
         let converted_59 = (|| -> PyResult<_> {
@@ -618,6 +646,7 @@ fn callback_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["callback_id", "heartbeat_timeout", "timeout"])?;
     let mut builder = aws_sdk_lambda::types::CallbackStartedDetails::builder();
     if let Some(value) = dict_value(values, "callback_id")? {
         let converted_63 = (|| -> PyResult<_> {
@@ -684,6 +713,7 @@ fn callback_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result"])?;
     let mut builder = aws_sdk_lambda::types::CallbackSucceededDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_69 = (|| -> PyResult<_> {
@@ -720,6 +750,7 @@ fn callback_timed_out_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CallbackTimedOutDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::CallbackTimedOutDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_71 = (|| -> PyResult<_> {
@@ -756,6 +787,21 @@ fn capacity_provider_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProvider> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_provider_arn",
+            "capacity_provider_scaling_config",
+            "instance_requirements",
+            "kms_key_arn",
+            "last_modified",
+            "permissions_config",
+            "propagate_tags",
+            "state",
+            "telemetry_config",
+            "vpc_config",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::CapacityProvider::builder();
     if let Some(value) = dict_value(values, "capacity_provider_arn")? {
         let converted_73 = (|| -> PyResult<_> {
@@ -966,6 +1012,10 @@ fn capacity_provider_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["lambda_managed_instances_capacity_provider_config"],
+    )?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderConfig::builder();
     if let Some(value) = dict_value(values, "lambda_managed_instances_capacity_provider_config")? {
         let converted_94 = (|| -> PyResult<_> {
@@ -1008,6 +1058,7 @@ fn capacity_provider_logging_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderLoggingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_group", "system_log_level"])?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderLoggingConfig::builder();
     if let Some(value) = dict_value(values, "system_log_level")? {
         let converted_96 = (|| -> PyResult<_> {
@@ -1061,6 +1112,7 @@ fn capacity_provider_permissions_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderPermissionsConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["capacity_provider_operator_role_arn"])?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderPermissionsConfig::builder();
     if let Some(value) = dict_value(values, "capacity_provider_operator_role_arn")? {
         let converted_101 = (|| -> PyResult<_> {
@@ -1103,6 +1155,10 @@ fn capacity_provider_scaling_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderScalingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_v_cpu_count", "scaling_mode", "scaling_policies"],
+    )?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderScalingConfig::builder();
     if let Some(value) = dict_value(values, "max_v_cpu_count")? {
         let converted_103 = (|| -> PyResult<_> {
@@ -1209,6 +1265,7 @@ fn capacity_provider_telemetry_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderTelemetryConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["logging_config"])?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderTelemetryConfig::builder();
     if let Some(value) = dict_value(values, "logging_config")? {
         let converted_116 = (|| -> PyResult<_> {
@@ -1245,6 +1302,7 @@ fn capacity_provider_vpc_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CapacityProviderVpcConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["security_group_ids", "subnet_ids"])?;
     let mut builder = aws_sdk_lambda::types::CapacityProviderVpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_118 = (|| -> PyResult<_> {
@@ -1349,6 +1407,7 @@ fn chained_invoke_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "result"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_134 = (|| -> PyResult<_> {
@@ -1401,6 +1460,7 @@ fn chained_invoke_failed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeFailedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeFailedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_138 = (|| -> PyResult<_> {
@@ -1437,6 +1497,7 @@ fn chained_invoke_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["function_name", "tenant_id", "x_amzn_trace_id"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeOptions::builder();
     if let Some(value) = dict_value(values, "function_name")? {
         let converted_140 = (|| -> PyResult<_> {
@@ -1503,6 +1564,16 @@ fn chained_invoke_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "durable_execution_arn",
+            "executed_version",
+            "function_name",
+            "input",
+            "tenant_id",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeStartedDetails::builder();
     if let Some(value) = dict_value(values, "function_name")? {
         let converted_146 = (|| -> PyResult<_> {
@@ -1609,6 +1680,7 @@ fn chained_invoke_stopped_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeStoppedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeStoppedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_156 = (|| -> PyResult<_> {
@@ -1645,6 +1717,7 @@ fn chained_invoke_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeSucceededDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_158 = (|| -> PyResult<_> {
@@ -1681,6 +1754,7 @@ fn chained_invoke_timed_out_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ChainedInvokeTimedOutDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ChainedInvokeTimedOutDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_160 = (|| -> PyResult<_> {
@@ -1717,6 +1791,7 @@ fn checkpoint_updated_execution_state_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CheckpointUpdatedExecutionState> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["next_marker", "operations"])?;
     let mut builder = aws_sdk_lambda::types::CheckpointUpdatedExecutionState::builder();
     if let Some(value) = dict_value(values, "operations")? {
         let converted_162 = (|| -> PyResult<_> {
@@ -1797,6 +1872,17 @@ fn code_signing_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CodeSigningConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_publishers",
+            "code_signing_config_arn",
+            "code_signing_config_id",
+            "code_signing_policies",
+            "description",
+            "last_modified",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::CodeSigningConfig::builder();
     if let Some(value) = dict_value(values, "code_signing_config_id")? {
         let converted_172 = (|| -> PyResult<_> {
@@ -1922,6 +2008,7 @@ fn code_signing_policies_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::CodeSigningPolicies> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["untrusted_artifact_on_deployment"])?;
     let mut builder = aws_sdk_lambda::types::CodeSigningPolicies::builder();
     if let Some(value) = dict_value(values, "untrusted_artifact_on_deployment")? {
         let converted_184 = (|| -> PyResult<_> {
@@ -1958,6 +2045,7 @@ fn code_signing_policies_to_py(
 
 fn concurrency_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Concurrency> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reserved_concurrent_executions"])?;
     let mut builder = aws_sdk_lambda::types::Concurrency::builder();
     if let Some(value) = dict_value(values, "reserved_concurrent_executions")? {
         let converted_187 = (|| -> PyResult<_> {
@@ -1994,6 +2082,7 @@ fn context_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ContextDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "replay_children", "result"])?;
     let mut builder = aws_sdk_lambda::types::ContextDetails::builder();
     if let Some(value) = dict_value(values, "replay_children")? {
         let converted_189 = (|| -> PyResult<_> {
@@ -2066,6 +2155,7 @@ fn context_failed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ContextFailedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ContextFailedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_195 = (|| -> PyResult<_> {
@@ -2102,6 +2192,7 @@ fn context_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ContextOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["replay_children"])?;
     let mut builder = aws_sdk_lambda::types::ContextOptions::builder();
     if let Some(value) = dict_value(values, "replay_children")? {
         let converted_197 = (|| -> PyResult<_> {
@@ -2138,6 +2229,7 @@ fn context_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ContextStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_lambda::types::ContextStartedDetails::builder();
     Ok(builder.build())
 }
@@ -2154,6 +2246,7 @@ fn context_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ContextSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result"])?;
     let mut builder = aws_sdk_lambda::types::ContextSucceededDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_199 = (|| -> PyResult<_> {
@@ -2188,6 +2281,17 @@ fn context_succeeded_details_to_py(
 
 fn cors_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Cors> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allow_credentials",
+            "allow_headers",
+            "allow_methods",
+            "allow_origins",
+            "expose_headers",
+            "max_age",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::Cors::builder();
     if let Some(value) = dict_value(values, "allow_credentials")? {
         let converted_201 = (|| -> PyResult<_> {
@@ -2413,6 +2517,7 @@ fn dead_letter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::DeadLetterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["target_arn"])?;
     let mut builder = aws_sdk_lambda::types::DeadLetterConfig::builder();
     if let Some(value) = dict_value(values, "target_arn")? {
         let converted_237 = (|| -> PyResult<_> {
@@ -2445,6 +2550,7 @@ fn destination_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::DestinationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["on_failure", "on_success"])?;
     let mut builder = aws_sdk_lambda::types::DestinationConfig::builder();
     if let Some(value) = dict_value(values, "on_success")? {
         let converted_239 = (|| -> PyResult<_> {
@@ -2501,6 +2607,10 @@ fn document_db_event_source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::DocumentDbEventSourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["collection_name", "database_name", "full_document"],
+    )?;
     let mut builder = aws_sdk_lambda::types::DocumentDbEventSourceConfig::builder();
     if let Some(value) = dict_value(values, "database_name")? {
         let converted_243 = (|| -> PyResult<_> {
@@ -2574,6 +2684,14 @@ fn durable_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::DurableConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "execution_timeout",
+            "kms_key_arn",
+            "retention_period_in_days",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::DurableConfig::builder();
     if let Some(value) = dict_value(values, "kms_key_arn")? {
         let converted_250 = (|| -> PyResult<_> {
@@ -2644,6 +2762,7 @@ fn durable_config_to_py(
 
 fn environment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Environment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["variables"])?;
     let mut builder = aws_sdk_lambda::types::Environment::builder();
     if let Some(value) = dict_value(values, "variables")? {
         let converted_256 = (|| -> PyResult<_> {
@@ -2704,6 +2823,7 @@ fn environment_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EnvironmentError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::EnvironmentError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_268 = (|| -> PyResult<_> {
@@ -2752,6 +2872,7 @@ fn environment_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EnvironmentResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "variables"])?;
     let mut builder = aws_sdk_lambda::types::EnvironmentResponse::builder();
     if let Some(value) = dict_value(values, "variables")? {
         let converted_272 = (|| -> PyResult<_> {
@@ -2832,6 +2953,7 @@ fn ephemeral_storage_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EphemeralStorage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["size"])?;
     let mut builder = aws_sdk_lambda::types::EphemeralStorage::builder();
     if let Some(value) = dict_value(values, "size")? {
         let converted_286 = (|| -> PyResult<_> {
@@ -2860,6 +2982,10 @@ fn ephemeral_storage_to_py(
 
 fn error_object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::ErrorObject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["error_data", "error_message", "error_type", "stack_trace"],
+    )?;
     let mut builder = aws_sdk_lambda::types::ErrorObject::builder();
     if let Some(value) = dict_value(values, "error_message")? {
         let converted_288 = (|| -> PyResult<_> {
@@ -2966,6 +3092,42 @@ fn error_object_to_py(
 
 fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Event> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "callback_failed_details",
+            "callback_started_details",
+            "callback_succeeded_details",
+            "callback_timed_out_details",
+            "chained_invoke_failed_details",
+            "chained_invoke_started_details",
+            "chained_invoke_stopped_details",
+            "chained_invoke_succeeded_details",
+            "chained_invoke_timed_out_details",
+            "context_failed_details",
+            "context_started_details",
+            "context_succeeded_details",
+            "event_id",
+            "event_timestamp",
+            "event_type",
+            "execution_failed_details",
+            "execution_started_details",
+            "execution_stopped_details",
+            "execution_succeeded_details",
+            "execution_timed_out_details",
+            "id",
+            "invocation_completed_details",
+            "name",
+            "parent_id",
+            "step_failed_details",
+            "step_started_details",
+            "step_succeeded_details",
+            "sub_type",
+            "wait_cancelled_details",
+            "wait_started_details",
+            "wait_succeeded_details",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::Event::builder();
     if let Some(value) = dict_value(values, "event_type")? {
         let converted_302 = (|| -> PyResult<_> {
@@ -3579,6 +3741,7 @@ fn event_to_py(py: Python<'_>, value: &aws_sdk_lambda::types::Event) -> PyResult
 
 fn event_error_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::EventError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payload", "truncated"])?;
     let mut builder = aws_sdk_lambda::types::EventError::builder();
     if let Some(value) = dict_value(values, "payload")? {
         let converted_366 = (|| -> PyResult<_> {
@@ -3629,6 +3792,7 @@ fn event_error_to_py(
 
 fn event_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::EventInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payload", "truncated"])?;
     let mut builder = aws_sdk_lambda::types::EventInput::builder();
     if let Some(value) = dict_value(values, "payload")? {
         let converted_370 = (|| -> PyResult<_> {
@@ -3675,6 +3839,7 @@ fn event_input_to_py(
 
 fn event_result_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::EventResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payload", "truncated"])?;
     let mut builder = aws_sdk_lambda::types::EventResult::builder();
     if let Some(value) = dict_value(values, "payload")? {
         let converted_374 = (|| -> PyResult<_> {
@@ -3723,6 +3888,44 @@ fn event_source_mapping_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EventSourceMappingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "amazon_managed_kafka_event_source_config",
+            "batch_size",
+            "bisect_batch_on_function_error",
+            "destination_config",
+            "document_db_event_source_config",
+            "event_source_arn",
+            "event_source_mapping_arn",
+            "filter_criteria",
+            "filter_criteria_error",
+            "function_arn",
+            "function_response_types",
+            "kms_key_arn",
+            "last_modified",
+            "last_processing_result",
+            "logging_config",
+            "maximum_batching_window_in_seconds",
+            "maximum_record_age_in_seconds",
+            "maximum_retry_attempts",
+            "metrics_config",
+            "parallelization_factor",
+            "provisioned_poller_config",
+            "queues",
+            "scaling_config",
+            "self_managed_event_source",
+            "self_managed_kafka_event_source_config",
+            "source_access_configurations",
+            "starting_position",
+            "starting_position_timestamp",
+            "state",
+            "state_transition_reason",
+            "topics",
+            "tumbling_window_in_seconds",
+            "uuid",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::EventSourceMappingConfiguration::builder();
     if let Some(value) = dict_value(values, "uuid")? {
         let converted_378 = (|| -> PyResult<_> {
@@ -4489,6 +4692,7 @@ fn event_source_mapping_logging_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EventSourceMappingLoggingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["system_log_level"])?;
     let mut builder = aws_sdk_lambda::types::EventSourceMappingLoggingConfig::builder();
     if let Some(value) = dict_value(values, "system_log_level")? {
         let converted_472 = (|| -> PyResult<_> {
@@ -4528,6 +4732,7 @@ fn event_source_mapping_metrics_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::EventSourceMappingMetricsConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["metrics"])?;
     let mut builder = aws_sdk_lambda::types::EventSourceMappingMetricsConfig::builder();
     if let Some(value) = dict_value(values, "metrics")? {
         let converted_475 = (|| -> PyResult<_> {
@@ -4589,6 +4794,18 @@ fn event_source_mapping_metrics_config_to_py(
 
 fn execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Execution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "durable_execution_arn",
+            "durable_execution_name",
+            "end_timestamp",
+            "function_arn",
+            "kms_key_arn",
+            "start_timestamp",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::Execution::builder();
     if let Some(value) = dict_value(values, "durable_execution_arn")? {
         let converted_484 = (|| -> PyResult<_> {
@@ -4740,6 +4957,7 @@ fn execution_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["input_payload"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionDetails::builder();
     if let Some(value) = dict_value(values, "input_payload")? {
         let converted_501 = (|| -> PyResult<_> {
@@ -4772,6 +4990,7 @@ fn execution_failed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionFailedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionFailedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_503 = (|| -> PyResult<_> {
@@ -4808,6 +5027,7 @@ fn execution_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["execution_timeout", "input"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionStartedDetails::builder();
     if let Some(value) = dict_value(values, "input")? {
         let converted_505 = (|| -> PyResult<_> {
@@ -4862,6 +5082,7 @@ fn execution_stopped_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionStoppedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionStoppedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_509 = (|| -> PyResult<_> {
@@ -4898,6 +5119,7 @@ fn execution_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionSucceededDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_511 = (|| -> PyResult<_> {
@@ -4934,6 +5156,7 @@ fn execution_timed_out_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ExecutionTimedOutDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::ExecutionTimedOutDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_513 = (|| -> PyResult<_> {
@@ -4970,6 +5193,7 @@ fn file_system_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FileSystemConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "local_mount_path", "s3_files_config"])?;
     let mut builder = aws_sdk_lambda::types::FileSystemConfig::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_515 = (|| -> PyResult<_> {
@@ -5037,6 +5261,7 @@ fn file_system_config_to_py(
 
 fn filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Filter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pattern"])?;
     let mut builder = aws_sdk_lambda::types::Filter::builder();
     if let Some(value) = dict_value(values, "pattern")? {
         let converted_521 = (|| -> PyResult<_> {
@@ -5066,6 +5291,7 @@ fn filter_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FilterCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters"])?;
     let mut builder = aws_sdk_lambda::types::FilterCriteria::builder();
     if let Some(value) = dict_value(values, "filters")? {
         let converted_523 = (|| -> PyResult<_> {
@@ -5126,6 +5352,7 @@ fn filter_criteria_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FilterCriteriaError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::FilterCriteriaError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_531 = (|| -> PyResult<_> {
@@ -5174,6 +5401,18 @@ fn function_code_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionCode> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "image_uri",
+            "s3_bucket",
+            "s3_key",
+            "s3_object_storage_mode",
+            "s3_object_version",
+            "source_kms_key_arn",
+            "zip_file",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionCode::builder();
     if let Some(value) = dict_value(values, "zip_file")? {
         let converted_535 = (|| -> PyResult<_> {
@@ -5317,6 +5556,18 @@ fn function_code_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionCodeLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error",
+            "image_uri",
+            "location",
+            "repository_type",
+            "resolved_image_uri",
+            "resolved_s3_object",
+            "source_kms_key_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionCodeLocation::builder();
     if let Some(value) = dict_value(values, "repository_type")? {
         let converted_551 = (|| -> PyResult<_> {
@@ -5465,6 +5716,7 @@ fn function_code_location_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionCodeLocationError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::FunctionCodeLocationError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_565 = (|| -> PyResult<_> {
@@ -5513,6 +5765,51 @@ fn function_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "architectures",
+            "capacity_provider_config",
+            "code_sha256",
+            "code_size",
+            "config_sha256",
+            "dead_letter_config",
+            "description",
+            "durable_config",
+            "environment",
+            "ephemeral_storage",
+            "file_system_configs",
+            "function_arn",
+            "function_name",
+            "handler",
+            "image_config_response",
+            "kms_key_arn",
+            "last_modified",
+            "last_update_status",
+            "last_update_status_reason",
+            "last_update_status_reason_code",
+            "layers",
+            "logging_config",
+            "master_arn",
+            "memory_size",
+            "package_type",
+            "revision_id",
+            "role",
+            "runtime",
+            "runtime_version_config",
+            "signing_job_arn",
+            "signing_profile_version_arn",
+            "snap_start",
+            "state",
+            "state_reason",
+            "state_reason_code",
+            "tenancy_config",
+            "timeout",
+            "tracing_config",
+            "version",
+            "vpc_config",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionConfiguration::builder();
     if let Some(value) = dict_value(values, "function_name")? {
         let converted_569 = (|| -> PyResult<_> {
@@ -6348,6 +6645,16 @@ fn function_event_invoke_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionEventInvokeConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination_config",
+            "function_arn",
+            "last_modified",
+            "maximum_event_age_in_seconds",
+            "maximum_retry_attempts",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionEventInvokeConfig::builder();
     if let Some(value) = dict_value(values, "last_modified")? {
         let converted_674 = (|| -> PyResult<_> {
@@ -6465,6 +6772,10 @@ fn function_scaling_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionScalingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_execution_environments", "min_execution_environments"],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionScalingConfig::builder();
     if let Some(value) = dict_value(values, "min_execution_environments")? {
         let converted_685 = (|| -> PyResult<_> {
@@ -6521,6 +6832,18 @@ fn function_url_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionUrlConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "auth_type",
+            "cors",
+            "creation_time",
+            "function_arn",
+            "function_url",
+            "invoke_mode",
+            "last_modified_time",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::FunctionUrlConfig::builder();
     if let Some(value) = dict_value(values, "function_url")? {
         let converted_689 = (|| -> PyResult<_> {
@@ -6655,6 +6978,7 @@ fn function_versions_by_capacity_provider_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::FunctionVersionsByCapacityProviderListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["function_arn", "state"])?;
     let mut builder = aws_sdk_lambda::types::FunctionVersionsByCapacityProviderListItem::builder();
     if let Some(value) = dict_value(values, "function_arn")? {
         let converted_705 = (|| -> PyResult<_> {
@@ -6699,6 +7023,7 @@ fn function_versions_by_capacity_provider_list_item_to_py(
 
 fn image_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::ImageConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["command", "entry_point", "working_directory"])?;
     let mut builder = aws_sdk_lambda::types::ImageConfig::builder();
     if let Some(value) = dict_value(values, "entry_point")? {
         let converted_710 = (|| -> PyResult<_> {
@@ -6819,6 +7144,7 @@ fn image_config_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ImageConfigError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::ImageConfigError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_728 = (|| -> PyResult<_> {
@@ -6867,6 +7193,7 @@ fn image_config_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ImageConfigResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "image_config"])?;
     let mut builder = aws_sdk_lambda::types::ImageConfigResponse::builder();
     if let Some(value) = dict_value(values, "image_config")? {
         let converted_732 = (|| -> PyResult<_> {
@@ -6923,6 +7250,14 @@ fn instance_requirements_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::InstanceRequirements> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_instance_types",
+            "architectures",
+            "excluded_instance_types",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::InstanceRequirements::builder();
     if let Some(value) = dict_value(values, "architectures")? {
         let converted_736 = (|| -> PyResult<_> {
@@ -7077,6 +7412,10 @@ fn invocation_completed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::InvocationCompletedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["end_timestamp", "error", "request_id", "start_timestamp"],
+    )?;
     let mut builder = aws_sdk_lambda::types::InvocationCompletedDetails::builder();
     if let Some(value) = dict_value(values, "start_timestamp")? {
         let converted_761 = (|| -> PyResult<_> {
@@ -7176,6 +7515,7 @@ fn invoke_response_stream_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::InvokeResponseStreamUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payload"])?;
     let mut builder = aws_sdk_lambda::types::InvokeResponseStreamUpdate::builder();
     if let Some(value) = dict_value(values, "payload")? {
         let converted_771 = (|| -> PyResult<_> {
@@ -7209,6 +7549,7 @@ fn invoke_with_response_stream_complete_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::InvokeWithResponseStreamCompleteEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_details", "log_result"])?;
     let mut builder = aws_sdk_lambda::types::InvokeWithResponseStreamCompleteEvent::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_774 = (|| -> PyResult<_> {
@@ -7352,6 +7693,7 @@ fn kafka_schema_registry_access_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::KafkaSchemaRegistryAccessConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "uri"])?;
     let mut builder = aws_sdk_lambda::types::KafkaSchemaRegistryAccessConfig::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_784 = (|| -> PyResult<_> {
@@ -7406,6 +7748,15 @@ fn kafka_schema_registry_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::KafkaSchemaRegistryConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_configs",
+            "event_record_format",
+            "schema_registry_uri",
+            "schema_validation_configs",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::KafkaSchemaRegistryConfig::builder();
     if let Some(value) = dict_value(values, "schema_registry_uri")? {
         let converted_789 = (|| -> PyResult<_> {
@@ -7562,6 +7913,7 @@ fn kafka_schema_validation_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::KafkaSchemaValidationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute"])?;
     let mut builder = aws_sdk_lambda::types::KafkaSchemaValidationConfig::builder();
     if let Some(value) = dict_value(values, "attribute")? {
         let converted_810 = (|| -> PyResult<_> {
@@ -7601,6 +7953,14 @@ fn lambda_managed_instances_capacity_provider_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LambdaManagedInstancesCapacityProviderConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_provider_arn",
+            "execution_environment_memory_gib_per_v_cpu",
+            "per_execution_environment_max_concurrency",
+        ],
+    )?;
     let mut builder =
         aws_sdk_lambda::types::LambdaManagedInstancesCapacityProviderConfig::builder();
     if let Some(value) = dict_value(values, "capacity_provider_arn")? {
@@ -7677,6 +8037,15 @@ fn lambda_managed_instances_capacity_provider_config_to_py(
 
 fn layer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Layer> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "code_size",
+            "signing_job_arn",
+            "signing_profile_version_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::Layer::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_819 = (|| -> PyResult<_> {
@@ -7758,6 +8127,16 @@ fn layer_version_content_input_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LayerVersionContentInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "s3_bucket",
+            "s3_key",
+            "s3_object_storage_mode",
+            "s3_object_version",
+            "zip_file",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::LayerVersionContentInput::builder();
     if let Some(value) = dict_value(values, "s3_bucket")? {
         let converted_827 = (|| -> PyResult<_> {
@@ -7865,6 +8244,17 @@ fn layer_version_content_output_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LayerVersionContentOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "code_sha256",
+            "code_size",
+            "location",
+            "resolved_s3_object",
+            "signing_job_arn",
+            "signing_profile_version_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::LayerVersionContentOutput::builder();
     if let Some(value) = dict_value(values, "location")? {
         let converted_839 = (|| -> PyResult<_> {
@@ -7985,6 +8375,18 @@ fn layer_versions_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LayerVersionsListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "compatible_architectures",
+            "compatible_runtimes",
+            "created_date",
+            "description",
+            "layer_version_arn",
+            "license_info",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::LayerVersionsListItem::builder();
     if let Some(value) = dict_value(values, "layer_version_arn")? {
         let converted_851 = (|| -> PyResult<_> {
@@ -8181,6 +8583,10 @@ fn layers_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LayersListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["latest_matching_version", "layer_arn", "layer_name"],
+    )?;
     let mut builder = aws_sdk_lambda::types::LayersListItem::builder();
     if let Some(value) = dict_value(values, "layer_name")? {
         let converted_879 = (|| -> PyResult<_> {
@@ -8249,6 +8655,15 @@ fn logging_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::LoggingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_log_level",
+            "log_format",
+            "log_group",
+            "system_log_level",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::LoggingConfig::builder();
     if let Some(value) = dict_value(values, "log_format")? {
         let converted_885 = (|| -> PyResult<_> {
@@ -8344,6 +8759,7 @@ fn logging_config_to_py(
 
 fn on_failure_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::OnFailure> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination"])?;
     let mut builder = aws_sdk_lambda::types::OnFailure::builder();
     if let Some(value) = dict_value(values, "destination")? {
         let converted_896 = (|| -> PyResult<_> {
@@ -8374,6 +8790,7 @@ fn on_failure_to_py(
 
 fn on_success_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::OnSuccess> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination"])?;
     let mut builder = aws_sdk_lambda::types::OnSuccess::builder();
     if let Some(value) = dict_value(values, "destination")? {
         let converted_898 = (|| -> PyResult<_> {
@@ -8404,6 +8821,25 @@ fn on_success_to_py(
 
 fn operation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::Operation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "callback_details",
+            "chained_invoke_details",
+            "context_details",
+            "end_timestamp",
+            "execution_details",
+            "id",
+            "name",
+            "parent_id",
+            "start_timestamp",
+            "status",
+            "step_details",
+            "sub_type",
+            "type",
+            "wait_details",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::Operation::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_900 = (|| -> PyResult<_> {
@@ -8691,6 +9127,24 @@ fn operation_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::OperationUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "callback_options",
+            "chained_invoke_options",
+            "context_options",
+            "error",
+            "id",
+            "name",
+            "parent_id",
+            "payload",
+            "step_options",
+            "sub_type",
+            "type",
+            "wait_options",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::OperationUpdate::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_932 = (|| -> PyResult<_> {
@@ -8943,6 +9397,7 @@ fn propagate_tags_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::PropagateTags> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["explicit_tags", "mode"])?;
     let mut builder = aws_sdk_lambda::types::PropagateTags::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_960 = (|| -> PyResult<_> {
@@ -9025,6 +9480,18 @@ fn provisioned_concurrency_config_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ProvisionedConcurrencyConfigListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allocated_provisioned_concurrent_executions",
+            "available_provisioned_concurrent_executions",
+            "function_arn",
+            "last_modified",
+            "requested_provisioned_concurrent_executions",
+            "status",
+            "status_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::ProvisionedConcurrencyConfigListItem::builder();
     if let Some(value) = dict_value(values, "function_arn")? {
         let converted_975 = (|| -> PyResult<_> {
@@ -9172,6 +9639,10 @@ fn provisioned_poller_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ProvisionedPollerConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["maximum_pollers", "minimum_pollers", "poller_group_name"],
+    )?;
     let mut builder = aws_sdk_lambda::types::ProvisionedPollerConfig::builder();
     if let Some(value) = dict_value(values, "minimum_pollers")? {
         let converted_990 = (|| -> PyResult<_> {
@@ -9248,6 +9719,7 @@ fn resolved_s3_object_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ResolvedS3Object> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket", "s3_key", "s3_object_version"])?;
     let mut builder = aws_sdk_lambda::types::ResolvedS3Object::builder();
     if let Some(value) = dict_value(values, "s3_bucket")? {
         let converted_996 = (|| -> PyResult<_> {
@@ -9316,6 +9788,7 @@ fn retry_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::RetryDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["current_attempt", "next_attempt_delay_seconds"])?;
     let mut builder = aws_sdk_lambda::types::RetryDetails::builder();
     if let Some(value) = dict_value(values, "current_attempt")? {
         let converted_1002 = (|| -> PyResult<_> {
@@ -9368,6 +9841,7 @@ fn runtime_version_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::RuntimeVersionConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "runtime_version_arn"])?;
     let mut builder = aws_sdk_lambda::types::RuntimeVersionConfig::builder();
     if let Some(value) = dict_value(values, "runtime_version_arn")? {
         let converted_1006 = (|| -> PyResult<_> {
@@ -9424,6 +9898,7 @@ fn runtime_version_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::RuntimeVersionError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::RuntimeVersionError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_1010 = (|| -> PyResult<_> {
@@ -9472,6 +9947,7 @@ fn s3_files_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::S3FilesConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["direct_s3_read"])?;
     let mut builder = aws_sdk_lambda::types::S3FilesConfig::builder();
     if let Some(value) = dict_value(values, "direct_s3_read")? {
         let converted_1014 = (|| -> PyResult<_> {
@@ -9510,6 +9986,7 @@ fn scaling_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::ScalingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["maximum_concurrency"])?;
     let mut builder = aws_sdk_lambda::types::ScalingConfig::builder();
     if let Some(value) = dict_value(values, "maximum_concurrency")? {
         let converted_1017 = (|| -> PyResult<_> {
@@ -9546,6 +10023,7 @@ fn self_managed_event_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::SelfManagedEventSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["endpoints"])?;
     let mut builder = aws_sdk_lambda::types::SelfManagedEventSource::builder();
     if let Some(value) = dict_value(values, "endpoints")? {
         let converted_1019 = (|| -> PyResult<_> {
@@ -9641,6 +10119,7 @@ fn self_managed_kafka_event_source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::SelfManagedKafkaEventSourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["consumer_group_id", "schema_registry_config"])?;
     let mut builder = aws_sdk_lambda::types::SelfManagedKafkaEventSourceConfig::builder();
     if let Some(value) = dict_value(values, "consumer_group_id")? {
         let converted_1038 = (|| -> PyResult<_> {
@@ -9695,6 +10174,7 @@ fn self_managed_kafka_event_source_config_to_py(
 
 fn snap_start_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::SnapStart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["apply_on"])?;
     let mut builder = aws_sdk_lambda::types::SnapStart::builder();
     if let Some(value) = dict_value(values, "apply_on")? {
         let converted_1042 = (|| -> PyResult<_> {
@@ -9733,6 +10213,7 @@ fn snap_start_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::SnapStartResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["apply_on", "optimization_status"])?;
     let mut builder = aws_sdk_lambda::types::SnapStartResponse::builder();
     if let Some(value) = dict_value(values, "apply_on")? {
         let converted_1045 = (|| -> PyResult<_> {
@@ -9793,6 +10274,7 @@ fn source_access_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::SourceAccessConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "uri"])?;
     let mut builder = aws_sdk_lambda::types::SourceAccessConfiguration::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1051 = (|| -> PyResult<_> {
@@ -9845,6 +10327,10 @@ fn source_access_configuration_to_py(
 
 fn step_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::StepDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["attempt", "error", "next_attempt_timestamp", "result"],
+    )?;
     let mut builder = aws_sdk_lambda::types::StepDetails::builder();
     if let Some(value) = dict_value(values, "attempt")? {
         let converted_1056 = (|| -> PyResult<_> {
@@ -9934,6 +10420,7 @@ fn step_failed_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::StepFailedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "retry_details"])?;
     let mut builder = aws_sdk_lambda::types::StepFailedDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_1065 = (|| -> PyResult<_> {
@@ -9988,6 +10475,7 @@ fn step_failed_details_to_py(
 
 fn step_options_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::StepOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["next_attempt_delay_seconds"])?;
     let mut builder = aws_sdk_lambda::types::StepOptions::builder();
     if let Some(value) = dict_value(values, "next_attempt_delay_seconds")? {
         let converted_1069 = (|| -> PyResult<_> {
@@ -10024,6 +10512,7 @@ fn step_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::StepStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_lambda::types::StepStartedDetails::builder();
     Ok(builder.build())
 }
@@ -10040,6 +10529,7 @@ fn step_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::StepSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["result", "retry_details"])?;
     let mut builder = aws_sdk_lambda::types::StepSucceededDetails::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_1071 = (|| -> PyResult<_> {
@@ -10094,6 +10584,7 @@ fn step_succeeded_details_to_py(
 
 fn tags_error_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::TagsError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message"])?;
     let mut builder = aws_sdk_lambda::types::TagsError::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_1075 = (|| -> PyResult<_> {
@@ -10139,6 +10630,7 @@ fn target_tracking_scaling_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::TargetTrackingScalingPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["predefined_metric_type", "target_value"])?;
     let mut builder = aws_sdk_lambda::types::TargetTrackingScalingPolicy::builder();
     if let Some(value) = dict_value(values, "predefined_metric_type")? {
         let converted_1079 = (|| -> PyResult<_> {
@@ -10194,6 +10686,7 @@ fn tenancy_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::TenancyConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tenant_isolation_mode"])?;
     let mut builder = aws_sdk_lambda::types::TenancyConfig::builder();
     if let Some(value) = dict_value(values, "tenant_isolation_mode")? {
         let converted_1084 = (|| -> PyResult<_> {
@@ -10231,6 +10724,7 @@ fn tenancy_config_to_py(
 
 fn trace_header_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::TraceHeader> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["x_amzn_trace_id"])?;
     let mut builder = aws_sdk_lambda::types::TraceHeader::builder();
     if let Some(value) = dict_value(values, "x_amzn_trace_id")? {
         let converted_1087 = (|| -> PyResult<_> {
@@ -10267,6 +10761,7 @@ fn tracing_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::TracingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mode"])?;
     let mut builder = aws_sdk_lambda::types::TracingConfig::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_1089 = (|| -> PyResult<_> {
@@ -10304,6 +10799,7 @@ fn tracing_config_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::TracingConfigResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mode"])?;
     let mut builder = aws_sdk_lambda::types::TracingConfigResponse::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_1092 = (|| -> PyResult<_> {
@@ -10339,6 +10835,14 @@ fn tracing_config_response_to_py(
 
 fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::VpcConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ipv6_allowed_for_dual_stack",
+            "security_group_ids",
+            "subnet_ids",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::VpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_1095 = (|| -> PyResult<_> {
@@ -10463,6 +10967,15 @@ fn vpc_config_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::VpcConfigResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ipv6_allowed_for_dual_stack",
+            "security_group_ids",
+            "subnet_ids",
+            "vpc_id",
+        ],
+    )?;
     let mut builder = aws_sdk_lambda::types::VpcConfigResponse::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_1113 = (|| -> PyResult<_> {
@@ -10603,6 +11116,7 @@ fn wait_cancelled_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::WaitCancelledDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error"])?;
     let mut builder = aws_sdk_lambda::types::WaitCancelledDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_1133 = (|| -> PyResult<_> {
@@ -10637,6 +11151,7 @@ fn wait_cancelled_details_to_py(
 
 fn wait_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::WaitDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scheduled_end_timestamp"])?;
     let mut builder = aws_sdk_lambda::types::WaitDetails::builder();
     if let Some(value) = dict_value(values, "scheduled_end_timestamp")? {
         let converted_1135 = (|| -> PyResult<_> {
@@ -10676,6 +11191,7 @@ fn wait_details_to_py(
 
 fn wait_options_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lambda::types::WaitOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["wait_seconds"])?;
     let mut builder = aws_sdk_lambda::types::WaitOptions::builder();
     if let Some(value) = dict_value(values, "wait_seconds")? {
         let converted_1138 = (|| -> PyResult<_> {
@@ -10708,6 +11224,7 @@ fn wait_started_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::WaitStartedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["duration", "scheduled_end_timestamp"])?;
     let mut builder = aws_sdk_lambda::types::WaitStartedDetails::builder();
     if let Some(value) = dict_value(values, "duration")? {
         let converted_1140 = (|| -> PyResult<_> {
@@ -10767,6 +11284,7 @@ fn wait_succeeded_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lambda::types::WaitSucceededDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["duration"])?;
     let mut builder = aws_sdk_lambda::types::WaitSucceededDetails::builder();
     if let Some(value) = dict_value(values, "duration")? {
         let converted_1145 = (|| -> PyResult<_> {

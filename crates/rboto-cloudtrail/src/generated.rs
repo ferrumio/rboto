@@ -16,6 +16,7 @@ fn advanced_event_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::AdvancedEventSelector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field_selectors", "name"])?;
     let mut builder = aws_sdk_cloudtrail::types::AdvancedEventSelector::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -94,6 +95,18 @@ fn advanced_field_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::AdvancedFieldSelector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ends_with",
+            "equals",
+            "field",
+            "not_ends_with",
+            "not_equals",
+            "not_starts_with",
+            "starts_with",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::AdvancedFieldSelector::builder();
     if let Some(value) = dict_value(values, "field")? {
         let converted_11 = (|| -> PyResult<_> {
@@ -380,6 +393,7 @@ fn aggregation_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::AggregationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_category", "templates"])?;
     let mut builder = aws_sdk_cloudtrail::types::AggregationConfiguration::builder();
     if let Some(value) = dict_value(values, "templates")? {
         let converted_61 = (|| -> PyResult<_> {
@@ -462,6 +476,7 @@ fn aggregation_configuration_to_py(
 
 fn channel_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Channel> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["channel_arn", "name"])?;
     let mut builder = aws_sdk_cloudtrail::types::Channel::builder();
     if let Some(value) = dict_value(values, "channel_arn")? {
         let converted_73 = (|| -> PyResult<_> {
@@ -510,6 +525,7 @@ fn context_key_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ContextKeySelector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["equals", "type"])?;
     let mut builder = aws_sdk_cloudtrail::types::ContextKeySelector::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_77 = (|| -> PyResult<_> {
@@ -577,6 +593,7 @@ fn dashboard_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::DashboardDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dashboard_arn", "type"])?;
     let mut builder = aws_sdk_cloudtrail::types::DashboardDetail::builder();
     if let Some(value) = dict_value(values, "dashboard_arn")? {
         let converted_88 = (|| -> PyResult<_> {
@@ -631,6 +648,7 @@ fn data_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::DataResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "values"])?;
     let mut builder = aws_sdk_cloudtrail::types::DataResource::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_93 = (|| -> PyResult<_> {
@@ -703,6 +721,7 @@ fn destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["location", "type"])?;
     let mut builder = aws_sdk_cloudtrail::types::Destination::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_103 = (|| -> PyResult<_> {
@@ -749,6 +768,20 @@ fn destination_to_py(
 
 fn event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Event> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_id",
+            "cloud_trail_event",
+            "event_id",
+            "event_name",
+            "event_source",
+            "event_time",
+            "read_only",
+            "resources",
+            "username",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::Event::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_108 = (|| -> PyResult<_> {
@@ -947,6 +980,21 @@ fn event_data_store_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::EventDataStore> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "advanced_event_selectors",
+            "created_timestamp",
+            "event_data_store_arn",
+            "multi_region_enabled",
+            "name",
+            "organization_enabled",
+            "retention_period",
+            "status",
+            "termination_protection_enabled",
+            "updated_timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::EventDataStore::builder();
     if let Some(value) = dict_value(values, "event_data_store_arn")? {
         let converted_133 = (|| -> PyResult<_> {
@@ -1199,6 +1247,15 @@ fn event_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::EventSelector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "data_resources",
+            "exclude_management_event_sources",
+            "include_management_events",
+            "read_write_type",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::EventSelector::builder();
     if let Some(value) = dict_value(values, "read_write_type")? {
         let converted_162 = (|| -> PyResult<_> {
@@ -1349,6 +1406,16 @@ fn import_failure_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ImportFailureListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error_message",
+            "error_type",
+            "last_updated_time",
+            "location",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::ImportFailureListItem::builder();
     if let Some(value) = dict_value(values, "location")? {
         let converted_183 = (|| -> PyResult<_> {
@@ -1460,6 +1527,7 @@ fn import_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ImportSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3"])?;
     let mut builder = aws_sdk_cloudtrail::types::ImportSource::builder();
     if let Some(value) = dict_value(values, "s3")? {
         let converted_195 = (|| -> PyResult<_> {
@@ -1496,6 +1564,16 @@ fn import_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ImportStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "events_completed",
+            "failed_entries",
+            "files_completed",
+            "prefixes_completed",
+            "prefixes_found",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::ImportStatistics::builder();
     if let Some(value) = dict_value(values, "prefixes_found")? {
         let converted_197 = (|| -> PyResult<_> {
@@ -1604,6 +1682,16 @@ fn imports_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ImportsListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "destinations",
+            "import_id",
+            "import_status",
+            "updated_timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::ImportsListItem::builder();
     if let Some(value) = dict_value(values, "import_id")? {
         let converted_207 = (|| -> PyResult<_> {
@@ -1752,6 +1840,16 @@ fn ingestion_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::IngestionStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "latest_ingestion_attempt_event_id",
+            "latest_ingestion_attempt_time",
+            "latest_ingestion_error_code",
+            "latest_ingestion_success_event_id",
+            "latest_ingestion_success_time",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::IngestionStatus::builder();
     if let Some(value) = dict_value(values, "latest_ingestion_success_time")? {
         let converted_226 = (|| -> PyResult<_> {
@@ -1878,6 +1976,7 @@ fn insight_selector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::InsightSelector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_categories", "insight_type"])?;
     let mut builder = aws_sdk_cloudtrail::types::InsightSelector::builder();
     if let Some(value) = dict_value(values, "insight_type")? {
         let converted_238 = (|| -> PyResult<_> {
@@ -1967,6 +2066,7 @@ fn lookup_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::LookupAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_key", "attribute_value"])?;
     let mut builder = aws_sdk_cloudtrail::types::LookupAttribute::builder();
     if let Some(value) = dict_value(values, "attribute_key")? {
         let converted_250 = (|| -> PyResult<_> {
@@ -2025,6 +2125,7 @@ fn partition_key_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::PartitionKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_cloudtrail::types::PartitionKey::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_255 = (|| -> PyResult<_> {
@@ -2065,6 +2166,15 @@ fn partition_key_to_py(
 
 fn public_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::PublicKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "fingerprint",
+            "validity_end_time",
+            "validity_start_time",
+            "value",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::PublicKey::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_259 = (|| -> PyResult<_> {
@@ -2162,6 +2272,7 @@ fn public_key_to_py(
 
 fn query_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Query> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "query_id", "query_status"])?;
     let mut builder = aws_sdk_cloudtrail::types::Query::builder();
     if let Some(value) = dict_value(values, "query_id")? {
         let converted_270 = (|| -> PyResult<_> {
@@ -2238,6 +2349,10 @@ fn query_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::QueryStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bytes_scanned", "results_count", "total_results_count"],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::QueryStatistics::builder();
     if let Some(value) = dict_value(values, "results_count")? {
         let converted_278 = (|| -> PyResult<_> {
@@ -2306,6 +2421,16 @@ fn query_statistics_for_describe_query_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bytes_scanned",
+            "creation_time",
+            "events_matched",
+            "events_scanned",
+            "execution_time_in_millis",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::QueryStatisticsForDescribeQuery::builder();
     if let Some(value) = dict_value(values, "events_matched")? {
         let converted_284 = (|| -> PyResult<_> {
@@ -2415,6 +2540,7 @@ fn refresh_schedule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::RefreshSchedule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["frequency", "status", "time_of_day"])?;
     let mut builder = aws_sdk_cloudtrail::types::RefreshSchedule::builder();
     if let Some(value) = dict_value(values, "frequency")? {
         let converted_295 = (|| -> PyResult<_> {
@@ -2489,6 +2615,7 @@ fn refresh_schedule_frequency_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::RefreshScheduleFrequency> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["unit", "value"])?;
     let mut builder = aws_sdk_cloudtrail::types::RefreshScheduleFrequency::builder();
     if let Some(value) = dict_value(values, "unit")? {
         let converted_302 = (|| -> PyResult<_> {
@@ -2544,6 +2671,10 @@ fn request_widget_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::RequestWidget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["query_parameters", "query_statement", "view_properties"],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::RequestWidget::builder();
     if let Some(value) = dict_value(values, "query_statement")? {
         let converted_307 = (|| -> PyResult<_> {
@@ -2670,6 +2801,7 @@ fn request_widget_to_py(
 
 fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Resource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_name", "resource_type"])?;
     let mut builder = aws_sdk_cloudtrail::types::Resource::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_329 = (|| -> PyResult<_> {
@@ -2718,6 +2850,7 @@ fn resource_tag_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::ResourceTag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_id", "tags_list"])?;
     let mut builder = aws_sdk_cloudtrail::types::ResourceTag::builder();
     if let Some(value) = dict_value(values, "resource_id")? {
         let converted_333 = (|| -> PyResult<_> {
@@ -2794,6 +2927,14 @@ fn s3_import_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::S3ImportSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "s3_bucket_access_role_arn",
+            "s3_bucket_region",
+            "s3_location_uri",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::S3ImportSource::builder();
     if let Some(value) = dict_value(values, "s3_location_uri")? {
         let converted_343 = (|| -> PyResult<_> {
@@ -2869,6 +3010,7 @@ fn search_sample_queries_search_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "name", "relevance", "sql"])?;
     let mut builder = aws_sdk_cloudtrail::types::SearchSampleQueriesSearchResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_349 = (|| -> PyResult<_> {
@@ -2945,6 +3087,10 @@ fn source_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudtrail::types::SourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["advanced_event_selectors", "apply_to_all_regions"],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::SourceConfig::builder();
     if let Some(value) = dict_value(values, "apply_to_all_regions")? {
         let converted_357 = (|| -> PyResult<_> {
@@ -3027,6 +3173,7 @@ fn source_config_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_cloudtrail::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_367 = (|| -> PyResult<_> {
@@ -3068,6 +3215,28 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Tag) -> PyResult
 
 fn trail_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Trail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_logs_log_group_arn",
+            "cloud_watch_logs_role_arn",
+            "has_custom_event_selectors",
+            "has_insight_selectors",
+            "home_region",
+            "include_global_service_events",
+            "is_multi_region_trail",
+            "is_organization_trail",
+            "kms_key_id",
+            "log_file_validation_enabled",
+            "name",
+            "recursive_logging",
+            "s3_bucket_name",
+            "s3_key_prefix",
+            "sns_topic_arn",
+            "sns_topic_name",
+            "trail_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::Trail::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_371 = (|| -> PyResult<_> {
@@ -3387,6 +3556,7 @@ fn trail_to_py(py: Python<'_>, value: &aws_sdk_cloudtrail::types::Trail) -> PyRe
 
 fn trail_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::TrailInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["home_region", "name", "trail_arn"])?;
     let mut builder = aws_sdk_cloudtrail::types::TrailInfo::builder();
     if let Some(value) = dict_value(values, "trail_arn")? {
         let converted_405 = (|| -> PyResult<_> {
@@ -3449,6 +3619,15 @@ fn trail_info_to_py(
 
 fn widget_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudtrail::types::Widget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "query_alias",
+            "query_parameters",
+            "query_statement",
+            "view_properties",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudtrail::types::Widget::builder();
     if let Some(value) = dict_value(values, "query_alias")? {
         let converted_411 = (|| -> PyResult<_> {

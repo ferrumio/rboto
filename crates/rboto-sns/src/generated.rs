@@ -16,6 +16,7 @@ fn batch_result_error_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::BatchResultErrorEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "id", "message", "sender_fault"])?;
     let mut builder = aws_sdk_sns::types::BatchResultErrorEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -84,6 +85,7 @@ fn batch_result_error_entry_to_py(
 
 fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Endpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attributes", "endpoint_arn"])?;
     let mut builder = aws_sdk_sns::types::Endpoint::builder();
     if let Some(value) = dict_value(values, "endpoint_arn")? {
         let converted_9 = (|| -> PyResult<_> {
@@ -153,6 +155,7 @@ fn message_attribute_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::MessageAttributeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["binary_value", "data_type", "string_value"])?;
     let mut builder = aws_sdk_sns::types::MessageAttributeValue::builder();
     if let Some(value) = dict_value(values, "data_type")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -216,6 +219,17 @@ fn phone_number_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::PhoneNumberInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "iso2_country_code",
+            "number_capabilities",
+            "phone_number",
+            "route_type",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_sns::types::PhoneNumberInformation::builder();
     if let Some(value) = dict_value(values, "created_at")? {
         let converted_30 = (|| -> PyResult<_> {
@@ -380,6 +394,7 @@ fn platform_application_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::PlatformApplication> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attributes", "platform_application_arn"])?;
     let mut builder = aws_sdk_sns::types::PlatformApplication::builder();
     if let Some(value) = dict_value(values, "platform_application_arn")? {
         let converted_51 = (|| -> PyResult<_> {
@@ -456,6 +471,18 @@ fn publish_batch_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::PublishBatchRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "id",
+            "message",
+            "message_attributes",
+            "message_deduplication_id",
+            "message_group_id",
+            "message_structure",
+            "subject",
+        ],
+    )?;
     let mut builder = aws_sdk_sns::types::PublishBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_65 = (|| -> PyResult<_> {
@@ -622,6 +649,7 @@ fn publish_batch_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::PublishBatchResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "message_id", "sequence_number"])?;
     let mut builder = aws_sdk_sns::types::PublishBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_89 = (|| -> PyResult<_> {
@@ -690,6 +718,7 @@ fn sms_sandbox_phone_number_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sns::types::SmsSandboxPhoneNumber> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["phone_number", "status"])?;
     let mut builder = aws_sdk_sns::types::SmsSandboxPhoneNumber::builder();
     if let Some(value) = dict_value(values, "phone_number")? {
         let converted_95 = (|| -> PyResult<_> {
@@ -743,6 +772,16 @@ fn sms_sandbox_phone_number_to_py(
 
 fn subscription_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Subscription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "endpoint",
+            "owner",
+            "protocol",
+            "subscription_arn",
+            "topic_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_sns::types::Subscription::builder();
     if let Some(value) = dict_value(values, "subscription_arn")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -841,6 +880,7 @@ fn subscription_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_sns::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_110 = (|| -> PyResult<_> {
@@ -878,6 +918,7 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_sns::types::Tag) -> PyResult<Py<PyA
 
 fn topic_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sns::types::Topic> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["topic_arn"])?;
     let mut builder = aws_sdk_sns::types::Topic::builder();
     if let Some(value) = dict_value(values, "topic_arn")? {
         let converted_114 = (|| -> PyResult<_> {

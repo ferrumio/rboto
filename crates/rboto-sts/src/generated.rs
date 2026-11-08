@@ -16,6 +16,7 @@ fn assumed_role_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sts::types::AssumedRoleUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "assumed_role_id"])?;
     let mut builder = aws_sdk_sts::types::AssumedRoleUser::builder();
     if let Some(value) = dict_value(values, "assumed_role_id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -63,6 +64,15 @@ fn assumed_role_user_to_py(
 
 fn credentials_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::types::Credentials> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_id",
+            "expiration",
+            "secret_access_key",
+            "session_token",
+        ],
+    )?;
     let mut builder = aws_sdk_sts::types::Credentials::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_5 = (|| -> PyResult<_> {
@@ -148,6 +158,7 @@ fn credentials_to_py(
 
 fn federated_user_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::types::FederatedUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "federated_user_id"])?;
     let mut builder = aws_sdk_sts::types::FederatedUser::builder();
     if let Some(value) = dict_value(values, "federated_user_id")? {
         let converted_14 = (|| -> PyResult<_> {
@@ -197,6 +208,7 @@ fn policy_descriptor_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sts::types::PolicyDescriptorType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_sts::types::PolicyDescriptorType::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_18 = (|| -> PyResult<_> {
@@ -229,6 +241,7 @@ fn provided_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sts::types::ProvidedContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["context_assertion", "provider_arn"])?;
     let mut builder = aws_sdk_sts::types::ProvidedContext::builder();
     if let Some(value) = dict_value(values, "provider_arn")? {
         let converted_20 = (|| -> PyResult<_> {
@@ -279,6 +292,7 @@ fn provided_context_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sts::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_sts::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_24 = (|| -> PyResult<_> {

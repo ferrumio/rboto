@@ -16,6 +16,18 @@ fn account_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::AccountPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "last_updated_time",
+            "policy_document",
+            "policy_name",
+            "policy_type",
+            "scope",
+            "selection_criteria",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AccountPolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -163,6 +175,7 @@ fn add_key_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::AddKeyEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "overwrite_if_exists", "value"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AddKeyEntry::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_17 = (|| -> PyResult<_> {
@@ -219,6 +232,7 @@ fn add_key_entry_to_py(
 
 fn add_keys_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::AddKeys> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AddKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -277,6 +291,7 @@ fn aggregate_log_group_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::AggregateLogGroupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["grouping_identifiers", "log_group_count"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AggregateLogGroupSummary::builder();
     if let Some(value) = dict_value(values, "log_group_count")? {
         let converted_31 = (|| -> PyResult<_> {
@@ -359,6 +374,30 @@ fn aggregate_log_group_summary_to_py(
 
 fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Anomaly> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active",
+            "anomaly_detector_arn",
+            "anomaly_id",
+            "description",
+            "first_seen",
+            "histogram",
+            "is_pattern_level_suppression",
+            "last_seen",
+            "log_group_arn_list",
+            "log_samples",
+            "pattern_id",
+            "pattern_regex",
+            "pattern_string",
+            "pattern_tokens",
+            "priority",
+            "state",
+            "suppressed",
+            "suppressed_date",
+            "suppressed_until",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Anomaly::builder();
     if let Some(value) = dict_value(values, "anomaly_id")? {
         let converted_41 = (|| -> PyResult<_> {
@@ -769,6 +808,21 @@ fn anomaly_detector_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::AnomalyDetector> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "anomaly_detector_arn",
+            "anomaly_detector_status",
+            "anomaly_visibility_time",
+            "creation_time_stamp",
+            "detector_name",
+            "evaluation_frequency",
+            "filter_pattern",
+            "kms_key_id",
+            "last_modified_time_stamp",
+            "log_group_arn_list",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::AnomalyDetector::builder();
     if let Some(value) = dict_value(values, "anomaly_detector_arn")? {
         let converted_108 = (|| -> PyResult<_> {
@@ -995,6 +1049,23 @@ fn configuration_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ConfigurationTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_action_for_allow_vended_logs_delivery_for_resource",
+            "allowed_field_delimiters",
+            "allowed_fields",
+            "allowed_output_formats",
+            "allowed_suffix_path_fields",
+            "default_delivery_config_values",
+            "delivery_destination_type",
+            "delivery_source_configuration",
+            "log_type",
+            "resource_type",
+            "s3_tables_integration",
+            "service",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ConfigurationTemplate::builder();
     if let Some(value) = dict_value(values, "service")? {
         let converted_136 = (|| -> PyResult<_> {
@@ -1389,6 +1460,14 @@ fn configuration_template_delivery_config_values_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "field_delimiter",
+            "record_fields",
+            "s3_delivery_configuration",
+        ],
+    )?;
     let mut builder =
         aws_sdk_cloudwatchlogs::types::ConfigurationTemplateDeliveryConfigValues::builder();
     if let Some(value) = dict_value(values, "record_fields")? {
@@ -1490,6 +1569,7 @@ fn copy_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::CopyValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::CopyValue::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_204 = (|| -> PyResult<_> {
@@ -1548,6 +1628,7 @@ fn copy_value_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::CopyValueEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["overwrite_if_exists", "source", "target"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::CopyValueEntry::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_212 = (|| -> PyResult<_> {
@@ -1604,6 +1685,16 @@ fn copy_value_entry_to_py(
 
 fn csv_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Csv> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "columns",
+            "delimiter",
+            "destination",
+            "quote_character",
+            "source",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Csv::builder();
     if let Some(value) = dict_value(values, "quote_character")? {
         let converted_218 = (|| -> PyResult<_> {
@@ -1725,6 +1816,7 @@ fn data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DataSource::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_234 = (|| -> PyResult<_> {
@@ -1771,6 +1863,7 @@ fn data_source_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DataSourceFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DataSourceFilter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_238 = (|| -> PyResult<_> {
@@ -1817,6 +1910,18 @@ fn date_time_converter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DateTimeConverter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "locale",
+            "match_patterns",
+            "source",
+            "source_timezone",
+            "target",
+            "target_format",
+            "target_timezone",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DateTimeConverter::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_242 = (|| -> PyResult<_> {
@@ -1978,6 +2083,7 @@ fn delete_keys_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DeleteKeys> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["with_keys"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeleteKeys::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
         let converted_262 = (|| -> PyResult<_> {
@@ -2030,6 +2136,20 @@ fn delete_keys_to_py(
 
 fn delivery_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Delivery> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "delivery_destination_arn",
+            "delivery_destination_type",
+            "delivery_source_name",
+            "field_delimiter",
+            "id",
+            "record_fields",
+            "s3_delivery_configuration",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Delivery::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_270 = (|| -> PyResult<_> {
@@ -2269,6 +2389,18 @@ fn delivery_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliveryDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "delivery_destination_configuration",
+            "delivery_destination_type",
+            "name",
+            "output_format",
+            "role_arn",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeliveryDestination::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_305 = (|| -> PyResult<_> {
@@ -2442,6 +2574,7 @@ fn delivery_destination_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliveryDestinationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination_resource_arn"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeliveryDestinationConfiguration::builder();
     if let Some(value) = dict_value(values, "destination_resource_arn")? {
         let converted_331 = (|| -> PyResult<_> {
@@ -2479,6 +2612,20 @@ fn delivery_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliverySource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "delivery_source_configuration",
+            "log_type",
+            "name",
+            "resource_arns",
+            "service",
+            "status",
+            "status_reason",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeliverySource::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_333 = (|| -> PyResult<_> {
@@ -2740,6 +2887,17 @@ fn delivery_source_configuration_schema_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchema> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_value",
+            "key_name",
+            "max_value",
+            "min_value",
+            "supported_values",
+            "value_type",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DeliverySourceConfigurationSchema::builder();
     if let Some(value) = dict_value(values, "key_name")? {
         let converted_379 = (|| -> PyResult<_> {
@@ -2885,6 +3043,17 @@ fn destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_policy",
+            "arn",
+            "creation_time",
+            "destination_name",
+            "role_arn",
+            "target_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Destination::builder();
     if let Some(value) = dict_value(values, "destination_name")? {
         let converted_398 = (|| -> PyResult<_> {
@@ -3001,6 +3170,7 @@ fn destination_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::DestinationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["lookup_table_configuration", "s3_configuration"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::DestinationConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_configuration")? {
         let converted_410 = (|| -> PyResult<_> {
@@ -3055,6 +3225,7 @@ fn destination_configuration_to_py(
 
 fn entity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Entity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attributes", "key_attributes"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Entity::builder();
     if let Some(value) = dict_value(values, "key_attributes")? {
         let converted_414 = (|| -> PyResult<_> {
@@ -3163,6 +3334,20 @@ fn export_task_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTask> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination",
+            "destination_prefix",
+            "execution_info",
+            "from",
+            "log_group_name",
+            "status",
+            "task_id",
+            "task_name",
+            "to",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ExportTask::builder();
     if let Some(value) = dict_value(values, "task_id")? {
         let converted_438 = (|| -> PyResult<_> {
@@ -3335,6 +3520,7 @@ fn export_task_execution_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTaskExecutionInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["completion_time", "creation_time"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ExportTaskExecutionInfo::builder();
     if let Some(value) = dict_value(values, "creation_time")? {
         let converted_456 = (|| -> PyResult<_> {
@@ -3387,6 +3573,7 @@ fn export_task_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ExportTaskStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "message"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ExportTaskStatus::builder();
     if let Some(value) = dict_value(values, "code")? {
         let converted_460 = (|| -> PyResult<_> {
@@ -3441,6 +3628,18 @@ fn field_index_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::FieldIndex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "field_index_name",
+            "first_event_time",
+            "index_category",
+            "last_event_time",
+            "last_scan_time",
+            "log_group_identifier",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::FieldIndex::builder();
     if let Some(value) = dict_value(values, "log_group_identifier")? {
         let converted_465 = (|| -> PyResult<_> {
@@ -3597,6 +3796,7 @@ fn fields_data_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::FieldsData> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::FieldsData::builder();
     if let Some(value) = dict_value(values, "data")? {
         let converted_481 = (|| -> PyResult<_> {
@@ -3630,6 +3830,16 @@ fn filtered_log_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::FilteredLogEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "event_id",
+            "ingestion_time",
+            "log_stream_name",
+            "message",
+            "timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::FilteredLogEvent::builder();
     if let Some(value) = dict_value(values, "log_stream_name")? {
         let converted_484 = (|| -> PyResult<_> {
@@ -3781,6 +3991,7 @@ fn get_log_object_response_stream_to_py(
 
 fn grok_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Grok> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["match", "source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Grok::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_496 = (|| -> PyResult<_> {
@@ -3824,6 +4035,7 @@ fn grouping_identifier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::GroupingIdentifier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::GroupingIdentifier::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_500 = (|| -> PyResult<_> {
@@ -3870,6 +4082,20 @@ fn grouping_identifier_to_py(
 
 fn import_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Import> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "error_message",
+            "import_destination_arn",
+            "import_filter",
+            "import_id",
+            "import_source_arn",
+            "import_statistics",
+            "import_status",
+            "last_updated_time",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Import::builder();
     if let Some(value) = dict_value(values, "import_id")? {
         let converted_504 = (|| -> PyResult<_> {
@@ -4056,6 +4282,7 @@ fn import_batch_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportBatch> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["batch_id", "error_message", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ImportBatch::builder();
     if let Some(value) = dict_value(values, "batch_id")? {
         let converted_523 = (|| -> PyResult<_> {
@@ -4120,6 +4347,7 @@ fn import_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end_event_time", "start_event_time"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ImportFilter::builder();
     if let Some(value) = dict_value(values, "start_event_time")? {
         let converted_530 = (|| -> PyResult<_> {
@@ -4172,6 +4400,7 @@ fn import_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ImportStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bytes_imported"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ImportStatistics::builder();
     if let Some(value) = dict_value(values, "bytes_imported")? {
         let converted_534 = (|| -> PyResult<_> {
@@ -4204,6 +4433,16 @@ fn index_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::IndexPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "last_update_time",
+            "log_group_identifier",
+            "policy_document",
+            "policy_name",
+            "source",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::IndexPolicy::builder();
     if let Some(value) = dict_value(values, "log_group_identifier")? {
         let converted_536 = (|| -> PyResult<_> {
@@ -4318,6 +4557,7 @@ fn input_log_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::InputLogEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "timestamp"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::InputLogEvent::builder();
     if let Some(value) = dict_value(values, "timestamp")? {
         let converted_547 = (|| -> PyResult<_> {
@@ -4418,6 +4658,10 @@ fn integration_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::IntegrationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["integration_name", "integration_status", "integration_type"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::IntegrationSummary::builder();
     if let Some(value) = dict_value(values, "integration_name")? {
         let converted_553 = (|| -> PyResult<_> {
@@ -4498,6 +4742,17 @@ fn list_to_map_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ListToMap> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "flatten",
+            "flattened_element",
+            "key",
+            "source",
+            "target",
+            "value_key",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ListToMap::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_561 = (|| -> PyResult<_> {
@@ -4606,6 +4861,16 @@ fn live_tail_session_log_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LiveTailSessionLogEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ingestion_time",
+            "log_group_identifier",
+            "log_stream_name",
+            "message",
+            "timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LiveTailSessionLogEvent::builder();
     if let Some(value) = dict_value(values, "log_stream_name")? {
         let converted_574 = (|| -> PyResult<_> {
@@ -4710,6 +4975,7 @@ fn live_tail_session_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LiveTailSessionMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["sampled"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LiveTailSessionMetadata::builder();
     if let Some(value) = dict_value(values, "sampled")? {
         let converted_584 = (|| -> PyResult<_> {
@@ -4738,6 +5004,17 @@ fn live_tail_session_start_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LiveTailSessionStart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "log_event_filter_pattern",
+            "log_group_identifiers",
+            "log_stream_name_prefixes",
+            "log_stream_names",
+            "request_id",
+            "session_id",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LiveTailSessionStart::builder();
     if let Some(value) = dict_value(values, "request_id")? {
         let converted_586 = (|| -> PyResult<_> {
@@ -4938,6 +5215,7 @@ fn live_tail_session_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LiveTailSessionUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["session_metadata", "session_results"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LiveTailSessionUpdate::builder();
     if let Some(value) = dict_value(values, "session_metadata")? {
         let converted_616 = (|| -> PyResult<_> {
@@ -5022,6 +5300,7 @@ fn log_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "timestamp"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogEvent::builder();
     if let Some(value) = dict_value(values, "timestamp")? {
         let converted_626 = (|| -> PyResult<_> {
@@ -5070,6 +5349,7 @@ fn log_field_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogFieldType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["element", "fields", "type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogFieldType::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_630 = (|| -> PyResult<_> {
@@ -5173,6 +5453,7 @@ fn log_fields_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogFieldsListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_field_name", "log_field_type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogFieldsListItem::builder();
     if let Some(value) = dict_value(values, "log_field_name")? {
         let converted_643 = (|| -> PyResult<_> {
@@ -5225,6 +5506,24 @@ fn log_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "bearer_token_authentication_enabled",
+            "creation_time",
+            "data_protection_status",
+            "deletion_protection_enabled",
+            "inherited_properties",
+            "kms_key_id",
+            "log_group_arn",
+            "log_group_class",
+            "log_group_name",
+            "metric_filter_count",
+            "retention_in_days",
+            "stored_bytes",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogGroup::builder();
     if let Some(value) = dict_value(values, "log_group_name")? {
         let converted_647 = (|| -> PyResult<_> {
@@ -5512,6 +5811,7 @@ fn log_group_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroupField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "percent"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogGroupField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_682 = (|| -> PyResult<_> {
@@ -5556,6 +5856,10 @@ fn log_group_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogGroupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["log_group_arn", "log_group_class", "log_group_name"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogGroupSummary::builder();
     if let Some(value) = dict_value(values, "log_group_name")? {
         let converted_686 = (|| -> PyResult<_> {
@@ -5626,6 +5930,19 @@ fn log_stream_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LogStream> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_time",
+            "first_event_timestamp",
+            "last_event_timestamp",
+            "last_ingestion_time",
+            "log_stream_name",
+            "stored_bytes",
+            "upload_sequence_token",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LogStream::builder();
     if let Some(value) = dict_value(values, "log_stream_name")? {
         let converted_693 = (|| -> PyResult<_> {
@@ -5790,6 +6107,19 @@ fn lookup_table_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LookupTable> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "kms_key_id",
+            "last_updated_time",
+            "lookup_table_arn",
+            "lookup_table_name",
+            "records_count",
+            "size_bytes",
+            "table_fields",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LookupTable::builder();
     if let Some(value) = dict_value(values, "lookup_table_arn")? {
         let converted_709 = (|| -> PyResult<_> {
@@ -5974,6 +6304,16 @@ fn lookup_table_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LookupTableConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "kms_key_id",
+            "role_arn",
+            "table_name",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LookupTableConfiguration::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_731 = (|| -> PyResult<_> {
@@ -6095,6 +6435,7 @@ fn lower_case_string_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::LowerCaseString> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["with_keys"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::LowerCaseString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
         let converted_751 = (|| -> PyResult<_> {
@@ -6149,6 +6490,19 @@ fn metric_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "apply_on_transformed_logs",
+            "creation_time",
+            "emit_system_field_dimensions",
+            "field_selection_criteria",
+            "filter_name",
+            "filter_pattern",
+            "log_group_name",
+            "metric_transformations",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MetricFilter::builder();
     if let Some(value) = dict_value(values, "filter_name")? {
         let converted_759 = (|| -> PyResult<_> {
@@ -6359,6 +6713,10 @@ fn metric_filter_match_record_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["event_message", "event_number", "extracted_values"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MetricFilterMatchRecord::builder();
     if let Some(value) = dict_value(values, "event_number")? {
         let converted_787 = (|| -> PyResult<_> {
@@ -6451,6 +6809,17 @@ fn metric_transformation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::MetricTransformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_value",
+            "dimensions",
+            "metric_name",
+            "metric_namespace",
+            "metric_value",
+            "unit",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MetricTransformation::builder();
     if let Some(value) = dict_value(values, "metric_name")? {
         let converted_803 = (|| -> PyResult<_> {
@@ -6602,6 +6971,7 @@ fn move_key_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::MoveKeyEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["overwrite_if_exists", "source", "target"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MoveKeyEntry::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_826 = (|| -> PyResult<_> {
@@ -6660,6 +7030,7 @@ fn move_keys_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::MoveKeys> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::MoveKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_832 = (|| -> PyResult<_> {
@@ -6718,6 +7089,15 @@ fn open_search_application_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchApplication> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_arn",
+            "application_endpoint",
+            "application_id",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchApplication::builder();
     if let Some(value) = dict_value(values, "application_endpoint")? {
         let converted_840 = (|| -> PyResult<_> {
@@ -6810,6 +7190,10 @@ fn open_search_collection_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchCollection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["collection_arn", "collection_endpoint", "status"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchCollection::builder();
     if let Some(value) = dict_value(values, "collection_endpoint")? {
         let converted_848 = (|| -> PyResult<_> {
@@ -6882,6 +7266,7 @@ fn open_search_data_access_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchDataAccessPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_name", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchDataAccessPolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_854 = (|| -> PyResult<_> {
@@ -6934,6 +7319,7 @@ fn open_search_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_source_name", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchDataSource::builder();
     if let Some(value) = dict_value(values, "data_source_name")? {
         let converted_858 = (|| -> PyResult<_> {
@@ -6990,6 +7376,7 @@ fn open_search_encryption_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchEncryptionPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_name", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchEncryptionPolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_862 = (|| -> PyResult<_> {
@@ -7042,6 +7429,19 @@ fn open_search_integration_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchIntegrationDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_policy",
+            "application",
+            "collection",
+            "data_source",
+            "encryption_policy",
+            "lifecycle_policy",
+            "network_policy",
+            "workspace",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchIntegrationDetails::builder();
     if let Some(value) = dict_value(values, "data_source")? {
         let converted_866 = (|| -> PyResult<_> {
@@ -7218,6 +7618,7 @@ fn open_search_lifecycle_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchLifecyclePolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_name", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchLifecyclePolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_882 = (|| -> PyResult<_> {
@@ -7270,6 +7671,7 @@ fn open_search_network_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchNetworkPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_name", "status"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchNetworkPolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_886 = (|| -> PyResult<_> {
@@ -7322,6 +7724,16 @@ fn open_search_resource_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchResourceConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_arn",
+            "dashboard_viewer_principals",
+            "data_source_role_arn",
+            "kms_key_arn",
+            "retention_days",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchResourceConfig::builder();
     if let Some(value) = dict_value(values, "kms_key_arn")? {
         let converted_890 = (|| -> PyResult<_> {
@@ -7451,6 +7863,7 @@ fn open_search_resource_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchResourceStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status", "status_message"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchResourceStatus::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_906 = (|| -> PyResult<_> {
@@ -7506,6 +7919,7 @@ fn open_search_workspace_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OpenSearchWorkspace> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status", "workspace_id"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OpenSearchWorkspace::builder();
     if let Some(value) = dict_value(values, "workspace_id")? {
         let converted_911 = (|| -> PyResult<_> {
@@ -7558,6 +7972,7 @@ fn output_log_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::OutputLogEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ingestion_time", "message", "timestamp"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::OutputLogEvent::builder();
     if let Some(value) = dict_value(values, "timestamp")? {
         let converted_915 = (|| -> PyResult<_> {
@@ -7622,6 +8037,7 @@ fn parse_cloudfront_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseCloudfront> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseCloudfront::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_921 = (|| -> PyResult<_> {
@@ -7654,6 +8070,7 @@ fn parse_json_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseJson> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination", "source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseJson::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_923 = (|| -> PyResult<_> {
@@ -7702,6 +8119,18 @@ fn parse_key_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseKeyValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination",
+            "field_delimiter",
+            "key_prefix",
+            "key_value_delimiter",
+            "non_match_value",
+            "overwrite_if_exists",
+            "source",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseKeyValue::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_927 = (|| -> PyResult<_> {
@@ -7842,6 +8271,7 @@ fn parse_postgres_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParsePostgres> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParsePostgres::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_941 = (|| -> PyResult<_> {
@@ -7874,6 +8304,7 @@ fn parse_route53_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseRoute53> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseRoute53::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_943 = (|| -> PyResult<_> {
@@ -7906,6 +8337,10 @@ fn parse_to_ocsf_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseToOcsf> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["event_source", "mapping_version", "ocsf_version", "source"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseToOcsf::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_945 = (|| -> PyResult<_> {
@@ -8002,6 +8437,7 @@ fn parse_vpc_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseVpc> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseVpc::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_955 = (|| -> PyResult<_> {
@@ -8034,6 +8470,7 @@ fn parse_waf_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ParseWaf> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ParseWaf::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_957 = (|| -> PyResult<_> {
@@ -8066,6 +8503,16 @@ fn pattern_token_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::PatternToken> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dynamic_token_position",
+            "enumerations",
+            "inferred_token_name",
+            "is_dynamic",
+            "token_string",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::PatternToken::builder();
     if let Some(value) = dict_value(values, "dynamic_token_position")? {
         let converted_959 = (|| -> PyResult<_> {
@@ -8192,6 +8639,7 @@ fn pattern_token_to_py(
 
 fn policy_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_cloudwatchlogs::types::Policy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delivery_destination_policy"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Policy::builder();
     if let Some(value) = dict_value(values, "delivery_destination_policy")? {
         let converted_979 = (|| -> PyResult<_> {
@@ -8228,6 +8676,34 @@ fn processor_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::Processor> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "add_keys",
+            "copy_value",
+            "csv",
+            "date_time_converter",
+            "delete_keys",
+            "grok",
+            "list_to_map",
+            "lower_case_string",
+            "move_keys",
+            "parse_cloudfront",
+            "parse_json",
+            "parse_key_value",
+            "parse_postgres",
+            "parse_route53",
+            "parse_to_ocsf",
+            "parse_vpc",
+            "parse_waf",
+            "rename_keys",
+            "split_string",
+            "substitute_string",
+            "trim_string",
+            "type_converter",
+            "upper_case_string",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::Processor::builder();
     if let Some(value) = dict_value(values, "add_keys")? {
         let converted_981 = (|| -> PyResult<_> {
@@ -8696,6 +9172,7 @@ fn query_compile_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryCompileError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["location", "message"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryCompileError::builder();
     if let Some(value) = dict_value(values, "location")? {
         let converted_1027 = (|| -> PyResult<_> {
@@ -8748,6 +9225,7 @@ fn query_compile_error_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryCompileErrorLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end_char_offset", "start_char_offset"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryCompileErrorLocation::builder();
     if let Some(value) = dict_value(values, "start_char_offset")? {
         let converted_1031 = (|| -> PyResult<_> {
@@ -8804,6 +9282,18 @@ fn query_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "last_modified",
+            "log_group_names",
+            "name",
+            "parameters",
+            "query_definition_id",
+            "query_language",
+            "query_string",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryDefinition::builder();
     if let Some(value) = dict_value(values, "query_language")? {
         let converted_1035 = (|| -> PyResult<_> {
@@ -9002,6 +9492,20 @@ fn query_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bytes_scanned",
+            "create_time",
+            "log_group_name",
+            "query_duration",
+            "query_id",
+            "query_language",
+            "query_string",
+            "status",
+            "user_identity",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryInfo::builder();
     if let Some(value) = dict_value(values, "query_language")? {
         let converted_1062 = (|| -> PyResult<_> {
@@ -9178,6 +9682,7 @@ fn query_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["default_value", "description", "name"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryParameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1082 = (|| -> PyResult<_> {
@@ -9240,6 +9745,18 @@ fn query_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::QueryStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bytes_scanned",
+            "estimated_bytes_skipped",
+            "estimated_records_skipped",
+            "log_groups_scanned",
+            "records_matched",
+            "records_scanned",
+            "result_count",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::QueryStatistics::builder();
     if let Some(value) = dict_value(values, "records_matched")? {
         let converted_1088 = (|| -> PyResult<_> {
@@ -9368,6 +9885,7 @@ fn record_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::RecordField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mandatory", "name"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RecordField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1102 = (|| -> PyResult<_> {
@@ -9416,6 +9934,7 @@ fn rejected_entity_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::RejectedEntityInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RejectedEntityInfo::builder();
     if let Some(value) = dict_value(values, "error_type")? {
         let converted_1106 = (|| -> PyResult<_> {
@@ -9453,6 +9972,14 @@ fn rejected_log_events_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expired_log_event_end_index",
+            "too_new_log_event_start_index",
+            "too_old_log_event_end_index",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RejectedLogEventsInfo::builder();
     if let Some(value) = dict_value(values, "too_new_log_event_start_index")? {
         let converted_1109 = (|| -> PyResult<_> {
@@ -9529,6 +10056,7 @@ fn rename_key_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::RenameKeyEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "overwrite_if_exists", "rename_to"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RenameKeyEntry::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1115 = (|| -> PyResult<_> {
@@ -9587,6 +10115,7 @@ fn rename_keys_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::RenameKeys> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::RenameKeys::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_1121 = (|| -> PyResult<_> {
@@ -9698,6 +10227,17 @@ fn resource_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ResourcePolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "last_updated_time",
+            "policy_document",
+            "policy_name",
+            "policy_scope",
+            "resource_arn",
+            "revision_id",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ResourcePolicy::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_1131 = (|| -> PyResult<_> {
@@ -9824,6 +10364,7 @@ fn result_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ResultField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field", "value"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ResultField::builder();
     if let Some(value) = dict_value(values, "field")? {
         let converted_1144 = (|| -> PyResult<_> {
@@ -9872,6 +10413,15 @@ fn s3_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::S3Configuration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination_identifier",
+            "kms_key_id",
+            "owner_account_id",
+            "role_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::S3Configuration::builder();
     if let Some(value) = dict_value(values, "destination_identifier")? {
         let converted_1148 = (|| -> PyResult<_> {
@@ -9960,6 +10510,7 @@ fn s3_delivery_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::S3DeliveryConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enable_hive_compatible_path", "suffix_path"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::S3DeliveryConfiguration::builder();
     if let Some(value) = dict_value(values, "suffix_path")? {
         let converted_1156 = (|| -> PyResult<_> {
@@ -10012,6 +10563,17 @@ fn s3_table_integration_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::S3TableIntegrationSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_time_stamp",
+            "data_source",
+            "identifier",
+            "parent_source_identifier",
+            "status",
+            "status_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::S3TableIntegrationSource::builder();
     if let Some(value) = dict_value(values, "identifier")? {
         let converted_1160 = (|| -> PyResult<_> {
@@ -10144,6 +10706,7 @@ fn s3_tables_integration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::S3TablesIntegration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["datasource_name", "datasource_type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::S3TablesIntegration::builder();
     if let Some(value) = dict_value(values, "datasource_name")? {
         let converted_1173 = (|| -> PyResult<_> {
@@ -10200,6 +10763,16 @@ fn scheduled_query_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ScheduledQueryDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination_identifier",
+            "destination_type",
+            "error_message",
+            "processed_identifier",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ScheduledQueryDestination::builder();
     if let Some(value) = dict_value(values, "destination_type")? {
         let converted_1177 = (|| -> PyResult<_> {
@@ -10317,6 +10890,22 @@ fn scheduled_query_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::ScheduledQuerySummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "destination_configuration",
+            "last_execution_status",
+            "last_triggered_time",
+            "last_updated_time",
+            "name",
+            "schedule_expression",
+            "schedule_type",
+            "scheduled_query_arn",
+            "state",
+            "timezone",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::ScheduledQuerySummary::builder();
     if let Some(value) = dict_value(values, "scheduled_query_arn")? {
         let converted_1189 = (|| -> PyResult<_> {
@@ -10547,6 +11136,7 @@ fn searched_log_stream_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SearchedLogStream> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_stream_name", "searched_completely"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SearchedLogStream::builder();
     if let Some(value) = dict_value(values, "log_stream_name")? {
         let converted_1214 = (|| -> PyResult<_> {
@@ -10603,6 +11193,7 @@ fn split_string_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SplitString> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SplitString::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_1218 = (|| -> PyResult<_> {
@@ -10661,6 +11252,7 @@ fn split_string_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SplitStringEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delimiter", "source"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SplitStringEntry::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_1226 = (|| -> PyResult<_> {
@@ -10780,6 +11372,21 @@ fn subscription_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SubscriptionFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "apply_on_transformed_logs",
+            "creation_time",
+            "destination_arn",
+            "distribution",
+            "emit_system_fields",
+            "field_selection_criteria",
+            "filter_name",
+            "filter_pattern",
+            "log_group_name",
+            "role_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SubscriptionFilter::builder();
     if let Some(value) = dict_value(values, "filter_name")? {
         let converted_1234 = (|| -> PyResult<_> {
@@ -11000,6 +11607,7 @@ fn substitute_string_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SubstituteString> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SubstituteString::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_1261 = (|| -> PyResult<_> {
@@ -11058,6 +11666,7 @@ fn substitute_string_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SubstituteStringEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["from", "source", "to"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SubstituteStringEntry::builder();
     if let Some(value) = dict_value(values, "source")? {
         let converted_1269 = (|| -> PyResult<_> {
@@ -11115,6 +11724,7 @@ fn suppression_period_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SuppressionPeriod> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["suppression_unit", "value"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SuppressionPeriod::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_1275 = (|| -> PyResult<_> {
@@ -11165,6 +11775,15 @@ fn syslog_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::SyslogConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "log_group_arn",
+            "source_type",
+            "vpc_endpoint_id",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::SyslogConfiguration::builder();
     if let Some(value) = dict_value(values, "log_group_arn")? {
         let converted_1280 = (|| -> PyResult<_> {
@@ -11255,6 +11874,7 @@ fn tag_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TagFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TagFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1289 = (|| -> PyResult<_> {
@@ -11325,6 +11945,10 @@ fn transformed_log_record_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TransformedLogRecord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["event_message", "event_number", "transformed_event_message"],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TransformedLogRecord::builder();
     if let Some(value) = dict_value(values, "event_number")? {
         let converted_1299 = (|| -> PyResult<_> {
@@ -11389,6 +12013,16 @@ fn trigger_history_record_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TriggerHistoryRecord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destinations",
+            "error_message",
+            "execution_status",
+            "query_id",
+            "triggered_timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TriggerHistoryRecord::builder();
     if let Some(value) = dict_value(values, "query_id")? {
         let converted_1305 = (|| -> PyResult<_> {
@@ -11527,6 +12161,7 @@ fn trim_string_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TrimString> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["with_keys"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TrimString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
         let converted_1322 = (|| -> PyResult<_> {
@@ -11581,6 +12216,7 @@ fn type_converter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TypeConverter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entries"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TypeConverter::builder();
     if let Some(value) = dict_value(values, "entries")? {
         let converted_1330 = (|| -> PyResult<_> {
@@ -11639,6 +12275,7 @@ fn type_converter_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::TypeConverterEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::TypeConverterEntry::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1338 = (|| -> PyResult<_> {
@@ -11683,6 +12320,7 @@ fn upper_case_string_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cloudwatchlogs::types::UpperCaseString> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["with_keys"])?;
     let mut builder = aws_sdk_cloudwatchlogs::types::UpperCaseString::builder();
     if let Some(value) = dict_value(values, "with_keys")? {
         let converted_1343 = (|| -> PyResult<_> {

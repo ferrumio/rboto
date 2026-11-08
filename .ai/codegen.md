@@ -49,8 +49,11 @@ recursive definition. Do not replace it with a quoted string assigned to
 Input diagnostics unwind through `_from_py` and `rboto-core/src/input_error.rs`.
 Construct paths and format context only on failure. Use public parameter names
 at the operation boundary, literal TypedDict field names for nested members,
-and ordinal positions for arbitrary map keys/values. Do not add validation or
-echo SDK builder messages or input values. See ADR-0028.
+and ordinal positions for arbitrary map keys/values and unknown structure keys.
+Reject unknown structure keys through `validate_input_fields` with sorted schema
+names before converting members. Keep maps and documents open; do not add service
+constraint validation or echo SDK builder messages or input values. See ADR-0028
+and ADR-0034.
 
 ## Required workflow
 

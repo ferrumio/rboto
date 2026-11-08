@@ -16,6 +16,10 @@ fn cognito_identity_provider_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::CognitoIdentityProvider> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["client_id", "provider_name", "server_side_token_check"],
+    )?;
     let mut builder = aws_sdk_cognitoidentity::types::CognitoIdentityProvider::builder();
     if let Some(value) = dict_value(values, "provider_name")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -84,6 +88,10 @@ fn credentials_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::Credentials> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["access_key_id", "expiration", "secret_key", "session_token"],
+    )?;
     let mut builder = aws_sdk_cognitoidentity::types::Credentials::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_7 = (|| -> PyResult<_> {
@@ -173,6 +181,15 @@ fn identity_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::IdentityDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_date",
+            "identity_id",
+            "last_modified_date",
+            "logins",
+        ],
+    )?;
     let mut builder = aws_sdk_cognitoidentity::types::IdentityDescription::builder();
     if let Some(value) = dict_value(values, "identity_id")? {
         let converted_16 = (|| -> PyResult<_> {
@@ -295,6 +312,7 @@ fn identity_pool_short_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::IdentityPoolShortDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["identity_pool_id", "identity_pool_name"])?;
     let mut builder = aws_sdk_cognitoidentity::types::IdentityPoolShortDescription::builder();
     if let Some(value) = dict_value(values, "identity_pool_id")? {
         let converted_32 = (|| -> PyResult<_> {
@@ -351,6 +369,7 @@ fn mapping_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::MappingRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["claim", "match_type", "role_arn", "value"])?;
     let mut builder = aws_sdk_cognitoidentity::types::MappingRule::builder();
     if let Some(value) = dict_value(values, "claim")? {
         let converted_36 = (|| -> PyResult<_> {
@@ -431,6 +450,10 @@ fn role_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::RoleMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["ambiguous_role_resolution", "rules_configuration", "type"],
+    )?;
     let mut builder = aws_sdk_cognitoidentity::types::RoleMapping::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_45 = (|| -> PyResult<_> {
@@ -510,6 +533,7 @@ fn rules_configuration_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::RulesConfigurationType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules"])?;
     let mut builder = aws_sdk_cognitoidentity::types::RulesConfigurationType::builder();
     if let Some(value) = dict_value(values, "rules")? {
         let converted_53 = (|| -> PyResult<_> {
@@ -568,6 +592,7 @@ fn unprocessed_identity_id_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_cognitoidentity::types::UnprocessedIdentityId> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "identity_id"])?;
     let mut builder = aws_sdk_cognitoidentity::types::UnprocessedIdentityId::builder();
     if let Some(value) = dict_value(values, "identity_id")? {
         let converted_61 = (|| -> PyResult<_> {
