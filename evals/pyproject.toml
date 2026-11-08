@@ -1,0 +1,17 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "rboto-agent-evals"
+version = "0.0.0"
+description = "Private development evaluations for rboto application code"
+requires-python = ">=3.12"
+classifiers = ["Private :: Do Not Upload"]
+dependencies = ["mypy==2.4.0", "pydantic==2.14.3"]
+
+[project.scripts]
+rboto-agent-evals = "rboto_evals.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["rboto_evals"]

@@ -1,0 +1,1380 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-11-08T11:22:48.238936+00:00",
+  "config": {
+    "model": "eu.anthropic.claude-haiku-4-5-20251001-v1:0",
+    "region": "eu-west-2",
+    "version": "0.2.0",
+    "repeats": 2,
+    "attempts": 2,
+    "max_calls": 26,
+    "max_output_tokens": 2048,
+    "max_input_bytes": 65536,
+    "deadline_seconds": 900,
+    "seed": 71
+  },
+  "environment": {
+    "base": "python:3.12.15-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+    "python": "3.12.15",
+    "platform": "Linux-6.18.48-109.150.amzn2023.aarch64-aarch64-with-glibc2.34",
+    "sdk_version": "0.2.0",
+    "sdk_source_revision": "e4ec3b58e4d1b29f9701c6dbd71a5356d3ca8196",
+    "sdk_source_dirty": false,
+    "files": {
+      "rboto/__init__.py": "1f826f87624eebc203ab3d7d04982bcb1eac7623bc2fd5a82169c691ff767b5a",
+      "rboto/__init__.pyi": "8954cfeb42e1fa7d04a5a42288e7cbecfb99b5099b814b57119d3d03a094c856",
+      "rboto/_conversion.py": "3c60dcb84da6ec623c9b75f92b928843d5f60abd845e359f31effe9b1f9d2140",
+      "rboto/_imports.py": "84d64db252c25ab1947fbf02a9463514f7be4f5929559b711be4070f87324df8",
+      "rboto/_observability.py": "171428fd806caf1c6803faf6d0f522d929f5a3455522d561c5235e74f2eb58b8",
+      "rboto/_pagination.py": "a846a53d3d636ff2cf03428c822763990d0053152bb19be2d81b78a4db568048",
+      "rboto/_streams.py": "b02c3775a0e47f317abcb00d2bf0d24cb530e870cca199be6d3f2146c3b10cb9",
+      "rboto/_telemetry.py": "ec48075e94921e3957e79c1aefe9db02ed512db40a1bb9ca1aca15e6b1e8d64b",
+      "rboto/_waiters.py": "dc0cd3b9e6fda1eaf45376f0c9ef33e53beedc64ffc5572cefa30e07311bcb51",
+      "rboto/config.py": "a35ba29521ad7f436139ff19f673069ff369d33835d46057b35355021eb2a4b9",
+      "rboto/exceptions.py": "bdef5961d5b2efc7a761222d608eec6f272e6c6c3db253f624886c124b2c3d52",
+      "rboto/integrations/__init__.py": "c2c53dd03971a5fb2584a0a872881a6fac037f3c89cd776d264356de53ade542",
+      "rboto/integrations/opentelemetry.py": "2548420c46cc24e3eea8aab4ef6f7cb2d779eee1df0baac3b33e81d732dfe290",
+      "rboto/interceptors.py": "4b5f8543776a69b38f0b82781a8cea0dce875fe137c8dca45e49304ceb0daa19",
+      "rboto/logging.py": "c87f9ed1f1cac4d98a8ef60a60e10f83a7d019db2d07cc77d44a727657f132df",
+      "rboto/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto/runtime.py": "e037cd232d41b5b60ac4050a27931198963ea6ff4401ff705c11408be21aed2a",
+      "rboto/services.py": "f65b19c9734f7ae9493ca2f40e93e17db906ddbc61a9348194b38570f2a42c5b",
+      "rboto/session.py": "c9d8ffb33656d499465305a091f55dd4dde9ff2c48850fc7fdcbfc78a63b8f1b",
+      "rboto/types.py": "6a132ae53d1e20c0b182839e7b6eb55976a2247404f7af38d5671020bae4913f",
+      "rboto/waiters.py": "d67a5bad58fd100fea48fb04898158dd286ac4f219f6218cfb6af88d17096f56",
+      "rboto_s3/__init__.py": "f82dec7d0af35ef7763a29dac33a3db53e0d8232b849d093c55dd0ca3fda11ac",
+      "rboto_s3/_native.cpython-312-aarch64-linux-gnu.so": "167883a6db4c6fa37707dde5f7d3cfc85026e1e06f2f9af04146d31e70ebba7b",
+      "rboto_s3/_native.pyi": "250fbbe5e0eef5d9bbd0ad214b50b2473a7401302958bd08f2766526ed5196c4",
+      "rboto_s3/client.py": "8130ece3f470ad36377009ef2b6c1db3ed0043de2c32ace6247d85aa3600a55b",
+      "rboto_s3/exceptions.py": "5a4dcae792c32fbebf453bf7a5e7569b2aed2724380ef230b34f7cc2f3494b72",
+      "rboto_s3/paginators.py": "7018dae9d28779a9a77009ed919f506fad88cac522830968efe9b555c3aa831c",
+      "rboto_s3/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_s3/types.py": "806b1b5ba3a6c5541d0b100dc84fe5da6b82bd0b2eb5e8791f4542fc3ca9d161",
+      "rboto_s3/waiters.py": "633bcac0ae200ce35f4f9fe06c091e18a152f919e27690dfc43a2d62162d71e4",
+      "rboto_dynamodb/__init__.py": "2bef91c064d21dd45c621e032f7c1fa165c26c741e0a57d4a6dda76d4fac6bfd",
+      "rboto_dynamodb/_native.cpython-312-aarch64-linux-gnu.so": "e3c1c0d2a49a58ba4dca5a586f4f167e54560dd6bf3f3ca756d2b55e127e5436",
+      "rboto_dynamodb/_native.pyi": "9470061c8799f6882c524f0193052b3bdfd4ed8bd45121f59c3cd97ee4d4d291",
+      "rboto_dynamodb/client.py": "6b69c2682474417dc2caa26f1bac6091e63f388c0ec085f46cc008951bc2ad8d",
+      "rboto_dynamodb/exceptions.py": "a74f047e898eafe93c8441c160669f68338e8cf985e9587f5c5ddd760c22ff69",
+      "rboto_dynamodb/paginators.py": "8e1c135946bb6cad8dad3b45361c9eba6db7ab69818b27806a362f9ebc06272f",
+      "rboto_dynamodb/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_dynamodb/types.py": "0c607bfbcea4d45ea217a7aad47d265d7aa3242de038570594386deaf09313e4",
+      "rboto_dynamodb/waiters.py": "9b59495521d20739d5276f65e93315ded4e946911201d210a6a7f991cb216cb6",
+      "rboto_sqs/__init__.py": "dc68829c4d8841a0c1e7b35545bc3b9844cc85692f83e9876cbd2c18c8f4b612",
+      "rboto_sqs/_native.cpython-312-aarch64-linux-gnu.so": "870410054caef57584ed01a9882b5506e6ed753c1b4192e5cefdd8d5dd1445d8",
+      "rboto_sqs/_native.pyi": "540064e91ee566fa487a4cb674cb7fb633e2df86703d3bfe5c3aa32d49ce67ec",
+      "rboto_sqs/client.py": "e1c82a9f5d43a46cca247ac816ece0a440cd448817647a4b5e706a83dd97840d",
+      "rboto_sqs/exceptions.py": "a43c2362fc763aaccfe631202d9400e4c5c9ab155d2dd399c4a60db825067a97",
+      "rboto_sqs/paginators.py": "6a0ca876aa38b9b965e19ab2942db959b84fb0f63ab19d66b956aa6b66441241",
+      "rboto_sqs/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_sqs/types.py": "70f550888a77bfac451706a441294c3d6d81222b1aa35ef5ce5266a9556d71ce",
+      "rboto_bedrock_runtime/__init__.py": "f8bf7a329724515de04a0b4b72074f7d9fce3a1fbd89fab35097a7e0cc5e2e9a",
+      "rboto_bedrock_runtime/_native.cpython-312-aarch64-linux-gnu.so": "d8f6eaf28d7d8966a790f1589942f811cd44214f4ed7fe17f446bc353a906fad",
+      "rboto_bedrock_runtime/_native.pyi": "d6f197bfbbfe3111d4059f4bb1ba15f47fb30139e99b7834225046e67873a8ce",
+      "rboto_bedrock_runtime/client.py": "dc2ee2896c2e2ef6cffcbc588e8d5310d979f237984d55883cd968abe18a361a",
+      "rboto_bedrock_runtime/exceptions.py": "c83fedc0e647b8a9fa9cd895ccf20ce0d3ff4b9931f2c9bc74fbe89607f614ab",
+      "rboto_bedrock_runtime/paginators.py": "de436a76d7c7be4dc1fc4308d06af7391e9323569d1ee6a8311a901452c78e7c",
+      "rboto_bedrock_runtime/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_bedrock_runtime/types.py": "a24d7253e886c052b3b142fd0a48f68a9bfb548f9da7d0bbb1a3b8458fff5e12"
+    },
+    "native_source_files": {
+      "rboto_s3/_native.cpython-312-aarch64-linux-gnu.so": "cbaf7e5357bc0b81095e81289eb3d925df9020608e62259c044739ae08045769",
+      "rboto_dynamodb/_native.cpython-312-aarch64-linux-gnu.so": "f7fb939c97fa605c70cc2ffede0f84d2a8ee555baa19d27ce37e86741a8d7865",
+      "rboto_sqs/_native.cpython-312-aarch64-linux-gnu.so": "9eb5b2e3a26e6538da214dae1bb37d9bb2fe37b94f5f8636e102bfcaf88c88c5",
+      "rboto_bedrock_runtime/_native.cpython-312-aarch64-linux-gnu.so": "5f761d4c74640c9916e2c8eaeca921b0522815346bfe45ca3def42279f79994c"
+    },
+    "provenance": "snapshot of existing installed bindings; source revision alone does not attest native compilation provenance",
+    "requirements_sha256": "97df60b87072fcbbd9f9fca66a78e1bd500d2eb94f18b97fb5b56c8a55048988",
+    "grader_files": {
+      "rboto_evals/__init__.py": "c67f0e3873adc495ccb2f2131024e905d6133c8b4f1ca57db399db63089e5c80",
+      "rboto_evals/catalog.py": "04e402e68baea33060d3796f43ab29c1df887b9ef931879385e6c072ec6b5390",
+      "rboto_evals/cli.py": "0f321e9aeaf0e660e24b7d0f2f80f00b0084d43df69e6a4f9b84c33131c70e7e",
+      "rboto_evals/container.py": "7979c7b240d614860ed19d5d97b8015e91e9431eeb5eb2429a37664170c8afbe",
+      "rboto_evals/grading.py": "2fd89030e9ade3592aede3e274f9503d8e652e83b3315ab311f13da75ea923ff",
+      "rboto_evals/providers.py": "c373a80109812fd78671dc1e505b876a0c806d5645299e9a8398cee9b5fa53d3",
+      "rboto_evals/runner.py": "6a2eb7c21d00b54f073db1eb534c09b64fab648a0a6c24a42774551259084fb9"
+    },
+    "image_id": "sha256:ef7f3db54be447c8aacab024f83cea6ce0130d3ba22258e70a86c1f26e1f69f3",
+    "installed_dependencies": [
+      "annotated-types==0.8.0",
+      "ast_serialize==0.13.1",
+      "librt==0.16.0",
+      "mypy==2.4.0",
+      "mypy_extensions==1.2.0",
+      "pathspec==1.1.1",
+      "pydantic==2.14.3",
+      "pydantic_core==2.50.4",
+      "typing-inspection==0.4.5",
+      "typing_extensions==4.16.0"
+    ],
+    "aws_cli": "aws-cli/2.37.4 Python/3.14.6 Linux/6.18.48-109.150.amzn2023.aarch64 exe/aarch64.amzn.2023"
+  },
+  "tools": [],
+  "temperature": 0,
+  "documentation_reads": 0,
+  "context_delivery": "files supplied in prompt; no retrieval tools",
+  "runner_files": {
+    "__init__.py": "c67f0e3873adc495ccb2f2131024e905d6133c8b4f1ca57db399db63089e5c80",
+    "catalog.py": "04e402e68baea33060d3796f43ab29c1df887b9ef931879385e6c072ec6b5390",
+    "cli.py": "0f321e9aeaf0e660e24b7d0f2f80f00b0084d43df69e6a4f9b84c33131c70e7e",
+    "container.py": "7979c7b240d614860ed19d5d97b8015e91e9431eeb5eb2429a37664170c8afbe",
+    "grading.py": "2fd89030e9ade3592aede3e274f9503d8e652e83b3315ab311f13da75ea923ff",
+    "providers.py": "c373a80109812fd78671dc1e505b876a0c806d5645299e9a8398cee9b5fa53d3",
+    "runner.py": "3f3d4084847868449b1d3b67ec4ebe8e6c5cc6c99c34777df32e6836c6c0860e"
+  },
+  "runs": [
+    {
+      "task": "bedrock_input",
+      "condition": "references",
+      "repetition": 1,
+      "case_seed": 71,
+      "status": "failed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3187,
+            "outputTokens": 558,
+            "totalTokens": 3745,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.177504031918943,
+          "grade": {
+            "ok": false,
+            "reason": "grader_timeout"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 50.15167524199933
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 3783,
+            "outputTokens": 576,
+            "totalTokens": 4359,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.278816810809076,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.44031852716580033
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/bedrock-runtime/operations/converse.md",
+          "sha256": "b1f33c537bc9d7fbebb42fe2fa0148c89d8c957f45e2cb8dd61af056c344d3e6"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/Message.md",
+          "sha256": "e8d66f99a12804a81cf72d2fa4ffd68d78dea51e651f914c536ac2ff13436cc4"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/ConverseValueOutput.md",
+          "sha256": "c36fd3ce49a942a2e0120022eb9b6181a6d058b42ac50a2ca9343e510e423bfc"
+        }
+      ],
+      "document_bytes": 10244,
+      "prompt_sha256": "bb556d2683a54ddf5ef960e65e476886aa946091d4f5790aec147a37180da2f7"
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "guides",
+      "repetition": 1,
+      "case_seed": 71,
+      "status": "failed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6481,
+            "outputTokens": 542,
+            "totalTokens": 7023,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.2681142860092223,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 13.84456598572433
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 7060,
+            "outputTokens": 529,
+            "totalTokens": 7589,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.2111984211951494,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": false,
+              "diagnostics": "<project>/solution.py:38: error: \"object\" has no attribute \"get\"  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+              "error_codes": {
+                "attr-defined": 1
+              }
+            },
+            "reason": "typing"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 1.6296961489133537
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/bedrock-runtime/operations/converse.md",
+          "sha256": "b1f33c537bc9d7fbebb42fe2fa0148c89d8c957f45e2cb8dd61af056c344d3e6"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/Message.md",
+          "sha256": "e8d66f99a12804a81cf72d2fa4ffd68d78dea51e651f914c536ac2ff13436cc4"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/ConverseValueOutput.md",
+          "sha256": "c36fd3ce49a942a2e0120022eb9b6181a6d058b42ac50a2ca9343e510e423bfc"
+        },
+        {
+          "path": "docs/guides/inference.md",
+          "sha256": "79db27005a0081c056f6564ac3a957e3edd2ee34f381f51c225fb2bb7b82b1c0"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23664,
+      "prompt_sha256": "c59b132ecbeae851558fc98f7a89281dc847303497ce05b8a1751c87cdd4884a"
+    },
+    {
+      "task": "s3_stream",
+      "condition": "guides",
+      "repetition": 1,
+      "case_seed": 72,
+      "status": "passed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 9291,
+            "outputTokens": 371,
+            "totalTokens": 9662,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.6190373599529266,
+          "grade": {
+            "ok": true,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": true,
+              "reason": null,
+              "requests": 3
+            },
+            "reason": null
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 13.453575636725873
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/get_object.md",
+          "sha256": "525b5f321a34cf9428b7751ee6b4b8bc3c8272933468ded2d2db75c48a88e7ec"
+        },
+        {
+          "path": "docs/reference/s3/types/ByteStream.md",
+          "sha256": "5d3032066184509fb0a64d514fa2f49fbc288907028c487ae84b851f8993a257"
+        },
+        {
+          "path": "docs/guides/streaming.md",
+          "sha256": "0b78837b74a8f2ce4658b943088413c7a7c6515913f171f7fece1e62fc1e78d1"
+        },
+        {
+          "path": "docs/guides/errors.md",
+          "sha256": "cd218478fe7f6afd24013d8c29b45811a8d74d345273bb89b99a4034c9d86742"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 33330,
+      "prompt_sha256": "f40c549bb93ee5349751429b9995ed0f2b4db910d314d4b366c5674191e7796f"
+    },
+    {
+      "task": "s3_stream",
+      "condition": "references",
+      "repetition": 1,
+      "case_seed": 72,
+      "status": "passed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 4653,
+            "outputTokens": 378,
+            "totalTokens": 5031,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.211245303042233,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": false,
+              "reason": "close_client",
+              "requests": 3
+            },
+            "reason": "close_client"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 7.1451508910395205
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 5130,
+            "outputTokens": 386,
+            "totalTokens": 5516,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 1.7081163320690393,
+          "grade": {
+            "ok": true,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": true,
+              "reason": null,
+              "requests": 3
+            },
+            "reason": null
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.2450518677942455
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/get_object.md",
+          "sha256": "525b5f321a34cf9428b7751ee6b4b8bc3c8272933468ded2d2db75c48a88e7ec"
+        },
+        {
+          "path": "docs/reference/s3/types/ByteStream.md",
+          "sha256": "5d3032066184509fb0a64d514fa2f49fbc288907028c487ae84b851f8993a257"
+        }
+      ],
+      "document_bytes": 14526,
+      "prompt_sha256": "711b11cd7bedf350152698b9d5bcc3c623ff7dbf63e0d71240fa3aefa3526b2a"
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "references",
+      "repetition": 1,
+      "case_seed": 73,
+      "status": "failed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3605,
+            "outputTokens": 483,
+            "totalTokens": 4088,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.904941350687295,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 4.350674659945071
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 4125,
+            "outputTokens": 470,
+            "totalTokens": 4595,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 1.870796668343246,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": false,
+              "diagnostics": "<project>/solution.py:25: error: Argument \"exclusive_start_key\" to \"query\" of \"DynamoDBClient\" has incompatible type \"dict[str, AttributeValueOutput] | None\"; expected \"dict[str, AttributeValue] | None\"  [arg-type]\n<project>/solution.py:33: error: Name \"AttributeValueOutputS\" is not defined; did you mean \"AttributeValueOutput\"?  [name-defined]\n<project>/solution.py:43: error: \"DynamoDBClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+              "error_codes": {
+                "arg-type": 1,
+                "attr-defined": 1,
+                "name-defined": 1
+              }
+            },
+            "reason": "typing"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 1.5871461322531104
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/dynamodb/operations/query.md",
+          "sha256": "e1b5db84c7f423ed361d81d68a7a576379613fc612acfd7bc84a26cbf301102e"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValue.md",
+          "sha256": "eab2c6e18c3a507fd91ff8bd5c85ee718a01dbf70711ffd8fe41a8365b42a977"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValueOutput.md",
+          "sha256": "e457eac6db832dad81b5326b4a2ad9404a0f7bda8737ae5472626ac8ae1cb115"
+        }
+      ],
+      "document_bytes": 12258,
+      "prompt_sha256": "28c81986c9639fe46bdf26a923fa43d228a2b6c9244e519bed15279ecf13ee53"
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "guides",
+      "repetition": 1,
+      "case_seed": 73,
+      "status": "passed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 7722,
+            "outputTokens": 614,
+            "totalTokens": 8336,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.5161180049180984,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 11.228691450320184
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 8373,
+            "outputTokens": 601,
+            "totalTokens": 8974,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.5705310590565205,
+          "grade": {
+            "ok": true,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": true,
+              "reason": null,
+              "requests": 4
+            },
+            "reason": null
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.502731918822974
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/dynamodb/operations/query.md",
+          "sha256": "e1b5db84c7f423ed361d81d68a7a576379613fc612acfd7bc84a26cbf301102e"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValue.md",
+          "sha256": "eab2c6e18c3a507fd91ff8bd5c85ee718a01dbf70711ffd8fe41a8365b42a977"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValueOutput.md",
+          "sha256": "e457eac6db832dad81b5326b4a2ad9404a0f7bda8737ae5472626ac8ae1cb115"
+        },
+        {
+          "path": "docs/guides/pagination.md",
+          "sha256": "780d81d0fb693715b77366dc148f2f7ca8eb3d5cb003061f44fa893512204962"
+        },
+        {
+          "path": "docs/guides/dynamodb.md",
+          "sha256": "15c80eb776b05fc77630ace1914d6f3c0601fd5147b31e3591d5886f60749dd7"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 28793,
+      "prompt_sha256": "35d1afb53adeb16acdab24e8204de6c47aff1f8969b1dbcf2d0105eb4e073bfb"
+    },
+    {
+      "task": "s3_projection",
+      "condition": "guides",
+      "repetition": 1,
+      "case_seed": 74,
+      "status": "passed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6230,
+            "outputTokens": 301,
+            "totalTokens": 6531,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.2520245066843927,
+          "grade": {
+            "ok": true,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": true,
+              "reason": null,
+              "requests": 2
+            },
+            "reason": null
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 18.334307035896927
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/list_buckets.md",
+          "sha256": "21b9c95a37ef65283b9cde4039a662f77f39e1497efa6b9a93467398ad9cdb23"
+        },
+        {
+          "path": "docs/reference/s3/types/BucketOutput.md",
+          "sha256": "62750678d4e092bbcca8201df9fa60733b96cb30ab1400ff04d7bf0de2c6bc40"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/models.md",
+          "sha256": "bf1fb167924cc88e0710693f7099f1d0d7850bfc875b9edd0123a95e22ecc70f"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23339,
+      "prompt_sha256": "af0f444c0b3251722e794d61be36d3955f70ee01b8704c44a9862d1921388666"
+    },
+    {
+      "task": "s3_projection",
+      "condition": "references",
+      "repetition": 1,
+      "case_seed": 74,
+      "status": "failed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 1667,
+            "outputTokens": 442,
+            "totalTokens": 2109,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.5691738706082106,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": false,
+              "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+              "error_codes": {
+                "attr-defined": 1
+              }
+            },
+            "reason": "typing"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 15.531403727829456
+        },
+        {
+          "number": 2,
+          "usage": {
+            "inputTokens": 2232,
+            "outputTokens": 443,
+            "totalTokens": 2675,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 1.8069018223322928,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": false,
+              "reason": "attribute_validation_required",
+              "requests": 1
+            },
+            "reason": "attribute_validation_required"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.735317735001445
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/list_buckets.md",
+          "sha256": "21b9c95a37ef65283b9cde4039a662f77f39e1497efa6b9a93467398ad9cdb23"
+        },
+        {
+          "path": "docs/reference/s3/types/BucketOutput.md",
+          "sha256": "62750678d4e092bbcca8201df9fa60733b96cb30ab1400ff04d7bf0de2c6bc40"
+        }
+      ],
+      "document_bytes": 4783,
+      "prompt_sha256": "bbb729a0dee490af1f00d02f36e562c638b33002fcc527008592243f90c61c6c"
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "references",
+      "repetition": 1,
+      "case_seed": 75,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3187,
+            "outputTokens": 563,
+            "totalTokens": 3750,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.107809458859265,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 5.582103261724114
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/sqs/operations/receive_message.md",
+          "sha256": "657a0def3498e0fc09546fcfc7a094808d9090703484ab78b9634dae7aa8c307"
+        },
+        {
+          "path": "docs/reference/sqs/operations/delete_message.md",
+          "sha256": "1c36cf61d7e4664c8c408de3c6a1c9ed249262d97bc1be3df41d1654ca2fb030"
+        },
+        {
+          "path": "docs/reference/sqs/types/MessageOutput.md",
+          "sha256": "9b0f1d924b5a56d5d78d94897212055226028900aa222f4a3b3b315cc65def39"
+        }
+      ],
+      "document_bytes": 10385,
+      "prompt_sha256": "35411e84c6fb2900a52d301a61227d50b1d837822d7a8748b4742ae823981289",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "guides",
+      "repetition": 1,
+      "case_seed": 75,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6507,
+            "outputTokens": 502,
+            "totalTokens": 7009,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.9332266161218286,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.8865900430828333
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/sqs/operations/receive_message.md",
+          "sha256": "657a0def3498e0fc09546fcfc7a094808d9090703484ab78b9634dae7aa8c307"
+        },
+        {
+          "path": "docs/reference/sqs/operations/delete_message.md",
+          "sha256": "1c36cf61d7e4664c8c408de3c6a1c9ed249262d97bc1be3df41d1654ca2fb030"
+        },
+        {
+          "path": "docs/reference/sqs/types/MessageOutput.md",
+          "sha256": "9b0f1d924b5a56d5d78d94897212055226028900aa222f4a3b3b315cc65def39"
+        },
+        {
+          "path": "docs/guides/messaging.md",
+          "sha256": "c6c5e9e16d064f860fe4ca2ce3f01bef84ee01d11ac8dcd8cdeb4ad44ac670ba"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23900,
+      "prompt_sha256": "840b4ec2c9b5e4130f09288ff2823113c945da08997478b2049386e15b74f455",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "guides",
+      "repetition": 2,
+      "case_seed": 171,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6481,
+            "outputTokens": 542,
+            "totalTokens": 7023,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.276079372037202,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.4804413625970483
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/bedrock-runtime/operations/converse.md",
+          "sha256": "b1f33c537bc9d7fbebb42fe2fa0148c89d8c957f45e2cb8dd61af056c344d3e6"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/Message.md",
+          "sha256": "e8d66f99a12804a81cf72d2fa4ffd68d78dea51e651f914c536ac2ff13436cc4"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/ConverseValueOutput.md",
+          "sha256": "c36fd3ce49a942a2e0120022eb9b6181a6d058b42ac50a2ca9343e510e423bfc"
+        },
+        {
+          "path": "docs/guides/inference.md",
+          "sha256": "79db27005a0081c056f6564ac3a957e3edd2ee34f381f51c225fb2bb7b82b1c0"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23664,
+      "prompt_sha256": "c59b132ecbeae851558fc98f7a89281dc847303497ce05b8a1751c87cdd4884a",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "references",
+      "repetition": 2,
+      "case_seed": 171,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3187,
+            "outputTokens": 558,
+            "totalTokens": 3745,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.879293438978493,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.4918782929889858
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/bedrock-runtime/operations/converse.md",
+          "sha256": "b1f33c537bc9d7fbebb42fe2fa0148c89d8c957f45e2cb8dd61af056c344d3e6"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/Message.md",
+          "sha256": "e8d66f99a12804a81cf72d2fa4ffd68d78dea51e651f914c536ac2ff13436cc4"
+        },
+        {
+          "path": "docs/reference/bedrock-runtime/types/ConverseValueOutput.md",
+          "sha256": "c36fd3ce49a942a2e0120022eb9b6181a6d058b42ac50a2ca9343e510e423bfc"
+        }
+      ],
+      "document_bytes": 10244,
+      "prompt_sha256": "bb556d2683a54ddf5ef960e65e476886aa946091d4f5790aec147a37180da2f7",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "s3_stream",
+      "condition": "references",
+      "repetition": 2,
+      "case_seed": 172,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 4653,
+            "outputTokens": 378,
+            "totalTokens": 5031,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.205974425189197,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": false,
+              "reason": "close_client",
+              "requests": 3
+            },
+            "reason": "close_client"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.2325590420514345
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/get_object.md",
+          "sha256": "525b5f321a34cf9428b7751ee6b4b8bc3c8272933468ded2d2db75c48a88e7ec"
+        },
+        {
+          "path": "docs/reference/s3/types/ByteStream.md",
+          "sha256": "5d3032066184509fb0a64d514fa2f49fbc288907028c487ae84b851f8993a257"
+        }
+      ],
+      "document_bytes": 14526,
+      "prompt_sha256": "711b11cd7bedf350152698b9d5bcc3c623ff7dbf63e0d71240fa3aefa3526b2a",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "s3_stream",
+      "condition": "guides",
+      "repetition": 2,
+      "case_seed": 172,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 9291,
+            "outputTokens": 338,
+            "totalTokens": 9629,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.500687479041517,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": false,
+              "reason": "close_client",
+              "requests": 3
+            },
+            "reason": "close_client"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.2833380908705294
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/get_object.md",
+          "sha256": "525b5f321a34cf9428b7751ee6b4b8bc3c8272933468ded2d2db75c48a88e7ec"
+        },
+        {
+          "path": "docs/reference/s3/types/ByteStream.md",
+          "sha256": "5d3032066184509fb0a64d514fa2f49fbc288907028c487ae84b851f8993a257"
+        },
+        {
+          "path": "docs/guides/streaming.md",
+          "sha256": "0b78837b74a8f2ce4658b943088413c7a7c6515913f171f7fece1e62fc1e78d1"
+        },
+        {
+          "path": "docs/guides/errors.md",
+          "sha256": "cd218478fe7f6afd24013d8c29b45811a8d74d345273bb89b99a4034c9d86742"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 33330,
+      "prompt_sha256": "f40c549bb93ee5349751429b9995ed0f2b4db910d314d4b366c5674191e7796f",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "guides",
+      "repetition": 2,
+      "case_seed": 173,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 7722,
+            "outputTokens": 614,
+            "totalTokens": 8336,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.5270393420942128,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.4666315368376672
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/dynamodb/operations/query.md",
+          "sha256": "e1b5db84c7f423ed361d81d68a7a576379613fc612acfd7bc84a26cbf301102e"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValue.md",
+          "sha256": "eab2c6e18c3a507fd91ff8bd5c85ee718a01dbf70711ffd8fe41a8365b42a977"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValueOutput.md",
+          "sha256": "e457eac6db832dad81b5326b4a2ad9404a0f7bda8737ae5472626ac8ae1cb115"
+        },
+        {
+          "path": "docs/guides/pagination.md",
+          "sha256": "780d81d0fb693715b77366dc148f2f7ca8eb3d5cb003061f44fa893512204962"
+        },
+        {
+          "path": "docs/guides/dynamodb.md",
+          "sha256": "15c80eb776b05fc77630ace1914d6f3c0601fd5147b31e3591d5886f60749dd7"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 28793,
+      "prompt_sha256": "35d1afb53adeb16acdab24e8204de6c47aff1f8969b1dbcf2d0105eb4e073bfb",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "references",
+      "repetition": 2,
+      "case_seed": 173,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3605,
+            "outputTokens": 483,
+            "totalTokens": 4088,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.882360612973571,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.487241611815989
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/dynamodb/operations/query.md",
+          "sha256": "e1b5db84c7f423ed361d81d68a7a576379613fc612acfd7bc84a26cbf301102e"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValue.md",
+          "sha256": "eab2c6e18c3a507fd91ff8bd5c85ee718a01dbf70711ffd8fe41a8365b42a977"
+        },
+        {
+          "path": "docs/reference/dynamodb/types/AttributeValueOutput.md",
+          "sha256": "e457eac6db832dad81b5326b4a2ad9404a0f7bda8737ae5472626ac8ae1cb115"
+        }
+      ],
+      "document_bytes": 12258,
+      "prompt_sha256": "28c81986c9639fe46bdf26a923fa43d228a2b6c9244e519bed15279ecf13ee53",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "s3_projection",
+      "condition": "references",
+      "repetition": 2,
+      "case_seed": 174,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 1667,
+            "outputTokens": 442,
+            "totalTokens": 2109,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.5528290579095483,
+          "grade": {
+            "ok": false,
+            "policy_errors": [],
+            "typing": {
+              "ok": false,
+              "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+              "error_codes": {
+                "attr-defined": 1
+              }
+            },
+            "reason": "typing"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.0159863512963057
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/list_buckets.md",
+          "sha256": "21b9c95a37ef65283b9cde4039a662f77f39e1497efa6b9a93467398ad9cdb23"
+        },
+        {
+          "path": "docs/reference/s3/types/BucketOutput.md",
+          "sha256": "62750678d4e092bbcca8201df9fa60733b96cb30ab1400ff04d7bf0de2c6bc40"
+        }
+      ],
+      "document_bytes": 4783,
+      "prompt_sha256": "bbb729a0dee490af1f00d02f36e562c638b33002fcc527008592243f90c61c6c",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "s3_projection",
+      "condition": "guides",
+      "repetition": 2,
+      "case_seed": 174,
+      "status": "passed",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6230,
+            "outputTokens": 301,
+            "totalTokens": 6531,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.1696758628822863,
+          "grade": {
+            "ok": true,
+            "policy_errors": [],
+            "typing": {
+              "ok": true,
+              "diagnostics": "Success: no issues found in 1 source file\n",
+              "error_codes": {}
+            },
+            "behavior": {
+              "ok": true,
+              "reason": null,
+              "requests": 2
+            },
+            "reason": null
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 2.7033336320891976
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/s3/operations/list_buckets.md",
+          "sha256": "21b9c95a37ef65283b9cde4039a662f77f39e1497efa6b9a93467398ad9cdb23"
+        },
+        {
+          "path": "docs/reference/s3/types/BucketOutput.md",
+          "sha256": "62750678d4e092bbcca8201df9fa60733b96cb30ab1400ff04d7bf0de2c6bc40"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/models.md",
+          "sha256": "bf1fb167924cc88e0710693f7099f1d0d7850bfc875b9edd0123a95e22ecc70f"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23339,
+      "prompt_sha256": "af0f444c0b3251722e794d61be36d3955f70ee01b8704c44a9862d1921388666"
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "guides",
+      "repetition": 2,
+      "case_seed": 175,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 6507,
+            "outputTokens": 502,
+            "totalTokens": 7009,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 2.8236696450039744,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.42024232307448983
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/sqs/operations/receive_message.md",
+          "sha256": "657a0def3498e0fc09546fcfc7a094808d9090703484ab78b9634dae7aa8c307"
+        },
+        {
+          "path": "docs/reference/sqs/operations/delete_message.md",
+          "sha256": "1c36cf61d7e4664c8c408de3c6a1c9ed249262d97bc1be3df41d1654ca2fb030"
+        },
+        {
+          "path": "docs/reference/sqs/types/MessageOutput.md",
+          "sha256": "9b0f1d924b5a56d5d78d94897212055226028900aa222f4a3b3b315cc65def39"
+        },
+        {
+          "path": "docs/guides/messaging.md",
+          "sha256": "c6c5e9e16d064f860fe4ca2ce3f01bef84ee01d11ac8dcd8cdeb4ad44ac670ba"
+        },
+        {
+          "path": "docs/guides/types.md",
+          "sha256": "d90554a8d5361838b4959a1485aaab0a344a3056aba24922eade68d4bfacca99"
+        },
+        {
+          "path": "docs/guides/lifecycle.md",
+          "sha256": "c8c1e8f2823776d9dcfc5eb55728bedef07dead19485c3727a5d443022d5d7d8"
+        }
+      ],
+      "document_bytes": 23900,
+      "prompt_sha256": "840b4ec2c9b5e4130f09288ff2823113c945da08997478b2049386e15b74f455",
+      "stop_reason": "call_budget"
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "references",
+      "repetition": 2,
+      "case_seed": 175,
+      "status": "incomplete",
+      "attempts": [
+        {
+          "number": 1,
+          "usage": {
+            "inputTokens": 3187,
+            "outputTokens": 563,
+            "totalTokens": 3750,
+            "cacheReadInputTokens": 0,
+            "cacheWriteInputTokens": 0
+          },
+          "model_seconds": 3.1146199321374297,
+          "grade": {
+            "ok": false,
+            "reason": "dependency_selection"
+          },
+          "stop_reason": "end_turn",
+          "grading_seconds": 0.43390699103474617
+        }
+      ],
+      "documents": [
+        {
+          "path": "docs/reference/sqs/operations/receive_message.md",
+          "sha256": "657a0def3498e0fc09546fcfc7a094808d9090703484ab78b9634dae7aa8c307"
+        },
+        {
+          "path": "docs/reference/sqs/operations/delete_message.md",
+          "sha256": "1c36cf61d7e4664c8c408de3c6a1c9ed249262d97bc1be3df41d1654ca2fb030"
+        },
+        {
+          "path": "docs/reference/sqs/types/MessageOutput.md",
+          "sha256": "9b0f1d924b5a56d5d78d94897212055226028900aa222f4a3b3b315cc65def39"
+        }
+      ],
+      "document_bytes": 10385,
+      "prompt_sha256": "35411e84c6fb2900a52d301a61227d50b1d837822d7a8748b4742ae823981289",
+      "stop_reason": "call_budget"
+    }
+  ],
+  "summary": {
+    "references": {
+      "planned": 10,
+      "first_attempt_passed": 0,
+      "eventual_passed": 1,
+      "not_run": 0,
+      "incomplete": 6,
+      "correction_attempts": 4,
+      "model_calls": 14,
+      "input_tokens": 47868,
+      "output_tokens": 6723,
+      "model_seconds": 35.27038311585784,
+      "attempts_without_token_usage": 0,
+      "failure_reasons": {
+        "grader_timeout": 1,
+        "dependency_selection": 6,
+        "close_client": 2,
+        "typing": 3,
+        "attribute_validation_required": 1
+      },
+      "typing_error_codes": {
+        "arg-type": 1,
+        "attr-defined": 3,
+        "name-defined": 1
+      },
+      "provided_document_bytes": 104392,
+      "per_repetition": {
+        "1": {
+          "passed": 1,
+          "planned": 5
+        },
+        "2": {
+          "passed": 0,
+          "planned": 5
+        }
+      }
+    },
+    "guides": {
+      "planned": 10,
+      "first_attempt_passed": 3,
+      "eventual_passed": 4,
+      "not_run": 0,
+      "incomplete": 5,
+      "correction_attempts": 2,
+      "model_calls": 12,
+      "input_tokens": 87895,
+      "output_tokens": 5757,
+      "model_seconds": 33.66740195499733,
+      "attempts_without_token_usage": 0,
+      "failure_reasons": {
+        "dependency_selection": 6,
+        "typing": 1,
+        "close_client": 1
+      },
+      "typing_error_codes": {
+        "attr-defined": 1
+      },
+      "provided_document_bytes": 266052,
+      "per_repetition": {
+        "1": {
+          "passed": 3,
+          "planned": 5
+        },
+        "2": {
+          "passed": 1,
+          "planned": 5
+        }
+      }
+    }
+  },
+  "elapsed_seconds": 232.64028349285945
+}

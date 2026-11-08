@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
+          .venv/bin/pip install -e codegen -e evals -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
 
       - name: Service catalog
         id: catalog
@@ -46,16 +46,17 @@ jobs:
         run: >-
           .venv/bin/ruff check
           codegen/src codegen/tests packages/rboto/src packages/rboto/tests
-          tests examples benchmarks .github/scripts
+          tests examples benchmarks .github/scripts evals/rboto_evals evals/tests evals/reference_solutions
 
       - name: Unit tests
-        run: .venv/bin/pytest codegen/tests packages/rboto/tests -q
+        run: .venv/bin/pytest codegen/tests packages/rboto/tests evals/tests/test_runner.py -q
 
       - name: Strict typing
         run: |
           .venv/bin/mypy --strict \
             codegen/src codegen/tests packages/rboto/src \
-            packages/rboto-*/python tests/typecheck examples .github/scripts
+            packages/rboto-*/python tests/typecheck examples .github/scripts \
+            evals/rboto_evals evals/tests evals/reference_solutions
           .venv/bin/pyright
 
       - name: Version consistency
@@ -139,6 +140,14 @@ jobs:
           tests/integration/test_opentelemetry.py
           tests/integration/test_client_transport.py
           tests/integration/test_client_lifecycle.py -q
+
+      - name: Application evaluation graders (no model calls)
+        if: contains(fromJSON('["s3", "dynamodb", "sqs", "bedrock-runtime"]'), matrix.service)
+        env:
+          RBOTO_TEST_SERVICES: ${{ matrix.service }}
+        run: |
+          .venv/bin/pip install -e evals
+          .venv/bin/pytest evals/tests/test_grading.py -q
 
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

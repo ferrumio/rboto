@@ -17,10 +17,20 @@ Install `packages/rboto[opentelemetry]` and `opentelemetry-sdk>=1.39,<2` for
 the optional integration tests and typed examples.
 
 ```bash
-.venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts
-.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples .github/scripts
+.venv/bin/ruff check codegen/src codegen/tests packages/rboto/src packages/rboto/tests tests examples benchmarks .github/scripts evals/rboto_evals evals/tests evals/reference_solutions
+.venv/bin/mypy --strict codegen/src codegen/tests packages/rboto/src packages/rboto-*/python tests/typecheck examples .github/scripts evals/rboto_evals evals/tests evals/reference_solutions
 .venv/bin/pyright
 .venv/bin/pytest codegen/tests packages/rboto/tests -q
+```
+
+Install `evals` editable for the private evaluation tools and pinned grading
+dependencies. Runner tests make no model calls; grader fixtures require the four
+installed native clients (`s3`, `dynamodb`, `sqs`, `bedrock-runtime`).
+
+```bash
+.venv/bin/pip install -e evals
+.venv/bin/pytest evals/tests/test_runner.py -q
+RBOTO_TEST_SERVICES=s3,dynamodb,sqs,bedrock-runtime .venv/bin/pytest evals/tests/test_grading.py -q
 ```
 
 ## Rust quality
