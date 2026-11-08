@@ -16,6 +16,7 @@ fn activity_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ActivityFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -64,6 +65,7 @@ fn activity_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["activity_arn", "creation_date", "name"])?;
     let mut builder = aws_sdk_sfn::types::ActivityListItem::builder();
     if let Some(value) = dict_value(values, "activity_arn")? {
         let converted_5 = (|| -> PyResult<_> {
@@ -134,6 +136,7 @@ fn activity_schedule_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityScheduleFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ActivityScheduleFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_12 = (|| -> PyResult<_> {
@@ -182,6 +185,16 @@ fn activity_scheduled_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityScheduledEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "heartbeat_in_seconds",
+            "input",
+            "input_details",
+            "resource",
+            "timeout_in_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::ActivityScheduledEventDetails::builder();
     if let Some(value) = dict_value(values, "resource")? {
         let converted_16 = (|| -> PyResult<_> {
@@ -288,6 +301,7 @@ fn activity_started_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityStartedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["worker_name"])?;
     let mut builder = aws_sdk_sfn::types::ActivityStartedEventDetails::builder();
     if let Some(value) = dict_value(values, "worker_name")? {
         let converted_26 = (|| -> PyResult<_> {
@@ -320,6 +334,7 @@ fn activity_succeeded_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivitySucceededEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output", "output_details"])?;
     let mut builder = aws_sdk_sfn::types::ActivitySucceededEventDetails::builder();
     if let Some(value) = dict_value(values, "output")? {
         let converted_28 = (|| -> PyResult<_> {
@@ -372,6 +387,7 @@ fn activity_timed_out_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ActivityTimedOutEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ActivityTimedOutEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_32 = (|| -> PyResult<_> {
@@ -420,6 +436,7 @@ fn assigned_variables_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::AssignedVariablesDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["truncated"])?;
     let mut builder = aws_sdk_sfn::types::AssignedVariablesDetails::builder();
     if let Some(value) = dict_value(values, "truncated")? {
         let converted_36 = (|| -> PyResult<_> {
@@ -448,6 +465,13 @@ fn billing_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::BillingDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "billed_duration_in_milliseconds",
+            "billed_memory_used_in_mb",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::BillingDetails::builder();
     if let Some(value) = dict_value(values, "billed_memory_used_in_mb")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -500,6 +524,7 @@ fn cloud_watch_events_execution_data_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["included"])?;
     let mut builder = aws_sdk_sfn::types::CloudWatchEventsExecutionDataDetails::builder();
     if let Some(value) = dict_value(values, "included")? {
         let converted_42 = (|| -> PyResult<_> {
@@ -528,6 +553,7 @@ fn cloud_watch_logs_log_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::CloudWatchLogsLogGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_group_arn"])?;
     let mut builder = aws_sdk_sfn::types::CloudWatchLogsLogGroup::builder();
     if let Some(value) = dict_value(values, "log_group_arn")? {
         let converted_44 = (|| -> PyResult<_> {
@@ -560,6 +586,10 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["kms_data_key_reuse_period_seconds", "kms_key_id", "type"],
+    )?;
     let mut builder = aws_sdk_sfn::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key_id")? {
         let converted_46 = (|| -> PyResult<_> {
@@ -631,6 +661,7 @@ fn evaluation_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::EvaluationFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error", "location", "state"])?;
     let mut builder = aws_sdk_sfn::types::EvaluationFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_53 = (|| -> PyResult<_> {
@@ -709,6 +740,7 @@ fn execution_aborted_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionAbortedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ExecutionAbortedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_61 = (|| -> PyResult<_> {
@@ -757,6 +789,7 @@ fn execution_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ExecutionFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_65 = (|| -> PyResult<_> {
@@ -805,6 +838,23 @@ fn execution_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "execution_arn",
+            "item_count",
+            "map_run_arn",
+            "name",
+            "redrive_count",
+            "redrive_date",
+            "start_date",
+            "state_machine_alias_arn",
+            "state_machine_arn",
+            "state_machine_version_arn",
+            "status",
+            "stop_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::ExecutionListItem::builder();
     if let Some(value) = dict_value(values, "execution_arn")? {
         let converted_69 = (|| -> PyResult<_> {
@@ -1048,6 +1098,7 @@ fn execution_redriven_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionRedrivenEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["redrive_count"])?;
     let mut builder = aws_sdk_sfn::types::ExecutionRedrivenEventDetails::builder();
     if let Some(value) = dict_value(values, "redrive_count")? {
         let converted_97 = (|| -> PyResult<_> {
@@ -1080,6 +1131,16 @@ fn execution_started_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionStartedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input",
+            "input_details",
+            "role_arn",
+            "state_machine_alias_arn",
+            "state_machine_version_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::ExecutionStartedEventDetails::builder();
     if let Some(value) = dict_value(values, "input")? {
         let converted_99 = (|| -> PyResult<_> {
@@ -1188,6 +1249,7 @@ fn execution_succeeded_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionSucceededEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output", "output_details"])?;
     let mut builder = aws_sdk_sfn::types::ExecutionSucceededEventDetails::builder();
     if let Some(value) = dict_value(values, "output")? {
         let converted_109 = (|| -> PyResult<_> {
@@ -1240,6 +1302,7 @@ fn execution_timed_out_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ExecutionTimedOutEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::ExecutionTimedOutEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_113 = (|| -> PyResult<_> {
@@ -1286,6 +1349,52 @@ fn execution_timed_out_event_details_to_py(
 
 fn history_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sfn::types::HistoryEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activity_failed_event_details",
+            "activity_schedule_failed_event_details",
+            "activity_scheduled_event_details",
+            "activity_started_event_details",
+            "activity_succeeded_event_details",
+            "activity_timed_out_event_details",
+            "evaluation_failed_event_details",
+            "execution_aborted_event_details",
+            "execution_failed_event_details",
+            "execution_redriven_event_details",
+            "execution_started_event_details",
+            "execution_succeeded_event_details",
+            "execution_timed_out_event_details",
+            "id",
+            "lambda_function_failed_event_details",
+            "lambda_function_schedule_failed_event_details",
+            "lambda_function_scheduled_event_details",
+            "lambda_function_start_failed_event_details",
+            "lambda_function_succeeded_event_details",
+            "lambda_function_timed_out_event_details",
+            "map_iteration_aborted_event_details",
+            "map_iteration_failed_event_details",
+            "map_iteration_started_event_details",
+            "map_iteration_succeeded_event_details",
+            "map_run_failed_event_details",
+            "map_run_redriven_event_details",
+            "map_run_started_event_details",
+            "map_state_started_event_details",
+            "previous_event_id",
+            "state_entered_event_details",
+            "state_exited_event_details",
+            "task_failed_event_details",
+            "task_scheduled_event_details",
+            "task_start_failed_event_details",
+            "task_started_event_details",
+            "task_submit_failed_event_details",
+            "task_submitted_event_details",
+            "task_succeeded_event_details",
+            "task_timed_out_event_details",
+            "timestamp",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::HistoryEvent::builder();
     if let Some(value) = dict_value(values, "timestamp")? {
         let converted_117 = (|| -> PyResult<_> {
@@ -2113,6 +2222,7 @@ fn history_event_execution_data_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::HistoryEventExecutionDataDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["truncated"])?;
     let mut builder = aws_sdk_sfn::types::HistoryEventExecutionDataDetails::builder();
     if let Some(value) = dict_value(values, "truncated")? {
         let converted_201 = (|| -> PyResult<_> {
@@ -2141,6 +2251,29 @@ fn inspection_data_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::InspectionData> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "after_arguments",
+            "after_input_path",
+            "after_item_batcher",
+            "after_item_selector",
+            "after_items_path",
+            "after_items_pointer",
+            "after_parameters",
+            "after_result_path",
+            "after_result_selector",
+            "error_details",
+            "input",
+            "max_concurrency",
+            "request",
+            "response",
+            "result",
+            "tolerated_failure_count",
+            "tolerated_failure_percentage",
+            "variables",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::InspectionData::builder();
     if let Some(value) = dict_value(values, "input")? {
         let converted_203 = (|| -> PyResult<_> {
@@ -2505,6 +2638,7 @@ fn inspection_data_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::InspectionDataRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["body", "headers", "method", "protocol", "url"])?;
     let mut builder = aws_sdk_sfn::types::InspectionDataRequest::builder();
     if let Some(value) = dict_value(values, "protocol")? {
         let converted_239 = (|| -> PyResult<_> {
@@ -2601,6 +2735,16 @@ fn inspection_data_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::InspectionDataResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "body",
+            "headers",
+            "protocol",
+            "status_code",
+            "status_message",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::InspectionDataResponse::builder();
     if let Some(value) = dict_value(values, "protocol")? {
         let converted_249 = (|| -> PyResult<_> {
@@ -2697,6 +2841,14 @@ fn inspection_error_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::InspectionErrorDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "catch_index",
+            "retry_backoff_interval_seconds",
+            "retry_index",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::InspectionErrorDetails::builder();
     if let Some(value) = dict_value(values, "catch_index")? {
         let converted_259 = (|| -> PyResult<_> {
@@ -2765,6 +2917,7 @@ fn lambda_function_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_265 = (|| -> PyResult<_> {
@@ -2813,6 +2966,7 @@ fn lambda_function_schedule_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionScheduleFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_269 = (|| -> PyResult<_> {
@@ -2861,6 +3015,16 @@ fn lambda_function_scheduled_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "input",
+            "input_details",
+            "resource",
+            "task_credentials",
+            "timeout_in_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionScheduledEventDetails::builder();
     if let Some(value) = dict_value(values, "resource")? {
         let converted_273 = (|| -> PyResult<_> {
@@ -2967,6 +3131,7 @@ fn lambda_function_start_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionStartFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_283 = (|| -> PyResult<_> {
@@ -3015,6 +3180,7 @@ fn lambda_function_succeeded_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output", "output_details"])?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionSucceededEventDetails::builder();
     if let Some(value) = dict_value(values, "output")? {
         let converted_287 = (|| -> PyResult<_> {
@@ -3067,6 +3233,7 @@ fn lambda_function_timed_out_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::LambdaFunctionTimedOutEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_291 = (|| -> PyResult<_> {
@@ -3115,6 +3282,7 @@ fn log_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LogDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cloud_watch_logs_log_group"])?;
     let mut builder = aws_sdk_sfn::types::LogDestination::builder();
     if let Some(value) = dict_value(values, "cloud_watch_logs_log_group")? {
         let converted_295 = (|| -> PyResult<_> {
@@ -3151,6 +3319,10 @@ fn logging_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::LoggingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["destinations", "include_execution_data", "level"],
+    )?;
     let mut builder = aws_sdk_sfn::types::LoggingConfiguration::builder();
     if let Some(value) = dict_value(values, "level")? {
         let converted_297 = (|| -> PyResult<_> {
@@ -3252,6 +3424,7 @@ fn map_iteration_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapIterationEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index", "name"])?;
     let mut builder = aws_sdk_sfn::types::MapIterationEventDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_310 = (|| -> PyResult<_> {
@@ -3296,6 +3469,21 @@ fn map_run_execution_counts_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunExecutionCounts> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aborted",
+            "failed",
+            "failures_not_redrivable",
+            "pending",
+            "pending_redrive",
+            "results_written",
+            "running",
+            "succeeded",
+            "timed_out",
+            "total",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::MapRunExecutionCounts::builder();
     if let Some(value) = dict_value(values, "pending")? {
         let converted_314 = (|| -> PyResult<_> {
@@ -3452,6 +3640,7 @@ fn map_run_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::MapRunFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_334 = (|| -> PyResult<_> {
@@ -3500,6 +3689,21 @@ fn map_run_item_counts_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunItemCounts> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aborted",
+            "failed",
+            "failures_not_redrivable",
+            "pending",
+            "pending_redrive",
+            "results_written",
+            "running",
+            "succeeded",
+            "timed_out",
+            "total",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::MapRunItemCounts::builder();
     if let Some(value) = dict_value(values, "pending")? {
         let converted_338 = (|| -> PyResult<_> {
@@ -3656,6 +3860,16 @@ fn map_run_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "execution_arn",
+            "map_run_arn",
+            "start_date",
+            "state_machine_arn",
+            "stop_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::MapRunListItem::builder();
     if let Some(value) = dict_value(values, "execution_arn")? {
         let converted_358 = (|| -> PyResult<_> {
@@ -3768,6 +3982,7 @@ fn map_run_redriven_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunRedrivenEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["map_run_arn", "redrive_count"])?;
     let mut builder = aws_sdk_sfn::types::MapRunRedrivenEventDetails::builder();
     if let Some(value) = dict_value(values, "map_run_arn")? {
         let converted_370 = (|| -> PyResult<_> {
@@ -3816,6 +4031,7 @@ fn map_run_started_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapRunStartedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["map_run_arn"])?;
     let mut builder = aws_sdk_sfn::types::MapRunStartedEventDetails::builder();
     if let Some(value) = dict_value(values, "map_run_arn")? {
         let converted_374 = (|| -> PyResult<_> {
@@ -3848,6 +4064,7 @@ fn map_state_started_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MapStateStartedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["length"])?;
     let mut builder = aws_sdk_sfn::types::MapStateStartedEventDetails::builder();
     if let Some(value) = dict_value(values, "length")? {
         let converted_376 = (|| -> PyResult<_> {
@@ -3876,6 +4093,7 @@ fn mock_error_output_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::MockErrorOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error"])?;
     let mut builder = aws_sdk_sfn::types::MockErrorOutput::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_378 = (|| -> PyResult<_> {
@@ -3922,6 +4140,10 @@ fn mock_error_output_to_py(
 
 fn mock_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sfn::types::MockInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["error_output", "field_validation_mode", "result"],
+    )?;
     let mut builder = aws_sdk_sfn::types::MockInput::builder();
     if let Some(value) = dict_value(values, "result")? {
         let converted_382 = (|| -> PyResult<_> {
@@ -3993,6 +4215,7 @@ fn routing_configuration_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::RoutingConfigurationListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state_machine_version_arn", "weight"])?;
     let mut builder = aws_sdk_sfn::types::RoutingConfigurationListItem::builder();
     if let Some(value) = dict_value(values, "state_machine_version_arn")? {
         let converted_389 = (|| -> PyResult<_> {
@@ -4044,6 +4267,7 @@ fn state_entered_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::StateEnteredEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["input", "input_details", "name"])?;
     let mut builder = aws_sdk_sfn::types::StateEnteredEventDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_393 = (|| -> PyResult<_> {
@@ -4110,6 +4334,16 @@ fn state_exited_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::StateExitedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "assigned_variables",
+            "assigned_variables_details",
+            "name",
+            "output",
+            "output_details",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::StateExitedEventDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_399 = (|| -> PyResult<_> {
@@ -4244,6 +4478,7 @@ fn state_machine_alias_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::StateMachineAliasListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_date", "state_machine_alias_arn"])?;
     let mut builder = aws_sdk_sfn::types::StateMachineAliasListItem::builder();
     if let Some(value) = dict_value(values, "state_machine_alias_arn")? {
         let converted_419 = (|| -> PyResult<_> {
@@ -4305,6 +4540,10 @@ fn state_machine_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::StateMachineListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["creation_date", "name", "state_machine_arn", "type"],
+    )?;
     let mut builder = aws_sdk_sfn::types::StateMachineListItem::builder();
     if let Some(value) = dict_value(values, "state_machine_arn")? {
         let converted_424 = (|| -> PyResult<_> {
@@ -4397,6 +4636,7 @@ fn state_machine_version_list_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::StateMachineVersionListItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_date", "state_machine_version_arn"])?;
     let mut builder = aws_sdk_sfn::types::StateMachineVersionListItem::builder();
     if let Some(value) = dict_value(values, "state_machine_version_arn")? {
         let converted_434 = (|| -> PyResult<_> {
@@ -4458,6 +4698,7 @@ fn state_machine_version_list_item_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sfn::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_sfn::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_439 = (|| -> PyResult<_> {
@@ -4503,6 +4744,7 @@ fn task_credentials_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskCredentials> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["role_arn"])?;
     let mut builder = aws_sdk_sfn::types::TaskCredentials::builder();
     if let Some(value) = dict_value(values, "role_arn")? {
         let converted_443 = (|| -> PyResult<_> {
@@ -4535,6 +4777,7 @@ fn task_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error", "resource", "resource_type"])?;
     let mut builder = aws_sdk_sfn::types::TaskFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_445 = (|| -> PyResult<_> {
@@ -4612,6 +4855,18 @@ fn task_scheduled_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskScheduledEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "heartbeat_in_seconds",
+            "parameters",
+            "region",
+            "resource",
+            "resource_type",
+            "task_credentials",
+            "timeout_in_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::TaskScheduledEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_453 = (|| -> PyResult<_> {
@@ -4746,6 +5001,7 @@ fn task_start_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskStartFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error", "resource", "resource_type"])?;
     let mut builder = aws_sdk_sfn::types::TaskStartFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_467 = (|| -> PyResult<_> {
@@ -4823,6 +5079,7 @@ fn task_started_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskStartedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource", "resource_type"])?;
     let mut builder = aws_sdk_sfn::types::TaskStartedEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_475 = (|| -> PyResult<_> {
@@ -4868,6 +5125,7 @@ fn task_submit_failed_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskSubmitFailedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error", "resource", "resource_type"])?;
     let mut builder = aws_sdk_sfn::types::TaskSubmitFailedEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_479 = (|| -> PyResult<_> {
@@ -4945,6 +5203,10 @@ fn task_submitted_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskSubmittedEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["output", "output_details", "resource", "resource_type"],
+    )?;
     let mut builder = aws_sdk_sfn::types::TaskSubmittedEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_487 = (|| -> PyResult<_> {
@@ -5026,6 +5288,10 @@ fn task_succeeded_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskSucceededEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["output", "output_details", "resource", "resource_type"],
+    )?;
     let mut builder = aws_sdk_sfn::types::TaskSucceededEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_495 = (|| -> PyResult<_> {
@@ -5107,6 +5373,7 @@ fn task_timed_out_event_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TaskTimedOutEventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "error", "resource", "resource_type"])?;
     let mut builder = aws_sdk_sfn::types::TaskTimedOutEventDetails::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_503 = (|| -> PyResult<_> {
@@ -5184,6 +5451,15 @@ fn test_state_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TestStateConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error_caused_by_state",
+            "map_item_reader_data",
+            "map_iteration_failure_count",
+            "retrier_retry_count",
+        ],
+    )?;
     let mut builder = aws_sdk_sfn::types::TestStateConfiguration::builder();
     if let Some(value) = dict_value(values, "retrier_retry_count")? {
         let converted_511 = (|| -> PyResult<_> {
@@ -5280,6 +5556,7 @@ fn tracing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::TracingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled"])?;
     let mut builder = aws_sdk_sfn::types::TracingConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_519 = (|| -> PyResult<_> {
@@ -5308,6 +5585,7 @@ fn validate_state_machine_definition_diagnostic_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "location", "message", "severity"])?;
     let mut builder = aws_sdk_sfn::types::ValidateStateMachineDefinitionDiagnostic::builder();
     if let Some(value) = dict_value(values, "severity")? {
         let converted_521 = (|| -> PyResult<_> {

@@ -96,6 +96,99 @@ def test_map_positions_redact_arbitrary_keys(
 
 
 @service("dynamodb")
+@pytest.mark.parametrize(
+    ("key", "value", "category"),
+    [
+        ("ProjectionExpression", "CANARY", "unknown_field"),
+        ("projection_expresion", "CANARY", "unknown_field"),
+        ("CANARY", None, "unknown_field"),
+        ("CANARY" * 10000, None, "unknown_field"),
+        ("CANARY\ud800", None, "unknown_field"),
+        (7, "CANARY", "type"),
+        (b"CANARY", None, "type"),
+    ],
+)
+def test_unknown_structure_fields_are_rejected_without_exposing_keys(
+    key: object, value: object, category: str,
+) -> None:
+    fields = {"keys": [{"pk": {"s": "CANARY"}}], key: value}
+    error = conversion_failure(
+        "dynamodb", "DynamoDBClient", "batch_get_item",
+        {"request_items": {"CANARY": fields}},
+        TypeError, "request_items[value#0][key#1]", category,
+    )
+    context = get_conversion_context(error)
+    assert context is not None and context.operation == "BatchGetItem"
+    assert not context.truncated
+
+
+@service("dynamodb")
+def test_unknown_field_check_does_not_format_keys_or_convert_values() -> None:
+    class PrivateKey:
+        def __repr__(self) -> str:
+            pytest.fail("unknown keys must not be formatted")
+
+        def __str__(self) -> str:
+            pytest.fail("unknown keys must not be formatted")
+
+    def keys() -> Iterator[object]:
+        pytest.fail("validate structure keys before converting member values")
+        yield None
+
+    conversion_failure(
+        "dynamodb", "DynamoDBClient", "batch_get_item",
+        {"request_items": {"CANARY": {"keys": keys(), PrivateKey(): "CANARY"}}},
+        TypeError, "request_items[value#0][key#1]", "type",
+    )
+
+
+@service("bedrock-runtime")
+@pytest.mark.parametrize(
+    ("parameters", "path"),
+    [
+        ({"messages": [{"role": "user", "content": [{"text": "ok"}], "CANARY": 7}]},
+         "messages[0][key#2]"),
+        ({"messages": [{"role": "user", "content": [{"tool_use": {
+            "tool_use_id": "example", "name": "example", "input": {}, "CANARY": None,
+        }}]}]}, "messages[0].content[0].tool_use[key#3]"),
+        ({"tool_config": {"tools": [], "tool_choice": {"auto": {"CANARY": None}}}},
+         "tool_config.tool_choice.auto[key#0]"),
+    ],
+)
+def test_unknown_fields_in_sequences_unions_and_empty_structures(
+    parameters: dict[str, object], path: str,
+) -> None:
+    conversion_failure(
+        "bedrock-runtime", "BedrockRuntimeClient", "converse",
+        {"model_id": "CANARY", **parameters}, TypeError, path, "unknown_field",
+    )
+
+
+@service("s3")
+def test_unknown_field_in_keyword_structure_is_rejected() -> None:
+    conversion_failure(
+        "s3", "S3Client", "put_bucket_lifecycle_configuration",
+        {"bucket": "CANARY", "lifecycle_configuration": {
+            "rules": [{"filter": {"and": {"prefix": "ok", "CANARY": None}}}],
+        }},
+        TypeError, "lifecycle_configuration.rules[0].filter.and[key#1]", "unknown_field",
+    )
+
+
+@service("bedrock-runtime")
+def test_documents_maps_and_empty_structures_remain_valid() -> None:
+    client = native_client("bedrock-runtime", "BedrockRuntimeClient")
+    with pytest.raises(RuntimeError, match="no running event loop") as caught:
+        getattr(client, "converse")({
+            "model_id": "example",
+            "tool_config": {"tools": [], "tool_choice": {"auto": {}}},
+            "additional_model_request_fields": {"arbitrary": {"nested": [None, 1]}},
+            "request_metadata": {"arbitrary": "value"},
+        })
+    assert get_conversion_context(caught.value) is None
+
+
+@service("dynamodb")
 def test_overflow_keeps_its_exception_class() -> None:
     conversion_failure(
         "dynamodb", "DynamoDBClient", "list_tables", {"limit": 2**100},

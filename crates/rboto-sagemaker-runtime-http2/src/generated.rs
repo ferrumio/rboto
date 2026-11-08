@@ -16,6 +16,7 @@ fn request_payload_part_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sagemakerruntimehttp2::types::RequestPayloadPart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bytes", "completion_state", "data_type", "p"])?;
     let mut builder = aws_sdk_sagemakerruntimehttp2::types::RequestPayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -154,6 +155,7 @@ fn response_payload_part_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sagemakerruntimehttp2::types::ResponsePayloadPart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bytes", "completion_state", "data_type", "p"])?;
     let mut builder = aws_sdk_sagemakerruntimehttp2::types::ResponsePayloadPart::builder();
     if let Some(value) = dict_value(values, "bytes")? {
         let converted_12 = (|| -> PyResult<_> {

@@ -14,6 +14,7 @@ fn batch_result_error_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::BatchResultErrorEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "id", "message", "sender_fault"])?;
     let mut builder = aws_sdk_sqs::types::BatchResultErrorEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -84,6 +85,7 @@ fn change_message_visibility_batch_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::ChangeMessageVisibilityBatchRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "receipt_handle", "visibility_timeout"])?;
     let mut builder = aws_sdk_sqs::types::ChangeMessageVisibilityBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_9 = (|| -> PyResult<_> {
@@ -149,6 +151,7 @@ fn change_message_visibility_batch_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id"])?;
     let mut builder = aws_sdk_sqs::types::ChangeMessageVisibilityBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_15 = (|| -> PyResult<_> {
@@ -179,6 +182,7 @@ fn delete_message_batch_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::DeleteMessageBatchRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "receipt_handle"])?;
     let mut builder = aws_sdk_sqs::types::DeleteMessageBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_17 = (|| -> PyResult<_> {
@@ -224,6 +228,7 @@ fn delete_message_batch_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::DeleteMessageBatchResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id"])?;
     let mut builder = aws_sdk_sqs::types::DeleteMessageBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_21 = (|| -> PyResult<_> {
@@ -254,6 +259,20 @@ fn list_message_move_tasks_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::ListMessageMoveTasksResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approximate_number_of_messages_moved",
+            "approximate_number_of_messages_to_move",
+            "destination_arn",
+            "failure_reason",
+            "max_number_of_messages_per_second",
+            "source_arn",
+            "started_timestamp",
+            "status",
+            "task_handle",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::ListMessageMoveTasksResultEntry::builder();
     if let Some(value) = dict_value(values, "task_handle")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -426,6 +445,18 @@ fn list_message_move_tasks_result_entry_to_py(
 
 fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sqs::types::Message> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attributes",
+            "body",
+            "md5_of_body",
+            "md5_of_message_attributes",
+            "message_attributes",
+            "message_id",
+            "receipt_handle",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::Message::builder();
     if let Some(value) = dict_value(values, "message_id")? {
         let converted_41 = (|| -> PyResult<_> {
@@ -618,6 +649,16 @@ fn message_attribute_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::MessageAttributeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "binary_list_values",
+            "binary_value",
+            "data_type",
+            "string_list_values",
+            "string_value",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::MessageAttributeValue::builder();
     if let Some(value) = dict_value(values, "string_value")? {
         let converted_76 = (|| -> PyResult<_> {
@@ -770,6 +811,16 @@ fn message_system_attribute_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::MessageSystemAttributeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "binary_list_values",
+            "binary_value",
+            "data_type",
+            "string_list_values",
+            "string_value",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::MessageSystemAttributeValue::builder();
     if let Some(value) = dict_value(values, "string_value")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -922,6 +973,18 @@ fn send_message_batch_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::SendMessageBatchRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "delay_seconds",
+            "id",
+            "message_attributes",
+            "message_body",
+            "message_deduplication_id",
+            "message_group_id",
+            "message_system_attributes",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::SendMessageBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_124 = (|| -> PyResult<_> {
@@ -1124,6 +1187,17 @@ fn send_message_batch_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sqs::types::SendMessageBatchResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "id",
+            "md5_of_message_attributes",
+            "md5_of_message_body",
+            "md5_of_message_system_attributes",
+            "message_id",
+            "sequence_number",
+        ],
+    )?;
     let mut builder = aws_sdk_sqs::types::SendMessageBatchResultEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_159 = (|| -> PyResult<_> {

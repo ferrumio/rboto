@@ -14,6 +14,7 @@ use pyo3::exceptions::PyValueError;
 
 fn abac_status_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::AbacStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::AbacStatus::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -48,6 +49,7 @@ fn abort_incomplete_multipart_upload_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AbortIncompleteMultipartUpload> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["days_after_initiation"])?;
     let mut builder = aws_sdk_s3::types::AbortIncompleteMultipartUpload::builder();
     if let Some(value) = dict_value(values, "days_after_initiation")? {
         let converted_4 = (|| -> PyResult<_> {
@@ -84,6 +86,7 @@ fn accelerate_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AccelerateConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::AccelerateConfiguration::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_6 = (|| -> PyResult<_> {
@@ -122,6 +125,7 @@ fn access_control_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AccessControlPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["grants", "owner"])?;
     let mut builder = aws_sdk_s3::types::AccessControlPolicy::builder();
     if let Some(value) = dict_value(values, "grants")? {
         let converted_9 = (|| -> PyResult<_> {
@@ -198,6 +202,7 @@ fn access_control_translation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AccessControlTranslation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["owner"])?;
     let mut builder = aws_sdk_s3::types::AccessControlTranslation::builder();
     if let Some(value) = dict_value(values, "owner")? {
         let converted_19 = (|| -> PyResult<_> {
@@ -233,6 +238,7 @@ fn analytics_and_operator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnalyticsAndOperator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["prefix", "tags"])?;
     let mut builder = aws_sdk_s3::types::AnalyticsAndOperator::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_22 = (|| -> PyResult<_> {
@@ -309,6 +315,7 @@ fn analytics_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnalyticsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter", "id", "storage_class_analysis"])?;
     let mut builder = aws_sdk_s3::types::AnalyticsConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_32 = (|| -> PyResult<_> {
@@ -379,6 +386,7 @@ fn analytics_export_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnalyticsExportDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket_destination"])?;
     let mut builder = aws_sdk_s3::types::AnalyticsExportDestination::builder();
     if let Some(value) = dict_value(values, "s3_bucket_destination")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -494,6 +502,10 @@ fn analytics_s3_bucket_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnalyticsS3BucketDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bucket", "bucket_account_id", "format", "prefix"],
+    )?;
     let mut builder = aws_sdk_s3::types::AnalyticsS3BucketDestination::builder();
     if let Some(value) = dict_value(values, "format")? {
         let converted_46 = (|| -> PyResult<_> {
@@ -578,6 +590,17 @@ fn annotation_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnnotationEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "annotation_name",
+            "checksum_algorithm",
+            "e_tag",
+            "last_modified",
+            "replication_status",
+            "size",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::AnnotationEntry::builder();
     if let Some(value) = dict_value(values, "annotation_name")? {
         let converted_55 = (|| -> PyResult<_> {
@@ -739,6 +762,10 @@ fn annotation_table_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnnotationTableConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["configuration_state", "encryption_configuration", "role"],
+    )?;
     let mut builder = aws_sdk_s3::types::AnnotationTableConfiguration::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_76 = (|| -> PyResult<_> {
@@ -811,6 +838,17 @@ fn annotation_table_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnnotationTableConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "configuration_state",
+            "error",
+            "role",
+            "table_arn",
+            "table_name",
+            "table_status",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::AnnotationTableConfigurationResult::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_83 = (|| -> PyResult<_> {
@@ -931,6 +969,10 @@ fn annotation_table_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::AnnotationTableConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["configuration_state", "encryption_configuration", "role"],
+    )?;
     let mut builder = aws_sdk_s3::types::AnnotationTableConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_96 = (|| -> PyResult<_> {
@@ -1003,6 +1045,7 @@ fn blocked_encryption_types_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::BlockedEncryptionTypes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_type"])?;
     let mut builder = aws_sdk_s3::types::BlockedEncryptionTypes::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
         let converted_103 = (|| -> PyResult<_> {
@@ -1067,6 +1110,10 @@ fn blocked_encryption_types_to_py(
 
 fn bucket_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Bucket> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bucket_arn", "bucket_region", "creation_date", "name"],
+    )?;
     let mut builder = aws_sdk_s3::types::Bucket::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_112 = (|| -> PyResult<_> {
@@ -1151,6 +1198,7 @@ fn bucket_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Bucket) -> PyResult<P
 
 fn bucket_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::BucketInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_redundancy", "type"])?;
     let mut builder = aws_sdk_s3::types::BucketInfo::builder();
     if let Some(value) = dict_value(values, "data_redundancy")? {
         let converted_121 = (|| -> PyResult<_> {
@@ -1206,6 +1254,7 @@ fn bucket_lifecycle_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::BucketLifecycleConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules"])?;
     let mut builder = aws_sdk_s3::types::BucketLifecycleConfiguration::builder();
     if let Some(value) = dict_value(values, "rules")? {
         let converted_127 = (|| -> PyResult<_> {
@@ -1264,6 +1313,7 @@ fn bucket_logging_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::BucketLoggingStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["logging_enabled"])?;
     let mut builder = aws_sdk_s3::types::BucketLoggingStatus::builder();
     if let Some(value) = dict_value(values, "logging_enabled")? {
         let converted_135 = (|| -> PyResult<_> {
@@ -1298,6 +1348,22 @@ fn bucket_logging_status_to_py(
 
 fn checksum_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Checksum> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_type",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::Checksum::builder();
     if let Some(value) = dict_value(values, "checksum_crc32")? {
         let converted_137 = (|| -> PyResult<_> {
@@ -1518,6 +1584,7 @@ fn checksum_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Checksum) -> PyResu
 
 fn common_prefix_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::CommonPrefix> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["prefix"])?;
     let mut builder = aws_sdk_s3::types::CommonPrefix::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_160 = (|| -> PyResult<_> {
@@ -1550,6 +1617,7 @@ fn completed_multipart_upload_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::CompletedMultipartUpload> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["parts"])?;
     let mut builder = aws_sdk_s3::types::CompletedMultipartUpload::builder();
     if let Some(value) = dict_value(values, "parts")? {
         let converted_162 = (|| -> PyResult<_> {
@@ -1608,6 +1676,23 @@ fn completed_multipart_upload_to_py(
 
 fn completed_part_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::CompletedPart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+            "e_tag",
+            "part_number",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CompletedPart::builder();
     if let Some(value) = dict_value(values, "e_tag")? {
         let converted_170 = (|| -> PyResult<_> {
@@ -1842,6 +1927,10 @@ fn completed_part_to_py(
 
 fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Condition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["http_error_code_returned_equals", "key_prefix_equals"],
+    )?;
     let mut builder = aws_sdk_s3::types::Condition::builder();
     if let Some(value) = dict_value(values, "http_error_code_returned_equals")? {
         let converted_194 = (|| -> PyResult<_> {
@@ -1895,6 +1984,7 @@ fn continuation_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ContinuationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::ContinuationEvent::builder();
     Ok(builder.build())
 }
@@ -1911,6 +2001,24 @@ fn copy_object_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::CopyObjectResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_type",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+            "e_tag",
+            "last_modified",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CopyObjectResult::builder();
     if let Some(value) = dict_value(values, "e_tag")? {
         let converted_198 = (|| -> PyResult<_> {
@@ -2177,6 +2285,23 @@ fn copy_part_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::CopyPartResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+            "e_tag",
+            "last_modified",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CopyPartResult::builder();
     if let Some(value) = dict_value(values, "e_tag")? {
         let converted_226 = (|| -> PyResult<_> {
@@ -2422,6 +2547,7 @@ fn cors_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::CorsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cors_rules"])?;
     let mut builder = aws_sdk_s3::types::CorsConfiguration::builder();
     if let Some(value) = dict_value(values, "cors_rules")? {
         let converted_251 = (|| -> PyResult<_> {
@@ -2482,6 +2608,17 @@ fn cors_configuration_to_py(
 
 fn cors_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::CorsRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_headers",
+            "allowed_methods",
+            "allowed_origins",
+            "expose_headers",
+            "id",
+            "max_age_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CorsRule::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_259 = (|| -> PyResult<_> {
@@ -2707,6 +2844,10 @@ fn create_bucket_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::CreateBucketConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bucket", "location", "location_constraint", "tags"],
+    )?;
     let mut builder = aws_sdk_s3::types::CreateBucketConfiguration::builder();
     if let Some(value) = dict_value(values, "location_constraint")? {
         let converted_295 = (|| -> PyResult<_> {
@@ -2827,6 +2968,18 @@ fn create_bucket_configuration_to_py(
 
 fn csv_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::CsvInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allow_quoted_record_delimiter",
+            "comments",
+            "field_delimiter",
+            "file_header_info",
+            "quote_character",
+            "quote_escape_character",
+            "record_delimiter",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CsvInput::builder();
     if let Some(value) = dict_value(values, "file_header_info")? {
         let converted_310 = (|| -> PyResult<_> {
@@ -2975,6 +3128,16 @@ fn csv_input_to_py(py: Python<'_>, value: &aws_sdk_s3::types::CsvInput) -> PyRes
 
 fn csv_output_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::CsvOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "field_delimiter",
+            "quote_character",
+            "quote_escape_character",
+            "quote_fields",
+            "record_delimiter",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::CsvOutput::builder();
     if let Some(value) = dict_value(values, "quote_fields")? {
         let converted_325 = (|| -> PyResult<_> {
@@ -3089,6 +3252,7 @@ fn default_retention_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::DefaultRetention> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["days", "default_event_hold", "mode", "years"])?;
     let mut builder = aws_sdk_s3::types::DefaultRetention::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_336 = (|| -> PyResult<_> {
@@ -3177,6 +3341,7 @@ fn default_retention_to_py(
 
 fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Delete> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["objects", "quiet"])?;
     let mut builder = aws_sdk_s3::types::Delete::builder();
     if let Some(value) = dict_value(values, "objects")? {
         let converted_345 = (|| -> PyResult<_> {
@@ -3248,6 +3413,10 @@ fn delete_marker_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::DeleteMarkerEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["is_latest", "key", "last_modified", "owner", "version_id"],
+    )?;
     let mut builder = aws_sdk_s3::types::DeleteMarkerEntry::builder();
     if let Some(value) = dict_value(values, "owner")? {
         let converted_355 = (|| -> PyResult<_> {
@@ -3353,6 +3522,7 @@ fn delete_marker_replication_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::DeleteMarkerReplication> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::DeleteMarkerReplication::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_366 = (|| -> PyResult<_> {
@@ -3389,6 +3559,15 @@ fn delete_marker_replication_to_py(
 
 fn deleted_object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::DeletedObject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "delete_marker",
+            "delete_marker_version_id",
+            "key",
+            "version_id",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::DeletedObject::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_369 = (|| -> PyResult<_> {
@@ -3471,6 +3650,18 @@ fn deleted_object_to_py(
 
 fn destination_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_control_translation",
+            "account",
+            "bucket",
+            "encryption_configuration",
+            "metrics",
+            "replication_time",
+            "storage_class",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::Destination::builder();
     if let Some(value) = dict_value(values, "bucket")? {
         let converted_377 = (|| -> PyResult<_> {
@@ -3618,6 +3809,10 @@ fn destination_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::DestinationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["table_bucket_arn", "table_bucket_type", "table_namespace"],
+    )?;
     let mut builder = aws_sdk_s3::types::DestinationResult::builder();
     if let Some(value) = dict_value(values, "table_bucket_type")? {
         let converted_392 = (|| -> PyResult<_> {
@@ -3694,6 +3889,7 @@ fn destination_result_to_py(
 
 fn encryption_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Encryption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_type", "kms_context", "kms_key_id"])?;
     let mut builder = aws_sdk_s3::types::Encryption::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
         let converted_399 = (|| -> PyResult<_> {
@@ -3759,6 +3955,7 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["replica_kms_key_id"])?;
     let mut builder = aws_sdk_s3::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "replica_kms_key_id")? {
         let converted_406 = (|| -> PyResult<_> {
@@ -3793,6 +3990,7 @@ fn encryption_configuration_to_py(
 
 fn end_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::EndEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::EndEvent::builder();
     Ok(builder.build())
 }
@@ -3804,6 +4002,7 @@ fn end_event_to_py(py: Python<'_>, value: &aws_sdk_s3::types::EndEvent) -> PyRes
 
 fn error_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Error> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "key", "message", "version_id"])?;
     let mut builder = aws_sdk_s3::types::Error::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_408 = (|| -> PyResult<_> {
@@ -3879,6 +4078,7 @@ fn error_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Error) -> PyResult<Py<
 
 fn error_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ErrorDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message"])?;
     let mut builder = aws_sdk_s3::types::ErrorDetails::builder();
     if let Some(value) = dict_value(values, "error_code")? {
         let converted_416 = (|| -> PyResult<_> {
@@ -3925,6 +4125,7 @@ fn error_details_to_py(
 
 fn error_document_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ErrorDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key"])?;
     let mut builder = aws_sdk_s3::types::ErrorDocument::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_420 = (|| -> PyResult<_> {
@@ -3955,6 +4156,7 @@ fn event_bridge_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::EventBridgeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::EventBridgeConfiguration::builder();
     Ok(builder.build())
 }
@@ -3971,6 +4173,7 @@ fn event_hold_duration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::EventHoldDuration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["days", "years"])?;
     let mut builder = aws_sdk_s3::types::EventHoldDuration::builder();
     if let Some(value) = dict_value(values, "days")? {
         let converted_422 = (|| -> PyResult<_> {
@@ -4019,6 +4222,7 @@ fn existing_object_replication_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ExistingObjectReplication> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::ExistingObjectReplication::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_426 = (|| -> PyResult<_> {
@@ -4053,6 +4257,7 @@ fn existing_object_replication_to_py(
 
 fn filter_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::FilterRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_s3::types::FilterRule::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_429 = (|| -> PyResult<_> {
@@ -4103,6 +4308,7 @@ fn get_bucket_metadata_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::GetBucketMetadataConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["metadata_configuration_result"])?;
     let mut builder = aws_sdk_s3::types::GetBucketMetadataConfigurationResult::builder();
     if let Some(value) = dict_value(values, "metadata_configuration_result")? {
         let converted_434 = (|| -> PyResult<_> {
@@ -4139,6 +4345,10 @@ fn get_bucket_metadata_table_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::GetBucketMetadataTableConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["error", "metadata_table_configuration_result", "status"],
+    )?;
     let mut builder = aws_sdk_s3::types::GetBucketMetadataTableConfigurationResult::builder();
     if let Some(value) = dict_value(values, "metadata_table_configuration_result")? {
         let converted_436 = (|| -> PyResult<_> {
@@ -4209,6 +4419,17 @@ fn get_object_attributes_parts_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::GetObjectAttributesParts> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "is_truncated",
+            "max_parts",
+            "next_part_number_marker",
+            "part_number_marker",
+            "parts",
+            "total_parts_count",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::GetObjectAttributesParts::builder();
     if let Some(value) = dict_value(values, "total_parts_count")? {
         let converted_442 = (|| -> PyResult<_> {
@@ -4361,6 +4582,7 @@ fn glacier_job_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::GlacierJobParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tier"])?;
     let mut builder = aws_sdk_s3::types::GlacierJobParameters::builder();
     if let Some(value) = dict_value(values, "tier")? {
         let converted_460 = (|| -> PyResult<_> {
@@ -4390,6 +4612,7 @@ fn glacier_job_parameters_to_py(
 
 fn grant_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Grant> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["grantee", "permission"])?;
     let mut builder = aws_sdk_s3::types::Grant::builder();
     if let Some(value) = dict_value(values, "grantee")? {
         let converted_463 = (|| -> PyResult<_> {
@@ -4442,6 +4665,10 @@ fn grant_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Grant) -> PyResult<Py<
 
 fn grantee_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Grantee> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["display_name", "email_address", "id", "type", "uri"],
+    )?;
     let mut builder = aws_sdk_s3::types::Grantee::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_468 = (|| -> PyResult<_> {
@@ -4532,6 +4759,7 @@ fn grantee_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Grantee) -> PyResult
 
 fn index_document_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::IndexDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["suffix"])?;
     let mut builder = aws_sdk_s3::types::IndexDocument::builder();
     if let Some(value) = dict_value(values, "suffix")? {
         let converted_479 = (|| -> PyResult<_> {
@@ -4560,6 +4788,7 @@ fn index_document_to_py(
 
 fn initiator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Initiator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["display_name", "id"])?;
     let mut builder = aws_sdk_s3::types::Initiator::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_481 = (|| -> PyResult<_> {
@@ -4605,6 +4834,7 @@ fn input_serialization_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InputSerialization> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["compression_type", "csv", "json", "parquet"])?;
     let mut builder = aws_sdk_s3::types::InputSerialization::builder();
     if let Some(value) = dict_value(values, "csv")? {
         let converted_485 = (|| -> PyResult<_> {
@@ -4702,6 +4932,7 @@ fn intelligent_tiering_and_operator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::IntelligentTieringAndOperator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["prefix", "tags"])?;
     let mut builder = aws_sdk_s3::types::IntelligentTieringAndOperator::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_494 = (|| -> PyResult<_> {
@@ -4778,6 +5009,7 @@ fn intelligent_tiering_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::IntelligentTieringConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter", "id", "status", "tierings"])?;
     let mut builder = aws_sdk_s3::types::IntelligentTieringConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_504 = (|| -> PyResult<_> {
@@ -4889,6 +5121,7 @@ fn intelligent_tiering_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::IntelligentTieringFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["and", "prefix", "tag"])?;
     let mut builder = aws_sdk_s3::types::IntelligentTieringFilter::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_519 = (|| -> PyResult<_> {
@@ -4957,6 +5190,18 @@ fn inventory_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination",
+            "filter",
+            "id",
+            "included_object_versions",
+            "is_enabled",
+            "optional_fields",
+            "schedule",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::InventoryConfiguration::builder();
     if let Some(value) = dict_value(values, "destination")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -5134,6 +5379,7 @@ fn inventory_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket_destination"])?;
     let mut builder = aws_sdk_s3::types::InventoryDestination::builder();
     if let Some(value) = dict_value(values, "s3_bucket_destination")? {
         let converted_547 = (|| -> PyResult<_> {
@@ -5170,6 +5416,7 @@ fn inventory_encryption_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryEncryption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ssekms", "sses3"])?;
     let mut builder = aws_sdk_s3::types::InventoryEncryption::builder();
     if let Some(value) = dict_value(values, "sses3")? {
         let converted_549 = (|| -> PyResult<_> {
@@ -5222,6 +5469,7 @@ fn inventory_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["prefix"])?;
     let mut builder = aws_sdk_s3::types::InventoryFilter::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_553 = (|| -> PyResult<_> {
@@ -5252,6 +5500,10 @@ fn inventory_s3_bucket_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryS3BucketDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account_id", "bucket", "encryption", "format", "prefix"],
+    )?;
     let mut builder = aws_sdk_s3::types::InventoryS3BucketDestination::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_555 = (|| -> PyResult<_> {
@@ -5351,6 +5603,7 @@ fn inventory_schedule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventorySchedule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["frequency"])?;
     let mut builder = aws_sdk_s3::types::InventorySchedule::builder();
     if let Some(value) = dict_value(values, "frequency")? {
         let converted_566 = (|| -> PyResult<_> {
@@ -5387,6 +5640,10 @@ fn inventory_table_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryTableConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["configuration_state", "encryption_configuration"],
+    )?;
     let mut builder = aws_sdk_s3::types::InventoryTableConfiguration::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_569 = (|| -> PyResult<_> {
@@ -5443,6 +5700,16 @@ fn inventory_table_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryTableConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "configuration_state",
+            "error",
+            "table_arn",
+            "table_name",
+            "table_status",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::InventoryTableConfigurationResult::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_574 = (|| -> PyResult<_> {
@@ -5547,6 +5814,10 @@ fn inventory_table_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::InventoryTableConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["configuration_state", "encryption_configuration"],
+    )?;
     let mut builder = aws_sdk_s3::types::InventoryTableConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "configuration_state")? {
         let converted_585 = (|| -> PyResult<_> {
@@ -5603,6 +5874,7 @@ fn journal_table_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::JournalTableConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_configuration", "record_expiration"])?;
     let mut builder = aws_sdk_s3::types::JournalTableConfiguration::builder();
     if let Some(value) = dict_value(values, "record_expiration")? {
         let converted_590 = (|| -> PyResult<_> {
@@ -5659,6 +5931,16 @@ fn journal_table_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::JournalTableConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error",
+            "record_expiration",
+            "table_arn",
+            "table_name",
+            "table_status",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::JournalTableConfigurationResult::builder();
     if let Some(value) = dict_value(values, "table_status")? {
         let converted_594 = (|| -> PyResult<_> {
@@ -5763,6 +6045,7 @@ fn journal_table_configuration_updates_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::JournalTableConfigurationUpdates> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["record_expiration"])?;
     let mut builder = aws_sdk_s3::types::JournalTableConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "record_expiration")? {
         let converted_604 = (|| -> PyResult<_> {
@@ -5797,6 +6080,7 @@ fn journal_table_configuration_updates_to_py(
 
 fn json_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::JsonInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_s3::types::JsonInput::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_606 = (|| -> PyResult<_> {
@@ -5829,6 +6113,7 @@ fn json_input_to_py(py: Python<'_>, value: &aws_sdk_s3::types::JsonInput) -> PyR
 
 fn json_output_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::JsonOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["record_delimiter"])?;
     let mut builder = aws_sdk_s3::types::JsonOutput::builder();
     if let Some(value) = dict_value(values, "record_delimiter")? {
         let converted_609 = (|| -> PyResult<_> {
@@ -5862,6 +6147,7 @@ fn lambda_function_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::LambdaFunctionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["events", "filter", "id", "lambda_function_arn"])?;
     let mut builder = aws_sdk_s3::types::LambdaFunctionConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_611 = (|| -> PyResult<_> {
@@ -5980,6 +6266,7 @@ fn lifecycle_expiration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::LifecycleExpiration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["date", "days", "expired_object_delete_marker"])?;
     let mut builder = aws_sdk_s3::types::LifecycleExpiration::builder();
     if let Some(value) = dict_value(values, "date")? {
         let converted_626 = (|| -> PyResult<_> {
@@ -6055,6 +6342,20 @@ fn lifecycle_expiration_to_py(
 
 fn lifecycle_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::LifecycleRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "abort_incomplete_multipart_upload",
+            "expiration",
+            "filter",
+            "id",
+            "noncurrent_version_expiration",
+            "noncurrent_version_transitions",
+            "prefix",
+            "status",
+            "transitions",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::LifecycleRule::builder();
     if let Some(value) = dict_value(values, "expiration")? {
         let converted_633 = (|| -> PyResult<_> {
@@ -6298,6 +6599,15 @@ fn lifecycle_rule_and_operator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::LifecycleRuleAndOperator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "object_size_greater_than",
+            "object_size_less_than",
+            "prefix",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::LifecycleRuleAndOperator::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_664 = (|| -> PyResult<_> {
@@ -6414,6 +6724,16 @@ fn lifecycle_rule_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::LifecycleRuleFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "and",
+            "object_size_greater_than",
+            "object_size_less_than",
+            "prefix",
+            "tag",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::LifecycleRuleFilter::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_678 = (|| -> PyResult<_> {
@@ -6520,6 +6840,7 @@ fn lifecycle_rule_filter_to_py(
 
 fn location_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::LocationInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_s3::types::LocationInfo::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_688 = (|| -> PyResult<_> {
@@ -6573,6 +6894,15 @@ fn logging_enabled_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::LoggingEnabled> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "target_bucket",
+            "target_grants",
+            "target_object_key_format",
+            "target_prefix",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::LoggingEnabled::builder();
     if let Some(value) = dict_value(values, "target_bucket")? {
         let converted_693 = (|| -> PyResult<_> {
@@ -6689,6 +7019,14 @@ fn metadata_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetadataConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "annotation_table_configuration",
+            "inventory_table_configuration",
+            "journal_table_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::MetadataConfiguration::builder();
     if let Some(value) = dict_value(values, "journal_table_configuration")? {
         let converted_707 = (|| -> PyResult<_> {
@@ -6765,6 +7103,15 @@ fn metadata_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetadataConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "annotation_table_configuration_result",
+            "destination_result",
+            "inventory_table_configuration_result",
+            "journal_table_configuration_result",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::MetadataConfigurationResult::builder();
     if let Some(value) = dict_value(values, "destination_result")? {
         let converted_713 = (|| -> PyResult<_> {
@@ -6859,6 +7206,7 @@ fn metadata_configuration_result_to_py(
 
 fn metadata_entry_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::MetadataEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_s3::types::MetadataEntry::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_721 = (|| -> PyResult<_> {
@@ -6907,6 +7255,7 @@ fn metadata_table_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetadataTableConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_tables_destination"])?;
     let mut builder = aws_sdk_s3::types::MetadataTableConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_tables_destination")? {
         let converted_725 = (|| -> PyResult<_> {
@@ -6943,6 +7292,7 @@ fn metadata_table_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetadataTableConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_tables_destination_result"])?;
     let mut builder = aws_sdk_s3::types::MetadataTableConfigurationResult::builder();
     if let Some(value) = dict_value(values, "s3_tables_destination_result")? {
         let converted_727 = (|| -> PyResult<_> {
@@ -6979,6 +7329,7 @@ fn metadata_table_encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetadataTableEncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_key_arn", "sse_algorithm"])?;
     let mut builder = aws_sdk_s3::types::MetadataTableEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "sse_algorithm")? {
         let converted_729 = (|| -> PyResult<_> {
@@ -7028,6 +7379,7 @@ fn metadata_table_encryption_configuration_to_py(
 
 fn metrics_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Metrics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_threshold", "status"])?;
     let mut builder = aws_sdk_s3::types::Metrics::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_734 = (|| -> PyResult<_> {
@@ -7080,6 +7432,7 @@ fn metrics_and_operator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetricsAndOperator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access_point_arn", "prefix", "tags"])?;
     let mut builder = aws_sdk_s3::types::MetricsAndOperator::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_739 = (|| -> PyResult<_> {
@@ -7176,6 +7529,7 @@ fn metrics_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MetricsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter", "id"])?;
     let mut builder = aws_sdk_s3::types::MetricsConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_751 = (|| -> PyResult<_> {
@@ -7323,6 +7677,19 @@ fn multipart_upload_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::MultipartUpload> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_algorithm",
+            "checksum_type",
+            "initiated",
+            "initiator",
+            "key",
+            "owner",
+            "storage_class",
+            "upload_id",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::MultipartUpload::builder();
     if let Some(value) = dict_value(values, "upload_id")? {
         let converted_763 = (|| -> PyResult<_> {
@@ -7495,6 +7862,7 @@ fn noncurrent_version_expiration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::NoncurrentVersionExpiration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["newer_noncurrent_versions", "noncurrent_days"])?;
     let mut builder = aws_sdk_s3::types::NoncurrentVersionExpiration::builder();
     if let Some(value) = dict_value(values, "noncurrent_days")? {
         let converted_783 = (|| -> PyResult<_> {
@@ -7551,6 +7919,14 @@ fn noncurrent_version_transition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::NoncurrentVersionTransition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "newer_noncurrent_versions",
+            "noncurrent_days",
+            "storage_class",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::NoncurrentVersionTransition::builder();
     if let Some(value) = dict_value(values, "noncurrent_days")? {
         let converted_787 = (|| -> PyResult<_> {
@@ -7629,6 +8005,15 @@ fn notification_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::NotificationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "event_bridge_configuration",
+            "lambda_function_configurations",
+            "queue_configurations",
+            "topic_configurations",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::NotificationConfiguration::builder();
     if let Some(value) = dict_value(values, "topic_configurations")? {
         let converted_794 = (|| -> PyResult<_> {
@@ -7809,6 +8194,7 @@ fn notification_configuration_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::NotificationConfigurationFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key"])?;
     let mut builder = aws_sdk_s3::types::NotificationConfigurationFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_820 = (|| -> PyResult<_> {
@@ -7843,6 +8229,20 @@ fn notification_configuration_filter_to_py(
 
 fn object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Object> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_algorithm",
+            "checksum_type",
+            "e_tag",
+            "key",
+            "last_modified",
+            "owner",
+            "restore_status",
+            "size",
+            "storage_class",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::Object::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_822 = (|| -> PyResult<_> {
@@ -8109,6 +8509,10 @@ fn object_identifier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ObjectIdentifier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["e_tag", "key", "last_modified_time", "size", "version_id"],
+    )?;
     let mut builder = aws_sdk_s3::types::ObjectIdentifier::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_852 = (|| -> PyResult<_> {
@@ -8212,6 +8616,7 @@ fn object_lock_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ObjectLockConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["object_lock_enabled", "rule"])?;
     let mut builder = aws_sdk_s3::types::ObjectLockConfiguration::builder();
     if let Some(value) = dict_value(values, "object_lock_enabled")? {
         let converted_863 = (|| -> PyResult<_> {
@@ -8269,6 +8674,7 @@ fn object_lock_legal_hold_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ObjectLockLegalHold> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::ObjectLockLegalHold::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_868 = (|| -> PyResult<_> {
@@ -8307,6 +8713,15 @@ fn object_lock_retention_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ObjectLockRetention> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "event_hold",
+            "event_hold_duration",
+            "mode",
+            "retain_until_date",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::ObjectLockRetention::builder();
     if let Some(value) = dict_value(values, "mode")? {
         let converted_871 = (|| -> PyResult<_> {
@@ -8412,6 +8827,7 @@ fn object_lock_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ObjectLockRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["default_retention"])?;
     let mut builder = aws_sdk_s3::types::ObjectLockRule::builder();
     if let Some(value) = dict_value(values, "default_retention")? {
         let converted_882 = (|| -> PyResult<_> {
@@ -8446,6 +8862,23 @@ fn object_lock_rule_to_py(
 
 fn object_part_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ObjectPart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+            "part_number",
+            "size",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::ObjectPart::builder();
     if let Some(value) = dict_value(values, "part_number")? {
         let converted_884 = (|| -> PyResult<_> {
@@ -8677,6 +9110,22 @@ fn object_part_to_py(py: Python<'_>, value: &aws_sdk_s3::types::ObjectPart) -> P
 
 fn object_version_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ObjectVersion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_algorithm",
+            "checksum_type",
+            "e_tag",
+            "is_latest",
+            "key",
+            "last_modified",
+            "owner",
+            "restore_status",
+            "size",
+            "storage_class",
+            "version_id",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::ObjectVersion::builder();
     if let Some(value) = dict_value(values, "e_tag")? {
         let converted_908 = (|| -> PyResult<_> {
@@ -8927,6 +9376,7 @@ fn output_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::OutputLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3"])?;
     let mut builder = aws_sdk_s3::types::OutputLocation::builder();
     if let Some(value) = dict_value(values, "s3")? {
         let converted_940 = (|| -> PyResult<_> {
@@ -8963,6 +9413,7 @@ fn output_serialization_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::OutputSerialization> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["csv", "json"])?;
     let mut builder = aws_sdk_s3::types::OutputSerialization::builder();
     if let Some(value) = dict_value(values, "csv")? {
         let converted_942 = (|| -> PyResult<_> {
@@ -9017,6 +9468,7 @@ fn output_serialization_to_py(
 
 fn owner_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Owner> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["display_name", "id"])?;
     let mut builder = aws_sdk_s3::types::Owner::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_946 = (|| -> PyResult<_> {
@@ -9062,6 +9514,7 @@ fn ownership_controls_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::OwnershipControls> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules"])?;
     let mut builder = aws_sdk_s3::types::OwnershipControls::builder();
     if let Some(value) = dict_value(values, "rules")? {
         let converted_950 = (|| -> PyResult<_> {
@@ -9120,6 +9573,7 @@ fn ownership_controls_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::OwnershipControlsRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["object_ownership"])?;
     let mut builder = aws_sdk_s3::types::OwnershipControlsRule::builder();
     if let Some(value) = dict_value(values, "object_ownership")? {
         let converted_958 = (|| -> PyResult<_> {
@@ -9153,6 +9607,7 @@ fn ownership_controls_rule_to_py(
 
 fn parquet_input_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ParquetInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::ParquetInput::builder();
     Ok(builder.build())
 }
@@ -9167,6 +9622,25 @@ fn parquet_input_to_py(
 
 fn part_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Part> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "checksum_crc32",
+            "checksum_crc32_c",
+            "checksum_crc64_nvme",
+            "checksum_md5",
+            "checksum_sha1",
+            "checksum_sha256",
+            "checksum_sha512",
+            "checksum_xxhash128",
+            "checksum_xxhash3",
+            "checksum_xxhash64",
+            "e_tag",
+            "last_modified",
+            "part_number",
+            "size",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::Part::builder();
     if let Some(value) = dict_value(values, "part_number")? {
         let converted_961 = (|| -> PyResult<_> {
@@ -9441,6 +9915,7 @@ fn partitioned_prefix_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::PartitionedPrefix> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["partition_date_source"])?;
     let mut builder = aws_sdk_s3::types::PartitionedPrefix::builder();
     if let Some(value) = dict_value(values, "partition_date_source")? {
         let converted_990 = (|| -> PyResult<_> {
@@ -9477,6 +9952,7 @@ fn partitioned_prefix_to_py(
 
 fn policy_status_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::PolicyStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["is_public"])?;
     let mut builder = aws_sdk_s3::types::PolicyStatus::builder();
     if let Some(value) = dict_value(values, "is_public")? {
         let converted_993 = (|| -> PyResult<_> {
@@ -9507,6 +9983,10 @@ fn policy_status_to_py(
 
 fn progress_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Progress> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bytes_processed", "bytes_returned", "bytes_scanned"],
+    )?;
     let mut builder = aws_sdk_s3::types::Progress::builder();
     if let Some(value) = dict_value(values, "bytes_scanned")? {
         let converted_995 = (|| -> PyResult<_> {
@@ -9570,6 +10050,7 @@ fn progress_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Progress) -> PyResu
 
 fn progress_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ProgressEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["details"])?;
     let mut builder = aws_sdk_s3::types::ProgressEvent::builder();
     if let Some(value) = dict_value(values, "details")? {
         let converted_1001 = (|| -> PyResult<_> {
@@ -9606,6 +10087,15 @@ fn public_access_block_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::PublicAccessBlockConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "block_public_acls",
+            "block_public_policy",
+            "ignore_public_acls",
+            "restrict_public_buckets",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::PublicAccessBlockConfiguration::builder();
     if let Some(value) = dict_value(values, "block_public_acls")? {
         let converted_1003 = (|| -> PyResult<_> {
@@ -9702,6 +10192,7 @@ fn queue_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::QueueConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["events", "filter", "id", "queue_arn"])?;
     let mut builder = aws_sdk_s3::types::QueueConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1011 = (|| -> PyResult<_> {
@@ -9810,6 +10301,7 @@ fn record_expiration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::RecordExpiration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["days", "expiration"])?;
     let mut builder = aws_sdk_s3::types::RecordExpiration::builder();
     if let Some(value) = dict_value(values, "expiration")? {
         let converted_1026 = (|| -> PyResult<_> {
@@ -9859,6 +10351,7 @@ fn record_expiration_to_py(
 
 fn records_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::RecordsEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payload"])?;
     let mut builder = aws_sdk_s3::types::RecordsEvent::builder();
     if let Some(value) = dict_value(values, "payload")? {
         let converted_1031 = (|| -> PyResult<_> {
@@ -9890,6 +10383,16 @@ fn records_event_to_py(
 
 fn redirect_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Redirect> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "host_name",
+            "http_redirect_code",
+            "protocol",
+            "replace_key_prefix_with",
+            "replace_key_with",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::Redirect::builder();
     if let Some(value) = dict_value(values, "host_name")? {
         let converted_1034 = (|| -> PyResult<_> {
@@ -10000,6 +10503,7 @@ fn redirect_all_requests_to_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::RedirectAllRequestsTo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["host_name", "protocol"])?;
     let mut builder = aws_sdk_s3::types::RedirectAllRequestsTo::builder();
     if let Some(value) = dict_value(values, "host_name")? {
         let converted_1045 = (|| -> PyResult<_> {
@@ -10051,6 +10555,7 @@ fn replica_modifications_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicaModifications> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::ReplicaModifications::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1050 = (|| -> PyResult<_> {
@@ -10087,6 +10592,7 @@ fn replication_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["role", "rules"])?;
     let mut builder = aws_sdk_s3::types::ReplicationConfiguration::builder();
     if let Some(value) = dict_value(values, "role")? {
         let converted_1053 = (|| -> PyResult<_> {
@@ -10157,6 +10663,20 @@ fn replication_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "delete_marker_replication",
+            "destination",
+            "existing_object_replication",
+            "filter",
+            "id",
+            "prefix",
+            "priority",
+            "source_selection_criteria",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::ReplicationRule::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1063 = (|| -> PyResult<_> {
@@ -10341,6 +10861,7 @@ fn replication_rule_and_operator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationRuleAndOperator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["prefix", "tags"])?;
     let mut builder = aws_sdk_s3::types::ReplicationRuleAndOperator::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_1082 = (|| -> PyResult<_> {
@@ -10417,6 +10938,7 @@ fn replication_rule_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationRuleFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["and", "prefix", "tag"])?;
     let mut builder = aws_sdk_s3::types::ReplicationRuleFilter::builder();
     if let Some(value) = dict_value(values, "prefix")? {
         let converted_1092 = (|| -> PyResult<_> {
@@ -10485,6 +11007,7 @@ fn replication_time_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationTime> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status", "time"])?;
     let mut builder = aws_sdk_s3::types::ReplicationTime::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1098 = (|| -> PyResult<_> {
@@ -10541,6 +11064,7 @@ fn replication_time_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ReplicationTimeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["minutes"])?;
     let mut builder = aws_sdk_s3::types::ReplicationTimeValue::builder();
     if let Some(value) = dict_value(values, "minutes")? {
         let converted_1103 = (|| -> PyResult<_> {
@@ -10573,6 +11097,7 @@ fn request_payment_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::RequestPaymentConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["payer"])?;
     let mut builder = aws_sdk_s3::types::RequestPaymentConfiguration::builder();
     if let Some(value) = dict_value(values, "payer")? {
         let converted_1105 = (|| -> PyResult<_> {
@@ -10604,6 +11129,7 @@ fn request_progress_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::RequestProgress> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled"])?;
     let mut builder = aws_sdk_s3::types::RequestProgress::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_1108 = (|| -> PyResult<_> {
@@ -10636,6 +11162,18 @@ fn restore_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::RestoreRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "days",
+            "description",
+            "glacier_job_parameters",
+            "output_location",
+            "select_parameters",
+            "tier",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::RestoreRequest::builder();
     if let Some(value) = dict_value(values, "days")? {
         let converted_1110 = (|| -> PyResult<_> {
@@ -10781,6 +11319,7 @@ fn restore_request_to_py(
 
 fn restore_status_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::RestoreStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["is_restore_in_progress", "restore_expiry_date"])?;
     let mut builder = aws_sdk_s3::types::RestoreStatus::builder();
     if let Some(value) = dict_value(values, "is_restore_in_progress")? {
         let converted_1126 = (|| -> PyResult<_> {
@@ -10840,6 +11379,7 @@ fn restore_status_to_py(
 
 fn routing_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::RoutingRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition", "redirect"])?;
     let mut builder = aws_sdk_s3::types::RoutingRule::builder();
     if let Some(value) = dict_value(values, "condition")? {
         let converted_1131 = (|| -> PyResult<_> {
@@ -10894,6 +11434,7 @@ fn routing_rule_to_py(
 
 fn s3_key_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::S3KeyFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter_rules"])?;
     let mut builder = aws_sdk_s3::types::S3KeyFilter::builder();
     if let Some(value) = dict_value(values, "filter_rules")? {
         let converted_1135 = (|| -> PyResult<_> {
@@ -10956,6 +11497,19 @@ fn s3_key_filter_to_py(
 
 fn s3_location_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::S3Location> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_control_list",
+            "bucket_name",
+            "canned_acl",
+            "encryption",
+            "prefix",
+            "storage_class",
+            "tagging",
+            "user_metadata",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::S3Location::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_1143 = (|| -> PyResult<_> {
@@ -11176,6 +11730,7 @@ fn s3_tables_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::S3TablesDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["table_bucket_arn", "table_name"])?;
     let mut builder = aws_sdk_s3::types::S3TablesDestination::builder();
     if let Some(value) = dict_value(values, "table_bucket_arn")? {
         let converted_1173 = (|| -> PyResult<_> {
@@ -11228,6 +11783,15 @@ fn s3_tables_destination_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::S3TablesDestinationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "table_arn",
+            "table_bucket_arn",
+            "table_name",
+            "table_namespace",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::S3TablesDestinationResult::builder();
     if let Some(value) = dict_value(values, "table_bucket_arn")? {
         let converted_1177 = (|| -> PyResult<_> {
@@ -11308,6 +11872,7 @@ fn s3_tables_destination_result_to_py(
 
 fn scan_range_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::ScanRange> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end", "start"])?;
     let mut builder = aws_sdk_s3::types::ScanRange::builder();
     if let Some(value) = dict_value(values, "start")? {
         let converted_1185 = (|| -> PyResult<_> {
@@ -11486,6 +12051,15 @@ fn select_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::SelectParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expression",
+            "expression_type",
+            "input_serialization",
+            "output_serialization",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::SelectParameters::builder();
     if let Some(value) = dict_value(values, "input_serialization")? {
         let converted_1199 = (|| -> PyResult<_> {
@@ -11579,6 +12153,7 @@ fn server_side_encryption_by_default_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ServerSideEncryptionByDefault> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_master_key_id", "sse_algorithm"])?;
     let mut builder = aws_sdk_s3::types::ServerSideEncryptionByDefault::builder();
     if let Some(value) = dict_value(values, "sse_algorithm")? {
         let converted_1208 = (|| -> PyResult<_> {
@@ -11635,6 +12210,7 @@ fn server_side_encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ServerSideEncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rules"])?;
     let mut builder = aws_sdk_s3::types::ServerSideEncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "rules")? {
         let converted_1213 = (|| -> PyResult<_> {
@@ -11693,6 +12269,14 @@ fn server_side_encryption_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::ServerSideEncryptionRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "apply_server_side_encryption_by_default",
+            "blocked_encryption_types",
+            "bucket_key_enabled",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::ServerSideEncryptionRule::builder();
     if let Some(value) = dict_value(values, "apply_server_side_encryption_by_default")? {
         let converted_1221 = (|| -> PyResult<_> {
@@ -11769,6 +12353,15 @@ fn session_credentials_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::SessionCredentials> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_id",
+            "expiration",
+            "secret_access_key",
+            "session_token",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::SessionCredentials::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_1227 = (|| -> PyResult<_> {
@@ -11854,6 +12447,7 @@ fn session_credentials_to_py(
 
 fn simple_prefix_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::SimplePrefix> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::SimplePrefix::builder();
     Ok(builder.build())
 }
@@ -11870,6 +12464,10 @@ fn source_selection_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::SourceSelectionCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["replica_modifications", "sse_kms_encrypted_objects"],
+    )?;
     let mut builder = aws_sdk_s3::types::SourceSelectionCriteria::builder();
     if let Some(value) = dict_value(values, "sse_kms_encrypted_objects")? {
         let converted_1236 = (|| -> PyResult<_> {
@@ -11926,6 +12524,7 @@ fn sse_kms_encrypted_objects_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::SseKmsEncryptedObjects> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_s3::types::SseKmsEncryptedObjects::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1240 = (|| -> PyResult<_> {
@@ -11960,6 +12559,7 @@ fn sse_kms_encrypted_objects_to_py(
 
 fn ssekms_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Ssekms> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key_id"])?;
     let mut builder = aws_sdk_s3::types::Ssekms::builder();
     if let Some(value) = dict_value(values, "key_id")? {
         let converted_1243 = (|| -> PyResult<_> {
@@ -11987,6 +12587,7 @@ fn ssekms_encryption_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::SsekmsEncryption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bucket_key_enabled", "kms_key_arn"])?;
     let mut builder = aws_sdk_s3::types::SsekmsEncryption::builder();
     if let Some(value) = dict_value(values, "kms_key_arn")? {
         let converted_1245 = (|| -> PyResult<_> {
@@ -12035,6 +12636,7 @@ fn ssekms_encryption_to_py(
 
 fn sses3_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Sses3> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_s3::types::Sses3::builder();
     Ok(builder.build())
 }
@@ -12046,6 +12648,10 @@ fn sses3_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Sses3) -> PyResult<Py<
 
 fn stats_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Stats> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bytes_processed", "bytes_returned", "bytes_scanned"],
+    )?;
     let mut builder = aws_sdk_s3::types::Stats::builder();
     if let Some(value) = dict_value(values, "bytes_scanned")? {
         let converted_1249 = (|| -> PyResult<_> {
@@ -12109,6 +12715,7 @@ fn stats_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Stats) -> PyResult<Py<
 
 fn stats_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::StatsEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["details"])?;
     let mut builder = aws_sdk_s3::types::StatsEvent::builder();
     if let Some(value) = dict_value(values, "details")? {
         let converted_1255 = (|| -> PyResult<_> {
@@ -12142,6 +12749,7 @@ fn storage_class_analysis_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::StorageClassAnalysis> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_export"])?;
     let mut builder = aws_sdk_s3::types::StorageClassAnalysis::builder();
     if let Some(value) = dict_value(values, "data_export")? {
         let converted_1257 = (|| -> PyResult<_> {
@@ -12178,6 +12786,7 @@ fn storage_class_analysis_data_export_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::StorageClassAnalysisDataExport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination", "output_schema_version"])?;
     let mut builder = aws_sdk_s3::types::StorageClassAnalysisDataExport::builder();
     if let Some(value) = dict_value(values, "output_schema_version")? {
         let converted_1259 = (|| -> PyResult<_> {
@@ -12236,6 +12845,7 @@ fn storage_class_analysis_data_export_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_s3::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1264 = (|| -> PyResult<_> {
@@ -12273,6 +12883,7 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Tag) -> PyResult<Py<PyAn
 
 fn tagging_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Tagging> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tag_set"])?;
     let mut builder = aws_sdk_s3::types::Tagging::builder();
     if let Some(value) = dict_value(values, "tag_set")? {
         let converted_1268 = (|| -> PyResult<_> {
@@ -12326,6 +12937,7 @@ fn tagging_to_py(py: Python<'_>, value: &aws_sdk_s3::types::Tagging) -> PyResult
 
 fn target_grant_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::TargetGrant> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["grantee", "permission"])?;
     let mut builder = aws_sdk_s3::types::TargetGrant::builder();
     if let Some(value) = dict_value(values, "grantee")? {
         let converted_1276 = (|| -> PyResult<_> {
@@ -12384,6 +12996,7 @@ fn target_object_key_format_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::TargetObjectKeyFormat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["partitioned_prefix", "simple_prefix"])?;
     let mut builder = aws_sdk_s3::types::TargetObjectKeyFormat::builder();
     if let Some(value) = dict_value(values, "simple_prefix")? {
         let converted_1281 = (|| -> PyResult<_> {
@@ -12438,6 +13051,7 @@ fn target_object_key_format_to_py(
 
 fn tiering_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Tiering> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access_tier", "days"])?;
     let mut builder = aws_sdk_s3::types::Tiering::builder();
     if let Some(value) = dict_value(values, "days")? {
         let converted_1285 = (|| -> PyResult<_> {
@@ -12483,6 +13097,7 @@ fn topic_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::TopicConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["events", "filter", "id", "topic_arn"])?;
     let mut builder = aws_sdk_s3::types::TopicConfiguration::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1290 = (|| -> PyResult<_> {
@@ -12589,6 +13204,7 @@ fn topic_configuration_to_py(
 
 fn transition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_s3::types::Transition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["date", "days", "storage_class"])?;
     let mut builder = aws_sdk_s3::types::Transition::builder();
     if let Some(value) = dict_value(values, "date")? {
         let converted_1305 = (|| -> PyResult<_> {
@@ -12665,6 +13281,7 @@ fn versioning_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::VersioningConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mfa_delete", "status"])?;
     let mut builder = aws_sdk_s3::types::VersioningConfiguration::builder();
     if let Some(value) = dict_value(values, "mfa_delete")? {
         let converted_1313 = (|| -> PyResult<_> {
@@ -12724,6 +13341,15 @@ fn website_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_s3::types::WebsiteConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error_document",
+            "index_document",
+            "redirect_all_requests_to",
+            "routing_rules",
+        ],
+    )?;
     let mut builder = aws_sdk_s3::types::WebsiteConfiguration::builder();
     if let Some(value) = dict_value(values, "error_document")? {
         let converted_1319 = (|| -> PyResult<_> {

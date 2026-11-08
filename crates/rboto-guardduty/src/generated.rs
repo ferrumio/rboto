@@ -16,6 +16,10 @@ fn access_control_list_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccessControlList> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["allows_public_read_access", "allows_public_write_access"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AccessControlList::builder();
     if let Some(value) = dict_value(values, "allows_public_read_access")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -70,6 +74,7 @@ fn access_control_list_to_py(
 
 fn access_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::AccessKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["principal_id", "user_name", "user_type"])?;
     let mut builder = aws_sdk_guardduty::types::AccessKey::builder();
     if let Some(value) = dict_value(values, "principal_id")? {
         let converted_5 = (|| -> PyResult<_> {
@@ -134,6 +139,10 @@ fn access_key_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccessKeyDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["access_key_id", "principal_id", "user_name", "user_type"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AccessKeyDetails::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_11 = (|| -> PyResult<_> {
@@ -212,6 +221,7 @@ fn access_key_details_to_py(
 
 fn account_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Account> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "uid"])?;
     let mut builder = aws_sdk_guardduty::types::Account::builder();
     if let Some(value) = dict_value(values, "uid")? {
         let converted_19 = (|| -> PyResult<_> {
@@ -257,6 +267,7 @@ fn account_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccountDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "email"])?;
     let mut builder = aws_sdk_guardduty::types::AccountDetail::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -305,6 +316,7 @@ fn account_free_trial_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccountFreeTrialInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "data_sources", "features"])?;
     let mut builder = aws_sdk_guardduty::types::AccountFreeTrialInfo::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_27 = (|| -> PyResult<_> {
@@ -402,6 +414,7 @@ fn account_level_permissions_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccountLevelPermissions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["block_public_access"])?;
     let mut builder = aws_sdk_guardduty::types::AccountLevelPermissions::builder();
     if let Some(value) = dict_value(values, "block_public_access")? {
         let converted_39 = (|| -> PyResult<_> {
@@ -438,6 +451,10 @@ fn account_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AccountStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account_id", "last_generated_at", "total_findings"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AccountStatistics::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_41 = (|| -> PyResult<_> {
@@ -509,6 +526,21 @@ fn account_statistics_to_py(
 
 fn action_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Action> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action_type",
+            "aws_api_call_action",
+            "dns_request_action",
+            "kubernetes_api_call_action",
+            "kubernetes_permission_checked_details",
+            "kubernetes_role_binding_details",
+            "kubernetes_role_details",
+            "network_connection_action",
+            "port_probe_action",
+            "rds_login_attempt_action",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Action::builder();
     if let Some(value) = dict_value(values, "action_type")? {
         let converted_48 = (|| -> PyResult<_> {
@@ -716,6 +748,7 @@ fn action_to_py(py: Python<'_>, value: &aws_sdk_guardduty::types::Action) -> PyR
 
 fn activity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Activity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api", "type"])?;
     let mut builder = aws_sdk_guardduty::types::Activity::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_68 = (|| -> PyResult<_> {
@@ -767,6 +800,7 @@ fn activity_to_py(
 
 fn actor_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Actor> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "process", "session", "user"])?;
     let mut builder = aws_sdk_guardduty::types::Actor::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_73 = (|| -> PyResult<_> {
@@ -852,6 +886,7 @@ fn actor_process_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ActorProcess> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "path", "sha256"])?;
     let mut builder = aws_sdk_guardduty::types::ActorProcess::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_81 = (|| -> PyResult<_> {
@@ -916,6 +951,7 @@ fn additional_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AdditionalInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["device_name", "version_id"])?;
     let mut builder = aws_sdk_guardduty::types::AdditionalInfo::builder();
     if let Some(value) = dict_value(values, "version_id")? {
         let converted_87 = (|| -> PyResult<_> {
@@ -964,6 +1000,7 @@ fn addon_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AddonDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["addon_status", "addon_version"])?;
     let mut builder = aws_sdk_guardduty::types::AddonDetails::builder();
     if let Some(value) = dict_value(values, "addon_version")? {
         let converted_91 = (|| -> PyResult<_> {
@@ -1012,6 +1049,7 @@ fn admin_account_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AdminAccount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["admin_account_id", "admin_status"])?;
     let mut builder = aws_sdk_guardduty::types::AdminAccount::builder();
     if let Some(value) = dict_value(values, "admin_account_id")? {
         let converted_95 = (|| -> PyResult<_> {
@@ -1069,6 +1107,15 @@ fn administrator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Administrator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "invitation_id",
+            "invited_at",
+            "relationship_status",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Administrator::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -1153,6 +1200,7 @@ fn agent_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AgentDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["version"])?;
     let mut builder = aws_sdk_guardduty::types::AgentDetails::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_108 = (|| -> PyResult<_> {
@@ -1183,6 +1231,7 @@ fn agent_details_to_py(
 
 fn anomaly_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Anomaly> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["profiles", "unusual"])?;
     let mut builder = aws_sdk_guardduty::types::Anomaly::builder();
     if let Some(value) = dict_value(values, "profiles")? {
         let converted_110 = (|| -> PyResult<_> {
@@ -1321,6 +1370,10 @@ fn anomaly_object_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AnomalyObject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["observations", "profile_subtype", "profile_type"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AnomalyObject::builder();
     if let Some(value) = dict_value(values, "profile_type")? {
         let converted_140 = (|| -> PyResult<_> {
@@ -1401,6 +1454,7 @@ fn anomaly_unusual_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AnomalyUnusual> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["behavior"])?;
     let mut builder = aws_sdk_guardduty::types::AnomalyUnusual::builder();
     if let Some(value) = dict_value(values, "behavior")? {
         let converted_148 = (|| -> PyResult<_> {
@@ -1491,6 +1545,7 @@ fn anomaly_unusual_to_py(
 
 fn api_call_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::ApiCall> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "operation", "service", "user_agent"])?;
     let mut builder = aws_sdk_guardduty::types::ApiCall::builder();
     if let Some(value) = dict_value(values, "operation")? {
         let converted_170 = (|| -> PyResult<_> {
@@ -1571,6 +1626,19 @@ fn association_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AssociationDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "arn",
+            "association_id",
+            "created_at",
+            "expires_at",
+            "mode",
+            "rule_id",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AssociationDetail::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_178 = (|| -> PyResult<_> {
@@ -1748,6 +1816,18 @@ fn association_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AssociationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "association_id",
+            "created_at",
+            "expires_at",
+            "mode",
+            "rule_id",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AssociationSummary::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_198 = (|| -> PyResult<_> {
@@ -1909,6 +1989,7 @@ fn autonomous_system_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AutonomousSystem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "number"])?;
     let mut builder = aws_sdk_guardduty::types::AutonomousSystem::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_216 = (|| -> PyResult<_> {
@@ -1957,6 +2038,7 @@ fn autoscaling_auto_scaling_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AutoscalingAutoScalingGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids"])?;
     let mut builder = aws_sdk_guardduty::types::AutoscalingAutoScalingGroup::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_220 = (|| -> PyResult<_> {
@@ -2017,6 +2099,20 @@ fn aws_api_call_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::AwsApiCallAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "affected_resources",
+            "api",
+            "caller_type",
+            "domain_details",
+            "error_code",
+            "remote_account_details",
+            "remote_ip_details",
+            "service_name",
+            "user_agent",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::AwsApiCallAction::builder();
     if let Some(value) = dict_value(values, "api")? {
         let converted_228 = (|| -> PyResult<_> {
@@ -2221,6 +2317,7 @@ fn bedrock_guardrail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BedrockGuardrail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "version"])?;
     let mut builder = aws_sdk_guardduty::types::BedrockGuardrail::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_256 = (|| -> PyResult<_> {
@@ -2269,6 +2366,17 @@ fn bedrock_guardrail_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BedrockGuardrailDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "content_policy_filters",
+            "guardrail_action",
+            "guardrail_arn",
+            "guardrail_source",
+            "guardrail_version",
+            "guardrails",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::BedrockGuardrailDetails::builder();
     if let Some(value) = dict_value(values, "guardrail_arn")? {
         let converted_260 = (|| -> PyResult<_> {
@@ -2461,6 +2569,10 @@ fn bedrock_guardrail_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BedrockGuardrailResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["guardrail_action", "guardrail_source", "version"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::BedrockGuardrailResource::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_286 = (|| -> PyResult<_> {
@@ -2537,6 +2649,15 @@ fn block_public_access_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BlockPublicAccess> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "block_public_acls",
+            "block_public_policy",
+            "ignore_public_acls",
+            "restrict_public_buckets",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::BlockPublicAccess::builder();
     if let Some(value) = dict_value(values, "ignore_public_acls")? {
         let converted_294 = (|| -> PyResult<_> {
@@ -2633,6 +2754,14 @@ fn bucket_level_permissions_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BucketLevelPermissions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_control_list",
+            "block_public_access",
+            "bucket_policy",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::BucketLevelPermissions::builder();
     if let Some(value) = dict_value(values, "access_control_list")? {
         let converted_302 = (|| -> PyResult<_> {
@@ -2709,6 +2838,10 @@ fn bucket_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::BucketPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["allows_public_read_access", "allows_public_write_access"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::BucketPolicy::builder();
     if let Some(value) = dict_value(values, "allows_public_read_access")? {
         let converted_308 = (|| -> PyResult<_> {
@@ -2763,6 +2896,7 @@ fn bucket_policy_to_py(
 
 fn city_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::City> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["city_name"])?;
     let mut builder = aws_sdk_guardduty::types::City::builder();
     if let Some(value) = dict_value(values, "city_name")? {
         let converted_312 = (|| -> PyResult<_> {
@@ -2792,6 +2926,7 @@ fn cloud_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CloudDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account", "provider", "region"])?;
     let mut builder = aws_sdk_guardduty::types::CloudDetails::builder();
     if let Some(value) = dict_value(values, "provider")? {
         let converted_314 = (|| -> PyResult<_> {
@@ -2862,6 +2997,7 @@ fn cloud_trail_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CloudTrailConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::CloudTrailConfigurationResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_321 = (|| -> PyResult<_> {
@@ -2900,6 +3036,7 @@ fn cloudformation_stack_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CloudformationStack> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids"])?;
     let mut builder = aws_sdk_guardduty::types::CloudformationStack::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_324 = (|| -> PyResult<_> {
@@ -2958,6 +3095,25 @@ fn cloudformation_stack_to_py(
 
 fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Condition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "eq",
+            "equals",
+            "greater_than",
+            "greater_than_or_equal",
+            "gt",
+            "gte",
+            "less_than",
+            "less_than_or_equal",
+            "lt",
+            "lte",
+            "matches",
+            "neq",
+            "not_equals",
+            "not_matches",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Condition::builder();
     if let Some(value) = dict_value(values, "eq")? {
         let converted_332 = (|| -> PyResult<_> {
@@ -3356,6 +3512,18 @@ fn condition_to_py(
 
 fn container_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Container> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "container_runtime",
+            "id",
+            "image",
+            "image_prefix",
+            "name",
+            "security_context",
+            "volume_mounts",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Container::builder();
     if let Some(value) = dict_value(values, "container_runtime")? {
         let converted_396 = (|| -> PyResult<_> {
@@ -3524,6 +3692,7 @@ fn container_finding_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ContainerFindingResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["image", "image_uid"])?;
     let mut builder = aws_sdk_guardduty::types::ContainerFindingResource::builder();
     if let Some(value) = dict_value(values, "image")? {
         let converted_416 = (|| -> PyResult<_> {
@@ -3572,6 +3741,13 @@ fn container_instance_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ContainerInstanceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "compatible_container_instances",
+            "covered_container_instances",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ContainerInstanceDetails::builder();
     if let Some(value) = dict_value(values, "covered_container_instances")? {
         let converted_420 = (|| -> PyResult<_> {
@@ -3628,6 +3804,7 @@ fn content_policy_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ContentPolicyFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "confidence", "type"])?;
     let mut builder = aws_sdk_guardduty::types::ContentPolicyFilter::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_424 = (|| -> PyResult<_> {
@@ -3710,6 +3887,7 @@ fn continuous_scan_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ContinuousScanDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end_time", "start_time"])?;
     let mut builder = aws_sdk_guardduty::types::ContinuousScanDetails::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_433 = (|| -> PyResult<_> {
@@ -3772,6 +3950,7 @@ fn continuous_scan_details_to_py(
 
 fn country_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Country> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["country_code", "country_name"])?;
     let mut builder = aws_sdk_guardduty::types::Country::builder();
     if let Some(value) = dict_value(values, "country_code")? {
         let converted_439 = (|| -> PyResult<_> {
@@ -3817,6 +3996,16 @@ fn coverage_ec2_instance_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageEc2InstanceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "agent_details",
+            "cluster_arn",
+            "instance_id",
+            "instance_type",
+            "management_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageEc2InstanceDetails::builder();
     if let Some(value) = dict_value(values, "instance_id")? {
         let converted_443 = (|| -> PyResult<_> {
@@ -3923,6 +4112,14 @@ fn coverage_ecs_cluster_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageEcsClusterDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cluster_name",
+            "container_instance_details",
+            "fargate_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageEcsClusterDetails::builder();
     if let Some(value) = dict_value(values, "cluster_name")? {
         let converted_454 = (|| -> PyResult<_> {
@@ -3995,6 +4192,16 @@ fn coverage_eks_cluster_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageEksClusterDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "addon_details",
+            "cluster_name",
+            "compatible_nodes",
+            "covered_nodes",
+            "management_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageEksClusterDetails::builder();
     if let Some(value) = dict_value(values, "cluster_name")? {
         let converted_460 = (|| -> PyResult<_> {
@@ -4105,6 +4312,7 @@ fn coverage_filter_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageFilterCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["equals", "not_equals"])?;
     let mut builder = aws_sdk_guardduty::types::CoverageFilterCondition::builder();
     if let Some(value) = dict_value(values, "equals")? {
         let converted_471 = (|| -> PyResult<_> {
@@ -4205,6 +4413,7 @@ fn coverage_filter_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageFilterCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter_criterion"])?;
     let mut builder = aws_sdk_guardduty::types::CoverageFilterCriteria::builder();
     if let Some(value) = dict_value(values, "filter_criterion")? {
         let converted_487 = (|| -> PyResult<_> {
@@ -4269,6 +4478,7 @@ fn coverage_filter_criterion_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageFilterCriterion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["criterion_key", "filter_condition"])?;
     let mut builder = aws_sdk_guardduty::types::CoverageFilterCriterion::builder();
     if let Some(value) = dict_value(values, "criterion_key")? {
         let converted_495 = (|| -> PyResult<_> {
@@ -4327,6 +4537,18 @@ fn coverage_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "coverage_status",
+            "detector_id",
+            "issue",
+            "resource_details",
+            "resource_id",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageResource::builder();
     if let Some(value) = dict_value(values, "resource_id")? {
         let converted_500 = (|| -> PyResult<_> {
@@ -4474,6 +4696,15 @@ fn coverage_resource_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageResourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ec2_instance_details",
+            "ecs_cluster_details",
+            "eks_cluster_details",
+            "resource_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageResourceDetails::builder();
     if let Some(value) = dict_value(values, "eks_cluster_details")? {
         let converted_516 = (|| -> PyResult<_> {
@@ -4572,6 +4803,7 @@ fn coverage_sort_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageSortCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "order_by"])?;
     let mut builder = aws_sdk_guardduty::types::CoverageSortCriteria::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -4631,6 +4863,10 @@ fn coverage_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CoverageStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["count_by_coverage_status", "count_by_resource_type"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::CoverageStatistics::builder();
     if let Some(value) = dict_value(values, "count_by_resource_type")? {
         let converted_531 = (|| -> PyResult<_> {
@@ -4755,6 +4991,7 @@ fn create_protected_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CreateProtectedResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket"])?;
     let mut builder = aws_sdk_guardduty::types::CreateProtectedResource::builder();
     if let Some(value) = dict_value(values, "s3_bucket")? {
         let converted_557 = (|| -> PyResult<_> {
@@ -4791,6 +5028,7 @@ fn create_s3_bucket_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::CreateS3BucketResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bucket_name", "object_prefixes"])?;
     let mut builder = aws_sdk_guardduty::types::CreateS3BucketResource::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_559 = (|| -> PyResult<_> {
@@ -4867,6 +5105,7 @@ fn data_source_configurations_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DataSourceConfigurations> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kubernetes", "malware_protection", "s3_logs"])?;
     let mut builder = aws_sdk_guardduty::types::DataSourceConfigurations::builder();
     if let Some(value) = dict_value(values, "s3_logs")? {
         let converted_569 = (|| -> PyResult<_> {
@@ -4943,6 +5182,17 @@ fn data_source_configurations_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DataSourceConfigurationsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_trail",
+            "dns_logs",
+            "flow_logs",
+            "kubernetes",
+            "malware_protection",
+            "s3_logs",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DataSourceConfigurationsResult::builder();
     if let Some(value) = dict_value(values, "cloud_trail")? {
         let converted_575 = (|| -> PyResult<_> {
@@ -5079,6 +5329,7 @@ fn data_source_free_trial_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DataSourceFreeTrial> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["free_trial_days_remaining"])?;
     let mut builder = aws_sdk_guardduty::types::DataSourceFreeTrial::builder();
     if let Some(value) = dict_value(values, "free_trial_days_remaining")? {
         let converted_587 = (|| -> PyResult<_> {
@@ -5115,6 +5366,17 @@ fn data_sources_free_trial_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DataSourcesFreeTrial> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_trail",
+            "dns_logs",
+            "flow_logs",
+            "kubernetes",
+            "malware_protection",
+            "s3_logs",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DataSourcesFreeTrial::builder();
     if let Some(value) = dict_value(values, "cloud_trail")? {
         let converted_589 = (|| -> PyResult<_> {
@@ -5251,6 +5513,10 @@ fn date_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DateStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["date", "last_generated_at", "severity", "total_findings"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DateStatistics::builder();
     if let Some(value) = dict_value(values, "date")? {
         let converted_601 = (|| -> PyResult<_> {
@@ -5349,6 +5615,7 @@ fn default_server_side_encryption_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DefaultServerSideEncryption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_type", "kms_master_key_arn"])?;
     let mut builder = aws_sdk_guardduty::types::DefaultServerSideEncryption::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
         let converted_611 = (|| -> PyResult<_> {
@@ -5405,6 +5672,7 @@ fn destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination_id", "destination_type", "status"])?;
     let mut builder = aws_sdk_guardduty::types::Destination::builder();
     if let Some(value) = dict_value(values, "destination_id")? {
         let converted_615 = (|| -> PyResult<_> {
@@ -5481,6 +5749,10 @@ fn destination_properties_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DestinationProperties> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["destination_arn", "expected_bucket_owner", "kms_key_arn"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DestinationProperties::builder();
     if let Some(value) = dict_value(values, "destination_arn")? {
         let converted_623 = (|| -> PyResult<_> {
@@ -5551,6 +5823,7 @@ fn destination_properties_to_py(
 
 fn detection_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Detection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["anomaly", "sequence"])?;
     let mut builder = aws_sdk_guardduty::types::Detection::builder();
     if let Some(value) = dict_value(values, "anomaly")? {
         let converted_629 = (|| -> PyResult<_> {
@@ -5607,6 +5880,7 @@ fn detection_rule_ec2_requirements_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleEc2Requirements> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["min_agent_version"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleEc2Requirements::builder();
     if let Some(value) = dict_value(values, "min_agent_version")? {
         let converted_633 = (|| -> PyResult<_> {
@@ -5643,6 +5917,7 @@ fn detection_rule_ecs_fargate_requirements_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleEcsFargateRequirements> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["min_agent_version"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleEcsFargateRequirements::builder();
     if let Some(value) = dict_value(values, "min_agent_version")? {
         let converted_635 = (|| -> PyResult<_> {
@@ -5679,6 +5954,7 @@ fn detection_rule_eks_requirements_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleEksRequirements> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["min_agent_version"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleEksRequirements::builder();
     if let Some(value) = dict_value(values, "min_agent_version")? {
         let converted_637 = (|| -> PyResult<_> {
@@ -5715,6 +5991,7 @@ fn detection_rule_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition", "name", "values"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleFilter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_639 = (|| -> PyResult<_> {
@@ -5816,6 +6093,20 @@ fn detection_rule_org_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleOrgConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "exclude_account_ids",
+            "expires_at",
+            "include_account_ids",
+            "mode",
+            "rule_id",
+            "status",
+            "status_reason",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleOrgConfiguration::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
         let converted_653 = (|| -> PyResult<_> {
@@ -6072,6 +6363,18 @@ fn detection_rule_org_configuration_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleOrgConfigurationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "expires_at",
+            "mode",
+            "rule_id",
+            "status",
+            "status_reason",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleOrgConfigurationSummary::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
         let converted_688 = (|| -> PyResult<_> {
@@ -6240,6 +6543,7 @@ fn detection_rule_runtime_monitoring_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleRuntimeMonitoringDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["platforms"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleRuntimeMonitoringDetails::builder();
     if let Some(value) = dict_value(values, "platforms")? {
         let converted_707 = (|| -> PyResult<_> {
@@ -6276,6 +6580,7 @@ fn detection_rule_runtime_platforms_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectionRuleRuntimePlatforms> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2", "ecs_fargate", "eks"])?;
     let mut builder = aws_sdk_guardduty::types::DetectionRuleRuntimePlatforms::builder();
     if let Some(value) = dict_value(values, "eks")? {
         let converted_709 = (|| -> PyResult<_> {
@@ -6352,6 +6657,7 @@ fn detector_additional_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectorAdditionalConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "status"])?;
     let mut builder = aws_sdk_guardduty::types::DetectorAdditionalConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_715 = (|| -> PyResult<_> {
@@ -6413,6 +6719,7 @@ fn detector_additional_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectorAdditionalConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["managed_by", "name", "status", "updated_at"])?;
     let mut builder = aws_sdk_guardduty::types::DetectorAdditionalConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_721 = (|| -> PyResult<_> {
@@ -6520,6 +6827,7 @@ fn detector_feature_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectorFeatureConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_configuration", "name", "status"])?;
     let mut builder = aws_sdk_guardduty::types::DetectorFeatureConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_733 = (|| -> PyResult<_> {
@@ -6628,6 +6936,16 @@ fn detector_feature_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DetectorFeatureConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_configuration",
+            "managed_by",
+            "name",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DetectorFeatureConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_747 = (|| -> PyResult<_> {
@@ -6783,6 +7101,7 @@ fn dns_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DnsLogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::DnsLogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_767 = (|| -> PyResult<_> {
@@ -6821,6 +7140,16 @@ fn dns_request_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DnsRequestAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "blocked",
+            "domain",
+            "domain_with_suffix",
+            "protocol",
+            "vpc_owner_account_id",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::DnsRequestAction::builder();
     if let Some(value) = dict_value(values, "domain")? {
         let converted_770 = (|| -> PyResult<_> {
@@ -6925,6 +7254,7 @@ fn domain_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::DomainDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["domain"])?;
     let mut builder = aws_sdk_guardduty::types::DomainDetails::builder();
     if let Some(value) = dict_value(values, "domain")? {
         let converted_780 = (|| -> PyResult<_> {
@@ -6957,6 +7287,7 @@ fn ebs_snapshot_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EbsSnapshot> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["device_name"])?;
     let mut builder = aws_sdk_guardduty::types::EbsSnapshot::builder();
     if let Some(value) = dict_value(values, "device_name")? {
         let converted_782 = (|| -> PyResult<_> {
@@ -6989,6 +7320,7 @@ fn ebs_snapshot_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EbsSnapshotDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["snapshot_arn"])?;
     let mut builder = aws_sdk_guardduty::types::EbsSnapshotDetails::builder();
     if let Some(value) = dict_value(values, "snapshot_arn")? {
         let converted_784 = (|| -> PyResult<_> {
@@ -7021,6 +7353,10 @@ fn ebs_volume_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EbsVolumeDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["scanned_volume_details", "skipped_volume_details"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EbsVolumeDetails::builder();
     if let Some(value) = dict_value(values, "scanned_volume_details")? {
         let converted_786 = (|| -> PyResult<_> {
@@ -7133,6 +7469,18 @@ fn ebs_volume_scan_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EbsVolumeScanDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "scan_completed_at",
+            "scan_detections",
+            "scan_id",
+            "scan_started_at",
+            "scan_type",
+            "sources",
+            "trigger_finding_id",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EbsVolumeScanDetails::builder();
     if let Some(value) = dict_value(values, "scan_id")? {
         let converted_802 = (|| -> PyResult<_> {
@@ -7316,6 +7664,7 @@ fn ebs_volumes_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EbsVolumesResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reason", "status"])?;
     let mut builder = aws_sdk_guardduty::types::EbsVolumesResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_825 = (|| -> PyResult<_> {
@@ -7368,6 +7717,7 @@ fn ebs_volumes_result_to_py(
 
 fn ec2_image_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Ec2Image> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids"])?;
     let mut builder = aws_sdk_guardduty::types::Ec2Image::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_830 = (|| -> PyResult<_> {
@@ -7428,6 +7778,7 @@ fn ec2_image_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Ec2ImageDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["image_arn"])?;
     let mut builder = aws_sdk_guardduty::types::Ec2ImageDetails::builder();
     if let Some(value) = dict_value(values, "image_arn")? {
         let converted_838 = (|| -> PyResult<_> {
@@ -7460,6 +7811,20 @@ fn ec2_instance_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Ec2Instance> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "availability_zone",
+            "ec2_network_interface_uids",
+            "iam_instance_profile",
+            "image_description",
+            "instance_state",
+            "instance_type",
+            "outpost_arn",
+            "platform",
+            "product_codes",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Ec2Instance::builder();
     if let Some(value) = dict_value(values, "availability_zone")? {
         let converted_840 = (|| -> PyResult<_> {
@@ -7692,6 +8057,7 @@ fn ec2_launch_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Ec2LaunchTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids", "version"])?;
     let mut builder = aws_sdk_guardduty::types::Ec2LaunchTemplate::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_870 = (|| -> PyResult<_> {
@@ -7768,6 +8134,17 @@ fn ec2_network_interface_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Ec2NetworkInterface> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ipv6_addresses",
+            "private_ip_addresses",
+            "public_ip",
+            "security_groups",
+            "sub_net_id",
+            "vpc_id",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Ec2NetworkInterface::builder();
     if let Some(value) = dict_value(values, "ipv6_addresses")? {
         let converted_880 = (|| -> PyResult<_> {
@@ -7970,6 +8347,7 @@ fn ec2_network_interface_to_py(
 
 fn ec2_vpc_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Ec2Vpc> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids"])?;
     let mut builder = aws_sdk_guardduty::types::Ec2Vpc::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_910 = (|| -> PyResult<_> {
@@ -8025,6 +8403,7 @@ fn ec2_vpc_to_py(py: Python<'_>, value: &aws_sdk_guardduty::types::Ec2Vpc) -> Py
 
 fn ecs_cluster_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::EcsCluster> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids", "status"])?;
     let mut builder = aws_sdk_guardduty::types::EcsCluster::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_918 = (|| -> PyResult<_> {
@@ -8107,6 +8486,19 @@ fn ecs_cluster_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EcsClusterDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active_services_count",
+            "arn",
+            "name",
+            "registered_container_instances_count",
+            "running_tasks_count",
+            "status",
+            "tags",
+            "task_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EcsClusterDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_929 = (|| -> PyResult<_> {
@@ -8293,6 +8685,15 @@ fn ecs_cluster_details_to_py(
 
 fn ecs_task_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::EcsTask> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "container_uids",
+            "created_at",
+            "launch_type",
+            "task_definition_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EcsTask::builder();
     if let Some(value) = dict_value(values, "created_at")? {
         let converted_951 = (|| -> PyResult<_> {
@@ -8420,6 +8821,22 @@ fn ecs_task_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EcsTaskDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "containers",
+            "definition_arn",
+            "group",
+            "launch_type",
+            "started_at",
+            "started_by",
+            "tags",
+            "task_created_at",
+            "version",
+            "volumes",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EcsTaskDetails::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_967 = (|| -> PyResult<_> {
@@ -8716,6 +9133,10 @@ fn ecs_task_details_to_py(
 
 fn eks_cluster_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::EksCluster> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["arn", "created_at", "ec2_instance_uids", "status", "vpc_id"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EksCluster::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_1009 = (|| -> PyResult<_> {
@@ -8855,6 +9276,10 @@ fn eks_cluster_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::EksClusterDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["arn", "created_at", "name", "status", "tags", "vpc_id"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::EksClusterDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1027 = (|| -> PyResult<_> {
@@ -9002,6 +9427,7 @@ fn eks_cluster_details_to_py(
 
 fn evidence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Evidence> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["threat_intelligence_details"])?;
     let mut builder = aws_sdk_guardduty::types::Evidence::builder();
     if let Some(value) = dict_value(values, "threat_intelligence_details")? {
         let converted_1046 = (|| -> PyResult<_> {
@@ -9066,6 +9492,7 @@ fn fargate_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FargateDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["issues", "management_type"])?;
     let mut builder = aws_sdk_guardduty::types::FargateDetails::builder();
     if let Some(value) = dict_value(values, "issues")? {
         let converted_1054 = (|| -> PyResult<_> {
@@ -9144,6 +9571,7 @@ fn filter_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FilterCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["equals_value", "greater_than", "less_than"])?;
     let mut builder = aws_sdk_guardduty::types::FilterCondition::builder();
     if let Some(value) = dict_value(values, "equals_value")? {
         let converted_1065 = (|| -> PyResult<_> {
@@ -9208,6 +9636,7 @@ fn filter_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FilterCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter_criterion"])?;
     let mut builder = aws_sdk_guardduty::types::FilterCriteria::builder();
     if let Some(value) = dict_value(values, "filter_criterion")? {
         let converted_1071 = (|| -> PyResult<_> {
@@ -9272,6 +9701,7 @@ fn filter_criterion_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FilterCriterion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["criterion_key", "filter_condition"])?;
     let mut builder = aws_sdk_guardduty::types::FilterCriterion::builder();
     if let Some(value) = dict_value(values, "criterion_key")? {
         let converted_1079 = (|| -> PyResult<_> {
@@ -9328,6 +9758,28 @@ fn filter_criterion_to_py(
 
 fn finding_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Finding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "arn",
+            "associated_attack_sequence_arn",
+            "confidence",
+            "created_at",
+            "custom_detection_rule_name",
+            "description",
+            "id",
+            "partition",
+            "region",
+            "resource",
+            "schema_version",
+            "service",
+            "severity",
+            "title",
+            "type",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Finding::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1084 = (|| -> PyResult<_> {
@@ -9629,6 +10081,7 @@ fn finding_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FindingCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["criterion"])?;
     let mut builder = aws_sdk_guardduty::types::FindingCriteria::builder();
     if let Some(value) = dict_value(values, "criterion")? {
         let converted_1118 = (|| -> PyResult<_> {
@@ -9689,6 +10142,17 @@ fn finding_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FindingStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "count_by_severity",
+            "grouped_by_account",
+            "grouped_by_date",
+            "grouped_by_finding_type",
+            "grouped_by_resource",
+            "grouped_by_severity",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::FindingStatistics::builder();
     if let Some(value) = dict_value(values, "count_by_severity")? {
         let converted_1130 = (|| -> PyResult<_> {
@@ -9993,6 +10457,10 @@ fn finding_type_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FindingTypeStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["finding_type", "last_generated_at", "total_findings"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::FindingTypeStatistics::builder();
     if let Some(value) = dict_value(values, "finding_type")? {
         let converted_1182 = (|| -> PyResult<_> {
@@ -10066,6 +10534,7 @@ fn flow_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FlowLogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::FlowLogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1189 = (|| -> PyResult<_> {
@@ -10104,6 +10573,7 @@ fn free_trial_feature_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::FreeTrialFeatureConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["free_trial_days_remaining", "name"])?;
     let mut builder = aws_sdk_guardduty::types::FreeTrialFeatureConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1192 = (|| -> PyResult<_> {
@@ -10162,6 +10632,7 @@ fn geo_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::GeoLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["lat", "lon"])?;
     let mut builder = aws_sdk_guardduty::types::GeoLocation::builder();
     if let Some(value) = dict_value(values, "lat")? {
         let converted_1197 = (|| -> PyResult<_> {
@@ -10210,6 +10681,19 @@ fn get_malware_scan_result_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::GetMalwareScanResultDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "failed_file_count",
+            "scan_result_status",
+            "skipped_file_count",
+            "threat_found_file_count",
+            "threats",
+            "total_bytes",
+            "total_file_count",
+            "unique_threat_count",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::GetMalwareScanResultDetails::builder();
     if let Some(value) = dict_value(values, "scan_result_status")? {
         let converted_1201 = (|| -> PyResult<_> {
@@ -10408,6 +10892,7 @@ fn highest_severity_threat_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::HighestSeverityThreatDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["count", "severity", "threat_name"])?;
     let mut builder = aws_sdk_guardduty::types::HighestSeverityThreatDetails::builder();
     if let Some(value) = dict_value(values, "severity")? {
         let converted_1224 = (|| -> PyResult<_> {
@@ -10470,6 +10955,7 @@ fn highest_severity_threat_details_to_py(
 
 fn host_path_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::HostPath> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["path"])?;
     let mut builder = aws_sdk_guardduty::types::HostPath::builder();
     if let Some(value) = dict_value(values, "path")? {
         let converted_1230 = (|| -> PyResult<_> {
@@ -10502,6 +10988,7 @@ fn iam_instance_profile_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::IamInstanceProfile> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "id"])?;
     let mut builder = aws_sdk_guardduty::types::IamInstanceProfile::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_1232 = (|| -> PyResult<_> {
@@ -10550,6 +11037,7 @@ fn iam_instance_profile_v2_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::IamInstanceProfileV2> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ec2_instance_uids"])?;
     let mut builder = aws_sdk_guardduty::types::IamInstanceProfileV2::builder();
     if let Some(value) = dict_value(values, "ec2_instance_uids")? {
         let converted_1236 = (|| -> PyResult<_> {
@@ -10610,6 +11098,7 @@ fn impersonated_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ImpersonatedUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["groups", "username"])?;
     let mut builder = aws_sdk_guardduty::types::ImpersonatedUser::builder();
     if let Some(value) = dict_value(values, "username")? {
         let converted_1244 = (|| -> PyResult<_> {
@@ -10682,6 +11171,7 @@ fn incremental_scan_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::IncrementalScanDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["baseline_resource_arn"])?;
     let mut builder = aws_sdk_guardduty::types::IncrementalScanDetails::builder();
     if let Some(value) = dict_value(values, "baseline_resource_arn")? {
         let converted_1254 = (|| -> PyResult<_> {
@@ -10716,6 +11206,7 @@ fn incremental_scan_details_to_py(
 
 fn indicator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Indicator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "title", "values"])?;
     let mut builder = aws_sdk_guardduty::types::Indicator::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1256 = (|| -> PyResult<_> {
@@ -10810,6 +11301,24 @@ fn instance_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::InstanceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "availability_zone",
+            "iam_instance_profile",
+            "image_description",
+            "image_id",
+            "instance_id",
+            "instance_state",
+            "instance_type",
+            "launch_time",
+            "network_interfaces",
+            "outpost_arn",
+            "platform",
+            "product_codes",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::InstanceDetails::builder();
     if let Some(value) = dict_value(values, "availability_zone")? {
         let converted_1269 = (|| -> PyResult<_> {
@@ -11138,6 +11647,24 @@ fn investigation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Investigation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud",
+            "confidence",
+            "end_time",
+            "error",
+            "investigation_id",
+            "metadata",
+            "risk",
+            "risk_level",
+            "start_time",
+            "status",
+            "summary",
+            "trigger_prompt",
+            "triggered_by",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Investigation::builder();
     if let Some(value) = dict_value(values, "investigation_id")? {
         let converted_1313 = (|| -> PyResult<_> {
@@ -11410,6 +11937,7 @@ fn investigation_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::InvestigationMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["product", "version"])?;
     let mut builder = aws_sdk_guardduty::types::InvestigationMetadata::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_1344 = (|| -> PyResult<_> {
@@ -11462,6 +11990,7 @@ fn investigation_sort_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::InvestigationSortCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "order_by"])?;
     let mut builder = aws_sdk_guardduty::types::InvestigationSortCriteria::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_1348 = (|| -> PyResult<_> {
@@ -11521,6 +12050,20 @@ fn investigation_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::InvestigationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "confidence",
+            "end_time",
+            "investigation_id",
+            "risk_level",
+            "start_time",
+            "status",
+            "title",
+            "trigger_prompt",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::InvestigationSummary::builder();
     if let Some(value) = dict_value(values, "investigation_id")? {
         let converted_1354 = (|| -> PyResult<_> {
@@ -11719,6 +12262,15 @@ fn investigation_summary_to_py(
 
 fn invitation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Invitation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "invitation_id",
+            "invited_at",
+            "relationship_status",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Invitation::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1377 = (|| -> PyResult<_> {
@@ -11803,6 +12355,10 @@ fn item_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ItemDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["additional_info", "hash", "item_path", "resource_arn"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ItemDetails::builder();
     if let Some(value) = dict_value(values, "resource_arn")? {
         let converted_1385 = (|| -> PyResult<_> {
@@ -11885,6 +12441,7 @@ fn item_details_to_py(
 
 fn item_path_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::ItemPath> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["hash", "nested_item_path"])?;
     let mut builder = aws_sdk_guardduty::types::ItemPath::builder();
     if let Some(value) = dict_value(values, "nested_item_path")? {
         let converted_1393 = (|| -> PyResult<_> {
@@ -11937,6 +12494,22 @@ fn kubernetes_api_call_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesApiCallAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "namespace",
+            "parameters",
+            "remote_ip_details",
+            "request_uri",
+            "resource",
+            "resource_name",
+            "source_ips",
+            "status_code",
+            "subresource",
+            "user_agent",
+            "verb",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesApiCallAction::builder();
     if let Some(value) = dict_value(values, "request_uri")? {
         let converted_1397 = (|| -> PyResult<_> {
@@ -12161,6 +12734,7 @@ fn kubernetes_audit_logs_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesAuditLogsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enable"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesAuditLogsConfiguration::builder();
     if let Some(value) = dict_value(values, "enable")? {
         let converted_1425 = (|| -> PyResult<_> {
@@ -12193,6 +12767,7 @@ fn kubernetes_audit_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesAuditLogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesAuditLogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1427 = (|| -> PyResult<_> {
@@ -12231,6 +12806,7 @@ fn kubernetes_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audit_logs"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesConfiguration::builder();
     if let Some(value) = dict_value(values, "audit_logs")? {
         let converted_1430 = (|| -> PyResult<_> {
@@ -12267,6 +12843,7 @@ fn kubernetes_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audit_logs"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesConfigurationResult::builder();
     if let Some(value) = dict_value(values, "audit_logs")? {
         let converted_1432 = (|| -> PyResult<_> {
@@ -12303,6 +12880,7 @@ fn kubernetes_data_source_free_trial_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesDataSourceFreeTrial> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audit_logs"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesDataSourceFreeTrial::builder();
     if let Some(value) = dict_value(values, "audit_logs")? {
         let converted_1434 = (|| -> PyResult<_> {
@@ -12339,6 +12917,10 @@ fn kubernetes_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["kubernetes_user_details", "kubernetes_workload_details"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesDetails::builder();
     if let Some(value) = dict_value(values, "kubernetes_user_details")? {
         let converted_1436 = (|| -> PyResult<_> {
@@ -12395,6 +12977,7 @@ fn kubernetes_permission_checked_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesPermissionCheckedDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["allowed", "namespace", "resource", "verb"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesPermissionCheckedDetails::builder();
     if let Some(value) = dict_value(values, "verb")? {
         let converted_1440 = (|| -> PyResult<_> {
@@ -12475,6 +13058,10 @@ fn kubernetes_role_binding_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesRoleBindingDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["kind", "name", "role_ref_kind", "role_ref_name", "uid"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesRoleBindingDetails::builder();
     if let Some(value) = dict_value(values, "kind")? {
         let converted_1448 = (|| -> PyResult<_> {
@@ -12571,6 +13158,7 @@ fn kubernetes_role_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesRoleDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kind", "name", "uid"])?;
     let mut builder = aws_sdk_guardduty::types::KubernetesRoleDetails::builder();
     if let Some(value) = dict_value(values, "kind")? {
         let converted_1458 = (|| -> PyResult<_> {
@@ -12635,6 +13223,16 @@ fn kubernetes_user_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesUserDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "groups",
+            "impersonated_user",
+            "session_name",
+            "uid",
+            "username",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesUserDetails::builder();
     if let Some(value) = dict_value(values, "username")? {
         let converted_1464 = (|| -> PyResult<_> {
@@ -12787,6 +13385,10 @@ fn kubernetes_workload_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesWorkload> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["container_uids", "kubernetes_resources_types", "namespace"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesWorkload::builder();
     if let Some(value) = dict_value(values, "container_uids")? {
         let converted_1486 = (|| -> PyResult<_> {
@@ -12885,6 +13487,21 @@ fn kubernetes_workload_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::KubernetesWorkloadDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "containers",
+            "host_ipc",
+            "host_network",
+            "host_pid",
+            "name",
+            "namespace",
+            "service_account_name",
+            "type",
+            "uid",
+            "volumes",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::KubernetesWorkloadDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1499 = (|| -> PyResult<_> {
@@ -13125,6 +13742,20 @@ fn lambda_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::LambdaDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "function_arn",
+            "function_name",
+            "function_version",
+            "last_modified_at",
+            "revision_id",
+            "role",
+            "tags",
+            "vpc_config",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::LambdaDetails::builder();
     if let Some(value) = dict_value(values, "function_arn")? {
         let converted_1531 = (|| -> PyResult<_> {
@@ -13330,6 +13961,20 @@ fn lineage_object_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::LineageObject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "euid",
+            "executable_path",
+            "name",
+            "namespace_pid",
+            "parent_uuid",
+            "pid",
+            "start_time",
+            "user_id",
+            "uuid",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::LineageObject::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_1556 = (|| -> PyResult<_> {
@@ -13503,6 +14148,7 @@ fn list_malware_scans_filter_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ListMalwareScansFilterCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["list_malware_scans_filter_criterion"])?;
     let mut builder = aws_sdk_guardduty::types::ListMalwareScansFilterCriteria::builder();
     if let Some(value) = dict_value(values, "list_malware_scans_filter_criterion")? {
         let converted_1575 = (|| -> PyResult<_> {
@@ -13568,6 +14214,10 @@ fn list_malware_scans_filter_criterion_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ListMalwareScansFilterCriterion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["filter_condition", "list_malware_scans_criterion_key"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ListMalwareScansFilterCriterion::builder();
     if let Some(value) = dict_value(values, "list_malware_scans_criterion_key")? {
         let converted_1583 = (|| -> PyResult<_> {
@@ -13627,6 +14277,7 @@ fn local_ip_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::LocalIpDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ip_address_v4", "ip_address_v6"])?;
     let mut builder = aws_sdk_guardduty::types::LocalIpDetails::builder();
     if let Some(value) = dict_value(values, "ip_address_v4")? {
         let converted_1588 = (|| -> PyResult<_> {
@@ -13675,6 +14326,7 @@ fn local_port_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::LocalPortDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["port", "port_name"])?;
     let mut builder = aws_sdk_guardduty::types::LocalPortDetails::builder();
     if let Some(value) = dict_value(values, "port")? {
         let converted_1592 = (|| -> PyResult<_> {
@@ -13723,6 +14375,15 @@ fn login_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::LoginAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application",
+            "failed_login_attempts",
+            "successful_login_attempts",
+            "user",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::LoginAttribute::builder();
     if let Some(value) = dict_value(values, "user")? {
         let converted_1596 = (|| -> PyResult<_> {
@@ -13811,6 +14472,7 @@ fn malware_protection_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scan_ec2_instance_with_findings"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionConfiguration::builder();
     if let Some(value) = dict_value(values, "scan_ec2_instance_with_findings")? {
         let converted_1604 = (|| -> PyResult<_> {
@@ -13847,6 +14509,10 @@ fn malware_protection_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["scan_ec2_instance_with_findings", "service_role"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionConfigurationResult::builder();
     if let Some(value) = dict_value(values, "scan_ec2_instance_with_findings")? {
         let converted_1606 = (|| -> PyResult<_> {
@@ -13899,6 +14565,7 @@ fn malware_protection_data_source_free_trial_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionDataSourceFreeTrial> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scan_ec2_instance_with_findings"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionDataSourceFreeTrial::builder();
     if let Some(value) = dict_value(values, "scan_ec2_instance_with_findings")? {
         let converted_1610 = (|| -> PyResult<_> {
@@ -13935,6 +14602,7 @@ fn malware_protection_findings_scan_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionFindingsScanConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["incremental_scan_details", "trigger_type"])?;
     let mut builder =
         aws_sdk_guardduty::types::MalwareProtectionFindingsScanConfiguration::builder();
     if let Some(value) = dict_value(values, "trigger_type")? {
@@ -13994,6 +14662,7 @@ fn malware_protection_plan_actions_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionPlanActions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tagging"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionPlanActions::builder();
     if let Some(value) = dict_value(values, "tagging")? {
         let converted_1617 = (|| -> PyResult<_> {
@@ -14030,6 +14699,7 @@ fn malware_protection_plan_status_reason_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionPlanStatusReason> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "message"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionPlanStatusReason::builder();
     if let Some(value) = dict_value(values, "code")? {
         let converted_1619 = (|| -> PyResult<_> {
@@ -14078,6 +14748,7 @@ fn malware_protection_plan_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionPlanSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["malware_protection_plan_id"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionPlanSummary::builder();
     if let Some(value) = dict_value(values, "malware_protection_plan_id")? {
         let converted_1623 = (|| -> PyResult<_> {
@@ -14114,6 +14785,7 @@ fn malware_protection_plan_tagging_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareProtectionPlanTaggingAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::MalwareProtectionPlanTaggingAction::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1625 = (|| -> PyResult<_> {
@@ -14154,6 +14826,19 @@ fn malware_scan_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareScan> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "resource_arn",
+            "resource_type",
+            "scan_completed_at",
+            "scan_id",
+            "scan_result_status",
+            "scan_started_at",
+            "scan_status",
+            "scan_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::MalwareScan::builder();
     if let Some(value) = dict_value(values, "resource_arn")? {
         let converted_1628 = (|| -> PyResult<_> {
@@ -14342,6 +15027,17 @@ fn malware_scan_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MalwareScanDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "scan_category",
+            "scan_configuration",
+            "scan_id",
+            "scan_type",
+            "threats",
+            "unique_threat_count",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::MalwareScanDetails::builder();
     if let Some(value) = dict_value(values, "threats")? {
         let converted_1650 = (|| -> PyResult<_> {
@@ -14500,6 +15196,15 @@ fn malware_scan_details_to_py(
 
 fn master_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Master> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "invitation_id",
+            "invited_at",
+            "relationship_status",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Master::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1670 = (|| -> PyResult<_> {
@@ -14579,6 +15284,19 @@ fn master_to_py(py: Python<'_>, value: &aws_sdk_guardduty::types::Master) -> PyR
 
 fn member_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Member> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "administrator_id",
+            "detector_id",
+            "email",
+            "invited_at",
+            "master_id",
+            "relationship_status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Member::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1678 = (|| -> PyResult<_> {
@@ -14728,6 +15446,7 @@ fn member_additional_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MemberAdditionalConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "status"])?;
     let mut builder = aws_sdk_guardduty::types::MemberAdditionalConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1694 = (|| -> PyResult<_> {
@@ -14789,6 +15508,7 @@ fn member_additional_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MemberAdditionalConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["managed_by", "name", "status", "updated_at"])?;
     let mut builder = aws_sdk_guardduty::types::MemberAdditionalConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1700 = (|| -> PyResult<_> {
@@ -14897,6 +15617,7 @@ fn member_data_source_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MemberDataSourceConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "data_sources", "features"])?;
     let mut builder = aws_sdk_guardduty::types::MemberDataSourceConfiguration::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1712 = (|| -> PyResult<_> {
@@ -14994,6 +15715,7 @@ fn member_features_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MemberFeaturesConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_configuration", "name", "status"])?;
     let mut builder = aws_sdk_guardduty::types::MemberFeaturesConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1724 = (|| -> PyResult<_> {
@@ -15102,6 +15824,16 @@ fn member_features_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::MemberFeaturesConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_configuration",
+            "managed_by",
+            "name",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::MemberFeaturesConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1738 = (|| -> PyResult<_> {
@@ -15258,6 +15990,7 @@ fn model_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ModelDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["model_id"])?;
     let mut builder = aws_sdk_guardduty::types::ModelDetail::builder();
     if let Some(value) = dict_value(values, "model_id")? {
         let converted_1758 = (|| -> PyResult<_> {
@@ -15290,6 +16023,7 @@ fn network_connection_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::NetworkConnection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["direction"])?;
     let mut builder = aws_sdk_guardduty::types::NetworkConnection::builder();
     if let Some(value) = dict_value(values, "direction")? {
         let converted_1760 = (|| -> PyResult<_> {
@@ -15328,6 +16062,19 @@ fn network_connection_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::NetworkConnectionAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "blocked",
+            "connection_direction",
+            "local_ip_details",
+            "local_network_interface",
+            "local_port_details",
+            "protocol",
+            "remote_ip_details",
+            "remote_port_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::NetworkConnectionAction::builder();
     if let Some(value) = dict_value(values, "blocked")? {
         let converted_1763 = (|| -> PyResult<_> {
@@ -15496,6 +16243,18 @@ fn network_endpoint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::NetworkEndpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "autonomous_system",
+            "connection",
+            "domain",
+            "id",
+            "ip",
+            "location",
+            "port",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::NetworkEndpoint::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1779 = (|| -> PyResult<_> {
@@ -15636,6 +16395,7 @@ fn network_geo_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::NetworkGeoLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["city", "country", "latitude", "longitude"])?;
     let mut builder = aws_sdk_guardduty::types::NetworkGeoLocation::builder();
     if let Some(value) = dict_value(values, "city")? {
         let converted_1793 = (|| -> PyResult<_> {
@@ -15716,6 +16476,21 @@ fn network_interface_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::NetworkInterface> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "ipv6_addresses",
+            "network_interface_id",
+            "private_dns_name",
+            "private_ip_address",
+            "private_ip_addresses",
+            "public_dns_name",
+            "public_ip",
+            "security_groups",
+            "subnet_id",
+            "vpc_id",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::NetworkInterface::builder();
     if let Some(value) = dict_value(values, "ipv6_addresses")? {
         let converted_1801 = (|| -> PyResult<_> {
@@ -16000,6 +16775,7 @@ fn observations_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Observations> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["number", "text"])?;
     let mut builder = aws_sdk_guardduty::types::Observations::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_1839 = (|| -> PyResult<_> {
@@ -16096,6 +16872,7 @@ fn organization_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::Organization> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["asn", "asn_org", "isp", "org"])?;
     let mut builder = aws_sdk_guardduty::types::Organization::builder();
     if let Some(value) = dict_value(values, "asn")? {
         let converted_1855 = (|| -> PyResult<_> {
@@ -16176,6 +16953,7 @@ fn organization_additional_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationAdditionalConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable", "name"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationAdditionalConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1863 = (|| -> PyResult<_> {
@@ -16237,6 +17015,7 @@ fn organization_additional_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationAdditionalConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable", "name"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationAdditionalConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -16299,6 +17078,7 @@ fn organization_data_source_configurations_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationDataSourceConfigurations> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kubernetes", "malware_protection", "s3_logs"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationDataSourceConfigurations::builder();
     if let Some(value) = dict_value(values, "s3_logs")? {
         let converted_1875 = (|| -> PyResult<_> {
@@ -16375,6 +17155,7 @@ fn organization_data_source_configurations_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationDataSourceConfigurationsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kubernetes", "malware_protection", "s3_logs"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationDataSourceConfigurationsResult::builder();
     if let Some(value) = dict_value(values, "s3_logs")? {
@@ -16453,6 +17234,7 @@ fn organization_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["organization_statistics", "updated_at"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationDetails::builder();
     if let Some(value) = dict_value(values, "updated_at")? {
         let converted_1887 = (|| -> PyResult<_> {
@@ -16514,6 +17296,7 @@ fn organization_ebs_volumes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationEbsVolumes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationEbsVolumes::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
         let converted_1892 = (|| -> PyResult<_> {
@@ -16546,6 +17329,7 @@ fn organization_ebs_volumes_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationEbsVolumesResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationEbsVolumesResult::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
         let converted_1894 = (|| -> PyResult<_> {
@@ -16578,6 +17362,10 @@ fn organization_feature_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationFeatureConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["additional_configuration", "auto_enable", "name"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::OrganizationFeatureConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1896 = (|| -> PyResult<_> {
@@ -16687,6 +17475,10 @@ fn organization_feature_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationFeatureConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["additional_configuration", "auto_enable", "name"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::OrganizationFeatureConfigurationResult::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1910 = (|| -> PyResult<_> {
@@ -16797,6 +17589,10 @@ fn organization_feature_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationFeatureStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["additional_configuration", "enabled_accounts_count", "name"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::OrganizationFeatureStatistics::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1924 = (|| -> PyResult<_> {
@@ -16907,6 +17703,7 @@ fn organization_feature_statistics_additional_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationFeatureStatisticsAdditionalConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled_accounts_count", "name"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationFeatureStatisticsAdditionalConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
@@ -16967,6 +17764,7 @@ fn organization_kubernetes_audit_logs_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfiguration::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
@@ -17000,6 +17798,7 @@ fn organization_kubernetes_audit_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationKubernetesAuditLogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
@@ -17033,6 +17832,7 @@ fn organization_kubernetes_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationKubernetesConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audit_logs"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationKubernetesConfiguration::builder();
     if let Some(value) = dict_value(values, "audit_logs")? {
         let converted_1946 = (|| -> PyResult<_> {
@@ -17069,6 +17869,7 @@ fn organization_kubernetes_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationKubernetesConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audit_logs"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationKubernetesConfigurationResult::builder();
     if let Some(value) = dict_value(values, "audit_logs")? {
@@ -17108,6 +17909,7 @@ fn organization_malware_protection_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationMalwareProtectionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scan_ec2_instance_with_findings"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationMalwareProtectionConfiguration::builder();
     if let Some(value) = dict_value(values, "scan_ec2_instance_with_findings")? {
@@ -17145,6 +17947,7 @@ fn organization_malware_protection_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationMalwareProtectionConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scan_ec2_instance_with_findings"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationMalwareProtectionConfigurationResult::builder();
     if let Some(value) = dict_value(values, "scan_ec2_instance_with_findings")? {
@@ -17183,6 +17986,7 @@ fn organization_s3_logs_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationS3LogsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationS3LogsConfiguration::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
         let converted_1954 = (|| -> PyResult<_> {
@@ -17215,6 +18019,7 @@ fn organization_s3_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationS3LogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_enable"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationS3LogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "auto_enable")? {
         let converted_1956 = (|| -> PyResult<_> {
@@ -17247,6 +18052,7 @@ fn organization_scan_ec2_instance_with_findings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationScanEc2InstanceWithFindings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ebs_volumes"])?;
     let mut builder = aws_sdk_guardduty::types::OrganizationScanEc2InstanceWithFindings::builder();
     if let Some(value) = dict_value(values, "ebs_volumes")? {
         let converted_1958 = (|| -> PyResult<_> {
@@ -17283,6 +18089,7 @@ fn organization_scan_ec2_instance_with_findings_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationScanEc2InstanceWithFindingsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ebs_volumes"])?;
     let mut builder =
         aws_sdk_guardduty::types::OrganizationScanEc2InstanceWithFindingsResult::builder();
     if let Some(value) = dict_value(values, "ebs_volumes")? {
@@ -17320,6 +18127,16 @@ fn organization_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::OrganizationStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active_accounts_count",
+            "count_by_feature",
+            "enabled_accounts_count",
+            "member_accounts_count",
+            "total_accounts_count",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::OrganizationStatistics::builder();
     if let Some(value) = dict_value(values, "total_accounts_count")? {
         let converted_1962 = (|| -> PyResult<_> {
@@ -17462,6 +18279,7 @@ fn organization_statistics_to_py(
 
 fn owner_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Owner> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id"])?;
     let mut builder = aws_sdk_guardduty::types::Owner::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1978 = (|| -> PyResult<_> {
@@ -17491,6 +18309,10 @@ fn permission_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PermissionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account_level_permissions", "bucket_level_permissions"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::PermissionConfiguration::builder();
     if let Some(value) = dict_value(values, "bucket_level_permissions")? {
         let converted_1980 = (|| -> PyResult<_> {
@@ -17547,6 +18369,7 @@ fn port_probe_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PortProbeAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["blocked", "port_probe_details"])?;
     let mut builder = aws_sdk_guardduty::types::PortProbeAction::builder();
     if let Some(value) = dict_value(values, "blocked")? {
         let converted_1984 = (|| -> PyResult<_> {
@@ -17627,6 +18450,14 @@ fn port_probe_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PortProbeDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "local_ip_details",
+            "local_port_details",
+            "remote_ip_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::PortProbeDetail::builder();
     if let Some(value) = dict_value(values, "local_port_details")? {
         let converted_1994 = (|| -> PyResult<_> {
@@ -17703,6 +18534,7 @@ fn private_ip_address_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PrivateIpAddressDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["private_dns_name", "private_ip_address"])?;
     let mut builder = aws_sdk_guardduty::types::PrivateIpAddressDetails::builder();
     if let Some(value) = dict_value(values, "private_dns_name")? {
         let converted_2000 = (|| -> PyResult<_> {
@@ -17759,6 +18591,24 @@ fn process_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ProcessDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "euid",
+            "executable_path",
+            "executable_sha256",
+            "lineage",
+            "name",
+            "namespace_pid",
+            "parent_uuid",
+            "pid",
+            "pwd",
+            "start_time",
+            "user",
+            "user_id",
+            "uuid",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ProcessDetails::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2004 = (|| -> PyResult<_> {
@@ -18026,6 +18876,7 @@ fn process_details_to_py(
 
 fn product_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Product> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["feature", "name"])?;
     let mut builder = aws_sdk_guardduty::types::Product::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2037 = (|| -> PyResult<_> {
@@ -18071,6 +18922,7 @@ fn product_code_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ProductCode> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "product_type"])?;
     let mut builder = aws_sdk_guardduty::types::ProductCode::builder();
     if let Some(value) = dict_value(values, "code")? {
         let converted_2041 = (|| -> PyResult<_> {
@@ -18119,6 +18971,10 @@ fn public_access_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PublicAccess> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["effective_permission", "permission_configuration"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::PublicAccess::builder();
     if let Some(value) = dict_value(values, "permission_configuration")? {
         let converted_2045 = (|| -> PyResult<_> {
@@ -18175,6 +19031,15 @@ fn public_access_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::PublicAccessConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "public_acl_access",
+            "public_acl_ignore_behavior",
+            "public_bucket_restrict_behavior",
+            "public_policy_access",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::PublicAccessConfiguration::builder();
     if let Some(value) = dict_value(values, "public_acl_access")? {
         let converted_2049 = (|| -> PyResult<_> {
@@ -18280,6 +19145,18 @@ fn rds_db_instance_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RdsDbInstanceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "db_cluster_identifier",
+            "db_instance_arn",
+            "db_instance_identifier",
+            "dbi_resource_id",
+            "engine",
+            "engine_version",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RdsDbInstanceDetails::builder();
     if let Some(value) = dict_value(values, "db_instance_identifier")? {
         let converted_2061 = (|| -> PyResult<_> {
@@ -18452,6 +19329,10 @@ fn rds_db_user_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RdsDbUserDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["application", "auth_method", "database", "ssl", "user"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RdsDbUserDetails::builder();
     if let Some(value) = dict_value(values, "user")? {
         let converted_2081 = (|| -> PyResult<_> {
@@ -18548,6 +19429,18 @@ fn rds_limitless_db_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RdsLimitlessDbDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "db_cluster_identifier",
+            "db_shard_group_arn",
+            "db_shard_group_identifier",
+            "db_shard_group_resource_id",
+            "engine",
+            "engine_version",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RdsLimitlessDbDetails::builder();
     if let Some(value) = dict_value(values, "db_shard_group_identifier")? {
         let converted_2091 = (|| -> PyResult<_> {
@@ -18720,6 +19613,7 @@ fn rds_login_attempt_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RdsLoginAttemptAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["login_attributes", "remote_ip_details"])?;
     let mut builder = aws_sdk_guardduty::types::RdsLoginAttemptAction::builder();
     if let Some(value) = dict_value(values, "remote_ip_details")? {
         let converted_2111 = (|| -> PyResult<_> {
@@ -18804,6 +19698,7 @@ fn recovery_point_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RecoveryPoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["backup_vault_name", "continuous_scan_details"])?;
     let mut builder = aws_sdk_guardduty::types::RecoveryPoint::builder();
     if let Some(value) = dict_value(values, "backup_vault_name")? {
         let converted_2121 = (|| -> PyResult<_> {
@@ -18860,6 +19755,14 @@ fn recovery_point_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RecoveryPointDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backup_vault_name",
+            "continuous_scan_details",
+            "recovery_point_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RecoveryPointDetails::builder();
     if let Some(value) = dict_value(values, "recovery_point_arn")? {
         let converted_2125 = (|| -> PyResult<_> {
@@ -18936,6 +19839,7 @@ fn remote_account_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RemoteAccountDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "affiliated", "aws_service_name"])?;
     let mut builder = aws_sdk_guardduty::types::RemoteAccountDetails::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_2131 = (|| -> PyResult<_> {
@@ -19004,6 +19908,17 @@ fn remote_ip_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RemoteIpDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "city",
+            "country",
+            "geo_location",
+            "ip_address_v4",
+            "ip_address_v6",
+            "organization",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RemoteIpDetails::builder();
     if let Some(value) = dict_value(values, "city")? {
         let converted_2137 = (|| -> PyResult<_> {
@@ -19128,6 +20043,7 @@ fn remote_port_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RemotePortDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["port", "port_name"])?;
     let mut builder = aws_sdk_guardduty::types::RemotePortDetails::builder();
     if let Some(value) = dict_value(values, "port")? {
         let converted_2149 = (|| -> PyResult<_> {
@@ -19174,6 +20090,29 @@ fn remote_port_details_to_py(
 
 fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Resource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_details",
+            "bedrock_guardrail_details",
+            "container_details",
+            "ebs_snapshot_details",
+            "ebs_volume_details",
+            "ec2_image_details",
+            "ecs_cluster_details",
+            "eks_cluster_details",
+            "instance_details",
+            "kubernetes_details",
+            "lambda_details",
+            "model_details",
+            "rds_db_instance_details",
+            "rds_db_user_details",
+            "rds_limitless_db_details",
+            "recovery_point_details",
+            "resource_type",
+            "s3_bucket_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Resource::builder();
     if let Some(value) = dict_value(values, "access_key_details")? {
         let converted_2153 = (|| -> PyResult<_> {
@@ -19602,6 +20541,28 @@ fn resource_data_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ResourceData> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key",
+            "autoscaling_auto_scaling_group",
+            "bedrock_guardrail",
+            "cloudformation_stack",
+            "container",
+            "ec2_image",
+            "ec2_instance",
+            "ec2_launch_template",
+            "ec2_network_interface",
+            "ec2_vpc",
+            "ecs_cluster",
+            "ecs_task",
+            "eks_cluster",
+            "iam_instance_profile",
+            "kubernetes_workload",
+            "s3_bucket",
+            "s3_object",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ResourceData::builder();
     if let Some(value) = dict_value(values, "s3_bucket")? {
         let converted_2201 = (|| -> PyResult<_> {
@@ -19958,6 +20919,7 @@ fn resource_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ResourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["instance_arn"])?;
     let mut builder = aws_sdk_guardduty::types::ResourceDetails::builder();
     if let Some(value) = dict_value(values, "instance_arn")? {
         let converted_2235 = (|| -> PyResult<_> {
@@ -19990,6 +20952,16 @@ fn resource_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ResourceStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "last_generated_at",
+            "resource_id",
+            "resource_type",
+            "total_findings",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ResourceStatistics::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_2237 = (|| -> PyResult<_> {
@@ -20093,6 +21065,20 @@ fn resource_statistics_to_py(
 
 fn resource_v2_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::ResourceV2> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "cloud_partition",
+            "data",
+            "name",
+            "region",
+            "resource_type",
+            "service",
+            "tags",
+            "uid",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ResourceV2::builder();
     if let Some(value) = dict_value(values, "uid")? {
         let converted_2248 = (|| -> PyResult<_> {
@@ -20295,6 +21281,7 @@ fn rule_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RuleDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression"])?;
     let mut builder = aws_sdk_guardduty::types::RuleDefinition::builder();
     if let Some(value) = dict_value(values, "expression")? {
         let converted_2273 = (|| -> PyResult<_> {
@@ -20325,6 +21312,26 @@ fn rule_definition_to_py(
 
 fn rule_detail_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::RuleDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_at",
+            "data_source",
+            "definition",
+            "description",
+            "language",
+            "name",
+            "rule_id",
+            "runtime_monitoring_details",
+            "schema",
+            "service",
+            "severity",
+            "tactic",
+            "technique",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RuleDetail::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
         let converted_2275 = (|| -> PyResult<_> {
@@ -20631,6 +21638,24 @@ fn rule_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RuleSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_at",
+            "data_source",
+            "description",
+            "language",
+            "name",
+            "rule_id",
+            "schema",
+            "service",
+            "severity",
+            "tactic",
+            "technique",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RuleSummary::builder();
     if let Some(value) = dict_value(values, "rule_id")? {
         let converted_2311 = (|| -> PyResult<_> {
@@ -20897,6 +21922,39 @@ fn runtime_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RuntimeContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "address_family",
+            "command_line_example",
+            "file_operation",
+            "file_path",
+            "file_system_type",
+            "flags",
+            "iana_protocol_number",
+            "ld_preload_value",
+            "library_path",
+            "memory_regions",
+            "modified_at",
+            "modifying_process",
+            "module_file_path",
+            "module_name",
+            "module_sha256",
+            "mount_source",
+            "mount_target",
+            "related_file_paths",
+            "release_agent_path",
+            "runc_binary_path",
+            "script_path",
+            "service_name",
+            "shell_history_file_path",
+            "socket_path",
+            "target_process",
+            "threat_file_path",
+            "tool_category",
+            "tool_name",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::RuntimeContext::builder();
     if let Some(value) = dict_value(values, "modifying_process")? {
         let converted_2343 = (|| -> PyResult<_> {
@@ -21494,6 +22552,7 @@ fn runtime_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::RuntimeDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["context", "process"])?;
     let mut builder = aws_sdk_guardduty::types::RuntimeDetails::builder();
     if let Some(value) = dict_value(values, "process")? {
         let converted_2418 = (|| -> PyResult<_> {
@@ -21548,6 +22607,21 @@ fn runtime_details_to_py(
 
 fn s3_bucket_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::S3Bucket> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_public_access",
+            "bucket_public_access",
+            "created_at",
+            "effective_permission",
+            "encryption_key_arn",
+            "encryption_type",
+            "owner_id",
+            "public_read_access",
+            "public_write_access",
+            "s3_object_uids",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::S3Bucket::builder();
     if let Some(value) = dict_value(values, "owner_id")? {
         let converted_2422 = (|| -> PyResult<_> {
@@ -21793,6 +22867,20 @@ fn s3_bucket_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::S3BucketDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_at",
+            "default_server_side_encryption",
+            "name",
+            "owner",
+            "public_access",
+            "s3_object_details",
+            "tags",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::S3BucketDetail::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_2451 = (|| -> PyResult<_> {
@@ -22030,6 +23118,7 @@ fn s3_logs_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::S3LogsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enable"])?;
     let mut builder = aws_sdk_guardduty::types::S3LogsConfiguration::builder();
     if let Some(value) = dict_value(values, "enable")? {
         let converted_2482 = (|| -> PyResult<_> {
@@ -22062,6 +23151,7 @@ fn s3_logs_configuration_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::S3LogsConfigurationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["status"])?;
     let mut builder = aws_sdk_guardduty::types::S3LogsConfigurationResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_2484 = (|| -> PyResult<_> {
@@ -22098,6 +23188,7 @@ fn s3_logs_configuration_result_to_py(
 
 fn s3_object_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::S3Object> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["e_tag", "key", "version_id"])?;
     let mut builder = aws_sdk_guardduty::types::S3Object::builder();
     if let Some(value) = dict_value(values, "e_tag")? {
         let converted_2487 = (|| -> PyResult<_> {
@@ -22162,6 +23253,10 @@ fn s3_object_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::S3ObjectDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["e_tag", "hash", "key", "object_arn", "version_id"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::S3ObjectDetail::builder();
     if let Some(value) = dict_value(values, "object_arn")? {
         let converted_2493 = (|| -> PyResult<_> {
@@ -22258,6 +23353,7 @@ fn s3_object_for_send_object_malware_scan_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::S3ObjectForSendObjectMalwareScan> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bucket", "key", "version_id"])?;
     let mut builder = aws_sdk_guardduty::types::S3ObjectForSendObjectMalwareScan::builder();
     if let Some(value) = dict_value(values, "bucket")? {
         let converted_2503 = (|| -> PyResult<_> {
@@ -22320,6 +23416,26 @@ fn s3_object_for_send_object_malware_scan_to_py(
 
 fn scan_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Scan> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "admin_detector_id",
+            "attached_volumes",
+            "detector_id",
+            "failure_reason",
+            "file_count",
+            "resource_details",
+            "scan_end_time",
+            "scan_id",
+            "scan_result_details",
+            "scan_start_time",
+            "scan_status",
+            "scan_type",
+            "total_bytes",
+            "trigger_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Scan::builder();
     if let Some(value) = dict_value(values, "detector_id")? {
         let converted_2509 = (|| -> PyResult<_> {
@@ -22650,6 +23766,7 @@ fn scan_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["map_equals"])?;
     let mut builder = aws_sdk_guardduty::types::ScanCondition::builder();
     if let Some(value) = dict_value(values, "map_equals")? {
         let converted_2549 = (|| -> PyResult<_> {
@@ -22714,6 +23831,7 @@ fn scan_condition_pair_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanConditionPair> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_guardduty::types::ScanConditionPair::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2557 = (|| -> PyResult<_> {
@@ -22762,6 +23880,15 @@ fn scan_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "incremental_scan_details",
+            "recovery_point",
+            "role",
+            "trigger_details",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ScanConfiguration::builder();
     if let Some(value) = dict_value(values, "role")? {
         let converted_2561 = (|| -> PyResult<_> {
@@ -22854,6 +23981,7 @@ fn scan_configuration_continuous_scan_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanConfigurationContinuousScanDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["end_time", "start_time"])?;
     let mut builder = aws_sdk_guardduty::types::ScanConfigurationContinuousScanDetails::builder();
     if let Some(value) = dict_value(values, "start_time")? {
         let converted_2569 = (|| -> PyResult<_> {
@@ -22918,6 +24046,7 @@ fn scan_configuration_recovery_point_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanConfigurationRecoveryPoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["backup_vault_name", "continuous_scan_details"])?;
     let mut builder = aws_sdk_guardduty::types::ScanConfigurationRecoveryPoint::builder();
     if let Some(value) = dict_value(values, "backup_vault_name")? {
         let converted_2575 = (|| -> PyResult<_> {
@@ -22974,6 +24103,15 @@ fn scan_detections_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanDetections> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "highest_severity_threat_details",
+            "scanned_item_count",
+            "threat_detected_by_name",
+            "threats_detected_item_count",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ScanDetections::builder();
     if let Some(value) = dict_value(values, "scanned_item_count")? {
         let converted_2579 = (|| -> PyResult<_> {
@@ -23070,6 +24208,7 @@ fn scan_ec2_instance_with_findings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanEc2InstanceWithFindings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ebs_volumes"])?;
     let mut builder = aws_sdk_guardduty::types::ScanEc2InstanceWithFindings::builder();
     if let Some(value) = dict_value(values, "ebs_volumes")? {
         let converted_2587 = (|| -> PyResult<_> {
@@ -23102,6 +24241,7 @@ fn scan_ec2_instance_with_findings_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanEc2InstanceWithFindingsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ebs_volumes"])?;
     let mut builder = aws_sdk_guardduty::types::ScanEc2InstanceWithFindingsResult::builder();
     if let Some(value) = dict_value(values, "ebs_volumes")? {
         let converted_2589 = (|| -> PyResult<_> {
@@ -23138,6 +24278,7 @@ fn scan_file_path_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanFilePath> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["file_name", "file_path", "hash", "volume_arn"])?;
     let mut builder = aws_sdk_guardduty::types::ScanFilePath::builder();
     if let Some(value) = dict_value(values, "file_path")? {
         let converted_2591 = (|| -> PyResult<_> {
@@ -23218,6 +24359,7 @@ fn scan_resource_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanResourceCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["exclude", "include"])?;
     let mut builder = aws_sdk_guardduty::types::ScanResourceCriteria::builder();
     if let Some(value) = dict_value(values, "include")? {
         let converted_2599 = (|| -> PyResult<_> {
@@ -23334,6 +24476,7 @@ fn scan_result_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanResultDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["scan_result"])?;
     let mut builder = aws_sdk_guardduty::types::ScanResultDetails::builder();
     if let Some(value) = dict_value(values, "scan_result")? {
         let converted_2625 = (|| -> PyResult<_> {
@@ -23372,6 +24515,10 @@ fn scan_result_threat_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanResultThreat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["count", "hash", "item_details", "name", "source"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ScanResultThreat::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2628 = (|| -> PyResult<_> {
@@ -23506,6 +24653,7 @@ fn scan_threat_name_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScanThreatName> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["file_paths", "item_count", "name", "severity"])?;
     let mut builder = aws_sdk_guardduty::types::ScanThreatName::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2645 = (|| -> PyResult<_> {
@@ -23618,6 +24766,7 @@ fn scanned_item_count_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScannedItemCount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["files", "total_gb", "volumes"])?;
     let mut builder = aws_sdk_guardduty::types::ScannedItemCount::builder();
     if let Some(value) = dict_value(values, "total_gb")? {
         let converted_2659 = (|| -> PyResult<_> {
@@ -23682,6 +24831,16 @@ fn scanned_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScannedResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "resource_details",
+            "scan_status_reason",
+            "scanned_resource_arn",
+            "scanned_resource_status",
+            "scanned_resource_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ScannedResource::builder();
     if let Some(value) = dict_value(values, "scanned_resource_arn")? {
         let converted_2665 = (|| -> PyResult<_> {
@@ -23806,6 +24965,7 @@ fn scanned_resource_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ScannedResourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ebs_snapshot", "ebs_volume"])?;
     let mut builder = aws_sdk_guardduty::types::ScannedResourceDetails::builder();
     if let Some(value) = dict_value(values, "ebs_volume")? {
         let converted_2678 = (|| -> PyResult<_> {
@@ -23862,6 +25022,7 @@ fn security_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::SecurityContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["allow_privilege_escalation", "privileged"])?;
     let mut builder = aws_sdk_guardduty::types::SecurityContext::builder();
     if let Some(value) = dict_value(values, "privileged")? {
         let converted_2682 = (|| -> PyResult<_> {
@@ -23914,6 +25075,7 @@ fn security_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::SecurityGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["group_id", "group_name"])?;
     let mut builder = aws_sdk_guardduty::types::SecurityGroup::builder();
     if let Some(value) = dict_value(values, "group_id")? {
         let converted_2686 = (|| -> PyResult<_> {
@@ -23960,6 +25122,19 @@ fn security_group_to_py(
 
 fn sequence_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Sequence> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "actors",
+            "additional_sequence_types",
+            "description",
+            "endpoints",
+            "resources",
+            "sequence_indicators",
+            "signals",
+            "uid",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Sequence::builder();
     if let Some(value) = dict_value(values, "uid")? {
         let converted_2690 = (|| -> PyResult<_> {
@@ -24274,6 +25449,27 @@ fn sequence_to_py(
 
 fn service_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Service> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "additional_info",
+            "archived",
+            "count",
+            "detection",
+            "detector_id",
+            "ebs_volume_scan_details",
+            "event_first_seen",
+            "event_last_seen",
+            "evidence",
+            "feature_name",
+            "malware_scan_details",
+            "resource_role",
+            "runtime_details",
+            "service_name",
+            "user_feedback",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Service::builder();
     if let Some(value) = dict_value(values, "action")? {
         let converted_2742 = (|| -> PyResult<_> {
@@ -24579,6 +25775,7 @@ fn service_additional_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ServiceAdditionalInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "value"])?;
     let mut builder = aws_sdk_guardduty::types::ServiceAdditionalInfo::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_2774 = (|| -> PyResult<_> {
@@ -24625,6 +25822,7 @@ fn service_additional_info_to_py(
 
 fn session_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Session> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["created_time", "issuer", "mfa_status", "uid"])?;
     let mut builder = aws_sdk_guardduty::types::Session::builder();
     if let Some(value) = dict_value(values, "uid")? {
         let converted_2778 = (|| -> PyResult<_> {
@@ -24717,6 +25915,10 @@ fn severity_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::SeverityStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["last_generated_at", "severity", "total_findings"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::SeverityStatistics::builder();
     if let Some(value) = dict_value(values, "last_generated_at")? {
         let converted_2788 = (|| -> PyResult<_> {
@@ -24788,6 +25990,26 @@ fn severity_statistics_to_py(
 
 fn signal_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Signal> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activities",
+            "actor_ids",
+            "count",
+            "created_at",
+            "description",
+            "endpoint_ids",
+            "first_seen_at",
+            "last_seen_at",
+            "name",
+            "resource_uids",
+            "severity",
+            "signal_indicators",
+            "type",
+            "uid",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Signal::builder();
     if let Some(value) = dict_value(values, "uid")? {
         let converted_2795 = (|| -> PyResult<_> {
@@ -25227,6 +26449,7 @@ fn sort_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::SortCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "order_by"])?;
     let mut builder = aws_sdk_guardduty::types::SortCriteria::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_2860 = (|| -> PyResult<_> {
@@ -25280,6 +26503,10 @@ fn start_malware_scan_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::StartMalwareScanConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["incremental_scan_details", "recovery_point", "role"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::StartMalwareScanConfiguration::builder();
     if let Some(value) = dict_value(values, "role")? {
         let converted_2865 = (|| -> PyResult<_> {
@@ -25350,6 +26577,7 @@ fn start_malware_scan_configuration_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_guardduty::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2871 = (|| -> PyResult<_> {
@@ -25393,6 +26621,17 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_guardduty::types::Tag) -> PyResult<
 
 fn threat_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Threat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "count",
+            "hash",
+            "item_details",
+            "item_paths",
+            "name",
+            "source",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::Threat::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2875 = (|| -> PyResult<_> {
@@ -25566,6 +26805,15 @@ fn threat_detected_by_name_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ThreatDetectedByName> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "item_count",
+            "shortened",
+            "threat_names",
+            "unique_threat_name_count",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ThreatDetectedByName::builder();
     if let Some(value) = dict_value(values, "item_count")? {
         let converted_2899 = (|| -> PyResult<_> {
@@ -25682,6 +26930,10 @@ fn threat_intelligence_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ThreatIntelligenceDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["threat_file_sha256", "threat_list_name", "threat_names"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::ThreatIntelligenceDetail::builder();
     if let Some(value) = dict_value(values, "threat_list_name")? {
         let converted_2913 = (|| -> PyResult<_> {
@@ -25782,6 +27034,7 @@ fn threats_detected_item_count_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::ThreatsDetectedItemCount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["files"])?;
     let mut builder = aws_sdk_guardduty::types::ThreatsDetectedItemCount::builder();
     if let Some(value) = dict_value(values, "files")? {
         let converted_2925 = (|| -> PyResult<_> {
@@ -25812,6 +27065,7 @@ fn threats_detected_item_count_to_py(
 
 fn total_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Total> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["amount", "unit"])?;
     let mut builder = aws_sdk_guardduty::types::Total::builder();
     if let Some(value) = dict_value(values, "amount")? {
         let converted_2927 = (|| -> PyResult<_> {
@@ -25857,6 +27111,10 @@ fn trigger_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::TriggerDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["description", "guard_duty_finding_id", "trigger_type"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::TriggerDetails::builder();
     if let Some(value) = dict_value(values, "guard_duty_finding_id")? {
         let converted_2931 = (|| -> PyResult<_> {
@@ -25931,6 +27189,7 @@ fn unprocessed_account_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UnprocessedAccount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "result"])?;
     let mut builder = aws_sdk_guardduty::types::UnprocessedAccount::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_2938 = (|| -> PyResult<_> {
@@ -25979,6 +27238,7 @@ fn unprocessed_data_sources_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UnprocessedDataSourcesResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["malware_protection"])?;
     let mut builder = aws_sdk_guardduty::types::UnprocessedDataSourcesResult::builder();
     if let Some(value) = dict_value(values, "malware_protection")? {
         let converted_2942 = (|| -> PyResult<_> {
@@ -26015,6 +27275,7 @@ fn update_protected_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UpdateProtectedResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket"])?;
     let mut builder = aws_sdk_guardduty::types::UpdateProtectedResource::builder();
     if let Some(value) = dict_value(values, "s3_bucket")? {
         let converted_2944 = (|| -> PyResult<_> {
@@ -26051,6 +27312,7 @@ fn update_s3_bucket_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UpdateS3BucketResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["object_prefixes"])?;
     let mut builder = aws_sdk_guardduty::types::UpdateS3BucketResource::builder();
     if let Some(value) = dict_value(values, "object_prefixes")? {
         let converted_2946 = (|| -> PyResult<_> {
@@ -26111,6 +27373,7 @@ fn usage_account_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageAccountResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "total"])?;
     let mut builder = aws_sdk_guardduty::types::UsageAccountResult::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_2954 = (|| -> PyResult<_> {
@@ -26159,6 +27422,10 @@ fn usage_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account_ids", "data_sources", "features", "resources"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::UsageCriteria::builder();
     if let Some(value) = dict_value(values, "account_ids")? {
         let converted_2958 = (|| -> PyResult<_> {
@@ -26355,6 +27622,7 @@ fn usage_data_source_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageDataSourceResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_source", "total"])?;
     let mut builder = aws_sdk_guardduty::types::UsageDataSourceResult::builder();
     if let Some(value) = dict_value(values, "data_source")? {
         let converted_2992 = (|| -> PyResult<_> {
@@ -26409,6 +27677,7 @@ fn usage_feature_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageFeatureResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["feature", "total"])?;
     let mut builder = aws_sdk_guardduty::types::UsageFeatureResult::builder();
     if let Some(value) = dict_value(values, "feature")? {
         let converted_2997 = (|| -> PyResult<_> {
@@ -26463,6 +27732,7 @@ fn usage_resource_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageResourceResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource", "total"])?;
     let mut builder = aws_sdk_guardduty::types::UsageResourceResult::builder();
     if let Some(value) = dict_value(values, "resource")? {
         let converted_3002 = (|| -> PyResult<_> {
@@ -26511,6 +27781,17 @@ fn usage_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "sum_by_account",
+            "sum_by_data_source",
+            "sum_by_feature",
+            "sum_by_resource",
+            "top_accounts_by_feature",
+            "top_resources",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::UsageStatistics::builder();
     if let Some(value) = dict_value(values, "sum_by_account")? {
         let converted_3006 = (|| -> PyResult<_> {
@@ -26815,6 +28096,7 @@ fn usage_top_account_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageTopAccountResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "total"])?;
     let mut builder = aws_sdk_guardduty::types::UsageTopAccountResult::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_3054 = (|| -> PyResult<_> {
@@ -26863,6 +28145,7 @@ fn usage_top_accounts_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::UsageTopAccountsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["accounts", "feature"])?;
     let mut builder = aws_sdk_guardduty::types::UsageTopAccountsResult::builder();
     if let Some(value) = dict_value(values, "feature")? {
         let converted_3058 = (|| -> PyResult<_> {
@@ -26943,6 +28226,10 @@ fn usage_top_accounts_result_to_py(
 
 fn user_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::User> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account", "credential_uid", "name", "type", "uid"],
+    )?;
     let mut builder = aws_sdk_guardduty::types::User::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_3069 = (|| -> PyResult<_> {
@@ -27038,6 +28325,7 @@ fn user_to_py(py: Python<'_>, value: &aws_sdk_guardduty::types::User) -> PyResul
 
 fn volume_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::Volume> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["host_path", "name"])?;
     let mut builder = aws_sdk_guardduty::types::Volume::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_3079 = (|| -> PyResult<_> {
@@ -27087,6 +28375,18 @@ fn volume_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::VolumeDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "device_name",
+            "encryption_type",
+            "kms_key_arn",
+            "snapshot_arn",
+            "volume_arn",
+            "volume_size_in_gb",
+            "volume_type",
+        ],
+    )?;
     let mut builder = aws_sdk_guardduty::types::VolumeDetail::builder();
     if let Some(value) = dict_value(values, "volume_arn")? {
         let converted_3083 = (|| -> PyResult<_> {
@@ -27223,6 +28523,7 @@ fn volume_mount_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_guardduty::types::VolumeMount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mount_path", "name"])?;
     let mut builder = aws_sdk_guardduty::types::VolumeMount::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_3097 = (|| -> PyResult<_> {
@@ -27269,6 +28570,7 @@ fn volume_mount_to_py(
 
 fn vpc_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_guardduty::types::VpcConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["security_groups", "subnet_ids", "vpc_id"])?;
     let mut builder = aws_sdk_guardduty::types::VpcConfig::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_3101 = (|| -> PyResult<_> {

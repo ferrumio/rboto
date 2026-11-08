@@ -16,6 +16,17 @@ fn account_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::AccountDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_contact_email_addresses",
+            "contact_language",
+            "mail_type",
+            "review_details",
+            "use_case_description",
+            "website_url",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::AccountDetails::builder();
     if let Some(value) = dict_value(values, "mail_type")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -174,6 +185,7 @@ fn archiving_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ArchivingOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["archive_arn"])?;
     let mut builder = aws_sdk_sesv2::types::ArchivingOptions::builder();
     if let Some(value) = dict_value(values, "archive_arn")? {
         let converted_21 = (|| -> PyResult<_> {
@@ -204,6 +216,18 @@ fn archiving_options_to_py(
 
 fn attachment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Attachment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "content_description",
+            "content_disposition",
+            "content_id",
+            "content_transfer_encoding",
+            "content_type",
+            "file_name",
+            "raw_content",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Attachment::builder();
     if let Some(value) = dict_value(values, "raw_content")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -349,6 +373,17 @@ fn batch_get_metric_data_query_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::BatchGetMetricDataQuery> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimensions",
+            "end_date",
+            "id",
+            "metric",
+            "namespace",
+            "start_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::BatchGetMetricDataQuery::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_40 = (|| -> PyResult<_> {
@@ -510,6 +545,7 @@ fn blacklist_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::BlacklistEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["description", "listing_time", "rbl_name"])?;
     let mut builder = aws_sdk_sesv2::types::BlacklistEntry::builder();
     if let Some(value) = dict_value(values, "rbl_name")? {
         let converted_67 = (|| -> PyResult<_> {
@@ -581,6 +617,7 @@ fn blacklist_entry_to_py(
 
 fn body_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Body> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["html", "text"])?;
     let mut builder = aws_sdk_sesv2::types::Body::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_74 = (|| -> PyResult<_> {
@@ -632,6 +669,10 @@ fn body_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Body) -> PyResult<Py
 
 fn bounce_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Bounce> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bounce_sub_type", "bounce_type", "diagnostic_code"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Bounce::builder();
     if let Some(value) = dict_value(values, "bounce_type")? {
         let converted_78 = (|| -> PyResult<_> {
@@ -706,6 +747,7 @@ fn bulk_email_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::BulkEmailContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["template"])?;
     let mut builder = aws_sdk_sesv2::types::BulkEmailContent::builder();
     if let Some(value) = dict_value(values, "template")? {
         let converted_85 = (|| -> PyResult<_> {
@@ -742,6 +784,15 @@ fn bulk_email_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::BulkEmailEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination",
+            "replacement_email_content",
+            "replacement_headers",
+            "replacement_tags",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::BulkEmailEntry::builder();
     if let Some(value) = dict_value(values, "destination")? {
         let converted_87 = (|| -> PyResult<_> {
@@ -894,6 +945,7 @@ fn bulk_email_entry_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::BulkEmailEntryResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "message_id", "status"])?;
     let mut builder = aws_sdk_sesv2::types::BulkEmailEntryResult::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_107 = (|| -> PyResult<_> {
@@ -964,6 +1016,7 @@ fn cloud_watch_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::CloudWatchDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dimension_configurations"])?;
     let mut builder = aws_sdk_sesv2::types::CloudWatchDestination::builder();
     if let Some(value) = dict_value(values, "dimension_configurations")? {
         let converted_114 = (|| -> PyResult<_> {
@@ -1030,6 +1083,14 @@ fn cloud_watch_dimension_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::CloudWatchDimensionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_dimension_value",
+            "dimension_name",
+            "dimension_value_source",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::CloudWatchDimensionConfiguration::builder();
     if let Some(value) = dict_value(values, "dimension_name")? {
         let converted_122 = (|| -> PyResult<_> {
@@ -1099,6 +1160,7 @@ fn cloud_watch_dimension_configuration_to_py(
 
 fn complaint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Complaint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["complaint_feedback_type", "complaint_sub_type"])?;
     let mut builder = aws_sdk_sesv2::types::Complaint::builder();
     if let Some(value) = dict_value(values, "complaint_sub_type")? {
         let converted_129 = (|| -> PyResult<_> {
@@ -1152,6 +1214,7 @@ fn configuration_overrides_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ConfigurationOverrides> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tracking"])?;
     let mut builder = aws_sdk_sesv2::types::ConfigurationOverrides::builder();
     if let Some(value) = dict_value(values, "tracking")? {
         let converted_133 = (|| -> PyResult<_> {
@@ -1186,6 +1249,16 @@ fn configuration_overrides_to_py(
 
 fn contact_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Contact> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "email_address",
+            "last_updated_timestamp",
+            "topic_default_preferences",
+            "topic_preferences",
+            "unsubscribe_all",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Contact::builder();
     if let Some(value) = dict_value(values, "email_address")? {
         let converted_135 = (|| -> PyResult<_> {
@@ -1350,6 +1423,7 @@ fn contact_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Contact) -> PyRes
 
 fn contact_list_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::ContactList> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["contact_list_name", "last_updated_timestamp"])?;
     let mut builder = aws_sdk_sesv2::types::ContactList::builder();
     if let Some(value) = dict_value(values, "contact_list_name")? {
         let converted_158 = (|| -> PyResult<_> {
@@ -1411,6 +1485,10 @@ fn contact_list_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ContactListDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["contact_list_import_action", "contact_list_name"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ContactListDestination::builder();
     if let Some(value) = dict_value(values, "contact_list_name")? {
         let converted_163 = (|| -> PyResult<_> {
@@ -1469,6 +1547,7 @@ fn contact_list_destination_to_py(
 
 fn content_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Content> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["charset", "data"])?;
     let mut builder = aws_sdk_sesv2::types::Content::builder();
     if let Some(value) = dict_value(values, "data")? {
         let converted_168 = (|| -> PyResult<_> {
@@ -1512,6 +1591,16 @@ fn custom_verification_email_template_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "failure_redirection_url",
+            "from_email_address",
+            "success_redirection_url",
+            "template_name",
+            "template_subject",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::CustomVerificationEmailTemplateMetadata::builder();
     if let Some(value) = dict_value(values, "template_name")? {
         let converted_172 = (|| -> PyResult<_> {
@@ -1622,6 +1711,10 @@ fn custom_verification_email_template_metadata_to_py(
 
 fn daily_volume_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::DailyVolume> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["domain_isp_placements", "start_date", "volume_statistics"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DailyVolume::builder();
     if let Some(value) = dict_value(values, "start_date")? {
         let converted_182 = (|| -> PyResult<_> {
@@ -1731,6 +1824,7 @@ fn dashboard_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DashboardAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["engagement_metrics"])?;
     let mut builder = aws_sdk_sesv2::types::DashboardAttributes::builder();
     if let Some(value) = dict_value(values, "engagement_metrics")? {
         let converted_195 = (|| -> PyResult<_> {
@@ -1768,6 +1862,7 @@ fn dashboard_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DashboardOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["engagement_metrics"])?;
     let mut builder = aws_sdk_sesv2::types::DashboardOptions::builder();
     if let Some(value) = dict_value(values, "engagement_metrics")? {
         let converted_198 = (|| -> PyResult<_> {
@@ -1803,6 +1898,10 @@ fn dashboard_options_to_py(
 
 fn dedicated_ip_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::DedicatedIp> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["ip", "pool_name", "warmup_percentage", "warmup_status"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DedicatedIp::builder();
     if let Some(value) = dict_value(values, "ip")? {
         let converted_201 = (|| -> PyResult<_> {
@@ -1889,6 +1988,7 @@ fn dedicated_ip_pool_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DedicatedIpPool> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pool_name", "scaling_mode"])?;
     let mut builder = aws_sdk_sesv2::types::DedicatedIpPool::builder();
     if let Some(value) = dict_value(values, "pool_name")? {
         let converted_210 = (|| -> PyResult<_> {
@@ -1939,6 +2039,7 @@ fn default_signing_scheme_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DefaultSigningScheme> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_sesv2::types::DefaultSigningScheme::builder();
     Ok(builder.build())
 }
@@ -1955,6 +2056,17 @@ fn deliverability_test_report_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DeliverabilityTestReport> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "create_date",
+            "deliverability_test_status",
+            "from_email_address",
+            "report_id",
+            "report_name",
+            "subject",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DeliverabilityTestReport::builder();
     if let Some(value) = dict_value(values, "report_id")? {
         let converted_215 = (|| -> PyResult<_> {
@@ -2086,6 +2198,10 @@ fn delivery_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DeliveryOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_delivery_seconds", "sending_pool_name", "tls_policy"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DeliveryOptions::builder();
     if let Some(value) = dict_value(values, "tls_policy")? {
         let converted_229 = (|| -> PyResult<_> {
@@ -2161,6 +2277,7 @@ fn delivery_options_to_py(
 
 fn destination_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bcc_addresses", "cc_addresses", "to_addresses"])?;
     let mut builder = aws_sdk_sesv2::types::Destination::builder();
     if let Some(value) = dict_value(values, "to_addresses")? {
         let converted_236 = (|| -> PyResult<_> {
@@ -2307,6 +2424,7 @@ fn destination_to_py(
 
 fn details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Details> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["routes_details"])?;
     let mut builder = aws_sdk_sesv2::types::Details::builder();
     if let Some(value) = dict_value(values, "routes_details")? {
         let converted_260 = (|| -> PyResult<_> {
@@ -2366,6 +2484,19 @@ fn dkim_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DkimAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "current_signing_key_length",
+            "last_key_generation_timestamp",
+            "next_signing_key_length",
+            "signing_attributes_origin",
+            "signing_enabled",
+            "signing_hosted_zone",
+            "status",
+            "tokens",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DkimAttributes::builder();
     if let Some(value) = dict_value(values, "signing_enabled")? {
         let converted_268 = (|| -> PyResult<_> {
@@ -2570,6 +2701,15 @@ fn dkim_signing_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DkimSigningAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "domain_signing_attributes_origin",
+            "domain_signing_private_key",
+            "domain_signing_selector",
+            "next_signing_key_length",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DkimSigningAttributes::builder();
     if let Some(value) = dict_value(values, "domain_signing_selector")? {
         let converted_295 = (|| -> PyResult<_> {
@@ -2670,6 +2810,25 @@ fn domain_deliverability_campaign_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DomainDeliverabilityCampaign> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "campaign_id",
+            "delete_rate",
+            "esps",
+            "first_seen_date_time",
+            "from_address",
+            "image_url",
+            "inbox_count",
+            "last_seen_date_time",
+            "projected_volume",
+            "read_delete_rate",
+            "read_rate",
+            "sending_ips",
+            "spam_count",
+            "subject",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DomainDeliverabilityCampaign::builder();
     if let Some(value) = dict_value(values, "campaign_id")? {
         let converted_305 = (|| -> PyResult<_> {
@@ -2988,6 +3147,14 @@ fn domain_deliverability_tracking_option_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DomainDeliverabilityTrackingOption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "domain",
+            "inbox_placement_tracking_option",
+            "subscription_start_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DomainDeliverabilityTrackingOption::builder();
     if let Some(value) = dict_value(values, "domain")? {
         let converted_347 = (|| -> PyResult<_> {
@@ -3065,6 +3232,16 @@ fn domain_isp_placement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::DomainIspPlacement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "inbox_percentage",
+            "inbox_raw_count",
+            "isp_name",
+            "spam_percentage",
+            "spam_raw_count",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::DomainIspPlacement::builder();
     if let Some(value) = dict_value(values, "isp_name")? {
         let converted_354 = (|| -> PyResult<_> {
@@ -3173,6 +3350,17 @@ fn email_address_insights_mailbox_evaluations_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EmailAddressInsightsMailboxEvaluations> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "has_valid_dns_records",
+            "has_valid_syntax",
+            "is_disposable",
+            "is_random_input",
+            "is_role_address",
+            "mailbox_exists",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::EmailAddressInsightsMailboxEvaluations::builder();
     if let Some(value) = dict_value(values, "has_valid_syntax")? {
         let converted_364 = (|| -> PyResult<_> {
@@ -3309,6 +3497,7 @@ fn email_address_insights_verdict_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EmailAddressInsightsVerdict> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["confidence_verdict"])?;
     let mut builder = aws_sdk_sesv2::types::EmailAddressInsightsVerdict::builder();
     if let Some(value) = dict_value(values, "confidence_verdict")? {
         let converted_376 = (|| -> PyResult<_> {
@@ -3346,6 +3535,7 @@ fn email_address_insights_verdict_to_py(
 
 fn email_content_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::EmailContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["raw", "simple", "template"])?;
     let mut builder = aws_sdk_sesv2::types::EmailContent::builder();
     if let Some(value) = dict_value(values, "simple")? {
         let converted_379 = (|| -> PyResult<_> {
@@ -3422,6 +3612,7 @@ fn email_insights_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EmailInsights> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination", "events", "isp"])?;
     let mut builder = aws_sdk_sesv2::types::EmailInsights::builder();
     if let Some(value) = dict_value(values, "destination")? {
         let converted_385 = (|| -> PyResult<_> {
@@ -3514,6 +3705,7 @@ fn email_template_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EmailTemplateContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["html", "subject", "text"])?;
     let mut builder = aws_sdk_sesv2::types::EmailTemplateContent::builder();
     if let Some(value) = dict_value(values, "subject")? {
         let converted_397 = (|| -> PyResult<_> {
@@ -3578,6 +3770,7 @@ fn email_template_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EmailTemplateMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["created_timestamp", "template_name"])?;
     let mut builder = aws_sdk_sesv2::types::EmailTemplateMetadata::builder();
     if let Some(value) = dict_value(values, "template_name")? {
         let converted_403 = (|| -> PyResult<_> {
@@ -3635,6 +3828,7 @@ fn event_bridge_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EventBridgeDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bus_arn"])?;
     let mut builder = aws_sdk_sesv2::types::EventBridgeDestination::builder();
     if let Some(value) = dict_value(values, "event_bus_arn")? {
         let converted_408 = (|| -> PyResult<_> {
@@ -3665,6 +3859,19 @@ fn event_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EventDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_destination",
+            "enabled",
+            "event_bridge_destination",
+            "kinesis_firehose_destination",
+            "matching_event_types",
+            "name",
+            "pinpoint_destination",
+            "sns_destination",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::EventDestination::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_410 = (|| -> PyResult<_> {
@@ -3859,6 +4066,18 @@ fn event_destination_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::EventDestinationDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_destination",
+            "enabled",
+            "event_bridge_destination",
+            "kinesis_firehose_destination",
+            "matching_event_types",
+            "pinpoint_destination",
+            "sns_destination",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::EventDestinationDefinition::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_433 = (|| -> PyResult<_> {
@@ -4035,6 +4254,7 @@ fn event_destination_definition_to_py(
 
 fn event_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::EventDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bounce", "complaint"])?;
     let mut builder = aws_sdk_sesv2::types::EventDetails::builder();
     if let Some(value) = dict_value(values, "bounce")? {
         let converted_454 = (|| -> PyResult<_> {
@@ -4091,6 +4311,10 @@ fn export_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ExportDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["message_insights_data_source", "metrics_data_source"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ExportDataSource::builder();
     if let Some(value) = dict_value(values, "metrics_data_source")? {
         let converted_458 = (|| -> PyResult<_> {
@@ -4147,6 +4371,7 @@ fn export_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ExportDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_format", "s3_url"])?;
     let mut builder = aws_sdk_sesv2::types::ExportDestination::builder();
     if let Some(value) = dict_value(values, "data_format")? {
         let converted_462 = (|| -> PyResult<_> {
@@ -4198,6 +4423,16 @@ fn export_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ExportJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "completed_timestamp",
+            "created_timestamp",
+            "export_source_type",
+            "job_id",
+            "job_status",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ExportJobSummary::builder();
     if let Some(value) = dict_value(values, "job_id")? {
         let converted_467 = (|| -> PyResult<_> {
@@ -4321,6 +4556,7 @@ fn export_job_summary_to_py(
 
 fn export_metric_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::ExportMetric> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["aggregation", "name"])?;
     let mut builder = aws_sdk_sesv2::types::ExportMetric::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_481 = (|| -> PyResult<_> {
@@ -4376,6 +4612,10 @@ fn export_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ExportStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["exported_records_count", "processed_records_count"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ExportStatistics::builder();
     if let Some(value) = dict_value(values, "processed_records_count")? {
         let converted_487 = (|| -> PyResult<_> {
@@ -4430,6 +4670,7 @@ fn export_statistics_to_py(
 
 fn failure_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::FailureInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_message", "failed_records_s3_url"])?;
     let mut builder = aws_sdk_sesv2::types::FailureInfo::builder();
     if let Some(value) = dict_value(values, "failed_records_s3_url")? {
         let converted_491 = (|| -> PyResult<_> {
@@ -4482,6 +4723,7 @@ fn guardian_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::GuardianAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["optimized_shared_delivery"])?;
     let mut builder = aws_sdk_sesv2::types::GuardianAttributes::builder();
     if let Some(value) = dict_value(values, "optimized_shared_delivery")? {
         let converted_495 = (|| -> PyResult<_> {
@@ -4519,6 +4761,7 @@ fn guardian_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::GuardianOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["optimized_shared_delivery"])?;
     let mut builder = aws_sdk_sesv2::types::GuardianOptions::builder();
     if let Some(value) = dict_value(values, "optimized_shared_delivery")? {
         let converted_498 = (|| -> PyResult<_> {
@@ -4556,6 +4799,15 @@ fn identity_certificate_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::IdentityCertificate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "certificate_arn",
+            "certificate_expiry_time",
+            "from_address",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::IdentityCertificate::builder();
     if let Some(value) = dict_value(values, "from_address")? {
         let converted_501 = (|| -> PyResult<_> {
@@ -4653,6 +4905,15 @@ fn identity_certificate_to_py(
 
 fn identity_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::IdentityInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "identity_name",
+            "identity_type",
+            "sending_enabled",
+            "verification_status",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::IdentityInfo::builder();
     if let Some(value) = dict_value(values, "identity_type")? {
         let converted_511 = (|| -> PyResult<_> {
@@ -4744,6 +5005,7 @@ fn import_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ImportDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_format", "s3_url"])?;
     let mut builder = aws_sdk_sesv2::types::ImportDataSource::builder();
     if let Some(value) = dict_value(values, "s3_url")? {
         let converted_521 = (|| -> PyResult<_> {
@@ -4794,6 +5056,10 @@ fn import_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ImportDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["contact_list_destination", "suppression_list_destination"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ImportDestination::builder();
     if let Some(value) = dict_value(values, "suppression_list_destination")? {
         let converted_526 = (|| -> PyResult<_> {
@@ -4850,6 +5116,17 @@ fn import_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ImportJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "failed_records_count",
+            "import_destination",
+            "job_id",
+            "job_status",
+            "processed_records_count",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ImportJobSummary::builder();
     if let Some(value) = dict_value(values, "job_id")? {
         let converted_530 = (|| -> PyResult<_> {
@@ -4988,6 +5265,7 @@ fn inbox_placement_tracking_option_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::InboxPlacementTrackingOption> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["global", "tracked_isps"])?;
     let mut builder = aws_sdk_sesv2::types::InboxPlacementTrackingOption::builder();
     if let Some(value) = dict_value(values, "global")? {
         let converted_544 = (|| -> PyResult<_> {
@@ -5060,6 +5338,7 @@ fn insights_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::InsightsEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["details", "timestamp", "type"])?;
     let mut builder = aws_sdk_sesv2::types::InsightsEvent::builder();
     if let Some(value) = dict_value(values, "timestamp")? {
         let converted_554 = (|| -> PyResult<_> {
@@ -5140,6 +5419,7 @@ fn insights_event_to_py(
 
 fn isp_placement_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::IspPlacement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["isp_name", "placement_statistics"])?;
     let mut builder = aws_sdk_sesv2::types::IspPlacement::builder();
     if let Some(value) = dict_value(values, "isp_name")? {
         let converted_562 = (|| -> PyResult<_> {
@@ -5192,6 +5472,7 @@ fn kinesis_firehose_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::KinesisFirehoseDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delivery_stream_arn", "iam_role_arn"])?;
     let mut builder = aws_sdk_sesv2::types::KinesisFirehoseDestination::builder();
     if let Some(value) = dict_value(values, "iam_role_arn")? {
         let converted_566 = (|| -> PyResult<_> {
@@ -5244,6 +5525,7 @@ fn list_contacts_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ListContactsFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filtered_status", "topic_filter"])?;
     let mut builder = aws_sdk_sesv2::types::ListContactsFilter::builder();
     if let Some(value) = dict_value(values, "filtered_status")? {
         let converted_570 = (|| -> PyResult<_> {
@@ -5302,6 +5584,7 @@ fn list_management_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ListManagementOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["contact_list_name", "topic_name"])?;
     let mut builder = aws_sdk_sesv2::types::ListManagementOptions::builder();
     if let Some(value) = dict_value(values, "contact_list_name")? {
         let converted_575 = (|| -> PyResult<_> {
@@ -5352,6 +5635,14 @@ fn mail_from_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MailFromAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "behavior_on_mx_failure",
+            "mail_from_domain",
+            "mail_from_domain_status",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::MailFromAttributes::builder();
     if let Some(value) = dict_value(values, "mail_from_domain")? {
         let converted_579 = (|| -> PyResult<_> {
@@ -5429,6 +5720,7 @@ fn mailbox_validation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MailboxValidation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["evaluations", "is_valid"])?;
     let mut builder = aws_sdk_sesv2::types::MailboxValidation::builder();
     if let Some(value) = dict_value(values, "is_valid")? {
         let converted_587 = (|| -> PyResult<_> {
@@ -5483,6 +5775,7 @@ fn mailbox_validation_to_py(
 
 fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Message> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attachments", "body", "headers", "subject"])?;
     let mut builder = aws_sdk_sesv2::types::Message::builder();
     if let Some(value) = dict_value(values, "subject")? {
         let converted_591 = (|| -> PyResult<_> {
@@ -5624,6 +5917,7 @@ fn message_header_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MessageHeader> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_sesv2::types::MessageHeader::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_611 = (|| -> PyResult<_> {
@@ -5666,6 +5960,16 @@ fn message_insights_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MessageInsightsDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_date",
+            "exclude",
+            "include",
+            "max_results",
+            "start_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::MessageInsightsDataSource::builder();
     if let Some(value) = dict_value(values, "start_date")? {
         let converted_615 = (|| -> PyResult<_> {
@@ -5785,6 +6089,18 @@ fn message_insights_filters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MessageInsightsFilters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "destination",
+            "from_email_address",
+            "isp",
+            "last_delivery_event",
+            "last_engagement_event",
+            "subject",
+            "tenant_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::MessageInsightsFilters::builder();
     if let Some(value) = dict_value(values, "from_email_address")? {
         let converted_627 = (|| -> PyResult<_> {
@@ -6113,6 +6429,7 @@ fn message_security_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MessageSecurityOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["signing_scheme"])?;
     let mut builder = aws_sdk_sesv2::types::MessageSecurityOptions::builder();
     if let Some(value) = dict_value(values, "signing_scheme")? {
         let converted_685 = (|| -> PyResult<_> {
@@ -6147,6 +6464,7 @@ fn message_security_options_to_py(
 
 fn message_tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::MessageTag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_sesv2::types::MessageTag::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_687 = (|| -> PyResult<_> {
@@ -6189,6 +6507,7 @@ fn metric_data_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MetricDataError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "id", "message"])?;
     let mut builder = aws_sdk_sesv2::types::MetricDataError::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_691 = (|| -> PyResult<_> {
@@ -6258,6 +6577,7 @@ fn metric_data_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MetricDataResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "timestamps", "values"])?;
     let mut builder = aws_sdk_sesv2::types::MetricDataResult::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_698 = (|| -> PyResult<_> {
@@ -6383,6 +6703,16 @@ fn metrics_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MetricsDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimensions",
+            "end_date",
+            "metrics",
+            "namespace",
+            "start_date",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::MetricsDataSource::builder();
     if let Some(value) = dict_value(values, "dimensions")? {
         let converted_717 = (|| -> PyResult<_> {
@@ -6585,6 +6915,17 @@ fn multi_region_endpoint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::MultiRegionEndpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "endpoint_id",
+            "endpoint_name",
+            "last_updated_timestamp",
+            "regions",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::MultiRegionEndpoint::builder();
     if let Some(value) = dict_value(values, "endpoint_name")? {
         let converted_753 = (|| -> PyResult<_> {
@@ -6744,6 +7085,14 @@ fn overall_volume_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::OverallVolume> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "domain_isp_placements",
+            "read_rate_percent",
+            "volume_statistics",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::OverallVolume::builder();
     if let Some(value) = dict_value(values, "volume_statistics")? {
         let converted_774 = (|| -> PyResult<_> {
@@ -6848,6 +7197,7 @@ fn pinpoint_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::PinpointDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["application_arn"])?;
     let mut builder = aws_sdk_sesv2::types::PinpointDestination::builder();
     if let Some(value) = dict_value(values, "application_arn")? {
         let converted_786 = (|| -> PyResult<_> {
@@ -6884,6 +7234,16 @@ fn placement_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::PlacementStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dkim_percentage",
+            "inbox_percentage",
+            "missing_percentage",
+            "spam_percentage",
+            "spf_percentage",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::PlacementStatistics::builder();
     if let Some(value) = dict_value(values, "inbox_percentage")? {
         let converted_788 = (|| -> PyResult<_> {
@@ -7000,6 +7360,7 @@ fn pricing_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::PricingAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["current_plan", "next_plan"])?;
     let mut builder = aws_sdk_sesv2::types::PricingAttributes::builder();
     if let Some(value) = dict_value(values, "current_plan")? {
         let converted_798 = (|| -> PyResult<_> {
@@ -7056,6 +7417,7 @@ fn pricing_attributes_to_py(
 
 fn raw_message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::RawMessage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data"])?;
     let mut builder = aws_sdk_sesv2::types::RawMessage::builder();
     if let Some(value) = dict_value(values, "data")? {
         let converted_804 = (|| -> PyResult<_> {
@@ -7087,6 +7449,18 @@ fn recommendation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::Recommendation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "description",
+            "impact",
+            "last_updated_timestamp",
+            "resource_arn",
+            "status",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Recommendation::builder();
     if let Some(value) = dict_value(values, "resource_arn")? {
         let converted_807 = (|| -> PyResult<_> {
@@ -7251,6 +7625,7 @@ fn replacement_email_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ReplacementEmailContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["replacement_template"])?;
     let mut builder = aws_sdk_sesv2::types::ReplacementEmailContent::builder();
     if let Some(value) = dict_value(values, "replacement_template")? {
         let converted_826 = (|| -> PyResult<_> {
@@ -7287,6 +7662,7 @@ fn replacement_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ReplacementTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["replacement_template_data"])?;
     let mut builder = aws_sdk_sesv2::types::ReplacementTemplate::builder();
     if let Some(value) = dict_value(values, "replacement_template_data")? {
         let converted_828 = (|| -> PyResult<_> {
@@ -7323,6 +7699,18 @@ fn reputation_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ReputationEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aws_ses_managed_status",
+            "customer_managed_status",
+            "reputation_entity_reference",
+            "reputation_entity_type",
+            "reputation_impact",
+            "reputation_management_policy",
+            "sending_status_aggregate",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ReputationEntity::builder();
     if let Some(value) = dict_value(values, "reputation_entity_reference")? {
         let converted_830 = (|| -> PyResult<_> {
@@ -7484,6 +7872,7 @@ fn reputation_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ReputationOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["last_fresh_start", "reputation_metrics_enabled"])?;
     let mut builder = aws_sdk_sesv2::types::ReputationOptions::builder();
     if let Some(value) = dict_value(values, "reputation_metrics_enabled")? {
         let converted_847 = (|| -> PyResult<_> {
@@ -7543,6 +7932,15 @@ fn resource_tenant_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ResourceTenantMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "associated_timestamp",
+            "resource_arn",
+            "tenant_id",
+            "tenant_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::ResourceTenantMetadata::builder();
     if let Some(value) = dict_value(values, "tenant_name")? {
         let converted_852 = (|| -> PyResult<_> {
@@ -7632,6 +8030,7 @@ fn review_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::ReviewDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["case_id", "status"])?;
     let mut builder = aws_sdk_sesv2::types::ReviewDetails::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_861 = (|| -> PyResult<_> {
@@ -7683,6 +8082,7 @@ fn review_details_to_py(
 
 fn route_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Route> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region"])?;
     let mut builder = aws_sdk_sesv2::types::Route::builder();
     if let Some(value) = dict_value(values, "region")? {
         let converted_866 = (|| -> PyResult<_> {
@@ -7708,6 +8108,7 @@ fn route_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Route) -> PyResult<
 
 fn route_details_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::RouteDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region"])?;
     let mut builder = aws_sdk_sesv2::types::RouteDetails::builder();
     if let Some(value) = dict_value(values, "region")? {
         let converted_868 = (|| -> PyResult<_> {
@@ -7736,6 +8137,10 @@ fn route_details_to_py(
 
 fn send_quota_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::SendQuota> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max24_hour_send", "max_send_rate", "sent_last24_hours"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::SendQuota::builder();
     if let Some(value) = dict_value(values, "max24_hour_send")? {
         let converted_870 = (|| -> PyResult<_> {
@@ -7800,6 +8205,7 @@ fn sending_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SendingOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["sending_enabled"])?;
     let mut builder = aws_sdk_sesv2::types::SendingOptions::builder();
     if let Some(value) = dict_value(values, "sending_enabled")? {
         let converted_876 = (|| -> PyResult<_> {
@@ -7905,6 +8311,7 @@ fn smime_signing_scheme_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SmimeSigningScheme> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["signature_format"])?;
     let mut builder = aws_sdk_sesv2::types::SmimeSigningScheme::builder();
     if let Some(value) = dict_value(values, "signature_format")? {
         let converted_882 = (|| -> PyResult<_> {
@@ -7943,6 +8350,7 @@ fn sns_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SnsDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["topic_arn"])?;
     let mut builder = aws_sdk_sesv2::types::SnsDestination::builder();
     if let Some(value) = dict_value(values, "topic_arn")? {
         let converted_885 = (|| -> PyResult<_> {
@@ -7971,6 +8379,10 @@ fn sns_destination_to_py(
 
 fn soa_record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::SoaRecord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["admin_email", "primary_name_server", "serial_number"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::SoaRecord::builder();
     if let Some(value) = dict_value(values, "primary_name_server")? {
         let converted_887 = (|| -> PyResult<_> {
@@ -8033,6 +8445,7 @@ fn soa_record_to_py(
 
 fn status_record_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::StatusRecord> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cause", "last_updated_timestamp", "status"])?;
     let mut builder = aws_sdk_sesv2::types::StatusRecord::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_893 = (|| -> PyResult<_> {
@@ -8111,6 +8524,16 @@ fn suppressed_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressedDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attributes",
+            "email_address",
+            "last_update_time",
+            "reason",
+            "tenant_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::SuppressedDestination::builder();
     if let Some(value) = dict_value(values, "email_address")? {
         let converted_901 = (|| -> PyResult<_> {
@@ -8223,6 +8646,7 @@ fn suppressed_destination_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressedDestinationAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["feedback_id", "message_id"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressedDestinationAttributes::builder();
     if let Some(value) = dict_value(values, "message_id")? {
         let converted_913 = (|| -> PyResult<_> {
@@ -8271,6 +8695,7 @@ fn suppressed_destination_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressedDestinationSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["email_address", "last_update_time", "reason"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressedDestinationSummary::builder();
     if let Some(value) = dict_value(values, "email_address")? {
         let converted_917 = (|| -> PyResult<_> {
@@ -8347,6 +8772,7 @@ fn suppression_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["suppressed_reasons", "validation_attributes"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressionAttributes::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
         let converted_925 = (|| -> PyResult<_> {
@@ -8433,6 +8859,13 @@ fn suppression_condition_threshold_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionConditionThreshold> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "condition_threshold_enabled",
+            "overall_confidence_threshold",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::SuppressionConditionThreshold::builder();
     if let Some(value) = dict_value(values, "condition_threshold_enabled")? {
         let converted_936 = (|| -> PyResult<_> {
@@ -8493,6 +8926,7 @@ fn suppression_confidence_threshold_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionConfidenceThreshold> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["confidence_verdict_threshold"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressionConfidenceThreshold::builder();
     if let Some(value) = dict_value(values, "confidence_verdict_threshold")? {
         let converted_941 = (|| -> PyResult<_> {
@@ -8538,6 +8972,7 @@ fn suppression_list_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionListDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["suppression_list_import_action"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressionListDestination::builder();
     if let Some(value) = dict_value(values, "suppression_list_import_action")? {
         let converted_944 = (|| -> PyResult<_> {
@@ -8582,6 +9017,14 @@ fn suppression_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "suppressed_reasons",
+            "suppression_scope",
+            "validation_options",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::SuppressionOptions::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
         let converted_947 = (|| -> PyResult<_> {
@@ -8690,6 +9133,7 @@ fn suppression_validation_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionValidationAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition_threshold"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressionValidationAttributes::builder();
     if let Some(value) = dict_value(values, "condition_threshold")? {
         let converted_961 = (|| -> PyResult<_> {
@@ -8726,6 +9170,7 @@ fn suppression_validation_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::SuppressionValidationOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition_threshold"])?;
     let mut builder = aws_sdk_sesv2::types::SuppressionValidationOptions::builder();
     if let Some(value) = dict_value(values, "condition_threshold")? {
         let converted_963 = (|| -> PyResult<_> {
@@ -8760,6 +9205,7 @@ fn suppression_validation_options_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_sesv2::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_965 = (|| -> PyResult<_> {
@@ -8797,6 +9243,17 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Tag) -> PyResult<Py<P
 
 fn template_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Template> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attachments",
+            "headers",
+            "template_arn",
+            "template_content",
+            "template_data",
+            "template_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Template::builder();
     if let Some(value) = dict_value(values, "template_name")? {
         let converted_969 = (|| -> PyResult<_> {
@@ -8968,6 +9425,18 @@ fn template_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Template) -> PyR
 
 fn tenant_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Tenant> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "sending_status",
+            "suppression_attributes",
+            "tags",
+            "tenant_arn",
+            "tenant_id",
+            "tenant_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Tenant::builder();
     if let Some(value) = dict_value(values, "tenant_name")? {
         let converted_993 = (|| -> PyResult<_> {
@@ -9138,6 +9607,16 @@ fn tenant_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Tenant) -> PyResul
 
 fn tenant_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::TenantInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_timestamp",
+            "sending_status",
+            "tenant_arn",
+            "tenant_id",
+            "tenant_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::TenantInfo::builder();
     if let Some(value) = dict_value(values, "tenant_name")? {
         let converted_1015 = (|| -> PyResult<_> {
@@ -9249,6 +9728,7 @@ fn tenant_resource_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::TenantResource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_arn", "resource_type"])?;
     let mut builder = aws_sdk_sesv2::types::TenantResource::builder();
     if let Some(value) = dict_value(values, "resource_type")? {
         let converted_1027 = (|| -> PyResult<_> {
@@ -9302,6 +9782,7 @@ fn tenant_suppression_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::TenantSuppressionAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["suppressed_reasons", "suppression_scope"])?;
     let mut builder = aws_sdk_sesv2::types::TenantSuppressionAttributes::builder();
     if let Some(value) = dict_value(values, "suppressed_reasons")? {
         let converted_1032 = (|| -> PyResult<_> {
@@ -9388,6 +9869,15 @@ fn tenant_suppression_attributes_to_py(
 
 fn topic_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::Topic> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_subscription_status",
+            "description",
+            "display_name",
+            "topic_name",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::Topic::builder();
     if let Some(value) = dict_value(values, "topic_name")? {
         let converted_1044 = (|| -> PyResult<_> {
@@ -9468,6 +9958,10 @@ fn topic_to_py(py: Python<'_>, value: &aws_sdk_sesv2::types::Topic) -> PyResult<
 
 fn topic_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::TopicFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["topic_name", "use_default_if_preference_unavailable"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::TopicFilter::builder();
     if let Some(value) = dict_value(values, "topic_name")? {
         let converted_1053 = (|| -> PyResult<_> {
@@ -9518,6 +10012,7 @@ fn topic_preference_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::TopicPreference> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["subscription_status", "topic_name"])?;
     let mut builder = aws_sdk_sesv2::types::TopicPreference::builder();
     if let Some(value) = dict_value(values, "topic_name")? {
         let converted_1057 = (|| -> PyResult<_> {
@@ -9572,6 +10067,10 @@ fn tracking_configuration_overrides_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::TrackingConfigurationOverrides> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["click_tracking_enabled", "open_tracking_enabled"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::TrackingConfigurationOverrides::builder();
     if let Some(value) = dict_value(values, "open_tracking_enabled")? {
         let converted_1062 = (|| -> PyResult<_> {
@@ -9632,6 +10131,7 @@ fn tracking_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::TrackingOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["custom_redirect_domain", "https_policy"])?;
     let mut builder = aws_sdk_sesv2::types::TrackingOptions::builder();
     if let Some(value) = dict_value(values, "custom_redirect_domain")? {
         let converted_1068 = (|| -> PyResult<_> {
@@ -9690,6 +10190,10 @@ fn vdm_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::VdmAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["dashboard_attributes", "guardian_attributes", "vdm_enabled"],
+    )?;
     let mut builder = aws_sdk_sesv2::types::VdmAttributes::builder();
     if let Some(value) = dict_value(values, "vdm_enabled")? {
         let converted_1073 = (|| -> PyResult<_> {
@@ -9764,6 +10268,7 @@ fn vdm_attributes_to_py(
 
 fn vdm_options_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_sesv2::types::VdmOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["dashboard_options", "guardian_options"])?;
     let mut builder = aws_sdk_sesv2::types::VdmOptions::builder();
     if let Some(value) = dict_value(values, "dashboard_options")? {
         let converted_1080 = (|| -> PyResult<_> {
@@ -9820,6 +10325,15 @@ fn verification_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::VerificationInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error_type",
+            "last_checked_timestamp",
+            "last_success_timestamp",
+            "soa_record",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::VerificationInfo::builder();
     if let Some(value) = dict_value(values, "last_checked_timestamp")? {
         let converted_1084 = (|| -> PyResult<_> {
@@ -9928,6 +10442,15 @@ fn volume_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_sesv2::types::VolumeStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "inbox_raw_count",
+            "projected_inbox",
+            "projected_spam",
+            "spam_raw_count",
+        ],
+    )?;
     let mut builder = aws_sdk_sesv2::types::VolumeStatistics::builder();
     if let Some(value) = dict_value(values, "inbox_raw_count")? {
         let converted_1095 = (|| -> PyResult<_> {

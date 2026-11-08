@@ -16,6 +16,7 @@ fn artifact_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ArtifactDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["failure_reason", "output_location", "status"])?;
     let mut builder = aws_sdk_connecthealth::types::ArtifactDetails::builder();
     if let Some(value) = dict_value(values, "output_location")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -92,6 +93,14 @@ fn clinical_note_generation_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "after_visit_summary_result",
+            "note_result",
+            "transcript_result",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::ClinicalNoteGenerationResult::builder();
     if let Some(value) = dict_value(values, "note_result")? {
         let converted_8 = (|| -> PyResult<_> {
@@ -168,6 +177,7 @@ fn clinical_note_generation_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["note_template_settings"])?;
     let mut builder = aws_sdk_connecthealth::types::ClinicalNoteGenerationSettings::builder();
     if let Some(value) = dict_value(values, "note_template_settings")? {
         let converted_14 = (|| -> PyResult<_> {
@@ -204,6 +214,7 @@ fn clinical_note_generation_settings_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["note_template_settings"])?;
     let mut builder =
         aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse::builder();
     if let Some(value) = dict_value(values, "note_template_settings")? {
@@ -241,6 +252,7 @@ fn create_web_app_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::CreateWebAppConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ehr_role", "idc_instance_id", "idc_region"])?;
     let mut builder = aws_sdk_connecthealth::types::CreateWebAppConfiguration::builder();
     if let Some(value) = dict_value(values, "ehr_role")? {
         let converted_18 = (|| -> PyResult<_> {
@@ -306,6 +318,7 @@ fn custom_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::CustomTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["template_instructions", "template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::CustomTemplate::builder();
     if let Some(value) = dict_value(values, "template_type")? {
         let converted_24 = (|| -> PyResult<_> {
@@ -392,6 +405,7 @@ fn custom_template_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::CustomTemplateResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::CustomTemplateResponse::builder();
     if let Some(value) = dict_value(values, "template_type")? {
         let converted_35 = (|| -> PyResult<_> {
@@ -430,6 +444,10 @@ fn domain_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::DomainSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["arn", "created_at", "domain_id", "name", "status"],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::DomainSummary::builder();
     if let Some(value) = dict_value(values, "domain_id")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -532,6 +550,7 @@ fn encounter_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::EncounterContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["unstructured_context"])?;
     let mut builder = aws_sdk_connecthealth::types::EncounterContext::builder();
     if let Some(value) = dict_value(values, "unstructured_context")? {
         let converted_50 = (|| -> PyResult<_> {
@@ -568,6 +587,7 @@ fn encryption_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::EncryptionContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encryption_type", "kms_key_arn"])?;
     let mut builder = aws_sdk_connecthealth::types::EncryptionContext::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
         let converted_52 = (|| -> PyResult<_> {
@@ -620,6 +640,7 @@ fn fhir_server_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::FhirServer> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["fhir_endpoint", "oauth_token"])?;
     let mut builder = aws_sdk_connecthealth::types::FhirServer::builder();
     if let Some(value) = dict_value(values, "fhir_endpoint")? {
         let converted_57 = (|| -> PyResult<_> {
@@ -666,6 +687,7 @@ fn input_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::InputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["fhir_server", "s3_sources"])?;
     let mut builder = aws_sdk_connecthealth::types::InputDataConfig::builder();
     if let Some(value) = dict_value(values, "fhir_server")? {
         let converted_61 = (|| -> PyResult<_> {
@@ -750,6 +772,7 @@ fn insights_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::InsightsContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["insights_type"])?;
     let mut builder = aws_sdk_connecthealth::types::InsightsContext::builder();
     if let Some(value) = dict_value(values, "insights_type")? {
         let converted_71 = (|| -> PyResult<_> {
@@ -786,6 +809,7 @@ fn insights_output_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::InsightsOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["uri"])?;
     let mut builder = aws_sdk_connecthealth::types::InsightsOutput::builder();
     if let Some(value) = dict_value(values, "uri")? {
         let converted_74 = (|| -> PyResult<_> {
@@ -816,6 +840,7 @@ fn managed_template_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ManagedTemplate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::ManagedTemplate::builder();
     if let Some(value) = dict_value(values, "template_type")? {
         let converted_76 = (|| -> PyResult<_> {
@@ -852,6 +877,7 @@ fn managed_template_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ManagedTemplateResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::ManagedTemplateResponse::builder();
     if let Some(value) = dict_value(values, "template_type")? {
         let converted_79 = (|| -> PyResult<_> {
@@ -890,6 +916,7 @@ fn medical_scribe_audio_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeAudioEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_82 = (|| -> PyResult<_> {
@@ -923,6 +950,7 @@ fn medical_scribe_binary_audio_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeBinaryAudioEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeBinaryAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_85 = (|| -> PyResult<_> {
@@ -956,6 +984,7 @@ fn medical_scribe_channel_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeChannelDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["channel_id", "participant_role"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
         let converted_88 = (|| -> PyResult<_> {
@@ -1011,6 +1040,14 @@ fn medical_scribe_configuration_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeConfigurationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "channel_definitions",
+            "encounter_context",
+            "post_stream_action_settings",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "post_stream_action_settings")? {
         let converted_93 = (|| -> PyResult<_> {
@@ -1232,6 +1269,24 @@ fn medical_scribe_listening_session_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "channel_definitions",
+            "domain_id",
+            "encounter_context_provided",
+            "language_code",
+            "media_encoding",
+            "media_sample_rate_hertz",
+            "post_stream_action_result",
+            "post_stream_action_settings",
+            "session_id",
+            "stream_creation_time",
+            "stream_end_time",
+            "stream_status",
+            "subscription_id",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails::builder();
     if let Some(value) = dict_value(values, "session_id")? {
         let converted_113 = (|| -> PyResult<_> {
@@ -1601,6 +1656,10 @@ fn medical_scribe_post_stream_action_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["clinical_note_generation_settings", "output_s3_uri"],
+    )?;
     let mut builder =
         aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettings::builder();
     if let Some(value) = dict_value(values, "output_s3_uri")? {
@@ -1652,6 +1711,10 @@ fn medical_scribe_post_stream_action_settings_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["clinical_note_generation_settings", "output_s3_uri"],
+    )?;
     let mut builder =
         aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse::builder();
     if let Some(value) = dict_value(values, "output_s3_uri")? {
@@ -1703,6 +1766,7 @@ fn medical_scribe_post_stream_actions_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["clinical_note_generation_result"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
         let converted_160 = (|| -> PyResult<_> {
@@ -1739,6 +1803,7 @@ fn medical_scribe_session_control_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeSessionControlEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeSessionControlEvent::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_162 = (|| -> PyResult<_> {
@@ -1779,6 +1844,7 @@ fn medical_scribe_transcript_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeTranscriptEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["transcript_segment"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript_segment")? {
         let converted_165 = (|| -> PyResult<_> {
@@ -1815,6 +1881,17 @@ fn medical_scribe_transcript_segment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeTranscriptSegment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "audio_begin_offset",
+            "audio_end_offset",
+            "channel_id",
+            "content",
+            "is_partial",
+            "segment_id",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeTranscriptSegment::builder();
     if let Some(value) = dict_value(values, "segment_id")? {
         let converted_167 = (|| -> PyResult<_> {
@@ -2085,6 +2162,7 @@ fn output_data_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::OutputDataConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_output_path"])?;
     let mut builder = aws_sdk_connecthealth::types::OutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_output_path")? {
         let converted_187 = (|| -> PyResult<_> {
@@ -2115,6 +2193,7 @@ fn patient_insights_encounter_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::PatientInsightsEncounterContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["encounter_reason"])?;
     let mut builder = aws_sdk_connecthealth::types::PatientInsightsEncounterContext::builder();
     if let Some(value) = dict_value(values, "encounter_reason")? {
         let converted_189 = (|| -> PyResult<_> {
@@ -2149,6 +2228,7 @@ fn patient_insights_patient_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::PatientInsightsPatientContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["date_of_birth", "patient_id", "pronouns"])?;
     let mut builder = aws_sdk_connecthealth::types::PatientInsightsPatientContext::builder();
     if let Some(value) = dict_value(values, "patient_id")? {
         let converted_191 = (|| -> PyResult<_> {
@@ -2215,6 +2295,7 @@ fn patient_insights_patient_context_to_py(
 
 fn s3_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_connecthealth::types::S3Source> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["uri"])?;
     let mut builder = aws_sdk_connecthealth::types::S3Source::builder();
     if let Some(value) = dict_value(values, "uri")? {
         let converted_198 = (|| -> PyResult<_> {
@@ -2245,6 +2326,19 @@ fn subscription_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::SubscriptionDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activated_at",
+            "arn",
+            "created_at",
+            "deactivated_at",
+            "domain_id",
+            "last_updated_at",
+            "status",
+            "subscription_id",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::SubscriptionDescription::builder();
     if let Some(value) = dict_value(values, "domain_id")? {
         let converted_200 = (|| -> PyResult<_> {
@@ -2423,6 +2517,7 @@ fn template_section_instruction_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::TemplateSectionInstruction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["section_header", "section_instruction"])?;
     let mut builder = aws_sdk_connecthealth::types::TemplateSectionInstruction::builder();
     if let Some(value) = dict_value(values, "section_header")? {
         let converted_221 = (|| -> PyResult<_> {
@@ -2475,6 +2570,7 @@ fn user_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::UserContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["role", "specialty", "user_id"])?;
     let mut builder = aws_sdk_connecthealth::types::UserContext::builder();
     if let Some(value) = dict_value(values, "role")? {
         let converted_225 = (|| -> PyResult<_> {
@@ -2545,6 +2641,7 @@ fn web_app_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::WebAppConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ehr_role", "idc_application_id", "idc_region"])?;
     let mut builder = aws_sdk_connecthealth::types::WebAppConfiguration::builder();
     if let Some(value) = dict_value(values, "ehr_role")? {
         let converted_233 = (|| -> PyResult<_> {

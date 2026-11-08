@@ -120,6 +120,9 @@ Response nullability follows Rust fields; unknown union variants are output-only
 Response enums retain their known literals plus the erased `UnknownEnumValue`
 string type for future SDK values. Input lists accept sequences, while maps
 continue to require dictionaries.
+ADR-0034 rejects unknown keys in input structures during native conversion.
+Maps and documents keep their arbitrary keys; diagnostics identify unknown
+structure keys by position without including their contents.
 
 ADR-0019 defines `client.paginators`, generated from validated Smithy traits and
 descriptor supplements. The private Python iterator calls public operations

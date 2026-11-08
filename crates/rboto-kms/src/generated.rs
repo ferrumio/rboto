@@ -16,6 +16,16 @@ fn alias_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::AliasListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alias_arn",
+            "alias_name",
+            "creation_date",
+            "last_updated_date",
+            "target_key_id",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::AliasListEntry::builder();
     if let Some(value) = dict_value(values, "alias_name")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -130,6 +140,20 @@ fn custom_key_stores_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::CustomKeyStoresListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_hsm_cluster_id",
+            "connection_error_code",
+            "connection_state",
+            "creation_date",
+            "custom_key_store_id",
+            "custom_key_store_name",
+            "custom_key_store_type",
+            "trust_anchor_certificate",
+            "xks_proxy_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::CustomKeyStoresListEntry::builder();
     if let Some(value) = dict_value(values, "custom_key_store_id")? {
         let converted_13 = (|| -> PyResult<_> {
@@ -336,6 +360,14 @@ fn grant_constraints_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::GrantConstraints> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "encryption_context_equals",
+            "encryption_context_subset",
+            "source_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::GrantConstraints::builder();
     if let Some(value) = dict_value(values, "encryption_context_subset")? {
         let converted_35 = (|| -> PyResult<_> {
@@ -456,6 +488,22 @@ fn grant_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::GrantListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "constraints",
+            "creation_date",
+            "grant_id",
+            "grantee_principal",
+            "grantee_service_principal",
+            "issuing_account",
+            "key_id",
+            "name",
+            "operations",
+            "retiring_principal",
+            "retiring_service_principal",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::GrantListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
         let converted_61 = (|| -> PyResult<_> {
@@ -715,6 +763,15 @@ fn key_last_usage_data_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::KeyLastUsageData> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_trail_event_id",
+            "kms_request_id",
+            "operation",
+            "timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::KeyLastUsageData::builder();
     if let Some(value) = dict_value(values, "operation")? {
         let converted_91 = (|| -> PyResult<_> {
@@ -812,6 +869,7 @@ fn key_last_usage_data_to_py(
 
 fn key_list_entry_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::KeyListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key_arn", "key_id"])?;
     let mut builder = aws_sdk_kms::types::KeyListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
         let converted_101 = (|| -> PyResult<_> {
@@ -858,6 +916,37 @@ fn key_list_entry_to_py(
 
 fn key_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::KeyMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "aws_account_id",
+            "cloud_hsm_cluster_id",
+            "creation_date",
+            "current_key_material_id",
+            "custom_key_store_id",
+            "customer_master_key_spec",
+            "deletion_date",
+            "description",
+            "enabled",
+            "encryption_algorithms",
+            "expiration_model",
+            "key_agreement_algorithms",
+            "key_id",
+            "key_manager",
+            "key_spec",
+            "key_state",
+            "key_usage",
+            "mac_algorithms",
+            "multi_region",
+            "multi_region_configuration",
+            "origin",
+            "pending_deletion_window_in_days",
+            "signing_algorithms",
+            "valid_to",
+            "xks_key_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::KeyMetadata::builder();
     if let Some(value) = dict_value(values, "aws_account_id")? {
         let converted_105 = (|| -> PyResult<_> {
@@ -1509,6 +1598,10 @@ fn multi_region_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::MultiRegionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["multi_region_key_type", "primary_key", "replica_keys"],
+    )?;
     let mut builder = aws_sdk_kms::types::MultiRegionConfiguration::builder();
     if let Some(value) = dict_value(values, "multi_region_key_type")? {
         let converted_195 = (|| -> PyResult<_> {
@@ -1615,6 +1708,7 @@ fn multi_region_key_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::MultiRegionKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "region"])?;
     let mut builder = aws_sdk_kms::types::MultiRegionKey::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_208 = (|| -> PyResult<_> {
@@ -1661,6 +1755,10 @@ fn multi_region_key_to_py(
 
 fn recipient_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::RecipientInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["attestation_document", "key_encryption_algorithm"],
+    )?;
     let mut builder = aws_sdk_kms::types::RecipientInfo::builder();
     if let Some(value) = dict_value(values, "key_encryption_algorithm")? {
         let converted_212 = (|| -> PyResult<_> {
@@ -1720,6 +1818,20 @@ fn rotations_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::RotationsListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expiration_model",
+            "import_state",
+            "key_id",
+            "key_material_description",
+            "key_material_id",
+            "key_material_state",
+            "rotation_date",
+            "rotation_type",
+            "valid_to",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::RotationsListEntry::builder();
     if let Some(value) = dict_value(values, "key_id")? {
         let converted_218 = (|| -> PyResult<_> {
@@ -1925,6 +2037,7 @@ fn rotations_list_entry_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_kms::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["tag_key", "tag_value"])?;
     let mut builder = aws_sdk_kms::types::Tag::builder();
     if let Some(value) = dict_value(values, "tag_key")? {
         let converted_242 = (|| -> PyResult<_> {
@@ -1967,6 +2080,7 @@ fn xks_key_configuration_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::XksKeyConfigurationType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id"])?;
     let mut builder = aws_sdk_kms::types::XksKeyConfigurationType::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_246 = (|| -> PyResult<_> {
@@ -1999,6 +2113,7 @@ fn xks_proxy_authentication_credential_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::XksProxyAuthenticationCredentialType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access_key_id", "raw_secret_access_key"])?;
     let mut builder = aws_sdk_kms::types::XksProxyAuthenticationCredentialType::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_248 = (|| -> PyResult<_> {
@@ -2051,6 +2166,17 @@ fn xks_proxy_configuration_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_kms::types::XksProxyConfigurationType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_id",
+            "connectivity",
+            "uri_endpoint",
+            "uri_path",
+            "vpc_endpoint_service_name",
+            "vpc_endpoint_service_owner",
+        ],
+    )?;
     let mut builder = aws_sdk_kms::types::XksProxyConfigurationType::builder();
     if let Some(value) = dict_value(values, "connectivity")? {
         let converted_252 = (|| -> PyResult<_> {

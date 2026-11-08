@@ -16,6 +16,20 @@ fn api_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ApiDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_destination_arn",
+            "api_destination_state",
+            "connection_arn",
+            "creation_time",
+            "http_method",
+            "invocation_endpoint",
+            "invocation_rate_limit_per_second",
+            "last_modified_time",
+            "name",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::ApiDestination::builder();
     if let Some(value) = dict_value(values, "api_destination_arn")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -218,6 +232,7 @@ fn app_sync_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::AppSyncParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["graph_ql_operation"])?;
     let mut builder = aws_sdk_eventbridge::types::AppSyncParameters::builder();
     if let Some(value) = dict_value(values, "graph_ql_operation")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -252,6 +267,19 @@ fn app_sync_parameters_to_py(
 
 fn archive_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Archive> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "archive_name",
+            "creation_time",
+            "event_count",
+            "event_source_arn",
+            "retention_days",
+            "size_bytes",
+            "state",
+            "state_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Archive::builder();
     if let Some(value) = dict_value(values, "archive_name")? {
         let converted_25 = (|| -> PyResult<_> {
@@ -407,6 +435,7 @@ fn aws_vpc_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::AwsVpcConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["assign_public_ip", "security_groups", "subnets"])?;
     let mut builder = aws_sdk_eventbridge::types::AwsVpcConfiguration::builder();
     if let Some(value) = dict_value(values, "subnets")? {
         let converted_43 = (|| -> PyResult<_> {
@@ -527,6 +556,7 @@ fn batch_array_properties_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::BatchArrayProperties> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["size"])?;
     let mut builder = aws_sdk_eventbridge::types::BatchArrayProperties::builder();
     if let Some(value) = dict_value(values, "size")? {
         let converted_62 = (|| -> PyResult<_> {
@@ -555,6 +585,15 @@ fn batch_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::BatchParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "array_properties",
+            "job_definition",
+            "job_name",
+            "retry_strategy",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::BatchParameters::builder();
     if let Some(value) = dict_value(values, "job_definition")? {
         let converted_64 = (|| -> PyResult<_> {
@@ -643,6 +682,7 @@ fn batch_retry_strategy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::BatchRetryStrategy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attempts"])?;
     let mut builder = aws_sdk_eventbridge::types::BatchRetryStrategy::builder();
     if let Some(value) = dict_value(values, "attempts")? {
         let converted_72 = (|| -> PyResult<_> {
@@ -671,6 +711,7 @@ fn capacity_provider_strategy_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CapacityProviderStrategyItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["base", "capacity_provider", "weight"])?;
     let mut builder = aws_sdk_eventbridge::types::CapacityProviderStrategyItem::builder();
     if let Some(value) = dict_value(values, "capacity_provider")? {
         let converted_74 = (|| -> PyResult<_> {
@@ -727,6 +768,7 @@ fn capacity_provider_strategy_item_to_py(
 
 fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Condition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::Condition::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_80 = (|| -> PyResult<_> {
@@ -784,6 +826,19 @@ fn connection_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::Connection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authorization_type",
+            "connection_arn",
+            "connection_state",
+            "creation_time",
+            "last_authorized_time",
+            "last_modified_time",
+            "name",
+            "state_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Connection::builder();
     if let Some(value) = dict_value(values, "connection_arn")? {
         let converted_86 = (|| -> PyResult<_> {
@@ -968,6 +1023,7 @@ fn connection_api_key_auth_response_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionApiKeyAuthResponseParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_key_name"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionApiKeyAuthResponseParameters::builder();
     if let Some(value) = dict_value(values, "api_key_name")? {
         let converted_107 = (|| -> PyResult<_> {
@@ -1000,6 +1056,16 @@ fn connection_auth_response_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionAuthResponseParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_key_auth_parameters",
+            "basic_auth_parameters",
+            "connectivity_parameters",
+            "invocation_http_parameters",
+            "o_auth_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionAuthResponseParameters::builder();
     if let Some(value) = dict_value(values, "basic_auth_parameters")? {
         let converted_109 = (|| -> PyResult<_> {
@@ -1116,6 +1182,7 @@ fn connection_basic_auth_response_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionBasicAuthResponseParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["username"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionBasicAuthResponseParameters::builder();
     if let Some(value) = dict_value(values, "username")? {
         let converted_119 = (|| -> PyResult<_> {
@@ -1148,6 +1215,7 @@ fn connection_body_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionBodyParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["is_value_secret", "key", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionBodyParameter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_121 = (|| -> PyResult<_> {
@@ -1212,6 +1280,7 @@ fn connection_header_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionHeaderParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["is_value_secret", "key", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionHeaderParameter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_127 = (|| -> PyResult<_> {
@@ -1276,6 +1345,14 @@ fn connection_http_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionHttpParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "body_parameters",
+            "header_parameters",
+            "query_string_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionHttpParameters::builder();
     if let Some(value) = dict_value(values, "header_parameters")? {
         let converted_133 = (|| -> PyResult<_> {
@@ -1436,6 +1513,7 @@ fn connection_o_auth_client_response_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionOAuthClientResponseParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_id"])?;
     let mut builder =
         aws_sdk_eventbridge::types::ConnectionOAuthClientResponseParameters::builder();
     if let Some(value) = dict_value(values, "client_id")? {
@@ -1469,6 +1547,15 @@ fn connection_o_auth_response_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionOAuthResponseParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authorization_endpoint",
+            "client_parameters",
+            "http_method",
+            "o_auth_http_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionOAuthResponseParameters::builder();
     if let Some(value) = dict_value(values, "client_parameters")? {
         let converted_159 = (|| -> PyResult<_> {
@@ -1568,6 +1655,7 @@ fn connection_query_string_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectionQueryStringParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["is_value_secret", "key", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectionQueryStringParameter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_168 = (|| -> PyResult<_> {
@@ -1632,6 +1720,7 @@ fn connectivity_resource_configuration_arn_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectivityResourceConfigurationArn> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_configuration_arn"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectivityResourceConfigurationArn::builder();
     if let Some(value) = dict_value(values, "resource_configuration_arn")? {
         let converted_174 = (|| -> PyResult<_> {
@@ -1671,6 +1760,7 @@ fn connectivity_resource_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ConnectivityResourceParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_parameters"])?;
     let mut builder = aws_sdk_eventbridge::types::ConnectivityResourceParameters::builder();
     if let Some(value) = dict_value(values, "resource_parameters")? {
         let converted_176 = (|| -> PyResult<_> {
@@ -1707,6 +1797,7 @@ fn create_connection_api_key_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CreateConnectionApiKeyAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_key_name", "api_key_value"])?;
     let mut builder =
         aws_sdk_eventbridge::types::CreateConnectionApiKeyAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "api_key_name")? {
@@ -1756,6 +1847,16 @@ fn create_connection_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CreateConnectionAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_key_auth_parameters",
+            "basic_auth_parameters",
+            "connectivity_parameters",
+            "invocation_http_parameters",
+            "o_auth_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::CreateConnectionAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "basic_auth_parameters")? {
         let converted_182 = (|| -> PyResult<_> {
@@ -1872,6 +1973,7 @@ fn create_connection_basic_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CreateConnectionBasicAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["password", "username"])?;
     let mut builder =
         aws_sdk_eventbridge::types::CreateConnectionBasicAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "username")? {
@@ -1918,6 +2020,7 @@ fn create_connection_o_auth_client_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CreateConnectionOAuthClientRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_id", "client_secret"])?;
     let mut builder =
         aws_sdk_eventbridge::types::CreateConnectionOAuthClientRequestParameters::builder();
     if let Some(value) = dict_value(values, "client_id")? {
@@ -1967,6 +2070,15 @@ fn create_connection_o_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::CreateConnectionOAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authorization_endpoint",
+            "client_parameters",
+            "http_method",
+            "o_auth_http_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::CreateConnectionOAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "client_parameters")? {
         let converted_200 = (|| -> PyResult<_> {
@@ -2066,6 +2178,7 @@ fn dead_letter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::DeadLetterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_eventbridge::types::DeadLetterConfig::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_209 = (|| -> PyResult<_> {
@@ -2098,6 +2211,7 @@ fn describe_connection_connectivity_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::DescribeConnectionConnectivityParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["resource_parameters"])?;
     let mut builder =
         aws_sdk_eventbridge::types::DescribeConnectionConnectivityParameters::builder();
     if let Some(value) = dict_value(values, "resource_parameters")? {
@@ -2135,6 +2249,10 @@ fn describe_connection_resource_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::DescribeConnectionResourceParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["resource_association_arn", "resource_configuration_arn"],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::DescribeConnectionResourceParameters::builder();
     if let Some(value) = dict_value(values, "resource_configuration_arn")? {
         let converted_213 = (|| -> PyResult<_> {
@@ -2193,6 +2311,25 @@ fn ecs_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::EcsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_provider_strategy",
+            "enable_ecs_managed_tags",
+            "enable_execute_command",
+            "group",
+            "launch_type",
+            "network_configuration",
+            "placement_constraints",
+            "placement_strategy",
+            "platform_version",
+            "propagate_tags",
+            "reference_id",
+            "tags",
+            "task_count",
+            "task_definition_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::EcsParameters::builder();
     if let Some(value) = dict_value(values, "task_definition_arn")? {
         let converted_217 = (|| -> PyResult<_> {
@@ -2579,6 +2716,24 @@ fn ecs_parameters_to_py(
 
 fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Endpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_time",
+            "description",
+            "endpoint_id",
+            "endpoint_url",
+            "event_buses",
+            "last_modified_time",
+            "name",
+            "replication_config",
+            "role_arn",
+            "routing_config",
+            "state",
+            "state_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Endpoint::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_271 = (|| -> PyResult<_> {
@@ -2867,6 +3022,7 @@ fn endpoint_event_bus_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::EndpointEventBus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bus_arn"])?;
     let mut builder = aws_sdk_eventbridge::types::EndpointEventBus::builder();
     if let Some(value) = dict_value(values, "event_bus_arn")? {
         let converted_306 = (|| -> PyResult<_> {
@@ -2895,6 +3051,18 @@ fn endpoint_event_bus_to_py(
 
 fn event_bus_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::EventBus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_time",
+            "description",
+            "last_modified_time",
+            "managed_by",
+            "name",
+            "policy",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::EventBus::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_308 = (|| -> PyResult<_> {
@@ -3041,6 +3209,17 @@ fn event_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::EventSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_by",
+            "creation_time",
+            "expiration_time",
+            "name",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::EventSource::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_324 = (|| -> PyResult<_> {
@@ -3177,6 +3356,7 @@ fn failover_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::FailoverConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["primary", "secondary"])?;
     let mut builder = aws_sdk_eventbridge::types::FailoverConfig::builder();
     if let Some(value) = dict_value(values, "primary")? {
         let converted_339 = (|| -> PyResult<_> {
@@ -3233,6 +3413,14 @@ fn http_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::HttpParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "header_parameters",
+            "path_parameter_values",
+            "query_string_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::HttpParameters::builder();
     if let Some(value) = dict_value(values, "path_parameter_values")? {
         let converted_343 = (|| -> PyResult<_> {
@@ -3389,6 +3577,7 @@ fn input_transformer_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::InputTransformer> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["input_paths_map", "input_template"])?;
     let mut builder = aws_sdk_eventbridge::types::InputTransformer::builder();
     if let Some(value) = dict_value(values, "input_paths_map")? {
         let converted_375 = (|| -> PyResult<_> {
@@ -3467,6 +3656,7 @@ fn kinesis_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::KinesisParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["partition_key_path"])?;
     let mut builder = aws_sdk_eventbridge::types::KinesisParameters::builder();
     if let Some(value) = dict_value(values, "partition_key_path")? {
         let converted_389 = (|| -> PyResult<_> {
@@ -3499,6 +3689,7 @@ fn kinesis_parameters_to_py(
 
 fn log_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::LogConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["include_detail", "level"])?;
     let mut builder = aws_sdk_eventbridge::types::LogConfig::builder();
     if let Some(value) = dict_value(values, "include_detail")? {
         let converted_391 = (|| -> PyResult<_> {
@@ -3554,6 +3745,7 @@ fn network_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::NetworkConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["awsvpc_configuration"])?;
     let mut builder = aws_sdk_eventbridge::types::NetworkConfiguration::builder();
     if let Some(value) = dict_value(values, "awsvpc_configuration")? {
         let converted_397 = (|| -> PyResult<_> {
@@ -3590,6 +3782,7 @@ fn partner_event_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PartnerEventSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "name"])?;
     let mut builder = aws_sdk_eventbridge::types::PartnerEventSource::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_399 = (|| -> PyResult<_> {
@@ -3638,6 +3831,10 @@ fn partner_event_source_account_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PartnerEventSourceAccount> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["account", "creation_time", "expiration_time", "state"],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::PartnerEventSourceAccount::builder();
     if let Some(value) = dict_value(values, "account")? {
         let converted_403 = (|| -> PyResult<_> {
@@ -3742,6 +3939,7 @@ fn placement_constraint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PlacementConstraint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression", "type"])?;
     let mut builder = aws_sdk_eventbridge::types::PlacementConstraint::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_414 = (|| -> PyResult<_> {
@@ -3796,6 +3994,7 @@ fn placement_strategy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PlacementStrategy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field", "type"])?;
     let mut builder = aws_sdk_eventbridge::types::PlacementStrategy::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_419 = (|| -> PyResult<_> {
@@ -3848,6 +4047,7 @@ fn placement_strategy_to_py(
 
 fn primary_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Primary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["health_check"])?;
     let mut builder = aws_sdk_eventbridge::types::Primary::builder();
     if let Some(value) = dict_value(values, "health_check")? {
         let converted_424 = (|| -> PyResult<_> {
@@ -3878,6 +4078,18 @@ fn put_events_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PutEventsRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "detail",
+            "detail_type",
+            "event_bus_name",
+            "resources",
+            "source",
+            "time",
+            "trace_header",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::PutEventsRequestEntry::builder();
     if let Some(value) = dict_value(values, "time")? {
         let converted_426 = (|| -> PyResult<_> {
@@ -4039,6 +4251,7 @@ fn put_events_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PutEventsResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "event_id"])?;
     let mut builder = aws_sdk_eventbridge::types::PutEventsResultEntry::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_447 = (|| -> PyResult<_> {
@@ -4103,6 +4316,10 @@ fn put_partner_events_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PutPartnerEventsRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["detail", "detail_type", "resources", "source", "time"],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::PutPartnerEventsRequestEntry::builder();
     if let Some(value) = dict_value(values, "time")? {
         let converted_453 = (|| -> PyResult<_> {
@@ -4232,6 +4449,7 @@ fn put_partner_events_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PutPartnerEventsResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "event_id"])?;
     let mut builder = aws_sdk_eventbridge::types::PutPartnerEventsResultEntry::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_470 = (|| -> PyResult<_> {
@@ -4296,6 +4514,7 @@ fn put_targets_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::PutTargetsResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "target_id"])?;
     let mut builder = aws_sdk_eventbridge::types::PutTargetsResultEntry::builder();
     if let Some(value) = dict_value(values, "target_id")? {
         let converted_476 = (|| -> PyResult<_> {
@@ -4360,6 +4579,18 @@ fn redshift_data_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RedshiftDataParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "database",
+            "db_user",
+            "secret_manager_arn",
+            "sql",
+            "sqls",
+            "statement_name",
+            "with_event",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::RedshiftDataParameters::builder();
     if let Some(value) = dict_value(values, "secret_manager_arn")? {
         let converted_482 = (|| -> PyResult<_> {
@@ -4510,6 +4741,7 @@ fn remove_targets_result_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RemoveTargetsResultEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message", "target_id"])?;
     let mut builder = aws_sdk_eventbridge::types::RemoveTargetsResultEntry::builder();
     if let Some(value) = dict_value(values, "target_id")? {
         let converted_502 = (|| -> PyResult<_> {
@@ -4572,6 +4804,20 @@ fn remove_targets_result_entry_to_py(
 
 fn replay_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Replay> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "event_end_time",
+            "event_last_replayed_time",
+            "event_source_arn",
+            "event_start_time",
+            "replay_end_time",
+            "replay_name",
+            "replay_start_time",
+            "state",
+            "state_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Replay::builder();
     if let Some(value) = dict_value(values, "replay_name")? {
         let converted_508 = (|| -> PyResult<_> {
@@ -4784,6 +5030,7 @@ fn replay_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ReplayDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn", "filter_arns"])?;
     let mut builder = aws_sdk_eventbridge::types::ReplayDestination::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_532 = (|| -> PyResult<_> {
@@ -4858,6 +5105,7 @@ fn replication_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::ReplicationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_eventbridge::types::ReplicationConfig::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_542 = (|| -> PyResult<_> {
@@ -4896,6 +5144,10 @@ fn retry_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RetryPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["maximum_event_age_in_seconds", "maximum_retry_attempts"],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::RetryPolicy::builder();
     if let Some(value) = dict_value(values, "maximum_retry_attempts")? {
         let converted_545 = (|| -> PyResult<_> {
@@ -4952,6 +5204,7 @@ fn routing_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RoutingConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["failover_config"])?;
     let mut builder = aws_sdk_eventbridge::types::RoutingConfig::builder();
     if let Some(value) = dict_value(values, "failover_config")? {
         let converted_549 = (|| -> PyResult<_> {
@@ -4986,6 +5239,20 @@ fn routing_config_to_py(
 
 fn rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Rule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "description",
+            "event_bus_name",
+            "event_pattern",
+            "managed_by",
+            "name",
+            "role_arn",
+            "schedule_expression",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Rule::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_551 = (|| -> PyResult<_> {
@@ -5153,6 +5420,7 @@ fn run_command_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RunCommandParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["run_command_targets"])?;
     let mut builder = aws_sdk_eventbridge::types::RunCommandParameters::builder();
     if let Some(value) = dict_value(values, "run_command_targets")? {
         let converted_570 = (|| -> PyResult<_> {
@@ -5215,6 +5483,7 @@ fn run_command_target_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::RunCommandTarget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_eventbridge::types::RunCommandTarget::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_578 = (|| -> PyResult<_> {
@@ -5281,6 +5550,7 @@ fn sage_maker_pipeline_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::SageMakerPipelineParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::SageMakerPipelineParameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_588 = (|| -> PyResult<_> {
@@ -5323,6 +5593,7 @@ fn sage_maker_pipeline_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::SageMakerPipelineParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pipeline_parameter_list"])?;
     let mut builder = aws_sdk_eventbridge::types::SageMakerPipelineParameters::builder();
     if let Some(value) = dict_value(values, "pipeline_parameter_list")? {
         let converted_592 = (|| -> PyResult<_> {
@@ -5385,6 +5656,7 @@ fn sage_maker_pipeline_parameters_to_py(
 
 fn secondary_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Secondary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["route"])?;
     let mut builder = aws_sdk_eventbridge::types::Secondary::builder();
     if let Some(value) = dict_value(values, "route")? {
         let converted_600 = (|| -> PyResult<_> {
@@ -5415,6 +5687,7 @@ fn sqs_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::SqsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message_group_id"])?;
     let mut builder = aws_sdk_eventbridge::types::SqsParameters::builder();
     if let Some(value) = dict_value(values, "message_group_id")? {
         let converted_602 = (|| -> PyResult<_> {
@@ -5449,6 +5722,7 @@ fn sqs_parameters_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_eventbridge::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_604 = (|| -> PyResult<_> {
@@ -5486,6 +5760,28 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_eventbridge::types::Tag) -> PyResul
 
 fn target_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_eventbridge::types::Target> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "app_sync_parameters",
+            "arn",
+            "batch_parameters",
+            "dead_letter_config",
+            "ecs_parameters",
+            "http_parameters",
+            "id",
+            "input",
+            "input_path",
+            "input_transformer",
+            "kinesis_parameters",
+            "redshift_data_parameters",
+            "retry_policy",
+            "role_arn",
+            "run_command_parameters",
+            "sage_maker_pipeline_parameters",
+            "sqs_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::Target::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_608 = (|| -> PyResult<_> {
@@ -5813,6 +6109,7 @@ fn update_connection_api_key_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::UpdateConnectionApiKeyAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_key_name", "api_key_value"])?;
     let mut builder =
         aws_sdk_eventbridge::types::UpdateConnectionApiKeyAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "api_key_name")? {
@@ -5862,6 +6159,16 @@ fn update_connection_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::UpdateConnectionAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_key_auth_parameters",
+            "basic_auth_parameters",
+            "connectivity_parameters",
+            "invocation_http_parameters",
+            "o_auth_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::UpdateConnectionAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "basic_auth_parameters")? {
         let converted_646 = (|| -> PyResult<_> {
@@ -5978,6 +6285,7 @@ fn update_connection_basic_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::UpdateConnectionBasicAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["password", "username"])?;
     let mut builder =
         aws_sdk_eventbridge::types::UpdateConnectionBasicAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "username")? {
@@ -6027,6 +6335,7 @@ fn update_connection_o_auth_client_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::UpdateConnectionOAuthClientRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_id", "client_secret"])?;
     let mut builder =
         aws_sdk_eventbridge::types::UpdateConnectionOAuthClientRequestParameters::builder();
     if let Some(value) = dict_value(values, "client_id")? {
@@ -6076,6 +6385,15 @@ fn update_connection_o_auth_request_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_eventbridge::types::UpdateConnectionOAuthRequestParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authorization_endpoint",
+            "client_parameters",
+            "http_method",
+            "o_auth_http_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_eventbridge::types::UpdateConnectionOAuthRequestParameters::builder();
     if let Some(value) = dict_value(values, "client_parameters")? {
         let converted_664 = (|| -> PyResult<_> {

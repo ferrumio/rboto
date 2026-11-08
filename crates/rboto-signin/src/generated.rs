@@ -12,6 +12,10 @@ use super::*;
 
 fn access_token_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_signin::types::AccessToken> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["access_key_id", "secret_access_key", "session_token"],
+    )?;
     let mut builder = aws_sdk_signin::types::AccessToken::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -77,6 +81,17 @@ fn create_o_auth2_token_request_body_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::CreateOAuth2TokenRequestBody> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_id",
+            "code",
+            "code_verifier",
+            "grant_type",
+            "redirect_uri",
+            "refresh_token",
+        ],
+    )?;
     let mut builder = aws_sdk_signin::types::CreateOAuth2TokenRequestBody::builder();
     if let Some(value) = dict_value(values, "client_id")? {
         let converted_7 = (|| -> PyResult<_> {
@@ -186,6 +201,16 @@ fn create_o_auth2_token_response_body_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::CreateOAuth2TokenResponseBody> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_token",
+            "expires_in",
+            "id_token",
+            "refresh_token",
+            "token_type",
+        ],
+    )?;
     let mut builder = aws_sdk_signin::types::CreateOAuth2TokenResponseBody::builder();
     if let Some(value) = dict_value(values, "access_token")? {
         let converted_19 = (|| -> PyResult<_> {
@@ -283,6 +308,7 @@ fn permission_statement_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::PermissionStatementSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition", "sid"])?;
     let mut builder = aws_sdk_signin::types::PermissionStatementSummary::builder();
     if let Some(value) = dict_value(values, "sid")? {
         let converted_29 = (|| -> PyResult<_> {
@@ -418,6 +444,10 @@ fn policy_statement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::PolicyStatement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["action", "condition", "effect", "principal", "resource"],
+    )?;
     let mut builder = aws_sdk_signin::types::PolicyStatement::builder();
     if let Some(value) = dict_value(values, "effect")? {
         let converted_59 = (|| -> PyResult<_> {
@@ -651,6 +681,7 @@ fn signin_resource_based_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::SigninResourceBasedPolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["statement", "version"])?;
     let mut builder = aws_sdk_signin::types::SigninResourceBasedPolicy::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_111 = (|| -> PyResult<_> {

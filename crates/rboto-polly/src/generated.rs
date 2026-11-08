@@ -14,6 +14,7 @@ use pyo3::exceptions::PyValueError;
 
 fn audio_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::AudioEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_polly::types::AudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -47,6 +48,7 @@ fn close_stream_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::CloseStreamEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_polly::types::CloseStreamEvent::builder();
     Ok(builder.build())
 }
@@ -63,6 +65,7 @@ fn flush_stream_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::FlushStreamConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["force"])?;
     let mut builder = aws_sdk_polly::types::FlushStreamConfiguration::builder();
     if let Some(value) = dict_value(values, "force")? {
         let converted_4 = (|| -> PyResult<_> {
@@ -89,6 +92,7 @@ fn flush_stream_configuration_to_py(
 
 fn lexicon_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Lexicon> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content", "name"])?;
     let mut builder = aws_sdk_polly::types::Lexicon::builder();
     if let Some(value) = dict_value(values, "content")? {
         let converted_6 = (|| -> PyResult<_> {
@@ -134,6 +138,17 @@ fn lexicon_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::LexiconAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alphabet",
+            "language_code",
+            "last_modified",
+            "lexemes_count",
+            "lexicon_arn",
+            "size",
+        ],
+    )?;
     let mut builder = aws_sdk_polly::types::LexiconAttributes::builder();
     if let Some(value) = dict_value(values, "alphabet")? {
         let converted_10 = (|| -> PyResult<_> {
@@ -252,6 +267,7 @@ fn lexicon_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::LexiconDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attributes", "name"])?;
     let mut builder = aws_sdk_polly::types::LexiconDescription::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_24 = (|| -> PyResult<_> {
@@ -458,6 +474,7 @@ fn stream_closed_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::StreamClosedEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["request_characters"])?;
     let mut builder = aws_sdk_polly::types::StreamClosedEvent::builder();
     if let Some(value) = dict_value(values, "request_characters")? {
         let converted_36 = (|| -> PyResult<_> {
@@ -490,6 +507,26 @@ fn synthesis_task_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::SynthesisTask> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "engine",
+            "language_code",
+            "lexicon_names",
+            "output_format",
+            "output_uri",
+            "request_characters",
+            "sample_rate",
+            "sns_topic_arn",
+            "speech_mark_types",
+            "task_id",
+            "task_status",
+            "task_status_reason",
+            "text_type",
+            "voice_id",
+        ],
+    )?;
     let mut builder = aws_sdk_polly::types::SynthesisTask::builder();
     if let Some(value) = dict_value(values, "engine")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -849,6 +886,10 @@ fn synthesis_task_to_py(
 
 fn text_event_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::TextEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["flush_stream_configuration", "text", "text_type"],
+    )?;
     let mut builder = aws_sdk_polly::types::TextEvent::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_88 = (|| -> PyResult<_> {
@@ -920,6 +961,7 @@ fn throttling_reason_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::ThrottlingReason> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reason", "resource"])?;
     let mut builder = aws_sdk_polly::types::ThrottlingReason::builder();
     if let Some(value) = dict_value(values, "reason")? {
         let converted_95 = (|| -> PyResult<_> {
@@ -968,6 +1010,7 @@ fn validation_exception_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_polly::types::ValidationExceptionField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "name"])?;
     let mut builder = aws_sdk_polly::types::ValidationExceptionField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_99 = (|| -> PyResult<_> {
@@ -1008,6 +1051,18 @@ fn validation_exception_field_to_py(
 
 fn voice_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_polly::types::Voice> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_language_codes",
+            "gender",
+            "id",
+            "language_code",
+            "language_name",
+            "name",
+            "supported_engines",
+        ],
+    )?;
     let mut builder = aws_sdk_polly::types::Voice::builder();
     if let Some(value) = dict_value(values, "gender")? {
         let converted_103 = (|| -> PyResult<_> {

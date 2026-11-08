@@ -1129,9 +1129,11 @@ class ServiceGenerator:
 
     def _struct_from_py(self, rust: RustType) -> str:
         name = to_snake_case(rust.name)
+        allowed = ", ".join(f'"{field.name}"' for field in sorted(rust.fields, key=lambda f: f.name))
         lines = [
             f"fn {name}_from_py(value: &Bound<'_, PyAny>) -> PyResult<{self.rust_module}::types::{rust.name}> {{",
             "    let values = value.cast::<PyDict>()?;",
+            f"    rboto_core::validate_input_fields(values, &[{allowed}])?;",
             f"    let mut builder = {self.rust_module}::types::{rust.name}::builder();",
         ]
         for field in rust.fields:

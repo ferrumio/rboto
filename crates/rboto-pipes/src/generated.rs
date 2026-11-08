@@ -16,6 +16,7 @@ fn aws_vpc_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::AwsVpcConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["assign_public_ip", "security_groups", "subnets"])?;
     let mut builder = aws_sdk_pipes::types::AwsVpcConfiguration::builder();
     if let Some(value) = dict_value(values, "subnets")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -135,6 +136,7 @@ fn batch_array_properties_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchArrayProperties> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["size"])?;
     let mut builder = aws_sdk_pipes::types::BatchArrayProperties::builder();
     if let Some(value) = dict_value(values, "size")? {
         let converted_20 = (|| -> PyResult<_> {
@@ -167,6 +169,15 @@ fn batch_container_overrides_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchContainerOverrides> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "command",
+            "environment",
+            "instance_type",
+            "resource_requirements",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::BatchContainerOverrides::builder();
     if let Some(value) = dict_value(values, "command")? {
         let converted_22 = (|| -> PyResult<_> {
@@ -335,6 +346,7 @@ fn batch_environment_variable_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchEnvironmentVariable> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_pipes::types::BatchEnvironmentVariable::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_48 = (|| -> PyResult<_> {
@@ -383,6 +395,7 @@ fn batch_job_dependency_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchJobDependency> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["job_id", "type"])?;
     let mut builder = aws_sdk_pipes::types::BatchJobDependency::builder();
     if let Some(value) = dict_value(values, "job_id")? {
         let converted_52 = (|| -> PyResult<_> {
@@ -437,6 +450,7 @@ fn batch_resource_requirement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchResourceRequirement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "value"])?;
     let mut builder = aws_sdk_pipes::types::BatchResourceRequirement::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_57 = (|| -> PyResult<_> {
@@ -485,6 +499,7 @@ fn batch_retry_strategy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::BatchRetryStrategy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attempts"])?;
     let mut builder = aws_sdk_pipes::types::BatchRetryStrategy::builder();
     if let Some(value) = dict_value(values, "attempts")? {
         let converted_62 = (|| -> PyResult<_> {
@@ -517,6 +532,7 @@ fn capacity_provider_strategy_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::CapacityProviderStrategyItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["base", "capacity_provider", "weight"])?;
     let mut builder = aws_sdk_pipes::types::CapacityProviderStrategyItem::builder();
     if let Some(value) = dict_value(values, "capacity_provider")? {
         let converted_64 = (|| -> PyResult<_> {
@@ -575,6 +591,7 @@ fn cloudwatch_logs_log_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::CloudwatchLogsLogDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_group_arn"])?;
     let mut builder = aws_sdk_pipes::types::CloudwatchLogsLogDestination::builder();
     if let Some(value) = dict_value(values, "log_group_arn")? {
         let converted_70 = (|| -> PyResult<_> {
@@ -607,6 +624,7 @@ fn cloudwatch_logs_log_destination_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::CloudwatchLogsLogDestinationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_group_arn"])?;
     let mut builder = aws_sdk_pipes::types::CloudwatchLogsLogDestinationParameters::builder();
     if let Some(value) = dict_value(values, "log_group_arn")? {
         let converted_72 = (|| -> PyResult<_> {
@@ -637,6 +655,7 @@ fn dead_letter_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::DeadLetterConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_pipes::types::DeadLetterConfig::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_74 = (|| -> PyResult<_> {
@@ -669,6 +688,10 @@ fn dimension_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::DimensionMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["dimension_name", "dimension_value", "dimension_value_type"],
+    )?;
     let mut builder = aws_sdk_pipes::types::DimensionMapping::builder();
     if let Some(value) = dict_value(values, "dimension_value")? {
         let converted_76 = (|| -> PyResult<_> {
@@ -740,6 +763,19 @@ fn ecs_container_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsContainerOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "command",
+            "cpu",
+            "environment",
+            "environment_files",
+            "memory",
+            "memory_reservation",
+            "name",
+            "resource_requirements",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::EcsContainerOverride::builder();
     if let Some(value) = dict_value(values, "command")? {
         let converted_83 = (|| -> PyResult<_> {
@@ -1008,6 +1044,7 @@ fn ecs_environment_file_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsEnvironmentFile> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "value"])?;
     let mut builder = aws_sdk_pipes::types::EcsEnvironmentFile::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_123 = (|| -> PyResult<_> {
@@ -1056,6 +1093,7 @@ fn ecs_environment_variable_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsEnvironmentVariable> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_pipes::types::EcsEnvironmentVariable::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_128 = (|| -> PyResult<_> {
@@ -1104,6 +1142,7 @@ fn ecs_ephemeral_storage_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsEphemeralStorage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["size_in_gib"])?;
     let mut builder = aws_sdk_pipes::types::EcsEphemeralStorage::builder();
     if let Some(value) = dict_value(values, "size_in_gib")? {
         let converted_132 = (|| -> PyResult<_> {
@@ -1134,6 +1173,7 @@ fn ecs_inference_accelerator_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsInferenceAcceleratorOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["device_name", "device_type"])?;
     let mut builder = aws_sdk_pipes::types::EcsInferenceAcceleratorOverride::builder();
     if let Some(value) = dict_value(values, "device_name")? {
         let converted_134 = (|| -> PyResult<_> {
@@ -1182,6 +1222,7 @@ fn ecs_resource_requirement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsResourceRequirement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "value"])?;
     let mut builder = aws_sdk_pipes::types::EcsResourceRequirement::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_138 = (|| -> PyResult<_> {
@@ -1230,6 +1271,18 @@ fn ecs_task_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::EcsTaskOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "container_overrides",
+            "cpu",
+            "ephemeral_storage",
+            "execution_role_arn",
+            "inference_accelerator_overrides",
+            "memory",
+            "task_role_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::EcsTaskOverride::builder();
     if let Some(value) = dict_value(values, "container_overrides")? {
         let converted_143 = (|| -> PyResult<_> {
@@ -1428,6 +1481,7 @@ fn ecs_task_override_to_py(
 
 fn filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_pipes::types::Filter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pattern"])?;
     let mut builder = aws_sdk_pipes::types::Filter::builder();
     if let Some(value) = dict_value(values, "pattern")? {
         let converted_169 = (|| -> PyResult<_> {
@@ -1457,6 +1511,7 @@ fn filter_criteria_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::FilterCriteria> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters"])?;
     let mut builder = aws_sdk_pipes::types::FilterCriteria::builder();
     if let Some(value) = dict_value(values, "filters")? {
         let converted_171 = (|| -> PyResult<_> {
@@ -1517,6 +1572,7 @@ fn firehose_log_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::FirehoseLogDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delivery_stream_arn"])?;
     let mut builder = aws_sdk_pipes::types::FirehoseLogDestination::builder();
     if let Some(value) = dict_value(values, "delivery_stream_arn")? {
         let converted_179 = (|| -> PyResult<_> {
@@ -1553,6 +1609,7 @@ fn firehose_log_destination_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::FirehoseLogDestinationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delivery_stream_arn"])?;
     let mut builder = aws_sdk_pipes::types::FirehoseLogDestinationParameters::builder();
     if let Some(value) = dict_value(values, "delivery_stream_arn")? {
         let converted_181 = (|| -> PyResult<_> {
@@ -1707,6 +1764,14 @@ fn multi_measure_attribute_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::MultiMeasureAttributeMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "measure_value",
+            "measure_value_type",
+            "multi_measure_attribute_name",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::MultiMeasureAttributeMapping::builder();
     if let Some(value) = dict_value(values, "measure_value")? {
         let converted_189 = (|| -> PyResult<_> {
@@ -1783,6 +1848,10 @@ fn multi_measure_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::MultiMeasureMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["multi_measure_attribute_mappings", "multi_measure_name"],
+    )?;
     let mut builder = aws_sdk_pipes::types::MultiMeasureMapping::builder();
     if let Some(value) = dict_value(values, "multi_measure_name")? {
         let converted_196 = (|| -> PyResult<_> {
@@ -1870,6 +1939,7 @@ fn network_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::NetworkConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["awsvpc_configuration"])?;
     let mut builder = aws_sdk_pipes::types::NetworkConfiguration::builder();
     if let Some(value) = dict_value(values, "awsvpc_configuration")? {
         let converted_206 = (|| -> PyResult<_> {
@@ -1904,6 +1974,21 @@ fn network_configuration_to_py(
 
 fn pipe_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_pipes::types::Pipe> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "creation_time",
+            "current_state",
+            "desired_state",
+            "enrichment",
+            "last_modified_time",
+            "name",
+            "source",
+            "state_reason",
+            "target",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::Pipe::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_208 = (|| -> PyResult<_> {
@@ -2106,6 +2191,14 @@ fn pipe_enrichment_http_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeEnrichmentHttpParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "header_parameters",
+            "path_parameter_values",
+            "query_string_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeEnrichmentHttpParameters::builder();
     if let Some(value) = dict_value(values, "path_parameter_values")? {
         let converted_232 = (|| -> PyResult<_> {
@@ -2262,6 +2355,7 @@ fn pipe_enrichment_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeEnrichmentParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["http_parameters", "input_template"])?;
     let mut builder = aws_sdk_pipes::types::PipeEnrichmentParameters::builder();
     if let Some(value) = dict_value(values, "input_template")? {
         let converted_264 = (|| -> PyResult<_> {
@@ -2314,6 +2408,16 @@ fn pipe_log_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeLogConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloudwatch_logs_log_destination",
+            "firehose_log_destination",
+            "include_execution_data",
+            "level",
+            "s3_log_destination",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeLogConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_log_destination")? {
         let converted_268 = (|| -> PyResult<_> {
@@ -2462,6 +2566,16 @@ fn pipe_log_configuration_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeLogConfigurationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloudwatch_logs_log_destination",
+            "firehose_log_destination",
+            "include_execution_data",
+            "level",
+            "s3_log_destination",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeLogConfigurationParameters::builder();
     if let Some(value) = dict_value(values, "s3_log_destination")? {
         let converted_286 = (|| -> PyResult<_> {
@@ -2608,6 +2722,15 @@ fn pipe_source_active_mq_broker_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+            "queue_name",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceActiveMqBrokerParameters::builder();
     if let Some(value) = dict_value(values, "credentials")? {
         let converted_304 = (|| -> PyResult<_> {
@@ -2694,6 +2817,19 @@ fn pipe_source_dynamo_db_stream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "dead_letter_config",
+            "maximum_batching_window_in_seconds",
+            "maximum_record_age_in_seconds",
+            "maximum_retry_attempts",
+            "on_partial_batch_item_failure",
+            "parallelization_factor",
+            "starting_position",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceDynamoDbStreamParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_312 = (|| -> PyResult<_> {
@@ -2869,6 +3005,20 @@ fn pipe_source_kinesis_stream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceKinesisStreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "dead_letter_config",
+            "maximum_batching_window_in_seconds",
+            "maximum_record_age_in_seconds",
+            "maximum_retry_attempts",
+            "on_partial_batch_item_failure",
+            "parallelization_factor",
+            "starting_position",
+            "starting_position_timestamp",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceKinesisStreamParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_330 = (|| -> PyResult<_> {
@@ -3069,6 +3219,17 @@ fn pipe_source_managed_streaming_kafka_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "consumer_group_id",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+            "starting_position",
+            "topic_name",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceManagedStreamingKafkaParameters::builder();
     if let Some(value) = dict_value(values, "topic_name")? {
         let converted_351 = (|| -> PyResult<_> {
@@ -3197,6 +3358,19 @@ fn pipe_source_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active_mq_broker_parameters",
+            "dynamo_db_stream_parameters",
+            "filter_criteria",
+            "kinesis_stream_parameters",
+            "managed_streaming_kafka_parameters",
+            "rabbit_mq_broker_parameters",
+            "self_managed_kafka_parameters",
+            "sqs_queue_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceParameters::builder();
     if let Some(value) = dict_value(values, "filter_criteria")? {
         let converted_364 = (|| -> PyResult<_> {
@@ -3373,6 +3547,16 @@ fn pipe_source_rabbit_mq_broker_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+            "queue_name",
+            "virtual_host",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceRabbitMqBrokerParameters::builder();
     if let Some(value) = dict_value(values, "credentials")? {
         let converted_380 = (|| -> PyResult<_> {
@@ -3475,6 +3659,20 @@ fn pipe_source_self_managed_kafka_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "additional_bootstrap_servers",
+            "batch_size",
+            "consumer_group_id",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+            "server_root_ca_certificate",
+            "starting_position",
+            "topic_name",
+            "vpc",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceSelfManagedKafkaParameters::builder();
     if let Some(value) = dict_value(values, "topic_name")? {
         let converted_390 = (|| -> PyResult<_> {
@@ -3688,6 +3886,10 @@ fn pipe_source_sqs_queue_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeSourceSqsQueueParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["batch_size", "maximum_batching_window_in_seconds"],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeSourceSqsQueueParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_415 = (|| -> PyResult<_> {
@@ -3740,6 +3942,18 @@ fn pipe_target_batch_job_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetBatchJobParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "array_properties",
+            "container_overrides",
+            "depends_on",
+            "job_definition",
+            "job_name",
+            "parameters",
+            "retry_strategy",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetBatchJobParameters::builder();
     if let Some(value) = dict_value(values, "job_definition")? {
         let converted_419 = (|| -> PyResult<_> {
@@ -3940,6 +4154,7 @@ fn pipe_target_cloud_watch_logs_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["log_stream_name", "timestamp"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetCloudWatchLogsParameters::builder();
     if let Some(value) = dict_value(values, "log_stream_name")? {
         let converted_449 = (|| -> PyResult<_> {
@@ -3992,6 +4207,26 @@ fn pipe_target_ecs_task_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetEcsTaskParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_provider_strategy",
+            "enable_ecs_managed_tags",
+            "enable_execute_command",
+            "group",
+            "launch_type",
+            "network_configuration",
+            "overrides",
+            "placement_constraints",
+            "placement_strategy",
+            "platform_version",
+            "propagate_tags",
+            "reference_id",
+            "tags",
+            "task_count",
+            "task_definition_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetEcsTaskParameters::builder();
     if let Some(value) = dict_value(values, "task_definition_arn")? {
         let converted_453 = (|| -> PyResult<_> {
@@ -4398,6 +4633,10 @@ fn pipe_target_event_bridge_event_bus_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["detail_type", "endpoint_id", "resources", "source", "time"],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetEventBridgeEventBusParameters::builder();
     if let Some(value) = dict_value(values, "endpoint_id")? {
         let converted_509 = (|| -> PyResult<_> {
@@ -4518,6 +4757,14 @@ fn pipe_target_http_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetHttpParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "header_parameters",
+            "path_parameter_values",
+            "query_string_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetHttpParameters::builder();
     if let Some(value) = dict_value(values, "path_parameter_values")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -4674,6 +4921,7 @@ fn pipe_target_kinesis_stream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetKinesisStreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["partition_key"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetKinesisStreamParameters::builder();
     if let Some(value) = dict_value(values, "partition_key")? {
         let converted_557 = (|| -> PyResult<_> {
@@ -4704,6 +4952,7 @@ fn pipe_target_lambda_function_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["invocation_type"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetLambdaFunctionParameters::builder();
     if let Some(value) = dict_value(values, "invocation_type")? {
         let converted_559 = (|| -> PyResult<_> {
@@ -4742,6 +4991,24 @@ fn pipe_target_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_job_parameters",
+            "cloud_watch_logs_parameters",
+            "ecs_task_parameters",
+            "event_bridge_event_bus_parameters",
+            "http_parameters",
+            "input_template",
+            "kinesis_stream_parameters",
+            "lambda_function_parameters",
+            "redshift_data_parameters",
+            "sage_maker_pipeline_parameters",
+            "sqs_queue_parameters",
+            "step_function_state_machine_parameters",
+            "timestream_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetParameters::builder();
     if let Some(value) = dict_value(values, "input_template")? {
         let converted_562 = (|| -> PyResult<_> {
@@ -5014,6 +5281,17 @@ fn pipe_target_redshift_data_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetRedshiftDataParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "database",
+            "db_user",
+            "secret_manager_arn",
+            "sqls",
+            "statement_name",
+            "with_event",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetRedshiftDataParameters::builder();
     if let Some(value) = dict_value(values, "secret_manager_arn")? {
         let converted_588 = (|| -> PyResult<_> {
@@ -5144,6 +5422,7 @@ fn pipe_target_sage_maker_pipeline_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pipeline_parameter_list"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetSageMakerPipelineParameters::builder();
     if let Some(value) = dict_value(values, "pipeline_parameter_list")? {
         let converted_606 = (|| -> PyResult<_> {
@@ -5208,6 +5487,7 @@ fn pipe_target_sqs_queue_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetSqsQueueParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message_deduplication_id", "message_group_id"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetSqsQueueParameters::builder();
     if let Some(value) = dict_value(values, "message_group_id")? {
         let converted_614 = (|| -> PyResult<_> {
@@ -5264,6 +5544,7 @@ fn pipe_target_state_machine_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetStateMachineParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["invocation_type"])?;
     let mut builder = aws_sdk_pipes::types::PipeTargetStateMachineParameters::builder();
     if let Some(value) = dict_value(values, "invocation_type")? {
         let converted_618 = (|| -> PyResult<_> {
@@ -5302,6 +5583,19 @@ fn pipe_target_timestream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PipeTargetTimestreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimension_mappings",
+            "epoch_time_unit",
+            "multi_measure_mappings",
+            "single_measure_mappings",
+            "time_field_type",
+            "time_value",
+            "timestamp_format",
+            "version_value",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::PipeTargetTimestreamParameters::builder();
     if let Some(value) = dict_value(values, "time_value")? {
         let converted_621 = (|| -> PyResult<_> {
@@ -5553,6 +5847,7 @@ fn placement_constraint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PlacementConstraint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["expression", "type"])?;
     let mut builder = aws_sdk_pipes::types::PlacementConstraint::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_657 = (|| -> PyResult<_> {
@@ -5607,6 +5902,7 @@ fn placement_strategy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::PlacementStrategy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["field", "type"])?;
     let mut builder = aws_sdk_pipes::types::PlacementStrategy::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_662 = (|| -> PyResult<_> {
@@ -5661,6 +5957,10 @@ fn s3_log_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::S3LogDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bucket_name", "bucket_owner", "output_format", "prefix"],
+    )?;
     let mut builder = aws_sdk_pipes::types::S3LogDestination::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_667 = (|| -> PyResult<_> {
@@ -5746,6 +6046,10 @@ fn s3_log_destination_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::S3LogDestinationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["bucket_name", "bucket_owner", "output_format", "prefix"],
+    )?;
     let mut builder = aws_sdk_pipes::types::S3LogDestinationParameters::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_676 = (|| -> PyResult<_> {
@@ -5831,6 +6135,7 @@ fn sage_maker_pipeline_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::SageMakerPipelineParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_pipes::types::SageMakerPipelineParameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_685 = (|| -> PyResult<_> {
@@ -5986,6 +6291,7 @@ fn self_managed_kafka_access_configuration_vpc_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["security_group", "subnets"])?;
     let mut builder = aws_sdk_pipes::types::SelfManagedKafkaAccessConfigurationVpc::builder();
     if let Some(value) = dict_value(values, "subnets")? {
         let converted_697 = (|| -> PyResult<_> {
@@ -6086,6 +6392,10 @@ fn single_measure_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::SingleMeasureMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["measure_name", "measure_value", "measure_value_type"],
+    )?;
     let mut builder = aws_sdk_pipes::types::SingleMeasureMapping::builder();
     if let Some(value) = dict_value(values, "measure_value")? {
         let converted_713 = (|| -> PyResult<_> {
@@ -6151,6 +6461,7 @@ fn single_measure_mapping_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_pipes::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_pipes::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_720 = (|| -> PyResult<_> {
@@ -6190,6 +6501,14 @@ fn update_pipe_source_active_mq_broker_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceActiveMqBrokerParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceActiveMqBrokerParameters::builder();
     if let Some(value) = dict_value(values, "credentials")? {
         let converted_724 = (|| -> PyResult<_> {
@@ -6262,6 +6581,18 @@ fn update_pipe_source_dynamo_db_stream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceDynamoDbStreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "dead_letter_config",
+            "maximum_batching_window_in_seconds",
+            "maximum_record_age_in_seconds",
+            "maximum_retry_attempts",
+            "on_partial_batch_item_failure",
+            "parallelization_factor",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceDynamoDbStreamParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_730 = (|| -> PyResult<_> {
@@ -6417,6 +6748,18 @@ fn update_pipe_source_kinesis_stream_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceKinesisStreamParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "dead_letter_config",
+            "maximum_batching_window_in_seconds",
+            "maximum_record_age_in_seconds",
+            "maximum_retry_attempts",
+            "on_partial_batch_item_failure",
+            "parallelization_factor",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceKinesisStreamParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_745 = (|| -> PyResult<_> {
@@ -6572,6 +6915,14 @@ fn update_pipe_source_managed_streaming_kafka_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceManagedStreamingKafkaParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+        ],
+    )?;
     let mut builder =
         aws_sdk_pipes::types::UpdatePipeSourceManagedStreamingKafkaParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
@@ -6645,6 +6996,19 @@ fn update_pipe_source_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active_mq_broker_parameters",
+            "dynamo_db_stream_parameters",
+            "filter_criteria",
+            "kinesis_stream_parameters",
+            "managed_streaming_kafka_parameters",
+            "rabbit_mq_broker_parameters",
+            "self_managed_kafka_parameters",
+            "sqs_queue_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceParameters::builder();
     if let Some(value) = dict_value(values, "filter_criteria")? {
         let converted_766 = (|| -> PyResult<_> {
@@ -6822,6 +7186,14 @@ fn update_pipe_source_rabbit_mq_broker_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceRabbitMqBrokerParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceRabbitMqBrokerParameters::builder();
     if let Some(value) = dict_value(values, "credentials")? {
         let converted_782 = (|| -> PyResult<_> {
@@ -6894,6 +7266,16 @@ fn update_pipe_source_self_managed_kafka_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceSelfManagedKafkaParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "batch_size",
+            "credentials",
+            "maximum_batching_window_in_seconds",
+            "server_root_ca_certificate",
+            "vpc",
+        ],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceSelfManagedKafkaParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_788 = (|| -> PyResult<_> {
@@ -7007,6 +7389,10 @@ fn update_pipe_source_sqs_queue_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::UpdatePipeSourceSqsQueueParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["batch_size", "maximum_batching_window_in_seconds"],
+    )?;
     let mut builder = aws_sdk_pipes::types::UpdatePipeSourceSqsQueueParameters::builder();
     if let Some(value) = dict_value(values, "batch_size")? {
         let converted_798 = (|| -> PyResult<_> {
@@ -7059,6 +7445,7 @@ fn validation_exception_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_pipes::types::ValidationExceptionField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "name"])?;
     let mut builder = aws_sdk_pipes::types::ValidationExceptionField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_802 = (|| -> PyResult<_> {

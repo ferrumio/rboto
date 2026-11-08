@@ -16,6 +16,7 @@ fn active_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ActiveContext> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["context_attributes", "name", "time_to_live"])?;
     let mut builder = aws_sdk_lexruntimev2::types::ActiveContext::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -112,6 +113,7 @@ fn active_context_time_to_live_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ActiveContextTimeToLive> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["time_to_live_in_seconds", "turns_to_live"])?;
     let mut builder = aws_sdk_lexruntimev2::types::ActiveContextTimeToLive::builder();
     if let Some(value) = dict_value(values, "time_to_live_in_seconds")? {
         let converted_17 = (|| -> PyResult<_> {
@@ -166,6 +168,15 @@ fn audio_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::AudioInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "audio_chunk",
+            "client_timestamp_millis",
+            "content_type",
+            "event_id",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::AudioInputEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_21 = (|| -> PyResult<_> {
@@ -247,6 +258,7 @@ fn audio_response_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::AudioResponseEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_chunk", "content_type", "event_id"])?;
     let mut builder = aws_sdk_lexruntimev2::types::AudioResponseEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
         let converted_30 = (|| -> PyResult<_> {
@@ -310,6 +322,7 @@ fn audio_response_event_to_py(
 
 fn button_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Button> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text", "value"])?;
     let mut builder = aws_sdk_lexruntimev2::types::Button::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_37 = (|| -> PyResult<_> {
@@ -352,6 +365,7 @@ fn confidence_score_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ConfidenceScore> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["score"])?;
     let mut builder = aws_sdk_lexruntimev2::types::ConfidenceScore::builder();
     if let Some(value) = dict_value(values, "score")? {
         let converted_41 = (|| -> PyResult<_> {
@@ -380,6 +394,18 @@ fn configuration_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ConfigurationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_timestamp_millis",
+            "disable_playback",
+            "event_id",
+            "request_attributes",
+            "response_content_type",
+            "session_state",
+            "welcome_messages",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "request_attributes")? {
         let converted_43 = (|| -> PyResult<_> {
@@ -579,6 +605,15 @@ fn dialog_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::DialogAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "slot_elicitation_style",
+            "slot_to_elicit",
+            "sub_slot_to_elicit",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::DialogAction::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_73 = (|| -> PyResult<_> {
@@ -672,6 +707,7 @@ fn disconnection_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::DisconnectionEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_timestamp_millis", "event_id"])?;
     let mut builder = aws_sdk_lexruntimev2::types::DisconnectionEvent::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_83 = (|| -> PyResult<_> {
@@ -722,6 +758,10 @@ fn dtmf_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::DtmfInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["client_timestamp_millis", "event_id", "input_character"],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::DtmfInputEvent::builder();
     if let Some(value) = dict_value(values, "input_character")? {
         let converted_87 = (|| -> PyResult<_> {
@@ -790,6 +830,7 @@ fn elicit_sub_slot_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ElicitSubSlot> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "sub_slot_to_elicit"])?;
     let mut builder = aws_sdk_lexruntimev2::types::ElicitSubSlot::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_93 = (|| -> PyResult<_> {
@@ -847,6 +888,7 @@ fn heartbeat_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::HeartbeatEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_id"])?;
     let mut builder = aws_sdk_lexruntimev2::types::HeartbeatEvent::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_98 = (|| -> PyResult<_> {
@@ -879,6 +921,7 @@ fn image_response_card_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::ImageResponseCard> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["buttons", "image_url", "subtitle", "title"])?;
     let mut builder = aws_sdk_lexruntimev2::types::ImageResponseCard::builder();
     if let Some(value) = dict_value(values, "title")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -983,6 +1026,7 @@ fn image_response_card_to_py(
 
 fn intent_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Intent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["confirmation_state", "name", "slots", "state"])?;
     let mut builder = aws_sdk_lexruntimev2::types::Intent::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_114 = (|| -> PyResult<_> {
@@ -1101,6 +1145,18 @@ fn intent_result_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::IntentResultEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "event_id",
+            "input_mode",
+            "interpretations",
+            "recognized_bot_member",
+            "request_attributes",
+            "session_id",
+            "session_state",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::IntentResultEvent::builder();
     if let Some(value) = dict_value(values, "input_mode")? {
         let converted_134 = (|| -> PyResult<_> {
@@ -1307,6 +1363,15 @@ fn interpretation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::Interpretation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "intent",
+            "interpretation_source",
+            "nlu_confidence",
+            "sentiment_response",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::Interpretation::builder();
     if let Some(value) = dict_value(values, "nlu_confidence")? {
         let converted_165 = (|| -> PyResult<_> {
@@ -1403,6 +1468,7 @@ fn interpretation_to_py(
 
 fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Message> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content", "content_type", "image_response_card"])?;
     let mut builder = aws_sdk_lexruntimev2::types::Message::builder();
     if let Some(value) = dict_value(values, "content")? {
         let converted_174 = (|| -> PyResult<_> {
@@ -1475,6 +1541,7 @@ fn playback_completion_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::PlaybackCompletionEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_timestamp_millis", "event_id"])?;
     let mut builder = aws_sdk_lexruntimev2::types::PlaybackCompletionEvent::builder();
     if let Some(value) = dict_value(values, "event_id")? {
         let converted_181 = (|| -> PyResult<_> {
@@ -1525,6 +1592,7 @@ fn playback_interruption_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::PlaybackInterruptionEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["caused_by_event_id", "event_id", "event_reason"])?;
     let mut builder = aws_sdk_lexruntimev2::types::PlaybackInterruptionEvent::builder();
     if let Some(value) = dict_value(values, "event_reason")? {
         let converted_185 = (|| -> PyResult<_> {
@@ -1600,6 +1668,7 @@ fn recognized_bot_member_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::RecognizedBotMember> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bot_id", "bot_name"])?;
     let mut builder = aws_sdk_lexruntimev2::types::RecognizedBotMember::builder();
     if let Some(value) = dict_value(values, "bot_id")? {
         let converted_192 = (|| -> PyResult<_> {
@@ -1646,6 +1715,7 @@ fn runtime_hint_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHintDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["runtime_hint_values", "sub_slot_hints"])?;
     let mut builder = aws_sdk_lexruntimev2::types::RuntimeHintDetails::builder();
     if let Some(value) = dict_value(values, "runtime_hint_values")? {
         let converted_196 = (|| -> PyResult<_> {
@@ -1758,6 +1828,7 @@ fn runtime_hint_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHintValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["phrase"])?;
     let mut builder = aws_sdk_lexruntimev2::types::RuntimeHintValue::builder();
     if let Some(value) = dict_value(values, "phrase")? {
         let converted_216 = (|| -> PyResult<_> {
@@ -1788,6 +1859,7 @@ fn runtime_hints_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::RuntimeHints> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["slot_hints"])?;
     let mut builder = aws_sdk_lexruntimev2::types::RuntimeHints::builder();
     if let Some(value) = dict_value(values, "slot_hints")? {
         let converted_218 = (|| -> PyResult<_> {
@@ -1880,6 +1952,7 @@ fn sentiment_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::SentimentResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["sentiment", "sentiment_score"])?;
     let mut builder = aws_sdk_lexruntimev2::types::SentimentResponse::builder();
     if let Some(value) = dict_value(values, "sentiment")? {
         let converted_240 = (|| -> PyResult<_> {
@@ -1938,6 +2011,7 @@ fn sentiment_score_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::SentimentScore> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["mixed", "negative", "neutral", "positive"])?;
     let mut builder = aws_sdk_lexruntimev2::types::SentimentScore::builder();
     if let Some(value) = dict_value(values, "positive")? {
         let converted_245 = (|| -> PyResult<_> {
@@ -2002,6 +2076,17 @@ fn session_state_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::SessionState> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "active_contexts",
+            "dialog_action",
+            "intent",
+            "originating_request_id",
+            "runtime_hints",
+            "session_attributes",
+        ],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::SessionState::builder();
     if let Some(value) = dict_value(values, "dialog_action")? {
         let converted_253 = (|| -> PyResult<_> {
@@ -2192,6 +2277,7 @@ fn session_state_to_py(
 
 fn slot_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Slot> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["shape", "sub_slots", "value", "values"])?;
     let mut builder = aws_sdk_lexruntimev2::types::Slot::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_281 = (|| -> PyResult<_> {
@@ -2648,6 +2734,7 @@ fn text_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::TextInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_timestamp_millis", "event_id", "text"])?;
     let mut builder = aws_sdk_lexruntimev2::types::TextInputEvent::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_330 = (|| -> PyResult<_> {
@@ -2712,6 +2799,7 @@ fn text_response_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::TextResponseEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_id", "messages"])?;
     let mut builder = aws_sdk_lexruntimev2::types::TextResponseEvent::builder();
     if let Some(value) = dict_value(values, "messages")? {
         let converted_336 = (|| -> PyResult<_> {
@@ -2788,6 +2876,7 @@ fn transcript_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_lexruntimev2::types::TranscriptEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_id", "transcript"])?;
     let mut builder = aws_sdk_lexruntimev2::types::TranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript")? {
         let converted_346 = (|| -> PyResult<_> {
@@ -2834,6 +2923,10 @@ fn transcript_event_to_py(
 
 fn value_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_lexruntimev2::types::Value> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["interpreted_value", "original_value", "resolved_values"],
+    )?;
     let mut builder = aws_sdk_lexruntimev2::types::Value::builder();
     if let Some(value) = dict_value(values, "original_value")? {
         let converted_350 = (|| -> PyResult<_> {

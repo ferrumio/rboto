@@ -16,6 +16,7 @@ fn access_log_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::AccessLogSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination_arn", "format"])?;
     let mut builder = aws_sdk_apigateway::types::AccessLogSettings::builder();
     if let Some(value) = dict_value(values, "format")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -66,6 +67,21 @@ fn access_log_settings_to_py(
 
 fn api_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::ApiKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_date",
+            "customer_id",
+            "description",
+            "enabled",
+            "id",
+            "last_updated_date",
+            "name",
+            "stage_keys",
+            "tags",
+            "value",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::ApiKey::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_5 = (|| -> PyResult<_> {
@@ -303,6 +319,7 @@ fn api_key_to_py(py: Python<'_>, value: &aws_sdk_apigateway::types::ApiKey) -> P
 
 fn api_stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::ApiStage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_id", "stage", "throttle"])?;
     let mut builder = aws_sdk_apigateway::types::ApiStage::builder();
     if let Some(value) = dict_value(values, "api_id")? {
         let converted_43 = (|| -> PyResult<_> {
@@ -393,6 +410,21 @@ fn api_stage_to_py(
 
 fn authorizer_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Authorizer> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "auth_type",
+            "authorizer_credentials",
+            "authorizer_result_ttl_in_seconds",
+            "authorizer_uri",
+            "id",
+            "identity_source",
+            "identity_validation_expression",
+            "name",
+            "provider_arns",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Authorizer::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_59 = (|| -> PyResult<_> {
@@ -619,6 +651,7 @@ fn base_path_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::BasePathMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["base_path", "rest_api_id", "stage"])?;
     let mut builder = aws_sdk_apigateway::types::BasePathMapping::builder();
     if let Some(value) = dict_value(values, "base_path")? {
         let converted_86 = (|| -> PyResult<_> {
@@ -683,6 +716,15 @@ fn canary_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::CanarySettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "deployment_id",
+            "percent_traffic",
+            "stage_variable_overrides",
+            "use_stage_cache",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::CanarySettings::builder();
     if let Some(value) = dict_value(values, "percent_traffic")? {
         let converted_92 = (|| -> PyResult<_> {
@@ -795,6 +837,17 @@ fn client_certificate_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::ClientCertificate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_certificate_id",
+            "created_date",
+            "description",
+            "expiration_date",
+            "pem_encoded_certificate",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::ClientCertificate::builder();
     if let Some(value) = dict_value(values, "client_certificate_id")? {
         let converted_110 = (|| -> PyResult<_> {
@@ -959,6 +1012,10 @@ fn client_certificate_to_py(
 
 fn deployment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Deployment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["api_summary", "created_date", "description", "id"],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Deployment::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_134 = (|| -> PyResult<_> {
@@ -1108,6 +1165,14 @@ fn deployment_canary_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DeploymentCanarySettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "percent_traffic",
+            "stage_variable_overrides",
+            "use_stage_cache",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::DeploymentCanarySettings::builder();
     if let Some(value) = dict_value(values, "percent_traffic")? {
         let converted_163 = (|| -> PyResult<_> {
@@ -1204,6 +1269,7 @@ fn documentation_part_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DocumentationPart> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "location", "properties"])?;
     let mut builder = aws_sdk_apigateway::types::DocumentationPart::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_179 = (|| -> PyResult<_> {
@@ -1272,6 +1338,7 @@ fn documentation_part_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DocumentationPartLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["method", "name", "path", "status_code", "type"])?;
     let mut builder = aws_sdk_apigateway::types::DocumentationPartLocation::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_185 = (|| -> PyResult<_> {
@@ -1372,6 +1439,7 @@ fn documentation_version_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DocumentationVersion> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["created_date", "description", "version"])?;
     let mut builder = aws_sdk_apigateway::types::DocumentationVersion::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_196 = (|| -> PyResult<_> {
@@ -1445,6 +1513,34 @@ fn domain_name_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DomainName> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "certificate_arn",
+            "certificate_name",
+            "certificate_upload_date",
+            "distribution_domain_name",
+            "distribution_hosted_zone_id",
+            "domain_name",
+            "domain_name_arn",
+            "domain_name_id",
+            "domain_name_status",
+            "domain_name_status_message",
+            "endpoint_access_mode",
+            "endpoint_configuration",
+            "management_policy",
+            "mutual_tls_authentication",
+            "ownership_verification_certificate_arn",
+            "policy",
+            "regional_certificate_arn",
+            "regional_certificate_name",
+            "regional_domain_name",
+            "regional_hosted_zone_id",
+            "routing_mode",
+            "security_policy",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::DomainName::builder();
     if let Some(value) = dict_value(values, "domain_name")? {
         let converted_203 = (|| -> PyResult<_> {
@@ -1946,6 +2042,16 @@ fn domain_name_access_association_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::DomainNameAccessAssociation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_association_source",
+            "access_association_source_type",
+            "domain_name_access_association_arn",
+            "domain_name_arn",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::DomainNameAccessAssociation::builder();
     if let Some(value) = dict_value(values, "domain_name_access_association_arn")? {
         let converted_264 = (|| -> PyResult<_> {
@@ -2089,6 +2195,7 @@ fn endpoint_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::EndpointConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ip_address_type", "types", "vpc_endpoint_ids"])?;
     let mut builder = aws_sdk_apigateway::types::EndpointConfiguration::builder();
     if let Some(value) = dict_value(values, "types")? {
         let converted_285 = (|| -> PyResult<_> {
@@ -2217,6 +2324,16 @@ fn gateway_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::GatewayResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_response",
+            "response_parameters",
+            "response_templates",
+            "response_type",
+            "status_code",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::GatewayResponse::builder();
     if let Some(value) = dict_value(values, "response_type")? {
         let converted_305 = (|| -> PyResult<_> {
@@ -2383,6 +2500,28 @@ fn integration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::Integration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cache_key_parameters",
+            "cache_namespace",
+            "connection_id",
+            "connection_type",
+            "content_handling",
+            "credentials",
+            "http_method",
+            "integration_responses",
+            "integration_target",
+            "passthrough_behavior",
+            "request_parameters",
+            "request_templates",
+            "response_transfer_mode",
+            "timeout_in_millis",
+            "tls_config",
+            "type",
+            "uri",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Integration::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_336 = (|| -> PyResult<_> {
@@ -2835,6 +2974,16 @@ fn integration_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::IntegrationResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "content_handling",
+            "response_parameters",
+            "response_templates",
+            "selection_pattern",
+            "status_code",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::IntegrationResponse::builder();
     if let Some(value) = dict_value(values, "status_code")? {
         let converted_410 = (|| -> PyResult<_> {
@@ -3003,6 +3152,22 @@ fn integration_response_to_py(
 
 fn method_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Method> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_key_required",
+            "authorization_scopes",
+            "authorization_type",
+            "authorizer_id",
+            "http_method",
+            "method_integration",
+            "method_responses",
+            "operation_name",
+            "request_models",
+            "request_parameters",
+            "request_validator_id",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Method::builder();
     if let Some(value) = dict_value(values, "http_method")? {
         let converted_441 = (|| -> PyResult<_> {
@@ -3332,6 +3497,10 @@ fn method_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::MethodResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["response_models", "response_parameters", "status_code"],
+    )?;
     let mut builder = aws_sdk_apigateway::types::MethodResponse::builder();
     if let Some(value) = dict_value(values, "status_code")? {
         let converted_499 = (|| -> PyResult<_> {
@@ -3460,6 +3629,21 @@ fn method_setting_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::MethodSetting> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cache_data_encrypted",
+            "cache_ttl_in_seconds",
+            "caching_enabled",
+            "data_trace_enabled",
+            "logging_level",
+            "metrics_enabled",
+            "require_authorization_for_cache_control",
+            "throttling_burst_limit",
+            "throttling_rate_limit",
+            "unauthorized_cache_control_header_strategy",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::MethodSetting::builder();
     if let Some(value) = dict_value(values, "metrics_enabled")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -3646,6 +3830,7 @@ fn method_snapshot_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::MethodSnapshot> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_key_required", "authorization_type"])?;
     let mut builder = aws_sdk_apigateway::types::MethodSnapshot::builder();
     if let Some(value) = dict_value(values, "authorization_type")? {
         let converted_546 = (|| -> PyResult<_> {
@@ -3696,6 +3881,10 @@ fn method_snapshot_to_py(
 
 fn model_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Model> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["content_type", "description", "id", "name", "schema"],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Model::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_550 = (|| -> PyResult<_> {
@@ -3789,6 +3978,14 @@ fn mutual_tls_authentication_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::MutualTlsAuthentication> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "truststore_uri",
+            "truststore_version",
+            "truststore_warnings",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::MutualTlsAuthentication::builder();
     if let Some(value) = dict_value(values, "truststore_uri")? {
         let converted_560 = (|| -> PyResult<_> {
@@ -3885,6 +4082,7 @@ fn mutual_tls_authentication_input_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::MutualTlsAuthenticationInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["truststore_uri", "truststore_version"])?;
     let mut builder = aws_sdk_apigateway::types::MutualTlsAuthenticationInput::builder();
     if let Some(value) = dict_value(values, "truststore_uri")? {
         let converted_572 = (|| -> PyResult<_> {
@@ -3937,6 +4135,7 @@ fn patch_operation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::PatchOperation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["from", "op", "path", "value"])?;
     let mut builder = aws_sdk_apigateway::types::PatchOperation::builder();
     if let Some(value) = dict_value(values, "op")? {
         let converted_576 = (|| -> PyResult<_> {
@@ -4018,6 +4217,7 @@ fn quota_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::QuotaSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["limit", "offset", "period"])?;
     let mut builder = aws_sdk_apigateway::types::QuotaSettings::builder();
     if let Some(value) = dict_value(values, "limit")? {
         let converted_585 = (|| -> PyResult<_> {
@@ -4080,6 +4280,15 @@ fn request_validator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::RequestValidator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "id",
+            "name",
+            "validate_request_body",
+            "validate_request_parameters",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::RequestValidator::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_592 = (|| -> PyResult<_> {
@@ -4160,6 +4369,10 @@ fn request_validator_to_py(
 
 fn resource_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Resource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["id", "parent_id", "path", "path_part", "resource_methods"],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Resource::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_600 = (|| -> PyResult<_> {
@@ -4286,6 +4499,29 @@ fn resource_to_py(
 
 fn rest_api_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::RestApi> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_key_source",
+            "api_status",
+            "api_status_message",
+            "binary_media_types",
+            "created_date",
+            "description",
+            "disable_execute_api_endpoint",
+            "endpoint_access_mode",
+            "endpoint_configuration",
+            "id",
+            "minimum_compression_size",
+            "name",
+            "policy",
+            "root_resource_id",
+            "security_policy",
+            "tags",
+            "version",
+            "warnings",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::RestApi::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_620 = (|| -> PyResult<_> {
@@ -4720,6 +4956,16 @@ fn sdk_configuration_property_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::SdkConfigurationProperty> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "default_value",
+            "description",
+            "friendly_name",
+            "name",
+            "required",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::SdkConfigurationProperty::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_683 = (|| -> PyResult<_> {
@@ -4810,6 +5056,15 @@ fn sdk_configuration_property_to_py(
 
 fn sdk_type_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::SdkType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "configuration_properties",
+            "description",
+            "friendly_name",
+            "id",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::SdkType::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_693 = (|| -> PyResult<_> {
@@ -4920,6 +5175,28 @@ fn sdk_type_to_py(
 
 fn stage_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::Stage> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_log_settings",
+            "cache_cluster_enabled",
+            "cache_cluster_size",
+            "cache_cluster_status",
+            "canary_settings",
+            "client_certificate_id",
+            "created_date",
+            "deployment_id",
+            "description",
+            "documentation_version",
+            "last_updated_date",
+            "method_settings",
+            "stage_name",
+            "tags",
+            "tracing_enabled",
+            "variables",
+            "web_acl_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::Stage::builder();
     if let Some(value) = dict_value(values, "deployment_id")? {
         let converted_707 = (|| -> PyResult<_> {
@@ -5337,6 +5614,7 @@ fn stage_to_py(py: Python<'_>, value: &aws_sdk_apigateway::types::Stage) -> PyRe
 
 fn stage_key_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::StageKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["rest_api_id", "stage_name"])?;
     let mut builder = aws_sdk_apigateway::types::StageKey::builder();
     if let Some(value) = dict_value(values, "rest_api_id")? {
         let converted_775 = (|| -> PyResult<_> {
@@ -5385,6 +5663,7 @@ fn throttle_settings_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::ThrottleSettings> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["burst_limit", "rate_limit"])?;
     let mut builder = aws_sdk_apigateway::types::ThrottleSettings::builder();
     if let Some(value) = dict_value(values, "burst_limit")? {
         let converted_779 = (|| -> PyResult<_> {
@@ -5423,6 +5702,7 @@ fn throttle_settings_to_py(
 
 fn tls_config_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::TlsConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["insecure_skip_verification"])?;
     let mut builder = aws_sdk_apigateway::types::TlsConfig::builder();
     if let Some(value) = dict_value(values, "insecure_skip_verification")? {
         let converted_783 = (|| -> PyResult<_> {
@@ -5455,6 +5735,19 @@ fn tls_config_to_py(
 
 fn usage_plan_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::UsagePlan> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "api_stages",
+            "description",
+            "id",
+            "name",
+            "product_code",
+            "quota",
+            "tags",
+            "throttle",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::UsagePlan::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_785 = (|| -> PyResult<_> {
@@ -5667,6 +5960,7 @@ fn usage_plan_key_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_apigateway::types::UsagePlanKey> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "name", "type", "value"])?;
     let mut builder = aws_sdk_apigateway::types::UsagePlanKey::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_817 = (|| -> PyResult<_> {
@@ -5745,6 +6039,18 @@ fn usage_plan_key_to_py(
 
 fn vpc_link_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_apigateway::types::VpcLink> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "id",
+            "name",
+            "status",
+            "status_message",
+            "tags",
+            "target_arns",
+        ],
+    )?;
     let mut builder = aws_sdk_apigateway::types::VpcLink::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_825 = (|| -> PyResult<_> {

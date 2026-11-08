@@ -16,6 +16,7 @@ fn access_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AccessConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access_controls", "member_relation"])?;
     let mut builder = aws_sdk_qbusiness::types::AccessConfiguration::builder();
     if let Some(value) = dict_value(values, "access_controls")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -99,6 +100,7 @@ fn access_control_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AccessControl> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["member_relation", "principals"])?;
     let mut builder = aws_sdk_qbusiness::types::AccessControl::builder();
     if let Some(value) = dict_value(values, "principals")? {
         let converted_12 = (|| -> PyResult<_> {
@@ -183,6 +185,7 @@ fn action_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "filter_configuration"])?;
     let mut builder = aws_sdk_qbusiness::types::ActionConfiguration::builder();
     if let Some(value) = dict_value(values, "action")? {
         let converted_23 = (|| -> PyResult<_> {
@@ -233,6 +236,10 @@ fn action_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["payload", "payload_field_name_separator", "plugin_id"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionExecution::builder();
     if let Some(value) = dict_value(values, "plugin_id")? {
         let converted_27 = (|| -> PyResult<_> {
@@ -331,6 +338,10 @@ fn action_execution_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionExecutionEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["payload", "payload_field_name_separator", "plugin_id"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionExecutionEvent::builder();
     if let Some(value) = dict_value(values, "plugin_id")? {
         let converted_43 = (|| -> PyResult<_> {
@@ -429,6 +440,7 @@ fn action_execution_payload_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionExecutionPayloadField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["value"])?;
     let mut builder = aws_sdk_qbusiness::types::ActionExecutionPayloadField::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_59 = (|| -> PyResult<_> {
@@ -459,6 +471,7 @@ fn action_filter_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionFilterConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["document_attribute_filter"])?;
     let mut builder = aws_sdk_qbusiness::types::ActionFilterConfiguration::builder();
     if let Some(value) = dict_value(values, "document_attribute_filter")? {
         let converted_61 = (|| -> PyResult<_> {
@@ -495,6 +508,15 @@ fn action_review_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionReview> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "payload",
+            "payload_field_name_separator",
+            "plugin_id",
+            "plugin_type",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionReview::builder();
     if let Some(value) = dict_value(values, "plugin_id")? {
         let converted_63 = (|| -> PyResult<_> {
@@ -612,6 +634,18 @@ fn action_review_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionReviewEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "conversation_id",
+            "payload",
+            "payload_field_name_separator",
+            "plugin_id",
+            "plugin_type",
+            "system_message_id",
+            "user_message_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionReviewEvent::builder();
     if let Some(value) = dict_value(values, "conversation_id")? {
         let converted_82 = (|| -> PyResult<_> {
@@ -789,6 +823,20 @@ fn action_review_payload_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionReviewPayloadField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_format",
+            "allowed_values",
+            "array_item_json_schema",
+            "display_description",
+            "display_name",
+            "display_order",
+            "required",
+            "type",
+            "value",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionReviewPayloadField::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_107 = (|| -> PyResult<_> {
@@ -996,6 +1044,7 @@ fn action_review_payload_field_allowed_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionReviewPayloadFieldAllowedValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["display_value", "value"])?;
     let mut builder = aws_sdk_qbusiness::types::ActionReviewPayloadFieldAllowedValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_132 = (|| -> PyResult<_> {
@@ -1048,6 +1097,15 @@ fn action_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ActionSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action_identifier",
+            "description",
+            "display_name",
+            "instruction_example",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ActionSummary::builder();
     if let Some(value) = dict_value(values, "action_identifier")? {
         let converted_136 = (|| -> PyResult<_> {
@@ -1195,6 +1253,18 @@ fn application_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::Application> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_id",
+            "created_at",
+            "display_name",
+            "identity_type",
+            "quick_sight_configuration",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Application::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_148 = (|| -> PyResult<_> {
@@ -1357,6 +1427,7 @@ fn applied_attachments_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AppliedAttachmentsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attachments_control_mode"])?;
     let mut builder = aws_sdk_qbusiness::types::AppliedAttachmentsConfiguration::builder();
     if let Some(value) = dict_value(values, "attachments_control_mode")? {
         let converted_166 = (|| -> PyResult<_> {
@@ -1395,6 +1466,7 @@ fn applied_creator_mode_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AppliedCreatorModeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creator_mode_control"])?;
     let mut builder = aws_sdk_qbusiness::types::AppliedCreatorModeConfiguration::builder();
     if let Some(value) = dict_value(values, "creator_mode_control")? {
         let converted_169 = (|| -> PyResult<_> {
@@ -1431,6 +1503,7 @@ fn applied_orchestration_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AppliedOrchestrationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["control"])?;
     let mut builder = aws_sdk_qbusiness::types::AppliedOrchestrationConfiguration::builder();
     if let Some(value) = dict_value(values, "control")? {
         let converted_172 = (|| -> PyResult<_> {
@@ -1467,6 +1540,7 @@ fn associated_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AssociatedGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::AssociatedGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_175 = (|| -> PyResult<_> {
@@ -1521,6 +1595,7 @@ fn associated_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AssociatedUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::AssociatedUser::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_180 = (|| -> PyResult<_> {
@@ -1573,6 +1648,21 @@ fn associated_user_to_py(
 
 fn attachment_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Attachment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attachment_id",
+            "conversation_id",
+            "copy_from",
+            "created_at",
+            "error",
+            "file_size",
+            "file_type",
+            "md5_chksum",
+            "name",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Attachment::builder();
     if let Some(value) = dict_value(values, "attachment_id")? {
         let converted_185 = (|| -> PyResult<_> {
@@ -1776,6 +1866,7 @@ fn attachment_input_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AttachmentInput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["copy_from", "data", "name"])?;
     let mut builder = aws_sdk_qbusiness::types::AttachmentInput::builder();
     if let Some(value) = dict_value(values, "data")? {
         let converted_207 = (|| -> PyResult<_> {
@@ -1845,6 +1936,7 @@ fn attachment_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AttachmentInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attachment"])?;
     let mut builder = aws_sdk_qbusiness::types::AttachmentInputEvent::builder();
     if let Some(value) = dict_value(values, "attachment")? {
         let converted_214 = (|| -> PyResult<_> {
@@ -1881,6 +1973,16 @@ fn attachment_output_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AttachmentOutput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attachment_id",
+            "conversation_id",
+            "error",
+            "name",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::AttachmentOutput::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_216 = (|| -> PyResult<_> {
@@ -1991,6 +2093,7 @@ fn attachments_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AttachmentsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attachments_control_mode"])?;
     let mut builder = aws_sdk_qbusiness::types::AttachmentsConfiguration::builder();
     if let Some(value) = dict_value(values, "attachments_control_mode")? {
         let converted_227 = (|| -> PyResult<_> {
@@ -2030,6 +2133,21 @@ fn attribute_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AttributeFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "and_all_filters",
+            "contains_all",
+            "contains_any",
+            "equals_to",
+            "greater_than",
+            "greater_than_or_equals",
+            "less_than",
+            "less_than_or_equals",
+            "not_filter",
+            "or_all_filters",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::AttributeFilter::builder();
     if let Some(value) = dict_value(values, "and_all_filters")? {
         let converted_230 = (|| -> PyResult<_> {
@@ -2313,6 +2431,7 @@ fn audio_extraction_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AudioExtractionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio_extraction_status"])?;
     let mut builder = aws_sdk_qbusiness::types::AudioExtractionConfiguration::builder();
     if let Some(value) = dict_value(values, "audio_extraction_status")? {
         let converted_263 = (|| -> PyResult<_> {
@@ -2352,6 +2471,16 @@ fn audio_source_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AudioSourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "audio_extraction_type",
+            "end_time_milliseconds",
+            "media_id",
+            "media_mime_type",
+            "start_time_milliseconds",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::AudioSourceDetails::builder();
     if let Some(value) = dict_value(values, "media_id")? {
         let converted_266 = (|| -> PyResult<_> {
@@ -2466,6 +2595,7 @@ fn auth_challenge_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AuthChallengeRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["authorization_url"])?;
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeRequest::builder();
     if let Some(value) = dict_value(values, "authorization_url")? {
         let converted_277 = (|| -> PyResult<_> {
@@ -2500,6 +2630,7 @@ fn auth_challenge_request_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AuthChallengeRequestEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["authorization_url"])?;
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeRequestEvent::builder();
     if let Some(value) = dict_value(values, "authorization_url")? {
         let converted_279 = (|| -> PyResult<_> {
@@ -2534,6 +2665,7 @@ fn auth_challenge_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AuthChallengeResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["response_map"])?;
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeResponse::builder();
     if let Some(value) = dict_value(values, "response_map")? {
         let converted_281 = (|| -> PyResult<_> {
@@ -2592,6 +2724,7 @@ fn auth_challenge_response_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AuthChallengeResponseEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["response_map"])?;
     let mut builder = aws_sdk_qbusiness::types::AuthChallengeResponseEvent::builder();
     if let Some(value) = dict_value(values, "response_map")? {
         let converted_293 = (|| -> PyResult<_> {
@@ -2650,6 +2783,7 @@ fn auto_subscription_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::AutoSubscriptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["auto_subscribe", "default_subscription_type"])?;
     let mut builder = aws_sdk_qbusiness::types::AutoSubscriptionConfiguration::builder();
     if let Some(value) = dict_value(values, "auto_subscribe")? {
         let converted_305 = (|| -> PyResult<_> {
@@ -2708,6 +2842,7 @@ fn basic_auth_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::BasicAuthConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["role_arn", "secret_arn"])?;
     let mut builder = aws_sdk_qbusiness::types::BasicAuthConfiguration::builder();
     if let Some(value) = dict_value(values, "secret_arn")? {
         let converted_311 = (|| -> PyResult<_> {
@@ -2753,6 +2888,7 @@ fn blocked_phrases_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::BlockedPhrasesConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["blocked_phrases", "system_message_override"])?;
     let mut builder = aws_sdk_qbusiness::types::BlockedPhrasesConfiguration::builder();
     if let Some(value) = dict_value(values, "blocked_phrases")? {
         let converted_315 = (|| -> PyResult<_> {
@@ -2833,6 +2969,14 @@ fn blocked_phrases_configuration_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::BlockedPhrasesConfigurationUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "blocked_phrases_to_create_or_update",
+            "blocked_phrases_to_delete",
+            "system_message_override",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::BlockedPhrasesConfigurationUpdate::builder();
     if let Some(value) = dict_value(values, "blocked_phrases_to_create_or_update")? {
         let converted_325 = (|| -> PyResult<_> {
@@ -2957,6 +3101,7 @@ fn browser_extension_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::BrowserExtensionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled_browser_extensions"])?;
     let mut builder = aws_sdk_qbusiness::types::BrowserExtensionConfiguration::builder();
     if let Some(value) = dict_value(values, "enabled_browser_extensions")? {
         let converted_343 = (|| -> PyResult<_> {
@@ -3357,6 +3502,18 @@ fn chat_response_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ChatResponseConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "chat_response_configuration_arn",
+            "chat_response_configuration_id",
+            "created_at",
+            "display_name",
+            "response_configuration_summary",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ChatResponseConfiguration::builder();
     if let Some(value) = dict_value(values, "chat_response_configuration_id")? {
         let converted_376 = (|| -> PyResult<_> {
@@ -3526,6 +3683,16 @@ fn chat_response_configuration_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ChatResponseConfigurationDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "error",
+            "response_configuration_summary",
+            "response_configurations",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ChatResponseConfigurationDetail::builder();
     if let Some(value) = dict_value(values, "response_configurations")? {
         let converted_393 = (|| -> PyResult<_> {
@@ -3686,6 +3853,10 @@ fn configuration_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ConfigurationEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["attribute_filter", "chat_mode", "chat_mode_configuration"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::ConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "chat_mode")? {
         let converted_416 = (|| -> PyResult<_> {
@@ -3763,6 +3934,7 @@ fn content_blocker_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ContentBlockerRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["system_message_override"])?;
     let mut builder = aws_sdk_qbusiness::types::ContentBlockerRule::builder();
     if let Some(value) = dict_value(values, "system_message_override")? {
         let converted_423 = (|| -> PyResult<_> {
@@ -3799,6 +3971,7 @@ fn content_retrieval_rule_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ContentRetrievalRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["eligible_data_sources"])?;
     let mut builder = aws_sdk_qbusiness::types::ContentRetrievalRule::builder();
     if let Some(value) = dict_value(values, "eligible_data_sources")? {
         let converted_425 = (|| -> PyResult<_> {
@@ -3916,6 +4089,7 @@ fn conversation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::Conversation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["conversation_id", "start_time", "title"])?;
     let mut builder = aws_sdk_qbusiness::types::Conversation::builder();
     if let Some(value) = dict_value(values, "conversation_id")? {
         let converted_435 = (|| -> PyResult<_> {
@@ -3993,6 +4167,7 @@ fn conversation_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ConversationSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attachment_id", "conversation_id"])?;
     let mut builder = aws_sdk_qbusiness::types::ConversationSource::builder();
     if let Some(value) = dict_value(values, "conversation_id")? {
         let converted_442 = (|| -> PyResult<_> {
@@ -4098,6 +4273,7 @@ fn creator_mode_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::CreatorModeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creator_mode_control"])?;
     let mut builder = aws_sdk_qbusiness::types::CreatorModeConfiguration::builder();
     if let Some(value) = dict_value(values, "creator_mode_control")? {
         let converted_448 = (|| -> PyResult<_> {
@@ -4134,6 +4310,7 @@ fn custom_plugin_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::CustomPluginConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["api_schema", "api_schema_type", "description"])?;
     let mut builder = aws_sdk_qbusiness::types::CustomPluginConfiguration::builder();
     if let Some(value) = dict_value(values, "description")? {
         let converted_451 = (|| -> PyResult<_> {
@@ -4208,6 +4385,10 @@ fn customization_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::CustomizationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["custom_css_url", "favicon_url", "font_url", "logo_url"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::CustomizationConfiguration::builder();
     if let Some(value) = dict_value(values, "custom_css_url")? {
         let converted_458 = (|| -> PyResult<_> {
@@ -4288,6 +4469,19 @@ fn data_accessor_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataAccessor> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authentication_detail",
+            "created_at",
+            "data_accessor_arn",
+            "data_accessor_id",
+            "display_name",
+            "idc_application_arn",
+            "principal",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DataAccessor::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_466 = (|| -> PyResult<_> {
@@ -4518,6 +4712,14 @@ fn data_accessor_authentication_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataAccessorAuthenticationDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "authentication_configuration",
+            "authentication_type",
+            "external_ids",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DataAccessorAuthenticationDetail::builder();
     if let Some(value) = dict_value(values, "authentication_type")? {
         let converted_486 = (|| -> PyResult<_> {
@@ -4619,6 +4821,7 @@ fn data_accessor_idc_trusted_token_issuer_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataAccessorIdcTrustedTokenIssuerConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["idc_trusted_token_issuer_arn"])?;
     let mut builder =
         aws_sdk_qbusiness::types::DataAccessorIdcTrustedTokenIssuerConfiguration::builder();
     if let Some(value) = dict_value(values, "idc_trusted_token_issuer_arn")? {
@@ -4660,6 +4863,17 @@ fn data_accessor_idc_trusted_token_issuer_configuration_to_py(
 
 fn data_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::DataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "data_source_id",
+            "display_name",
+            "status",
+            "type",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DataSource::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_501 = (|| -> PyResult<_> {
@@ -4796,6 +5010,18 @@ fn data_source_sync_job_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataSourceSyncJob> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "data_source_error_code",
+            "end_time",
+            "error",
+            "execution_id",
+            "metrics",
+            "start_time",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DataSourceSyncJob::builder();
     if let Some(value) = dict_value(values, "execution_id")? {
         let converted_516 = (|| -> PyResult<_> {
@@ -4960,6 +5186,16 @@ fn data_source_sync_job_metrics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataSourceSyncJobMetrics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "documents_added",
+            "documents_deleted",
+            "documents_failed",
+            "documents_modified",
+            "documents_scanned",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DataSourceSyncJobMetrics::builder();
     if let Some(value) = dict_value(values, "documents_added")? {
         let converted_533 = (|| -> PyResult<_> {
@@ -5076,6 +5312,7 @@ fn data_source_vpc_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DataSourceVpcConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["security_group_ids", "subnet_ids"])?;
     let mut builder = aws_sdk_qbusiness::types::DataSourceVpcConfiguration::builder();
     if let Some(value) = dict_value(values, "subnet_ids")? {
         let converted_543 = (|| -> PyResult<_> {
@@ -5180,6 +5417,7 @@ fn date_attribute_boosting_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DateAttributeBoostingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["boosting_duration_in_seconds", "boosting_level"])?;
     let mut builder = aws_sdk_qbusiness::types::DateAttributeBoostingConfiguration::builder();
     if let Some(value) = dict_value(values, "boosting_level")? {
         let converted_559 = (|| -> PyResult<_> {
@@ -5237,6 +5475,7 @@ fn delete_document_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DeleteDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["document_id"])?;
     let mut builder = aws_sdk_qbusiness::types::DeleteDocument::builder();
     if let Some(value) = dict_value(values, "document_id")? {
         let converted_564 = (|| -> PyResult<_> {
@@ -5265,6 +5504,19 @@ fn delete_document_to_py(
 
 fn document_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Document> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_configuration",
+            "attributes",
+            "content",
+            "content_type",
+            "document_enrichment_configuration",
+            "id",
+            "media_extraction_configuration",
+            "title",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Document::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_566 = (|| -> PyResult<_> {
@@ -5461,6 +5713,7 @@ fn document_acl_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAcl> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["allowlist", "deny_list"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAcl::builder();
     if let Some(value) = dict_value(values, "allowlist")? {
         let converted_589 = (|| -> PyResult<_> {
@@ -5517,6 +5770,7 @@ fn document_acl_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAclCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["groups", "member_relation", "users"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAclCondition::builder();
     if let Some(value) = dict_value(values, "member_relation")? {
         let converted_593 = (|| -> PyResult<_> {
@@ -5643,6 +5897,7 @@ fn document_acl_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAclGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAclGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_612 = (|| -> PyResult<_> {
@@ -5697,6 +5952,7 @@ fn document_acl_membership_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAclMembership> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["conditions", "member_relation"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAclMembership::builder();
     if let Some(value) = dict_value(values, "member_relation")? {
         let converted_617 = (|| -> PyResult<_> {
@@ -5783,6 +6039,7 @@ fn document_acl_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAclUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAclUser::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_628 = (|| -> PyResult<_> {
@@ -5837,6 +6094,7 @@ fn document_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "value"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAttribute::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_633 = (|| -> PyResult<_> {
@@ -6004,6 +6262,7 @@ fn document_attribute_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAttributeCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "operator", "value"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAttributeCondition::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_645 = (|| -> PyResult<_> {
@@ -6073,6 +6332,7 @@ fn document_attribute_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAttributeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "search", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAttributeConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_652 = (|| -> PyResult<_> {
@@ -6148,6 +6408,7 @@ fn document_attribute_target_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentAttributeTarget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_value_operator", "key", "value"])?;
     let mut builder = aws_sdk_qbusiness::types::DocumentAttributeTarget::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_660 = (|| -> PyResult<_> {
@@ -6416,6 +6677,10 @@ fn document_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["created_at", "document_id", "error", "status", "updated_at"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DocumentDetails::builder();
     if let Some(value) = dict_value(values, "document_id")? {
         let converted_687 = (|| -> PyResult<_> {
@@ -6540,6 +6805,14 @@ fn document_enrichment_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::DocumentEnrichmentConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "inline_configurations",
+            "post_extraction_hook_configuration",
+            "pre_extraction_hook_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::DocumentEnrichmentConfiguration::builder();
     if let Some(value) = dict_value(values, "inline_configurations")? {
         let converted_700 = (|| -> PyResult<_> {
@@ -6645,6 +6918,7 @@ fn eligible_data_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::EligibleDataSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_source_id", "index_id"])?;
     let mut builder = aws_sdk_qbusiness::types::EligibleDataSource::builder();
     if let Some(value) = dict_value(values, "index_id")? {
         let converted_712 = (|| -> PyResult<_> {
@@ -6693,6 +6967,7 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_key_id"])?;
     let mut builder = aws_sdk_qbusiness::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key_id")? {
         let converted_716 = (|| -> PyResult<_> {
@@ -6725,6 +7000,7 @@ fn end_of_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::EndOfInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_qbusiness::types::EndOfInputEvent::builder();
     Ok(builder.build())
 }
@@ -6741,6 +7017,7 @@ fn error_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ErrorDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "error_message"])?;
     let mut builder = aws_sdk_qbusiness::types::ErrorDetail::builder();
     if let Some(value) = dict_value(values, "error_message")? {
         let converted_718 = (|| -> PyResult<_> {
@@ -6794,6 +7071,15 @@ fn failed_attachment_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::FailedAttachmentEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attachment",
+            "conversation_id",
+            "system_message_id",
+            "user_message_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::FailedAttachmentEvent::builder();
     if let Some(value) = dict_value(values, "conversation_id")? {
         let converted_723 = (|| -> PyResult<_> {
@@ -6890,6 +7176,7 @@ fn failed_document_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::FailedDocument> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_source_id", "error", "id"])?;
     let mut builder = aws_sdk_qbusiness::types::FailedDocument::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_731 = (|| -> PyResult<_> {
@@ -6958,6 +7245,10 @@ fn group_members_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::GroupMembers> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["member_groups", "member_users", "s3_path_for_group_members"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::GroupMembers::builder();
     if let Some(value) = dict_value(values, "member_groups")? {
         let converted_737 = (|| -> PyResult<_> {
@@ -7090,6 +7381,7 @@ fn group_status_detail_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::GroupStatusDetail> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_detail", "last_updated_at", "status"])?;
     let mut builder = aws_sdk_qbusiness::types::GroupStatusDetail::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_755 = (|| -> PyResult<_> {
@@ -7173,6 +7465,7 @@ fn group_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::GroupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["group_name"])?;
     let mut builder = aws_sdk_qbusiness::types::GroupSummary::builder();
     if let Some(value) = dict_value(values, "group_name")? {
         let converted_763 = (|| -> PyResult<_> {
@@ -7205,6 +7498,7 @@ fn hallucination_reduction_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::HallucinationReductionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["hallucination_reduction_control"])?;
     let mut builder = aws_sdk_qbusiness::types::HallucinationReductionConfiguration::builder();
     if let Some(value) = dict_value(values, "hallucination_reduction_control")? {
         let converted_765 = (|| -> PyResult<_> {
@@ -7244,6 +7538,15 @@ fn hook_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::HookConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "invocation_condition",
+            "lambda_arn",
+            "role_arn",
+            "s3_bucket_name",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::HookConfiguration::builder();
     if let Some(value) = dict_value(values, "invocation_condition")? {
         let converted_768 = (|| -> PyResult<_> {
@@ -7328,6 +7631,7 @@ fn idc_auth_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::IdcAuthConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["idc_application_arn", "role_arn"])?;
     let mut builder = aws_sdk_qbusiness::types::IdcAuthConfiguration::builder();
     if let Some(value) = dict_value(values, "idc_application_arn")? {
         let converted_776 = (|| -> PyResult<_> {
@@ -7459,6 +7763,7 @@ fn image_extraction_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ImageExtractionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["image_extraction_status"])?;
     let mut builder = aws_sdk_qbusiness::types::ImageExtractionConfiguration::builder();
     if let Some(value) = dict_value(values, "image_extraction_status")? {
         let converted_784 = (|| -> PyResult<_> {
@@ -7498,6 +7803,7 @@ fn image_source_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ImageSourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["media_id", "media_mime_type"])?;
     let mut builder = aws_sdk_qbusiness::types::ImageSourceDetails::builder();
     if let Some(value) = dict_value(values, "media_id")? {
         let converted_787 = (|| -> PyResult<_> {
@@ -7548,6 +7854,16 @@ fn image_source_details_to_py(
 
 fn index_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Index> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "display_name",
+            "index_id",
+            "status",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Index::builder();
     if let Some(value) = dict_value(values, "display_name")? {
         let converted_791 = (|| -> PyResult<_> {
@@ -7665,6 +7981,7 @@ fn index_capacity_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::IndexCapacityConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["units"])?;
     let mut builder = aws_sdk_qbusiness::types::IndexCapacityConfiguration::builder();
     if let Some(value) = dict_value(values, "units")? {
         let converted_804 = (|| -> PyResult<_> {
@@ -7697,6 +8014,7 @@ fn index_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::IndexStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text_document_statistics"])?;
     let mut builder = aws_sdk_qbusiness::types::IndexStatistics::builder();
     if let Some(value) = dict_value(values, "text_document_statistics")? {
         let converted_806 = (|| -> PyResult<_> {
@@ -7733,6 +8051,10 @@ fn inline_document_enrichment_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::InlineDocumentEnrichmentConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["condition", "document_content_operator", "target"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::InlineDocumentEnrichmentConfiguration::builder();
     if let Some(value) = dict_value(values, "condition")? {
         let converted_808 = (|| -> PyResult<_> {
@@ -7811,6 +8133,19 @@ fn instruction_collection_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::InstructionCollection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "custom_instructions",
+            "examples",
+            "identity",
+            "output_style",
+            "perspective",
+            "response_length",
+            "target_audience",
+            "tone",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::InstructionCollection::builder();
     if let Some(value) = dict_value(values, "response_length")? {
         let converted_815 = (|| -> PyResult<_> {
@@ -7967,6 +8302,7 @@ fn kendra_index_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::KendraIndexConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index_id"])?;
     let mut builder = aws_sdk_qbusiness::types::KendraIndexConfiguration::builder();
     if let Some(value) = dict_value(values, "index_id")? {
         let converted_831 = (|| -> PyResult<_> {
@@ -7997,6 +8333,14 @@ fn media_extraction_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::MediaExtractionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "audio_extraction_configuration",
+            "image_extraction_configuration",
+            "video_extraction_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::MediaExtractionConfiguration::builder();
     if let Some(value) = dict_value(values, "image_extraction_configuration")? {
         let converted_833 = (|| -> PyResult<_> {
@@ -8073,6 +8417,7 @@ fn member_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::MemberGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["group_name", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::MemberGroup::builder();
     if let Some(value) = dict_value(values, "group_name")? {
         let converted_839 = (|| -> PyResult<_> {
@@ -8123,6 +8468,7 @@ fn member_group_to_py(
 
 fn member_user_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::MemberUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "user_id"])?;
     let mut builder = aws_sdk_qbusiness::types::MemberUser::builder();
     if let Some(value) = dict_value(values, "user_id")? {
         let converted_844 = (|| -> PyResult<_> {
@@ -8173,6 +8519,19 @@ fn member_user_to_py(
 
 fn message_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Message> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action_execution",
+            "action_review",
+            "attachments",
+            "body",
+            "message_id",
+            "source_attribution",
+            "time",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Message::builder();
     if let Some(value) = dict_value(values, "message_id")? {
         let converted_849 = (|| -> PyResult<_> {
@@ -8421,6 +8780,10 @@ fn message_usefulness_feedback_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::MessageUsefulnessFeedback> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["comment", "reason", "submitted_at", "usefulness"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::MessageUsefulnessFeedback::builder();
     if let Some(value) = dict_value(values, "usefulness")? {
         let converted_881 = (|| -> PyResult<_> {
@@ -8522,6 +8885,16 @@ fn metadata_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::MetadataEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "conversation_id",
+            "final_text_message",
+            "source_attributions",
+            "system_message_id",
+            "user_message_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::MetadataEvent::builder();
     if let Some(value) = dict_value(values, "conversation_id")? {
         let converted_892 = (|| -> PyResult<_> {
@@ -8686,6 +9059,7 @@ fn native_index_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::NativeIndexConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["boosting_override", "index_id", "version"])?;
     let mut builder = aws_sdk_qbusiness::types::NativeIndexConfiguration::builder();
     if let Some(value) = dict_value(values, "index_id")? {
         let converted_910 = (|| -> PyResult<_> {
@@ -8782,6 +9156,7 @@ fn no_auth_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::NoAuthConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &[])?;
     let mut builder = aws_sdk_qbusiness::types::NoAuthConfiguration::builder();
     Ok(builder.build())
 }
@@ -8798,6 +9173,7 @@ fn number_attribute_boosting_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::NumberAttributeBoostingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["boosting_level", "boosting_type"])?;
     let mut builder = aws_sdk_qbusiness::types::NumberAttributeBoostingConfiguration::builder();
     if let Some(value) = dict_value(values, "boosting_level")? {
         let converted_926 = (|| -> PyResult<_> {
@@ -8858,6 +9234,10 @@ fn o_auth2_client_credential_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::OAuth2ClientCredentialConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["authorization_url", "role_arn", "secret_arn", "token_url"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::OAuth2ClientCredentialConfiguration::builder();
     if let Some(value) = dict_value(values, "secret_arn")? {
         let converted_932 = (|| -> PyResult<_> {
@@ -8939,6 +9319,7 @@ fn open_id_connect_provider_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::OpenIdConnectProviderConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["secrets_arn", "secrets_role"])?;
     let mut builder = aws_sdk_qbusiness::types::OpenIdConnectProviderConfiguration::builder();
     if let Some(value) = dict_value(values, "secrets_arn")? {
         let converted_940 = (|| -> PyResult<_> {
@@ -8987,6 +9368,7 @@ fn orchestration_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::OrchestrationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["control"])?;
     let mut builder = aws_sdk_qbusiness::types::OrchestrationConfiguration::builder();
     if let Some(value) = dict_value(values, "control")? {
         let converted_944 = (|| -> PyResult<_> {
@@ -9023,6 +9405,10 @@ fn permission_condition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PermissionCondition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["condition_key", "condition_operator", "condition_values"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::PermissionCondition::builder();
     if let Some(value) = dict_value(values, "condition_operator")? {
         let converted_947 = (|| -> PyResult<_> {
@@ -9119,6 +9505,7 @@ fn personalization_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PersonalizationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["personalization_control_mode"])?;
     let mut builder = aws_sdk_qbusiness::types::PersonalizationConfiguration::builder();
     if let Some(value) = dict_value(values, "personalization_control_mode")? {
         let converted_960 = (|| -> PyResult<_> {
@@ -9161,6 +9548,19 @@ fn personalization_configuration_to_py(
 
 fn plugin_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Plugin> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "build_status",
+            "created_at",
+            "display_name",
+            "plugin_id",
+            "server_url",
+            "state",
+            "type",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Plugin::builder();
     if let Some(value) = dict_value(values, "plugin_id")? {
         let converted_963 = (|| -> PyResult<_> {
@@ -9456,6 +9856,7 @@ fn plugin_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PluginConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["plugin_id"])?;
     let mut builder = aws_sdk_qbusiness::types::PluginConfiguration::builder();
     if let Some(value) = dict_value(values, "plugin_id")? {
         let converted_992 = (|| -> PyResult<_> {
@@ -9486,6 +9887,7 @@ fn plugin_type_metadata_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PluginTypeMetadataSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["category", "description", "type"])?;
     let mut builder = aws_sdk_qbusiness::types::PluginTypeMetadataSummary::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_994 = (|| -> PyResult<_> {
@@ -9628,6 +10030,7 @@ fn principal_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PrincipalGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access", "membership_type", "name"])?;
     let mut builder = aws_sdk_qbusiness::types::PrincipalGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1006 = (|| -> PyResult<_> {
@@ -9702,6 +10105,7 @@ fn principal_user_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::PrincipalUser> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["access", "id", "membership_type"])?;
     let mut builder = aws_sdk_qbusiness::types::PrincipalUser::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1014 = (|| -> PyResult<_> {
@@ -9776,6 +10180,7 @@ fn q_apps_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::QAppsConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["q_apps_control_mode"])?;
     let mut builder = aws_sdk_qbusiness::types::QAppsConfiguration::builder();
     if let Some(value) = dict_value(values, "q_apps_control_mode")? {
         let converted_1022 = (|| -> PyResult<_> {
@@ -9812,6 +10217,7 @@ fn quick_sight_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::QuickSightConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_namespace"])?;
     let mut builder = aws_sdk_qbusiness::types::QuickSightConfiguration::builder();
     if let Some(value) = dict_value(values, "client_namespace")? {
         let converted_1025 = (|| -> PyResult<_> {
@@ -9846,6 +10252,17 @@ fn relevant_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::RelevantContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "content",
+            "document_attributes",
+            "document_id",
+            "document_title",
+            "document_uri",
+            "score_attributes",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::RelevantContent::builder();
     if let Some(value) = dict_value(values, "content")? {
         let converted_1027 = (|| -> PyResult<_> {
@@ -9994,6 +10411,7 @@ fn response_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ResponseConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["instruction_collection"])?;
     let mut builder = aws_sdk_qbusiness::types::ResponseConfiguration::builder();
     if let Some(value) = dict_value(values, "instruction_collection")? {
         let converted_1045 = (|| -> PyResult<_> {
@@ -10028,6 +10446,16 @@ fn response_configuration_to_py(
 
 fn retriever_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Retriever> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_id",
+            "display_name",
+            "retriever_id",
+            "status",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Retriever::builder();
     if let Some(value) = dict_value(values, "application_id")? {
         let converted_1047 = (|| -> PyResult<_> {
@@ -10213,6 +10641,7 @@ fn retriever_content_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::RetrieverContentSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["retriever_id"])?;
     let mut builder = aws_sdk_qbusiness::types::RetrieverContentSource::builder();
     if let Some(value) = dict_value(values, "retriever_id")? {
         let converted_1063 = (|| -> PyResult<_> {
@@ -10241,6 +10670,15 @@ fn retriever_content_source_to_py(
 
 fn rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Rule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "excluded_users_and_groups",
+            "included_users_and_groups",
+            "rule_configuration",
+            "rule_type",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Rule::builder();
     if let Some(value) = dict_value(values, "included_users_and_groups")? {
         let converted_1065 = (|| -> PyResult<_> {
@@ -10402,6 +10840,7 @@ fn rule_configuration_to_py(
 
 fn s3_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::S3> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bucket", "key"])?;
     let mut builder = aws_sdk_qbusiness::types::S3::builder();
     if let Some(value) = dict_value(values, "bucket")? {
         let converted_1078 = (|| -> PyResult<_> {
@@ -10441,6 +10880,15 @@ fn saml_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::SamlConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "metadata_xml",
+            "role_arn",
+            "user_group_attribute",
+            "user_id_attribute",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::SamlConfiguration::builder();
     if let Some(value) = dict_value(values, "metadata_xml")? {
         let converted_1082 = (|| -> PyResult<_> {
@@ -10526,6 +10974,7 @@ fn saml_provider_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::SamlProviderConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["authentication_url"])?;
     let mut builder = aws_sdk_qbusiness::types::SamlProviderConfiguration::builder();
     if let Some(value) = dict_value(values, "authentication_url")? {
         let converted_1090 = (|| -> PyResult<_> {
@@ -10560,6 +11009,7 @@ fn score_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ScoreAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["score_confidence"])?;
     let mut builder = aws_sdk_qbusiness::types::ScoreAttributes::builder();
     if let Some(value) = dict_value(values, "score_confidence")? {
         let converted_1092 = (|| -> PyResult<_> {
@@ -10598,6 +11048,7 @@ fn snippet_excerpt_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::SnippetExcerpt> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["text"])?;
     let mut builder = aws_sdk_qbusiness::types::SnippetExcerpt::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_1095 = (|| -> PyResult<_> {
@@ -10630,6 +11081,20 @@ fn source_attribution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::SourceAttribution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "citation_number",
+            "datasource_id",
+            "document_id",
+            "index_id",
+            "snippet",
+            "text_message_segments",
+            "title",
+            "updated_at",
+            "url",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::SourceAttribution::builder();
     if let Some(value) = dict_value(values, "title")? {
         let converted_1097 = (|| -> PyResult<_> {
@@ -10928,6 +11393,7 @@ fn string_attribute_boosting_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::StringAttributeBoostingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_value_boosting", "boosting_level"])?;
     let mut builder = aws_sdk_qbusiness::types::StringAttributeBoostingConfiguration::builder();
     if let Some(value) = dict_value(values, "boosting_level")? {
         let converted_1128 = (|| -> PyResult<_> {
@@ -11017,6 +11483,7 @@ fn string_list_attribute_boosting_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::StringListAttributeBoostingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["boosting_level"])?;
     let mut builder = aws_sdk_qbusiness::types::StringListAttributeBoostingConfiguration::builder();
     if let Some(value) = dict_value(values, "boosting_level")? {
         let converted_1144 = (|| -> PyResult<_> {
@@ -11054,6 +11521,16 @@ fn subscription_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::Subscription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "current_subscription",
+            "next_subscription",
+            "principal",
+            "subscription_arn",
+            "subscription_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::Subscription::builder();
     if let Some(value) = dict_value(values, "subscription_id")? {
         let converted_1147 = (|| -> PyResult<_> {
@@ -11170,6 +11647,7 @@ fn subscription_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::SubscriptionDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_qbusiness::types::SubscriptionDetails::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1157 = (|| -> PyResult<_> {
@@ -11271,6 +11749,7 @@ fn subscription_principal_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_qbusiness::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1164 = (|| -> PyResult<_> {
@@ -11310,6 +11789,10 @@ fn text_document_statistics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::TextDocumentStatistics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["indexed_text_bytes", "indexed_text_document_count"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::TextDocumentStatistics::builder();
     if let Some(value) = dict_value(values, "indexed_text_bytes")? {
         let converted_1168 = (|| -> PyResult<_> {
@@ -11366,6 +11849,7 @@ fn text_input_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::TextInputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["user_message"])?;
     let mut builder = aws_sdk_qbusiness::types::TextInputEvent::builder();
     if let Some(value) = dict_value(values, "user_message")? {
         let converted_1172 = (|| -> PyResult<_> {
@@ -11396,6 +11880,16 @@ fn text_output_event_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::TextOutputEvent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "conversation_id",
+            "system_message",
+            "system_message_id",
+            "system_message_type",
+            "user_message_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::TextOutputEvent::builder();
     if let Some(value) = dict_value(values, "system_message_type")? {
         let converted_1174 = (|| -> PyResult<_> {
@@ -11510,6 +12004,17 @@ fn text_segment_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::TextSegment> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "begin_offset",
+            "end_offset",
+            "media_id",
+            "media_mime_type",
+            "snippet_excerpt",
+            "source_details",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::TextSegment::builder();
     if let Some(value) = dict_value(values, "begin_offset")? {
         let converted_1185 = (|| -> PyResult<_> {
@@ -11634,6 +12139,10 @@ fn topic_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::TopicConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["description", "example_chat_messages", "name", "rules"],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::TopicConfiguration::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1197 = (|| -> PyResult<_> {
@@ -11762,6 +12271,7 @@ fn topic_configuration_to_py(
 
 fn user_alias_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_qbusiness::types::UserAlias> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_source_id", "index_id", "user_id"])?;
     let mut builder = aws_sdk_qbusiness::types::UserAlias::builder();
     if let Some(value) = dict_value(values, "index_id")? {
         let converted_1217 = (|| -> PyResult<_> {
@@ -11824,6 +12334,7 @@ fn users_and_groups_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::UsersAndGroups> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["user_groups", "user_ids"])?;
     let mut builder = aws_sdk_qbusiness::types::UsersAndGroups::builder();
     if let Some(value) = dict_value(values, "user_ids")? {
         let converted_1223 = (|| -> PyResult<_> {
@@ -11924,6 +12435,7 @@ fn validation_exception_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::ValidationExceptionField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "name"])?;
     let mut builder = aws_sdk_qbusiness::types::ValidationExceptionField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1239 = (|| -> PyResult<_> {
@@ -11966,6 +12478,7 @@ fn video_extraction_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::VideoExtractionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["video_extraction_status"])?;
     let mut builder = aws_sdk_qbusiness::types::VideoExtractionConfiguration::builder();
     if let Some(value) = dict_value(values, "video_extraction_status")? {
         let converted_1243 = (|| -> PyResult<_> {
@@ -12005,6 +12518,16 @@ fn video_source_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::VideoSourceDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_time_milliseconds",
+            "media_id",
+            "media_mime_type",
+            "start_time_milliseconds",
+            "video_extraction_type",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::VideoSourceDetails::builder();
     if let Some(value) = dict_value(values, "media_id")? {
         let converted_1246 = (|| -> PyResult<_> {
@@ -12119,6 +12642,16 @@ fn web_experience_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_qbusiness::types::WebExperience> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_at",
+            "default_endpoint",
+            "status",
+            "updated_at",
+            "web_experience_id",
+        ],
+    )?;
     let mut builder = aws_sdk_qbusiness::types::WebExperience::builder();
     if let Some(value) = dict_value(values, "web_experience_id")? {
         let converted_1257 = (|| -> PyResult<_> {

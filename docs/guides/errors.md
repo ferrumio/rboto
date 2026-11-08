@@ -37,7 +37,7 @@ for errors without conversion metadata.
 | `operation` | Modeled name, such as `Converse` |
 | `path` | Python field names and container positions |
 | `expected` | Expected type or conversion rule |
-| `category` | `type`, `value`, `missing`, `union`, `overflow`, `iteration` or `unknown_parameter` |
+| `category` | `type`, `value`, `missing`, `union`, `overflow`, `iteration`, `unknown_parameter` or `unknown_field` |
 | `truncated` | Whether a context field exceeded its length limit |
 
 Paths use zero-based indexes. For dictionaries with arbitrary keys,
@@ -51,11 +51,27 @@ If application code raises an exception during conversion, rboto preserves its
 message and cause and adds a contextual note. Application-provided messages and
 causes can still contain sensitive data.
 
-This reports failures the converter already detects, including invalid unions
-and missing required nested members. It does not add validation of every service
-constraint. Errors from Python argument binding, deferred event-stream items,
-SDK request construction and service responses retain their existing behavior.
-An input conversion failure happens before that operation sends a request.
+Input structures reject unknown field names with `TypeError`, even when the
+unknown field's value is `None`. Use the Python field names shown in the type
+reference: for example, `projection_expression`, not `ProjectionExpression`.
+There are no automatic casing conversions. This also applies to dynamically
+constructed dictionaries and fields added by interceptors.
+
+```text
+TypeError: request_items[value#0][key#1]: expected known structure field (dynamodb.BatchGetItem; unknown_field)
+```
+
+Here the second key in the first request item's structure is unknown. The name
+itself is omitted from diagnostics. Non-string structure keys also raise
+`TypeError`, with category `type`. Maps, such as DynamoDB item attributes, and
+JSON documents still accept arbitrary keys.
+
+The converter also reports invalid unions and missing required nested members.
+It does not validate every service constraint. Eager conversion failures happen
+before the operation sends a request. Event-stream input items are converted when
+consumed, so an invalid item can fail after a streaming request has started.
+Python argument binding, SDK request construction and service responses retain
+their existing error behavior.
 
 ## Service errors
 

@@ -16,6 +16,7 @@ fn account_sharing_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AccountSharingInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["account_id", "shared_document_version"])?;
     let mut builder = aws_sdk_ssm::types::AccountSharingInfo::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -66,6 +67,21 @@ fn account_sharing_info_to_py(
 
 fn activation_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Activation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activation_id",
+            "created_date",
+            "default_instance_name",
+            "description",
+            "expiration_date",
+            "expired",
+            "iam_role",
+            "registration_limit",
+            "registrations_count",
+            "tags",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Activation::builder();
     if let Some(value) = dict_value(values, "activation_id")? {
         let converted_5 = (|| -> PyResult<_> {
@@ -291,6 +307,7 @@ fn activation_to_py(py: Python<'_>, value: &aws_sdk_ssm::types::Activation) -> P
 
 fn alarm_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Alarm> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder = aws_sdk_ssm::types::Alarm::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_33 = (|| -> PyResult<_> {
@@ -318,6 +335,7 @@ fn alarm_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AlarmConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["alarms", "ignore_poll_alarm_failure"])?;
     let mut builder = aws_sdk_ssm::types::AlarmConfiguration::builder();
     if let Some(value) = dict_value(values, "ignore_poll_alarm_failure")? {
         let converted_35 = (|| -> PyResult<_> {
@@ -394,6 +412,7 @@ fn alarm_state_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AlarmStateInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "state"])?;
     let mut builder = aws_sdk_ssm::types::AlarmStateInformation::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_45 = (|| -> PyResult<_> {
@@ -439,6 +458,24 @@ fn alarm_state_information_to_py(
 
 fn association_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Association> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_id",
+            "association_name",
+            "association_version",
+            "document_version",
+            "duration",
+            "instance_id",
+            "last_execution_date",
+            "name",
+            "overview",
+            "schedule_expression",
+            "schedule_offset",
+            "target_maps",
+            "targets",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Association::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_50 = (|| -> PyResult<_> {
@@ -813,6 +850,41 @@ fn association_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "apply_only_at_cron_interval",
+            "association_dispatch_assume_role",
+            "association_id",
+            "association_name",
+            "association_version",
+            "automation_target_parameter_name",
+            "calendar_names",
+            "compliance_severity",
+            "date",
+            "document_version",
+            "duration",
+            "instance_id",
+            "last_execution_date",
+            "last_successful_execution_date",
+            "last_update_association_date",
+            "max_concurrency",
+            "max_errors",
+            "name",
+            "output_location",
+            "overview",
+            "parameters",
+            "schedule_expression",
+            "schedule_offset",
+            "status",
+            "sync_compliance",
+            "target_locations",
+            "target_maps",
+            "targets",
+            "triggered_alarms",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AssociationDescription::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_105 = (|| -> PyResult<_> {
@@ -1673,6 +1745,21 @@ fn association_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "association_id",
+            "association_version",
+            "created_time",
+            "detailed_status",
+            "execution_id",
+            "last_execution_date",
+            "resource_count_by_status",
+            "status",
+            "triggered_alarms",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AssociationExecution::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_233 = (|| -> PyResult<_> {
@@ -1915,6 +2002,7 @@ fn association_execution_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationExecutionFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "value"])?;
     let mut builder = aws_sdk_ssm::types::AssociationExecutionFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_261 = (|| -> PyResult<_> {
@@ -1984,6 +2072,20 @@ fn association_execution_target_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationExecutionTarget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_id",
+            "association_version",
+            "detailed_status",
+            "execution_id",
+            "last_execution_date",
+            "output_source",
+            "resource_id",
+            "resource_type",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AssociationExecutionTarget::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_269 = (|| -> PyResult<_> {
@@ -2165,6 +2267,7 @@ fn association_execution_targets_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationExecutionTargetsFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::AssociationExecutionTargetsFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_288 = (|| -> PyResult<_> {
@@ -2214,6 +2317,7 @@ fn association_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::AssociationFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_293 = (|| -> PyResult<_> {
@@ -2262,6 +2366,14 @@ fn association_overview_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationOverview> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_status_aggregated_count",
+            "detailed_status",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AssociationOverview::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_298 = (|| -> PyResult<_> {
@@ -2362,6 +2474,7 @@ fn association_status_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_info", "date", "message", "name"])?;
     let mut builder = aws_sdk_ssm::types::AssociationStatus::builder();
     if let Some(value) = dict_value(values, "date")? {
         let converted_314 = (|| -> PyResult<_> {
@@ -2454,6 +2567,32 @@ fn association_version_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AssociationVersionInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "apply_only_at_cron_interval",
+            "association_dispatch_assume_role",
+            "association_id",
+            "association_name",
+            "association_version",
+            "calendar_names",
+            "compliance_severity",
+            "created_date",
+            "document_version",
+            "duration",
+            "max_concurrency",
+            "max_errors",
+            "name",
+            "output_location",
+            "parameters",
+            "schedule_expression",
+            "schedule_offset",
+            "sync_compliance",
+            "target_locations",
+            "target_maps",
+            "targets",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AssociationVersionInfo::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_324 = (|| -> PyResult<_> {
@@ -3095,6 +3234,7 @@ fn attachment_content_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AttachmentContent> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["hash", "hash_type", "name", "size", "url"])?;
     let mut builder = aws_sdk_ssm::types::AttachmentContent::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_425 = (|| -> PyResult<_> {
@@ -3193,6 +3333,7 @@ fn attachment_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AttachmentInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name"])?;
     let mut builder = aws_sdk_ssm::types::AttachmentInformation::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_436 = (|| -> PyResult<_> {
@@ -3225,6 +3366,7 @@ fn attachments_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AttachmentsSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "name", "values"])?;
     let mut builder = aws_sdk_ssm::types::AttachmentsSource::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_438 = (|| -> PyResult<_> {
@@ -3319,6 +3461,47 @@ fn automation_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AutomationExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "association_id",
+            "automation_execution_id",
+            "automation_execution_status",
+            "automation_subtype",
+            "change_request_name",
+            "current_action",
+            "current_step_name",
+            "document_name",
+            "document_version",
+            "executed_by",
+            "execution_end_time",
+            "execution_start_time",
+            "failure_message",
+            "max_concurrency",
+            "max_errors",
+            "mode",
+            "ops_item_id",
+            "outputs",
+            "parameters",
+            "parent_automation_execution_id",
+            "progress_counters",
+            "resolved_targets",
+            "runbooks",
+            "scheduled_time",
+            "step_executions",
+            "step_executions_truncated",
+            "target",
+            "target_locations",
+            "target_locations_url",
+            "target_maps",
+            "target_parameter_name",
+            "targets",
+            "triggered_alarms",
+            "variables",
+            "warning_message",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AutomationExecution::builder();
     if let Some(value) = dict_value(values, "automation_execution_id")? {
         let converted_451 = (|| -> PyResult<_> {
@@ -4421,6 +4604,7 @@ fn automation_execution_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AutomationExecutionFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::AutomationExecutionFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_629 = (|| -> PyResult<_> {
@@ -4493,6 +4677,17 @@ fn automation_execution_inputs_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AutomationExecutionInputs> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "parameters",
+            "target_locations",
+            "target_locations_url",
+            "target_maps",
+            "target_parameter_name",
+            "targets",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AutomationExecutionInputs::builder();
     if let Some(value) = dict_value(values, "parameters")? {
         let converted_640 = (|| -> PyResult<_> {
@@ -4819,6 +5014,43 @@ fn automation_execution_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AutomationExecutionMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "association_id",
+            "automation_execution_id",
+            "automation_execution_status",
+            "automation_subtype",
+            "automation_type",
+            "change_request_name",
+            "current_action",
+            "current_step_name",
+            "document_name",
+            "document_version",
+            "executed_by",
+            "execution_end_time",
+            "execution_start_time",
+            "failure_message",
+            "log_file",
+            "max_concurrency",
+            "max_errors",
+            "mode",
+            "ops_item_id",
+            "outputs",
+            "parent_automation_execution_id",
+            "resolved_targets",
+            "runbooks",
+            "scheduled_time",
+            "target",
+            "target_locations_url",
+            "target_maps",
+            "target_parameter_name",
+            "targets",
+            "triggered_alarms",
+            "warning_message",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AutomationExecutionMetadata::builder();
     if let Some(value) = dict_value(values, "automation_execution_id")? {
         let converted_702 = (|| -> PyResult<_> {
@@ -5678,6 +5910,15 @@ fn automation_execution_preview_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AutomationExecutionPreview> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "regions",
+            "step_previews",
+            "target_previews",
+            "total_accounts",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AutomationExecutionPreview::builder();
     if let Some(value) = dict_value(values, "step_previews")? {
         let converted_829 = (|| -> PyResult<_> {
@@ -5844,6 +6085,16 @@ fn azure_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AzureConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "application_display_name",
+            "application_id",
+            "targets",
+            "tenant_display_name",
+            "tenant_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::AzureConfiguration::builder();
     if let Some(value) = dict_value(values, "tenant_id")? {
         let converted_860 = (|| -> PyResult<_> {
@@ -5952,6 +6203,7 @@ fn azure_subscription_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::AzureSubscription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["display_name", "id"])?;
     let mut builder = aws_sdk_ssm::types::AzureSubscription::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_870 = (|| -> PyResult<_> {
@@ -5998,6 +6250,21 @@ fn baseline_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::BaselineOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approval_rules",
+            "approved_patches",
+            "approved_patches_compliance_level",
+            "approved_patches_enable_non_security",
+            "available_security_updates_compliance_status",
+            "global_filters",
+            "operating_system",
+            "rejected_patches",
+            "rejected_patches_action",
+            "sources",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::BaselineOverride::builder();
     if let Some(value) = dict_value(values, "operating_system")? {
         let converted_874 = (|| -> PyResult<_> {
@@ -6346,6 +6613,7 @@ fn cloud_connector_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CloudConnectorFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter_key", "filter_values"])?;
     let mut builder = aws_sdk_ssm::types::CloudConnectorFilter::builder();
     if let Some(value) = dict_value(values, "filter_key")? {
         let converted_918 = (|| -> PyResult<_> {
@@ -6428,6 +6696,17 @@ fn cloud_connector_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CloudConnectorSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_connector_id",
+            "created_at",
+            "description",
+            "display_name",
+            "role_arn",
+            "updated_at",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::CloudConnectorSummary::builder();
     if let Some(value) = dict_value(values, "cloud_connector_id")? {
         let converted_929 = (|| -> PyResult<_> {
@@ -6562,6 +6841,10 @@ fn cloud_watch_output_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CloudWatchOutputConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["cloud_watch_log_group_name", "cloud_watch_output_enabled"],
+    )?;
     let mut builder = aws_sdk_ssm::types::CloudWatchOutputConfig::builder();
     if let Some(value) = dict_value(values, "cloud_watch_log_group_name")? {
         let converted_943 = (|| -> PyResult<_> {
@@ -6614,6 +6897,37 @@ fn cloud_watch_output_config_to_py(
 
 fn command_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Command> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "cloud_watch_output_config",
+            "command_id",
+            "comment",
+            "completed_count",
+            "delivery_timed_out_count",
+            "document_name",
+            "document_version",
+            "error_count",
+            "expires_after",
+            "instance_ids",
+            "max_concurrency",
+            "max_errors",
+            "notification_config",
+            "output_s3_bucket_name",
+            "output_s3_key_prefix",
+            "output_s3_region",
+            "parameters",
+            "requested_date_time",
+            "service_role",
+            "status",
+            "status_details",
+            "target_count",
+            "targets",
+            "timeout_seconds",
+            "triggered_alarms",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Command::builder();
     if let Some(value) = dict_value(values, "command_id")? {
         let converted_947 = (|| -> PyResult<_> {
@@ -7239,6 +7553,7 @@ fn command_to_py(py: Python<'_>, value: &aws_sdk_ssm::types::Command) -> PyResul
 
 fn command_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::CommandFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::CommandFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1036 = (|| -> PyResult<_> {
@@ -7287,6 +7602,27 @@ fn command_invocation_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CommandInvocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_output_config",
+            "command_id",
+            "command_plugins",
+            "comment",
+            "document_name",
+            "document_version",
+            "instance_id",
+            "instance_name",
+            "notification_config",
+            "requested_date_time",
+            "service_role",
+            "standard_error_url",
+            "standard_output_url",
+            "status",
+            "status_details",
+            "trace_output",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::CommandInvocation::builder();
     if let Some(value) = dict_value(values, "command_id")? {
         let converted_1041 = (|| -> PyResult<_> {
@@ -7624,6 +7960,23 @@ fn command_invocation_to_py(
 
 fn command_plugin_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::CommandPlugin> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "name",
+            "output",
+            "output_s3_bucket_name",
+            "output_s3_key_prefix",
+            "output_s3_region",
+            "response_code",
+            "response_finish_date_time",
+            "response_start_date_time",
+            "standard_error_url",
+            "standard_output_url",
+            "status",
+            "status_details",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::CommandPlugin::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1081 = (|| -> PyResult<_> {
@@ -7872,6 +8225,10 @@ fn compliance_execution_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ComplianceExecutionSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["execution_id", "execution_time", "execution_type"],
+    )?;
     let mut builder = aws_sdk_ssm::types::ComplianceExecutionSummary::builder();
     if let Some(value) = dict_value(values, "execution_time")? {
         let converted_1108 = (|| -> PyResult<_> {
@@ -7943,6 +8300,20 @@ fn compliance_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ComplianceItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "compliance_type",
+            "details",
+            "execution_summary",
+            "id",
+            "resource_id",
+            "resource_type",
+            "severity",
+            "status",
+            "title",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ComplianceItem::builder();
     if let Some(value) = dict_value(values, "compliance_type")? {
         let converted_1115 = (|| -> PyResult<_> {
@@ -8151,6 +8522,7 @@ fn compliance_item_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ComplianceItemEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["details", "id", "severity", "status", "title"])?;
     let mut builder = aws_sdk_ssm::types::ComplianceItemEntry::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_1145 = (|| -> PyResult<_> {
@@ -8281,6 +8653,7 @@ fn compliance_string_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ComplianceStringFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "values"])?;
     let mut builder = aws_sdk_ssm::types::ComplianceStringFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1167 = (|| -> PyResult<_> {
@@ -8375,6 +8748,14 @@ fn compliance_summary_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ComplianceSummaryItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "compliance_type",
+            "compliant_summary",
+            "non_compliant_summary",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ComplianceSummaryItem::builder();
     if let Some(value) = dict_value(values, "compliance_type")? {
         let converted_1180 = (|| -> PyResult<_> {
@@ -8451,6 +8832,7 @@ fn compliant_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CompliantSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["compliant_count", "severity_summary"])?;
     let mut builder = aws_sdk_ssm::types::CompliantSummary::builder();
     if let Some(value) = dict_value(values, "compliant_count")? {
         let converted_1186 = (|| -> PyResult<_> {
@@ -8584,6 +8966,31 @@ fn create_association_batch_request_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::CreateAssociationBatchRequestEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "apply_only_at_cron_interval",
+            "association_name",
+            "automation_target_parameter_name",
+            "calendar_names",
+            "compliance_severity",
+            "document_version",
+            "duration",
+            "instance_id",
+            "max_concurrency",
+            "max_errors",
+            "name",
+            "output_location",
+            "parameters",
+            "schedule_expression",
+            "schedule_offset",
+            "sync_compliance",
+            "target_locations",
+            "target_maps",
+            "targets",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::CreateAssociationBatchRequestEntry::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1198 = (|| -> PyResult<_> {
@@ -9197,6 +9604,15 @@ fn create_association_batch_request_entry_to_py(
 
 fn credentials_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Credentials> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_key_id",
+            "expiration_time",
+            "secret_access_key",
+            "session_token",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Credentials::builder();
     if let Some(value) = dict_value(values, "access_key_id")? {
         let converted_1296 = (|| -> PyResult<_> {
@@ -9284,6 +9700,7 @@ fn describe_activations_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DescribeActivationsFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filter_key", "filter_values"])?;
     let mut builder = aws_sdk_ssm::types::DescribeActivationsFilter::builder();
     if let Some(value) = dict_value(values, "filter_key")? {
         let converted_1305 = (|| -> PyResult<_> {
@@ -9366,6 +9783,10 @@ fn document_default_version_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentDefaultVersionDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["default_version", "default_version_name", "name"],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentDefaultVersionDescription::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1316 = (|| -> PyResult<_> {
@@ -9438,6 +9859,41 @@ fn document_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approved_version",
+            "attachments_information",
+            "author",
+            "category",
+            "category_enum",
+            "created_date",
+            "default_version",
+            "description",
+            "display_name",
+            "document_format",
+            "document_type",
+            "document_version",
+            "hash",
+            "hash_type",
+            "latest_version",
+            "name",
+            "owner",
+            "parameters",
+            "pending_review_version",
+            "platform_types",
+            "requires",
+            "review_information",
+            "review_status",
+            "schema_version",
+            "sha1",
+            "status",
+            "status_information",
+            "tags",
+            "target_type",
+            "version_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentDescription::builder();
     if let Some(value) = dict_value(values, "sha1")? {
         let converted_1322 = (|| -> PyResult<_> {
@@ -10227,6 +10683,7 @@ fn document_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::DocumentFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1437 = (|| -> PyResult<_> {
@@ -10275,6 +10732,26 @@ fn document_identifier_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentIdentifier> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "author",
+            "created_date",
+            "display_name",
+            "document_format",
+            "document_type",
+            "document_version",
+            "name",
+            "owner",
+            "platform_types",
+            "requires",
+            "review_status",
+            "schema_version",
+            "tags",
+            "target_type",
+            "version_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentIdentifier::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1442 = (|| -> PyResult<_> {
@@ -10649,6 +11126,7 @@ fn document_key_values_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentKeyValuesFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::DocumentKeyValuesFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1495 = (|| -> PyResult<_> {
@@ -10721,6 +11199,7 @@ fn document_metadata_response_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentMetadataResponseInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reviewer_response"])?;
     let mut builder = aws_sdk_ssm::types::DocumentMetadataResponseInfo::builder();
     if let Some(value) = dict_value(values, "reviewer_response")? {
         let converted_1505 = (|| -> PyResult<_> {
@@ -10786,6 +11265,7 @@ fn document_parameter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentParameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["default_value", "description", "name", "type"])?;
     let mut builder = aws_sdk_ssm::types::DocumentParameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1513 = (|| -> PyResult<_> {
@@ -10872,6 +11352,10 @@ fn document_requires_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentRequires> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["name", "require_type", "version", "version_name"],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentRequires::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1522 = (|| -> PyResult<_> {
@@ -10950,6 +11434,7 @@ fn document_review_comment_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentReviewCommentSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["content", "type"])?;
     let mut builder = aws_sdk_ssm::types::DocumentReviewCommentSource::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_1530 = (|| -> PyResult<_> {
@@ -11004,6 +11489,16 @@ fn document_reviewer_response_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentReviewerResponseSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "comment",
+            "create_time",
+            "review_status",
+            "reviewer",
+            "updated_time",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentReviewerResponseSource::builder();
     if let Some(value) = dict_value(values, "create_time")? {
         let converted_1535 = (|| -> PyResult<_> {
@@ -11151,6 +11646,7 @@ fn document_reviews_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentReviews> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "comment"])?;
     let mut builder = aws_sdk_ssm::types::DocumentReviews::builder();
     if let Some(value) = dict_value(values, "action")? {
         let converted_1554 = (|| -> PyResult<_> {
@@ -11231,6 +11727,21 @@ fn document_version_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::DocumentVersionInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_date",
+            "display_name",
+            "document_format",
+            "document_version",
+            "is_default_version",
+            "name",
+            "review_status",
+            "status",
+            "status_information",
+            "version_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::DocumentVersionInfo::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1565 = (|| -> PyResult<_> {
@@ -11439,6 +11950,7 @@ fn effective_patch_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::EffectivePatch> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["patch", "patch_status"])?;
     let mut builder = aws_sdk_ssm::types::EffectivePatch::builder();
     if let Some(value) = dict_value(values, "patch")? {
         let converted_1589 = (|| -> PyResult<_> {
@@ -11597,6 +12109,7 @@ fn failed_create_association_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::FailedCreateAssociation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entry", "fault", "message"])?;
     let mut builder = aws_sdk_ssm::types::FailedCreateAssociation::builder();
     if let Some(value) = dict_value(values, "entry")? {
         let converted_1597 = (|| -> PyResult<_> {
@@ -11666,6 +12179,7 @@ fn failure_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::FailureDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["details", "failure_stage", "failure_type"])?;
     let mut builder = aws_sdk_ssm::types::FailureDetails::builder();
     if let Some(value) = dict_value(values, "failure_stage")? {
         let converted_1604 = (|| -> PyResult<_> {
@@ -11787,6 +12301,7 @@ fn get_resource_policies_response_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::GetResourcePoliciesResponseEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy", "policy_hash", "policy_id"])?;
     let mut builder = aws_sdk_ssm::types::GetResourcePoliciesResponseEntry::builder();
     if let Some(value) = dict_value(values, "policy_id")? {
         let converted_1626 = (|| -> PyResult<_> {
@@ -11851,6 +12366,13 @@ fn instance_aggregated_association_overview_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceAggregatedAssociationOverview> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "detailed_status",
+            "instance_association_status_aggregated_count",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceAggregatedAssociationOverview::builder();
     if let Some(value) = dict_value(values, "detailed_status")? {
         let converted_1632 = (|| -> PyResult<_> {
@@ -11938,6 +12460,15 @@ fn instance_association_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceAssociation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_id",
+            "association_version",
+            "content",
+            "instance_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceAssociation::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_1646 = (|| -> PyResult<_> {
@@ -12022,6 +12553,7 @@ fn instance_association_output_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceAssociationOutputLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_location"])?;
     let mut builder = aws_sdk_ssm::types::InstanceAssociationOutputLocation::builder();
     if let Some(value) = dict_value(values, "s3_location")? {
         let converted_1654 = (|| -> PyResult<_> {
@@ -12058,6 +12590,7 @@ fn instance_association_output_url_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceAssociationOutputUrl> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_output_url"])?;
     let mut builder = aws_sdk_ssm::types::InstanceAssociationOutputUrl::builder();
     if let Some(value) = dict_value(values, "s3_output_url")? {
         let converted_1656 = (|| -> PyResult<_> {
@@ -12094,6 +12627,23 @@ fn instance_association_status_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceAssociationStatusInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_id",
+            "association_name",
+            "association_version",
+            "detailed_status",
+            "document_version",
+            "error_code",
+            "execution_date",
+            "execution_summary",
+            "instance_id",
+            "name",
+            "output_url",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceAssociationStatusInfo::builder();
     if let Some(value) = dict_value(values, "association_id")? {
         let converted_1658 = (|| -> PyResult<_> {
@@ -12333,6 +12883,27 @@ fn instance_association_status_info_to_py(
 
 fn instance_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::InstanceInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "agent_type",
+            "agent_version",
+            "availability_zone",
+            "availability_zone_id",
+            "computer_name",
+            "instance_status",
+            "ip_address",
+            "managed_status",
+            "name",
+            "platform_name",
+            "platform_type",
+            "platform_version",
+            "resource_type",
+            "source_id",
+            "source_location",
+            "source_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceInfo::builder();
     if let Some(value) = dict_value(values, "agent_type")? {
         let converted_1683 = (|| -> PyResult<_> {
@@ -12645,6 +13216,33 @@ fn instance_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activation_id",
+            "agent_version",
+            "association_overview",
+            "association_status",
+            "computer_name",
+            "iam_role",
+            "instance_id",
+            "ip_address",
+            "is_latest_version",
+            "last_association_execution_date",
+            "last_ping_date_time",
+            "last_successful_association_execution_date",
+            "name",
+            "ping_status",
+            "platform_name",
+            "platform_type",
+            "platform_version",
+            "registration_date",
+            "resource_type",
+            "source_id",
+            "source_location",
+            "source_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceInformation::builder();
     if let Some(value) = dict_value(values, "instance_id")? {
         let converted_1719 = (|| -> PyResult<_> {
@@ -13089,6 +13687,7 @@ fn instance_information_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceInformationFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value_set"])?;
     let mut builder = aws_sdk_ssm::types::InstanceInformationFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1771 = (|| -> PyResult<_> {
@@ -13161,6 +13760,7 @@ fn instance_information_string_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceInformationStringFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::InstanceInformationStringFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1782 = (|| -> PyResult<_> {
@@ -13227,6 +13827,34 @@ fn instance_patch_state_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstancePatchState> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "available_security_update_count",
+            "baseline_id",
+            "critical_non_compliant_count",
+            "failed_count",
+            "install_override_list",
+            "installed_count",
+            "installed_other_count",
+            "installed_pending_reboot_count",
+            "installed_rejected_count",
+            "instance_id",
+            "last_no_reboot_install_operation_time",
+            "missing_count",
+            "not_applicable_count",
+            "operation",
+            "operation_end_time",
+            "operation_start_time",
+            "other_non_compliant_count",
+            "owner_information",
+            "patch_group",
+            "reboot_option",
+            "security_non_compliant_count",
+            "snapshot_id",
+            "unreported_not_applicable_count",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstancePatchState::builder();
     if let Some(value) = dict_value(values, "instance_id")? {
         let converted_1792 = (|| -> PyResult<_> {
@@ -13665,6 +14293,7 @@ fn instance_patch_state_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstancePatchStateFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "values"])?;
     let mut builder = aws_sdk_ssm::types::InstancePatchStateFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1843 = (|| -> PyResult<_> {
@@ -13752,6 +14381,39 @@ fn instance_property_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstanceProperty> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "activation_id",
+            "agent_version",
+            "architecture",
+            "association_overview",
+            "association_status",
+            "availability_zone",
+            "computer_name",
+            "iam_role",
+            "instance_id",
+            "instance_role",
+            "instance_state",
+            "instance_type",
+            "ip_address",
+            "key_name",
+            "last_association_execution_date",
+            "last_ping_date_time",
+            "last_successful_association_execution_date",
+            "launch_time",
+            "name",
+            "ping_status",
+            "platform_name",
+            "platform_type",
+            "platform_version",
+            "registration_date",
+            "resource_type",
+            "source_id",
+            "source_location",
+            "source_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InstanceProperty::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_1856 = (|| -> PyResult<_> {
@@ -14296,6 +14958,7 @@ fn instance_property_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstancePropertyFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value_set"])?;
     let mut builder = aws_sdk_ssm::types::InstancePropertyFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1920 = (|| -> PyResult<_> {
@@ -14368,6 +15031,7 @@ fn instance_property_string_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InstancePropertyStringFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "operator", "values"])?;
     let mut builder = aws_sdk_ssm::types::InstancePropertyStringFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1931 = (|| -> PyResult<_> {
@@ -14456,6 +15120,7 @@ fn inventory_aggregator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryAggregator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["aggregators", "expression", "groups"])?;
     let mut builder = aws_sdk_ssm::types::InventoryAggregator::builder();
     if let Some(value) = dict_value(values, "expression")? {
         let converted_1944 = (|| -> PyResult<_> {
@@ -14580,6 +15245,18 @@ fn inventory_deletion_status_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryDeletionStatusItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "deletion_id",
+            "deletion_start_time",
+            "deletion_summary",
+            "last_status",
+            "last_status_message",
+            "last_status_update_time",
+            "type_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InventoryDeletionStatusItem::builder();
     if let Some(value) = dict_value(values, "deletion_id")? {
         let converted_1962 = (|| -> PyResult<_> {
@@ -14740,6 +15417,10 @@ fn inventory_deletion_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryDeletionSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["remaining_count", "summary_items", "total_count"],
+    )?;
     let mut builder = aws_sdk_ssm::types::InventoryDeletionSummary::builder();
     if let Some(value) = dict_value(values, "total_count")? {
         let converted_1979 = (|| -> PyResult<_> {
@@ -14832,6 +15513,7 @@ fn inventory_deletion_summary_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryDeletionSummaryItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["count", "remaining_count", "version"])?;
     let mut builder = aws_sdk_ssm::types::InventoryDeletionSummaryItem::builder();
     if let Some(value) = dict_value(values, "version")? {
         let converted_1991 = (|| -> PyResult<_> {
@@ -14892,6 +15574,7 @@ fn inventory_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "values"])?;
     let mut builder = aws_sdk_ssm::types::InventoryFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1997 = (|| -> PyResult<_> {
@@ -14980,6 +15663,7 @@ fn inventory_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["filters", "name"])?;
     let mut builder = aws_sdk_ssm::types::InventoryGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2010 = (|| -> PyResult<_> {
@@ -15048,6 +15732,17 @@ fn inventory_group_to_py(
 
 fn inventory_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::InventoryItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capture_time",
+            "content",
+            "content_hash",
+            "context",
+            "schema_version",
+            "type_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InventoryItem::builder();
     if let Some(value) = dict_value(values, "type_name")? {
         let converted_2020 = (|| -> PyResult<_> {
@@ -15241,6 +15936,7 @@ fn inventory_item_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryItemAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data_type", "name"])?;
     let mut builder = aws_sdk_ssm::types::InventoryItemAttribute::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2058 = (|| -> PyResult<_> {
@@ -15289,6 +15985,10 @@ fn inventory_item_schema_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryItemSchema> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["attributes", "display_name", "type_name", "version"],
+    )?;
     let mut builder = aws_sdk_ssm::types::InventoryItemSchema::builder();
     if let Some(value) = dict_value(values, "type_name")? {
         let converted_2063 = (|| -> PyResult<_> {
@@ -15398,6 +16098,7 @@ fn inventory_result_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryResultEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data", "id"])?;
     let mut builder = aws_sdk_ssm::types::InventoryResultEntity::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_2077 = (|| -> PyResult<_> {
@@ -15474,6 +16175,16 @@ fn inventory_result_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::InventoryResultItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capture_time",
+            "content",
+            "content_hash",
+            "schema_version",
+            "type_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::InventoryResultItem::builder();
     if let Some(value) = dict_value(values, "type_name")? {
         let converted_2091 = (|| -> PyResult<_> {
@@ -15621,6 +16332,7 @@ fn inventory_result_item_to_py(
 
 fn logging_info_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::LoggingInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket_name", "s3_key_prefix", "s3_region"])?;
     let mut builder = aws_sdk_ssm::types::LoggingInfo::builder();
     if let Some(value) = dict_value(values, "s3_bucket_name")? {
         let converted_2117 = (|| -> PyResult<_> {
@@ -15685,6 +16397,7 @@ fn maintenance_window_automation_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowAutomationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["document_version", "parameters"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowAutomationParameters::builder();
     if let Some(value) = dict_value(values, "document_version")? {
         let converted_2123 = (|| -> PyResult<_> {
@@ -15794,6 +16507,17 @@ fn maintenance_window_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_time",
+            "start_time",
+            "status",
+            "status_details",
+            "window_execution_id",
+            "window_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowExecution::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_2143 = (|| -> PyResult<_> {
@@ -15935,6 +16659,21 @@ fn maintenance_window_execution_task_identity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowExecutionTaskIdentity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "end_time",
+            "start_time",
+            "status",
+            "status_details",
+            "task_arn",
+            "task_execution_id",
+            "task_type",
+            "triggered_alarms",
+            "window_execution_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowExecutionTaskIdentity::builder();
     if let Some(value) = dict_value(values, "window_execution_id")? {
         let converted_2158 = (|| -> PyResult<_> {
@@ -16186,6 +16925,23 @@ fn maintenance_window_execution_task_invocation_identity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowExecutionTaskInvocationIdentity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "end_time",
+            "execution_id",
+            "invocation_id",
+            "owner_information",
+            "parameters",
+            "start_time",
+            "status",
+            "status_details",
+            "task_execution_id",
+            "task_type",
+            "window_execution_id",
+            "window_target_id",
+        ],
+    )?;
     let mut builder =
         aws_sdk_ssm::types::MaintenanceWindowExecutionTaskInvocationIdentity::builder();
     if let Some(value) = dict_value(values, "window_execution_id")? {
@@ -16442,6 +17198,7 @@ fn maintenance_window_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2216 = (|| -> PyResult<_> {
@@ -16514,6 +17271,23 @@ fn maintenance_window_identity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowIdentity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cutoff",
+            "description",
+            "duration",
+            "enabled",
+            "end_date",
+            "name",
+            "next_execution_time",
+            "schedule",
+            "schedule_offset",
+            "schedule_timezone",
+            "start_date",
+            "window_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowIdentity::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_2226 = (|| -> PyResult<_> {
@@ -16726,6 +17500,7 @@ fn maintenance_window_identity_for_target_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowIdentityForTarget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["name", "window_id"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowIdentityForTarget::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_2250 = (|| -> PyResult<_> {
@@ -16774,6 +17549,7 @@ fn maintenance_window_lambda_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowLambdaParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["client_context", "payload", "qualifier"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowLambdaParameters::builder();
     if let Some(value) = dict_value(values, "client_context")? {
         let converted_2254 = (|| -> PyResult<_> {
@@ -16839,6 +17615,22 @@ fn maintenance_window_run_command_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowRunCommandParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_output_config",
+            "comment",
+            "document_hash",
+            "document_hash_type",
+            "document_version",
+            "notification_config",
+            "output_s3_bucket_name",
+            "output_s3_key_prefix",
+            "parameters",
+            "service_role_arn",
+            "timeout_seconds",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowRunCommandParameters::builder();
     if let Some(value) = dict_value(values, "comment")? {
         let converted_2261 = (|| -> PyResult<_> {
@@ -17122,6 +17914,7 @@ fn maintenance_window_step_functions_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowStepFunctionsParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["input", "name"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowStepFunctionsParameters::builder();
     if let Some(value) = dict_value(values, "input")? {
         let converted_2300 = (|| -> PyResult<_> {
@@ -17170,6 +17963,18 @@ fn maintenance_window_target_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowTarget> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "name",
+            "owner_information",
+            "resource_type",
+            "targets",
+            "window_id",
+            "window_target_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowTarget::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_2304 = (|| -> PyResult<_> {
@@ -17340,6 +18145,26 @@ fn maintenance_window_task_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowTask> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "alarm_configuration",
+            "cutoff_behavior",
+            "description",
+            "logging_info",
+            "max_concurrency",
+            "max_errors",
+            "name",
+            "priority",
+            "service_role_arn",
+            "targets",
+            "task_arn",
+            "task_parameters",
+            "type",
+            "window_id",
+            "window_task_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowTask::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_2325 = (|| -> PyResult<_> {
@@ -17683,6 +18508,10 @@ fn maintenance_window_task_invocation_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowTaskInvocationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["automation", "lambda", "run_command", "step_functions"],
+    )?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowTaskInvocationParameters::builder();
     if let Some(value) = dict_value(values, "run_command")? {
         let converted_2373 = (|| -> PyResult<_> {
@@ -17779,6 +18608,7 @@ fn maintenance_window_task_parameter_value_expression_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::MaintenanceWindowTaskParameterValueExpression> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["values"])?;
     let mut builder = aws_sdk_ssm::types::MaintenanceWindowTaskParameterValueExpression::builder();
     if let Some(value) = dict_value(values, "values")? {
         let converted_2381 = (|| -> PyResult<_> {
@@ -17833,6 +18663,7 @@ fn maintenance_window_task_parameter_value_expression_to_py(
 
 fn metadata_value_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::MetadataValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["value"])?;
     let mut builder = aws_sdk_ssm::types::MetadataValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_2389 = (|| -> PyResult<_> {
@@ -17863,6 +18694,10 @@ fn metadata_value_to_py(
 
 fn node_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Node> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["capture_time", "id", "node_type", "owner", "region"],
+    )?;
     let mut builder = aws_sdk_ssm::types::Node::builder();
     if let Some(value) = dict_value(values, "capture_time")? {
         let converted_2391 = (|| -> PyResult<_> {
@@ -17973,6 +18808,15 @@ fn node_aggregator_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::NodeAggregator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aggregator_type",
+            "aggregators",
+            "attribute_name",
+            "type_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::NodeAggregator::builder();
     if let Some(value) = dict_value(values, "aggregator_type")? {
         let converted_2402 = (|| -> PyResult<_> {
@@ -18097,6 +18941,7 @@ fn node_aggregator_to_py(
 
 fn node_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::NodeFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "values"])?;
     let mut builder = aws_sdk_ssm::types::NodeFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2419 = (|| -> PyResult<_> {
@@ -18190,6 +19035,14 @@ fn node_owner_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::NodeOwnerInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "account_id",
+            "organizational_unit_id",
+            "organizational_unit_path",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::NodeOwnerInfo::builder();
     if let Some(value) = dict_value(values, "account_id")? {
         let converted_2433 = (|| -> PyResult<_> {
@@ -18308,6 +19161,7 @@ fn non_compliant_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::NonCompliantSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["non_compliant_count", "severity_summary"])?;
     let mut builder = aws_sdk_ssm::types::NonCompliantSummary::builder();
     if let Some(value) = dict_value(values, "non_compliant_count")? {
         let converted_2441 = (|| -> PyResult<_> {
@@ -18360,6 +19214,14 @@ fn notification_config_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::NotificationConfig> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "notification_arn",
+            "notification_events",
+            "notification_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::NotificationConfig::builder();
     if let Some(value) = dict_value(values, "notification_arn")? {
         let converted_2445 = (|| -> PyResult<_> {
@@ -18466,6 +19328,17 @@ fn notification_config_to_py(
 
 fn ops_aggregator_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OpsAggregator> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aggregator_type",
+            "aggregators",
+            "attribute_name",
+            "filters",
+            "type_name",
+            "values",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsAggregator::builder();
     if let Some(value) = dict_value(values, "aggregator_type")? {
         let converted_2459 = (|| -> PyResult<_> {
@@ -18668,6 +19541,7 @@ fn ops_aggregator_to_py(
 
 fn ops_entity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OpsEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["data", "id"])?;
     let mut builder = aws_sdk_ssm::types::OpsEntity::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_2493 = (|| -> PyResult<_> {
@@ -18741,6 +19615,7 @@ fn ops_entity_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsEntityItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["capture_time", "content"])?;
     let mut builder = aws_sdk_ssm::types::OpsEntityItem::builder();
     if let Some(value) = dict_value(values, "capture_time")? {
         let converted_2507 = (|| -> PyResult<_> {
@@ -18843,6 +19718,7 @@ fn ops_entity_item_to_py(
 
 fn ops_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OpsFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "type", "values"])?;
     let mut builder = aws_sdk_ssm::types::OpsFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2527 = (|| -> PyResult<_> {
@@ -18926,6 +19802,33 @@ fn ops_filter_to_py(py: Python<'_>, value: &aws_sdk_ssm::types::OpsFilter) -> Py
 
 fn ops_item_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OpsItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "actual_end_time",
+            "actual_start_time",
+            "category",
+            "created_by",
+            "created_time",
+            "description",
+            "last_modified_by",
+            "last_modified_time",
+            "notifications",
+            "operational_data",
+            "ops_item_arn",
+            "ops_item_id",
+            "ops_item_type",
+            "planned_end_time",
+            "planned_start_time",
+            "priority",
+            "related_ops_items",
+            "severity",
+            "source",
+            "status",
+            "title",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsItem::builder();
     if let Some(value) = dict_value(values, "created_by")? {
         let converted_2540 = (|| -> PyResult<_> {
@@ -19450,6 +20353,7 @@ fn ops_item_data_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemDataValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type", "value"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemDataValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_2613 = (|| -> PyResult<_> {
@@ -19504,6 +20408,7 @@ fn ops_item_event_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemEventFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "operator", "values"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemEventFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2618 = (|| -> PyResult<_> {
@@ -19601,6 +20506,18 @@ fn ops_item_event_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemEventSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_by",
+            "created_time",
+            "detail",
+            "detail_type",
+            "event_id",
+            "ops_item_id",
+            "source",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsItemEventSummary::builder();
     if let Some(value) = dict_value(values, "ops_item_id")? {
         let converted_2632 = (|| -> PyResult<_> {
@@ -19742,6 +20659,7 @@ fn ops_item_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "operator", "values"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2647 = (|| -> PyResult<_> {
@@ -19839,6 +20757,7 @@ fn ops_item_identity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemIdentity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemIdentity::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_2661 = (|| -> PyResult<_> {
@@ -19871,6 +20790,7 @@ fn ops_item_notification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemNotification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["arn"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemNotification::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_2663 = (|| -> PyResult<_> {
@@ -19903,6 +20823,20 @@ fn ops_item_related_item_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemRelatedItemSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "association_id",
+            "association_type",
+            "created_by",
+            "created_time",
+            "last_modified_by",
+            "last_modified_time",
+            "ops_item_id",
+            "resource_type",
+            "resource_uri",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsItemRelatedItemSummary::builder();
     if let Some(value) = dict_value(values, "ops_item_id")? {
         let converted_2665 = (|| -> PyResult<_> {
@@ -20093,6 +21027,7 @@ fn ops_item_related_items_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemRelatedItemsFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "operator", "values"])?;
     let mut builder = aws_sdk_ssm::types::OpsItemRelatedItemsFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2685 = (|| -> PyResult<_> {
@@ -20191,6 +21126,28 @@ fn ops_item_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsItemSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "actual_end_time",
+            "actual_start_time",
+            "category",
+            "created_by",
+            "created_time",
+            "last_modified_by",
+            "last_modified_time",
+            "operational_data",
+            "ops_item_id",
+            "ops_item_type",
+            "planned_end_time",
+            "planned_start_time",
+            "priority",
+            "severity",
+            "source",
+            "status",
+            "title",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsItemSummary::builder();
     if let Some(value) = dict_value(values, "created_by")? {
         let converted_2699 = (|| -> PyResult<_> {
@@ -20572,6 +21529,16 @@ fn ops_item_summary_to_py(
 
 fn ops_metadata_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OpsMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_date",
+            "last_modified_date",
+            "last_modified_user",
+            "ops_metadata_arn",
+            "resource_id",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::OpsMetadata::builder();
     if let Some(value) = dict_value(values, "resource_id")? {
         let converted_2750 = (|| -> PyResult<_> {
@@ -20694,6 +21661,7 @@ fn ops_metadata_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsMetadataFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::OpsMetadataFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2762 = (|| -> PyResult<_> {
@@ -20760,6 +21728,7 @@ fn ops_result_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::OpsResultAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type_name"])?;
     let mut builder = aws_sdk_ssm::types::OpsResultAttribute::builder();
     if let Some(value) = dict_value(values, "type_name")? {
         let converted_2772 = (|| -> PyResult<_> {
@@ -20788,6 +21757,7 @@ fn ops_result_attribute_to_py(
 
 fn output_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::OutputSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output_source_id", "output_source_type"])?;
     let mut builder = aws_sdk_ssm::types::OutputSource::builder();
     if let Some(value) = dict_value(values, "output_source_id")? {
         let converted_2774 = (|| -> PyResult<_> {
@@ -20842,6 +21812,20 @@ fn output_source_to_py(
 
 fn parameter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Parameter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "data_type",
+            "last_modified_date",
+            "name",
+            "selector",
+            "source_result",
+            "type",
+            "value",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Parameter::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2778 = (|| -> PyResult<_> {
@@ -21009,6 +21993,24 @@ fn parameter_history_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParameterHistory> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_pattern",
+            "data_type",
+            "description",
+            "key_id",
+            "labels",
+            "last_modified_date",
+            "last_modified_user",
+            "name",
+            "policies",
+            "tier",
+            "type",
+            "value",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ParameterHistory::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2798 = (|| -> PyResult<_> {
@@ -21308,6 +22310,7 @@ fn parameter_inline_policy_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParameterInlinePolicy> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["policy_status", "policy_text", "policy_type"])?;
     let mut builder = aws_sdk_ssm::types::ParameterInlinePolicy::builder();
     if let Some(value) = dict_value(values, "policy_text")? {
         let converted_2839 = (|| -> PyResult<_> {
@@ -21372,6 +22375,23 @@ fn parameter_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParameterMetadata> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "allowed_pattern",
+            "arn",
+            "data_type",
+            "description",
+            "key_id",
+            "last_modified_date",
+            "last_modified_user",
+            "name",
+            "policies",
+            "tier",
+            "type",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ParameterMetadata::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_2845 = (|| -> PyResult<_> {
@@ -21631,6 +22651,7 @@ fn parameter_string_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParameterStringFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "option", "values"])?;
     let mut builder = aws_sdk_ssm::types::ParameterStringFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2878 = (|| -> PyResult<_> {
@@ -21717,6 +22738,7 @@ fn parameters_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParametersFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::ParametersFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_2890 = (|| -> PyResult<_> {
@@ -21789,6 +22811,16 @@ fn parent_step_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ParentStepDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "iteration",
+            "iterator_value",
+            "step_execution_id",
+            "step_name",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ParentStepDetails::builder();
     if let Some(value) = dict_value(values, "step_execution_id")? {
         let converted_2901 = (|| -> PyResult<_> {
@@ -21887,6 +22919,34 @@ fn parent_step_details_to_py(
 
 fn patch_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Patch> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "advisory_ids",
+            "arch",
+            "bugzilla_ids",
+            "classification",
+            "content_url",
+            "cve_ids",
+            "description",
+            "epoch",
+            "id",
+            "kb_number",
+            "language",
+            "msrc_number",
+            "msrc_severity",
+            "name",
+            "product",
+            "product_family",
+            "release",
+            "release_date",
+            "repository",
+            "severity",
+            "title",
+            "vendor",
+            "version",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Patch::builder();
     if let Some(value) = dict_value(values, "id")? {
         let converted_2911 = (|| -> PyResult<_> {
@@ -22353,6 +23413,16 @@ fn patch_baseline_identity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchBaselineIdentity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "baseline_description",
+            "baseline_id",
+            "baseline_name",
+            "default_baseline",
+            "operating_system",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::PatchBaselineIdentity::builder();
     if let Some(value) = dict_value(values, "baseline_id")? {
         let converted_2976 = (|| -> PyResult<_> {
@@ -22459,6 +23529,18 @@ fn patch_compliance_data_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchComplianceData> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "classification",
+            "cve_ids",
+            "installed_time",
+            "kb_id",
+            "severity",
+            "state",
+            "title",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::PatchComplianceData::builder();
     if let Some(value) = dict_value(values, "title")? {
         let converted_2987 = (|| -> PyResult<_> {
@@ -22588,6 +23670,7 @@ fn patch_compliance_data_to_py(
 
 fn patch_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::PatchFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::PatchFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3003 = (|| -> PyResult<_> {
@@ -22659,6 +23742,7 @@ fn patch_filter_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchFilterGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["patch_filters"])?;
     let mut builder = aws_sdk_ssm::types::PatchFilterGroup::builder();
     if let Some(value) = dict_value(values, "patch_filters")? {
         let converted_3014 = (|| -> PyResult<_> {
@@ -22721,6 +23805,7 @@ fn patch_group_patch_baseline_mapping_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchGroupPatchBaselineMapping> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["baseline_identity", "patch_group"])?;
     let mut builder = aws_sdk_ssm::types::PatchGroupPatchBaselineMapping::builder();
     if let Some(value) = dict_value(values, "patch_group")? {
         let converted_3022 = (|| -> PyResult<_> {
@@ -22773,6 +23858,7 @@ fn patch_orchestrator_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchOrchestratorFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::PatchOrchestratorFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3026 = (|| -> PyResult<_> {
@@ -22843,6 +23929,16 @@ fn patch_orchestrator_filter_to_py(
 
 fn patch_rule_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::PatchRule> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approve_after_days",
+            "approve_until_date",
+            "compliance_level",
+            "enable_non_security",
+            "patch_filter_group",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::PatchRule::builder();
     if let Some(value) = dict_value(values, "patch_filter_group")? {
         let converted_3036 = (|| -> PyResult<_> {
@@ -22958,6 +24054,7 @@ fn patch_rule_group_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::PatchRuleGroup> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["patch_rules"])?;
     let mut builder = aws_sdk_ssm::types::PatchRuleGroup::builder();
     if let Some(value) = dict_value(values, "patch_rules")? {
         let converted_3047 = (|| -> PyResult<_> {
@@ -23018,6 +24115,7 @@ fn patch_rule_group_to_py(
 
 fn patch_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::PatchSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["configuration", "name", "products"])?;
     let mut builder = aws_sdk_ssm::types::PatchSource::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_3055 = (|| -> PyResult<_> {
@@ -23101,6 +24199,10 @@ fn patch_source_to_py(
 
 fn patch_status_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::PatchStatus> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["approval_date", "compliance_level", "deployment_status"],
+    )?;
     let mut builder = aws_sdk_ssm::types::PatchStatus::builder();
     if let Some(value) = dict_value(values, "deployment_status")? {
         let converted_3067 = (|| -> PyResult<_> {
@@ -23186,6 +24288,16 @@ fn progress_counters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ProgressCounters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cancelled_steps",
+            "failed_steps",
+            "success_steps",
+            "timed_out_steps",
+            "total_steps",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ProgressCounters::builder();
     if let Some(value) = dict_value(values, "total_steps")? {
         let converted_3076 = (|| -> PyResult<_> {
@@ -23270,6 +24382,7 @@ fn registration_metadata_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::RegistrationMetadataItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::RegistrationMetadataItem::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3086 = (|| -> PyResult<_> {
@@ -23312,6 +24425,7 @@ fn related_ops_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::RelatedOpsItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["ops_item_id"])?;
     let mut builder = aws_sdk_ssm::types::RelatedOpsItem::builder();
     if let Some(value) = dict_value(values, "ops_item_id")? {
         let converted_3090 = (|| -> PyResult<_> {
@@ -23342,6 +24456,7 @@ fn resolved_targets_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResolvedTargets> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["parameter_values", "truncated"])?;
     let mut builder = aws_sdk_ssm::types::ResolvedTargets::builder();
     if let Some(value) = dict_value(values, "parameter_values")? {
         let converted_3092 = (|| -> PyResult<_> {
@@ -23414,6 +24529,19 @@ fn resource_compliance_summary_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceComplianceSummaryItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "compliance_type",
+            "compliant_summary",
+            "execution_summary",
+            "non_compliant_summary",
+            "overall_severity",
+            "resource_id",
+            "resource_type",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceComplianceSummaryItem::builder();
     if let Some(value) = dict_value(values, "compliance_type")? {
         let converted_3102 = (|| -> PyResult<_> {
@@ -23586,6 +24714,10 @@ fn resource_data_sync_aws_organizations_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncAwsOrganizationsSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["organization_source_type", "organizational_units"],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncAwsOrganizationsSource::builder();
     if let Some(value) = dict_value(values, "organization_source_type")? {
         let converted_3120 = (|| -> PyResult<_> {
@@ -23672,6 +24804,7 @@ fn resource_data_sync_destination_data_sharing_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncDestinationDataSharing> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["destination_data_sharing_type"])?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncDestinationDataSharing::builder();
     if let Some(value) = dict_value(values, "destination_data_sharing_type")? {
         let converted_3130 = (|| -> PyResult<_> {
@@ -23708,6 +24841,21 @@ fn resource_data_sync_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "last_status",
+            "last_successful_sync_time",
+            "last_sync_status_message",
+            "last_sync_time",
+            "s3_destination",
+            "sync_created_time",
+            "sync_last_modified_time",
+            "sync_name",
+            "sync_source",
+            "sync_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncItem::builder();
     if let Some(value) = dict_value(values, "sync_name")? {
         let converted_3132 = (|| -> PyResult<_> {
@@ -23938,6 +25086,7 @@ fn resource_data_sync_organizational_unit_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncOrganizationalUnit> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["organizational_unit_id"])?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncOrganizationalUnit::builder();
     if let Some(value) = dict_value(values, "organizational_unit_id")? {
         let converted_3157 = (|| -> PyResult<_> {
@@ -23974,6 +25123,17 @@ fn resource_data_sync_s3_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncS3Destination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "awskms_key_arn",
+            "bucket_name",
+            "destination_data_sharing",
+            "prefix",
+            "region",
+            "sync_format",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncS3Destination::builder();
     if let Some(value) = dict_value(values, "bucket_name")? {
         let converted_3159 = (|| -> PyResult<_> {
@@ -24093,6 +25253,16 @@ fn resource_data_sync_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aws_organizations_source",
+            "enable_all_ops_data_sources",
+            "include_future_regions",
+            "source_regions",
+            "source_type",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncSource::builder();
     if let Some(value) = dict_value(values, "source_type")? {
         let converted_3172 = (|| -> PyResult<_> {
@@ -24223,6 +25393,17 @@ fn resource_data_sync_source_with_state_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResourceDataSyncSourceWithState> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "aws_organizations_source",
+            "enable_all_ops_data_sources",
+            "include_future_regions",
+            "source_regions",
+            "source_type",
+            "state",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ResourceDataSyncSourceWithState::builder();
     if let Some(value) = dict_value(values, "source_type")? {
         let converted_3188 = (|| -> PyResult<_> {
@@ -24369,6 +25550,7 @@ fn result_attribute_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ResultAttribute> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["type_name"])?;
     let mut builder = aws_sdk_ssm::types::ResultAttribute::builder();
     if let Some(value) = dict_value(values, "type_name")? {
         let converted_3206 = (|| -> PyResult<_> {
@@ -24399,6 +25581,7 @@ fn review_information_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ReviewInformation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reviewed_time", "reviewer", "status"])?;
     let mut builder = aws_sdk_ssm::types::ReviewInformation::builder();
     if let Some(value) = dict_value(values, "reviewed_time")? {
         let converted_3208 = (|| -> PyResult<_> {
@@ -24475,6 +25658,20 @@ fn review_information_to_py(
 
 fn runbook_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Runbook> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "document_name",
+            "document_version",
+            "max_concurrency",
+            "max_errors",
+            "parameters",
+            "target_locations",
+            "target_maps",
+            "target_parameter_name",
+            "targets",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Runbook::builder();
     if let Some(value) = dict_value(values, "document_name")? {
         let converted_3216 = (|| -> PyResult<_> {
@@ -24849,6 +26046,14 @@ fn s3_output_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::S3OutputLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "output_s3_bucket_name",
+            "output_s3_key_prefix",
+            "output_s3_region",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::S3OutputLocation::builder();
     if let Some(value) = dict_value(values, "output_s3_region")? {
         let converted_3284 = (|| -> PyResult<_> {
@@ -24923,6 +26128,7 @@ fn s3_output_location_to_py(
 
 fn s3_output_url_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::S3OutputUrl> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["output_url"])?;
     let mut builder = aws_sdk_ssm::types::S3OutputUrl::builder();
     if let Some(value) = dict_value(values, "output_url")? {
         let converted_3290 = (|| -> PyResult<_> {
@@ -24955,6 +26161,7 @@ fn scheduled_window_execution_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ScheduledWindowExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["execution_time", "name", "window_id"])?;
     let mut builder = aws_sdk_ssm::types::ScheduledWindowExecution::builder();
     if let Some(value) = dict_value(values, "window_id")? {
         let converted_3292 = (|| -> PyResult<_> {
@@ -25019,6 +26226,17 @@ fn service_setting_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ServiceSetting> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "last_modified_date",
+            "last_modified_user",
+            "setting_id",
+            "setting_value",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::ServiceSetting::builder();
     if let Some(value) = dict_value(values, "setting_id")? {
         let converted_3298 = (|| -> PyResult<_> {
@@ -25142,6 +26360,23 @@ fn service_setting_to_py(
 
 fn session_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Session> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "access_type",
+            "details",
+            "document_name",
+            "end_date",
+            "max_session_duration",
+            "output_url",
+            "owner",
+            "reason",
+            "session_id",
+            "start_date",
+            "status",
+            "target",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::Session::builder();
     if let Some(value) = dict_value(values, "session_id")? {
         let converted_3311 = (|| -> PyResult<_> {
@@ -25381,6 +26616,7 @@ fn session_to_py(py: Python<'_>, value: &aws_sdk_ssm::types::Session) -> PyResul
 
 fn session_filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::SessionFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::SessionFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3339 = (|| -> PyResult<_> {
@@ -25429,6 +26665,7 @@ fn session_manager_output_url_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::SessionManagerOutputUrl> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["cloud_watch_output_url", "s3_output_url"])?;
     let mut builder = aws_sdk_ssm::types::SessionManagerOutputUrl::builder();
     if let Some(value) = dict_value(values, "s3_output_url")? {
         let converted_3344 = (|| -> PyResult<_> {
@@ -25481,6 +26718,17 @@ fn severity_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::SeveritySummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "critical_count",
+            "high_count",
+            "informational_count",
+            "low_count",
+            "medium_count",
+            "unspecified_count",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::SeveritySummary::builder();
     if let Some(value) = dict_value(values, "critical_count")? {
         let converted_3348 = (|| -> PyResult<_> {
@@ -25575,6 +26823,36 @@ fn severity_summary_to_py(
 
 fn step_execution_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::StepExecution> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "action",
+            "execution_end_time",
+            "execution_start_time",
+            "failure_details",
+            "failure_message",
+            "inputs",
+            "is_critical",
+            "is_end",
+            "max_attempts",
+            "next_step",
+            "on_failure",
+            "outputs",
+            "overridden_parameters",
+            "parent_step_details",
+            "response",
+            "response_code",
+            "step_execution_id",
+            "step_name",
+            "step_status",
+            "target_location",
+            "targets",
+            "timeout_seconds",
+            "triggered_alarms",
+            "valid_next_steps",
+            "warning_message",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::StepExecution::builder();
     if let Some(value) = dict_value(values, "step_name")? {
         let converted_3360 = (|| -> PyResult<_> {
@@ -26277,6 +27555,7 @@ fn step_execution_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::StepExecutionFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::StepExecutionFilter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3473 = (|| -> PyResult<_> {
@@ -26347,6 +27626,7 @@ fn step_execution_filter_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_ssm::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3484 = (|| -> PyResult<_> {
@@ -26384,6 +27664,7 @@ fn tag_to_py(py: Python<'_>, value: &aws_sdk_ssm::types::Tag) -> PyResult<Py<PyA
 
 fn target_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::Target> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_ssm::types::Target::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_3488 = (|| -> PyResult<_> {
@@ -26453,6 +27734,22 @@ fn target_location_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::TargetLocation> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "accounts",
+            "exclude_accounts",
+            "execution_role_name",
+            "include_child_organization_units",
+            "regions",
+            "target_location_alarm_configuration",
+            "target_location_max_concurrency",
+            "target_location_max_errors",
+            "targets",
+            "targets_max_concurrency",
+            "targets_max_errors",
+        ],
+    )?;
     let mut builder = aws_sdk_ssm::types::TargetLocation::builder();
     if let Some(value) = dict_value(values, "accounts")? {
         let converted_3498 = (|| -> PyResult<_> {
@@ -26773,6 +28070,7 @@ fn target_location_to_py(
 
 fn target_preview_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_ssm::types::TargetPreview> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["count", "target_type"])?;
     let mut builder = aws_sdk_ssm::types::TargetPreview::builder();
     if let Some(value) = dict_value(values, "count")? {
         let converted_3544 = (|| -> PyResult<_> {
@@ -26817,6 +28115,10 @@ fn validation_finding_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ValidationFinding> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["code", "message", "provider_message", "scope", "type"],
+    )?;
     let mut builder = aws_sdk_ssm::types::ValidationFinding::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_3548 = (|| -> PyResult<_> {
@@ -26933,6 +28235,7 @@ fn validation_finding_scope_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_ssm::types::ValidationFindingScope> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["id", "type"])?;
     let mut builder = aws_sdk_ssm::types::ValidationFindingScope::builder();
     if let Some(value) = dict_value(values, "type")? {
         let converted_3560 = (|| -> PyResult<_> {

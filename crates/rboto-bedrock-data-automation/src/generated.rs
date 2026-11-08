@@ -16,6 +16,7 @@ fn audio_extraction_category_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioExtractionCategory> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "type_configuration", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioExtractionCategory::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -116,6 +117,7 @@ fn audio_extraction_category_type_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["transcript"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::AudioExtractionCategoryTypeConfiguration::builder();
     if let Some(value) = dict_value(values, "transcript")? {
@@ -153,6 +155,14 @@ fn audio_language_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "generative_output_language",
+            "identify_multiple_languages",
+            "input_languages",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioLanguageConfiguration::builder();
     if let Some(value) = dict_value(values, "input_languages")? {
         let converted_17 = (|| -> PyResult<_> {
@@ -264,6 +274,14 @@ fn audio_override_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "language_configuration",
+            "modality_processing",
+            "sensitive_data_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioOverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "modality_processing")? {
         let converted_31 = (|| -> PyResult<_> {
@@ -340,6 +358,7 @@ fn audio_standard_extraction_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardExtraction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["category"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioStandardExtraction::builder();
     if let Some(value) = dict_value(values, "category")? {
         let converted_37 = (|| -> PyResult<_> {
@@ -376,6 +395,7 @@ fn audio_standard_generative_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::AudioStandardGenerativeField::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_39 = (|| -> PyResult<_> {
@@ -435,6 +455,7 @@ fn audio_standard_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["extraction", "generative_field"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::AudioStandardOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "extraction")? {
@@ -492,6 +513,23 @@ fn blueprint_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::Blueprint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "blueprint_arn",
+            "blueprint_name",
+            "blueprint_stage",
+            "blueprint_version",
+            "creation_time",
+            "kms_encryption_context",
+            "kms_key_id",
+            "last_modified_time",
+            "optimization_samples",
+            "optimization_time",
+            "schema",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::Blueprint::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_55 = (|| -> PyResult<_> {
@@ -787,6 +825,10 @@ fn blueprint_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["blueprint_arn", "blueprint_stage", "blueprint_version"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintFilter::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_100 = (|| -> PyResult<_> {
@@ -859,6 +901,10 @@ fn blueprint_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["blueprint_arn", "blueprint_stage", "blueprint_version"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintItem::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_107 = (|| -> PyResult<_> {
@@ -931,6 +977,7 @@ fn blueprint_optimization_object_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationObject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["blueprint_arn", "stage"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintOptimizationObject::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_114 = (|| -> PyResult<_> {
@@ -983,6 +1030,7 @@ fn blueprint_optimization_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_object"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::BlueprintOptimizationOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_object")? {
@@ -1020,6 +1068,7 @@ fn blueprint_optimization_sample_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["asset_s3_object", "ground_truth_s3_object"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintOptimizationSample::builder();
     if let Some(value) = dict_value(values, "asset_s3_object")? {
         let converted_121 = (|| -> PyResult<_> {
@@ -1076,6 +1125,17 @@ fn blueprint_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::BlueprintSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "blueprint_arn",
+            "blueprint_name",
+            "blueprint_stage",
+            "blueprint_version",
+            "creation_time",
+            "last_modified_time",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::BlueprintSummary::builder();
     if let Some(value) = dict_value(values, "blueprint_arn")? {
         let converted_125 = (|| -> PyResult<_> {
@@ -1216,6 +1276,7 @@ fn channel_labeling_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ChannelLabelingConfiguration::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_140 = (|| -> PyResult<_> {
@@ -1248,6 +1309,7 @@ fn custom_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["blueprints", "document"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::CustomOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "blueprints")? {
         let converted_143 = (|| -> PyResult<_> {
@@ -1332,6 +1394,19 @@ fn data_automation_library_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibrary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "entity_types",
+            "kms_encryption_context",
+            "kms_key_id",
+            "library_arn",
+            "library_description",
+            "library_name",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibrary::builder();
     if let Some(value) = dict_value(values, "library_arn")? {
         let converted_153 = (|| -> PyResult<_> {
@@ -1555,6 +1630,7 @@ fn data_automation_library_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["libraries"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DataAutomationLibraryConfiguration::builder();
     if let Some(value) = dict_value(values, "libraries")? {
@@ -1675,6 +1751,7 @@ fn data_automation_library_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["library_arn"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibraryFilter::builder();
     if let Some(value) = dict_value(values, "library_arn")? {
         let converted_197 = (|| -> PyResult<_> {
@@ -1705,6 +1782,20 @@ fn data_automation_library_ingestion_job_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "completion_time",
+            "creation_time",
+            "entity_type",
+            "error_message",
+            "error_type",
+            "job_arn",
+            "job_status",
+            "operation_type",
+            "output_configuration",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJob::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
@@ -1901,6 +1992,17 @@ fn data_automation_library_ingestion_job_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "completion_time",
+            "creation_time",
+            "entity_type",
+            "job_arn",
+            "job_status",
+            "operation_type",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DataAutomationLibraryIngestionJobSummary::builder();
     if let Some(value) = dict_value(values, "job_arn")? {
@@ -2045,6 +2147,7 @@ fn data_automation_library_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["library_arn"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibraryItem::builder();
     if let Some(value) = dict_value(values, "library_arn")? {
         let converted_239 = (|| -> PyResult<_> {
@@ -2075,6 +2178,7 @@ fn data_automation_library_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["creation_time", "library_arn", "library_name"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationLibrarySummary::builder();
     if let Some(value) = dict_value(values, "library_arn")? {
         let converted_241 = (|| -> PyResult<_> {
@@ -2148,6 +2252,25 @@ fn data_automation_project_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationProject> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "custom_output_configuration",
+            "data_automation_library_configuration",
+            "kms_encryption_context",
+            "kms_key_id",
+            "last_modified_time",
+            "override_configuration",
+            "project_arn",
+            "project_description",
+            "project_name",
+            "project_stage",
+            "project_type",
+            "standard_output_configuration",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationProject::builder();
     if let Some(value) = dict_value(values, "project_arn")? {
         let converted_248 = (|| -> PyResult<_> {
@@ -2473,6 +2596,7 @@ fn data_automation_project_filter_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationProjectFilter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["project_arn", "project_stage"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationProjectFilter::builder();
     if let Some(value) = dict_value(values, "project_arn")? {
         let converted_291 = (|| -> PyResult<_> {
@@ -2527,6 +2651,16 @@ fn data_automation_project_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_time",
+            "project_arn",
+            "project_name",
+            "project_stage",
+            "project_type",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DataAutomationProjectSummary::builder();
     if let Some(value) = dict_value(values, "project_arn")? {
         let converted_296 = (|| -> PyResult<_> {
@@ -2648,6 +2782,7 @@ fn delete_entities_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DeleteEntitiesInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entity_ids"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DeleteEntitiesInfo::builder();
     if let Some(value) = dict_value(values, "entity_ids")? {
         let converted_309 = (|| -> PyResult<_> {
@@ -2706,6 +2841,7 @@ fn document_bounding_box_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentBoundingBox> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DocumentBoundingBox::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_317 = (|| -> PyResult<_> {
@@ -2738,6 +2874,7 @@ fn document_custom_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["fallback_blueprints"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentCustomOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "fallback_blueprints")? {
@@ -2803,6 +2940,7 @@ fn document_extraction_granularity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["types"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentExtractionGranularity::builder();
     if let Some(value) = dict_value(values, "types")? {
@@ -2847,6 +2985,7 @@ fn document_output_additional_file_format_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentOutputAdditionalFileFormat::builder();
     if let Some(value) = dict_value(values, "state")? {
@@ -2880,6 +3019,7 @@ fn document_output_format_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputFormat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["additional_file_format", "text_format"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DocumentOutputFormat::builder();
     if let Some(value) = dict_value(values, "text_format")? {
         let converted_340 = (|| -> PyResult<_> {
@@ -2936,6 +3076,7 @@ fn document_output_text_format_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DocumentOutputTextFormat::builder();
     if let Some(value) = dict_value(values, "types")? {
         let converted_344 = (|| -> PyResult<_> {
@@ -3000,6 +3141,14 @@ fn document_override_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "modality_processing",
+            "sensitive_data_configuration",
+            "splitter",
+        ],
+    )?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentOverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "splitter")? {
@@ -3077,6 +3226,7 @@ fn document_standard_extraction_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bounding_box", "granularity"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::DocumentStandardExtraction::builder();
     if let Some(value) = dict_value(values, "granularity")? {
         let converted_359 = (|| -> PyResult<_> {
@@ -3133,6 +3283,7 @@ fn document_standard_generative_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentStandardGenerativeField::builder();
     if let Some(value) = dict_value(values, "state")? {
@@ -3166,6 +3317,10 @@ fn document_standard_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["extraction", "generative_field", "output_format"],
+    )?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::DocumentStandardOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "extraction")? {
@@ -3243,6 +3398,7 @@ fn encryption_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::EncryptionConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_encryption_context", "kms_key_id"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::EncryptionConfiguration::builder();
     if let Some(value) = dict_value(values, "kms_key_id")? {
         let converted_372 = (|| -> PyResult<_> {
@@ -3372,6 +3528,7 @@ fn entity_type_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::EntityTypeInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["entity_metadata", "entity_type"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::EntityTypeInfo::builder();
     if let Some(value) = dict_value(values, "entity_type")? {
         let converted_388 = (|| -> PyResult<_> {
@@ -3428,6 +3585,7 @@ fn event_bridge_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::EventBridgeConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bridge_enabled"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::EventBridgeConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_enabled")? {
         let converted_393 = (|| -> PyResult<_> {
@@ -3462,6 +3620,7 @@ fn image_bounding_box_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageBoundingBox> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ImageBoundingBox::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_395 = (|| -> PyResult<_> {
@@ -3494,6 +3653,7 @@ fn image_extraction_category_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageExtractionCategory> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ImageExtractionCategory::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_398 = (|| -> PyResult<_> {
@@ -3574,6 +3734,10 @@ fn image_override_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["modality_processing", "sensitive_data_configuration"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ImageOverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "modality_processing")? {
         let converted_410 = (|| -> PyResult<_> {
@@ -3630,6 +3794,7 @@ fn image_standard_extraction_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardExtraction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bounding_box", "category"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ImageStandardExtraction::builder();
     if let Some(value) = dict_value(values, "category")? {
         let converted_414 = (|| -> PyResult<_> {
@@ -3686,6 +3851,7 @@ fn image_standard_generative_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ImageStandardGenerativeField::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_418 = (|| -> PyResult<_> {
@@ -3745,6 +3911,7 @@ fn image_standard_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["extraction", "generative_field"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::ImageStandardOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "extraction")? {
@@ -3903,6 +4070,7 @@ fn input_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::InputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["inline_payload", "s3_object"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::InputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_object")? {
         let converted_444 = (|| -> PyResult<_> {
@@ -3959,6 +4127,7 @@ fn modality_processing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::ModalityProcessingConfiguration::builder();
     if let Some(value) = dict_value(values, "state")? {
@@ -3994,6 +4163,7 @@ fn modality_routing_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["jpeg", "mov", "mp4", "png"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ModalityRoutingConfiguration::builder();
     if let Some(value) = dict_value(values, "jpeg")? {
         let converted_451 = (|| -> PyResult<_> {
@@ -4102,6 +4272,7 @@ fn notification_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::NotificationConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["event_bridge_configuration"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::NotificationConfiguration::builder();
     if let Some(value) = dict_value(values, "event_bridge_configuration")? {
         let converted_463 = (|| -> PyResult<_> {
@@ -4138,6 +4309,7 @@ fn output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::OutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::OutputConfiguration::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_465 = (|| -> PyResult<_> {
@@ -4168,6 +4340,10 @@ fn override_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::OverrideConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["audio", "document", "image", "modality_routing", "video"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::OverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "document")? {
         let converted_467 = (|| -> PyResult<_> {
@@ -4284,6 +4460,7 @@ fn phrase_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::Phrase> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["display_as_text", "text"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::Phrase::builder();
     if let Some(value) = dict_value(values, "text")? {
         let converted_477 = (|| -> PyResult<_> {
@@ -4334,6 +4511,7 @@ fn pii_entities_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["pii_entity_types", "redaction_mask_mode"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::PiiEntitiesConfiguration::builder();
     if let Some(value) = dict_value(values, "pii_entity_types")? {
         let converted_481 = (|| -> PyResult<_> {
@@ -4425,6 +4603,7 @@ fn s3_object_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::S3Object> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_uri", "version"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::S3Object::builder();
     if let Some(value) = dict_value(values, "s3_uri")? {
         let converted_493 = (|| -> PyResult<_> {
@@ -4471,6 +4650,14 @@ fn sensitive_data_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "detection_mode",
+            "detection_scope",
+            "pii_entities_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::SensitiveDataConfiguration::builder();
     if let Some(value) = dict_value(values, "detection_mode")? {
         let converted_497 = (|| -> PyResult<_> {
@@ -4581,6 +4768,7 @@ fn speaker_labeling_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::SpeakerLabelingConfiguration::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_511 = (|| -> PyResult<_> {
@@ -4613,6 +4801,7 @@ fn splitter_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::SplitterConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::SplitterConfiguration::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_514 = (|| -> PyResult<_> {
@@ -4647,6 +4836,7 @@ fn standard_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["audio", "document", "image", "video"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::StandardOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "document")? {
         let converted_517 = (|| -> PyResult<_> {
@@ -4741,6 +4931,7 @@ fn standard_output_configuration_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_bedrockdataautomation::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -4783,6 +4974,7 @@ fn transcript_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::TranscriptConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["channel_labeling", "speaker_labeling"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::TranscriptConfiguration::builder();
     if let Some(value) = dict_value(values, "speaker_labeling")? {
         let converted_529 = (|| -> PyResult<_> {
@@ -4892,6 +5084,7 @@ fn validation_exception_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::ValidationExceptionField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["message", "name"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::ValidationExceptionField::builder();
     if let Some(value) = dict_value(values, "name")? {
         let converted_535 = (|| -> PyResult<_> {
@@ -4934,6 +5127,7 @@ fn video_bounding_box_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoBoundingBox> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VideoBoundingBox::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_539 = (|| -> PyResult<_> {
@@ -4966,6 +5160,7 @@ fn video_extraction_category_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoExtractionCategory> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VideoExtractionCategory::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_542 = (|| -> PyResult<_> {
@@ -5046,6 +5241,10 @@ fn video_override_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["modality_processing", "sensitive_data_configuration"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VideoOverrideConfiguration::builder();
     if let Some(value) = dict_value(values, "modality_processing")? {
         let converted_554 = (|| -> PyResult<_> {
@@ -5102,6 +5301,7 @@ fn video_standard_extraction_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardExtraction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["bounding_box", "category"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VideoStandardExtraction::builder();
     if let Some(value) = dict_value(values, "category")? {
         let converted_558 = (|| -> PyResult<_> {
@@ -5158,6 +5358,7 @@ fn video_standard_generative_field_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["state", "types"])?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VideoStandardGenerativeField::builder();
     if let Some(value) = dict_value(values, "state")? {
         let converted_562 = (|| -> PyResult<_> {
@@ -5217,6 +5418,7 @@ fn video_standard_output_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["extraction", "generative_field"])?;
     let mut builder =
         aws_sdk_bedrockdataautomation::types::VideoStandardOutputConfiguration::builder();
     if let Some(value) = dict_value(values, "extraction")? {
@@ -5274,6 +5476,16 @@ fn vocabulary_entity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VocabularyEntity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "entity_id",
+            "language",
+            "last_modified_time",
+            "phrases",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VocabularyEntity::builder();
     if let Some(value) = dict_value(values, "entity_id")? {
         let converted_578 = (|| -> PyResult<_> {
@@ -5413,6 +5625,10 @@ fn vocabulary_entity_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VocabularyEntityInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["description", "entity_id", "language", "phrases"],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VocabularyEntityInfo::builder();
     if let Some(value) = dict_value(values, "entity_id")? {
         let converted_596 = (|| -> PyResult<_> {
@@ -5521,6 +5737,16 @@ fn vocabulary_entity_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_bedrockdataautomation::types::VocabularyEntitySummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "description",
+            "entity_id",
+            "language",
+            "last_modified_time",
+            "num_of_phrases",
+        ],
+    )?;
     let mut builder = aws_sdk_bedrockdataautomation::types::VocabularyEntitySummary::builder();
     if let Some(value) = dict_value(values, "entity_id")? {
         let converted_611 = (|| -> PyResult<_> {

@@ -16,6 +16,7 @@ fn api_error_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::ApiErrorType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error_code", "message", "secret_id"])?;
     let mut builder = aws_sdk_secretsmanager::types::ApiErrorType::builder();
     if let Some(value) = dict_value(values, "secret_id")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -80,6 +81,7 @@ fn external_secret_rotation_metadata_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::ExternalSecretRotationMetadataItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_secretsmanager::types::ExternalSecretRotationMetadataItem::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_7 = (|| -> PyResult<_> {
@@ -126,6 +128,7 @@ fn external_secret_rotation_metadata_item_to_py(
 
 fn filter_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_secretsmanager::types::Filter> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "values"])?;
     let mut builder = aws_sdk_secretsmanager::types::Filter::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_11 = (|| -> PyResult<_> {
@@ -204,6 +207,7 @@ fn replica_region_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::ReplicaRegionType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["kms_key_id", "region"])?;
     let mut builder = aws_sdk_secretsmanager::types::ReplicaRegionType::builder();
     if let Some(value) = dict_value(values, "region")? {
         let converted_22 = (|| -> PyResult<_> {
@@ -252,6 +256,16 @@ fn replication_status_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::ReplicationStatusType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "kms_key_id",
+            "last_accessed_date",
+            "region",
+            "status",
+            "status_message",
+        ],
+    )?;
     let mut builder = aws_sdk_secretsmanager::types::ReplicationStatusType::builder();
     if let Some(value) = dict_value(values, "region")? {
         let converted_26 = (|| -> PyResult<_> {
@@ -363,6 +377,14 @@ fn rotation_rules_type_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::RotationRulesType> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "automatically_after_days",
+            "duration",
+            "schedule_expression",
+        ],
+    )?;
     let mut builder = aws_sdk_secretsmanager::types::RotationRulesType::builder();
     if let Some(value) = dict_value(values, "automatically_after_days")? {
         let converted_38 = (|| -> PyResult<_> {
@@ -435,6 +457,31 @@ fn secret_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::SecretListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_date",
+            "deleted_date",
+            "description",
+            "external_secret_rotation_metadata",
+            "external_secret_rotation_role_arn",
+            "kms_key_id",
+            "last_accessed_date",
+            "last_changed_date",
+            "last_rotated_date",
+            "name",
+            "next_rotation_date",
+            "owning_service",
+            "primary_region",
+            "rotation_enabled",
+            "rotation_lambda_arn",
+            "rotation_rules",
+            "secret_versions_to_stages",
+            "tags",
+            "type",
+        ],
+    )?;
     let mut builder = aws_sdk_secretsmanager::types::SecretListEntry::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_44 = (|| -> PyResult<_> {
@@ -963,6 +1010,18 @@ fn secret_value_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::SecretValueEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_date",
+            "name",
+            "secret_binary",
+            "secret_string",
+            "version_id",
+            "version_stages",
+        ],
+    )?;
     let mut builder = aws_sdk_secretsmanager::types::SecretValueEntry::builder();
     if let Some(value) = dict_value(values, "arn")? {
         let converted_118 = (|| -> PyResult<_> {
@@ -1133,6 +1192,16 @@ fn secret_versions_list_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::SecretVersionsListEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "created_date",
+            "kms_key_ids",
+            "last_accessed_date",
+            "version_id",
+            "version_stages",
+        ],
+    )?;
     let mut builder = aws_sdk_secretsmanager::types::SecretVersionsListEntry::builder();
     if let Some(value) = dict_value(values, "version_id")? {
         let converted_140 = (|| -> PyResult<_> {
@@ -1301,6 +1370,7 @@ fn secret_versions_list_entry_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_secretsmanager::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_secretsmanager::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_164 = (|| -> PyResult<_> {
@@ -1346,6 +1416,7 @@ fn validation_errors_entry_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_secretsmanager::types::ValidationErrorsEntry> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["check_name", "error_message"])?;
     let mut builder = aws_sdk_secretsmanager::types::ValidationErrorsEntry::builder();
     if let Some(value) = dict_value(values, "check_name")? {
         let converted_168 = (|| -> PyResult<_> {

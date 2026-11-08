@@ -16,6 +16,14 @@ fn archival_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ArchivalSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "archival_backup_arn",
+            "archival_date_time",
+            "archival_reason",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ArchivalSummary::builder();
     if let Some(value) = dict_value(values, "archival_date_time")? {
         let converted_1 = (|| -> PyResult<_> {
@@ -97,6 +105,7 @@ fn attribute_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AttributeDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "attribute_type"])?;
     let mut builder = aws_sdk_dynamodb::types::AttributeDefinition::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_8 = (|| -> PyResult<_> {
@@ -454,6 +463,7 @@ fn attribute_value_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AttributeValueUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["action", "value"])?;
     let mut builder = aws_sdk_dynamodb::types::AttributeValueUpdate::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_69 = (|| -> PyResult<_> {
@@ -512,6 +522,13 @@ fn auto_scaling_policy_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingPolicyDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "policy_name",
+            "target_tracking_scaling_policy_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::AutoScalingPolicyDescription::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_74 = (|| -> PyResult<_> {
@@ -568,6 +585,13 @@ fn auto_scaling_policy_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingPolicyUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "policy_name",
+            "target_tracking_scaling_policy_configuration",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::AutoScalingPolicyUpdate::builder();
     if let Some(value) = dict_value(values, "policy_name")? {
         let converted_78 = (|| -> PyResult<_> {
@@ -622,6 +646,16 @@ fn auto_scaling_settings_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingSettingsDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "auto_scaling_disabled",
+            "auto_scaling_role_arn",
+            "maximum_units",
+            "minimum_units",
+            "scaling_policies",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::AutoScalingSettingsDescription::builder();
     if let Some(value) = dict_value(values, "minimum_units")? {
         let converted_82 = (|| -> PyResult<_> {
@@ -758,6 +792,16 @@ fn auto_scaling_settings_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingSettingsUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "auto_scaling_disabled",
+            "auto_scaling_role_arn",
+            "maximum_units",
+            "minimum_units",
+            "scaling_policy_update",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::AutoScalingSettingsUpdate::builder();
     if let Some(value) = dict_value(values, "minimum_units")? {
         let converted_98 = (|| -> PyResult<_> {
@@ -867,6 +911,15 @@ fn auto_scaling_target_tracking_scaling_policy_configuration_description_from_py
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription>
 {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "disable_scale_in",
+            "scale_in_cooldown",
+            "scale_out_cooldown",
+            "target_value",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationDescription::builder();
     if let Some(value) = dict_value(values, "disable_scale_in")? {
         let converted_108 = (|| -> PyResult<_> {
@@ -957,6 +1010,15 @@ fn auto_scaling_target_tracking_scaling_policy_configuration_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "disable_scale_in",
+            "scale_in_cooldown",
+            "scale_out_cooldown",
+            "target_value",
+        ],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::AutoScalingTargetTrackingScalingPolicyConfigurationUpdate::builder(
         );
@@ -1049,6 +1111,14 @@ fn backup_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BackupDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backup_details",
+            "source_table_details",
+            "source_table_feature_details",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::BackupDescription::builder();
     if let Some(value) = dict_value(values, "backup_details")? {
         let converted_124 = (|| -> PyResult<_> {
@@ -1125,6 +1195,18 @@ fn backup_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BackupDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backup_arn",
+            "backup_creation_date_time",
+            "backup_expiry_date_time",
+            "backup_name",
+            "backup_size_bytes",
+            "backup_status",
+            "backup_type",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::BackupDetails::builder();
     if let Some(value) = dict_value(values, "backup_arn")? {
         let converted_130 = (|| -> PyResult<_> {
@@ -1279,6 +1361,21 @@ fn backup_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BackupSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backup_arn",
+            "backup_creation_date_time",
+            "backup_expiry_date_time",
+            "backup_name",
+            "backup_size_bytes",
+            "backup_status",
+            "backup_type",
+            "table_arn",
+            "table_id",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::BackupSummary::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_148 = (|| -> PyResult<_> {
@@ -1488,6 +1585,7 @@ fn batch_statement_error_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BatchStatementError> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "item", "message"])?;
     let mut builder = aws_sdk_dynamodb::types::BatchStatementError::builder();
     if let Some(value) = dict_value(values, "code")? {
         let converted_172 = (|| -> PyResult<_> {
@@ -1586,6 +1684,15 @@ fn batch_statement_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BatchStatementRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "consistent_read",
+            "parameters",
+            "return_values_on_condition_check_failure",
+            "statement",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::BatchStatementRequest::builder();
     if let Some(value) = dict_value(values, "statement")? {
         let converted_189 = (|| -> PyResult<_> {
@@ -1707,6 +1814,7 @@ fn batch_statement_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BatchStatementResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["error", "item", "table_name"])?;
     let mut builder = aws_sdk_dynamodb::types::BatchStatementResponse::builder();
     if let Some(value) = dict_value(values, "error")? {
         let converted_204 = (|| -> PyResult<_> {
@@ -1803,6 +1911,10 @@ fn billing_mode_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::BillingModeSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["billing_mode", "last_update_to_pay_per_request_date_time"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::BillingModeSummary::builder();
     if let Some(value) = dict_value(values, "billing_mode")? {
         let converted_220 = (|| -> PyResult<_> {
@@ -1865,6 +1977,7 @@ fn cancellation_reason_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CancellationReason> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "item", "message"])?;
     let mut builder = aws_sdk_dynamodb::types::CancellationReason::builder();
     if let Some(value) = dict_value(values, "item")? {
         let converted_226 = (|| -> PyResult<_> {
@@ -1955,6 +2068,14 @@ fn cancellation_reason_to_py(
 
 fn capacity_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Capacity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_units",
+            "read_capacity_units",
+            "write_capacity_units",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::Capacity::builder();
     if let Some(value) = dict_value(values, "read_capacity_units")? {
         let converted_242 = (|| -> PyResult<_> {
@@ -2029,6 +2150,7 @@ fn capacity_to_py(
 
 fn condition_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Condition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_value_list", "comparison_operator"])?;
     let mut builder = aws_sdk_dynamodb::types::Condition::builder();
     if let Some(value) = dict_value(values, "attribute_value_list")? {
         let converted_248 = (|| -> PyResult<_> {
@@ -2113,6 +2235,17 @@ fn condition_check_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ConditionCheck> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "condition_expression",
+            "expression_attribute_names",
+            "expression_attribute_values",
+            "key",
+            "return_values_on_condition_check_failure",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ConditionCheck::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_259 = (|| -> PyResult<_> {
@@ -2325,6 +2458,19 @@ fn consumed_capacity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ConsumedCapacity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "capacity_units",
+            "global_secondary_indexes",
+            "local_secondary_indexes",
+            "read_capacity_units",
+            "table",
+            "table_name",
+            "vector_indexes",
+            "write_capacity_units",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ConsumedCapacity::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_302 = (|| -> PyResult<_> {
@@ -2581,6 +2727,13 @@ fn continuous_backups_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ContinuousBackupsDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "continuous_backups_status",
+            "point_in_time_recovery_description",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ContinuousBackupsDescription::builder();
     if let Some(value) = dict_value(values, "continuous_backups_status")? {
         let converted_348 = (|| -> PyResult<_> {
@@ -2642,6 +2795,15 @@ fn contributor_insights_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ContributorInsightsSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "contributor_insights_mode",
+            "contributor_insights_status",
+            "index_name",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ContributorInsightsSummary::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_353 = (|| -> PyResult<_> {
@@ -2734,6 +2896,17 @@ fn create_global_secondary_index_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CreateGlobalSecondaryIndexAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "on_demand_throughput",
+            "projection",
+            "provisioned_throughput",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::CreateGlobalSecondaryIndexAction::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_363 = (|| -> PyResult<_> {
@@ -2891,6 +3064,7 @@ fn create_global_table_witness_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CreateGlobalTableWitnessGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::CreateGlobalTableWitnessGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_381 = (|| -> PyResult<_> {
@@ -2921,6 +3095,7 @@ fn create_replica_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CreateReplicaAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::CreateReplicaAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_383 = (|| -> PyResult<_> {
@@ -2951,6 +3126,17 @@ fn create_replication_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CreateReplicationGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "global_secondary_indexes",
+            "kms_master_key_id",
+            "on_demand_throughput_override",
+            "provisioned_throughput_override",
+            "region_name",
+            "table_class_override",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::CreateReplicationGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_385 = (|| -> PyResult<_> {
@@ -3110,6 +3296,17 @@ fn create_vector_index_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::CreateVectorIndexAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimensions",
+            "distance_function",
+            "index_name",
+            "projection",
+            "search_schema",
+            "vector_attribute",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::CreateVectorIndexAction::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_404 = (|| -> PyResult<_> {
@@ -3263,6 +3460,7 @@ fn create_vector_index_action_to_py(
 
 fn csv_options_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::CsvOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delimiter", "header_list"])?;
     let mut builder = aws_sdk_dynamodb::types::CsvOptions::builder();
     if let Some(value) = dict_value(values, "delimiter")? {
         let converted_423 = (|| -> PyResult<_> {
@@ -3337,6 +3535,17 @@ fn csv_options_to_py(
 
 fn delete_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Delete> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "condition_expression",
+            "expression_attribute_names",
+            "expression_attribute_values",
+            "key",
+            "return_values_on_condition_check_failure",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::Delete::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_433 = (|| -> PyResult<_> {
@@ -3543,6 +3752,7 @@ fn delete_global_secondary_index_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteGlobalSecondaryIndexAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteGlobalSecondaryIndexAction::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_476 = (|| -> PyResult<_> {
@@ -3573,6 +3783,7 @@ fn delete_global_table_witness_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteGlobalTableWitnessGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteGlobalTableWitnessGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_478 = (|| -> PyResult<_> {
@@ -3603,6 +3814,7 @@ fn delete_replica_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteReplicaAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteReplicaAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_480 = (|| -> PyResult<_> {
@@ -3633,6 +3845,7 @@ fn delete_replication_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteReplicationGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteReplicationGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_482 = (|| -> PyResult<_> {
@@ -3663,6 +3876,7 @@ fn delete_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteRequest::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_484 = (|| -> PyResult<_> {
@@ -3721,6 +3935,7 @@ fn delete_vector_index_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DeleteVectorIndexAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DeleteVectorIndexAction::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_496 = (|| -> PyResult<_> {
@@ -3751,6 +3966,7 @@ fn disassociate_replication_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::DisassociateReplicationGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["disassociation_mode", "region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::DisassociateReplicationGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_498 = (|| -> PyResult<_> {
@@ -3805,6 +4021,7 @@ fn enable_kinesis_streaming_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["approximate_creation_date_time_precision"])?;
     let mut builder = aws_sdk_dynamodb::types::EnableKinesisStreamingConfiguration::builder();
     if let Some(value) = dict_value(values, "approximate_creation_date_time_precision")? {
         let converted_503 = (|| -> PyResult<_> {
@@ -3842,6 +4059,7 @@ fn enable_kinesis_streaming_configuration_to_py(
 
 fn endpoint_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Endpoint> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["address", "cache_period_in_minutes"])?;
     let mut builder = aws_sdk_dynamodb::types::Endpoint::builder();
     if let Some(value) = dict_value(values, "address")? {
         let converted_506 = (|| -> PyResult<_> {
@@ -3890,6 +4108,15 @@ fn expected_attribute_value_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ExpectedAttributeValue> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attribute_value_list",
+            "comparison_operator",
+            "exists",
+            "value",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ExpectedAttributeValue::builder();
     if let Some(value) = dict_value(values, "value")? {
         let converted_510 = (|| -> PyResult<_> {
@@ -4012,6 +4239,33 @@ fn export_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ExportDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "billed_size_bytes",
+            "client_token",
+            "end_time",
+            "export_arn",
+            "export_format",
+            "export_manifest",
+            "export_status",
+            "export_time",
+            "export_type",
+            "failure_code",
+            "failure_message",
+            "filter_specification",
+            "incremental_export_specification",
+            "item_count",
+            "s3_bucket",
+            "s3_bucket_owner",
+            "s3_prefix",
+            "s3_sse_algorithm",
+            "s3_sse_kms_key_id",
+            "start_time",
+            "table_arn",
+            "table_id",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ExportDescription::builder();
     if let Some(value) = dict_value(values, "export_arn")? {
         let converted_525 = (|| -> PyResult<_> {
@@ -4458,6 +4712,7 @@ fn export_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ExportSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["export_arn", "export_status", "export_type"])?;
     let mut builder = aws_sdk_dynamodb::types::ExportSummary::builder();
     if let Some(value) = dict_value(values, "export_arn")? {
         let converted_576 = (|| -> PyResult<_> {
@@ -4533,6 +4788,7 @@ fn failure_exception_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::FailureException> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["exception_description", "exception_name"])?;
     let mut builder = aws_sdk_dynamodb::types::FailureException::builder();
     if let Some(value) = dict_value(values, "exception_name")? {
         let converted_584 = (|| -> PyResult<_> {
@@ -4585,6 +4841,16 @@ fn filter_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::FilterSpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expression_attribute_names",
+            "expression_attribute_values",
+            "filter_expression",
+            "key_condition_expression",
+            "projection_expression",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::FilterSpecification::builder();
     if let Some(value) = dict_value(values, "filter_expression")? {
         let converted_588 = (|| -> PyResult<_> {
@@ -4755,6 +5021,15 @@ fn filter_specification_to_py(
 
 fn get_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Get> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "expression_attribute_names",
+            "key",
+            "projection_expression",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::Get::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_618 = (|| -> PyResult<_> {
@@ -4890,6 +5165,17 @@ fn global_secondary_index_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "on_demand_throughput",
+            "projection",
+            "provisioned_throughput",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndex::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_646 = (|| -> PyResult<_> {
@@ -5047,6 +5333,13 @@ fn global_secondary_index_auto_scaling_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexAutoScalingUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "provisioned_write_capacity_auto_scaling_update",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexAutoScalingUpdate::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_664 = (|| -> PyResult<_> {
@@ -5102,6 +5395,22 @@ fn global_secondary_index_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backfilling",
+            "index_arn",
+            "index_name",
+            "index_size_bytes",
+            "index_status",
+            "item_count",
+            "key_schema",
+            "on_demand_throughput",
+            "projection",
+            "provisioned_throughput",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_668 = (|| -> PyResult<_> {
@@ -5351,6 +5660,16 @@ fn global_secondary_index_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "key_schema",
+            "on_demand_throughput",
+            "projection",
+            "provisioned_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexInfo::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_697 = (|| -> PyResult<_> {
@@ -5491,6 +5810,7 @@ fn global_secondary_index_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["create", "delete", "update"])?;
     let mut builder = aws_sdk_dynamodb::types::GlobalSecondaryIndexUpdate::builder();
     if let Some(value) = dict_value(values, "update")? {
         let converted_713 = (|| -> PyResult<_> {
@@ -5567,6 +5887,10 @@ fn global_secondary_index_warm_throughput_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["read_units_per_second", "status", "write_units_per_second"],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::GlobalSecondaryIndexWarmThroughputDescription::builder();
     if let Some(value) = dict_value(values, "read_units_per_second")? {
@@ -5645,6 +5969,7 @@ fn global_table_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalTable> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["global_table_name", "replication_group"])?;
     let mut builder = aws_sdk_dynamodb::types::GlobalTable::builder();
     if let Some(value) = dict_value(values, "global_table_name")? {
         let converted_726 = (|| -> PyResult<_> {
@@ -5729,6 +6054,16 @@ fn global_table_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalTableDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "creation_date_time",
+            "global_table_arn",
+            "global_table_name",
+            "global_table_status",
+            "replication_group",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::GlobalTableDescription::builder();
     if let Some(value) = dict_value(values, "replication_group")? {
         let converted_736 = (|| -> PyResult<_> {
@@ -5880,6 +6215,14 @@ fn global_table_global_secondary_index_settings_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalTableGlobalSecondaryIndexSettingsUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "provisioned_write_capacity_auto_scaling_settings_update",
+            "provisioned_write_capacity_units",
+        ],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::GlobalTableGlobalSecondaryIndexSettingsUpdate::builder();
     if let Some(value) = dict_value(values, "index_name")? {
@@ -5963,6 +6306,7 @@ fn global_table_witness_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalTableWitnessDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name", "witness_status"])?;
     let mut builder = aws_sdk_dynamodb::types::GlobalTableWitnessDescription::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_760 = (|| -> PyResult<_> {
@@ -6017,6 +6361,7 @@ fn global_table_witness_group_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::GlobalTableWitnessGroupUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["create", "delete"])?;
     let mut builder = aws_sdk_dynamodb::types::GlobalTableWitnessGroupUpdate::builder();
     if let Some(value) = dict_value(values, "create")? {
         let converted_765 = (|| -> PyResult<_> {
@@ -6073,6 +6418,19 @@ fn import_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ImportSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "cloud_watch_log_group_arn",
+            "end_time",
+            "import_arn",
+            "import_status",
+            "input_format",
+            "s3_bucket_source",
+            "start_time",
+            "table_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ImportSummary::builder();
     if let Some(value) = dict_value(values, "import_arn")? {
         let converted_769 = (|| -> PyResult<_> {
@@ -6254,6 +6612,30 @@ fn import_table_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ImportTableDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_token",
+            "cloud_watch_log_group_arn",
+            "end_time",
+            "error_count",
+            "failure_code",
+            "failure_message",
+            "import_arn",
+            "import_status",
+            "imported_item_count",
+            "input_compression_type",
+            "input_format",
+            "input_format_options",
+            "processed_item_count",
+            "processed_size_bytes",
+            "s3_bucket_source",
+            "start_time",
+            "table_arn",
+            "table_creation_parameters",
+            "table_id",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ImportTableDescription::builder();
     if let Some(value) = dict_value(values, "import_arn")? {
         let converted_789 = (|| -> PyResult<_> {
@@ -6629,6 +7011,10 @@ fn incremental_export_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::IncrementalExportSpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["export_from_time", "export_to_time", "export_view_type"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::IncrementalExportSpecification::builder();
     if let Some(value) = dict_value(values, "export_from_time")? {
         let converted_832 = (|| -> PyResult<_> {
@@ -6717,6 +7103,7 @@ fn input_format_options_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::InputFormatOptions> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["csv"])?;
     let mut builder = aws_sdk_dynamodb::types::InputFormatOptions::builder();
     if let Some(value) = dict_value(values, "csv")? {
         let converted_841 = (|| -> PyResult<_> {
@@ -6753,6 +7140,7 @@ fn item_collection_metrics_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ItemCollectionMetrics> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["item_collection_key", "size_estimate_range_gb"])?;
     let mut builder = aws_sdk_dynamodb::types::ItemCollectionMetrics::builder();
     if let Some(value) = dict_value(values, "item_collection_key")? {
         let converted_843 = (|| -> PyResult<_> {
@@ -6861,6 +7249,7 @@ fn item_response_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ItemResponse> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["item"])?;
     let mut builder = aws_sdk_dynamodb::types::ItemResponse::builder();
     if let Some(value) = dict_value(values, "item")? {
         let converted_863 = (|| -> PyResult<_> {
@@ -6921,6 +7310,7 @@ fn key_schema_element_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::KeySchemaElement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "key_type"])?;
     let mut builder = aws_sdk_dynamodb::types::KeySchemaElement::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_875 = (|| -> PyResult<_> {
@@ -6974,6 +7364,16 @@ fn keys_and_attributes_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::KeysAndAttributes> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attributes_to_get",
+            "consistent_read",
+            "expression_attribute_names",
+            "keys",
+            "projection_expression",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::KeysAndAttributes::builder();
     if let Some(value) = dict_value(values, "keys")? {
         let converted_880 = (|| -> PyResult<_> {
@@ -7192,6 +7592,15 @@ fn kinesis_data_stream_destination_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::KinesisDataStreamDestination> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "approximate_creation_date_time_precision",
+            "destination_status",
+            "destination_status_description",
+            "stream_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::KinesisDataStreamDestination::builder();
     if let Some(value) = dict_value(values, "stream_arn")? {
         let converted_922 = (|| -> PyResult<_> {
@@ -7289,6 +7698,7 @@ fn local_secondary_index_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::LocalSecondaryIndex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index_name", "key_schema", "projection"])?;
     let mut builder = aws_sdk_dynamodb::types::LocalSecondaryIndex::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_932 = (|| -> PyResult<_> {
@@ -7386,6 +7796,17 @@ fn local_secondary_index_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::LocalSecondaryIndexDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_arn",
+            "index_name",
+            "index_size_bytes",
+            "item_count",
+            "key_schema",
+            "projection",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::LocalSecondaryIndexDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_944 = (|| -> PyResult<_> {
@@ -7538,6 +7959,7 @@ fn local_secondary_index_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::LocalSecondaryIndexInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["index_name", "key_schema", "projection"])?;
     let mut builder = aws_sdk_dynamodb::types::LocalSecondaryIndexInfo::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_962 = (|| -> PyResult<_> {
@@ -7638,6 +8060,10 @@ fn on_demand_throughput_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::OnDemandThroughput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["max_read_request_units", "max_write_request_units"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::OnDemandThroughput::builder();
     if let Some(value) = dict_value(values, "max_read_request_units")? {
         let converted_974 = (|| -> PyResult<_> {
@@ -7694,6 +8120,7 @@ fn on_demand_throughput_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::OnDemandThroughputOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["max_read_request_units"])?;
     let mut builder = aws_sdk_dynamodb::types::OnDemandThroughputOverride::builder();
     if let Some(value) = dict_value(values, "max_read_request_units")? {
         let converted_978 = (|| -> PyResult<_> {
@@ -7730,6 +8157,14 @@ fn parameterized_statement_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ParameterizedStatement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "parameters",
+            "return_values_on_condition_check_failure",
+            "statement",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ParameterizedStatement::builder();
     if let Some(value) = dict_value(values, "statement")? {
         let converted_980 = (|| -> PyResult<_> {
@@ -7831,6 +8266,15 @@ fn point_in_time_recovery_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::PointInTimeRecoveryDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "earliest_restorable_date_time",
+            "latest_restorable_date_time",
+            "point_in_time_recovery_status",
+            "recovery_period_in_days",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::PointInTimeRecoveryDescription::builder();
     if let Some(value) = dict_value(values, "point_in_time_recovery_status")? {
         let converted_993 = (|| -> PyResult<_> {
@@ -7939,6 +8383,10 @@ fn point_in_time_recovery_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::PointInTimeRecoverySpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["point_in_time_recovery_enabled", "recovery_period_in_days"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::PointInTimeRecoverySpecification::builder();
     if let Some(value) = dict_value(values, "point_in_time_recovery_enabled")? {
         let converted_1004 = (|| -> PyResult<_> {
@@ -7999,6 +8447,7 @@ fn point_in_time_recovery_specification_to_py(
 
 fn projection_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Projection> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["non_key_attributes", "projection_type"])?;
     let mut builder = aws_sdk_dynamodb::types::Projection::builder();
     if let Some(value) = dict_value(values, "projection_type")? {
         let converted_1008 = (|| -> PyResult<_> {
@@ -8081,6 +8530,7 @@ fn provisioned_throughput_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["read_capacity_units", "write_capacity_units"])?;
     let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughput::builder();
     if let Some(value) = dict_value(values, "read_capacity_units")? {
         let converted_1019 = (|| -> PyResult<_> {
@@ -8137,6 +8587,16 @@ fn provisioned_throughput_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughputDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "last_decrease_date_time",
+            "last_increase_date_time",
+            "number_of_decreases_today",
+            "read_capacity_units",
+            "write_capacity_units",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughputDescription::builder();
     if let Some(value) = dict_value(values, "last_increase_date_time")? {
         let converted_1023 = (|| -> PyResult<_> {
@@ -8263,6 +8723,7 @@ fn provisioned_throughput_override_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ProvisionedThroughputOverride> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["read_capacity_units"])?;
     let mut builder = aws_sdk_dynamodb::types::ProvisionedThroughputOverride::builder();
     if let Some(value) = dict_value(values, "read_capacity_units")? {
         let converted_1035 = (|| -> PyResult<_> {
@@ -8297,6 +8758,17 @@ fn provisioned_throughput_override_to_py(
 
 fn put_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Put> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "condition_expression",
+            "expression_attribute_names",
+            "expression_attribute_values",
+            "item",
+            "return_values_on_condition_check_failure",
+            "table_name",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::Put::builder();
     if let Some(value) = dict_value(values, "item")? {
         let converted_1037 = (|| -> PyResult<_> {
@@ -8501,6 +8973,7 @@ fn put_to_py(py: Python<'_>, value: &aws_sdk_dynamodb::types::Put) -> PyResult<P
 
 fn put_request_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::PutRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["item"])?;
     let mut builder = aws_sdk_dynamodb::types::PutRequest::builder();
     if let Some(value) = dict_value(values, "item")? {
         let converted_1080 = (|| -> PyResult<_> {
@@ -8557,6 +9030,7 @@ fn put_request_to_py(
 
 fn replica_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Replica> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["region_name"])?;
     let mut builder = aws_sdk_dynamodb::types::Replica::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1092 = (|| -> PyResult<_> {
@@ -8586,6 +9060,16 @@ fn replica_auto_scaling_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaAutoScalingDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "global_secondary_indexes",
+            "region_name",
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            "replica_status",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaAutoScalingDescription::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1094 = (|| -> PyResult<_> {
@@ -8756,6 +9240,14 @@ fn replica_auto_scaling_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaAutoScalingUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "region_name",
+            "replica_global_secondary_index_updates",
+            "replica_provisioned_read_capacity_auto_scaling_update",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaAutoScalingUpdate::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1111 = (|| -> PyResult<_> {
@@ -8868,6 +9360,24 @@ fn replica_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "global_secondary_indexes",
+            "global_table_settings_replication_mode",
+            "kms_master_key_id",
+            "on_demand_throughput_override",
+            "provisioned_throughput_override",
+            "region_name",
+            "replica_arn",
+            "replica_inaccessible_date_time",
+            "replica_status",
+            "replica_status_description",
+            "replica_status_percent_progress",
+            "replica_table_class_summary",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaDescription::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1123 = (|| -> PyResult<_> {
@@ -9176,6 +9686,14 @@ fn replica_global_secondary_index_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "on_demand_throughput_override",
+            "provisioned_throughput_override",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndex::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1158 = (|| -> PyResult<_> {
@@ -9246,6 +9764,15 @@ fn replica_global_secondary_index_auto_scaling_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "index_status",
+            "provisioned_read_capacity_auto_scaling_settings",
+            "provisioned_write_capacity_auto_scaling_settings",
+        ],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
@@ -9351,6 +9878,13 @@ fn replica_global_secondary_index_auto_scaling_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "provisioned_read_capacity_auto_scaling_update",
+        ],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexAutoScalingUpdate::builder();
     if let Some(value) = dict_value(values, "index_name")? {
@@ -9407,6 +9941,15 @@ fn replica_global_secondary_index_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "on_demand_throughput_override",
+            "provisioned_throughput_override",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1177 = (|| -> PyResult<_> {
@@ -9500,6 +10043,17 @@ fn replica_global_secondary_index_settings_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "index_status",
+            "provisioned_read_capacity_auto_scaling_settings",
+            "provisioned_read_capacity_units",
+            "provisioned_write_capacity_auto_scaling_settings",
+            "provisioned_write_capacity_units",
+        ],
+    )?;
     let mut builder =
         aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
@@ -9643,6 +10197,14 @@ fn replica_global_secondary_index_settings_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "provisioned_read_capacity_auto_scaling_settings_update",
+            "provisioned_read_capacity_units",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaGlobalSecondaryIndexSettingsUpdate::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1198 = (|| -> PyResult<_> {
@@ -9725,6 +10287,20 @@ fn replica_settings_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaSettingsDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "region_name",
+            "replica_billing_mode_summary",
+            "replica_global_secondary_index_settings",
+            "replica_provisioned_read_capacity_auto_scaling_settings",
+            "replica_provisioned_read_capacity_units",
+            "replica_provisioned_write_capacity_auto_scaling_settings",
+            "replica_provisioned_write_capacity_units",
+            "replica_status",
+            "replica_table_class_summary",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaSettingsDescription::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1204 = (|| -> PyResult<_> {
@@ -9971,6 +10547,16 @@ fn replica_settings_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaSettingsUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "region_name",
+            "replica_global_secondary_index_settings_update",
+            "replica_provisioned_read_capacity_auto_scaling_settings_update",
+            "replica_provisioned_read_capacity_units",
+            "replica_table_class",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaSettingsUpdate::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1229 = (|| -> PyResult<_> {
@@ -10129,6 +10715,7 @@ fn replica_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicaUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["create", "delete"])?;
     let mut builder = aws_sdk_dynamodb::types::ReplicaUpdate::builder();
     if let Some(value) = dict_value(values, "create")? {
         let converted_1246 = (|| -> PyResult<_> {
@@ -10185,6 +10772,7 @@ fn replication_group_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ReplicationGroupUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["create", "delete", "disassociate", "update"])?;
     let mut builder = aws_sdk_dynamodb::types::ReplicationGroupUpdate::builder();
     if let Some(value) = dict_value(values, "create")? {
         let converted_1250 = (|| -> PyResult<_> {
@@ -10281,6 +10869,15 @@ fn restore_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::RestoreSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "restore_date_time",
+            "restore_in_progress",
+            "source_backup_arn",
+            "source_table_arn",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::RestoreSummary::builder();
     if let Some(value) = dict_value(values, "source_backup_arn")? {
         let converted_1258 = (|| -> PyResult<_> {
@@ -10382,6 +10979,7 @@ fn s3_bucket_source_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::S3BucketSource> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_bucket", "s3_bucket_owner", "s3_key_prefix"])?;
     let mut builder = aws_sdk_dynamodb::types::S3BucketSource::builder();
     if let Some(value) = dict_value(values, "s3_bucket_owner")? {
         let converted_1267 = (|| -> PyResult<_> {
@@ -10448,6 +11046,7 @@ fn search_result_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SearchResultItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["item", "score"])?;
     let mut builder = aws_sdk_dynamodb::types::SearchResultItem::builder();
     if let Some(value) = dict_value(values, "item")? {
         let converted_1273 = (|| -> PyResult<_> {
@@ -10520,6 +11119,7 @@ fn search_schema_element_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SearchSchemaElement> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "search_schema_element_type"])?;
     let mut builder = aws_sdk_dynamodb::types::SearchSchemaElement::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_1287 = (|| -> PyResult<_> {
@@ -10576,6 +11176,21 @@ fn source_table_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SourceTableDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "billing_mode",
+            "item_count",
+            "key_schema",
+            "on_demand_throughput",
+            "provisioned_throughput",
+            "table_arn",
+            "table_creation_date_time",
+            "table_id",
+            "table_name",
+            "table_size_bytes",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::SourceTableDetails::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_1292 = (|| -> PyResult<_> {
@@ -10807,6 +11422,17 @@ fn source_table_feature_details_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SourceTableFeatureDetails> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "global_secondary_indexes",
+            "local_secondary_indexes",
+            "sse_description",
+            "stream_description",
+            "time_to_live_description",
+            "vector_indexes",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::SourceTableFeatureDetails::builder();
     if let Some(value) = dict_value(values, "local_secondary_indexes")? {
         let converted_1320 = (|| -> PyResult<_> {
@@ -11027,6 +11653,15 @@ fn sse_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SseDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "inaccessible_encryption_date_time",
+            "kms_master_key_arn",
+            "sse_type",
+            "status",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::SseDescription::builder();
     if let Some(value) = dict_value(values, "status")? {
         let converted_1350 = (|| -> PyResult<_> {
@@ -11130,6 +11765,7 @@ fn sse_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::SseSpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "kms_master_key_id", "sse_type"])?;
     let mut builder = aws_sdk_dynamodb::types::SseSpecification::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_1361 = (|| -> PyResult<_> {
@@ -11203,6 +11839,7 @@ fn stream_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::StreamSpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["stream_enabled", "stream_view_type"])?;
     let mut builder = aws_sdk_dynamodb::types::StreamSpecification::builder();
     if let Some(value) = dict_value(values, "stream_enabled")? {
         let converted_1368 = (|| -> PyResult<_> {
@@ -11259,6 +11896,7 @@ fn table_auto_scaling_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TableAutoScalingDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["replicas", "table_name", "table_status"])?;
     let mut builder = aws_sdk_dynamodb::types::TableAutoScalingDescription::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_1373 = (|| -> PyResult<_> {
@@ -11357,6 +11995,7 @@ fn table_class_summary_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TableClassSummary> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["last_update_date_time", "table_class"])?;
     let mut builder = aws_sdk_dynamodb::types::TableClassSummary::builder();
     if let Some(value) = dict_value(values, "table_class")? {
         let converted_1386 = (|| -> PyResult<_> {
@@ -11420,6 +12059,20 @@ fn table_creation_parameters_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TableCreationParameters> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "attribute_definitions",
+            "billing_mode",
+            "global_secondary_indexes",
+            "key_schema",
+            "on_demand_throughput",
+            "provisioned_throughput",
+            "sse_specification",
+            "table_name",
+            "vector_indexes",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::TableCreationParameters::builder();
     if let Some(value) = dict_value(values, "table_name")? {
         let converted_1392 = (|| -> PyResult<_> {
@@ -11723,6 +12376,41 @@ fn table_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TableDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "archival_summary",
+            "attribute_definitions",
+            "billing_mode_summary",
+            "creation_date_time",
+            "deletion_protection_enabled",
+            "disassociation_protection_enabled",
+            "global_secondary_indexes",
+            "global_table_settings_replication_mode",
+            "global_table_version",
+            "global_table_witnesses",
+            "item_count",
+            "key_schema",
+            "latest_stream_arn",
+            "latest_stream_label",
+            "local_secondary_indexes",
+            "multi_region_consistency",
+            "on_demand_throughput",
+            "provisioned_throughput",
+            "replicas",
+            "restore_summary",
+            "sse_description",
+            "stream_specification",
+            "table_arn",
+            "table_class_summary",
+            "table_id",
+            "table_name",
+            "table_size_bytes",
+            "table_status",
+            "vector_indexes",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::TableDescription::builder();
     if let Some(value) = dict_value(values, "attribute_definitions")? {
         let converted_1435 = (|| -> PyResult<_> {
@@ -12529,6 +13217,10 @@ fn table_warm_throughput_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TableWarmThroughputDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["read_units_per_second", "status", "write_units_per_second"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::TableWarmThroughputDescription::builder();
     if let Some(value) = dict_value(values, "read_units_per_second")? {
         let converted_1541 = (|| -> PyResult<_> {
@@ -12605,6 +13297,7 @@ fn table_warm_throughput_description_to_py(
 
 fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Tag> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_dynamodb::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1548 = (|| -> PyResult<_> {
@@ -12644,6 +13337,7 @@ fn throttling_reason_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::ThrottlingReason> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reason", "resource"])?;
     let mut builder = aws_sdk_dynamodb::types::ThrottlingReason::builder();
     if let Some(value) = dict_value(values, "reason")? {
         let converted_1552 = (|| -> PyResult<_> {
@@ -12692,6 +13386,7 @@ fn time_to_live_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TimeToLiveDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "time_to_live_status"])?;
     let mut builder = aws_sdk_dynamodb::types::TimeToLiveDescription::builder();
     if let Some(value) = dict_value(values, "time_to_live_status")? {
         let converted_1556 = (|| -> PyResult<_> {
@@ -12746,6 +13441,7 @@ fn time_to_live_specification_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TimeToLiveSpecification> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name", "enabled"])?;
     let mut builder = aws_sdk_dynamodb::types::TimeToLiveSpecification::builder();
     if let Some(value) = dict_value(values, "enabled")? {
         let converted_1561 = (|| -> PyResult<_> {
@@ -12791,6 +13487,7 @@ fn transact_get_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TransactGetItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["get"])?;
     let mut builder = aws_sdk_dynamodb::types::TransactGetItem::builder();
     if let Some(value) = dict_value(values, "get")? {
         let converted_1565 = (|| -> PyResult<_> {
@@ -12823,6 +13520,7 @@ fn transact_write_item_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::TransactWriteItem> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["condition_check", "delete", "put", "update"])?;
     let mut builder = aws_sdk_dynamodb::types::TransactWriteItem::builder();
     if let Some(value) = dict_value(values, "condition_check")? {
         let converted_1567 = (|| -> PyResult<_> {
@@ -12913,6 +13611,18 @@ fn transact_write_item_to_py(
 
 fn update_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_dynamodb::types::Update> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "condition_expression",
+            "expression_attribute_names",
+            "expression_attribute_values",
+            "key",
+            "return_values_on_condition_check_failure",
+            "table_name",
+            "update_expression",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::Update::builder();
     if let Some(value) = dict_value(values, "key")? {
         let converted_1575 = (|| -> PyResult<_> {
@@ -13142,6 +13852,15 @@ fn update_global_secondary_index_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::UpdateGlobalSecondaryIndexAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "index_name",
+            "on_demand_throughput",
+            "provisioned_throughput",
+            "warm_throughput",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::UpdateGlobalSecondaryIndexAction::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1620 = (|| -> PyResult<_> {
@@ -13232,6 +13951,7 @@ fn update_kinesis_streaming_configuration_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["approximate_creation_date_time_precision"])?;
     let mut builder = aws_sdk_dynamodb::types::UpdateKinesisStreamingConfiguration::builder();
     if let Some(value) = dict_value(values, "approximate_creation_date_time_precision")? {
         let converted_1628 = (|| -> PyResult<_> {
@@ -13272,6 +13992,17 @@ fn update_replication_group_member_action_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::UpdateReplicationGroupMemberAction> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "global_secondary_indexes",
+            "kms_master_key_id",
+            "on_demand_throughput_override",
+            "provisioned_throughput_override",
+            "region_name",
+            "table_class_override",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::UpdateReplicationGroupMemberAction::builder();
     if let Some(value) = dict_value(values, "region_name")? {
         let converted_1631 = (|| -> PyResult<_> {
@@ -13432,6 +14163,7 @@ fn vector_attribute_definition_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorAttributeDefinition> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["attribute_name"])?;
     let mut builder = aws_sdk_dynamodb::types::VectorAttributeDefinition::builder();
     if let Some(value) = dict_value(values, "attribute_name")? {
         let converted_1650 = (|| -> PyResult<_> {
@@ -13462,6 +14194,10 @@ fn vector_capacity_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorCapacity> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["vector_search_request_bytes", "vector_write_request_bytes"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::VectorCapacity::builder();
     if let Some(value) = dict_value(values, "vector_search_request_bytes")? {
         let converted_1652 = (|| -> PyResult<_> {
@@ -13518,6 +14254,17 @@ fn vector_index_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorIndex> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimensions",
+            "distance_function",
+            "index_name",
+            "projection",
+            "search_schema",
+            "vector_attribute",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::VectorIndex::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1656 = (|| -> PyResult<_> {
@@ -13673,6 +14420,22 @@ fn vector_index_description_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorIndexDescription> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "backfilling",
+            "dimensions",
+            "distance_function",
+            "index_arn",
+            "index_name",
+            "index_size_bytes",
+            "index_status",
+            "item_count",
+            "projection",
+            "search_schema",
+            "vector_attribute",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::VectorIndexDescription::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1675 = (|| -> PyResult<_> {
@@ -13921,6 +14684,17 @@ fn vector_index_info_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorIndexInfo> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "dimensions",
+            "distance_function",
+            "index_name",
+            "projection",
+            "search_schema",
+            "vector_attribute",
+        ],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::VectorIndexInfo::builder();
     if let Some(value) = dict_value(values, "index_name")? {
         let converted_1705 = (|| -> PyResult<_> {
@@ -14079,6 +14853,7 @@ fn vector_index_update_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::VectorIndexUpdate> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["create", "delete"])?;
     let mut builder = aws_sdk_dynamodb::types::VectorIndexUpdate::builder();
     if let Some(value) = dict_value(values, "create")? {
         let converted_1724 = (|| -> PyResult<_> {
@@ -14135,6 +14910,10 @@ fn warm_throughput_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::WarmThroughput> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["read_units_per_second", "write_units_per_second"],
+    )?;
     let mut builder = aws_sdk_dynamodb::types::WarmThroughput::builder();
     if let Some(value) = dict_value(values, "read_units_per_second")? {
         let converted_1728 = (|| -> PyResult<_> {
@@ -14191,6 +14970,7 @@ fn write_request_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_dynamodb::types::WriteRequest> {
     let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["delete_request", "put_request"])?;
     let mut builder = aws_sdk_dynamodb::types::WriteRequest::builder();
     if let Some(value) = dict_value(values, "put_request")? {
         let converted_1732 = (|| -> PyResult<_> {
