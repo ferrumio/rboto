@@ -42,3 +42,10 @@ Method coverage does not mean that every operation has been executed against its
 service. Protocol tests include JSON, Query and XML requests, nested collections,
 binary values, timestamps, documents and streaming. Continue testing the
 operations and service configuration that your application relies on.
+
+## Code produced by coding agents
+
+The [code generation evaluations](code-evaluations.md) check application code
+with strict typing and behavioral assertions. The guide describes the five
+tasks, recorded results, and how to reproduce them. Its CI checks use local
+endpoints; generating new code with a model requires an explicit live run.

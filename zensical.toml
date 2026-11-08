@@ -25,6 +25,7 @@ nav = [
         { "Logging" = "guides/logging.md" },
         { "OpenTelemetry" = "guides/opentelemetry.md" },
         { "Testing" = "guides/testing.md" },
+        { "Code generation evaluations" = "guides/code-evaluations.md" },
     ] },
     { "Service guides" = [
         { "Athena" = "guides/athena.md" },
