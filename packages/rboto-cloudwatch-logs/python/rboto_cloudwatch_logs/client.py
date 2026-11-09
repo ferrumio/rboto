@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import CloudWatchLogsClient as NativeClient, AssociateSourceToS3TableIntegrationOutput, CancelImportTaskOutput, CreateDeliveryOutput, CreateExportTaskOutput, CreateImportTaskOutput, CreateLogAnomalyDetectorOutput, CreateLookupTableOutput, CreateScheduledQueryOutput, DeleteIndexPolicyOutput, DeleteIntegrationOutput, DeleteQueryDefinitionOutput, DeleteScheduledQueryOutput, DescribeAccountPoliciesOutput, DescribeConfigurationTemplatesOutput, DescribeDeliveriesOutput, DescribeDeliveryDestinationsOutput, DescribeDeliverySourcesOutput, DescribeDestinationsOutput, DescribeExportTasksOutput, DescribeFieldIndexesOutput, DescribeImportTaskBatchesOutput, DescribeImportTasksOutput, DescribeIndexPoliciesOutput, DescribeLogGroupsOutput, DescribeLogStreamsOutput, DescribeLookupTablesOutput, DescribeMetricFiltersOutput, DescribeQueriesOutput, DescribeQueryDefinitionsOutput, DescribeResourcePoliciesOutput, DescribeSubscriptionFiltersOutput, DisassociateSourceFromS3TableIntegrationOutput, FilterLogEventsOutput, GetDataProtectionPolicyOutput, GetDeliveryDestinationOutput, GetDeliveryDestinationPolicyOutput, GetDeliveryOutput, GetDeliverySourceOutput, GetIntegrationOutput, GetLogAnomalyDetectorOutput, GetLogEventsOutput, GetLogFieldsOutput, GetLogGroupFieldsOutput, GetLogRecordOutput, GetLookupTableOutput, GetQueryResultsOutput, GetScheduledQueryHistoryOutput, GetScheduledQueryOutput, GetStorageTierPolicyOutput, GetTransformerOutput, ListAggregateLogGroupSummariesOutput, ListAnomaliesOutput, ListIntegrationsOutput, ListLogAnomalyDetectorsOutput, ListLogGroupsForQueryOutput, ListLogGroupsOutput, ListScheduledQueriesOutput, ListSourcesForS3TableIntegrationOutput, ListSyslogConfigurationsOutput, ListTagsForResourceOutput, ListTagsLogGroupOutput, PutAccountPolicyOutput, PutDataProtectionPolicyOutput, PutDeliveryDestinationOutput, PutDeliveryDestinationPolicyOutput, PutDeliverySourceOutput, PutDestinationOutput, PutIndexPolicyOutput, PutIntegrationOutput, PutLogEventsOutput, PutQueryDefinitionOutput, PutResourcePolicyOutput, PutStorageTierPolicyOutput, StartQueryOutput, StopQueryOutput, TestMetricFilterOutput, TestTransformerOutput, UpdateDeliveryConfigurationOutput, UpdateLookupTableOutput, UpdateScheduledQueryOutput
+from ._native import CloudWatchLogsClient as NativeClient, AssociateSourceToS3TableIntegrationOutput, CancelImportTaskOutput, CreateDeliveryOutput, CreateExportTaskOutput, CreateImportTaskOutput, CreateLogAnomalyDetectorOutput, CreateLookupTableOutput, CreateScheduledQueryOutput, DeleteAccountPolicyOutput, DeleteIndexPolicyOutput, DeleteIntegrationOutput, DeleteQueryDefinitionOutput, DeleteScheduledQueryOutput, DescribeAccountPoliciesOutput, DescribeConfigurationTemplatesOutput, DescribeDeliveriesOutput, DescribeDeliveryDestinationsOutput, DescribeDeliverySourcesOutput, DescribeDestinationsOutput, DescribeExportTasksOutput, DescribeFieldIndexesOutput, DescribeImportTaskBatchesOutput, DescribeImportTasksOutput, DescribeIndexPoliciesOutput, DescribeLogGroupsOutput, DescribeLogStreamsOutput, DescribeLookupTablesOutput, DescribeMetricFiltersOutput, DescribeQueriesOutput, DescribeQueryDefinitionsOutput, DescribeResourcePoliciesOutput, DescribeSubscriptionFiltersOutput, DisassociateSourceFromS3TableIntegrationOutput, FilterLogEventsOutput, GetDataProtectionPolicyOutput, GetDeliveryDestinationOutput, GetDeliveryDestinationPolicyOutput, GetDeliveryOutput, GetDeliverySourceOutput, GetIntegrationOutput, GetLogAnomalyDetectorOutput, GetLogEventsOutput, GetLogFieldsOutput, GetLogGroupFieldsOutput, GetLogRecordOutput, GetLookupTableOutput, GetQueryResultsOutput, GetScheduledQueryHistoryOutput, GetScheduledQueryOutput, GetStorageTierPolicyOutput, GetTransformerOutput, ListAggregateLogGroupSummariesOutput, ListAnomaliesOutput, ListIntegrationsOutput, ListLogAnomalyDetectorsOutput, ListLogGroupsForQueryOutput, ListLogGroupsOutput, ListScheduledQueriesOutput, ListSourcesForS3TableIntegrationOutput, ListSyslogConfigurationsOutput, ListTagsForResourceOutput, ListTagsLogGroupOutput, PutAccountPolicyOutput, PutDataProtectionPolicyOutput, PutDeliveryDestinationOutput, PutDeliveryDestinationPolicyOutput, PutDeliverySourceOutput, PutDestinationOutput, PutIndexPolicyOutput, PutIntegrationOutput, PutLogEventsOutput, PutQueryDefinitionOutput, PutResourcePolicyOutput, PutStorageTierPolicyOutput, StartQueryOutput, StopQueryOutput, TestMetricFilterOutput, TestTransformerOutput, UpdateDeliveryConfigurationOutput, UpdateLookupTableOutput, UpdateScheduledQueryOutput
 from .types import (
     DataSource,
     DataSourceFilter,
@@ -546,26 +546,29 @@ class CloudWatchLogsClient:
         *,
         policy_name: str,
         policy_type: PolicyType,
-    ) -> None:
+        dry_run: bool | None = None,
+    ) -> DeleteAccountPolicyOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/delete_account_policy/)."""
         params: dict[str, object] = {
             "policy_name": policy_name,
             "policy_type": policy_type,
         }
+        if dry_run is not None:
+            params["dry_run"] = dry_run
         _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
-            await invoke(
+            _response = await invoke(
                 self._native.delete_account_policy, params, _interceptors,
                 "cloudwatch-logs", "DeleteAccountPolicy", self._region,
-                type(None),
-                ("policy_name", "policy_type", ),
+                DeleteAccountPolicyOutput,
+                ("policy_name", "policy_type", "dry_run", ),
                 ("policy_name", "policy_type", ),
                 service_name='CloudWatch Logs',
             )
-            return None
-        await self._native.delete_account_policy(params)
-        return None
+            return _response
+        _response = await self._native.delete_account_policy(params)
+        return _response
 
 
     async def delete_data_protection_policy(
@@ -2765,6 +2768,7 @@ class CloudWatchLogsClient:
         policy_type: PolicyType,
         scope: Scope | None = None,
         selection_criteria: str | None = None,
+        dry_run: bool | None = None,
     ) -> PutAccountPolicyOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/operations/put_account_policy/)."""
         params: dict[str, object] = {
@@ -2776,6 +2780,8 @@ class CloudWatchLogsClient:
             params["scope"] = scope
         if selection_criteria is not None:
             params["selection_criteria"] = selection_criteria
+        if dry_run is not None:
+            params["dry_run"] = dry_run
         _interceptors = operation_interceptors("cloudwatch-logs", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2783,7 +2789,7 @@ class CloudWatchLogsClient:
                 self._native.put_account_policy, params, _interceptors,
                 "cloudwatch-logs", "PutAccountPolicy", self._region,
                 PutAccountPolicyOutput,
-                ("policy_name", "policy_document", "policy_type", "scope", "selection_criteria", ),
+                ("policy_name", "policy_document", "policy_type", "scope", "selection_criteria", "dry_run", ),
                 ("policy_name", "policy_document", "policy_type", ),
                 service_name='CloudWatch Logs',
             )

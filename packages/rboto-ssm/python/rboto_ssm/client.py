@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import SSMClient as NativeClient, AddTagsToResourceOutput, AssociateOpsItemRelatedItemOutput, CancelCommandOutput, CancelMaintenanceWindowExecutionOutput, CreateActivationOutput, CreateAssociationBatchOutput, CreateAssociationOutput, CreateCloudConnectorOutput, CreateDocumentOutput, CreateMaintenanceWindowOutput, CreateOpsItemOutput, CreateOpsMetadataOutput, CreatePatchBaselineOutput, CreateResourceDataSyncOutput, DeleteActivationOutput, DeleteAssociationOutput, DeleteCloudConnectorOutput, DeleteDocumentOutput, DeleteInventoryOutput, DeleteMaintenanceWindowOutput, DeleteOpsItemOutput, DeleteOpsMetadataOutput, DeleteParameterOutput, DeleteParametersOutput, DeletePatchBaselineOutput, DeleteResourceDataSyncOutput, DeleteResourcePolicyOutput, DeregisterManagedInstanceOutput, DeregisterPatchBaselineForPatchGroupOutput, DeregisterTargetFromMaintenanceWindowOutput, DeregisterTaskFromMaintenanceWindowOutput, DescribeActivationsOutput, DescribeAssociationExecutionTargetsOutput, DescribeAssociationExecutionsOutput, DescribeAssociationOutput, DescribeAutomationExecutionsOutput, DescribeAutomationStepExecutionsOutput, DescribeAvailablePatchesOutput, DescribeDocumentOutput, DescribeDocumentPermissionOutput, DescribeEffectiveInstanceAssociationsOutput, DescribeEffectivePatchesForPatchBaselineOutput, DescribeInstanceAssociationsStatusOutput, DescribeInstanceInformationOutput, DescribeInstancePatchStatesForPatchGroupOutput, DescribeInstancePatchStatesOutput, DescribeInstancePatchesOutput, DescribeInstancePropertiesOutput, DescribeInventoryDeletionsOutput, DescribeMaintenanceWindowExecutionTaskInvocationsOutput, DescribeMaintenanceWindowExecutionTasksOutput, DescribeMaintenanceWindowExecutionsOutput, DescribeMaintenanceWindowScheduleOutput, DescribeMaintenanceWindowTargetsOutput, DescribeMaintenanceWindowTasksOutput, DescribeMaintenanceWindowsForTargetOutput, DescribeMaintenanceWindowsOutput, DescribeOpsItemsOutput, DescribeParametersOutput, DescribePatchBaselinesOutput, DescribePatchGroupStateOutput, DescribePatchGroupsOutput, DescribePatchPropertiesOutput, DescribeSessionsOutput, DisassociateOpsItemRelatedItemOutput, GetAccessTokenOutput, GetAutomationExecutionOutput, GetCalendarStateOutput, GetCloudConnectorOutput, GetCommandInvocationOutput, GetConnectionStatusOutput, GetDefaultPatchBaselineOutput, GetDeployablePatchSnapshotForInstanceOutput, GetDocumentOutput, GetExecutionPreviewOutput, GetInventoryOutput, GetInventorySchemaOutput, GetMaintenanceWindowExecutionOutput, GetMaintenanceWindowExecutionTaskInvocationOutput, GetMaintenanceWindowExecutionTaskOutput, GetMaintenanceWindowOutput, GetMaintenanceWindowTaskOutput, GetOpsItemOutput, GetOpsMetadataOutput, GetOpsSummaryOutput, GetParameterHistoryOutput, GetParameterOutput, GetParametersByPathOutput, GetParametersOutput, GetPatchBaselineForPatchGroupOutput, GetPatchBaselineOutput, GetResourcePoliciesOutput, GetServiceSettingOutput, LabelParameterVersionOutput, ListAssociationVersionsOutput, ListAssociationsOutput, ListCloudConnectorsOutput, ListCommandInvocationsOutput, ListCommandsOutput, ListComplianceItemsOutput, ListComplianceSummariesOutput, ListDocumentMetadataHistoryOutput, ListDocumentVersionsOutput, ListDocumentsOutput, ListInventoryEntriesOutput, ListNodesOutput, ListNodesSummaryOutput, ListOpsItemEventsOutput, ListOpsItemRelatedItemsOutput, ListOpsMetadataOutput, ListResourceComplianceSummariesOutput, ListResourceDataSyncOutput, ListTagsForResourceOutput, ModifyDocumentPermissionOutput, PutComplianceItemsOutput, PutInventoryOutput, PutParameterOutput, PutResourcePolicyOutput, RegisterDefaultPatchBaselineOutput, RegisterPatchBaselineForPatchGroupOutput, RegisterTargetWithMaintenanceWindowOutput, RegisterTaskWithMaintenanceWindowOutput, RemoveTagsFromResourceOutput, ResetServiceSettingOutput, ResumeSessionOutput, SendAutomationSignalOutput, SendCommandOutput, StartAccessRequestOutput, StartAssociationsOnceOutput, StartAutomationExecutionOutput, StartChangeRequestExecutionOutput, StartExecutionPreviewOutput, StartSessionOutput, StopAutomationExecutionOutput, TerminateSessionOutput, UnlabelParameterVersionOutput, UpdateAssociationOutput, UpdateAssociationStatusOutput, UpdateCloudConnectorOutput, UpdateDocumentDefaultVersionOutput, UpdateDocumentMetadataOutput, UpdateDocumentOutput, UpdateMaintenanceWindowOutput, UpdateMaintenanceWindowTargetOutput, UpdateMaintenanceWindowTaskOutput, UpdateManagedInstanceRoleOutput, UpdateOpsItemOutput, UpdateOpsMetadataOutput, UpdatePatchBaselineOutput, UpdateResourceDataSyncOutput, UpdateServiceSettingOutput, ValidateCloudConnectorOutput
+from ._native import SSMClient as NativeClient, AddTagsToResourceOutput, AssociateOpsItemRelatedItemOutput, CancelCommandOutput, CancelMaintenanceWindowExecutionOutput, CreateActivationOutput, CreateAssociationBatchOutput, CreateAssociationOutput, CreateCloudConnectorOutput, CreateDocumentOutput, CreateMaintenanceWindowOutput, CreateOpsItemOutput, CreateOpsMetadataOutput, CreatePatchBaselineOutput, CreateResourceDataSyncOutput, DeleteActivationOutput, DeleteAssociationOutput, DeleteCloudConnectorOutput, DeleteDocumentOutput, DeleteInventoryOutput, DeleteMaintenanceWindowOutput, DeleteOpsItemOutput, DeleteOpsMetadataOutput, DeleteParameterOutput, DeleteParametersOutput, DeletePatchBaselineOutput, DeleteResourceDataSyncOutput, DeleteResourcePolicyOutput, DeregisterDefaultHostManagementConfigurationOutput, DeregisterManagedInstanceOutput, DeregisterPatchBaselineForPatchGroupOutput, DeregisterTargetFromMaintenanceWindowOutput, DeregisterTaskFromMaintenanceWindowOutput, DescribeActivationsOutput, DescribeAssociationExecutionTargetsOutput, DescribeAssociationExecutionsOutput, DescribeAssociationOutput, DescribeAutomationExecutionsOutput, DescribeAutomationStepExecutionsOutput, DescribeAvailablePatchesOutput, DescribeDocumentOutput, DescribeDocumentPermissionOutput, DescribeEffectiveInstanceAssociationsOutput, DescribeEffectivePatchesForPatchBaselineOutput, DescribeInstanceAssociationsStatusOutput, DescribeInstanceInformationOutput, DescribeInstancePatchStatesForPatchGroupOutput, DescribeInstancePatchStatesOutput, DescribeInstancePatchesOutput, DescribeInstancePropertiesOutput, DescribeInventoryDeletionsOutput, DescribeMaintenanceWindowExecutionTaskInvocationsOutput, DescribeMaintenanceWindowExecutionTasksOutput, DescribeMaintenanceWindowExecutionsOutput, DescribeMaintenanceWindowScheduleOutput, DescribeMaintenanceWindowTargetsOutput, DescribeMaintenanceWindowTasksOutput, DescribeMaintenanceWindowsForTargetOutput, DescribeMaintenanceWindowsOutput, DescribeOpsItemsOutput, DescribeParametersOutput, DescribePatchBaselinesOutput, DescribePatchGroupStateOutput, DescribePatchGroupsOutput, DescribePatchPropertiesOutput, DescribeSessionsOutput, DisassociateOpsItemRelatedItemOutput, GetAccessTokenOutput, GetAutomationExecutionOutput, GetCalendarStateOutput, GetCloudConnectorOutput, GetCommandInvocationOutput, GetConnectionStatusOutput, GetDefaultPatchBaselineOutput, GetDeployablePatchSnapshotForInstanceOutput, GetDocumentOutput, GetExecutionPreviewOutput, GetInventoryOutput, GetInventorySchemaOutput, GetMaintenanceWindowExecutionOutput, GetMaintenanceWindowExecutionTaskInvocationOutput, GetMaintenanceWindowExecutionTaskOutput, GetMaintenanceWindowOutput, GetMaintenanceWindowTaskOutput, GetOpsItemOutput, GetOpsMetadataOutput, GetOpsSummaryOutput, GetParameterHistoryOutput, GetParameterOutput, GetParametersByPathOutput, GetParametersOutput, GetPatchBaselineForPatchGroupOutput, GetPatchBaselineOutput, GetResourcePoliciesOutput, GetServiceSettingOutput, LabelParameterVersionOutput, ListAssociationVersionsOutput, ListAssociationsOutput, ListCloudConnectorsOutput, ListCommandInvocationsOutput, ListCommandsOutput, ListComplianceItemsOutput, ListComplianceSummariesOutput, ListDocumentMetadataHistoryOutput, ListDocumentVersionsOutput, ListDocumentsOutput, ListInventoryEntriesOutput, ListNodesOutput, ListNodesSummaryOutput, ListOpsItemEventsOutput, ListOpsItemRelatedItemsOutput, ListOpsMetadataOutput, ListResourceComplianceSummariesOutput, ListResourceDataSyncOutput, ListTagsForResourceOutput, ModifyDocumentPermissionOutput, PutComplianceItemsOutput, PutInventoryOutput, PutParameterOutput, PutResourcePolicyOutput, RegisterDefaultHostManagementConfigurationOutput, RegisterDefaultPatchBaselineOutput, RegisterPatchBaselineForPatchGroupOutput, RegisterTargetWithMaintenanceWindowOutput, RegisterTaskWithMaintenanceWindowOutput, RemoveTagsFromResourceOutput, ResetServiceSettingOutput, ResumeSessionOutput, SendAutomationSignalOutput, SendCommandOutput, StartAccessRequestOutput, StartAssociationsOnceOutput, StartAutomationExecutionOutput, StartChangeRequestExecutionOutput, StartExecutionPreviewOutput, StartSessionOutput, StopAutomationExecutionOutput, TerminateSessionOutput, UnlabelParameterVersionOutput, UpdateAssociationOutput, UpdateAssociationStatusOutput, UpdateCloudConnectorOutput, UpdateDocumentDefaultVersionOutput, UpdateDocumentMetadataOutput, UpdateDocumentOutput, UpdateMaintenanceWindowOutput, UpdateMaintenanceWindowTargetOutput, UpdateMaintenanceWindowTaskOutput, UpdateManagedInstanceRoleOutput, UpdateOpsItemOutput, UpdateOpsMetadataOutput, UpdatePatchBaselineOutput, UpdateResourceDataSyncOutput, UpdateServiceSettingOutput, ValidateCloudConnectorOutput
 from .types import (
     AlarmConfiguration,
     AssociationComplianceSeverity,
@@ -32,6 +32,7 @@ from .types import (
     ComplianceStringFilter,
     ComplianceUploadType,
     CreateAssociationBatchRequestEntry,
+    DHMCPermissionModel,
     DeletionMode,
     DescribeActivationsFilter,
     DocumentFilter,
@@ -1146,6 +1147,28 @@ class SSMClient:
             )
             return _response
         _response = await self._native.delete_resource_policy(params)
+        return _response
+
+
+    async def deregister_default_host_management_configuration(
+        self,
+    ) -> DeregisterDefaultHostManagementConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/deregister_default_host_management_configuration/)."""
+        params: dict[str, object] = {
+        }
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.deregister_default_host_management_configuration, params, _interceptors,
+                "ssm", "DeregisterDefaultHostManagementConfiguration", self._region,
+                DeregisterDefaultHostManagementConfigurationOutput,
+                (),
+                (),
+                service_name='SSM',
+            )
+            return _response
+        _response = await self._native.deregister_default_host_management_configuration(params)
         return _response
 
 
@@ -4072,6 +4095,37 @@ class SSMClient:
             )
             return _response
         _response = await self._native.put_resource_policy(params)
+        return _response
+
+
+    async def register_default_host_management_configuration(
+        self,
+        *,
+        permission_model: DHMCPermissionModel,
+        role_arn: str | None = None,
+        overwrite: bool | None = None,
+    ) -> RegisterDefaultHostManagementConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/register_default_host_management_configuration/)."""
+        params: dict[str, object] = {
+            "permission_model": permission_model,
+        }
+        if role_arn is not None:
+            params["role_arn"] = role_arn
+        if overwrite is not None:
+            params["overwrite"] = overwrite
+        _interceptors = operation_interceptors("ssm", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.register_default_host_management_configuration, params, _interceptors,
+                "ssm", "RegisterDefaultHostManagementConfiguration", self._region,
+                RegisterDefaultHostManagementConfigurationOutput,
+                ("permission_model", "role_arn", "overwrite", ),
+                ("permission_model", ),
+                service_name='SSM',
+            )
+            return _response
+        _response = await self._native.register_default_host_management_configuration(params)
         return _response
 
 

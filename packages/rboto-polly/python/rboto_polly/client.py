@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput
+from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, ListTagsForResourceOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput, TagResourceOutput, UntagResourceOutput
 from .types import (
     Engine,
     LanguageCode,
@@ -252,17 +252,45 @@ class PollyClient:
         return _response
 
 
+    async def list_tags_for_resource(
+        self,
+        *,
+        resource_arn: str,
+    ) -> ListTagsForResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/list_tags_for_resource/)."""
+        params: dict[str, object] = {
+            "resource_arn": resource_arn,
+        }
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_tags_for_resource, params, _interceptors,
+                "polly", "ListTagsForResource", self._region,
+                ListTagsForResourceOutput,
+                ("resource_arn", ),
+                ("resource_arn", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.list_tags_for_resource(params)
+        return _response
+
+
     async def put_lexicon(
         self,
         *,
         name: str,
         content: str,
+        tags: dict[str, str] | None = None,
     ) -> PutLexiconOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/put_lexicon/)."""
         params: dict[str, object] = {
             "name": name,
             "content": content,
         }
+        if tags is not None:
+            params["tags"] = tags
         _interceptors = operation_interceptors("polly", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -270,7 +298,7 @@ class PollyClient:
                 self._native.put_lexicon, params, _interceptors,
                 "polly", "PutLexicon", self._region,
                 PutLexiconOutput,
-                ("name", "content", ),
+                ("name", "content", "tags", ),
                 ("name", "content", ),
                 service_name='Polly',
             )
@@ -419,4 +447,58 @@ class PollyClient:
             )
             return _response
         _response = await self._native.synthesize_speech(params)
+        return _response
+
+
+    async def tag_resource(
+        self,
+        *,
+        resource_arn: str,
+        tags: dict[str, str],
+    ) -> TagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/tag_resource/)."""
+        params: dict[str, object] = {
+            "resource_arn": resource_arn,
+            "tags": tags,
+        }
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.tag_resource, params, _interceptors,
+                "polly", "TagResource", self._region,
+                TagResourceOutput,
+                ("resource_arn", "tags", ),
+                ("resource_arn", "tags", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.tag_resource(params)
+        return _response
+
+
+    async def untag_resource(
+        self,
+        *,
+        resource_arn: str,
+        tag_keys: Sequence[str],
+    ) -> UntagResourceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/untag_resource/)."""
+        params: dict[str, object] = {
+            "resource_arn": resource_arn,
+            "tag_keys": tag_keys,
+        }
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.untag_resource, params, _interceptors,
+                "polly", "UntagResource", self._region,
+                UntagResourceOutput,
+                ("resource_arn", "tag_keys", ),
+                ("resource_arn", "tag_keys", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.untag_resource(params)
         return _response

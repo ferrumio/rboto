@@ -9,6 +9,7 @@ from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _pa
 
 from ._native import (
     ListBackupsOutput,
+    ListBulkOperationsOutput,
     ListContributorInsightsOutput,
     ListExportsOutput,
     ListImportsOutput,
@@ -66,6 +67,29 @@ class DynamoDBClientPaginators:
             _PaginationSpec(
                 input_tokens=('exclusive_start_backup_arn',),
                 output_tokens=((('last_evaluated_backup_arn',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_bulk_operations(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListBulkOperationsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_bulk_operations/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_bulk_operations, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
                 more_results=None,
             ),
         )

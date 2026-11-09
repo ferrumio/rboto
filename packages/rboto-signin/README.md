@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Sign-In**,
 powered by Rust. This package contains `SignInClient` and
-**11 operations**.
+**12 operations**.
 
 ## Installation
 
@@ -93,6 +93,7 @@ native response definitions are in the package's `_native.pyi`.
 |---|---|---|
 | [`create_o_auth2_token`](#create_o_auth2_token) | <code>token_input: CreateOAuth2TokenRequestBody</code> | <code>CreateOAuth2TokenOutput</code> |
 | [`create_o_auth2_token_with_iam`](#create_o_auth2_token_with_iam) | <code>grant_type: str</code>, <code>resource: str</code> | <code>CreateOAuth2TokenWithIAMOutput</code> |
+| [`create_o_auth2_token_with_token_exchange`](#create_o_auth2_token_with_token_exchange) | <code>grant_type: str</code> | <code>CreateOAuth2TokenWithTokenExchangeOutput</code> |
 | [`delete_console_authorization_configuration`](#delete_console_authorization_configuration) | None | <code>DeleteConsoleAuthorizationConfigurationOutput</code> |
 | [`delete_resource_permission_statement`](#delete_resource_permission_statement) | <code>statement_id: str</code> | <code>DeleteResourcePermissionStatementOutput</code> |
 | [`get_console_authorization_configuration`](#get_console_authorization_configuration) | None | <code>GetConsoleAuthorizationConfigurationOutput</code> |
@@ -123,6 +124,20 @@ async def create_o_auth2_token_with_iam(
     grant_type: str,
     resource: str,
 ) -> CreateOAuth2TokenWithIAMOutput: ...
+```
+
+
+### create_o_auth2_token_with_token_exchange
+
+```python
+async def create_o_auth2_token_with_token_exchange(
+    *,
+    grant_type: str,
+    subject_token: str | None = None,
+    subject_token_type: str | None = None,
+    resource: str | None = None,
+    scope: str | None = None,
+) -> CreateOAuth2TokenWithTokenExchangeOutput: ...
 ```
 
 

@@ -37,6 +37,7 @@ from .types import (
     KnowledgeBaseDocument,
     KnowledgeBaseState,
     MemoryConfiguration,
+    MetadataConfiguration,
     OrchestrationType,
     PromptOverrideConfiguration,
     PromptVariant,
@@ -2814,6 +2815,7 @@ class BedrockAgentClient:
         knowledge_base_configuration: KnowledgeBaseConfiguration,
         description: str | None = None,
         storage_configuration: StorageConfiguration | None = None,
+        metadata_configurations: Sequence[MetadataConfiguration] | None = None,
     ) -> UpdateKnowledgeBaseOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/operations/update_knowledge_base/)."""
         params: dict[str, object] = {
@@ -2826,6 +2828,8 @@ class BedrockAgentClient:
             params["description"] = description
         if storage_configuration is not None:
             params["storage_configuration"] = storage_configuration
+        if metadata_configurations is not None:
+            params["metadata_configurations"] = metadata_configurations
         _interceptors = operation_interceptors("bedrock-agent", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2833,7 +2837,7 @@ class BedrockAgentClient:
                 self._native.update_knowledge_base, params, _interceptors,
                 "bedrock-agent", "UpdateKnowledgeBase", self._region,
                 UpdateKnowledgeBaseOutput,
-                ("knowledge_base_id", "name", "role_arn", "knowledge_base_configuration", "description", "storage_configuration", ),
+                ("knowledge_base_id", "name", "role_arn", "knowledge_base_configuration", "description", "storage_configuration", "metadata_configurations", ),
                 ("knowledge_base_id", "name", "role_arn", "knowledge_base_configuration", ),
                 service_name='Bedrock Agent',
             )

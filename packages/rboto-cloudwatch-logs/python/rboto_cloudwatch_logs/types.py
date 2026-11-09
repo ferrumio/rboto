@@ -52,6 +52,8 @@ DataSourceOutput: TypeAlias = _native.DataSource
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DataSourceOutput/)."""
 DateTimeConverterOutput: TypeAlias = _native.DateTimeConverter
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DateTimeConverterOutput/)."""
+DeleteAccountPolicyOutput: TypeAlias = _native.DeleteAccountPolicyOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteAccountPolicyOutput/)."""
 DeleteIndexPolicyOutput: TypeAlias = _native.DeleteIndexPolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteIndexPolicyOutput/)."""
 DeleteIntegrationOutput: TypeAlias = _native.DeleteIntegrationOutput
@@ -116,6 +118,8 @@ DestinationConfigurationOutput: TypeAlias = _native.DestinationConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DestinationConfigurationOutput/)."""
 DisassociateSourceFromS3TableIntegrationOutput: TypeAlias = _native.DisassociateSourceFromS3TableIntegrationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateSourceFromS3TableIntegrationOutput/)."""
+DryRunResultOutput: TypeAlias = _native.DryRunResult
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DryRunResultOutput/)."""
 ExportTaskOutput: TypeAlias = _native.ExportTask
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ExportTaskOutput/)."""
 ExportTaskExecutionInfoOutput: TypeAlias = _native.ExportTaskExecutionInfo
@@ -214,6 +218,8 @@ LogGroupOutput: TypeAlias = _native.LogGroup
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupOutput/)."""
 LogGroupFieldOutput: TypeAlias = _native.LogGroupField
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupFieldOutput/)."""
+LogGroupImpactOutput: TypeAlias = _native.LogGroupImpact
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupImpactOutput/)."""
 LogGroupSummaryOutput: TypeAlias = _native.LogGroupSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupSummaryOutput/)."""
 LogStreamOutput: TypeAlias = _native.LogStream
@@ -450,7 +456,7 @@ ListAggregateLogGroupSummariesGroupBy: TypeAlias = Literal['DATA_SOURCE_NAME_TYP
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesGroupBy/)."""
 ListAggregateLogGroupSummariesGroupByOutput: TypeAlias = ListAggregateLogGroupSummariesGroupBy | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ListAggregateLogGroupSummariesGroupByOutput/)."""
-LogGroupClass: TypeAlias = Literal['STANDARD', 'INFREQUENT_ACCESS', 'DELIVERY']
+LogGroupClass: TypeAlias = Literal['STANDARD', 'INFREQUENT_ACCESS', 'DELIVERY', 'ESSENTIALS']
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupClass/)."""
 LogGroupClassOutput: TypeAlias = LogGroupClass | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupClassOutput/)."""
@@ -474,7 +480,7 @@ PolicyScope: TypeAlias = Literal['ACCOUNT', 'RESOURCE']
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyScope/)."""
 PolicyScopeOutput: TypeAlias = PolicyScope | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyScopeOutput/)."""
-PolicyType: TypeAlias = Literal['DATA_PROTECTION_POLICY', 'SUBSCRIPTION_FILTER_POLICY', 'FIELD_INDEX_POLICY', 'TRANSFORMER_POLICY', 'METRIC_EXTRACTION_POLICY']
+PolicyType: TypeAlias = Literal['DATA_PROTECTION_POLICY', 'SUBSCRIPTION_FILTER_POLICY', 'FIELD_INDEX_POLICY', 'TRANSFORMER_POLICY', 'METRIC_EXTRACTION_POLICY', 'RETENTION_POLICY']
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyType/)."""
 PolicyTypeOutput: TypeAlias = PolicyType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PolicyTypeOutput/)."""
@@ -867,6 +873,7 @@ DeleteAccountPolicyRequest = TypedDict(
     {
     "policy_name": Required["str"],
     "policy_type": Required["PolicyType"],
+    "dry_run": NotRequired["bool"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DeleteAccountPolicyRequest/)."""
@@ -1365,6 +1372,19 @@ DisassociateSourceFromS3TableIntegrationRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DisassociateSourceFromS3TableIntegrationRequest/)."""
+
+DryRunResult = TypedDict(
+    "DryRunResult",
+    {
+    "total_matched_log_groups": NotRequired["int"],
+    "increased_retention_log_group_count": NotRequired["int"],
+    "decreased_retention_log_group_count": NotRequired["int"],
+    "unchanged_retention_log_group_count": NotRequired["int"],
+    "failed_analysis_count": NotRequired["int"],
+    "top_log_groups_impacted": NotRequired["Sequence[LogGroupImpact]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/DryRunResult/)."""
 
 Entity = TypedDict(
     "Entity",
@@ -1964,6 +1984,7 @@ LogGroup = TypedDict(
     "log_group_arn": NotRequired["str"],
     "deletion_protection_enabled": NotRequired["bool"],
     "bearer_token_authentication_enabled": NotRequired["bool"],
+    "retention_policy_name": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroup/)."""
@@ -1976,6 +1997,17 @@ LogGroupField = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupField/)."""
+
+LogGroupImpact = TypedDict(
+    "LogGroupImpact",
+    {
+    "log_group_name": NotRequired["str"],
+    "current_retention": NotRequired["str"],
+    "proposed_retention": NotRequired["str"],
+    "stored_bytes": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/LogGroupImpact/)."""
 
 LogGroupSummary = TypedDict(
     "LogGroupSummary",
@@ -2352,6 +2384,7 @@ PutAccountPolicyRequest = TypedDict(
     "policy_type": Required["PolicyType"],
     "scope": NotRequired["Scope"],
     "selection_criteria": NotRequired["str"],
+    "dry_run": NotRequired["bool"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/PutAccountPolicyRequest/)."""

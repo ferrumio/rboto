@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Athena**,
 powered by Rust. This package contains `AthenaClient` and
-**70 operations**.
+**75 operations**.
 
 ## Installation
 
@@ -102,12 +102,14 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_notebook`](#create_notebook) | <code>work_group: str</code>, <code>name: str</code> | <code>CreateNotebookOutput</code> |
 | [`create_prepared_statement`](#create_prepared_statement) | <code>statement_name: str</code>, <code>work_group: str</code>, <code>query_statement: str</code> | <code>CreatePreparedStatementOutput</code> |
 | [`create_presigned_notebook_url`](#create_presigned_notebook_url) | <code>session_id: str</code> | <code>CreatePresignedNotebookUrlOutput</code> |
+| [`create_system_table_configuration`](#create_system_table_configuration) | <code>table_name: SystemTableName</code> | <code>CreateSystemTableConfigurationOutput</code> |
 | [`create_work_group`](#create_work_group) | <code>name: str</code> | <code>CreateWorkGroupOutput</code> |
 | [`delete_capacity_reservation`](#delete_capacity_reservation) | <code>name: str</code> | <code>DeleteCapacityReservationOutput</code> |
 | [`delete_data_catalog`](#delete_data_catalog) | <code>name: str</code> | <code>DeleteDataCatalogOutput</code> |
 | [`delete_named_query`](#delete_named_query) | <code>named_query_id: str</code> | <code>DeleteNamedQueryOutput</code> |
 | [`delete_notebook`](#delete_notebook) | <code>notebook_id: str</code> | <code>DeleteNotebookOutput</code> |
 | [`delete_prepared_statement`](#delete_prepared_statement) | <code>statement_name: str</code>, <code>work_group: str</code> | <code>DeletePreparedStatementOutput</code> |
+| [`delete_system_table_configuration`](#delete_system_table_configuration) | <code>table_name: SystemTableName</code> | <code>DeleteSystemTableConfigurationOutput</code> |
 | [`delete_work_group`](#delete_work_group) | <code>work_group: str</code> | <code>DeleteWorkGroupOutput</code> |
 | [`export_notebook`](#export_notebook) | <code>notebook_id: str</code> | <code>ExportNotebookOutput</code> |
 | [`get_calculation_execution`](#get_calculation_execution) | <code>calculation_execution_id: str</code> | <code>GetCalculationExecutionOutput</code> |
@@ -127,6 +129,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_session`](#get_session) | <code>session_id: str</code> | <code>GetSessionOutput</code> |
 | [`get_session_endpoint`](#get_session_endpoint) | <code>session_id: str</code> | <code>GetSessionEndpointOutput</code> |
 | [`get_session_status`](#get_session_status) | <code>session_id: str</code> | <code>GetSessionStatusOutput</code> |
+| [`get_system_table_configuration`](#get_system_table_configuration) | <code>table_name: SystemTableName</code> | <code>GetSystemTableConfigurationOutput</code> |
 | [`get_table_metadata`](#get_table_metadata) | <code>catalog_name: str</code>, <code>database_name: str</code>, <code>table_name: str</code> | <code>GetTableMetadataOutput</code> |
 | [`get_work_group`](#get_work_group) | <code>work_group: str</code> | <code>GetWorkGroupOutput</code> |
 | [`import_notebook`](#import_notebook) | <code>work_group: str</code>, <code>name: str</code>, <code>type: NotebookType</code> | <code>ImportNotebookOutput</code> |
@@ -143,6 +146,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_prepared_statements`](#list_prepared_statements) | <code>work_group: str</code> | <code>ListPreparedStatementsOutput</code> |
 | [`list_query_executions`](#list_query_executions) | None | <code>ListQueryExecutionsOutput</code> |
 | [`list_sessions`](#list_sessions) | <code>work_group: str</code> | <code>ListSessionsOutput</code> |
+| [`list_system_table_statuses`](#list_system_table_statuses) | None | <code>ListSystemTableStatusesOutput</code> |
 | [`list_table_metadata`](#list_table_metadata) | <code>catalog_name: str</code>, <code>database_name: str</code> | <code>ListTableMetadataOutput</code> |
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
 | [`list_work_groups`](#list_work_groups) | None | <code>ListWorkGroupsOutput</code> |
@@ -161,6 +165,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_notebook`](#update_notebook) | <code>notebook_id: str</code>, <code>payload: str</code>, <code>type: NotebookType</code> | <code>UpdateNotebookOutput</code> |
 | [`update_notebook_metadata`](#update_notebook_metadata) | <code>notebook_id: str</code>, <code>name: str</code> | <code>UpdateNotebookMetadataOutput</code> |
 | [`update_prepared_statement`](#update_prepared_statement) | <code>statement_name: str</code>, <code>work_group: str</code>, <code>query_statement: str</code> | <code>UpdatePreparedStatementOutput</code> |
+| [`update_system_table_configuration`](#update_system_table_configuration) | <code>table_name: SystemTableName</code> | <code>UpdateSystemTableConfigurationOutput</code> |
 | [`update_work_group`](#update_work_group) | <code>work_group: str</code> | <code>UpdateWorkGroupOutput</code> |
 
 ## Complete signatures
@@ -282,6 +287,19 @@ async def create_presigned_notebook_url(
 ```
 
 
+### create_system_table_configuration
+
+```python
+async def create_system_table_configuration(
+    *,
+    table_name: SystemTableName,
+    client_request_token: str | None = None,
+    kms_key_arn: str | None = None,
+    tags: Sequence[Tag] | None = None,
+) -> CreateSystemTableConfigurationOutput: ...
+```
+
+
 ### create_work_group
 
 ```python
@@ -344,6 +362,16 @@ async def delete_prepared_statement(
     statement_name: str,
     work_group: str,
 ) -> DeletePreparedStatementOutput: ...
+```
+
+
+### delete_system_table_configuration
+
+```python
+async def delete_system_table_configuration(
+    *,
+    table_name: SystemTableName,
+) -> DeleteSystemTableConfigurationOutput: ...
 ```
 
 
@@ -545,6 +573,16 @@ async def get_session_status(
     *,
     session_id: str,
 ) -> GetSessionStatusOutput: ...
+```
+
+
+### get_system_table_configuration
+
+```python
+async def get_system_table_configuration(
+    *,
+    table_name: SystemTableName,
+) -> GetSystemTableConfigurationOutput: ...
 ```
 
 
@@ -783,6 +821,20 @@ Also available as `client.paginators.list_sessions(...)`, returning an
 async iterator of the response type above.
 
 
+### list_system_table_statuses
+
+```python
+async def list_system_table_statuses(
+    *,
+    next_token: str | None = None,
+    max_results: int | None = None,
+) -> ListSystemTableStatusesOutput: ...
+```
+
+Also available as `client.paginators.list_system_table_statuses(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_table_metadata
 
 ```python
@@ -1016,6 +1068,17 @@ async def update_prepared_statement(
     query_statement: str,
     description: str | None = None,
 ) -> UpdatePreparedStatementOutput: ...
+```
+
+
+### update_system_table_configuration
+
+```python
+async def update_system_table_configuration(
+    *,
+    table_name: SystemTableName,
+    kms_key_arn: str | None = None,
+) -> UpdateSystemTableConfigurationOutput: ...
 ```
 
 

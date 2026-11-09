@@ -22,6 +22,7 @@ from ._native import (
     ListPreparedStatementsOutput,
     ListQueryExecutionsOutput,
     ListSessionsOutput,
+    ListSystemTableStatusesOutput,
     ListTableMetadataOutput,
     ListTagsForResourceOutput,
     ListWorkGroupsOutput,
@@ -401,6 +402,29 @@ class AthenaClientPaginators:
             params["next_token"] = next_token
         return _paginate(
             self._client.list_sessions, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_system_table_statuses(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> AsyncIterator[ListSystemTableStatusesOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_system_table_statuses/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        return _paginate(
+            self._client.list_system_table_statuses, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

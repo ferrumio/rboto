@@ -60,6 +60,8 @@ CreatePreparedStatementOutput: TypeAlias = _native.CreatePreparedStatementOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreatePreparedStatementOutput/)."""
 CreatePresignedNotebookUrlOutput: TypeAlias = _native.CreatePresignedNotebookUrlOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreatePresignedNotebookUrlOutput/)."""
+CreateSystemTableConfigurationOutput: TypeAlias = _native.CreateSystemTableConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreateSystemTableConfigurationOutput/)."""
 CreateWorkGroupOutput: TypeAlias = _native.CreateWorkGroupOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreateWorkGroupOutput/)."""
 CustomerContentEncryptionConfigurationOutput: TypeAlias = _native.CustomerContentEncryptionConfiguration
@@ -82,6 +84,8 @@ DeleteNotebookOutput: TypeAlias = _native.DeleteNotebookOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeleteNotebookOutput/)."""
 DeletePreparedStatementOutput: TypeAlias = _native.DeletePreparedStatementOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeletePreparedStatementOutput/)."""
+DeleteSystemTableConfigurationOutput: TypeAlias = _native.DeleteSystemTableConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeleteSystemTableConfigurationOutput/)."""
 DeleteWorkGroupOutput: TypeAlias = _native.DeleteWorkGroupOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeleteWorkGroupOutput/)."""
 EncryptionConfigurationOutput: TypeAlias = _native.EncryptionConfiguration
@@ -128,6 +132,8 @@ GetSessionOutput: TypeAlias = _native.GetSessionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetSessionOutput/)."""
 GetSessionStatusOutput: TypeAlias = _native.GetSessionStatusOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetSessionStatusOutput/)."""
+GetSystemTableConfigurationOutput: TypeAlias = _native.GetSystemTableConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetSystemTableConfigurationOutput/)."""
 GetTableMetadataOutput: TypeAlias = _native.GetTableMetadataOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetTableMetadataOutput/)."""
 GetWorkGroupOutput: TypeAlias = _native.GetWorkGroupOutput
@@ -162,6 +168,8 @@ ListQueryExecutionsOutput: TypeAlias = _native.ListQueryExecutionsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListQueryExecutionsOutput/)."""
 ListSessionsOutput: TypeAlias = _native.ListSessionsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListSessionsOutput/)."""
+ListSystemTableStatusesOutput: TypeAlias = _native.ListSystemTableStatusesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListSystemTableStatusesOutput/)."""
 ListTableMetadataOutput: TypeAlias = _native.ListTableMetadataOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListTableMetadataOutput/)."""
 ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
@@ -242,6 +250,8 @@ StopCalculationExecutionOutput: TypeAlias = _native.StopCalculationExecutionOutp
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/StopCalculationExecutionOutput/)."""
 StopQueryExecutionOutput: TypeAlias = _native.StopQueryExecutionOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/StopQueryExecutionOutput/)."""
+SystemTableStatusOutput: TypeAlias = _native.SystemTableStatus
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableStatusOutput/)."""
 TableMetadataOutput: TypeAlias = _native.TableMetadata
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/TableMetadataOutput/)."""
 TagOutput: TypeAlias = _native.Tag
@@ -270,6 +280,8 @@ UpdateNotebookOutput: TypeAlias = _native.UpdateNotebookOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdateNotebookOutput/)."""
 UpdatePreparedStatementOutput: TypeAlias = _native.UpdatePreparedStatementOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdatePreparedStatementOutput/)."""
+UpdateSystemTableConfigurationOutput: TypeAlias = _native.UpdateSystemTableConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdateSystemTableConfigurationOutput/)."""
 UpdateWorkGroupOutput: TypeAlias = _native.UpdateWorkGroupOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdateWorkGroupOutput/)."""
 WorkGroupOutput: TypeAlias = _native.WorkGroup
@@ -350,6 +362,14 @@ StatementType: TypeAlias = Literal['DDL', 'DML', 'UTILITY']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/StatementType/)."""
 StatementTypeOutput: TypeAlias = StatementType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/StatementTypeOutput/)."""
+SystemTableName: TypeAlias = Literal['ALL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableName/)."""
+SystemTableNameOutput: TypeAlias = SystemTableName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableNameOutput/)."""
+SystemTableType: TypeAlias = Literal['QUERY_EXECUTIONS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableType/)."""
+SystemTableTypeOutput: TypeAlias = SystemTableType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableTypeOutput/)."""
 ThrottleReason: TypeAlias = Literal['CONCURRENT_QUERY_LIMIT_EXCEEDED']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ThrottleReason/)."""
 ThrottleReasonOutput: TypeAlias = ThrottleReason | UnknownEnumValue
@@ -622,6 +642,17 @@ CreatePresignedNotebookUrlRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreatePresignedNotebookUrlRequest/)."""
 
+CreateSystemTableConfigurationInput = TypedDict(
+    "CreateSystemTableConfigurationInput",
+    {
+    "client_request_token": NotRequired["str"],
+    "table_name": Required["SystemTableName"],
+    "kms_key_arn": NotRequired["str"],
+    "tags": NotRequired["Sequence[Tag]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/CreateSystemTableConfigurationInput/)."""
+
 CreateWorkGroupInput = TypedDict(
     "CreateWorkGroupInput",
     {
@@ -726,6 +757,14 @@ DeletePreparedStatementInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeletePreparedStatementInput/)."""
+
+DeleteSystemTableConfigurationInput = TypedDict(
+    "DeleteSystemTableConfigurationInput",
+    {
+    "table_name": Required["SystemTableName"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DeleteSystemTableConfigurationInput/)."""
 
 DeleteWorkGroupInput = TypedDict(
     "DeleteWorkGroupInput",
@@ -939,6 +978,14 @@ GetSessionStatusRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetSessionStatusRequest/)."""
 
+GetSystemTableConfigurationInput = TypedDict(
+    "GetSystemTableConfigurationInput",
+    {
+    "table_name": Required["SystemTableName"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/GetSystemTableConfigurationInput/)."""
+
 GetTableMetadataInput = TypedDict(
     "GetTableMetadataInput",
     {
@@ -1117,6 +1164,15 @@ ListSessionsRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListSessionsRequest/)."""
+
+ListSystemTableStatusesInput = TypedDict(
+    "ListSystemTableStatusesInput",
+    {
+    "next_token": NotRequired["str"],
+    "max_results": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListSystemTableStatusesInput/)."""
 
 ListTableMetadataInput = TypedDict(
     "ListTableMetadataInput",
@@ -1588,6 +1644,15 @@ StopQueryExecutionInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/StopQueryExecutionInput/)."""
 
+SystemTableStatus = TypedDict(
+    "SystemTableStatus",
+    {
+    "table_name": Required["SystemTableType"],
+    "enabled": Required["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableStatus/)."""
+
 TableMetadata = TypedDict(
     "TableMetadata",
     {
@@ -1737,6 +1802,15 @@ UpdatePreparedStatementInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdatePreparedStatementInput/)."""
 
+UpdateSystemTableConfigurationInput = TypedDict(
+    "UpdateSystemTableConfigurationInput",
+    {
+    "table_name": Required["SystemTableName"],
+    "kms_key_arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/UpdateSystemTableConfigurationInput/)."""
+
 UpdateWorkGroupInput = TypedDict(
     "UpdateWorkGroupInput",
     {
@@ -1779,6 +1853,7 @@ WorkGroupConfiguration = TypedDict(
     "enable_minimum_encryption_configuration": NotRequired["bool"],
     "identity_center_configuration": NotRequired["IdentityCenterConfiguration"],
     "query_results_s3_access_grants_configuration": NotRequired["QueryResultsS3AccessGrantsConfiguration"],
+    "system_table_statuses": NotRequired["Sequence[SystemTableStatus]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/WorkGroupConfiguration/)."""

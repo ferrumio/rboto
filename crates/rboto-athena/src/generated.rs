@@ -5882,6 +5882,58 @@ fn session_summary_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn system_table_status_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_athena::types::SystemTableStatus> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled", "table_name"])?;
+    let mut builder = aws_sdk_athena::types::SystemTableStatus::builder();
+    if let Some(value) = dict_value(values, "table_name")? {
+        let converted_613 = (|| -> PyResult<_> {
+            let enum_value_614: String = value.extract()?;
+            let converted_613 =
+                aws_sdk_athena::types::SystemTableType::from(enum_value_614.as_str());
+            Ok(converted_613)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("table_name"),
+                "str (SystemTableType)",
+            )
+        })?;
+        builder = builder.set_table_name(Some(converted_613));
+    }
+    if let Some(value) = dict_value(values, "enabled")? {
+        let converted_615 = (|| -> PyResult<_> {
+            let converted_615: bool = value.extract()?;
+            Ok(converted_615)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
+        })?;
+        builder = builder.set_enabled(Some(converted_615));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("table_name", "table_name"), ("enabled", "enabled")],
+        )
+    })
+}
+
+fn system_table_status_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_athena::types::SystemTableStatus,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_616 = (&value.table_name).as_str().into_py_any(py)?;
+    result.set_item("table_name", converted_616)?;
+    let converted_617 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_617)?;
+    Ok(result.into_any().unbind())
+}
+
 fn table_metadata_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_athena::types::TableMetadata> {
@@ -5900,24 +5952,24 @@ fn table_metadata_from_py(
     )?;
     let mut builder = aws_sdk_athena::types::TableMetadata::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_613 = (|| -> PyResult<_> {
-            let converted_613: String = value.extract()?;
-            Ok(converted_613)
+        let converted_618 = (|| -> PyResult<_> {
+            let converted_618: String = value.extract()?;
+            Ok(converted_618)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
         })?;
-        builder = builder.set_name(Some(converted_613));
+        builder = builder.set_name(Some(converted_618));
     }
     if let Some(value) = dict_value(values, "create_time")? {
-        let converted_614 = (|| -> PyResult<_> {
-            let timestamp_615: String = value.extract()?;
-            let converted_614 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_615,
+        let converted_619 = (|| -> PyResult<_> {
+            let timestamp_620: String = value.extract()?;
+            let converted_619 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_620,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_614)
+            Ok(converted_619)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5926,17 +5978,17 @@ fn table_metadata_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_create_time(Some(converted_614));
+        builder = builder.set_create_time(Some(converted_619));
     }
     if let Some(value) = dict_value(values, "last_access_time")? {
-        let converted_616 = (|| -> PyResult<_> {
-            let timestamp_617: String = value.extract()?;
-            let converted_616 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_617,
+        let converted_621 = (|| -> PyResult<_> {
+            let timestamp_622: String = value.extract()?;
+            let converted_621 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_622,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_616)
+            Ok(converted_621)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -5945,52 +5997,19 @@ fn table_metadata_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_last_access_time(Some(converted_616));
+        builder = builder.set_last_access_time(Some(converted_621));
     }
     if let Some(value) = dict_value(values, "table_type")? {
-        let converted_618 = (|| -> PyResult<_> {
-            let converted_618: String = value.extract()?;
-            Ok(converted_618)
+        let converted_623 = (|| -> PyResult<_> {
+            let converted_623: String = value.extract()?;
+            Ok(converted_623)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("table_type"), "str")
         })?;
-        builder = builder.set_table_type(Some(converted_618));
+        builder = builder.set_table_type(Some(converted_623));
     }
     if let Some(value) = dict_value(values, "columns")? {
-        let converted_619 = (|| -> PyResult<_> {
-            let mut converted_619 =
-                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_623, item_result_620) in value.try_iter()?.enumerate() {
-                let item_621 = item_result_620.map_err(|error| {
-                    rboto_core::input_rule(
-                        error,
-                        rboto_core::InputPath::Index(index_623),
-                        "next sequence item",
-                        Some("iteration"),
-                    )
-                })?;
-                let converted_item_622 = (|| -> PyResult<_> {
-                    let converted_item_622 = column_from_py(&item_621)?;
-                    Ok(converted_item_622)
-                })()
-                .map_err(|error| {
-                    rboto_core::input_error(
-                        error,
-                        rboto_core::InputPath::Index(index_623),
-                        "dict (Column)",
-                    )
-                })?;
-                converted_619.push(converted_item_622);
-            }
-            Ok(converted_619)
-        })()
-        .map_err(|error| {
-            rboto_core::input_error(error, rboto_core::InputPath::Field("columns"), "sequence")
-        })?;
-        builder = builder.set_columns(Some(converted_619));
-    }
-    if let Some(value) = dict_value(values, "partition_keys")? {
         let converted_624 = (|| -> PyResult<_> {
             let mut converted_624 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
@@ -6019,45 +6038,78 @@ fn table_metadata_from_py(
             Ok(converted_624)
         })()
         .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("columns"), "sequence")
+        })?;
+        builder = builder.set_columns(Some(converted_624));
+    }
+    if let Some(value) = dict_value(values, "partition_keys")? {
+        let converted_629 = (|| -> PyResult<_> {
+            let mut converted_629 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_633, item_result_630) in value.try_iter()?.enumerate() {
+                let item_631 = item_result_630.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_633),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_632 = (|| -> PyResult<_> {
+                    let converted_item_632 = column_from_py(&item_631)?;
+                    Ok(converted_item_632)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_633),
+                        "dict (Column)",
+                    )
+                })?;
+                converted_629.push(converted_item_632);
+            }
+            Ok(converted_629)
+        })()
+        .map_err(|error| {
             rboto_core::input_error(
                 error,
                 rboto_core::InputPath::Field("partition_keys"),
                 "sequence",
             )
         })?;
-        builder = builder.set_partition_keys(Some(converted_624));
+        builder = builder.set_partition_keys(Some(converted_629));
     }
     if let Some(value) = dict_value(values, "parameters")? {
-        let converted_629 = (|| -> PyResult<_> {
-            let mapping_630 = value.cast::<PyDict>()?;
-            let mut converted_629 = HashMap::with_capacity(mapping_630.len());
-            for (index_635, (key_631, value_632)) in mapping_630.iter().enumerate() {
-                let converted_key_633 = (|| -> PyResult<_> {
-                    let converted_key_633: String = key_631.extract()?;
-                    Ok(converted_key_633)
+        let converted_634 = (|| -> PyResult<_> {
+            let mapping_635 = value.cast::<PyDict>()?;
+            let mut converted_634 = HashMap::with_capacity(mapping_635.len());
+            for (index_640, (key_636, value_637)) in mapping_635.iter().enumerate() {
+                let converted_key_638 = (|| -> PyResult<_> {
+                    let converted_key_638: String = key_636.extract()?;
+                    Ok(converted_key_638)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_635), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_640), "str")
                 })?;
-                let converted_value_634 = (|| -> PyResult<_> {
-                    let converted_value_634: String = value_632.extract()?;
-                    Ok(converted_value_634)
+                let converted_value_639 = (|| -> PyResult<_> {
+                    let converted_value_639: String = value_637.extract()?;
+                    Ok(converted_value_639)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::MapValue(index_635),
+                        rboto_core::InputPath::MapValue(index_640),
                         "str",
                     )
                 })?;
-                converted_629.insert(converted_key_633, converted_value_634);
+                converted_634.insert(converted_key_638, converted_value_639);
             }
-            Ok(converted_629)
+            Ok(converted_634)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("parameters"), "dict")
         })?;
-        builder = builder.set_parameters(Some(converted_629));
+        builder = builder.set_parameters(Some(converted_634));
     }
     builder
         .build()
@@ -6069,57 +6121,57 @@ fn table_metadata_to_py(
     value: &aws_sdk_athena::types::TableMetadata,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_636 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_636)?;
+    let converted_641 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_641)?;
     if let Some(value) = &value.create_time {
-        let converted_637 = (value).to_string().into_py_any(py)?;
-        result.set_item("create_time", converted_637)?;
+        let converted_642 = (value).to_string().into_py_any(py)?;
+        result.set_item("create_time", converted_642)?;
     } else {
         result.set_item("create_time", py.None())?;
     }
     if let Some(value) = &value.last_access_time {
-        let converted_638 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_access_time", converted_638)?;
+        let converted_643 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_access_time", converted_643)?;
     } else {
         result.set_item("last_access_time", py.None())?;
     }
     if let Some(value) = &value.table_type {
-        let converted_639 = (value).as_str().into_py_any(py)?;
-        result.set_item("table_type", converted_639)?;
+        let converted_644 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_type", converted_644)?;
     } else {
         result.set_item("table_type", py.None())?;
     }
     if let Some(value) = &value.columns {
-        let converted_640_list = PyList::empty(py);
-        for item_641 in value {
-            let converted_item_642 = column_to_py(py, item_641)?;
-            converted_640_list.append(converted_item_642)?;
+        let converted_645_list = PyList::empty(py);
+        for item_646 in value {
+            let converted_item_647 = column_to_py(py, item_646)?;
+            converted_645_list.append(converted_item_647)?;
         }
-        let converted_640 = converted_640_list.into_any().unbind();
-        result.set_item("columns", converted_640)?;
+        let converted_645 = converted_645_list.into_any().unbind();
+        result.set_item("columns", converted_645)?;
     } else {
         result.set_item("columns", py.None())?;
     }
     if let Some(value) = &value.partition_keys {
-        let converted_643_list = PyList::empty(py);
-        for item_644 in value {
-            let converted_item_645 = column_to_py(py, item_644)?;
-            converted_643_list.append(converted_item_645)?;
+        let converted_648_list = PyList::empty(py);
+        for item_649 in value {
+            let converted_item_650 = column_to_py(py, item_649)?;
+            converted_648_list.append(converted_item_650)?;
         }
-        let converted_643 = converted_643_list.into_any().unbind();
-        result.set_item("partition_keys", converted_643)?;
+        let converted_648 = converted_648_list.into_any().unbind();
+        result.set_item("partition_keys", converted_648)?;
     } else {
         result.set_item("partition_keys", py.None())?;
     }
     if let Some(value) = &value.parameters {
-        let converted_646_dict = PyDict::new(py);
-        for (key_647, value_648) in value {
-            let converted_key_649 = (key_647).as_str().into_py_any(py)?;
-            let converted_value_650 = (value_648).as_str().into_py_any(py)?;
-            converted_646_dict.set_item(converted_key_649, converted_value_650)?;
+        let converted_651_dict = PyDict::new(py);
+        for (key_652, value_653) in value {
+            let converted_key_654 = (key_652).as_str().into_py_any(py)?;
+            let converted_value_655 = (value_653).as_str().into_py_any(py)?;
+            converted_651_dict.set_item(converted_key_654, converted_value_655)?;
         }
-        let converted_646 = converted_646_dict.into_any().unbind();
-        result.set_item("parameters", converted_646)?;
+        let converted_651 = converted_651_dict.into_any().unbind();
+        result.set_item("parameters", converted_651)?;
     } else {
         result.set_item("parameters", py.None())?;
     }
@@ -6131,24 +6183,24 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Tag>
     rboto_core::validate_input_fields(values, &["key", "value"])?;
     let mut builder = aws_sdk_athena::types::Tag::builder();
     if let Some(value) = dict_value(values, "key")? {
-        let converted_651 = (|| -> PyResult<_> {
-            let converted_651: String = value.extract()?;
-            Ok(converted_651)
+        let converted_656 = (|| -> PyResult<_> {
+            let converted_656: String = value.extract()?;
+            Ok(converted_656)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("key"), "str")
         })?;
-        builder = builder.set_key(Some(converted_651));
+        builder = builder.set_key(Some(converted_656));
     }
     if let Some(value) = dict_value(values, "value")? {
-        let converted_652 = (|| -> PyResult<_> {
-            let converted_652: String = value.extract()?;
-            Ok(converted_652)
+        let converted_657 = (|| -> PyResult<_> {
+            let converted_657: String = value.extract()?;
+            Ok(converted_657)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("value"), "str")
         })?;
-        builder = builder.set_value(Some(converted_652));
+        builder = builder.set_value(Some(converted_657));
     }
     Ok(builder.build())
 }
@@ -6156,14 +6208,14 @@ fn tag_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::types::Tag>
 fn tag_to_py(py: Python<'_>, value: &aws_sdk_athena::types::Tag) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.key {
-        let converted_653 = (value).as_str().into_py_any(py)?;
-        result.set_item("key", converted_653)?;
+        let converted_658 = (value).as_str().into_py_any(py)?;
+        result.set_item("key", converted_658)?;
     } else {
         result.set_item("key", py.None())?;
     }
     if let Some(value) = &value.value {
-        let converted_654 = (value).as_str().into_py_any(py)?;
-        result.set_item("value", converted_654)?;
+        let converted_659 = (value).as_str().into_py_any(py)?;
+        result.set_item("value", converted_659)?;
     } else {
         result.set_item("value", py.None())?;
     }
@@ -6177,34 +6229,34 @@ fn unprocessed_named_query_id_from_py(
     rboto_core::validate_input_fields(values, &["error_code", "error_message", "named_query_id"])?;
     let mut builder = aws_sdk_athena::types::UnprocessedNamedQueryId::builder();
     if let Some(value) = dict_value(values, "named_query_id")? {
-        let converted_655 = (|| -> PyResult<_> {
-            let converted_655: String = value.extract()?;
-            Ok(converted_655)
+        let converted_660 = (|| -> PyResult<_> {
+            let converted_660: String = value.extract()?;
+            Ok(converted_660)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("named_query_id"), "str")
         })?;
-        builder = builder.set_named_query_id(Some(converted_655));
+        builder = builder.set_named_query_id(Some(converted_660));
     }
     if let Some(value) = dict_value(values, "error_code")? {
-        let converted_656 = (|| -> PyResult<_> {
-            let converted_656: String = value.extract()?;
-            Ok(converted_656)
+        let converted_661 = (|| -> PyResult<_> {
+            let converted_661: String = value.extract()?;
+            Ok(converted_661)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
         })?;
-        builder = builder.set_error_code(Some(converted_656));
+        builder = builder.set_error_code(Some(converted_661));
     }
     if let Some(value) = dict_value(values, "error_message")? {
-        let converted_657 = (|| -> PyResult<_> {
-            let converted_657: String = value.extract()?;
-            Ok(converted_657)
+        let converted_662 = (|| -> PyResult<_> {
+            let converted_662: String = value.extract()?;
+            Ok(converted_662)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
         })?;
-        builder = builder.set_error_message(Some(converted_657));
+        builder = builder.set_error_message(Some(converted_662));
     }
     Ok(builder.build())
 }
@@ -6215,20 +6267,20 @@ fn unprocessed_named_query_id_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.named_query_id {
-        let converted_658 = (value).as_str().into_py_any(py)?;
-        result.set_item("named_query_id", converted_658)?;
+        let converted_663 = (value).as_str().into_py_any(py)?;
+        result.set_item("named_query_id", converted_663)?;
     } else {
         result.set_item("named_query_id", py.None())?;
     }
     if let Some(value) = &value.error_code {
-        let converted_659 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_code", converted_659)?;
+        let converted_664 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", converted_664)?;
     } else {
         result.set_item("error_code", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_660 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_message", converted_660)?;
+        let converted_665 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_665)?;
     } else {
         result.set_item("error_message", py.None())?;
     }
@@ -6242,34 +6294,34 @@ fn unprocessed_prepared_statement_name_from_py(
     rboto_core::validate_input_fields(values, &["error_code", "error_message", "statement_name"])?;
     let mut builder = aws_sdk_athena::types::UnprocessedPreparedStatementName::builder();
     if let Some(value) = dict_value(values, "statement_name")? {
-        let converted_661 = (|| -> PyResult<_> {
-            let converted_661: String = value.extract()?;
-            Ok(converted_661)
+        let converted_666 = (|| -> PyResult<_> {
+            let converted_666: String = value.extract()?;
+            Ok(converted_666)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("statement_name"), "str")
         })?;
-        builder = builder.set_statement_name(Some(converted_661));
+        builder = builder.set_statement_name(Some(converted_666));
     }
     if let Some(value) = dict_value(values, "error_code")? {
-        let converted_662 = (|| -> PyResult<_> {
-            let converted_662: String = value.extract()?;
-            Ok(converted_662)
+        let converted_667 = (|| -> PyResult<_> {
+            let converted_667: String = value.extract()?;
+            Ok(converted_667)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
         })?;
-        builder = builder.set_error_code(Some(converted_662));
+        builder = builder.set_error_code(Some(converted_667));
     }
     if let Some(value) = dict_value(values, "error_message")? {
-        let converted_663 = (|| -> PyResult<_> {
-            let converted_663: String = value.extract()?;
-            Ok(converted_663)
+        let converted_668 = (|| -> PyResult<_> {
+            let converted_668: String = value.extract()?;
+            Ok(converted_668)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
         })?;
-        builder = builder.set_error_message(Some(converted_663));
+        builder = builder.set_error_message(Some(converted_668));
     }
     Ok(builder.build())
 }
@@ -6280,20 +6332,20 @@ fn unprocessed_prepared_statement_name_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.statement_name {
-        let converted_664 = (value).as_str().into_py_any(py)?;
-        result.set_item("statement_name", converted_664)?;
+        let converted_669 = (value).as_str().into_py_any(py)?;
+        result.set_item("statement_name", converted_669)?;
     } else {
         result.set_item("statement_name", py.None())?;
     }
     if let Some(value) = &value.error_code {
-        let converted_665 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_code", converted_665)?;
+        let converted_670 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", converted_670)?;
     } else {
         result.set_item("error_code", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_666 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_message", converted_666)?;
+        let converted_671 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_671)?;
     } else {
         result.set_item("error_message", py.None())?;
     }
@@ -6310,9 +6362,9 @@ fn unprocessed_query_execution_id_from_py(
     )?;
     let mut builder = aws_sdk_athena::types::UnprocessedQueryExecutionId::builder();
     if let Some(value) = dict_value(values, "query_execution_id")? {
-        let converted_667 = (|| -> PyResult<_> {
-            let converted_667: String = value.extract()?;
-            Ok(converted_667)
+        let converted_672 = (|| -> PyResult<_> {
+            let converted_672: String = value.extract()?;
+            Ok(converted_672)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6321,27 +6373,27 @@ fn unprocessed_query_execution_id_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_query_execution_id(Some(converted_667));
+        builder = builder.set_query_execution_id(Some(converted_672));
     }
     if let Some(value) = dict_value(values, "error_code")? {
-        let converted_668 = (|| -> PyResult<_> {
-            let converted_668: String = value.extract()?;
-            Ok(converted_668)
+        let converted_673 = (|| -> PyResult<_> {
+            let converted_673: String = value.extract()?;
+            Ok(converted_673)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_code"), "str")
         })?;
-        builder = builder.set_error_code(Some(converted_668));
+        builder = builder.set_error_code(Some(converted_673));
     }
     if let Some(value) = dict_value(values, "error_message")? {
-        let converted_669 = (|| -> PyResult<_> {
-            let converted_669: String = value.extract()?;
-            Ok(converted_669)
+        let converted_674 = (|| -> PyResult<_> {
+            let converted_674: String = value.extract()?;
+            Ok(converted_674)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("error_message"), "str")
         })?;
-        builder = builder.set_error_message(Some(converted_669));
+        builder = builder.set_error_message(Some(converted_674));
     }
     Ok(builder.build())
 }
@@ -6352,20 +6404,20 @@ fn unprocessed_query_execution_id_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_execution_id {
-        let converted_670 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_execution_id", converted_670)?;
+        let converted_675 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_execution_id", converted_675)?;
     } else {
         result.set_item("query_execution_id", py.None())?;
     }
     if let Some(value) = &value.error_code {
-        let converted_671 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_code", converted_671)?;
+        let converted_676 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_code", converted_676)?;
     } else {
         result.set_item("error_code", py.None())?;
     }
     if let Some(value) = &value.error_message {
-        let converted_672 = (value).as_str().into_py_any(py)?;
-        result.set_item("error_message", converted_672)?;
+        let converted_677 = (value).as_str().into_py_any(py)?;
+        result.set_item("error_message", converted_677)?;
     } else {
         result.set_item("error_message", py.None())?;
     }
@@ -6387,21 +6439,21 @@ fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::type
     )?;
     let mut builder = aws_sdk_athena::types::WorkGroup::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_673 = (|| -> PyResult<_> {
-            let converted_673: String = value.extract()?;
-            Ok(converted_673)
+        let converted_678 = (|| -> PyResult<_> {
+            let converted_678: String = value.extract()?;
+            Ok(converted_678)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
         })?;
-        builder = builder.set_name(Some(converted_673));
+        builder = builder.set_name(Some(converted_678));
     }
     if let Some(value) = dict_value(values, "state")? {
-        let converted_674 = (|| -> PyResult<_> {
-            let enum_value_675: String = value.extract()?;
-            let converted_674 =
-                aws_sdk_athena::types::WorkGroupState::from(enum_value_675.as_str());
-            Ok(converted_674)
+        let converted_679 = (|| -> PyResult<_> {
+            let enum_value_680: String = value.extract()?;
+            let converted_679 =
+                aws_sdk_athena::types::WorkGroupState::from(enum_value_680.as_str());
+            Ok(converted_679)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6410,12 +6462,12 @@ fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::type
                 "str (WorkGroupState)",
             )
         })?;
-        builder = builder.set_state(Some(converted_674));
+        builder = builder.set_state(Some(converted_679));
     }
     if let Some(value) = dict_value(values, "configuration")? {
-        let converted_676 = (|| -> PyResult<_> {
-            let converted_676 = work_group_configuration_from_py(&value)?;
-            Ok(converted_676)
+        let converted_681 = (|| -> PyResult<_> {
+            let converted_681 = work_group_configuration_from_py(&value)?;
+            Ok(converted_681)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6424,27 +6476,27 @@ fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::type
                 "dict (WorkGroupConfiguration)",
             )
         })?;
-        builder = builder.set_configuration(Some(converted_676));
+        builder = builder.set_configuration(Some(converted_681));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_677 = (|| -> PyResult<_> {
-            let converted_677: String = value.extract()?;
-            Ok(converted_677)
+        let converted_682 = (|| -> PyResult<_> {
+            let converted_682: String = value.extract()?;
+            Ok(converted_682)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
         })?;
-        builder = builder.set_description(Some(converted_677));
+        builder = builder.set_description(Some(converted_682));
     }
     if let Some(value) = dict_value(values, "creation_time")? {
-        let converted_678 = (|| -> PyResult<_> {
-            let timestamp_679: String = value.extract()?;
-            let converted_678 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_679,
+        let converted_683 = (|| -> PyResult<_> {
+            let timestamp_684: String = value.extract()?;
+            let converted_683 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_684,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_678)
+            Ok(converted_683)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6453,12 +6505,12 @@ fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::type
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_creation_time(Some(converted_678));
+        builder = builder.set_creation_time(Some(converted_683));
     }
     if let Some(value) = dict_value(values, "identity_center_application_arn")? {
-        let converted_680 = (|| -> PyResult<_> {
-            let converted_680: String = value.extract()?;
-            Ok(converted_680)
+        let converted_685 = (|| -> PyResult<_> {
+            let converted_685: String = value.extract()?;
+            Ok(converted_685)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6467,7 +6519,7 @@ fn work_group_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_athena::type
                 "str",
             )
         })?;
-        builder = builder.set_identity_center_application_arn(Some(converted_680));
+        builder = builder.set_identity_center_application_arn(Some(converted_685));
     }
     builder
         .build()
@@ -6479,35 +6531,35 @@ fn work_group_to_py(
     value: &aws_sdk_athena::types::WorkGroup,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_681 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_681)?;
+    let converted_686 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_686)?;
     if let Some(value) = &value.state {
-        let converted_682 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_682)?;
+        let converted_687 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_687)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.configuration {
-        let converted_683 = work_group_configuration_to_py(py, value)?;
-        result.set_item("configuration", converted_683)?;
+        let converted_688 = work_group_configuration_to_py(py, value)?;
+        result.set_item("configuration", converted_688)?;
     } else {
         result.set_item("configuration", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_684 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_684)?;
+        let converted_689 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_689)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_685 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_685)?;
+        let converted_690 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_690)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
     if let Some(value) = &value.identity_center_application_arn {
-        let converted_686 = (value).as_str().into_py_any(py)?;
-        result.set_item("identity_center_application_arn", converted_686)?;
+        let converted_691 = (value).as_str().into_py_any(py)?;
+        result.set_item("identity_center_application_arn", converted_691)?;
     } else {
         result.set_item("identity_center_application_arn", py.None())?;
     }
@@ -6536,13 +6588,14 @@ fn work_group_configuration_from_py(
             "query_results_s3_access_grants_configuration",
             "requester_pays_enabled",
             "result_configuration",
+            "system_table_statuses",
         ],
     )?;
     let mut builder = aws_sdk_athena::types::WorkGroupConfiguration::builder();
     if let Some(value) = dict_value(values, "result_configuration")? {
-        let converted_687 = (|| -> PyResult<_> {
-            let converted_687 = result_configuration_from_py(&value)?;
-            Ok(converted_687)
+        let converted_692 = (|| -> PyResult<_> {
+            let converted_692 = result_configuration_from_py(&value)?;
+            Ok(converted_692)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6551,12 +6604,12 @@ fn work_group_configuration_from_py(
                 "dict (ResultConfiguration)",
             )
         })?;
-        builder = builder.set_result_configuration(Some(converted_687));
+        builder = builder.set_result_configuration(Some(converted_692));
     }
     if let Some(value) = dict_value(values, "managed_query_results_configuration")? {
-        let converted_688 = (|| -> PyResult<_> {
-            let converted_688 = managed_query_results_configuration_from_py(&value)?;
-            Ok(converted_688)
+        let converted_693 = (|| -> PyResult<_> {
+            let converted_693 = managed_query_results_configuration_from_py(&value)?;
+            Ok(converted_693)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6565,12 +6618,12 @@ fn work_group_configuration_from_py(
                 "dict (ManagedQueryResultsConfiguration)",
             )
         })?;
-        builder = builder.set_managed_query_results_configuration(Some(converted_688));
+        builder = builder.set_managed_query_results_configuration(Some(converted_693));
     }
     if let Some(value) = dict_value(values, "enforce_work_group_configuration")? {
-        let converted_689 = (|| -> PyResult<_> {
-            let converted_689: bool = value.extract()?;
-            Ok(converted_689)
+        let converted_694 = (|| -> PyResult<_> {
+            let converted_694: bool = value.extract()?;
+            Ok(converted_694)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6579,12 +6632,12 @@ fn work_group_configuration_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_enforce_work_group_configuration(Some(converted_689));
+        builder = builder.set_enforce_work_group_configuration(Some(converted_694));
     }
     if let Some(value) = dict_value(values, "publish_cloud_watch_metrics_enabled")? {
-        let converted_690 = (|| -> PyResult<_> {
-            let converted_690: bool = value.extract()?;
-            Ok(converted_690)
+        let converted_695 = (|| -> PyResult<_> {
+            let converted_695: bool = value.extract()?;
+            Ok(converted_695)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6593,12 +6646,12 @@ fn work_group_configuration_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_publish_cloud_watch_metrics_enabled(Some(converted_690));
+        builder = builder.set_publish_cloud_watch_metrics_enabled(Some(converted_695));
     }
     if let Some(value) = dict_value(values, "bytes_scanned_cutoff_per_query")? {
-        let converted_691 = (|| -> PyResult<_> {
-            let converted_691: i64 = value.extract()?;
-            Ok(converted_691)
+        let converted_696 = (|| -> PyResult<_> {
+            let converted_696: i64 = value.extract()?;
+            Ok(converted_696)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6607,12 +6660,12 @@ fn work_group_configuration_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_bytes_scanned_cutoff_per_query(Some(converted_691));
+        builder = builder.set_bytes_scanned_cutoff_per_query(Some(converted_696));
     }
     if let Some(value) = dict_value(values, "requester_pays_enabled")? {
-        let converted_692 = (|| -> PyResult<_> {
-            let converted_692: bool = value.extract()?;
-            Ok(converted_692)
+        let converted_697 = (|| -> PyResult<_> {
+            let converted_697: bool = value.extract()?;
+            Ok(converted_697)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6621,12 +6674,12 @@ fn work_group_configuration_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_requester_pays_enabled(Some(converted_692));
+        builder = builder.set_requester_pays_enabled(Some(converted_697));
     }
     if let Some(value) = dict_value(values, "engine_version")? {
-        let converted_693 = (|| -> PyResult<_> {
-            let converted_693 = engine_version_from_py(&value)?;
-            Ok(converted_693)
+        let converted_698 = (|| -> PyResult<_> {
+            let converted_698 = engine_version_from_py(&value)?;
+            Ok(converted_698)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6635,12 +6688,12 @@ fn work_group_configuration_from_py(
                 "dict (EngineVersion)",
             )
         })?;
-        builder = builder.set_engine_version(Some(converted_693));
+        builder = builder.set_engine_version(Some(converted_698));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let converted_694 = (|| -> PyResult<_> {
-            let converted_694: String = value.extract()?;
-            Ok(converted_694)
+        let converted_699 = (|| -> PyResult<_> {
+            let converted_699: String = value.extract()?;
+            Ok(converted_699)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6649,22 +6702,22 @@ fn work_group_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_additional_configuration(Some(converted_694));
+        builder = builder.set_additional_configuration(Some(converted_699));
     }
     if let Some(value) = dict_value(values, "execution_role")? {
-        let converted_695 = (|| -> PyResult<_> {
-            let converted_695: String = value.extract()?;
-            Ok(converted_695)
+        let converted_700 = (|| -> PyResult<_> {
+            let converted_700: String = value.extract()?;
+            Ok(converted_700)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("execution_role"), "str")
         })?;
-        builder = builder.set_execution_role(Some(converted_695));
+        builder = builder.set_execution_role(Some(converted_700));
     }
     if let Some(value) = dict_value(values, "monitoring_configuration")? {
-        let converted_696 = (|| -> PyResult<_> {
-            let converted_696 = monitoring_configuration_from_py(&value)?;
-            Ok(converted_696)
+        let converted_701 = (|| -> PyResult<_> {
+            let converted_701 = monitoring_configuration_from_py(&value)?;
+            Ok(converted_701)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6673,12 +6726,12 @@ fn work_group_configuration_from_py(
                 "dict (MonitoringConfiguration)",
             )
         })?;
-        builder = builder.set_monitoring_configuration(Some(converted_696));
+        builder = builder.set_monitoring_configuration(Some(converted_701));
     }
     if let Some(value) = dict_value(values, "engine_configuration")? {
-        let converted_697 = (|| -> PyResult<_> {
-            let converted_697 = engine_configuration_from_py(&value)?;
-            Ok(converted_697)
+        let converted_702 = (|| -> PyResult<_> {
+            let converted_702 = engine_configuration_from_py(&value)?;
+            Ok(converted_702)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6687,12 +6740,12 @@ fn work_group_configuration_from_py(
                 "dict (EngineConfiguration)",
             )
         })?;
-        builder = builder.set_engine_configuration(Some(converted_697));
+        builder = builder.set_engine_configuration(Some(converted_702));
     }
     if let Some(value) = dict_value(values, "customer_content_encryption_configuration")? {
-        let converted_698 = (|| -> PyResult<_> {
-            let converted_698 = customer_content_encryption_configuration_from_py(&value)?;
-            Ok(converted_698)
+        let converted_703 = (|| -> PyResult<_> {
+            let converted_703 = customer_content_encryption_configuration_from_py(&value)?;
+            Ok(converted_703)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6701,12 +6754,12 @@ fn work_group_configuration_from_py(
                 "dict (CustomerContentEncryptionConfiguration)",
             )
         })?;
-        builder = builder.set_customer_content_encryption_configuration(Some(converted_698));
+        builder = builder.set_customer_content_encryption_configuration(Some(converted_703));
     }
     if let Some(value) = dict_value(values, "enable_minimum_encryption_configuration")? {
-        let converted_699 = (|| -> PyResult<_> {
-            let converted_699: bool = value.extract()?;
-            Ok(converted_699)
+        let converted_704 = (|| -> PyResult<_> {
+            let converted_704: bool = value.extract()?;
+            Ok(converted_704)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6715,12 +6768,12 @@ fn work_group_configuration_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_enable_minimum_encryption_configuration(Some(converted_699));
+        builder = builder.set_enable_minimum_encryption_configuration(Some(converted_704));
     }
     if let Some(value) = dict_value(values, "identity_center_configuration")? {
-        let converted_700 = (|| -> PyResult<_> {
-            let converted_700 = identity_center_configuration_from_py(&value)?;
-            Ok(converted_700)
+        let converted_705 = (|| -> PyResult<_> {
+            let converted_705 = identity_center_configuration_from_py(&value)?;
+            Ok(converted_705)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6729,12 +6782,12 @@ fn work_group_configuration_from_py(
                 "dict (IdentityCenterConfiguration)",
             )
         })?;
-        builder = builder.set_identity_center_configuration(Some(converted_700));
+        builder = builder.set_identity_center_configuration(Some(converted_705));
     }
     if let Some(value) = dict_value(values, "query_results_s3_access_grants_configuration")? {
-        let converted_701 = (|| -> PyResult<_> {
-            let converted_701 = query_results_s3_access_grants_configuration_from_py(&value)?;
-            Ok(converted_701)
+        let converted_706 = (|| -> PyResult<_> {
+            let converted_706 = query_results_s3_access_grants_configuration_from_py(&value)?;
+            Ok(converted_706)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6743,7 +6796,44 @@ fn work_group_configuration_from_py(
                 "dict (QueryResultsS3AccessGrantsConfiguration)",
             )
         })?;
-        builder = builder.set_query_results_s3_access_grants_configuration(Some(converted_701));
+        builder = builder.set_query_results_s3_access_grants_configuration(Some(converted_706));
+    }
+    if let Some(value) = dict_value(values, "system_table_statuses")? {
+        let converted_707 = (|| -> PyResult<_> {
+            let mut converted_707 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_711, item_result_708) in value.try_iter()?.enumerate() {
+                let item_709 = item_result_708.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_711),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_710 = (|| -> PyResult<_> {
+                    let converted_item_710 = system_table_status_from_py(&item_709)?;
+                    Ok(converted_item_710)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_711),
+                        "dict (SystemTableStatus)",
+                    )
+                })?;
+                converted_707.push(converted_item_710);
+            }
+            Ok(converted_707)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("system_table_statuses"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_system_table_statuses(Some(converted_707));
     }
     Ok(builder.build())
 }
@@ -6754,97 +6844,108 @@ fn work_group_configuration_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.result_configuration {
-        let converted_702 = result_configuration_to_py(py, value)?;
-        result.set_item("result_configuration", converted_702)?;
+        let converted_712 = result_configuration_to_py(py, value)?;
+        result.set_item("result_configuration", converted_712)?;
     } else {
         result.set_item("result_configuration", py.None())?;
     }
     if let Some(value) = &value.managed_query_results_configuration {
-        let converted_703 = managed_query_results_configuration_to_py(py, value)?;
-        result.set_item("managed_query_results_configuration", converted_703)?;
+        let converted_713 = managed_query_results_configuration_to_py(py, value)?;
+        result.set_item("managed_query_results_configuration", converted_713)?;
     } else {
         result.set_item("managed_query_results_configuration", py.None())?;
     }
     if let Some(value) = &value.enforce_work_group_configuration {
-        let converted_704 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enforce_work_group_configuration", converted_704)?;
+        let converted_714 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enforce_work_group_configuration", converted_714)?;
     } else {
         result.set_item("enforce_work_group_configuration", py.None())?;
     }
     if let Some(value) = &value.publish_cloud_watch_metrics_enabled {
-        let converted_705 = (value).to_owned().into_py_any(py)?;
-        result.set_item("publish_cloud_watch_metrics_enabled", converted_705)?;
+        let converted_715 = (value).to_owned().into_py_any(py)?;
+        result.set_item("publish_cloud_watch_metrics_enabled", converted_715)?;
     } else {
         result.set_item("publish_cloud_watch_metrics_enabled", py.None())?;
     }
     if let Some(value) = &value.bytes_scanned_cutoff_per_query {
-        let converted_706 = (value).to_owned().into_py_any(py)?;
-        result.set_item("bytes_scanned_cutoff_per_query", converted_706)?;
+        let converted_716 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bytes_scanned_cutoff_per_query", converted_716)?;
     } else {
         result.set_item("bytes_scanned_cutoff_per_query", py.None())?;
     }
     if let Some(value) = &value.requester_pays_enabled {
-        let converted_707 = (value).to_owned().into_py_any(py)?;
-        result.set_item("requester_pays_enabled", converted_707)?;
+        let converted_717 = (value).to_owned().into_py_any(py)?;
+        result.set_item("requester_pays_enabled", converted_717)?;
     } else {
         result.set_item("requester_pays_enabled", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_708 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_708)?;
+        let converted_718 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_718)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.additional_configuration {
-        let converted_709 = (value).as_str().into_py_any(py)?;
-        result.set_item("additional_configuration", converted_709)?;
+        let converted_719 = (value).as_str().into_py_any(py)?;
+        result.set_item("additional_configuration", converted_719)?;
     } else {
         result.set_item("additional_configuration", py.None())?;
     }
     if let Some(value) = &value.execution_role {
-        let converted_710 = (value).as_str().into_py_any(py)?;
-        result.set_item("execution_role", converted_710)?;
+        let converted_720 = (value).as_str().into_py_any(py)?;
+        result.set_item("execution_role", converted_720)?;
     } else {
         result.set_item("execution_role", py.None())?;
     }
     if let Some(value) = &value.monitoring_configuration {
-        let converted_711 = monitoring_configuration_to_py(py, value)?;
-        result.set_item("monitoring_configuration", converted_711)?;
+        let converted_721 = monitoring_configuration_to_py(py, value)?;
+        result.set_item("monitoring_configuration", converted_721)?;
     } else {
         result.set_item("monitoring_configuration", py.None())?;
     }
     if let Some(value) = &value.engine_configuration {
-        let converted_712 = engine_configuration_to_py(py, value)?;
-        result.set_item("engine_configuration", converted_712)?;
+        let converted_722 = engine_configuration_to_py(py, value)?;
+        result.set_item("engine_configuration", converted_722)?;
     } else {
         result.set_item("engine_configuration", py.None())?;
     }
     if let Some(value) = &value.customer_content_encryption_configuration {
-        let converted_713 = customer_content_encryption_configuration_to_py(py, value)?;
-        result.set_item("customer_content_encryption_configuration", converted_713)?;
+        let converted_723 = customer_content_encryption_configuration_to_py(py, value)?;
+        result.set_item("customer_content_encryption_configuration", converted_723)?;
     } else {
         result.set_item("customer_content_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.enable_minimum_encryption_configuration {
-        let converted_714 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enable_minimum_encryption_configuration", converted_714)?;
+        let converted_724 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enable_minimum_encryption_configuration", converted_724)?;
     } else {
         result.set_item("enable_minimum_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.identity_center_configuration {
-        let converted_715 = identity_center_configuration_to_py(py, value)?;
-        result.set_item("identity_center_configuration", converted_715)?;
+        let converted_725 = identity_center_configuration_to_py(py, value)?;
+        result.set_item("identity_center_configuration", converted_725)?;
     } else {
         result.set_item("identity_center_configuration", py.None())?;
     }
     if let Some(value) = &value.query_results_s3_access_grants_configuration {
-        let converted_716 = query_results_s3_access_grants_configuration_to_py(py, value)?;
+        let converted_726 = query_results_s3_access_grants_configuration_to_py(py, value)?;
         result.set_item(
             "query_results_s3_access_grants_configuration",
-            converted_716,
+            converted_726,
         )?;
     } else {
         result.set_item("query_results_s3_access_grants_configuration", py.None())?;
+    }
+    if let Some(value) = &value.system_table_statuses {
+        let converted_727_list = PyList::empty(py);
+        for item_728 in value {
+            let converted_item_729 = system_table_status_to_py(py, item_728)?;
+            converted_727_list.append(converted_item_729)?;
+        }
+        let converted_727 = converted_727_list.into_any().unbind();
+        result.set_item("system_table_statuses", converted_727)?;
+    } else {
+        result.set_item("system_table_statuses", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -6876,9 +6977,9 @@ fn work_group_configuration_updates_from_py(
     )?;
     let mut builder = aws_sdk_athena::types::WorkGroupConfigurationUpdates::builder();
     if let Some(value) = dict_value(values, "enforce_work_group_configuration")? {
-        let converted_717 = (|| -> PyResult<_> {
-            let converted_717: bool = value.extract()?;
-            Ok(converted_717)
+        let converted_730 = (|| -> PyResult<_> {
+            let converted_730: bool = value.extract()?;
+            Ok(converted_730)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6887,12 +6988,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_enforce_work_group_configuration(Some(converted_717));
+        builder = builder.set_enforce_work_group_configuration(Some(converted_730));
     }
     if let Some(value) = dict_value(values, "result_configuration_updates")? {
-        let converted_718 = (|| -> PyResult<_> {
-            let converted_718 = result_configuration_updates_from_py(&value)?;
-            Ok(converted_718)
+        let converted_731 = (|| -> PyResult<_> {
+            let converted_731 = result_configuration_updates_from_py(&value)?;
+            Ok(converted_731)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6901,12 +7002,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (ResultConfigurationUpdates)",
             )
         })?;
-        builder = builder.set_result_configuration_updates(Some(converted_718));
+        builder = builder.set_result_configuration_updates(Some(converted_731));
     }
     if let Some(value) = dict_value(values, "managed_query_results_configuration_updates")? {
-        let converted_719 = (|| -> PyResult<_> {
-            let converted_719 = managed_query_results_configuration_updates_from_py(&value)?;
-            Ok(converted_719)
+        let converted_732 = (|| -> PyResult<_> {
+            let converted_732 = managed_query_results_configuration_updates_from_py(&value)?;
+            Ok(converted_732)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6915,12 +7016,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (ManagedQueryResultsConfigurationUpdates)",
             )
         })?;
-        builder = builder.set_managed_query_results_configuration_updates(Some(converted_719));
+        builder = builder.set_managed_query_results_configuration_updates(Some(converted_732));
     }
     if let Some(value) = dict_value(values, "publish_cloud_watch_metrics_enabled")? {
-        let converted_720 = (|| -> PyResult<_> {
-            let converted_720: bool = value.extract()?;
-            Ok(converted_720)
+        let converted_733 = (|| -> PyResult<_> {
+            let converted_733: bool = value.extract()?;
+            Ok(converted_733)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6929,12 +7030,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_publish_cloud_watch_metrics_enabled(Some(converted_720));
+        builder = builder.set_publish_cloud_watch_metrics_enabled(Some(converted_733));
     }
     if let Some(value) = dict_value(values, "bytes_scanned_cutoff_per_query")? {
-        let converted_721 = (|| -> PyResult<_> {
-            let converted_721: i64 = value.extract()?;
-            Ok(converted_721)
+        let converted_734 = (|| -> PyResult<_> {
+            let converted_734: i64 = value.extract()?;
+            Ok(converted_734)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6943,12 +7044,12 @@ fn work_group_configuration_updates_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_bytes_scanned_cutoff_per_query(Some(converted_721));
+        builder = builder.set_bytes_scanned_cutoff_per_query(Some(converted_734));
     }
     if let Some(value) = dict_value(values, "remove_bytes_scanned_cutoff_per_query")? {
-        let converted_722 = (|| -> PyResult<_> {
-            let converted_722: bool = value.extract()?;
-            Ok(converted_722)
+        let converted_735 = (|| -> PyResult<_> {
+            let converted_735: bool = value.extract()?;
+            Ok(converted_735)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6957,12 +7058,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_remove_bytes_scanned_cutoff_per_query(Some(converted_722));
+        builder = builder.set_remove_bytes_scanned_cutoff_per_query(Some(converted_735));
     }
     if let Some(value) = dict_value(values, "requester_pays_enabled")? {
-        let converted_723 = (|| -> PyResult<_> {
-            let converted_723: bool = value.extract()?;
-            Ok(converted_723)
+        let converted_736 = (|| -> PyResult<_> {
+            let converted_736: bool = value.extract()?;
+            Ok(converted_736)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6971,12 +7072,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_requester_pays_enabled(Some(converted_723));
+        builder = builder.set_requester_pays_enabled(Some(converted_736));
     }
     if let Some(value) = dict_value(values, "engine_version")? {
-        let converted_724 = (|| -> PyResult<_> {
-            let converted_724 = engine_version_from_py(&value)?;
-            Ok(converted_724)
+        let converted_737 = (|| -> PyResult<_> {
+            let converted_737 = engine_version_from_py(&value)?;
+            Ok(converted_737)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6985,12 +7086,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (EngineVersion)",
             )
         })?;
-        builder = builder.set_engine_version(Some(converted_724));
+        builder = builder.set_engine_version(Some(converted_737));
     }
     if let Some(value) = dict_value(values, "remove_customer_content_encryption_configuration")? {
-        let converted_725 = (|| -> PyResult<_> {
-            let converted_725: bool = value.extract()?;
-            Ok(converted_725)
+        let converted_738 = (|| -> PyResult<_> {
+            let converted_738: bool = value.extract()?;
+            Ok(converted_738)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -6999,12 +7100,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_remove_customer_content_encryption_configuration(Some(converted_725));
+        builder = builder.set_remove_customer_content_encryption_configuration(Some(converted_738));
     }
     if let Some(value) = dict_value(values, "additional_configuration")? {
-        let converted_726 = (|| -> PyResult<_> {
-            let converted_726: String = value.extract()?;
-            Ok(converted_726)
+        let converted_739 = (|| -> PyResult<_> {
+            let converted_739: String = value.extract()?;
+            Ok(converted_739)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7013,22 +7114,22 @@ fn work_group_configuration_updates_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_additional_configuration(Some(converted_726));
+        builder = builder.set_additional_configuration(Some(converted_739));
     }
     if let Some(value) = dict_value(values, "execution_role")? {
-        let converted_727 = (|| -> PyResult<_> {
-            let converted_727: String = value.extract()?;
-            Ok(converted_727)
+        let converted_740 = (|| -> PyResult<_> {
+            let converted_740: String = value.extract()?;
+            Ok(converted_740)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("execution_role"), "str")
         })?;
-        builder = builder.set_execution_role(Some(converted_727));
+        builder = builder.set_execution_role(Some(converted_740));
     }
     if let Some(value) = dict_value(values, "customer_content_encryption_configuration")? {
-        let converted_728 = (|| -> PyResult<_> {
-            let converted_728 = customer_content_encryption_configuration_from_py(&value)?;
-            Ok(converted_728)
+        let converted_741 = (|| -> PyResult<_> {
+            let converted_741 = customer_content_encryption_configuration_from_py(&value)?;
+            Ok(converted_741)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7037,12 +7138,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (CustomerContentEncryptionConfiguration)",
             )
         })?;
-        builder = builder.set_customer_content_encryption_configuration(Some(converted_728));
+        builder = builder.set_customer_content_encryption_configuration(Some(converted_741));
     }
     if let Some(value) = dict_value(values, "enable_minimum_encryption_configuration")? {
-        let converted_729 = (|| -> PyResult<_> {
-            let converted_729: bool = value.extract()?;
-            Ok(converted_729)
+        let converted_742 = (|| -> PyResult<_> {
+            let converted_742: bool = value.extract()?;
+            Ok(converted_742)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7051,12 +7152,12 @@ fn work_group_configuration_updates_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_enable_minimum_encryption_configuration(Some(converted_729));
+        builder = builder.set_enable_minimum_encryption_configuration(Some(converted_742));
     }
     if let Some(value) = dict_value(values, "query_results_s3_access_grants_configuration")? {
-        let converted_730 = (|| -> PyResult<_> {
-            let converted_730 = query_results_s3_access_grants_configuration_from_py(&value)?;
-            Ok(converted_730)
+        let converted_743 = (|| -> PyResult<_> {
+            let converted_743 = query_results_s3_access_grants_configuration_from_py(&value)?;
+            Ok(converted_743)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7065,12 +7166,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (QueryResultsS3AccessGrantsConfiguration)",
             )
         })?;
-        builder = builder.set_query_results_s3_access_grants_configuration(Some(converted_730));
+        builder = builder.set_query_results_s3_access_grants_configuration(Some(converted_743));
     }
     if let Some(value) = dict_value(values, "monitoring_configuration")? {
-        let converted_731 = (|| -> PyResult<_> {
-            let converted_731 = monitoring_configuration_from_py(&value)?;
-            Ok(converted_731)
+        let converted_744 = (|| -> PyResult<_> {
+            let converted_744 = monitoring_configuration_from_py(&value)?;
+            Ok(converted_744)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7079,12 +7180,12 @@ fn work_group_configuration_updates_from_py(
                 "dict (MonitoringConfiguration)",
             )
         })?;
-        builder = builder.set_monitoring_configuration(Some(converted_731));
+        builder = builder.set_monitoring_configuration(Some(converted_744));
     }
     if let Some(value) = dict_value(values, "engine_configuration")? {
-        let converted_732 = (|| -> PyResult<_> {
-            let converted_732 = engine_configuration_from_py(&value)?;
-            Ok(converted_732)
+        let converted_745 = (|| -> PyResult<_> {
+            let converted_745 = engine_configuration_from_py(&value)?;
+            Ok(converted_745)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7093,7 +7194,7 @@ fn work_group_configuration_updates_from_py(
                 "dict (EngineConfiguration)",
             )
         })?;
-        builder = builder.set_engine_configuration(Some(converted_732));
+        builder = builder.set_engine_configuration(Some(converted_745));
     }
     Ok(builder.build())
 }
@@ -7104,58 +7205,58 @@ fn work_group_configuration_updates_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.enforce_work_group_configuration {
-        let converted_733 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enforce_work_group_configuration", converted_733)?;
+        let converted_746 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enforce_work_group_configuration", converted_746)?;
     } else {
         result.set_item("enforce_work_group_configuration", py.None())?;
     }
     if let Some(value) = &value.result_configuration_updates {
-        let converted_734 = result_configuration_updates_to_py(py, value)?;
-        result.set_item("result_configuration_updates", converted_734)?;
+        let converted_747 = result_configuration_updates_to_py(py, value)?;
+        result.set_item("result_configuration_updates", converted_747)?;
     } else {
         result.set_item("result_configuration_updates", py.None())?;
     }
     if let Some(value) = &value.managed_query_results_configuration_updates {
-        let converted_735 = managed_query_results_configuration_updates_to_py(py, value)?;
-        result.set_item("managed_query_results_configuration_updates", converted_735)?;
+        let converted_748 = managed_query_results_configuration_updates_to_py(py, value)?;
+        result.set_item("managed_query_results_configuration_updates", converted_748)?;
     } else {
         result.set_item("managed_query_results_configuration_updates", py.None())?;
     }
     if let Some(value) = &value.publish_cloud_watch_metrics_enabled {
-        let converted_736 = (value).to_owned().into_py_any(py)?;
-        result.set_item("publish_cloud_watch_metrics_enabled", converted_736)?;
+        let converted_749 = (value).to_owned().into_py_any(py)?;
+        result.set_item("publish_cloud_watch_metrics_enabled", converted_749)?;
     } else {
         result.set_item("publish_cloud_watch_metrics_enabled", py.None())?;
     }
     if let Some(value) = &value.bytes_scanned_cutoff_per_query {
-        let converted_737 = (value).to_owned().into_py_any(py)?;
-        result.set_item("bytes_scanned_cutoff_per_query", converted_737)?;
+        let converted_750 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bytes_scanned_cutoff_per_query", converted_750)?;
     } else {
         result.set_item("bytes_scanned_cutoff_per_query", py.None())?;
     }
     if let Some(value) = &value.remove_bytes_scanned_cutoff_per_query {
-        let converted_738 = (value).to_owned().into_py_any(py)?;
-        result.set_item("remove_bytes_scanned_cutoff_per_query", converted_738)?;
+        let converted_751 = (value).to_owned().into_py_any(py)?;
+        result.set_item("remove_bytes_scanned_cutoff_per_query", converted_751)?;
     } else {
         result.set_item("remove_bytes_scanned_cutoff_per_query", py.None())?;
     }
     if let Some(value) = &value.requester_pays_enabled {
-        let converted_739 = (value).to_owned().into_py_any(py)?;
-        result.set_item("requester_pays_enabled", converted_739)?;
+        let converted_752 = (value).to_owned().into_py_any(py)?;
+        result.set_item("requester_pays_enabled", converted_752)?;
     } else {
         result.set_item("requester_pays_enabled", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_740 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_740)?;
+        let converted_753 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_753)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.remove_customer_content_encryption_configuration {
-        let converted_741 = (value).to_owned().into_py_any(py)?;
+        let converted_754 = (value).to_owned().into_py_any(py)?;
         result.set_item(
             "remove_customer_content_encryption_configuration",
-            converted_741,
+            converted_754,
         )?;
     } else {
         result.set_item(
@@ -7164,47 +7265,47 @@ fn work_group_configuration_updates_to_py(
         )?;
     }
     if let Some(value) = &value.additional_configuration {
-        let converted_742 = (value).as_str().into_py_any(py)?;
-        result.set_item("additional_configuration", converted_742)?;
+        let converted_755 = (value).as_str().into_py_any(py)?;
+        result.set_item("additional_configuration", converted_755)?;
     } else {
         result.set_item("additional_configuration", py.None())?;
     }
     if let Some(value) = &value.execution_role {
-        let converted_743 = (value).as_str().into_py_any(py)?;
-        result.set_item("execution_role", converted_743)?;
+        let converted_756 = (value).as_str().into_py_any(py)?;
+        result.set_item("execution_role", converted_756)?;
     } else {
         result.set_item("execution_role", py.None())?;
     }
     if let Some(value) = &value.customer_content_encryption_configuration {
-        let converted_744 = customer_content_encryption_configuration_to_py(py, value)?;
-        result.set_item("customer_content_encryption_configuration", converted_744)?;
+        let converted_757 = customer_content_encryption_configuration_to_py(py, value)?;
+        result.set_item("customer_content_encryption_configuration", converted_757)?;
     } else {
         result.set_item("customer_content_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.enable_minimum_encryption_configuration {
-        let converted_745 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enable_minimum_encryption_configuration", converted_745)?;
+        let converted_758 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enable_minimum_encryption_configuration", converted_758)?;
     } else {
         result.set_item("enable_minimum_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.query_results_s3_access_grants_configuration {
-        let converted_746 = query_results_s3_access_grants_configuration_to_py(py, value)?;
+        let converted_759 = query_results_s3_access_grants_configuration_to_py(py, value)?;
         result.set_item(
             "query_results_s3_access_grants_configuration",
-            converted_746,
+            converted_759,
         )?;
     } else {
         result.set_item("query_results_s3_access_grants_configuration", py.None())?;
     }
     if let Some(value) = &value.monitoring_configuration {
-        let converted_747 = monitoring_configuration_to_py(py, value)?;
-        result.set_item("monitoring_configuration", converted_747)?;
+        let converted_760 = monitoring_configuration_to_py(py, value)?;
+        result.set_item("monitoring_configuration", converted_760)?;
     } else {
         result.set_item("monitoring_configuration", py.None())?;
     }
     if let Some(value) = &value.engine_configuration {
-        let converted_748 = engine_configuration_to_py(py, value)?;
-        result.set_item("engine_configuration", converted_748)?;
+        let converted_761 = engine_configuration_to_py(py, value)?;
+        result.set_item("engine_configuration", converted_761)?;
     } else {
         result.set_item("engine_configuration", py.None())?;
     }
@@ -7228,21 +7329,21 @@ fn work_group_summary_from_py(
     )?;
     let mut builder = aws_sdk_athena::types::WorkGroupSummary::builder();
     if let Some(value) = dict_value(values, "name")? {
-        let converted_749 = (|| -> PyResult<_> {
-            let converted_749: String = value.extract()?;
-            Ok(converted_749)
+        let converted_762 = (|| -> PyResult<_> {
+            let converted_762: String = value.extract()?;
+            Ok(converted_762)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
         })?;
-        builder = builder.set_name(Some(converted_749));
+        builder = builder.set_name(Some(converted_762));
     }
     if let Some(value) = dict_value(values, "state")? {
-        let converted_750 = (|| -> PyResult<_> {
-            let enum_value_751: String = value.extract()?;
-            let converted_750 =
-                aws_sdk_athena::types::WorkGroupState::from(enum_value_751.as_str());
-            Ok(converted_750)
+        let converted_763 = (|| -> PyResult<_> {
+            let enum_value_764: String = value.extract()?;
+            let converted_763 =
+                aws_sdk_athena::types::WorkGroupState::from(enum_value_764.as_str());
+            Ok(converted_763)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7251,27 +7352,27 @@ fn work_group_summary_from_py(
                 "str (WorkGroupState)",
             )
         })?;
-        builder = builder.set_state(Some(converted_750));
+        builder = builder.set_state(Some(converted_763));
     }
     if let Some(value) = dict_value(values, "description")? {
-        let converted_752 = (|| -> PyResult<_> {
-            let converted_752: String = value.extract()?;
-            Ok(converted_752)
+        let converted_765 = (|| -> PyResult<_> {
+            let converted_765: String = value.extract()?;
+            Ok(converted_765)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("description"), "str")
         })?;
-        builder = builder.set_description(Some(converted_752));
+        builder = builder.set_description(Some(converted_765));
     }
     if let Some(value) = dict_value(values, "creation_time")? {
-        let converted_753 = (|| -> PyResult<_> {
-            let timestamp_754: String = value.extract()?;
-            let converted_753 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_754,
+        let converted_766 = (|| -> PyResult<_> {
+            let timestamp_767: String = value.extract()?;
+            let converted_766 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_767,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_753)
+            Ok(converted_766)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7280,12 +7381,12 @@ fn work_group_summary_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_creation_time(Some(converted_753));
+        builder = builder.set_creation_time(Some(converted_766));
     }
     if let Some(value) = dict_value(values, "engine_version")? {
-        let converted_755 = (|| -> PyResult<_> {
-            let converted_755 = engine_version_from_py(&value)?;
-            Ok(converted_755)
+        let converted_768 = (|| -> PyResult<_> {
+            let converted_768 = engine_version_from_py(&value)?;
+            Ok(converted_768)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7294,12 +7395,12 @@ fn work_group_summary_from_py(
                 "dict (EngineVersion)",
             )
         })?;
-        builder = builder.set_engine_version(Some(converted_755));
+        builder = builder.set_engine_version(Some(converted_768));
     }
     if let Some(value) = dict_value(values, "identity_center_application_arn")? {
-        let converted_756 = (|| -> PyResult<_> {
-            let converted_756: String = value.extract()?;
-            Ok(converted_756)
+        let converted_769 = (|| -> PyResult<_> {
+            let converted_769: String = value.extract()?;
+            Ok(converted_769)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -7308,7 +7409,7 @@ fn work_group_summary_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_identity_center_application_arn(Some(converted_756));
+        builder = builder.set_identity_center_application_arn(Some(converted_769));
     }
     Ok(builder.build())
 }
@@ -7319,38 +7420,38 @@ fn work_group_summary_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_757 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_757)?;
+        let converted_770 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_770)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.state {
-        let converted_758 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_758)?;
+        let converted_771 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_771)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_759 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_759)?;
+        let converted_772 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_772)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_760 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_760)?;
+        let converted_773 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_773)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_761 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_761)?;
+        let converted_774 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_774)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.identity_center_application_arn {
-        let converted_762 = (value).as_str().into_py_any(py)?;
-        result.set_item("identity_center_application_arn", converted_762)?;
+        let converted_775 = (value).as_str().into_py_any(py)?;
+        result.set_item("identity_center_application_arn", converted_775)?;
     } else {
         result.set_item("identity_center_application_arn", py.None())?;
     }
@@ -7366,8 +7467,8 @@ struct PyAclConfiguration {
 impl PyAclConfiguration {
     #[getter]
     fn s3_acl_option(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1014 = (&self.inner.s3_acl_option).as_str().into_py_any(py)?;
-        Ok(converted_1014)
+        let converted_1045 = (&self.inner.s3_acl_option).as_str().into_py_any(py)?;
+        Ok(converted_1045)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7385,8 +7486,8 @@ impl PyApplicationDpuSizes {
     #[getter]
     fn application_runtime_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_runtime_id {
-            let converted_1015 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1015)
+            let converted_1046 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1046)
         } else {
             Ok(py.None())
         }
@@ -7395,13 +7496,13 @@ impl PyApplicationDpuSizes {
     #[getter]
     fn supported_dpu_sizes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_dpu_sizes {
-            let converted_1016_list = PyList::empty(py);
-            for item_1017 in value {
-                let converted_item_1018 = (item_1017).to_owned().into_py_any(py)?;
-                converted_1016_list.append(converted_item_1018)?;
+            let converted_1047_list = PyList::empty(py);
+            for item_1048 in value {
+                let converted_item_1049 = (item_1048).to_owned().into_py_any(py)?;
+                converted_1047_list.append(converted_item_1049)?;
             }
-            let converted_1016 = converted_1016_list.into_any().unbind();
-            Ok(converted_1016)
+            let converted_1047 = converted_1047_list.into_any().unbind();
+            Ok(converted_1047)
         } else {
             Ok(py.None())
         }
@@ -7422,8 +7523,8 @@ impl PyAthenaError {
     #[getter]
     fn error_category(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_category {
-            let converted_1019 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1019)
+            let converted_1050 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1050)
         } else {
             Ok(py.None())
         }
@@ -7432,8 +7533,8 @@ impl PyAthenaError {
     #[getter]
     fn error_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_type {
-            let converted_1020 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1020)
+            let converted_1051 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1051)
         } else {
             Ok(py.None())
         }
@@ -7441,15 +7542,15 @@ impl PyAthenaError {
 
     #[getter]
     fn retryable(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1021 = (&self.inner.retryable).to_owned().into_py_any(py)?;
-        Ok(converted_1021)
+        let converted_1052 = (&self.inner.retryable).to_owned().into_py_any(py)?;
+        Ok(converted_1052)
     }
 
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1022 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1022)
+            let converted_1053 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1053)
         } else {
             Ok(py.None())
         }
@@ -7470,8 +7571,8 @@ impl PyCalculationResult {
     #[getter]
     fn std_out_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.std_out_s3_uri {
-            let converted_1023 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1023)
+            let converted_1054 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1054)
         } else {
             Ok(py.None())
         }
@@ -7480,8 +7581,8 @@ impl PyCalculationResult {
     #[getter]
     fn std_error_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.std_error_s3_uri {
-            let converted_1024 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1024)
+            let converted_1055 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1055)
         } else {
             Ok(py.None())
         }
@@ -7490,8 +7591,8 @@ impl PyCalculationResult {
     #[getter]
     fn result_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_s3_uri {
-            let converted_1025 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1025)
+            let converted_1056 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1056)
         } else {
             Ok(py.None())
         }
@@ -7500,8 +7601,8 @@ impl PyCalculationResult {
     #[getter]
     fn result_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_type {
-            let converted_1026 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1026)
+            let converted_1057 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1057)
         } else {
             Ok(py.None())
         }
@@ -7526,8 +7627,8 @@ impl PyCalculationStatistics {
     #[getter]
     fn dpu_execution_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dpu_execution_in_millis {
-            let converted_1027 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1027)
+            let converted_1058 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1058)
         } else {
             Ok(py.None())
         }
@@ -7536,8 +7637,8 @@ impl PyCalculationStatistics {
     #[getter]
     fn progress(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.progress {
-            let converted_1028 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1028)
+            let converted_1059 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1059)
         } else {
             Ok(py.None())
         }
@@ -7558,8 +7659,8 @@ impl PyCalculationStatus {
     #[getter]
     fn submission_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.submission_date_time {
-            let converted_1029 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1029)
+            let converted_1060 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1060)
         } else {
             Ok(py.None())
         }
@@ -7568,8 +7669,8 @@ impl PyCalculationStatus {
     #[getter]
     fn completion_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.completion_date_time {
-            let converted_1030 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1030)
+            let converted_1061 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1061)
         } else {
             Ok(py.None())
         }
@@ -7578,8 +7679,8 @@ impl PyCalculationStatus {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1031 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1031)
+            let converted_1062 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1062)
         } else {
             Ok(py.None())
         }
@@ -7588,8 +7689,8 @@ impl PyCalculationStatus {
     #[getter]
     fn state_change_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_change_reason {
-            let converted_1032 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1032)
+            let converted_1063 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1063)
         } else {
             Ok(py.None())
         }
@@ -7624,20 +7725,20 @@ fn calculation_summary_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.calculation_execution_id {
-        let converted_1036 = (value).as_str().into_py_any(py)?;
-        result.set_item("calculation_execution_id", converted_1036)?;
+        let converted_1067 = (value).as_str().into_py_any(py)?;
+        result.set_item("calculation_execution_id", converted_1067)?;
     } else {
         result.set_item("calculation_execution_id", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_1037 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_1037)?;
+        let converted_1068 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_1068)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_1038 = calculation_status_to_py(py, value)?;
-        result.set_item("status", converted_1038)?;
+        let converted_1069 = calculation_status_to_py(py, value)?;
+        result.set_item("status", converted_1069)?;
     } else {
         result.set_item("status", py.None())?;
     }
@@ -7654,8 +7755,8 @@ impl PyCalculationSummary {
     #[getter]
     fn calculation_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.calculation_execution_id {
-            let converted_1033 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1033)
+            let converted_1064 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1064)
         } else {
             Ok(py.None())
         }
@@ -7664,8 +7765,8 @@ impl PyCalculationSummary {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1034 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1034)
+            let converted_1065 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1065)
         } else {
             Ok(py.None())
         }
@@ -7674,14 +7775,14 @@ impl PyCalculationSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1035 = Py::new(
+            let converted_1066 = Py::new(
                 py,
                 PyCalculationStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1035)
+            Ok(converted_1066)
         } else {
             Ok(py.None())
         }
@@ -7701,15 +7802,15 @@ struct PyCapacityAllocation {
 impl PyCapacityAllocation {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1039 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_1039)
+        let converted_1070 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1070)
     }
 
     #[getter]
     fn status_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_message {
-            let converted_1040 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1040)
+            let converted_1071 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1071)
         } else {
             Ok(py.None())
         }
@@ -7717,15 +7818,15 @@ impl PyCapacityAllocation {
 
     #[getter]
     fn request_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1041 = (&self.inner.request_time).to_string().into_py_any(py)?;
-        Ok(converted_1041)
+        let converted_1072 = (&self.inner.request_time).to_string().into_py_any(py)?;
+        Ok(converted_1072)
     }
 
     #[getter]
     fn request_completion_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.request_completion_time {
-            let converted_1042 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1042)
+            let converted_1073 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1073)
         } else {
             Ok(py.None())
         }
@@ -7746,13 +7847,13 @@ impl PyCapacityAssignment {
     #[getter]
     fn work_group_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group_names {
-            let converted_1043_list = PyList::empty(py);
-            for item_1044 in value {
-                let converted_item_1045 = (item_1044).as_str().into_py_any(py)?;
-                converted_1043_list.append(converted_item_1045)?;
+            let converted_1074_list = PyList::empty(py);
+            for item_1075 in value {
+                let converted_item_1076 = (item_1075).as_str().into_py_any(py)?;
+                converted_1074_list.append(converted_item_1076)?;
             }
-            let converted_1043 = converted_1043_list.into_any().unbind();
-            Ok(converted_1043)
+            let converted_1074 = converted_1074_list.into_any().unbind();
+            Ok(converted_1074)
         } else {
             Ok(py.None())
         }
@@ -7779,7 +7880,7 @@ impl From<aws_sdk_athena::types::CapacityAssignmentConfiguration>
             capacity_assignments: value.capacity_assignments.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1050| Arc::new(owned_1050))
+                    .map(|owned_1081| Arc::new(owned_1081))
                     .collect()
             }),
         }
@@ -7792,19 +7893,19 @@ fn capacity_assignment_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.capacity_reservation_name {
-        let converted_1051 = (value).as_str().into_py_any(py)?;
-        result.set_item("capacity_reservation_name", converted_1051)?;
+        let converted_1082 = (value).as_str().into_py_any(py)?;
+        result.set_item("capacity_reservation_name", converted_1082)?;
     } else {
         result.set_item("capacity_reservation_name", py.None())?;
     }
     if let Some(value) = &value.capacity_assignments {
-        let converted_1052_list = PyList::empty(py);
-        for item_1053 in value {
-            let converted_item_1054 = capacity_assignment_to_py(py, item_1053)?;
-            converted_1052_list.append(converted_item_1054)?;
+        let converted_1083_list = PyList::empty(py);
+        for item_1084 in value {
+            let converted_item_1085 = capacity_assignment_to_py(py, item_1084)?;
+            converted_1083_list.append(converted_item_1085)?;
         }
-        let converted_1052 = converted_1052_list.into_any().unbind();
-        result.set_item("capacity_assignments", converted_1052)?;
+        let converted_1083 = converted_1083_list.into_any().unbind();
+        result.set_item("capacity_assignments", converted_1083)?;
     } else {
         result.set_item("capacity_assignments", py.None())?;
     }
@@ -7825,8 +7926,8 @@ impl PyCapacityAssignmentConfiguration {
     #[getter]
     fn capacity_reservation_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_reservation_name {
-            let converted_1046 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1046)
+            let converted_1077 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1077)
         } else {
             Ok(py.None())
         }
@@ -7835,19 +7936,19 @@ impl PyCapacityAssignmentConfiguration {
     #[getter]
     fn capacity_assignments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_assignments {
-            let converted_1047_list = PyList::empty(py);
-            for item_1048 in value {
-                let converted_item_1049 = Py::new(
+            let converted_1078_list = PyList::empty(py);
+            for item_1079 in value {
+                let converted_item_1080 = Py::new(
                     py,
                     PyCapacityAssignment {
-                        inner: Arc::clone(item_1048),
+                        inner: Arc::clone(item_1079),
                     },
                 )?
                 .into_any();
-                converted_1047_list.append(converted_item_1049)?;
+                converted_1078_list.append(converted_item_1080)?;
             }
-            let converted_1047 = converted_1047_list.into_any().unbind();
-            Ok(converted_1047)
+            let converted_1078 = converted_1078_list.into_any().unbind();
+            Ok(converted_1078)
         } else {
             Ok(py.None())
         }
@@ -7889,28 +7990,28 @@ fn capacity_reservation_shared_to_py(
     value: &SharedCapacityReservation,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1062 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1062)?;
-    let converted_1063 = (&value.status).as_str().into_py_any(py)?;
-    result.set_item("status", converted_1063)?;
-    let converted_1064 = (&value.target_dpus).to_owned().into_py_any(py)?;
-    result.set_item("target_dpus", converted_1064)?;
-    let converted_1065 = (&value.allocated_dpus).to_owned().into_py_any(py)?;
-    result.set_item("allocated_dpus", converted_1065)?;
+    let converted_1093 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1093)?;
+    let converted_1094 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_1094)?;
+    let converted_1095 = (&value.target_dpus).to_owned().into_py_any(py)?;
+    result.set_item("target_dpus", converted_1095)?;
+    let converted_1096 = (&value.allocated_dpus).to_owned().into_py_any(py)?;
+    result.set_item("allocated_dpus", converted_1096)?;
     if let Some(value) = &value.last_allocation {
-        let converted_1066 = capacity_allocation_to_py(py, value)?;
-        result.set_item("last_allocation", converted_1066)?;
+        let converted_1097 = capacity_allocation_to_py(py, value)?;
+        result.set_item("last_allocation", converted_1097)?;
     } else {
         result.set_item("last_allocation", py.None())?;
     }
     if let Some(value) = &value.last_successful_allocation_time {
-        let converted_1067 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_successful_allocation_time", converted_1067)?;
+        let converted_1098 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_successful_allocation_time", converted_1098)?;
     } else {
         result.set_item("last_successful_allocation_time", py.None())?;
     }
-    let converted_1068 = (&value.creation_time).to_string().into_py_any(py)?;
-    result.set_item("creation_time", converted_1068)?;
+    let converted_1099 = (&value.creation_time).to_string().into_py_any(py)?;
+    result.set_item("creation_time", converted_1099)?;
     Ok(result.into_any().unbind())
 }
 
@@ -7923,39 +8024,39 @@ struct PyCapacityReservation {
 impl PyCapacityReservation {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1055 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1055)
+        let converted_1086 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1086)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1056 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_1056)
+        let converted_1087 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_1087)
     }
 
     #[getter]
     fn target_dpus(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1057 = (&self.inner.target_dpus).to_owned().into_py_any(py)?;
-        Ok(converted_1057)
+        let converted_1088 = (&self.inner.target_dpus).to_owned().into_py_any(py)?;
+        Ok(converted_1088)
     }
 
     #[getter]
     fn allocated_dpus(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1058 = (&self.inner.allocated_dpus).to_owned().into_py_any(py)?;
-        Ok(converted_1058)
+        let converted_1089 = (&self.inner.allocated_dpus).to_owned().into_py_any(py)?;
+        Ok(converted_1089)
     }
 
     #[getter]
     fn last_allocation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_allocation {
-            let converted_1059 = Py::new(
+            let converted_1090 = Py::new(
                 py,
                 PyCapacityAllocation {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1059)
+            Ok(converted_1090)
         } else {
             Ok(py.None())
         }
@@ -7964,8 +8065,8 @@ impl PyCapacityReservation {
     #[getter]
     fn last_successful_allocation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_successful_allocation_time {
-            let converted_1060 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1060)
+            let converted_1091 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1091)
         } else {
             Ok(py.None())
         }
@@ -7973,8 +8074,8 @@ impl PyCapacityReservation {
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1061 = (&self.inner.creation_time).to_string().into_py_any(py)?;
-        Ok(converted_1061)
+        let converted_1092 = (&self.inner.creation_time).to_string().into_py_any(py)?;
+        Ok(converted_1092)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -7992,8 +8093,8 @@ impl PyClassification {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1069 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1069)
+            let converted_1100 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1100)
         } else {
             Ok(py.None())
         }
@@ -8002,14 +8103,14 @@ impl PyClassification {
     #[getter]
     fn properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.properties {
-            let converted_1070_dict = PyDict::new(py);
-            for (key_1071, value_1072) in value {
-                let converted_key_1073 = (key_1071).as_str().into_py_any(py)?;
-                let converted_value_1074 = (value_1072).as_str().into_py_any(py)?;
-                converted_1070_dict.set_item(converted_key_1073, converted_value_1074)?;
+            let converted_1101_dict = PyDict::new(py);
+            for (key_1102, value_1103) in value {
+                let converted_key_1104 = (key_1102).as_str().into_py_any(py)?;
+                let converted_value_1105 = (value_1103).as_str().into_py_any(py)?;
+                converted_1101_dict.set_item(converted_key_1104, converted_value_1105)?;
             }
-            let converted_1070 = converted_1070_dict.into_any().unbind();
-            Ok(converted_1070)
+            let converted_1101 = converted_1101_dict.into_any().unbind();
+            Ok(converted_1101)
         } else {
             Ok(py.None())
         }
@@ -8033,15 +8134,15 @@ struct PyCloudWatchLoggingConfiguration {
 impl PyCloudWatchLoggingConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1075 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_1075)
+        let converted_1106 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1106)
     }
 
     #[getter]
     fn log_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_group {
-            let converted_1076 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1076)
+            let converted_1107 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1107)
         } else {
             Ok(py.None())
         }
@@ -8050,8 +8151,8 @@ impl PyCloudWatchLoggingConfiguration {
     #[getter]
     fn log_stream_name_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_stream_name_prefix {
-            let converted_1077 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1077)
+            let converted_1108 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1108)
         } else {
             Ok(py.None())
         }
@@ -8060,19 +8161,19 @@ impl PyCloudWatchLoggingConfiguration {
     #[getter]
     fn log_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_types {
-            let converted_1078_dict = PyDict::new(py);
-            for (key_1079, value_1080) in value {
-                let converted_key_1081 = (key_1079).as_str().into_py_any(py)?;
-                let converted_value_1082_list = PyList::empty(py);
-                for item_1083 in value_1080 {
-                    let converted_item_1084 = (item_1083).as_str().into_py_any(py)?;
-                    converted_value_1082_list.append(converted_item_1084)?;
+            let converted_1109_dict = PyDict::new(py);
+            for (key_1110, value_1111) in value {
+                let converted_key_1112 = (key_1110).as_str().into_py_any(py)?;
+                let converted_value_1113_list = PyList::empty(py);
+                for item_1114 in value_1111 {
+                    let converted_item_1115 = (item_1114).as_str().into_py_any(py)?;
+                    converted_value_1113_list.append(converted_item_1115)?;
                 }
-                let converted_value_1082 = converted_value_1082_list.into_any().unbind();
-                converted_1078_dict.set_item(converted_key_1081, converted_value_1082)?;
+                let converted_value_1113 = converted_value_1113_list.into_any().unbind();
+                converted_1109_dict.set_item(converted_key_1112, converted_value_1113)?;
             }
-            let converted_1078 = converted_1078_dict.into_any().unbind();
-            Ok(converted_1078)
+            let converted_1109 = converted_1109_dict.into_any().unbind();
+            Ok(converted_1109)
         } else {
             Ok(py.None())
         }
@@ -8092,15 +8193,15 @@ struct PyColumn {
 impl PyColumn {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1085 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1085)
+        let converted_1116 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1116)
     }
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1086 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1086)
+            let converted_1117 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1117)
         } else {
             Ok(py.None())
         }
@@ -8109,8 +8210,8 @@ impl PyColumn {
     #[getter]
     fn comment(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.comment {
-            let converted_1087 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1087)
+            let converted_1118 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1118)
         } else {
             Ok(py.None())
         }
@@ -8131,8 +8232,8 @@ impl PyColumnInfo {
     #[getter]
     fn catalog_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.catalog_name {
-            let converted_1088 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1088)
+            let converted_1119 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1119)
         } else {
             Ok(py.None())
         }
@@ -8141,8 +8242,8 @@ impl PyColumnInfo {
     #[getter]
     fn schema_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.schema_name {
-            let converted_1089 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1089)
+            let converted_1120 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1120)
         } else {
             Ok(py.None())
         }
@@ -8151,8 +8252,8 @@ impl PyColumnInfo {
     #[getter]
     fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_name {
-            let converted_1090 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1090)
+            let converted_1121 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1121)
         } else {
             Ok(py.None())
         }
@@ -8160,15 +8261,15 @@ impl PyColumnInfo {
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1091 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1091)
+        let converted_1122 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1122)
     }
 
     #[getter]
     fn label(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.label {
-            let converted_1092 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1092)
+            let converted_1123 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1123)
         } else {
             Ok(py.None())
         }
@@ -8176,27 +8277,27 @@ impl PyColumnInfo {
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1093 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1093)
+        let converted_1124 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1124)
     }
 
     #[getter]
     fn precision(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1094 = (&self.inner.precision).to_owned().into_py_any(py)?;
-        Ok(converted_1094)
+        let converted_1125 = (&self.inner.precision).to_owned().into_py_any(py)?;
+        Ok(converted_1125)
     }
 
     #[getter]
     fn scale(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1095 = (&self.inner.scale).to_owned().into_py_any(py)?;
-        Ok(converted_1095)
+        let converted_1126 = (&self.inner.scale).to_owned().into_py_any(py)?;
+        Ok(converted_1126)
     }
 
     #[getter]
     fn nullable(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.nullable {
-            let converted_1096 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1096)
+            let converted_1127 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1127)
         } else {
             Ok(py.None())
         }
@@ -8204,8 +8305,8 @@ impl PyColumnInfo {
 
     #[getter]
     fn case_sensitive(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1097 = (&self.inner.case_sensitive).to_owned().into_py_any(py)?;
-        Ok(converted_1097)
+        let converted_1128 = (&self.inner.case_sensitive).to_owned().into_py_any(py)?;
+        Ok(converted_1128)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8226,8 +8327,8 @@ struct PyCustomerContentEncryptionConfiguration {
 impl PyCustomerContentEncryptionConfiguration {
     #[getter]
     fn kms_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1098 = (&self.inner.kms_key).as_str().into_py_any(py)?;
-        Ok(converted_1098)
+        let converted_1129 = (&self.inner.kms_key).as_str().into_py_any(py)?;
+        Ok(converted_1129)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8244,15 +8345,15 @@ struct PyDataCatalog {
 impl PyDataCatalog {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1099 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1099)
+        let converted_1130 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1130)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1100 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1100)
+            let converted_1131 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1131)
         } else {
             Ok(py.None())
         }
@@ -8260,21 +8361,21 @@ impl PyDataCatalog {
 
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1101 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_1101)
+        let converted_1132 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_1132)
     }
 
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
-            let converted_1102_dict = PyDict::new(py);
-            for (key_1103, value_1104) in value {
-                let converted_key_1105 = (key_1103).as_str().into_py_any(py)?;
-                let converted_value_1106 = (value_1104).as_str().into_py_any(py)?;
-                converted_1102_dict.set_item(converted_key_1105, converted_value_1106)?;
+            let converted_1133_dict = PyDict::new(py);
+            for (key_1134, value_1135) in value {
+                let converted_key_1136 = (key_1134).as_str().into_py_any(py)?;
+                let converted_value_1137 = (value_1135).as_str().into_py_any(py)?;
+                converted_1133_dict.set_item(converted_key_1136, converted_value_1137)?;
             }
-            let converted_1102 = converted_1102_dict.into_any().unbind();
-            Ok(converted_1102)
+            let converted_1133 = converted_1133_dict.into_any().unbind();
+            Ok(converted_1133)
         } else {
             Ok(py.None())
         }
@@ -8283,8 +8384,8 @@ impl PyDataCatalog {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1107 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1107)
+            let converted_1138 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1138)
         } else {
             Ok(py.None())
         }
@@ -8293,8 +8394,8 @@ impl PyDataCatalog {
     #[getter]
     fn connection_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_type {
-            let converted_1108 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1108)
+            let converted_1139 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1139)
         } else {
             Ok(py.None())
         }
@@ -8303,8 +8404,8 @@ impl PyDataCatalog {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_1109 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1109)
+            let converted_1140 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1140)
         } else {
             Ok(py.None())
         }
@@ -8325,8 +8426,8 @@ impl PyDataCatalogSummary {
     #[getter]
     fn catalog_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.catalog_name {
-            let converted_1110 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1110)
+            let converted_1141 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1141)
         } else {
             Ok(py.None())
         }
@@ -8335,8 +8436,8 @@ impl PyDataCatalogSummary {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1111 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1111)
+            let converted_1142 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1142)
         } else {
             Ok(py.None())
         }
@@ -8345,8 +8446,8 @@ impl PyDataCatalogSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1112 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1112)
+            let converted_1143 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1143)
         } else {
             Ok(py.None())
         }
@@ -8355,8 +8456,8 @@ impl PyDataCatalogSummary {
     #[getter]
     fn connection_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.connection_type {
-            let converted_1113 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1113)
+            let converted_1144 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1144)
         } else {
             Ok(py.None())
         }
@@ -8365,8 +8466,8 @@ impl PyDataCatalogSummary {
     #[getter]
     fn error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error {
-            let converted_1114 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1114)
+            let converted_1145 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1145)
         } else {
             Ok(py.None())
         }
@@ -8386,15 +8487,15 @@ struct PyDatabase {
 impl PyDatabase {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1115 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1115)
+        let converted_1146 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1146)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1116 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1116)
+            let converted_1147 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1147)
         } else {
             Ok(py.None())
         }
@@ -8403,14 +8504,14 @@ impl PyDatabase {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
-            let converted_1117_dict = PyDict::new(py);
-            for (key_1118, value_1119) in value {
-                let converted_key_1120 = (key_1118).as_str().into_py_any(py)?;
-                let converted_value_1121 = (value_1119).as_str().into_py_any(py)?;
-                converted_1117_dict.set_item(converted_key_1120, converted_value_1121)?;
+            let converted_1148_dict = PyDict::new(py);
+            for (key_1149, value_1150) in value {
+                let converted_key_1151 = (key_1149).as_str().into_py_any(py)?;
+                let converted_value_1152 = (value_1150).as_str().into_py_any(py)?;
+                converted_1148_dict.set_item(converted_key_1151, converted_value_1152)?;
             }
-            let converted_1117 = converted_1117_dict.into_any().unbind();
-            Ok(converted_1117)
+            let converted_1148 = converted_1148_dict.into_any().unbind();
+            Ok(converted_1148)
         } else {
             Ok(py.None())
         }
@@ -8431,8 +8532,8 @@ impl PyDatum {
     #[getter]
     fn var_char_value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.var_char_value {
-            let converted_1122 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1122)
+            let converted_1153 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1153)
         } else {
             Ok(py.None())
         }
@@ -8456,15 +8557,15 @@ struct PyEncryptionConfiguration {
 impl PyEncryptionConfiguration {
     #[getter]
     fn encryption_option(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1123 = (&self.inner.encryption_option).as_str().into_py_any(py)?;
-        Ok(converted_1123)
+        let converted_1154 = (&self.inner.encryption_option).as_str().into_py_any(py)?;
+        Ok(converted_1154)
     }
 
     #[getter]
     fn kms_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key {
-            let converted_1124 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1124)
+            let converted_1155 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1155)
         } else {
             Ok(py.None())
         }
@@ -8499,7 +8600,7 @@ impl From<aws_sdk_athena::types::EngineConfiguration> for SharedEngineConfigurat
             classifications: value.classifications.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1141| Arc::new(owned_1141))
+                    .map(|owned_1172| Arc::new(owned_1172))
                     .collect()
             }),
         }
@@ -8512,51 +8613,51 @@ fn engine_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.coordinator_dpu_size {
-        let converted_1142 = (value).to_owned().into_py_any(py)?;
-        result.set_item("coordinator_dpu_size", converted_1142)?;
+        let converted_1173 = (value).to_owned().into_py_any(py)?;
+        result.set_item("coordinator_dpu_size", converted_1173)?;
     } else {
         result.set_item("coordinator_dpu_size", py.None())?;
     }
-    let converted_1143 = (&value.max_concurrent_dpus).to_owned().into_py_any(py)?;
-    result.set_item("max_concurrent_dpus", converted_1143)?;
+    let converted_1174 = (&value.max_concurrent_dpus).to_owned().into_py_any(py)?;
+    result.set_item("max_concurrent_dpus", converted_1174)?;
     if let Some(value) = &value.default_executor_dpu_size {
-        let converted_1144 = (value).to_owned().into_py_any(py)?;
-        result.set_item("default_executor_dpu_size", converted_1144)?;
+        let converted_1175 = (value).to_owned().into_py_any(py)?;
+        result.set_item("default_executor_dpu_size", converted_1175)?;
     } else {
         result.set_item("default_executor_dpu_size", py.None())?;
     }
     if let Some(value) = &value.additional_configs {
-        let converted_1145_dict = PyDict::new(py);
-        for (key_1146, value_1147) in value {
-            let converted_key_1148 = (key_1146).as_str().into_py_any(py)?;
-            let converted_value_1149 = (value_1147).as_str().into_py_any(py)?;
-            converted_1145_dict.set_item(converted_key_1148, converted_value_1149)?;
+        let converted_1176_dict = PyDict::new(py);
+        for (key_1177, value_1178) in value {
+            let converted_key_1179 = (key_1177).as_str().into_py_any(py)?;
+            let converted_value_1180 = (value_1178).as_str().into_py_any(py)?;
+            converted_1176_dict.set_item(converted_key_1179, converted_value_1180)?;
         }
-        let converted_1145 = converted_1145_dict.into_any().unbind();
-        result.set_item("additional_configs", converted_1145)?;
+        let converted_1176 = converted_1176_dict.into_any().unbind();
+        result.set_item("additional_configs", converted_1176)?;
     } else {
         result.set_item("additional_configs", py.None())?;
     }
     if let Some(value) = &value.spark_properties {
-        let converted_1150_dict = PyDict::new(py);
-        for (key_1151, value_1152) in value {
-            let converted_key_1153 = (key_1151).as_str().into_py_any(py)?;
-            let converted_value_1154 = (value_1152).as_str().into_py_any(py)?;
-            converted_1150_dict.set_item(converted_key_1153, converted_value_1154)?;
+        let converted_1181_dict = PyDict::new(py);
+        for (key_1182, value_1183) in value {
+            let converted_key_1184 = (key_1182).as_str().into_py_any(py)?;
+            let converted_value_1185 = (value_1183).as_str().into_py_any(py)?;
+            converted_1181_dict.set_item(converted_key_1184, converted_value_1185)?;
         }
-        let converted_1150 = converted_1150_dict.into_any().unbind();
-        result.set_item("spark_properties", converted_1150)?;
+        let converted_1181 = converted_1181_dict.into_any().unbind();
+        result.set_item("spark_properties", converted_1181)?;
     } else {
         result.set_item("spark_properties", py.None())?;
     }
     if let Some(value) = &value.classifications {
-        let converted_1155_list = PyList::empty(py);
-        for item_1156 in value {
-            let converted_item_1157 = classification_to_py(py, item_1156)?;
-            converted_1155_list.append(converted_item_1157)?;
+        let converted_1186_list = PyList::empty(py);
+        for item_1187 in value {
+            let converted_item_1188 = classification_to_py(py, item_1187)?;
+            converted_1186_list.append(converted_item_1188)?;
         }
-        let converted_1155 = converted_1155_list.into_any().unbind();
-        result.set_item("classifications", converted_1155)?;
+        let converted_1186 = converted_1186_list.into_any().unbind();
+        result.set_item("classifications", converted_1186)?;
     } else {
         result.set_item("classifications", py.None())?;
     }
@@ -8573,8 +8674,8 @@ impl PyEngineConfiguration {
     #[getter]
     fn coordinator_dpu_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.coordinator_dpu_size {
-            let converted_1125 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1125)
+            let converted_1156 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1156)
         } else {
             Ok(py.None())
         }
@@ -8582,17 +8683,17 @@ impl PyEngineConfiguration {
 
     #[getter]
     fn max_concurrent_dpus(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1126 = (&self.inner.max_concurrent_dpus)
+        let converted_1157 = (&self.inner.max_concurrent_dpus)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1126)
+        Ok(converted_1157)
     }
 
     #[getter]
     fn default_executor_dpu_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.default_executor_dpu_size {
-            let converted_1127 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1127)
+            let converted_1158 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1158)
         } else {
             Ok(py.None())
         }
@@ -8601,14 +8702,14 @@ impl PyEngineConfiguration {
     #[getter]
     fn additional_configs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_configs {
-            let converted_1128_dict = PyDict::new(py);
-            for (key_1129, value_1130) in value {
-                let converted_key_1131 = (key_1129).as_str().into_py_any(py)?;
-                let converted_value_1132 = (value_1130).as_str().into_py_any(py)?;
-                converted_1128_dict.set_item(converted_key_1131, converted_value_1132)?;
+            let converted_1159_dict = PyDict::new(py);
+            for (key_1160, value_1161) in value {
+                let converted_key_1162 = (key_1160).as_str().into_py_any(py)?;
+                let converted_value_1163 = (value_1161).as_str().into_py_any(py)?;
+                converted_1159_dict.set_item(converted_key_1162, converted_value_1163)?;
             }
-            let converted_1128 = converted_1128_dict.into_any().unbind();
-            Ok(converted_1128)
+            let converted_1159 = converted_1159_dict.into_any().unbind();
+            Ok(converted_1159)
         } else {
             Ok(py.None())
         }
@@ -8617,14 +8718,14 @@ impl PyEngineConfiguration {
     #[getter]
     fn spark_properties(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.spark_properties {
-            let converted_1133_dict = PyDict::new(py);
-            for (key_1134, value_1135) in value {
-                let converted_key_1136 = (key_1134).as_str().into_py_any(py)?;
-                let converted_value_1137 = (value_1135).as_str().into_py_any(py)?;
-                converted_1133_dict.set_item(converted_key_1136, converted_value_1137)?;
+            let converted_1164_dict = PyDict::new(py);
+            for (key_1165, value_1166) in value {
+                let converted_key_1167 = (key_1165).as_str().into_py_any(py)?;
+                let converted_value_1168 = (value_1166).as_str().into_py_any(py)?;
+                converted_1164_dict.set_item(converted_key_1167, converted_value_1168)?;
             }
-            let converted_1133 = converted_1133_dict.into_any().unbind();
-            Ok(converted_1133)
+            let converted_1164 = converted_1164_dict.into_any().unbind();
+            Ok(converted_1164)
         } else {
             Ok(py.None())
         }
@@ -8633,19 +8734,19 @@ impl PyEngineConfiguration {
     #[getter]
     fn classifications(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.classifications {
-            let converted_1138_list = PyList::empty(py);
-            for item_1139 in value {
-                let converted_item_1140 = Py::new(
+            let converted_1169_list = PyList::empty(py);
+            for item_1170 in value {
+                let converted_item_1171 = Py::new(
                     py,
                     PyClassification {
-                        inner: Arc::clone(item_1139),
+                        inner: Arc::clone(item_1170),
                     },
                 )?
                 .into_any();
-                converted_1138_list.append(converted_item_1140)?;
+                converted_1169_list.append(converted_item_1171)?;
             }
-            let converted_1138 = converted_1138_list.into_any().unbind();
-            Ok(converted_1138)
+            let converted_1169 = converted_1169_list.into_any().unbind();
+            Ok(converted_1169)
         } else {
             Ok(py.None())
         }
@@ -8666,8 +8767,8 @@ impl PyEngineVersion {
     #[getter]
     fn selected_engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.selected_engine_version {
-            let converted_1158 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1158)
+            let converted_1189 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1189)
         } else {
             Ok(py.None())
         }
@@ -8676,8 +8777,8 @@ impl PyEngineVersion {
     #[getter]
     fn effective_engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.effective_engine_version {
-            let converted_1159 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1159)
+            let converted_1190 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1190)
         } else {
             Ok(py.None())
         }
@@ -8697,15 +8798,15 @@ struct PyExecutorsSummary {
 impl PyExecutorsSummary {
     #[getter]
     fn executor_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1160 = (&self.inner.executor_id).as_str().into_py_any(py)?;
-        Ok(converted_1160)
+        let converted_1191 = (&self.inner.executor_id).as_str().into_py_any(py)?;
+        Ok(converted_1191)
     }
 
     #[getter]
     fn executor_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.executor_type {
-            let converted_1161 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1161)
+            let converted_1192 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1192)
         } else {
             Ok(py.None())
         }
@@ -8714,8 +8815,8 @@ impl PyExecutorsSummary {
     #[getter]
     fn start_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_date_time {
-            let converted_1162 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1162)
+            let converted_1193 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1193)
         } else {
             Ok(py.None())
         }
@@ -8724,8 +8825,8 @@ impl PyExecutorsSummary {
     #[getter]
     fn termination_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.termination_date_time {
-            let converted_1163 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1163)
+            let converted_1194 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1194)
         } else {
             Ok(py.None())
         }
@@ -8734,8 +8835,8 @@ impl PyExecutorsSummary {
     #[getter]
     fn executor_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.executor_state {
-            let converted_1164 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1164)
+            let converted_1195 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1195)
         } else {
             Ok(py.None())
         }
@@ -8744,8 +8845,8 @@ impl PyExecutorsSummary {
     #[getter]
     fn executor_size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.executor_size {
-            let converted_1165 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1165)
+            let converted_1196 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1196)
         } else {
             Ok(py.None())
         }
@@ -8770,8 +8871,8 @@ impl PyIdentityCenterConfiguration {
     #[getter]
     fn enable_identity_center(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enable_identity_center {
-            let converted_1166 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1166)
+            let converted_1197 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1197)
         } else {
             Ok(py.None())
         }
@@ -8780,8 +8881,8 @@ impl PyIdentityCenterConfiguration {
     #[getter]
     fn identity_center_instance_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_center_instance_arn {
-            let converted_1167 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1167)
+            let converted_1198 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1198)
         } else {
             Ok(py.None())
         }
@@ -8805,15 +8906,15 @@ struct PyManagedLoggingConfiguration {
 impl PyManagedLoggingConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1168 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_1168)
+        let converted_1199 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1199)
     }
 
     #[getter]
     fn kms_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key {
-            let converted_1169 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1169)
+            let converted_1200 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1200)
         } else {
             Ok(py.None())
         }
@@ -8848,11 +8949,11 @@ fn managed_query_results_configuration_shared_to_py(
     value: &SharedManagedQueryResultsConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1172 = (&value.enabled).to_owned().into_py_any(py)?;
-    result.set_item("enabled", converted_1172)?;
+    let converted_1203 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_1203)?;
     if let Some(value) = &value.encryption_configuration {
-        let converted_1173 = managed_query_results_encryption_configuration_to_py(py, value)?;
-        result.set_item("encryption_configuration", converted_1173)?;
+        let converted_1204 = managed_query_results_encryption_configuration_to_py(py, value)?;
+        result.set_item("encryption_configuration", converted_1204)?;
     } else {
         result.set_item("encryption_configuration", py.None())?;
     }
@@ -8872,21 +8973,21 @@ struct PyManagedQueryResultsConfiguration {
 impl PyManagedQueryResultsConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1170 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_1170)
+        let converted_1201 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1201)
     }
 
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1171 = Py::new(
+            let converted_1202 = Py::new(
                 py,
                 PyManagedQueryResultsEncryptionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1171)
+            Ok(converted_1202)
         } else {
             Ok(py.None())
         }
@@ -8910,8 +9011,8 @@ struct PyManagedQueryResultsEncryptionConfiguration {
 impl PyManagedQueryResultsEncryptionConfiguration {
     #[getter]
     fn kms_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1174 = (&self.inner.kms_key).as_str().into_py_any(py)?;
-        Ok(converted_1174)
+        let converted_1205 = (&self.inner.kms_key).as_str().into_py_any(py)?;
+        Ok(converted_1205)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -8948,20 +9049,20 @@ fn monitoring_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.cloud_watch_logging_configuration {
-        let converted_1178 = cloud_watch_logging_configuration_to_py(py, value)?;
-        result.set_item("cloud_watch_logging_configuration", converted_1178)?;
+        let converted_1209 = cloud_watch_logging_configuration_to_py(py, value)?;
+        result.set_item("cloud_watch_logging_configuration", converted_1209)?;
     } else {
         result.set_item("cloud_watch_logging_configuration", py.None())?;
     }
     if let Some(value) = &value.managed_logging_configuration {
-        let converted_1179 = managed_logging_configuration_to_py(py, value)?;
-        result.set_item("managed_logging_configuration", converted_1179)?;
+        let converted_1210 = managed_logging_configuration_to_py(py, value)?;
+        result.set_item("managed_logging_configuration", converted_1210)?;
     } else {
         result.set_item("managed_logging_configuration", py.None())?;
     }
     if let Some(value) = &value.s3_logging_configuration {
-        let converted_1180 = s3_logging_configuration_to_py(py, value)?;
-        result.set_item("s3_logging_configuration", converted_1180)?;
+        let converted_1211 = s3_logging_configuration_to_py(py, value)?;
+        result.set_item("s3_logging_configuration", converted_1211)?;
     } else {
         result.set_item("s3_logging_configuration", py.None())?;
     }
@@ -8982,14 +9083,14 @@ impl PyMonitoringConfiguration {
     #[getter]
     fn cloud_watch_logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.cloud_watch_logging_configuration {
-            let converted_1175 = Py::new(
+            let converted_1206 = Py::new(
                 py,
                 PyCloudWatchLoggingConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1175)
+            Ok(converted_1206)
         } else {
             Ok(py.None())
         }
@@ -8998,14 +9099,14 @@ impl PyMonitoringConfiguration {
     #[getter]
     fn managed_logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_logging_configuration {
-            let converted_1176 = Py::new(
+            let converted_1207 = Py::new(
                 py,
                 PyManagedLoggingConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1176)
+            Ok(converted_1207)
         } else {
             Ok(py.None())
         }
@@ -9014,14 +9115,14 @@ impl PyMonitoringConfiguration {
     #[getter]
     fn s3_logging_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_logging_configuration {
-            let converted_1177 = Py::new(
+            let converted_1208 = Py::new(
                 py,
                 PyS3LoggingConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1177)
+            Ok(converted_1208)
         } else {
             Ok(py.None())
         }
@@ -9041,15 +9142,15 @@ struct PyNamedQuery {
 impl PyNamedQuery {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1181 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1181)
+        let converted_1212 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1212)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1182 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1182)
+            let converted_1213 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1213)
         } else {
             Ok(py.None())
         }
@@ -9057,21 +9158,21 @@ impl PyNamedQuery {
 
     #[getter]
     fn database(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1183 = (&self.inner.database).as_str().into_py_any(py)?;
-        Ok(converted_1183)
+        let converted_1214 = (&self.inner.database).as_str().into_py_any(py)?;
+        Ok(converted_1214)
     }
 
     #[getter]
     fn query_string(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1184 = (&self.inner.query_string).as_str().into_py_any(py)?;
-        Ok(converted_1184)
+        let converted_1215 = (&self.inner.query_string).as_str().into_py_any(py)?;
+        Ok(converted_1215)
     }
 
     #[getter]
     fn named_query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_query_id {
-            let converted_1185 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1185)
+            let converted_1216 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1216)
         } else {
             Ok(py.None())
         }
@@ -9080,8 +9181,8 @@ impl PyNamedQuery {
     #[getter]
     fn work_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group {
-            let converted_1186 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1186)
+            let converted_1217 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1217)
         } else {
             Ok(py.None())
         }
@@ -9102,8 +9203,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn notebook_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_id {
-            let converted_1187 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1187)
+            let converted_1218 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1218)
         } else {
             Ok(py.None())
         }
@@ -9112,8 +9213,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1188 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1188)
+            let converted_1219 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1219)
         } else {
             Ok(py.None())
         }
@@ -9122,8 +9223,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn work_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group {
-            let converted_1189 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1189)
+            let converted_1220 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1220)
         } else {
             Ok(py.None())
         }
@@ -9132,8 +9233,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1190 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1190)
+            let converted_1221 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1221)
         } else {
             Ok(py.None())
         }
@@ -9142,8 +9243,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.r#type {
-            let converted_1191 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1191)
+            let converted_1222 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1222)
         } else {
             Ok(py.None())
         }
@@ -9152,8 +9253,8 @@ impl PyNotebookMetadata {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1192 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1192)
+            let converted_1223 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1223)
         } else {
             Ok(py.None())
         }
@@ -9178,8 +9279,8 @@ impl PyNotebookSessionSummary {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1193 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1193)
+            let converted_1224 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1224)
         } else {
             Ok(py.None())
         }
@@ -9188,8 +9289,8 @@ impl PyNotebookSessionSummary {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1194 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1194)
+            let converted_1225 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1225)
         } else {
             Ok(py.None())
         }
@@ -9210,8 +9311,8 @@ impl PyPreparedStatement {
     #[getter]
     fn statement_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement_name {
-            let converted_1195 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1195)
+            let converted_1226 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1226)
         } else {
             Ok(py.None())
         }
@@ -9220,8 +9321,8 @@ impl PyPreparedStatement {
     #[getter]
     fn query_statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_statement {
-            let converted_1196 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1196)
+            let converted_1227 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1227)
         } else {
             Ok(py.None())
         }
@@ -9230,8 +9331,8 @@ impl PyPreparedStatement {
     #[getter]
     fn work_group_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group_name {
-            let converted_1197 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1197)
+            let converted_1228 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1228)
         } else {
             Ok(py.None())
         }
@@ -9240,8 +9341,8 @@ impl PyPreparedStatement {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1198 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1198)
+            let converted_1229 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1229)
         } else {
             Ok(py.None())
         }
@@ -9250,8 +9351,8 @@ impl PyPreparedStatement {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1199 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1199)
+            let converted_1230 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1230)
         } else {
             Ok(py.None())
         }
@@ -9276,8 +9377,8 @@ impl PyPreparedStatementSummary {
     #[getter]
     fn statement_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement_name {
-            let converted_1200 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1200)
+            let converted_1231 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1231)
         } else {
             Ok(py.None())
         }
@@ -9286,8 +9387,8 @@ impl PyPreparedStatementSummary {
     #[getter]
     fn last_modified_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_time {
-            let converted_1201 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1201)
+            let converted_1232 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1232)
         } else {
             Ok(py.None())
         }
@@ -9357,93 +9458,93 @@ fn query_execution_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.query_execution_id {
-        let converted_1218 = (value).as_str().into_py_any(py)?;
-        result.set_item("query_execution_id", converted_1218)?;
+        let converted_1249 = (value).as_str().into_py_any(py)?;
+        result.set_item("query_execution_id", converted_1249)?;
     } else {
         result.set_item("query_execution_id", py.None())?;
     }
     if let Some(value) = &value.query {
-        let converted_1219 = (value).as_str().into_py_any(py)?;
-        result.set_item("query", converted_1219)?;
+        let converted_1250 = (value).as_str().into_py_any(py)?;
+        result.set_item("query", converted_1250)?;
     } else {
         result.set_item("query", py.None())?;
     }
     if let Some(value) = &value.statement_type {
-        let converted_1220 = (value).as_str().into_py_any(py)?;
-        result.set_item("statement_type", converted_1220)?;
+        let converted_1251 = (value).as_str().into_py_any(py)?;
+        result.set_item("statement_type", converted_1251)?;
     } else {
         result.set_item("statement_type", py.None())?;
     }
     if let Some(value) = &value.managed_query_results_configuration {
-        let converted_1221 = managed_query_results_configuration_shared_to_py(py, value)?;
-        result.set_item("managed_query_results_configuration", converted_1221)?;
+        let converted_1252 = managed_query_results_configuration_shared_to_py(py, value)?;
+        result.set_item("managed_query_results_configuration", converted_1252)?;
     } else {
         result.set_item("managed_query_results_configuration", py.None())?;
     }
     if let Some(value) = &value.result_configuration {
-        let converted_1222 = result_configuration_shared_to_py(py, value)?;
-        result.set_item("result_configuration", converted_1222)?;
+        let converted_1253 = result_configuration_shared_to_py(py, value)?;
+        result.set_item("result_configuration", converted_1253)?;
     } else {
         result.set_item("result_configuration", py.None())?;
     }
     if let Some(value) = &value.result_reuse_configuration {
-        let converted_1223 = result_reuse_configuration_shared_to_py(py, value)?;
-        result.set_item("result_reuse_configuration", converted_1223)?;
+        let converted_1254 = result_reuse_configuration_shared_to_py(py, value)?;
+        result.set_item("result_reuse_configuration", converted_1254)?;
     } else {
         result.set_item("result_reuse_configuration", py.None())?;
     }
     if let Some(value) = &value.query_execution_context {
-        let converted_1224 = query_execution_context_to_py(py, value)?;
-        result.set_item("query_execution_context", converted_1224)?;
+        let converted_1255 = query_execution_context_to_py(py, value)?;
+        result.set_item("query_execution_context", converted_1255)?;
     } else {
         result.set_item("query_execution_context", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_1225 = query_execution_status_shared_to_py(py, value)?;
-        result.set_item("status", converted_1225)?;
+        let converted_1256 = query_execution_status_shared_to_py(py, value)?;
+        result.set_item("status", converted_1256)?;
     } else {
         result.set_item("status", py.None())?;
     }
     if let Some(value) = &value.statistics {
-        let converted_1226 = query_execution_statistics_shared_to_py(py, value)?;
-        result.set_item("statistics", converted_1226)?;
+        let converted_1257 = query_execution_statistics_shared_to_py(py, value)?;
+        result.set_item("statistics", converted_1257)?;
     } else {
         result.set_item("statistics", py.None())?;
     }
     if let Some(value) = &value.work_group {
-        let converted_1227 = (value).as_str().into_py_any(py)?;
-        result.set_item("work_group", converted_1227)?;
+        let converted_1258 = (value).as_str().into_py_any(py)?;
+        result.set_item("work_group", converted_1258)?;
     } else {
         result.set_item("work_group", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_1228 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_1228)?;
+        let converted_1259 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_1259)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.execution_parameters {
-        let converted_1229_list = PyList::empty(py);
-        for item_1230 in value {
-            let converted_item_1231 = (item_1230).as_str().into_py_any(py)?;
-            converted_1229_list.append(converted_item_1231)?;
+        let converted_1260_list = PyList::empty(py);
+        for item_1261 in value {
+            let converted_item_1262 = (item_1261).as_str().into_py_any(py)?;
+            converted_1260_list.append(converted_item_1262)?;
         }
-        let converted_1229 = converted_1229_list.into_any().unbind();
-        result.set_item("execution_parameters", converted_1229)?;
+        let converted_1260 = converted_1260_list.into_any().unbind();
+        result.set_item("execution_parameters", converted_1260)?;
     } else {
         result.set_item("execution_parameters", py.None())?;
     }
     if let Some(value) = &value.substatement_type {
-        let converted_1232 = (value).as_str().into_py_any(py)?;
-        result.set_item("substatement_type", converted_1232)?;
+        let converted_1263 = (value).as_str().into_py_any(py)?;
+        result.set_item("substatement_type", converted_1263)?;
     } else {
         result.set_item("substatement_type", py.None())?;
     }
     if let Some(value) = &value.query_results_s3_access_grants_configuration {
-        let converted_1233 = query_results_s3_access_grants_configuration_to_py(py, value)?;
+        let converted_1264 = query_results_s3_access_grants_configuration_to_py(py, value)?;
         result.set_item(
             "query_results_s3_access_grants_configuration",
-            converted_1233,
+            converted_1264,
         )?;
     } else {
         result.set_item("query_results_s3_access_grants_configuration", py.None())?;
@@ -9461,8 +9562,8 @@ impl PyQueryExecution {
     #[getter]
     fn query_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution_id {
-            let converted_1202 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1202)
+            let converted_1233 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1233)
         } else {
             Ok(py.None())
         }
@@ -9471,8 +9572,8 @@ impl PyQueryExecution {
     #[getter]
     fn query(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query {
-            let converted_1203 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1203)
+            let converted_1234 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1234)
         } else {
             Ok(py.None())
         }
@@ -9481,8 +9582,8 @@ impl PyQueryExecution {
     #[getter]
     fn statement_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement_type {
-            let converted_1204 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1204)
+            let converted_1235 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1235)
         } else {
             Ok(py.None())
         }
@@ -9491,14 +9592,14 @@ impl PyQueryExecution {
     #[getter]
     fn managed_query_results_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_query_results_configuration {
-            let converted_1205 = Py::new(
+            let converted_1236 = Py::new(
                 py,
                 PyManagedQueryResultsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1205)
+            Ok(converted_1236)
         } else {
             Ok(py.None())
         }
@@ -9507,14 +9608,14 @@ impl PyQueryExecution {
     #[getter]
     fn result_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_configuration {
-            let converted_1206 = Py::new(
+            let converted_1237 = Py::new(
                 py,
                 PyResultConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1206)
+            Ok(converted_1237)
         } else {
             Ok(py.None())
         }
@@ -9523,14 +9624,14 @@ impl PyQueryExecution {
     #[getter]
     fn result_reuse_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_reuse_configuration {
-            let converted_1207 = Py::new(
+            let converted_1238 = Py::new(
                 py,
                 PyResultReuseConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1207)
+            Ok(converted_1238)
         } else {
             Ok(py.None())
         }
@@ -9539,14 +9640,14 @@ impl PyQueryExecution {
     #[getter]
     fn query_execution_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution_context {
-            let converted_1208 = Py::new(
+            let converted_1239 = Py::new(
                 py,
                 PyQueryExecutionContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1208)
+            Ok(converted_1239)
         } else {
             Ok(py.None())
         }
@@ -9555,14 +9656,14 @@ impl PyQueryExecution {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1209 = Py::new(
+            let converted_1240 = Py::new(
                 py,
                 PyQueryExecutionStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1209)
+            Ok(converted_1240)
         } else {
             Ok(py.None())
         }
@@ -9571,14 +9672,14 @@ impl PyQueryExecution {
     #[getter]
     fn statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statistics {
-            let converted_1210 = Py::new(
+            let converted_1241 = Py::new(
                 py,
                 PyQueryExecutionStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1210)
+            Ok(converted_1241)
         } else {
             Ok(py.None())
         }
@@ -9587,8 +9688,8 @@ impl PyQueryExecution {
     #[getter]
     fn work_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group {
-            let converted_1211 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1211)
+            let converted_1242 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1242)
         } else {
             Ok(py.None())
         }
@@ -9597,14 +9698,14 @@ impl PyQueryExecution {
     #[getter]
     fn engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_version {
-            let converted_1212 = Py::new(
+            let converted_1243 = Py::new(
                 py,
                 PyEngineVersion {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1212)
+            Ok(converted_1243)
         } else {
             Ok(py.None())
         }
@@ -9613,13 +9714,13 @@ impl PyQueryExecution {
     #[getter]
     fn execution_parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_parameters {
-            let converted_1213_list = PyList::empty(py);
-            for item_1214 in value {
-                let converted_item_1215 = (item_1214).as_str().into_py_any(py)?;
-                converted_1213_list.append(converted_item_1215)?;
+            let converted_1244_list = PyList::empty(py);
+            for item_1245 in value {
+                let converted_item_1246 = (item_1245).as_str().into_py_any(py)?;
+                converted_1244_list.append(converted_item_1246)?;
             }
-            let converted_1213 = converted_1213_list.into_any().unbind();
-            Ok(converted_1213)
+            let converted_1244 = converted_1244_list.into_any().unbind();
+            Ok(converted_1244)
         } else {
             Ok(py.None())
         }
@@ -9628,8 +9729,8 @@ impl PyQueryExecution {
     #[getter]
     fn substatement_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.substatement_type {
-            let converted_1216 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1216)
+            let converted_1247 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1247)
         } else {
             Ok(py.None())
         }
@@ -9638,14 +9739,14 @@ impl PyQueryExecution {
     #[getter]
     fn query_results_s3_access_grants_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_results_s3_access_grants_configuration {
-            let converted_1217 = Py::new(
+            let converted_1248 = Py::new(
                 py,
                 PyQueryResultsS3AccessGrantsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1217)
+            Ok(converted_1248)
         } else {
             Ok(py.None())
         }
@@ -9670,8 +9771,8 @@ impl PyQueryExecutionContext {
     #[getter]
     fn database(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.database {
-            let converted_1234 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1234)
+            let converted_1265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1265)
         } else {
             Ok(py.None())
         }
@@ -9680,8 +9781,8 @@ impl PyQueryExecutionContext {
     #[getter]
     fn catalog(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.catalog {
-            let converted_1235 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1235)
+            let converted_1266 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1266)
         } else {
             Ok(py.None())
         }
@@ -9730,62 +9831,62 @@ fn query_execution_statistics_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.engine_execution_time_in_millis {
-        let converted_1246 = (value).to_owned().into_py_any(py)?;
-        result.set_item("engine_execution_time_in_millis", converted_1246)?;
+        let converted_1277 = (value).to_owned().into_py_any(py)?;
+        result.set_item("engine_execution_time_in_millis", converted_1277)?;
     } else {
         result.set_item("engine_execution_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.data_scanned_in_bytes {
-        let converted_1247 = (value).to_owned().into_py_any(py)?;
-        result.set_item("data_scanned_in_bytes", converted_1247)?;
+        let converted_1278 = (value).to_owned().into_py_any(py)?;
+        result.set_item("data_scanned_in_bytes", converted_1278)?;
     } else {
         result.set_item("data_scanned_in_bytes", py.None())?;
     }
     if let Some(value) = &value.data_manifest_location {
-        let converted_1248 = (value).as_str().into_py_any(py)?;
-        result.set_item("data_manifest_location", converted_1248)?;
+        let converted_1279 = (value).as_str().into_py_any(py)?;
+        result.set_item("data_manifest_location", converted_1279)?;
     } else {
         result.set_item("data_manifest_location", py.None())?;
     }
     if let Some(value) = &value.total_execution_time_in_millis {
-        let converted_1249 = (value).to_owned().into_py_any(py)?;
-        result.set_item("total_execution_time_in_millis", converted_1249)?;
+        let converted_1280 = (value).to_owned().into_py_any(py)?;
+        result.set_item("total_execution_time_in_millis", converted_1280)?;
     } else {
         result.set_item("total_execution_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.query_queue_time_in_millis {
-        let converted_1250 = (value).to_owned().into_py_any(py)?;
-        result.set_item("query_queue_time_in_millis", converted_1250)?;
+        let converted_1281 = (value).to_owned().into_py_any(py)?;
+        result.set_item("query_queue_time_in_millis", converted_1281)?;
     } else {
         result.set_item("query_queue_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.service_pre_processing_time_in_millis {
-        let converted_1251 = (value).to_owned().into_py_any(py)?;
-        result.set_item("service_pre_processing_time_in_millis", converted_1251)?;
+        let converted_1282 = (value).to_owned().into_py_any(py)?;
+        result.set_item("service_pre_processing_time_in_millis", converted_1282)?;
     } else {
         result.set_item("service_pre_processing_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.query_planning_time_in_millis {
-        let converted_1252 = (value).to_owned().into_py_any(py)?;
-        result.set_item("query_planning_time_in_millis", converted_1252)?;
+        let converted_1283 = (value).to_owned().into_py_any(py)?;
+        result.set_item("query_planning_time_in_millis", converted_1283)?;
     } else {
         result.set_item("query_planning_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.service_processing_time_in_millis {
-        let converted_1253 = (value).to_owned().into_py_any(py)?;
-        result.set_item("service_processing_time_in_millis", converted_1253)?;
+        let converted_1284 = (value).to_owned().into_py_any(py)?;
+        result.set_item("service_processing_time_in_millis", converted_1284)?;
     } else {
         result.set_item("service_processing_time_in_millis", py.None())?;
     }
     if let Some(value) = &value.result_reuse_information {
-        let converted_1254 = result_reuse_information_to_py(py, value)?;
-        result.set_item("result_reuse_information", converted_1254)?;
+        let converted_1285 = result_reuse_information_to_py(py, value)?;
+        result.set_item("result_reuse_information", converted_1285)?;
     } else {
         result.set_item("result_reuse_information", py.None())?;
     }
     if let Some(value) = &value.dpu_count {
-        let converted_1255 = (value).to_owned().into_py_any(py)?;
-        result.set_item("dpu_count", converted_1255)?;
+        let converted_1286 = (value).to_owned().into_py_any(py)?;
+        result.set_item("dpu_count", converted_1286)?;
     } else {
         result.set_item("dpu_count", py.None())?;
     }
@@ -9806,8 +9907,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn engine_execution_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_execution_time_in_millis {
-            let converted_1236 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1236)
+            let converted_1267 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1267)
         } else {
             Ok(py.None())
         }
@@ -9816,8 +9917,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn data_scanned_in_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_scanned_in_bytes {
-            let converted_1237 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1237)
+            let converted_1268 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1268)
         } else {
             Ok(py.None())
         }
@@ -9826,8 +9927,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn data_manifest_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_manifest_location {
-            let converted_1238 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1238)
+            let converted_1269 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1269)
         } else {
             Ok(py.None())
         }
@@ -9836,8 +9937,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn total_execution_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total_execution_time_in_millis {
-            let converted_1239 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1239)
+            let converted_1270 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1270)
         } else {
             Ok(py.None())
         }
@@ -9846,8 +9947,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn query_queue_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_queue_time_in_millis {
-            let converted_1240 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1240)
+            let converted_1271 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1271)
         } else {
             Ok(py.None())
         }
@@ -9856,8 +9957,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn service_pre_processing_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_pre_processing_time_in_millis {
-            let converted_1241 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1241)
+            let converted_1272 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1272)
         } else {
             Ok(py.None())
         }
@@ -9866,8 +9967,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn query_planning_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_planning_time_in_millis {
-            let converted_1242 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1242)
+            let converted_1273 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1273)
         } else {
             Ok(py.None())
         }
@@ -9876,8 +9977,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn service_processing_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_processing_time_in_millis {
-            let converted_1243 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1243)
+            let converted_1274 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1274)
         } else {
             Ok(py.None())
         }
@@ -9886,14 +9987,14 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn result_reuse_information(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_reuse_information {
-            let converted_1244 = Py::new(
+            let converted_1275 = Py::new(
                 py,
                 PyResultReuseInformation {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1244)
+            Ok(converted_1275)
         } else {
             Ok(py.None())
         }
@@ -9902,8 +10003,8 @@ impl PyQueryExecutionStatistics {
     #[getter]
     fn dpu_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dpu_count {
-            let converted_1245 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1245)
+            let converted_1276 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1276)
         } else {
             Ok(py.None())
         }
@@ -9942,32 +10043,32 @@ fn query_execution_status_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.state {
-        let converted_1261 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_1261)?;
+        let converted_1292 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_1292)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.state_change_reason {
-        let converted_1262 = (value).as_str().into_py_any(py)?;
-        result.set_item("state_change_reason", converted_1262)?;
+        let converted_1293 = (value).as_str().into_py_any(py)?;
+        result.set_item("state_change_reason", converted_1293)?;
     } else {
         result.set_item("state_change_reason", py.None())?;
     }
     if let Some(value) = &value.submission_date_time {
-        let converted_1263 = (value).to_string().into_py_any(py)?;
-        result.set_item("submission_date_time", converted_1263)?;
+        let converted_1294 = (value).to_string().into_py_any(py)?;
+        result.set_item("submission_date_time", converted_1294)?;
     } else {
         result.set_item("submission_date_time", py.None())?;
     }
     if let Some(value) = &value.completion_date_time {
-        let converted_1264 = (value).to_string().into_py_any(py)?;
-        result.set_item("completion_date_time", converted_1264)?;
+        let converted_1295 = (value).to_string().into_py_any(py)?;
+        result.set_item("completion_date_time", converted_1295)?;
     } else {
         result.set_item("completion_date_time", py.None())?;
     }
     if let Some(value) = &value.athena_error {
-        let converted_1265 = athena_error_to_py(py, value)?;
-        result.set_item("athena_error", converted_1265)?;
+        let converted_1296 = athena_error_to_py(py, value)?;
+        result.set_item("athena_error", converted_1296)?;
     } else {
         result.set_item("athena_error", py.None())?;
     }
@@ -9984,8 +10085,8 @@ impl PyQueryExecutionStatus {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1256 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1256)
+            let converted_1287 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1287)
         } else {
             Ok(py.None())
         }
@@ -9994,8 +10095,8 @@ impl PyQueryExecutionStatus {
     #[getter]
     fn state_change_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_change_reason {
-            let converted_1257 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1257)
+            let converted_1288 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1288)
         } else {
             Ok(py.None())
         }
@@ -10004,8 +10105,8 @@ impl PyQueryExecutionStatus {
     #[getter]
     fn submission_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.submission_date_time {
-            let converted_1258 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1258)
+            let converted_1289 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1289)
         } else {
             Ok(py.None())
         }
@@ -10014,8 +10115,8 @@ impl PyQueryExecutionStatus {
     #[getter]
     fn completion_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.completion_date_time {
-            let converted_1259 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1259)
+            let converted_1290 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1290)
         } else {
             Ok(py.None())
         }
@@ -10024,14 +10125,14 @@ impl PyQueryExecutionStatus {
     #[getter]
     fn athena_error(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.athena_error {
-            let converted_1260 = Py::new(
+            let converted_1291 = Py::new(
                 py,
                 PyAthenaError {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1260)
+            Ok(converted_1291)
         } else {
             Ok(py.None())
         }
@@ -10055,17 +10156,17 @@ struct PyQueryResultsS3AccessGrantsConfiguration {
 impl PyQueryResultsS3AccessGrantsConfiguration {
     #[getter]
     fn enable_s3_access_grants(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1266 = (&self.inner.enable_s3_access_grants)
+        let converted_1297 = (&self.inner.enable_s3_access_grants)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1266)
+        Ok(converted_1297)
     }
 
     #[getter]
     fn create_user_level_prefix(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.create_user_level_prefix {
-            let converted_1267 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1267)
+            let converted_1298 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1298)
         } else {
             Ok(py.None())
         }
@@ -10073,8 +10174,8 @@ impl PyQueryResultsS3AccessGrantsConfiguration {
 
     #[getter]
     fn authentication_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1268 = (&self.inner.authentication_type).as_str().into_py_any(py)?;
-        Ok(converted_1268)
+        let converted_1299 = (&self.inner.authentication_type).as_str().into_py_any(py)?;
+        Ok(converted_1299)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -10108,20 +10209,20 @@ fn query_runtime_statistics_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.timeline {
-        let converted_1272 = query_runtime_statistics_timeline_to_py(py, value)?;
-        result.set_item("timeline", converted_1272)?;
+        let converted_1303 = query_runtime_statistics_timeline_to_py(py, value)?;
+        result.set_item("timeline", converted_1303)?;
     } else {
         result.set_item("timeline", py.None())?;
     }
     if let Some(value) = &value.rows {
-        let converted_1273 = query_runtime_statistics_rows_to_py(py, value)?;
-        result.set_item("rows", converted_1273)?;
+        let converted_1304 = query_runtime_statistics_rows_to_py(py, value)?;
+        result.set_item("rows", converted_1304)?;
     } else {
         result.set_item("rows", py.None())?;
     }
     if let Some(value) = &value.output_stage {
-        let converted_1274 = query_stage_shared_to_py(py, value)?;
-        result.set_item("output_stage", converted_1274)?;
+        let converted_1305 = query_stage_shared_to_py(py, value)?;
+        result.set_item("output_stage", converted_1305)?;
     } else {
         result.set_item("output_stage", py.None())?;
     }
@@ -10142,14 +10243,14 @@ impl PyQueryRuntimeStatistics {
     #[getter]
     fn timeline(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.timeline {
-            let converted_1269 = Py::new(
+            let converted_1300 = Py::new(
                 py,
                 PyQueryRuntimeStatisticsTimeline {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1269)
+            Ok(converted_1300)
         } else {
             Ok(py.None())
         }
@@ -10158,14 +10259,14 @@ impl PyQueryRuntimeStatistics {
     #[getter]
     fn rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rows {
-            let converted_1270 = Py::new(
+            let converted_1301 = Py::new(
                 py,
                 PyQueryRuntimeStatisticsRows {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1270)
+            Ok(converted_1301)
         } else {
             Ok(py.None())
         }
@@ -10174,14 +10275,14 @@ impl PyQueryRuntimeStatistics {
     #[getter]
     fn output_stage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_stage {
-            let converted_1271 = Py::new(
+            let converted_1302 = Py::new(
                 py,
                 PyQueryStage {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1271)
+            Ok(converted_1302)
         } else {
             Ok(py.None())
         }
@@ -10206,8 +10307,8 @@ impl PyQueryRuntimeStatisticsRows {
     #[getter]
     fn input_rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_rows {
-            let converted_1275 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1275)
+            let converted_1306 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1306)
         } else {
             Ok(py.None())
         }
@@ -10216,8 +10317,8 @@ impl PyQueryRuntimeStatisticsRows {
     #[getter]
     fn input_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_bytes {
-            let converted_1276 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1276)
+            let converted_1307 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1307)
         } else {
             Ok(py.None())
         }
@@ -10226,8 +10327,8 @@ impl PyQueryRuntimeStatisticsRows {
     #[getter]
     fn output_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_bytes {
-            let converted_1277 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1277)
+            let converted_1308 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1308)
         } else {
             Ok(py.None())
         }
@@ -10236,8 +10337,8 @@ impl PyQueryRuntimeStatisticsRows {
     #[getter]
     fn output_rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_rows {
-            let converted_1278 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1278)
+            let converted_1309 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1309)
         } else {
             Ok(py.None())
         }
@@ -10262,8 +10363,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn query_queue_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_queue_time_in_millis {
-            let converted_1279 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1279)
+            let converted_1310 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1310)
         } else {
             Ok(py.None())
         }
@@ -10272,8 +10373,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn service_pre_processing_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_pre_processing_time_in_millis {
-            let converted_1280 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1280)
+            let converted_1311 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1311)
         } else {
             Ok(py.None())
         }
@@ -10282,8 +10383,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn query_planning_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_planning_time_in_millis {
-            let converted_1281 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1281)
+            let converted_1312 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1312)
         } else {
             Ok(py.None())
         }
@@ -10292,8 +10393,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn engine_execution_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_execution_time_in_millis {
-            let converted_1282 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1282)
+            let converted_1313 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1313)
         } else {
             Ok(py.None())
         }
@@ -10302,8 +10403,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn service_processing_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.service_processing_time_in_millis {
-            let converted_1283 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1283)
+            let converted_1314 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1314)
         } else {
             Ok(py.None())
         }
@@ -10312,8 +10413,8 @@ impl PyQueryRuntimeStatisticsTimeline {
     #[getter]
     fn total_execution_time_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.total_execution_time_in_millis {
-            let converted_1284 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1284)
+            let converted_1315 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1315)
         } else {
             Ok(py.None())
         }
@@ -10354,7 +10455,7 @@ impl From<aws_sdk_athena::types::QueryStage> for SharedQueryStage {
             sub_stages: value.sub_stages.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1296| Arc::new(SharedQueryStage::from(owned_1296)))
+                    .map(|owned_1327| Arc::new(SharedQueryStage::from(owned_1327)))
                     .collect()
             }),
         }
@@ -10364,61 +10465,61 @@ impl From<aws_sdk_athena::types::QueryStage> for SharedQueryStage {
 fn query_stage_shared_to_py(py: Python<'_>, value: &SharedQueryStage) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.stage_id {
-        let converted_1297 = (value).to_owned().into_py_any(py)?;
-        result.set_item("stage_id", converted_1297)?;
+        let converted_1328 = (value).to_owned().into_py_any(py)?;
+        result.set_item("stage_id", converted_1328)?;
     } else {
         result.set_item("stage_id", py.None())?;
     }
     if let Some(value) = &value.state {
-        let converted_1298 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_1298)?;
+        let converted_1329 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_1329)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.output_bytes {
-        let converted_1299 = (value).to_owned().into_py_any(py)?;
-        result.set_item("output_bytes", converted_1299)?;
+        let converted_1330 = (value).to_owned().into_py_any(py)?;
+        result.set_item("output_bytes", converted_1330)?;
     } else {
         result.set_item("output_bytes", py.None())?;
     }
     if let Some(value) = &value.output_rows {
-        let converted_1300 = (value).to_owned().into_py_any(py)?;
-        result.set_item("output_rows", converted_1300)?;
+        let converted_1331 = (value).to_owned().into_py_any(py)?;
+        result.set_item("output_rows", converted_1331)?;
     } else {
         result.set_item("output_rows", py.None())?;
     }
     if let Some(value) = &value.input_bytes {
-        let converted_1301 = (value).to_owned().into_py_any(py)?;
-        result.set_item("input_bytes", converted_1301)?;
+        let converted_1332 = (value).to_owned().into_py_any(py)?;
+        result.set_item("input_bytes", converted_1332)?;
     } else {
         result.set_item("input_bytes", py.None())?;
     }
     if let Some(value) = &value.input_rows {
-        let converted_1302 = (value).to_owned().into_py_any(py)?;
-        result.set_item("input_rows", converted_1302)?;
+        let converted_1333 = (value).to_owned().into_py_any(py)?;
+        result.set_item("input_rows", converted_1333)?;
     } else {
         result.set_item("input_rows", py.None())?;
     }
     if let Some(value) = &value.execution_time {
-        let converted_1303 = (value).to_owned().into_py_any(py)?;
-        result.set_item("execution_time", converted_1303)?;
+        let converted_1334 = (value).to_owned().into_py_any(py)?;
+        result.set_item("execution_time", converted_1334)?;
     } else {
         result.set_item("execution_time", py.None())?;
     }
     if let Some(value) = &value.query_stage_plan {
-        let converted_1304 = query_stage_plan_node_shared_to_py(py, value)?;
-        result.set_item("query_stage_plan", converted_1304)?;
+        let converted_1335 = query_stage_plan_node_shared_to_py(py, value)?;
+        result.set_item("query_stage_plan", converted_1335)?;
     } else {
         result.set_item("query_stage_plan", py.None())?;
     }
     if let Some(value) = &value.sub_stages {
-        let converted_1305_list = PyList::empty(py);
-        for item_1306 in value {
-            let converted_item_1307 = query_stage_shared_to_py(py, item_1306)?;
-            converted_1305_list.append(converted_item_1307)?;
+        let converted_1336_list = PyList::empty(py);
+        for item_1337 in value {
+            let converted_item_1338 = query_stage_shared_to_py(py, item_1337)?;
+            converted_1336_list.append(converted_item_1338)?;
         }
-        let converted_1305 = converted_1305_list.into_any().unbind();
-        result.set_item("sub_stages", converted_1305)?;
+        let converted_1336 = converted_1336_list.into_any().unbind();
+        result.set_item("sub_stages", converted_1336)?;
     } else {
         result.set_item("sub_stages", py.None())?;
     }
@@ -10435,8 +10536,8 @@ impl PyQueryStage {
     #[getter]
     fn stage_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stage_id {
-            let converted_1285 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1285)
+            let converted_1316 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1316)
         } else {
             Ok(py.None())
         }
@@ -10445,8 +10546,8 @@ impl PyQueryStage {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1286 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1286)
+            let converted_1317 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1317)
         } else {
             Ok(py.None())
         }
@@ -10455,8 +10556,8 @@ impl PyQueryStage {
     #[getter]
     fn output_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_bytes {
-            let converted_1287 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1287)
+            let converted_1318 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1318)
         } else {
             Ok(py.None())
         }
@@ -10465,8 +10566,8 @@ impl PyQueryStage {
     #[getter]
     fn output_rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_rows {
-            let converted_1288 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1288)
+            let converted_1319 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1319)
         } else {
             Ok(py.None())
         }
@@ -10475,8 +10576,8 @@ impl PyQueryStage {
     #[getter]
     fn input_bytes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_bytes {
-            let converted_1289 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1289)
+            let converted_1320 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1320)
         } else {
             Ok(py.None())
         }
@@ -10485,8 +10586,8 @@ impl PyQueryStage {
     #[getter]
     fn input_rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_rows {
-            let converted_1290 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1290)
+            let converted_1321 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1321)
         } else {
             Ok(py.None())
         }
@@ -10495,8 +10596,8 @@ impl PyQueryStage {
     #[getter]
     fn execution_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_time {
-            let converted_1291 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1291)
+            let converted_1322 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1322)
         } else {
             Ok(py.None())
         }
@@ -10505,14 +10606,14 @@ impl PyQueryStage {
     #[getter]
     fn query_stage_plan(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_stage_plan {
-            let converted_1292 = Py::new(
+            let converted_1323 = Py::new(
                 py,
                 PyQueryStagePlanNode {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1292)
+            Ok(converted_1323)
         } else {
             Ok(py.None())
         }
@@ -10521,19 +10622,19 @@ impl PyQueryStage {
     #[getter]
     fn sub_stages(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sub_stages {
-            let converted_1293_list = PyList::empty(py);
-            for item_1294 in value {
-                let converted_item_1295 = Py::new(
+            let converted_1324_list = PyList::empty(py);
+            for item_1325 in value {
+                let converted_item_1326 = Py::new(
                     py,
                     PyQueryStage {
-                        inner: Arc::clone(item_1294),
+                        inner: Arc::clone(item_1325),
                     },
                 )?
                 .into_any();
-                converted_1293_list.append(converted_item_1295)?;
+                converted_1324_list.append(converted_item_1326)?;
             }
-            let converted_1293 = converted_1293_list.into_any().unbind();
-            Ok(converted_1293)
+            let converted_1324 = converted_1324_list.into_any().unbind();
+            Ok(converted_1324)
         } else {
             Ok(py.None())
         }
@@ -10561,7 +10662,7 @@ impl From<aws_sdk_athena::types::QueryStagePlanNode> for SharedQueryStagePlanNod
             children: value.children.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1316| Arc::new(SharedQueryStagePlanNode::from(owned_1316)))
+                    .map(|owned_1347| Arc::new(SharedQueryStagePlanNode::from(owned_1347)))
                     .collect()
             }),
             remote_sources: value.remote_sources,
@@ -10575,36 +10676,36 @@ fn query_stage_plan_node_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_1317 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_1317)?;
+        let converted_1348 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1348)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.identifier {
-        let converted_1318 = (value).as_str().into_py_any(py)?;
-        result.set_item("identifier", converted_1318)?;
+        let converted_1349 = (value).as_str().into_py_any(py)?;
+        result.set_item("identifier", converted_1349)?;
     } else {
         result.set_item("identifier", py.None())?;
     }
     if let Some(value) = &value.children {
-        let converted_1319_list = PyList::empty(py);
-        for item_1320 in value {
-            let converted_item_1321 = query_stage_plan_node_shared_to_py(py, item_1320)?;
-            converted_1319_list.append(converted_item_1321)?;
+        let converted_1350_list = PyList::empty(py);
+        for item_1351 in value {
+            let converted_item_1352 = query_stage_plan_node_shared_to_py(py, item_1351)?;
+            converted_1350_list.append(converted_item_1352)?;
         }
-        let converted_1319 = converted_1319_list.into_any().unbind();
-        result.set_item("children", converted_1319)?;
+        let converted_1350 = converted_1350_list.into_any().unbind();
+        result.set_item("children", converted_1350)?;
     } else {
         result.set_item("children", py.None())?;
     }
     if let Some(value) = &value.remote_sources {
-        let converted_1322_list = PyList::empty(py);
-        for item_1323 in value {
-            let converted_item_1324 = (item_1323).as_str().into_py_any(py)?;
-            converted_1322_list.append(converted_item_1324)?;
+        let converted_1353_list = PyList::empty(py);
+        for item_1354 in value {
+            let converted_item_1355 = (item_1354).as_str().into_py_any(py)?;
+            converted_1353_list.append(converted_item_1355)?;
         }
-        let converted_1322 = converted_1322_list.into_any().unbind();
-        result.set_item("remote_sources", converted_1322)?;
+        let converted_1353 = converted_1353_list.into_any().unbind();
+        result.set_item("remote_sources", converted_1353)?;
     } else {
         result.set_item("remote_sources", py.None())?;
     }
@@ -10621,8 +10722,8 @@ impl PyQueryStagePlanNode {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1308 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1308)
+            let converted_1339 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1339)
         } else {
             Ok(py.None())
         }
@@ -10631,8 +10732,8 @@ impl PyQueryStagePlanNode {
     #[getter]
     fn identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identifier {
-            let converted_1309 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1309)
+            let converted_1340 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1340)
         } else {
             Ok(py.None())
         }
@@ -10641,19 +10742,19 @@ impl PyQueryStagePlanNode {
     #[getter]
     fn children(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.children {
-            let converted_1310_list = PyList::empty(py);
-            for item_1311 in value {
-                let converted_item_1312 = Py::new(
+            let converted_1341_list = PyList::empty(py);
+            for item_1342 in value {
+                let converted_item_1343 = Py::new(
                     py,
                     PyQueryStagePlanNode {
-                        inner: Arc::clone(item_1311),
+                        inner: Arc::clone(item_1342),
                     },
                 )?
                 .into_any();
-                converted_1310_list.append(converted_item_1312)?;
+                converted_1341_list.append(converted_item_1343)?;
             }
-            let converted_1310 = converted_1310_list.into_any().unbind();
-            Ok(converted_1310)
+            let converted_1341 = converted_1341_list.into_any().unbind();
+            Ok(converted_1341)
         } else {
             Ok(py.None())
         }
@@ -10662,13 +10763,13 @@ impl PyQueryStagePlanNode {
     #[getter]
     fn remote_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.remote_sources {
-            let converted_1313_list = PyList::empty(py);
-            for item_1314 in value {
-                let converted_item_1315 = (item_1314).as_str().into_py_any(py)?;
-                converted_1313_list.append(converted_item_1315)?;
+            let converted_1344_list = PyList::empty(py);
+            for item_1345 in value {
+                let converted_item_1346 = (item_1345).as_str().into_py_any(py)?;
+                converted_1344_list.append(converted_item_1346)?;
             }
-            let converted_1313 = converted_1313_list.into_any().unbind();
-            Ok(converted_1313)
+            let converted_1344 = converted_1344_list.into_any().unbind();
+            Ok(converted_1344)
         } else {
             Ok(py.None())
         }
@@ -10705,26 +10806,26 @@ fn result_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.output_location {
-        let converted_1329 = (value).as_str().into_py_any(py)?;
-        result.set_item("output_location", converted_1329)?;
+        let converted_1360 = (value).as_str().into_py_any(py)?;
+        result.set_item("output_location", converted_1360)?;
     } else {
         result.set_item("output_location", py.None())?;
     }
     if let Some(value) = &value.encryption_configuration {
-        let converted_1330 = encryption_configuration_to_py(py, value)?;
-        result.set_item("encryption_configuration", converted_1330)?;
+        let converted_1361 = encryption_configuration_to_py(py, value)?;
+        result.set_item("encryption_configuration", converted_1361)?;
     } else {
         result.set_item("encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.expected_bucket_owner {
-        let converted_1331 = (value).as_str().into_py_any(py)?;
-        result.set_item("expected_bucket_owner", converted_1331)?;
+        let converted_1362 = (value).as_str().into_py_any(py)?;
+        result.set_item("expected_bucket_owner", converted_1362)?;
     } else {
         result.set_item("expected_bucket_owner", py.None())?;
     }
     if let Some(value) = &value.acl_configuration {
-        let converted_1332 = acl_configuration_to_py(py, value)?;
-        result.set_item("acl_configuration", converted_1332)?;
+        let converted_1363 = acl_configuration_to_py(py, value)?;
+        result.set_item("acl_configuration", converted_1363)?;
     } else {
         result.set_item("acl_configuration", py.None())?;
     }
@@ -10741,8 +10842,8 @@ impl PyResultConfiguration {
     #[getter]
     fn output_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_location {
-            let converted_1325 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1325)
+            let converted_1356 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1356)
         } else {
             Ok(py.None())
         }
@@ -10751,14 +10852,14 @@ impl PyResultConfiguration {
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1326 = Py::new(
+            let converted_1357 = Py::new(
                 py,
                 PyEncryptionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1326)
+            Ok(converted_1357)
         } else {
             Ok(py.None())
         }
@@ -10767,8 +10868,8 @@ impl PyResultConfiguration {
     #[getter]
     fn expected_bucket_owner(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.expected_bucket_owner {
-            let converted_1327 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1327)
+            let converted_1358 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1358)
         } else {
             Ok(py.None())
         }
@@ -10777,14 +10878,14 @@ impl PyResultConfiguration {
     #[getter]
     fn acl_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.acl_configuration {
-            let converted_1328 = Py::new(
+            let converted_1359 = Py::new(
                 py,
                 PyAclConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1328)
+            Ok(converted_1359)
         } else {
             Ok(py.None())
         }
@@ -10808,15 +10909,15 @@ struct PyResultReuseByAgeConfiguration {
 impl PyResultReuseByAgeConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1333 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_1333)
+        let converted_1364 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1364)
     }
 
     #[getter]
     fn max_age_in_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.max_age_in_minutes {
-            let converted_1334 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1334)
+            let converted_1365 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1365)
         } else {
             Ok(py.None())
         }
@@ -10850,8 +10951,8 @@ fn result_reuse_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.result_reuse_by_age_configuration {
-        let converted_1336 = result_reuse_by_age_configuration_to_py(py, value)?;
-        result.set_item("result_reuse_by_age_configuration", converted_1336)?;
+        let converted_1367 = result_reuse_by_age_configuration_to_py(py, value)?;
+        result.set_item("result_reuse_by_age_configuration", converted_1367)?;
     } else {
         result.set_item("result_reuse_by_age_configuration", py.None())?;
     }
@@ -10872,14 +10973,14 @@ impl PyResultReuseConfiguration {
     #[getter]
     fn result_reuse_by_age_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_reuse_by_age_configuration {
-            let converted_1335 = Py::new(
+            let converted_1366 = Py::new(
                 py,
                 PyResultReuseByAgeConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1335)
+            Ok(converted_1366)
         } else {
             Ok(py.None())
         }
@@ -10903,10 +11004,10 @@ struct PyResultReuseInformation {
 impl PyResultReuseInformation {
     #[getter]
     fn reused_previous_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1337 = (&self.inner.reused_previous_result)
+        let converted_1368 = (&self.inner.reused_previous_result)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1337)
+        Ok(converted_1368)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -10927,7 +11028,7 @@ impl From<aws_sdk_athena::types::ResultSet> for SharedResultSet {
             rows: value.rows.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1342| Arc::new(SharedRow::from(owned_1342)))
+                    .map(|owned_1373| Arc::new(SharedRow::from(owned_1373)))
                     .collect()
             }),
             result_set_metadata: value
@@ -10940,19 +11041,19 @@ impl From<aws_sdk_athena::types::ResultSet> for SharedResultSet {
 fn result_set_shared_to_py(py: Python<'_>, value: &SharedResultSet) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.rows {
-        let converted_1343_list = PyList::empty(py);
-        for item_1344 in value {
-            let converted_item_1345 = row_shared_to_py(py, item_1344)?;
-            converted_1343_list.append(converted_item_1345)?;
+        let converted_1374_list = PyList::empty(py);
+        for item_1375 in value {
+            let converted_item_1376 = row_shared_to_py(py, item_1375)?;
+            converted_1374_list.append(converted_item_1376)?;
         }
-        let converted_1343 = converted_1343_list.into_any().unbind();
-        result.set_item("rows", converted_1343)?;
+        let converted_1374 = converted_1374_list.into_any().unbind();
+        result.set_item("rows", converted_1374)?;
     } else {
         result.set_item("rows", py.None())?;
     }
     if let Some(value) = &value.result_set_metadata {
-        let converted_1346 = result_set_metadata_shared_to_py(py, value)?;
-        result.set_item("result_set_metadata", converted_1346)?;
+        let converted_1377 = result_set_metadata_shared_to_py(py, value)?;
+        result.set_item("result_set_metadata", converted_1377)?;
     } else {
         result.set_item("result_set_metadata", py.None())?;
     }
@@ -10969,19 +11070,19 @@ impl PyResultSet {
     #[getter]
     fn rows(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.rows {
-            let converted_1338_list = PyList::empty(py);
-            for item_1339 in value {
-                let converted_item_1340 = Py::new(
+            let converted_1369_list = PyList::empty(py);
+            for item_1370 in value {
+                let converted_item_1371 = Py::new(
                     py,
                     PyRow {
-                        inner: Arc::clone(item_1339),
+                        inner: Arc::clone(item_1370),
                     },
                 )?
                 .into_any();
-                converted_1338_list.append(converted_item_1340)?;
+                converted_1369_list.append(converted_item_1371)?;
             }
-            let converted_1338 = converted_1338_list.into_any().unbind();
-            Ok(converted_1338)
+            let converted_1369 = converted_1369_list.into_any().unbind();
+            Ok(converted_1369)
         } else {
             Ok(py.None())
         }
@@ -10990,14 +11091,14 @@ impl PyResultSet {
     #[getter]
     fn result_set_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_set_metadata {
-            let converted_1341 = Py::new(
+            let converted_1372 = Py::new(
                 py,
                 PyResultSetMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1341)
+            Ok(converted_1372)
         } else {
             Ok(py.None())
         }
@@ -11020,7 +11121,7 @@ impl From<aws_sdk_athena::types::ResultSetMetadata> for SharedResultSetMetadata 
             column_info: value.column_info.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1350| Arc::new(owned_1350))
+                    .map(|owned_1381| Arc::new(owned_1381))
                     .collect()
             }),
         }
@@ -11033,13 +11134,13 @@ fn result_set_metadata_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.column_info {
-        let converted_1351_list = PyList::empty(py);
-        for item_1352 in value {
-            let converted_item_1353 = column_info_to_py(py, item_1352)?;
-            converted_1351_list.append(converted_item_1353)?;
+        let converted_1382_list = PyList::empty(py);
+        for item_1383 in value {
+            let converted_item_1384 = column_info_to_py(py, item_1383)?;
+            converted_1382_list.append(converted_item_1384)?;
         }
-        let converted_1351 = converted_1351_list.into_any().unbind();
-        result.set_item("column_info", converted_1351)?;
+        let converted_1382 = converted_1382_list.into_any().unbind();
+        result.set_item("column_info", converted_1382)?;
     } else {
         result.set_item("column_info", py.None())?;
     }
@@ -11056,19 +11157,19 @@ impl PyResultSetMetadata {
     #[getter]
     fn column_info(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.column_info {
-            let converted_1347_list = PyList::empty(py);
-            for item_1348 in value {
-                let converted_item_1349 = Py::new(
+            let converted_1378_list = PyList::empty(py);
+            for item_1379 in value {
+                let converted_item_1380 = Py::new(
                     py,
                     PyColumnInfo {
-                        inner: Arc::clone(item_1348),
+                        inner: Arc::clone(item_1379),
                     },
                 )?
                 .into_any();
-                converted_1347_list.append(converted_item_1349)?;
+                converted_1378_list.append(converted_item_1380)?;
             }
-            let converted_1347 = converted_1347_list.into_any().unbind();
-            Ok(converted_1347)
+            let converted_1378 = converted_1378_list.into_any().unbind();
+            Ok(converted_1378)
         } else {
             Ok(py.None())
         }
@@ -11091,7 +11192,7 @@ impl From<aws_sdk_athena::types::Row> for SharedRow {
             data: value.data.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1357| Arc::new(owned_1357))
+                    .map(|owned_1388| Arc::new(owned_1388))
                     .collect()
             }),
         }
@@ -11101,13 +11202,13 @@ impl From<aws_sdk_athena::types::Row> for SharedRow {
 fn row_shared_to_py(py: Python<'_>, value: &SharedRow) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.data {
-        let converted_1358_list = PyList::empty(py);
-        for item_1359 in value {
-            let converted_item_1360 = datum_to_py(py, item_1359)?;
-            converted_1358_list.append(converted_item_1360)?;
+        let converted_1389_list = PyList::empty(py);
+        for item_1390 in value {
+            let converted_item_1391 = datum_to_py(py, item_1390)?;
+            converted_1389_list.append(converted_item_1391)?;
         }
-        let converted_1358 = converted_1358_list.into_any().unbind();
-        result.set_item("data", converted_1358)?;
+        let converted_1389 = converted_1389_list.into_any().unbind();
+        result.set_item("data", converted_1389)?;
     } else {
         result.set_item("data", py.None())?;
     }
@@ -11124,19 +11225,19 @@ impl PyRow {
     #[getter]
     fn data(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data {
-            let converted_1354_list = PyList::empty(py);
-            for item_1355 in value {
-                let converted_item_1356 = Py::new(
+            let converted_1385_list = PyList::empty(py);
+            for item_1386 in value {
+                let converted_item_1387 = Py::new(
                     py,
                     PyDatum {
-                        inner: Arc::clone(item_1355),
+                        inner: Arc::clone(item_1386),
                     },
                 )?
                 .into_any();
-                converted_1354_list.append(converted_item_1356)?;
+                converted_1385_list.append(converted_item_1387)?;
             }
-            let converted_1354 = converted_1354_list.into_any().unbind();
-            Ok(converted_1354)
+            let converted_1385 = converted_1385_list.into_any().unbind();
+            Ok(converted_1385)
         } else {
             Ok(py.None())
         }
@@ -11160,15 +11261,15 @@ struct PyS3LoggingConfiguration {
 impl PyS3LoggingConfiguration {
     #[getter]
     fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1361 = (&self.inner.enabled).to_owned().into_py_any(py)?;
-        Ok(converted_1361)
+        let converted_1392 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1392)
     }
 
     #[getter]
     fn kms_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key {
-            let converted_1362 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1362)
+            let converted_1393 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1393)
         } else {
             Ok(py.None())
         }
@@ -11177,8 +11278,8 @@ impl PyS3LoggingConfiguration {
     #[getter]
     fn log_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.log_location {
-            let converted_1363 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1363)
+            let converted_1394 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1394)
         } else {
             Ok(py.None())
         }
@@ -11217,32 +11318,32 @@ fn session_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.execution_role {
-        let converted_1369 = (value).as_str().into_py_any(py)?;
-        result.set_item("execution_role", converted_1369)?;
+        let converted_1400 = (value).as_str().into_py_any(py)?;
+        result.set_item("execution_role", converted_1400)?;
     } else {
         result.set_item("execution_role", py.None())?;
     }
     if let Some(value) = &value.working_directory {
-        let converted_1370 = (value).as_str().into_py_any(py)?;
-        result.set_item("working_directory", converted_1370)?;
+        let converted_1401 = (value).as_str().into_py_any(py)?;
+        result.set_item("working_directory", converted_1401)?;
     } else {
         result.set_item("working_directory", py.None())?;
     }
     if let Some(value) = &value.idle_timeout_seconds {
-        let converted_1371 = (value).to_owned().into_py_any(py)?;
-        result.set_item("idle_timeout_seconds", converted_1371)?;
+        let converted_1402 = (value).to_owned().into_py_any(py)?;
+        result.set_item("idle_timeout_seconds", converted_1402)?;
     } else {
         result.set_item("idle_timeout_seconds", py.None())?;
     }
     if let Some(value) = &value.session_idle_timeout_in_minutes {
-        let converted_1372 = (value).to_owned().into_py_any(py)?;
-        result.set_item("session_idle_timeout_in_minutes", converted_1372)?;
+        let converted_1403 = (value).to_owned().into_py_any(py)?;
+        result.set_item("session_idle_timeout_in_minutes", converted_1403)?;
     } else {
         result.set_item("session_idle_timeout_in_minutes", py.None())?;
     }
     if let Some(value) = &value.encryption_configuration {
-        let converted_1373 = encryption_configuration_to_py(py, value)?;
-        result.set_item("encryption_configuration", converted_1373)?;
+        let converted_1404 = encryption_configuration_to_py(py, value)?;
+        result.set_item("encryption_configuration", converted_1404)?;
     } else {
         result.set_item("encryption_configuration", py.None())?;
     }
@@ -11259,8 +11360,8 @@ impl PySessionConfiguration {
     #[getter]
     fn execution_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_role {
-            let converted_1364 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1364)
+            let converted_1395 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1395)
         } else {
             Ok(py.None())
         }
@@ -11269,8 +11370,8 @@ impl PySessionConfiguration {
     #[getter]
     fn working_directory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.working_directory {
-            let converted_1365 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1365)
+            let converted_1396 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1396)
         } else {
             Ok(py.None())
         }
@@ -11279,8 +11380,8 @@ impl PySessionConfiguration {
     #[getter]
     fn idle_timeout_seconds(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.idle_timeout_seconds {
-            let converted_1366 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1366)
+            let converted_1397 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1397)
         } else {
             Ok(py.None())
         }
@@ -11289,8 +11390,8 @@ impl PySessionConfiguration {
     #[getter]
     fn session_idle_timeout_in_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_idle_timeout_in_minutes {
-            let converted_1367 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1367)
+            let converted_1398 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1398)
         } else {
             Ok(py.None())
         }
@@ -11299,14 +11400,14 @@ impl PySessionConfiguration {
     #[getter]
     fn encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_configuration {
-            let converted_1368 = Py::new(
+            let converted_1399 = Py::new(
                 py,
                 PyEncryptionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1368)
+            Ok(converted_1399)
         } else {
             Ok(py.None())
         }
@@ -11327,8 +11428,8 @@ impl PySessionStatistics {
     #[getter]
     fn dpu_execution_in_millis(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.dpu_execution_in_millis {
-            let converted_1374 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1374)
+            let converted_1405 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1405)
         } else {
             Ok(py.None())
         }
@@ -11349,8 +11450,8 @@ impl PySessionStatus {
     #[getter]
     fn start_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.start_date_time {
-            let converted_1375 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1375)
+            let converted_1406 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1406)
         } else {
             Ok(py.None())
         }
@@ -11359,8 +11460,8 @@ impl PySessionStatus {
     #[getter]
     fn last_modified_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified_date_time {
-            let converted_1376 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1376)
+            let converted_1407 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1407)
         } else {
             Ok(py.None())
         }
@@ -11369,8 +11470,8 @@ impl PySessionStatus {
     #[getter]
     fn end_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.end_date_time {
-            let converted_1377 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1377)
+            let converted_1408 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1408)
         } else {
             Ok(py.None())
         }
@@ -11379,8 +11480,8 @@ impl PySessionStatus {
     #[getter]
     fn idle_since_date_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.idle_since_date_time {
-            let converted_1378 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1378)
+            let converted_1409 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1409)
         } else {
             Ok(py.None())
         }
@@ -11389,8 +11490,8 @@ impl PySessionStatus {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1379 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1379)
+            let converted_1410 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1410)
         } else {
             Ok(py.None())
         }
@@ -11399,8 +11500,8 @@ impl PySessionStatus {
     #[getter]
     fn state_change_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state_change_reason {
-            let converted_1380 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1380)
+            let converted_1411 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1411)
         } else {
             Ok(py.None())
         }
@@ -11439,32 +11540,32 @@ fn session_summary_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.session_id {
-        let converted_1386 = (value).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_1386)?;
+        let converted_1417 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_1417)?;
     } else {
         result.set_item("session_id", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_1387 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_1387)?;
+        let converted_1418 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_1418)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_1388 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_1388)?;
+        let converted_1419 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_1419)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.notebook_version {
-        let converted_1389 = (value).as_str().into_py_any(py)?;
-        result.set_item("notebook_version", converted_1389)?;
+        let converted_1420 = (value).as_str().into_py_any(py)?;
+        result.set_item("notebook_version", converted_1420)?;
     } else {
         result.set_item("notebook_version", py.None())?;
     }
     if let Some(value) = &value.status {
-        let converted_1390 = session_status_to_py(py, value)?;
-        result.set_item("status", converted_1390)?;
+        let converted_1421 = session_status_to_py(py, value)?;
+        result.set_item("status", converted_1421)?;
     } else {
         result.set_item("status", py.None())?;
     }
@@ -11481,8 +11582,8 @@ impl PySessionSummary {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1381)
+            let converted_1412 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1412)
         } else {
             Ok(py.None())
         }
@@ -11491,8 +11592,8 @@ impl PySessionSummary {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1382 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1382)
+            let converted_1413 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1413)
         } else {
             Ok(py.None())
         }
@@ -11501,14 +11602,14 @@ impl PySessionSummary {
     #[getter]
     fn engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_version {
-            let converted_1383 = Py::new(
+            let converted_1414 = Py::new(
                 py,
                 PyEngineVersion {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1383)
+            Ok(converted_1414)
         } else {
             Ok(py.None())
         }
@@ -11517,8 +11618,8 @@ impl PySessionSummary {
     #[getter]
     fn notebook_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_version {
-            let converted_1384 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1384)
+            let converted_1415 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1415)
         } else {
             Ok(py.None())
         }
@@ -11527,14 +11628,14 @@ impl PySessionSummary {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1385 = Py::new(
+            let converted_1416 = Py::new(
                 py,
                 PySessionStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1385)
+            Ok(converted_1416)
         } else {
             Ok(py.None())
         }
@@ -11542,6 +11643,30 @@ impl PySessionSummary {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         session_summary_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "SystemTableStatus", module = "rboto_athena._native", frozen)]
+struct PySystemTableStatus {
+    inner: Arc<aws_sdk_athena::types::SystemTableStatus>,
+}
+
+#[pymethods]
+impl PySystemTableStatus {
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1422 = (&self.inner.table_name).as_str().into_py_any(py)?;
+        Ok(converted_1422)
+    }
+
+    #[getter]
+    fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1423 = (&self.inner.enabled).to_owned().into_py_any(py)?;
+        Ok(converted_1423)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        system_table_status_to_py(py, &self.inner)
     }
 }
 
@@ -11567,13 +11692,13 @@ impl From<aws_sdk_athena::types::TableMetadata> for SharedTableMetadata {
             columns: value.columns.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1406| Arc::new(owned_1406))
+                    .map(|owned_1439| Arc::new(owned_1439))
                     .collect()
             }),
             partition_keys: value.partition_keys.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1407| Arc::new(owned_1407))
+                    .map(|owned_1440| Arc::new(owned_1440))
                     .collect()
             }),
             parameters: value.parameters,
@@ -11583,57 +11708,57 @@ impl From<aws_sdk_athena::types::TableMetadata> for SharedTableMetadata {
 
 fn table_metadata_shared_to_py(py: Python<'_>, value: &SharedTableMetadata) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1408 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1408)?;
+    let converted_1441 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1441)?;
     if let Some(value) = &value.create_time {
-        let converted_1409 = (value).to_string().into_py_any(py)?;
-        result.set_item("create_time", converted_1409)?;
+        let converted_1442 = (value).to_string().into_py_any(py)?;
+        result.set_item("create_time", converted_1442)?;
     } else {
         result.set_item("create_time", py.None())?;
     }
     if let Some(value) = &value.last_access_time {
-        let converted_1410 = (value).to_string().into_py_any(py)?;
-        result.set_item("last_access_time", converted_1410)?;
+        let converted_1443 = (value).to_string().into_py_any(py)?;
+        result.set_item("last_access_time", converted_1443)?;
     } else {
         result.set_item("last_access_time", py.None())?;
     }
     if let Some(value) = &value.table_type {
-        let converted_1411 = (value).as_str().into_py_any(py)?;
-        result.set_item("table_type", converted_1411)?;
+        let converted_1444 = (value).as_str().into_py_any(py)?;
+        result.set_item("table_type", converted_1444)?;
     } else {
         result.set_item("table_type", py.None())?;
     }
     if let Some(value) = &value.columns {
-        let converted_1412_list = PyList::empty(py);
-        for item_1413 in value {
-            let converted_item_1414 = column_to_py(py, item_1413)?;
-            converted_1412_list.append(converted_item_1414)?;
+        let converted_1445_list = PyList::empty(py);
+        for item_1446 in value {
+            let converted_item_1447 = column_to_py(py, item_1446)?;
+            converted_1445_list.append(converted_item_1447)?;
         }
-        let converted_1412 = converted_1412_list.into_any().unbind();
-        result.set_item("columns", converted_1412)?;
+        let converted_1445 = converted_1445_list.into_any().unbind();
+        result.set_item("columns", converted_1445)?;
     } else {
         result.set_item("columns", py.None())?;
     }
     if let Some(value) = &value.partition_keys {
-        let converted_1415_list = PyList::empty(py);
-        for item_1416 in value {
-            let converted_item_1417 = column_to_py(py, item_1416)?;
-            converted_1415_list.append(converted_item_1417)?;
+        let converted_1448_list = PyList::empty(py);
+        for item_1449 in value {
+            let converted_item_1450 = column_to_py(py, item_1449)?;
+            converted_1448_list.append(converted_item_1450)?;
         }
-        let converted_1415 = converted_1415_list.into_any().unbind();
-        result.set_item("partition_keys", converted_1415)?;
+        let converted_1448 = converted_1448_list.into_any().unbind();
+        result.set_item("partition_keys", converted_1448)?;
     } else {
         result.set_item("partition_keys", py.None())?;
     }
     if let Some(value) = &value.parameters {
-        let converted_1418_dict = PyDict::new(py);
-        for (key_1419, value_1420) in value {
-            let converted_key_1421 = (key_1419).as_str().into_py_any(py)?;
-            let converted_value_1422 = (value_1420).as_str().into_py_any(py)?;
-            converted_1418_dict.set_item(converted_key_1421, converted_value_1422)?;
+        let converted_1451_dict = PyDict::new(py);
+        for (key_1452, value_1453) in value {
+            let converted_key_1454 = (key_1452).as_str().into_py_any(py)?;
+            let converted_value_1455 = (value_1453).as_str().into_py_any(py)?;
+            converted_1451_dict.set_item(converted_key_1454, converted_value_1455)?;
         }
-        let converted_1418 = converted_1418_dict.into_any().unbind();
-        result.set_item("parameters", converted_1418)?;
+        let converted_1451 = converted_1451_dict.into_any().unbind();
+        result.set_item("parameters", converted_1451)?;
     } else {
         result.set_item("parameters", py.None())?;
     }
@@ -11649,15 +11774,15 @@ struct PyTableMetadata {
 impl PyTableMetadata {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1391 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1391)
+        let converted_1424 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1424)
     }
 
     #[getter]
     fn create_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.create_time {
-            let converted_1392 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1392)
+            let converted_1425 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1425)
         } else {
             Ok(py.None())
         }
@@ -11666,8 +11791,8 @@ impl PyTableMetadata {
     #[getter]
     fn last_access_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_access_time {
-            let converted_1393 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1393)
+            let converted_1426 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1426)
         } else {
             Ok(py.None())
         }
@@ -11676,8 +11801,8 @@ impl PyTableMetadata {
     #[getter]
     fn table_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_type {
-            let converted_1394 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1394)
+            let converted_1427 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1427)
         } else {
             Ok(py.None())
         }
@@ -11686,19 +11811,19 @@ impl PyTableMetadata {
     #[getter]
     fn columns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.columns {
-            let converted_1395_list = PyList::empty(py);
-            for item_1396 in value {
-                let converted_item_1397 = Py::new(
+            let converted_1428_list = PyList::empty(py);
+            for item_1429 in value {
+                let converted_item_1430 = Py::new(
                     py,
                     PyColumn {
-                        inner: Arc::clone(item_1396),
+                        inner: Arc::clone(item_1429),
                     },
                 )?
                 .into_any();
-                converted_1395_list.append(converted_item_1397)?;
+                converted_1428_list.append(converted_item_1430)?;
             }
-            let converted_1395 = converted_1395_list.into_any().unbind();
-            Ok(converted_1395)
+            let converted_1428 = converted_1428_list.into_any().unbind();
+            Ok(converted_1428)
         } else {
             Ok(py.None())
         }
@@ -11707,19 +11832,19 @@ impl PyTableMetadata {
     #[getter]
     fn partition_keys(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.partition_keys {
-            let converted_1398_list = PyList::empty(py);
-            for item_1399 in value {
-                let converted_item_1400 = Py::new(
+            let converted_1431_list = PyList::empty(py);
+            for item_1432 in value {
+                let converted_item_1433 = Py::new(
                     py,
                     PyColumn {
-                        inner: Arc::clone(item_1399),
+                        inner: Arc::clone(item_1432),
                     },
                 )?
                 .into_any();
-                converted_1398_list.append(converted_item_1400)?;
+                converted_1431_list.append(converted_item_1433)?;
             }
-            let converted_1398 = converted_1398_list.into_any().unbind();
-            Ok(converted_1398)
+            let converted_1431 = converted_1431_list.into_any().unbind();
+            Ok(converted_1431)
         } else {
             Ok(py.None())
         }
@@ -11728,14 +11853,14 @@ impl PyTableMetadata {
     #[getter]
     fn parameters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.parameters {
-            let converted_1401_dict = PyDict::new(py);
-            for (key_1402, value_1403) in value {
-                let converted_key_1404 = (key_1402).as_str().into_py_any(py)?;
-                let converted_value_1405 = (value_1403).as_str().into_py_any(py)?;
-                converted_1401_dict.set_item(converted_key_1404, converted_value_1405)?;
+            let converted_1434_dict = PyDict::new(py);
+            for (key_1435, value_1436) in value {
+                let converted_key_1437 = (key_1435).as_str().into_py_any(py)?;
+                let converted_value_1438 = (value_1436).as_str().into_py_any(py)?;
+                converted_1434_dict.set_item(converted_key_1437, converted_value_1438)?;
             }
-            let converted_1401 = converted_1401_dict.into_any().unbind();
-            Ok(converted_1401)
+            let converted_1434 = converted_1434_dict.into_any().unbind();
+            Ok(converted_1434)
         } else {
             Ok(py.None())
         }
@@ -11756,8 +11881,8 @@ impl PyTag {
     #[getter]
     fn key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.key {
-            let converted_1423 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1423)
+            let converted_1456 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1456)
         } else {
             Ok(py.None())
         }
@@ -11766,8 +11891,8 @@ impl PyTag {
     #[getter]
     fn value(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.value {
-            let converted_1424 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1424)
+            let converted_1457 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1457)
         } else {
             Ok(py.None())
         }
@@ -11792,8 +11917,8 @@ impl PyUnprocessedNamedQueryId {
     #[getter]
     fn named_query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_query_id {
-            let converted_1425 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1425)
+            let converted_1458 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1458)
         } else {
             Ok(py.None())
         }
@@ -11802,8 +11927,8 @@ impl PyUnprocessedNamedQueryId {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_1426 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1426)
+            let converted_1459 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1459)
         } else {
             Ok(py.None())
         }
@@ -11812,8 +11937,8 @@ impl PyUnprocessedNamedQueryId {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1427 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1427)
+            let converted_1460 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1460)
         } else {
             Ok(py.None())
         }
@@ -11838,8 +11963,8 @@ impl PyUnprocessedPreparedStatementName {
     #[getter]
     fn statement_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement_name {
-            let converted_1428 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1428)
+            let converted_1461 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1461)
         } else {
             Ok(py.None())
         }
@@ -11848,8 +11973,8 @@ impl PyUnprocessedPreparedStatementName {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_1429 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1429)
+            let converted_1462 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1462)
         } else {
             Ok(py.None())
         }
@@ -11858,8 +11983,8 @@ impl PyUnprocessedPreparedStatementName {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1430 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1430)
+            let converted_1463 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1463)
         } else {
             Ok(py.None())
         }
@@ -11884,8 +12009,8 @@ impl PyUnprocessedQueryExecutionId {
     #[getter]
     fn query_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution_id {
-            let converted_1431 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1431)
+            let converted_1464 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1464)
         } else {
             Ok(py.None())
         }
@@ -11894,8 +12019,8 @@ impl PyUnprocessedQueryExecutionId {
     #[getter]
     fn error_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_code {
-            let converted_1432 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1432)
+            let converted_1465 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1465)
         } else {
             Ok(py.None())
         }
@@ -11904,8 +12029,8 @@ impl PyUnprocessedQueryExecutionId {
     #[getter]
     fn error_message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.error_message {
-            let converted_1433 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1433)
+            let converted_1466 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1466)
         } else {
             Ok(py.None())
         }
@@ -11944,35 +12069,35 @@ impl From<aws_sdk_athena::types::WorkGroup> for SharedWorkGroup {
 
 fn work_group_shared_to_py(py: Python<'_>, value: &SharedWorkGroup) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_1440 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_1440)?;
+    let converted_1473 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_1473)?;
     if let Some(value) = &value.state {
-        let converted_1441 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_1441)?;
+        let converted_1474 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_1474)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.configuration {
-        let converted_1442 = work_group_configuration_shared_to_py(py, value)?;
-        result.set_item("configuration", converted_1442)?;
+        let converted_1475 = work_group_configuration_shared_to_py(py, value)?;
+        result.set_item("configuration", converted_1475)?;
     } else {
         result.set_item("configuration", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_1443 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_1443)?;
+        let converted_1476 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_1476)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_1444 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_1444)?;
+        let converted_1477 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_1477)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
     if let Some(value) = &value.identity_center_application_arn {
-        let converted_1445 = (value).as_str().into_py_any(py)?;
-        result.set_item("identity_center_application_arn", converted_1445)?;
+        let converted_1478 = (value).as_str().into_py_any(py)?;
+        result.set_item("identity_center_application_arn", converted_1478)?;
     } else {
         result.set_item("identity_center_application_arn", py.None())?;
     }
@@ -11988,15 +12113,15 @@ struct PyWorkGroup {
 impl PyWorkGroup {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1434 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_1434)
+        let converted_1467 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_1467)
     }
 
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1435 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1435)
+            let converted_1468 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1468)
         } else {
             Ok(py.None())
         }
@@ -12005,14 +12130,14 @@ impl PyWorkGroup {
     #[getter]
     fn configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.configuration {
-            let converted_1436 = Py::new(
+            let converted_1469 = Py::new(
                 py,
                 PyWorkGroupConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1436)
+            Ok(converted_1469)
         } else {
             Ok(py.None())
         }
@@ -12021,8 +12146,8 @@ impl PyWorkGroup {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1437 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1437)
+            let converted_1470 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1470)
         } else {
             Ok(py.None())
         }
@@ -12031,8 +12156,8 @@ impl PyWorkGroup {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1438 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1438)
+            let converted_1471 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1471)
         } else {
             Ok(py.None())
         }
@@ -12041,8 +12166,8 @@ impl PyWorkGroup {
     #[getter]
     fn identity_center_application_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_center_application_arn {
-            let converted_1439 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1439)
+            let converted_1472 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1472)
         } else {
             Ok(py.None())
         }
@@ -12072,6 +12197,7 @@ struct SharedWorkGroupConfiguration {
     identity_center_configuration: Option<Arc<aws_sdk_athena::types::IdentityCenterConfiguration>>,
     query_results_s3_access_grants_configuration:
         Option<Arc<aws_sdk_athena::types::QueryResultsS3AccessGrantsConfiguration>>,
+    system_table_statuses: Option<::std::vec::Vec<Arc<aws_sdk_athena::types::SystemTableStatus>>>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -12107,6 +12233,12 @@ impl From<aws_sdk_athena::types::WorkGroupConfiguration> for SharedWorkGroupConf
             query_results_s3_access_grants_configuration: value
                 .query_results_s3_access_grants_configuration
                 .map(|item| Arc::new(item)),
+            system_table_statuses: value.system_table_statuses.map(|item| {
+                (item)
+                    .into_iter()
+                    .map(|owned_1497| Arc::new(owned_1497))
+                    .collect()
+            }),
         }
     }
 }
@@ -12117,97 +12249,108 @@ fn work_group_configuration_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.result_configuration {
-        let converted_1461 = result_configuration_shared_to_py(py, value)?;
-        result.set_item("result_configuration", converted_1461)?;
+        let converted_1498 = result_configuration_shared_to_py(py, value)?;
+        result.set_item("result_configuration", converted_1498)?;
     } else {
         result.set_item("result_configuration", py.None())?;
     }
     if let Some(value) = &value.managed_query_results_configuration {
-        let converted_1462 = managed_query_results_configuration_shared_to_py(py, value)?;
-        result.set_item("managed_query_results_configuration", converted_1462)?;
+        let converted_1499 = managed_query_results_configuration_shared_to_py(py, value)?;
+        result.set_item("managed_query_results_configuration", converted_1499)?;
     } else {
         result.set_item("managed_query_results_configuration", py.None())?;
     }
     if let Some(value) = &value.enforce_work_group_configuration {
-        let converted_1463 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enforce_work_group_configuration", converted_1463)?;
+        let converted_1500 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enforce_work_group_configuration", converted_1500)?;
     } else {
         result.set_item("enforce_work_group_configuration", py.None())?;
     }
     if let Some(value) = &value.publish_cloud_watch_metrics_enabled {
-        let converted_1464 = (value).to_owned().into_py_any(py)?;
-        result.set_item("publish_cloud_watch_metrics_enabled", converted_1464)?;
+        let converted_1501 = (value).to_owned().into_py_any(py)?;
+        result.set_item("publish_cloud_watch_metrics_enabled", converted_1501)?;
     } else {
         result.set_item("publish_cloud_watch_metrics_enabled", py.None())?;
     }
     if let Some(value) = &value.bytes_scanned_cutoff_per_query {
-        let converted_1465 = (value).to_owned().into_py_any(py)?;
-        result.set_item("bytes_scanned_cutoff_per_query", converted_1465)?;
+        let converted_1502 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bytes_scanned_cutoff_per_query", converted_1502)?;
     } else {
         result.set_item("bytes_scanned_cutoff_per_query", py.None())?;
     }
     if let Some(value) = &value.requester_pays_enabled {
-        let converted_1466 = (value).to_owned().into_py_any(py)?;
-        result.set_item("requester_pays_enabled", converted_1466)?;
+        let converted_1503 = (value).to_owned().into_py_any(py)?;
+        result.set_item("requester_pays_enabled", converted_1503)?;
     } else {
         result.set_item("requester_pays_enabled", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_1467 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_1467)?;
+        let converted_1504 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_1504)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.additional_configuration {
-        let converted_1468 = (value).as_str().into_py_any(py)?;
-        result.set_item("additional_configuration", converted_1468)?;
+        let converted_1505 = (value).as_str().into_py_any(py)?;
+        result.set_item("additional_configuration", converted_1505)?;
     } else {
         result.set_item("additional_configuration", py.None())?;
     }
     if let Some(value) = &value.execution_role {
-        let converted_1469 = (value).as_str().into_py_any(py)?;
-        result.set_item("execution_role", converted_1469)?;
+        let converted_1506 = (value).as_str().into_py_any(py)?;
+        result.set_item("execution_role", converted_1506)?;
     } else {
         result.set_item("execution_role", py.None())?;
     }
     if let Some(value) = &value.monitoring_configuration {
-        let converted_1470 = monitoring_configuration_shared_to_py(py, value)?;
-        result.set_item("monitoring_configuration", converted_1470)?;
+        let converted_1507 = monitoring_configuration_shared_to_py(py, value)?;
+        result.set_item("monitoring_configuration", converted_1507)?;
     } else {
         result.set_item("monitoring_configuration", py.None())?;
     }
     if let Some(value) = &value.engine_configuration {
-        let converted_1471 = engine_configuration_shared_to_py(py, value)?;
-        result.set_item("engine_configuration", converted_1471)?;
+        let converted_1508 = engine_configuration_shared_to_py(py, value)?;
+        result.set_item("engine_configuration", converted_1508)?;
     } else {
         result.set_item("engine_configuration", py.None())?;
     }
     if let Some(value) = &value.customer_content_encryption_configuration {
-        let converted_1472 = customer_content_encryption_configuration_to_py(py, value)?;
-        result.set_item("customer_content_encryption_configuration", converted_1472)?;
+        let converted_1509 = customer_content_encryption_configuration_to_py(py, value)?;
+        result.set_item("customer_content_encryption_configuration", converted_1509)?;
     } else {
         result.set_item("customer_content_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.enable_minimum_encryption_configuration {
-        let converted_1473 = (value).to_owned().into_py_any(py)?;
-        result.set_item("enable_minimum_encryption_configuration", converted_1473)?;
+        let converted_1510 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enable_minimum_encryption_configuration", converted_1510)?;
     } else {
         result.set_item("enable_minimum_encryption_configuration", py.None())?;
     }
     if let Some(value) = &value.identity_center_configuration {
-        let converted_1474 = identity_center_configuration_to_py(py, value)?;
-        result.set_item("identity_center_configuration", converted_1474)?;
+        let converted_1511 = identity_center_configuration_to_py(py, value)?;
+        result.set_item("identity_center_configuration", converted_1511)?;
     } else {
         result.set_item("identity_center_configuration", py.None())?;
     }
     if let Some(value) = &value.query_results_s3_access_grants_configuration {
-        let converted_1475 = query_results_s3_access_grants_configuration_to_py(py, value)?;
+        let converted_1512 = query_results_s3_access_grants_configuration_to_py(py, value)?;
         result.set_item(
             "query_results_s3_access_grants_configuration",
-            converted_1475,
+            converted_1512,
         )?;
     } else {
         result.set_item("query_results_s3_access_grants_configuration", py.None())?;
+    }
+    if let Some(value) = &value.system_table_statuses {
+        let converted_1513_list = PyList::empty(py);
+        for item_1514 in value {
+            let converted_item_1515 = system_table_status_to_py(py, item_1514)?;
+            converted_1513_list.append(converted_item_1515)?;
+        }
+        let converted_1513 = converted_1513_list.into_any().unbind();
+        result.set_item("system_table_statuses", converted_1513)?;
+    } else {
+        result.set_item("system_table_statuses", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -12226,14 +12369,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn result_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_configuration {
-            let converted_1446 = Py::new(
+            let converted_1479 = Py::new(
                 py,
                 PyResultConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1446)
+            Ok(converted_1479)
         } else {
             Ok(py.None())
         }
@@ -12242,14 +12385,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn managed_query_results_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.managed_query_results_configuration {
-            let converted_1447 = Py::new(
+            let converted_1480 = Py::new(
                 py,
                 PyManagedQueryResultsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1447)
+            Ok(converted_1480)
         } else {
             Ok(py.None())
         }
@@ -12258,8 +12401,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn enforce_work_group_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enforce_work_group_configuration {
-            let converted_1448 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1448)
+            let converted_1481 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1481)
         } else {
             Ok(py.None())
         }
@@ -12268,8 +12411,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn publish_cloud_watch_metrics_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.publish_cloud_watch_metrics_enabled {
-            let converted_1449 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1449)
+            let converted_1482 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1482)
         } else {
             Ok(py.None())
         }
@@ -12278,8 +12421,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn bytes_scanned_cutoff_per_query(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.bytes_scanned_cutoff_per_query {
-            let converted_1450 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1450)
+            let converted_1483 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1483)
         } else {
             Ok(py.None())
         }
@@ -12288,8 +12431,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn requester_pays_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.requester_pays_enabled {
-            let converted_1451 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1451)
+            let converted_1484 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1484)
         } else {
             Ok(py.None())
         }
@@ -12298,14 +12441,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_version {
-            let converted_1452 = Py::new(
+            let converted_1485 = Py::new(
                 py,
                 PyEngineVersion {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1452)
+            Ok(converted_1485)
         } else {
             Ok(py.None())
         }
@@ -12314,8 +12457,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn additional_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_configuration {
-            let converted_1453 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1453)
+            let converted_1486 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1486)
         } else {
             Ok(py.None())
         }
@@ -12324,8 +12467,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn execution_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.execution_role {
-            let converted_1454 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1454)
+            let converted_1487 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1487)
         } else {
             Ok(py.None())
         }
@@ -12334,14 +12477,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn monitoring_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.monitoring_configuration {
-            let converted_1455 = Py::new(
+            let converted_1488 = Py::new(
                 py,
                 PyMonitoringConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1455)
+            Ok(converted_1488)
         } else {
             Ok(py.None())
         }
@@ -12350,14 +12493,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn engine_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_configuration {
-            let converted_1456 = Py::new(
+            let converted_1489 = Py::new(
                 py,
                 PyEngineConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1456)
+            Ok(converted_1489)
         } else {
             Ok(py.None())
         }
@@ -12366,14 +12509,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn customer_content_encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.customer_content_encryption_configuration {
-            let converted_1457 = Py::new(
+            let converted_1490 = Py::new(
                 py,
                 PyCustomerContentEncryptionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1457)
+            Ok(converted_1490)
         } else {
             Ok(py.None())
         }
@@ -12382,8 +12525,8 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn enable_minimum_encryption_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.enable_minimum_encryption_configuration {
-            let converted_1458 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1458)
+            let converted_1491 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1491)
         } else {
             Ok(py.None())
         }
@@ -12392,14 +12535,14 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn identity_center_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_center_configuration {
-            let converted_1459 = Py::new(
+            let converted_1492 = Py::new(
                 py,
                 PyIdentityCenterConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1459)
+            Ok(converted_1492)
         } else {
             Ok(py.None())
         }
@@ -12408,14 +12551,35 @@ impl PyWorkGroupConfiguration {
     #[getter]
     fn query_results_s3_access_grants_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_results_s3_access_grants_configuration {
-            let converted_1460 = Py::new(
+            let converted_1493 = Py::new(
                 py,
                 PyQueryResultsS3AccessGrantsConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1460)
+            Ok(converted_1493)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn system_table_statuses(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.system_table_statuses {
+            let converted_1494_list = PyList::empty(py);
+            for item_1495 in value {
+                let converted_item_1496 = Py::new(
+                    py,
+                    PySystemTableStatus {
+                        inner: Arc::clone(item_1495),
+                    },
+                )?
+                .into_any();
+                converted_1494_list.append(converted_item_1496)?;
+            }
+            let converted_1494 = converted_1494_list.into_any().unbind();
+            Ok(converted_1494)
         } else {
             Ok(py.None())
         }
@@ -12456,38 +12620,38 @@ fn work_group_summary_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_1482 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_1482)?;
+        let converted_1522 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_1522)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.state {
-        let converted_1483 = (value).as_str().into_py_any(py)?;
-        result.set_item("state", converted_1483)?;
+        let converted_1523 = (value).as_str().into_py_any(py)?;
+        result.set_item("state", converted_1523)?;
     } else {
         result.set_item("state", py.None())?;
     }
     if let Some(value) = &value.description {
-        let converted_1484 = (value).as_str().into_py_any(py)?;
-        result.set_item("description", converted_1484)?;
+        let converted_1524 = (value).as_str().into_py_any(py)?;
+        result.set_item("description", converted_1524)?;
     } else {
         result.set_item("description", py.None())?;
     }
     if let Some(value) = &value.creation_time {
-        let converted_1485 = (value).to_string().into_py_any(py)?;
-        result.set_item("creation_time", converted_1485)?;
+        let converted_1525 = (value).to_string().into_py_any(py)?;
+        result.set_item("creation_time", converted_1525)?;
     } else {
         result.set_item("creation_time", py.None())?;
     }
     if let Some(value) = &value.engine_version {
-        let converted_1486 = engine_version_to_py(py, value)?;
-        result.set_item("engine_version", converted_1486)?;
+        let converted_1526 = engine_version_to_py(py, value)?;
+        result.set_item("engine_version", converted_1526)?;
     } else {
         result.set_item("engine_version", py.None())?;
     }
     if let Some(value) = &value.identity_center_application_arn {
-        let converted_1487 = (value).as_str().into_py_any(py)?;
-        result.set_item("identity_center_application_arn", converted_1487)?;
+        let converted_1527 = (value).as_str().into_py_any(py)?;
+        result.set_item("identity_center_application_arn", converted_1527)?;
     } else {
         result.set_item("identity_center_application_arn", py.None())?;
     }
@@ -12504,8 +12668,8 @@ impl PyWorkGroupSummary {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_1476 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1476)
+            let converted_1516 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1516)
         } else {
             Ok(py.None())
         }
@@ -12514,8 +12678,8 @@ impl PyWorkGroupSummary {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1477 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1477)
+            let converted_1517 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1517)
         } else {
             Ok(py.None())
         }
@@ -12524,8 +12688,8 @@ impl PyWorkGroupSummary {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1478 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1478)
+            let converted_1518 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1518)
         } else {
             Ok(py.None())
         }
@@ -12534,8 +12698,8 @@ impl PyWorkGroupSummary {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_1479 = (value).to_string().into_py_any(py)?;
-            Ok(converted_1479)
+            let converted_1519 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1519)
         } else {
             Ok(py.None())
         }
@@ -12544,14 +12708,14 @@ impl PyWorkGroupSummary {
     #[getter]
     fn engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_version {
-            let converted_1480 = Py::new(
+            let converted_1520 = Py::new(
                 py,
                 PyEngineVersion {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1480)
+            Ok(converted_1520)
         } else {
             Ok(py.None())
         }
@@ -12560,8 +12724,8 @@ impl PyWorkGroupSummary {
     #[getter]
     fn identity_center_application_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.identity_center_application_arn {
-            let converted_1481 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1481)
+            let converted_1521 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1521)
         } else {
             Ok(py.None())
         }
@@ -12590,13 +12754,13 @@ impl From<aws_sdk_athena::operation::batch_get_named_query::BatchGetNamedQueryOu
             named_queries: value.named_queries.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1494| Arc::new(owned_1494))
+                    .map(|owned_1534| Arc::new(owned_1534))
                     .collect()
             }),
             unprocessed_named_query_ids: value.unprocessed_named_query_ids.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1495| Arc::new(owned_1495))
+                    .map(|owned_1535| Arc::new(owned_1535))
                     .collect()
             }),
         }
@@ -12617,19 +12781,19 @@ impl PyOperationBatchGetNamedQueryOutput {
     #[getter]
     fn named_queries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_queries {
-            let converted_1488_list = PyList::empty(py);
-            for item_1489 in value {
-                let converted_item_1490 = Py::new(
+            let converted_1528_list = PyList::empty(py);
+            for item_1529 in value {
+                let converted_item_1530 = Py::new(
                     py,
                     PyNamedQuery {
-                        inner: Arc::clone(item_1489),
+                        inner: Arc::clone(item_1529),
                     },
                 )?
                 .into_any();
-                converted_1488_list.append(converted_item_1490)?;
+                converted_1528_list.append(converted_item_1530)?;
             }
-            let converted_1488 = converted_1488_list.into_any().unbind();
-            Ok(converted_1488)
+            let converted_1528 = converted_1528_list.into_any().unbind();
+            Ok(converted_1528)
         } else {
             Ok(py.None())
         }
@@ -12638,19 +12802,19 @@ impl PyOperationBatchGetNamedQueryOutput {
     #[getter]
     fn unprocessed_named_query_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_named_query_ids {
-            let converted_1491_list = PyList::empty(py);
-            for item_1492 in value {
-                let converted_item_1493 = Py::new(
+            let converted_1531_list = PyList::empty(py);
+            for item_1532 in value {
+                let converted_item_1533 = Py::new(
                     py,
                     PyUnprocessedNamedQueryId {
-                        inner: Arc::clone(item_1492),
+                        inner: Arc::clone(item_1532),
                     },
                 )?
                 .into_any();
-                converted_1491_list.append(converted_item_1493)?;
+                converted_1531_list.append(converted_item_1533)?;
             }
-            let converted_1491 = converted_1491_list.into_any().unbind();
-            Ok(converted_1491)
+            let converted_1531 = converted_1531_list.into_any().unbind();
+            Ok(converted_1531)
         } else {
             Ok(py.None())
         }
@@ -12659,24 +12823,24 @@ impl PyOperationBatchGetNamedQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.named_queries {
-            let converted_1496_list = PyList::empty(py);
-            for item_1497 in value {
-                let converted_item_1498 = named_query_to_py(py, item_1497)?;
-                converted_1496_list.append(converted_item_1498)?;
+            let converted_1536_list = PyList::empty(py);
+            for item_1537 in value {
+                let converted_item_1538 = named_query_to_py(py, item_1537)?;
+                converted_1536_list.append(converted_item_1538)?;
             }
-            let converted_1496 = converted_1496_list.into_any().unbind();
-            result.set_item("named_queries", converted_1496)?;
+            let converted_1536 = converted_1536_list.into_any().unbind();
+            result.set_item("named_queries", converted_1536)?;
         } else {
             result.set_item("named_queries", py.None())?;
         }
         if let Some(value) = &self.inner.unprocessed_named_query_ids {
-            let converted_1499_list = PyList::empty(py);
-            for item_1500 in value {
-                let converted_item_1501 = unprocessed_named_query_id_to_py(py, item_1500)?;
-                converted_1499_list.append(converted_item_1501)?;
+            let converted_1539_list = PyList::empty(py);
+            for item_1540 in value {
+                let converted_item_1541 = unprocessed_named_query_id_to_py(py, item_1540)?;
+                converted_1539_list.append(converted_item_1541)?;
             }
-            let converted_1499 = converted_1499_list.into_any().unbind();
-            result.set_item("unprocessed_named_query_ids", converted_1499)?;
+            let converted_1539 = converted_1539_list.into_any().unbind();
+            result.set_item("unprocessed_named_query_ids", converted_1539)?;
         } else {
             result.set_item("unprocessed_named_query_ids", py.None())?;
         }
@@ -12702,14 +12866,14 @@ impl From<aws_sdk_athena::operation::batch_get_prepared_statement::BatchGetPrepa
             prepared_statements: value.prepared_statements.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1508| Arc::new(owned_1508))
+                    .map(|owned_1548| Arc::new(owned_1548))
                     .collect()
             }),
             unprocessed_prepared_statement_names: value.unprocessed_prepared_statement_names.map(
                 |item| {
                     (item)
                         .into_iter()
-                        .map(|owned_1509| Arc::new(owned_1509))
+                        .map(|owned_1549| Arc::new(owned_1549))
                         .collect()
                 },
             ),
@@ -12731,19 +12895,19 @@ impl PyOperationBatchGetPreparedStatementOutput {
     #[getter]
     fn prepared_statements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prepared_statements {
-            let converted_1502_list = PyList::empty(py);
-            for item_1503 in value {
-                let converted_item_1504 = Py::new(
+            let converted_1542_list = PyList::empty(py);
+            for item_1543 in value {
+                let converted_item_1544 = Py::new(
                     py,
                     PyPreparedStatement {
-                        inner: Arc::clone(item_1503),
+                        inner: Arc::clone(item_1543),
                     },
                 )?
                 .into_any();
-                converted_1502_list.append(converted_item_1504)?;
+                converted_1542_list.append(converted_item_1544)?;
             }
-            let converted_1502 = converted_1502_list.into_any().unbind();
-            Ok(converted_1502)
+            let converted_1542 = converted_1542_list.into_any().unbind();
+            Ok(converted_1542)
         } else {
             Ok(py.None())
         }
@@ -12752,19 +12916,19 @@ impl PyOperationBatchGetPreparedStatementOutput {
     #[getter]
     fn unprocessed_prepared_statement_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_prepared_statement_names {
-            let converted_1505_list = PyList::empty(py);
-            for item_1506 in value {
-                let converted_item_1507 = Py::new(
+            let converted_1545_list = PyList::empty(py);
+            for item_1546 in value {
+                let converted_item_1547 = Py::new(
                     py,
                     PyUnprocessedPreparedStatementName {
-                        inner: Arc::clone(item_1506),
+                        inner: Arc::clone(item_1546),
                     },
                 )?
                 .into_any();
-                converted_1505_list.append(converted_item_1507)?;
+                converted_1545_list.append(converted_item_1547)?;
             }
-            let converted_1505 = converted_1505_list.into_any().unbind();
-            Ok(converted_1505)
+            let converted_1545 = converted_1545_list.into_any().unbind();
+            Ok(converted_1545)
         } else {
             Ok(py.None())
         }
@@ -12773,24 +12937,24 @@ impl PyOperationBatchGetPreparedStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.prepared_statements {
-            let converted_1510_list = PyList::empty(py);
-            for item_1511 in value {
-                let converted_item_1512 = prepared_statement_to_py(py, item_1511)?;
-                converted_1510_list.append(converted_item_1512)?;
+            let converted_1550_list = PyList::empty(py);
+            for item_1551 in value {
+                let converted_item_1552 = prepared_statement_to_py(py, item_1551)?;
+                converted_1550_list.append(converted_item_1552)?;
             }
-            let converted_1510 = converted_1510_list.into_any().unbind();
-            result.set_item("prepared_statements", converted_1510)?;
+            let converted_1550 = converted_1550_list.into_any().unbind();
+            result.set_item("prepared_statements", converted_1550)?;
         } else {
             result.set_item("prepared_statements", py.None())?;
         }
         if let Some(value) = &self.inner.unprocessed_prepared_statement_names {
-            let converted_1513_list = PyList::empty(py);
-            for item_1514 in value {
-                let converted_item_1515 = unprocessed_prepared_statement_name_to_py(py, item_1514)?;
-                converted_1513_list.append(converted_item_1515)?;
+            let converted_1553_list = PyList::empty(py);
+            for item_1554 in value {
+                let converted_item_1555 = unprocessed_prepared_statement_name_to_py(py, item_1554)?;
+                converted_1553_list.append(converted_item_1555)?;
             }
-            let converted_1513 = converted_1513_list.into_any().unbind();
-            result.set_item("unprocessed_prepared_statement_names", converted_1513)?;
+            let converted_1553 = converted_1553_list.into_any().unbind();
+            result.set_item("unprocessed_prepared_statement_names", converted_1553)?;
         } else {
             result.set_item("unprocessed_prepared_statement_names", py.None())?;
         }
@@ -12816,13 +12980,13 @@ impl From<aws_sdk_athena::operation::batch_get_query_execution::BatchGetQueryExe
             query_executions: value.query_executions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1522| Arc::new(SharedQueryExecution::from(owned_1522)))
+                    .map(|owned_1562| Arc::new(SharedQueryExecution::from(owned_1562)))
                     .collect()
             }),
             unprocessed_query_execution_ids: value.unprocessed_query_execution_ids.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1523| Arc::new(owned_1523))
+                    .map(|owned_1563| Arc::new(owned_1563))
                     .collect()
             }),
         }
@@ -12843,19 +13007,19 @@ impl PyOperationBatchGetQueryExecutionOutput {
     #[getter]
     fn query_executions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_executions {
-            let converted_1516_list = PyList::empty(py);
-            for item_1517 in value {
-                let converted_item_1518 = Py::new(
+            let converted_1556_list = PyList::empty(py);
+            for item_1557 in value {
+                let converted_item_1558 = Py::new(
                     py,
                     PyQueryExecution {
-                        inner: Arc::clone(item_1517),
+                        inner: Arc::clone(item_1557),
                     },
                 )?
                 .into_any();
-                converted_1516_list.append(converted_item_1518)?;
+                converted_1556_list.append(converted_item_1558)?;
             }
-            let converted_1516 = converted_1516_list.into_any().unbind();
-            Ok(converted_1516)
+            let converted_1556 = converted_1556_list.into_any().unbind();
+            Ok(converted_1556)
         } else {
             Ok(py.None())
         }
@@ -12864,19 +13028,19 @@ impl PyOperationBatchGetQueryExecutionOutput {
     #[getter]
     fn unprocessed_query_execution_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.unprocessed_query_execution_ids {
-            let converted_1519_list = PyList::empty(py);
-            for item_1520 in value {
-                let converted_item_1521 = Py::new(
+            let converted_1559_list = PyList::empty(py);
+            for item_1560 in value {
+                let converted_item_1561 = Py::new(
                     py,
                     PyUnprocessedQueryExecutionId {
-                        inner: Arc::clone(item_1520),
+                        inner: Arc::clone(item_1560),
                     },
                 )?
                 .into_any();
-                converted_1519_list.append(converted_item_1521)?;
+                converted_1559_list.append(converted_item_1561)?;
             }
-            let converted_1519 = converted_1519_list.into_any().unbind();
-            Ok(converted_1519)
+            let converted_1559 = converted_1559_list.into_any().unbind();
+            Ok(converted_1559)
         } else {
             Ok(py.None())
         }
@@ -12885,24 +13049,24 @@ impl PyOperationBatchGetQueryExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_executions {
-            let converted_1524_list = PyList::empty(py);
-            for item_1525 in value {
-                let converted_item_1526 = query_execution_shared_to_py(py, item_1525)?;
-                converted_1524_list.append(converted_item_1526)?;
+            let converted_1564_list = PyList::empty(py);
+            for item_1565 in value {
+                let converted_item_1566 = query_execution_shared_to_py(py, item_1565)?;
+                converted_1564_list.append(converted_item_1566)?;
             }
-            let converted_1524 = converted_1524_list.into_any().unbind();
-            result.set_item("query_executions", converted_1524)?;
+            let converted_1564 = converted_1564_list.into_any().unbind();
+            result.set_item("query_executions", converted_1564)?;
         } else {
             result.set_item("query_executions", py.None())?;
         }
         if let Some(value) = &self.inner.unprocessed_query_execution_ids {
-            let converted_1527_list = PyList::empty(py);
-            for item_1528 in value {
-                let converted_item_1529 = unprocessed_query_execution_id_to_py(py, item_1528)?;
-                converted_1527_list.append(converted_item_1529)?;
+            let converted_1567_list = PyList::empty(py);
+            for item_1568 in value {
+                let converted_item_1569 = unprocessed_query_execution_id_to_py(py, item_1568)?;
+                converted_1567_list.append(converted_item_1569)?;
             }
-            let converted_1527 = converted_1527_list.into_any().unbind();
-            result.set_item("unprocessed_query_execution_ids", converted_1527)?;
+            let converted_1567 = converted_1567_list.into_any().unbind();
+            result.set_item("unprocessed_query_execution_ids", converted_1567)?;
         } else {
             result.set_item("unprocessed_query_execution_ids", py.None())?;
         }
@@ -12976,14 +13140,14 @@ impl PyOperationCreateDataCatalogOutput {
     #[getter]
     fn data_catalog(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1530 = Py::new(
+            let converted_1570 = Py::new(
                 py,
                 PyDataCatalog {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1530)
+            Ok(converted_1570)
         } else {
             Ok(py.None())
         }
@@ -12992,8 +13156,8 @@ impl PyOperationCreateDataCatalogOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1531 = data_catalog_to_py(py, value)?;
-            result.set_item("data_catalog", converted_1531)?;
+            let converted_1571 = data_catalog_to_py(py, value)?;
+            result.set_item("data_catalog", converted_1571)?;
         } else {
             result.set_item("data_catalog", py.None())?;
         }
@@ -13015,8 +13179,8 @@ impl PyOperationCreateNamedQueryOutput {
     #[getter]
     fn named_query_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_query_id {
-            let converted_1532 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1532)
+            let converted_1572 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1572)
         } else {
             Ok(py.None())
         }
@@ -13025,8 +13189,8 @@ impl PyOperationCreateNamedQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.named_query_id {
-            let converted_1533 = (value).as_str().into_py_any(py)?;
-            result.set_item("named_query_id", converted_1533)?;
+            let converted_1573 = (value).as_str().into_py_any(py)?;
+            result.set_item("named_query_id", converted_1573)?;
         } else {
             result.set_item("named_query_id", py.None())?;
         }
@@ -13044,8 +13208,8 @@ impl PyOperationCreateNotebookOutput {
     #[getter]
     fn notebook_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_id {
-            let converted_1534 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1534)
+            let converted_1574 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1574)
         } else {
             Ok(py.None())
         }
@@ -13054,8 +13218,8 @@ impl PyOperationCreateNotebookOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.notebook_id {
-            let converted_1535 = (value).as_str().into_py_any(py)?;
-            result.set_item("notebook_id", converted_1535)?;
+            let converted_1575 = (value).as_str().into_py_any(py)?;
+            result.set_item("notebook_id", converted_1575)?;
         } else {
             result.set_item("notebook_id", py.None())?;
         }
@@ -13094,34 +13258,115 @@ struct PyOperationCreatePresignedNotebookUrlOutput {
 impl PyOperationCreatePresignedNotebookUrlOutput {
     #[getter]
     fn notebook_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1536 = (&self.inner.notebook_url).as_str().into_py_any(py)?;
-        Ok(converted_1536)
+        let converted_1576 = (&self.inner.notebook_url).as_str().into_py_any(py)?;
+        Ok(converted_1576)
     }
 
     #[getter]
     fn auth_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1537 = (&self.inner.auth_token).as_str().into_py_any(py)?;
-        Ok(converted_1537)
+        let converted_1577 = (&self.inner.auth_token).as_str().into_py_any(py)?;
+        Ok(converted_1577)
     }
 
     #[getter]
     fn auth_token_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1538 = (&self.inner.auth_token_expiration_time)
+        let converted_1578 = (&self.inner.auth_token_expiration_time)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_1538)
+        Ok(converted_1578)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1539 = (&self.inner.notebook_url).as_str().into_py_any(py)?;
-        result.set_item("notebook_url", converted_1539)?;
-        let converted_1540 = (&self.inner.auth_token).as_str().into_py_any(py)?;
-        result.set_item("auth_token", converted_1540)?;
-        let converted_1541 = (&self.inner.auth_token_expiration_time)
+        let converted_1579 = (&self.inner.notebook_url).as_str().into_py_any(py)?;
+        result.set_item("notebook_url", converted_1579)?;
+        let converted_1580 = (&self.inner.auth_token).as_str().into_py_any(py)?;
+        result.set_item("auth_token", converted_1580)?;
+        let converted_1581 = (&self.inner.auth_token_expiration_time)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("auth_token_expiration_time", converted_1541)?;
+        result.set_item("auth_token_expiration_time", converted_1581)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "CreateSystemTableConfigurationOutput",
+    module = "rboto_athena._native",
+    frozen
+)]
+struct PyOperationCreateSystemTableConfigurationOutput {
+    inner: aws_sdk_athena::operation::create_system_table_configuration::CreateSystemTableConfigurationOutput,
+}
+
+#[pymethods]
+impl PyOperationCreateSystemTableConfigurationOutput {
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_name {
+            let converted_1582 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1582)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1583 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1583)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.created_at {
+            let converted_1584 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1584)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1585 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1585)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.table_name {
+            let converted_1586 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_1586)?;
+        } else {
+            result.set_item("table_name", py.None())?;
+        }
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1587 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_1587)?;
+        } else {
+            result.set_item("kms_key_arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.created_at {
+            let converted_1588 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_1588)?;
+        } else {
+            result.set_item("created_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1589 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_at", converted_1589)?;
+        } else {
+            result.set_item("last_modified_at", py.None())?;
+        }
         Ok(result.into_any().unbind())
     }
 }
@@ -13192,14 +13437,14 @@ impl PyOperationDeleteDataCatalogOutput {
     #[getter]
     fn data_catalog(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1542 = Py::new(
+            let converted_1590 = Py::new(
                 py,
                 PyDataCatalog {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1542)
+            Ok(converted_1590)
         } else {
             Ok(py.None())
         }
@@ -13208,8 +13453,8 @@ impl PyOperationDeleteDataCatalogOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1543 = data_catalog_to_py(py, value)?;
-            result.set_item("data_catalog", converted_1543)?;
+            let converted_1591 = data_catalog_to_py(py, value)?;
+            result.set_item("data_catalog", converted_1591)?;
         } else {
             result.set_item("data_catalog", py.None())?;
         }
@@ -13265,6 +13510,23 @@ impl PyOperationDeletePreparedStatementOutput {
 }
 
 #[pyclass(
+    name = "DeleteSystemTableConfigurationOutput",
+    module = "rboto_athena._native",
+    frozen
+)]
+struct PyOperationDeleteSystemTableConfigurationOutput {
+    inner: aws_sdk_athena::operation::delete_system_table_configuration::DeleteSystemTableConfigurationOutput,
+}
+
+#[pymethods]
+impl PyOperationDeleteSystemTableConfigurationOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
     name = "DeleteWorkGroupOutput",
     module = "rboto_athena._native",
     frozen
@@ -13309,14 +13571,14 @@ impl PyOperationExportNotebookOutput {
     #[getter]
     fn notebook_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_metadata {
-            let converted_1544 = Py::new(
+            let converted_1592 = Py::new(
                 py,
                 PyNotebookMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1544)
+            Ok(converted_1592)
         } else {
             Ok(py.None())
         }
@@ -13325,8 +13587,8 @@ impl PyOperationExportNotebookOutput {
     #[getter]
     fn payload(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.payload {
-            let converted_1545 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1545)
+            let converted_1593 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1593)
         } else {
             Ok(py.None())
         }
@@ -13335,14 +13597,14 @@ impl PyOperationExportNotebookOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.notebook_metadata {
-            let converted_1546 = notebook_metadata_to_py(py, value)?;
-            result.set_item("notebook_metadata", converted_1546)?;
+            let converted_1594 = notebook_metadata_to_py(py, value)?;
+            result.set_item("notebook_metadata", converted_1594)?;
         } else {
             result.set_item("notebook_metadata", py.None())?;
         }
         if let Some(value) = &self.inner.payload {
-            let converted_1547 = (value).as_str().into_py_any(py)?;
-            result.set_item("payload", converted_1547)?;
+            let converted_1595 = (value).as_str().into_py_any(py)?;
+            result.set_item("payload", converted_1595)?;
         } else {
             result.set_item("payload", py.None())?;
         }
@@ -13394,8 +13656,8 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn calculation_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.calculation_execution_id {
-            let converted_1548 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1548)
+            let converted_1596 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1596)
         } else {
             Ok(py.None())
         }
@@ -13404,8 +13666,8 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1549 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1549)
+            let converted_1597 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1597)
         } else {
             Ok(py.None())
         }
@@ -13414,8 +13676,8 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1550 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1550)
+            let converted_1598 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1598)
         } else {
             Ok(py.None())
         }
@@ -13424,8 +13686,8 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn working_directory(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.working_directory {
-            let converted_1551 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1551)
+            let converted_1599 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1599)
         } else {
             Ok(py.None())
         }
@@ -13434,14 +13696,14 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1552 = Py::new(
+            let converted_1600 = Py::new(
                 py,
                 PyCalculationStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1552)
+            Ok(converted_1600)
         } else {
             Ok(py.None())
         }
@@ -13450,14 +13712,14 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statistics {
-            let converted_1553 = Py::new(
+            let converted_1601 = Py::new(
                 py,
                 PyCalculationStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1553)
+            Ok(converted_1601)
         } else {
             Ok(py.None())
         }
@@ -13466,14 +13728,14 @@ impl PyOperationGetCalculationExecutionOutput {
     #[getter]
     fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result {
-            let converted_1554 = Py::new(
+            let converted_1602 = Py::new(
                 py,
                 PyCalculationResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1554)
+            Ok(converted_1602)
         } else {
             Ok(py.None())
         }
@@ -13482,44 +13744,44 @@ impl PyOperationGetCalculationExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.calculation_execution_id {
-            let converted_1555 = (value).as_str().into_py_any(py)?;
-            result.set_item("calculation_execution_id", converted_1555)?;
+            let converted_1603 = (value).as_str().into_py_any(py)?;
+            result.set_item("calculation_execution_id", converted_1603)?;
         } else {
             result.set_item("calculation_execution_id", py.None())?;
         }
         if let Some(value) = &self.inner.session_id {
-            let converted_1556 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_1556)?;
+            let converted_1604 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_1604)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1557 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1557)?;
+            let converted_1605 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1605)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.working_directory {
-            let converted_1558 = (value).as_str().into_py_any(py)?;
-            result.set_item("working_directory", converted_1558)?;
+            let converted_1606 = (value).as_str().into_py_any(py)?;
+            result.set_item("working_directory", converted_1606)?;
         } else {
             result.set_item("working_directory", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1559 = calculation_status_to_py(py, value)?;
-            result.set_item("status", converted_1559)?;
+            let converted_1607 = calculation_status_to_py(py, value)?;
+            result.set_item("status", converted_1607)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.statistics {
-            let converted_1560 = calculation_statistics_to_py(py, value)?;
-            result.set_item("statistics", converted_1560)?;
+            let converted_1608 = calculation_statistics_to_py(py, value)?;
+            result.set_item("statistics", converted_1608)?;
         } else {
             result.set_item("statistics", py.None())?;
         }
         if let Some(value) = &self.inner.result {
-            let converted_1561 = calculation_result_to_py(py, value)?;
-            result.set_item("result", converted_1561)?;
+            let converted_1609 = calculation_result_to_py(py, value)?;
+            result.set_item("result", converted_1609)?;
         } else {
             result.set_item("result", py.None())?;
         }
@@ -13541,8 +13803,8 @@ impl PyOperationGetCalculationExecutionCodeOutput {
     #[getter]
     fn code_block(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.code_block {
-            let converted_1562 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1562)
+            let converted_1610 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1610)
         } else {
             Ok(py.None())
         }
@@ -13551,8 +13813,8 @@ impl PyOperationGetCalculationExecutionCodeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.code_block {
-            let converted_1563 = (value).as_str().into_py_any(py)?;
-            result.set_item("code_block", converted_1563)?;
+            let converted_1611 = (value).as_str().into_py_any(py)?;
+            result.set_item("code_block", converted_1611)?;
         } else {
             result.set_item("code_block", py.None())?;
         }
@@ -13590,14 +13852,14 @@ impl PyOperationGetCalculationExecutionStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1564 = Py::new(
+            let converted_1612 = Py::new(
                 py,
                 PyCalculationStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1564)
+            Ok(converted_1612)
         } else {
             Ok(py.None())
         }
@@ -13606,14 +13868,14 @@ impl PyOperationGetCalculationExecutionStatusOutput {
     #[getter]
     fn statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statistics {
-            let converted_1565 = Py::new(
+            let converted_1613 = Py::new(
                 py,
                 PyCalculationStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1565)
+            Ok(converted_1613)
         } else {
             Ok(py.None())
         }
@@ -13622,14 +13884,14 @@ impl PyOperationGetCalculationExecutionStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.status {
-            let converted_1566 = calculation_status_to_py(py, value)?;
-            result.set_item("status", converted_1566)?;
+            let converted_1614 = calculation_status_to_py(py, value)?;
+            result.set_item("status", converted_1614)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.statistics {
-            let converted_1567 = calculation_statistics_to_py(py, value)?;
-            result.set_item("statistics", converted_1567)?;
+            let converted_1615 = calculation_statistics_to_py(py, value)?;
+            result.set_item("statistics", converted_1615)?;
         } else {
             result.set_item("statistics", py.None())?;
         }
@@ -13665,14 +13927,14 @@ impl PyOperationGetCapacityAssignmentConfigurationOutput {
     #[getter]
     fn capacity_assignment_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_assignment_configuration {
-            let converted_1568 = Py::new(
+            let converted_1616 = Py::new(
                 py,
                 PyCapacityAssignmentConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1568)
+            Ok(converted_1616)
         } else {
             Ok(py.None())
         }
@@ -13681,8 +13943,8 @@ impl PyOperationGetCapacityAssignmentConfigurationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.capacity_assignment_configuration {
-            let converted_1569 = capacity_assignment_configuration_shared_to_py(py, value)?;
-            result.set_item("capacity_assignment_configuration", converted_1569)?;
+            let converted_1617 = capacity_assignment_configuration_shared_to_py(py, value)?;
+            result.set_item("capacity_assignment_configuration", converted_1617)?;
         } else {
             result.set_item("capacity_assignment_configuration", py.None())?;
         }
@@ -13724,14 +13986,14 @@ impl PyOperationGetCapacityReservationOutput {
     #[getter]
     fn capacity_reservation(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.capacity_reservation {
-            let converted_1570 = Py::new(
+            let converted_1618 = Py::new(
                 py,
                 PyCapacityReservation {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1570)
+            Ok(converted_1618)
         } else {
             Ok(py.None())
         }
@@ -13740,8 +14002,8 @@ impl PyOperationGetCapacityReservationOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.capacity_reservation {
-            let converted_1571 = capacity_reservation_shared_to_py(py, value)?;
-            result.set_item("capacity_reservation", converted_1571)?;
+            let converted_1619 = capacity_reservation_shared_to_py(py, value)?;
+            result.set_item("capacity_reservation", converted_1619)?;
         } else {
             result.set_item("capacity_reservation", py.None())?;
         }
@@ -13775,14 +14037,14 @@ impl PyOperationGetDataCatalogOutput {
     #[getter]
     fn data_catalog(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1572 = Py::new(
+            let converted_1620 = Py::new(
                 py,
                 PyDataCatalog {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1572)
+            Ok(converted_1620)
         } else {
             Ok(py.None())
         }
@@ -13791,8 +14053,8 @@ impl PyOperationGetDataCatalogOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.data_catalog {
-            let converted_1573 = data_catalog_to_py(py, value)?;
-            result.set_item("data_catalog", converted_1573)?;
+            let converted_1621 = data_catalog_to_py(py, value)?;
+            result.set_item("data_catalog", converted_1621)?;
         } else {
             result.set_item("data_catalog", py.None())?;
         }
@@ -13826,14 +14088,14 @@ impl PyOperationGetDatabaseOutput {
     #[getter]
     fn database(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.database {
-            let converted_1574 = Py::new(
+            let converted_1622 = Py::new(
                 py,
                 PyDatabase {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1574)
+            Ok(converted_1622)
         } else {
             Ok(py.None())
         }
@@ -13842,8 +14104,8 @@ impl PyOperationGetDatabaseOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.database {
-            let converted_1575 = database_to_py(py, value)?;
-            result.set_item("database", converted_1575)?;
+            let converted_1623 = database_to_py(py, value)?;
+            result.set_item("database", converted_1623)?;
         } else {
             result.set_item("database", py.None())?;
         }
@@ -13877,14 +14139,14 @@ impl PyOperationGetNamedQueryOutput {
     #[getter]
     fn named_query(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_query {
-            let converted_1576 = Py::new(
+            let converted_1624 = Py::new(
                 py,
                 PyNamedQuery {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1576)
+            Ok(converted_1624)
         } else {
             Ok(py.None())
         }
@@ -13893,8 +14155,8 @@ impl PyOperationGetNamedQueryOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.named_query {
-            let converted_1577 = named_query_to_py(py, value)?;
-            result.set_item("named_query", converted_1577)?;
+            let converted_1625 = named_query_to_py(py, value)?;
+            result.set_item("named_query", converted_1625)?;
         } else {
             result.set_item("named_query", py.None())?;
         }
@@ -13934,14 +14196,14 @@ impl PyOperationGetNotebookMetadataOutput {
     #[getter]
     fn notebook_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_metadata {
-            let converted_1578 = Py::new(
+            let converted_1626 = Py::new(
                 py,
                 PyNotebookMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1578)
+            Ok(converted_1626)
         } else {
             Ok(py.None())
         }
@@ -13950,8 +14212,8 @@ impl PyOperationGetNotebookMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.notebook_metadata {
-            let converted_1579 = notebook_metadata_to_py(py, value)?;
-            result.set_item("notebook_metadata", converted_1579)?;
+            let converted_1627 = notebook_metadata_to_py(py, value)?;
+            result.set_item("notebook_metadata", converted_1627)?;
         } else {
             result.set_item("notebook_metadata", py.None())?;
         }
@@ -13991,14 +14253,14 @@ impl PyOperationGetPreparedStatementOutput {
     #[getter]
     fn prepared_statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prepared_statement {
-            let converted_1580 = Py::new(
+            let converted_1628 = Py::new(
                 py,
                 PyPreparedStatement {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1580)
+            Ok(converted_1628)
         } else {
             Ok(py.None())
         }
@@ -14007,8 +14269,8 @@ impl PyOperationGetPreparedStatementOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.prepared_statement {
-            let converted_1581 = prepared_statement_to_py(py, value)?;
-            result.set_item("prepared_statement", converted_1581)?;
+            let converted_1629 = prepared_statement_to_py(py, value)?;
+            result.set_item("prepared_statement", converted_1629)?;
         } else {
             result.set_item("prepared_statement", py.None())?;
         }
@@ -14050,14 +14312,14 @@ impl PyOperationGetQueryExecutionOutput {
     #[getter]
     fn query_execution(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution {
-            let converted_1582 = Py::new(
+            let converted_1630 = Py::new(
                 py,
                 PyQueryExecution {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1582)
+            Ok(converted_1630)
         } else {
             Ok(py.None())
         }
@@ -14066,8 +14328,8 @@ impl PyOperationGetQueryExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_execution {
-            let converted_1583 = query_execution_shared_to_py(py, value)?;
-            result.set_item("query_execution", converted_1583)?;
+            let converted_1631 = query_execution_shared_to_py(py, value)?;
+            result.set_item("query_execution", converted_1631)?;
         } else {
             result.set_item("query_execution", py.None())?;
         }
@@ -14111,8 +14373,8 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn update_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.update_count {
-            let converted_1584 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_1584)
+            let converted_1632 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_1632)
         } else {
             Ok(py.None())
         }
@@ -14121,14 +14383,14 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn result_set(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result_set {
-            let converted_1585 = Py::new(
+            let converted_1633 = Py::new(
                 py,
                 PyResultSet {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1585)
+            Ok(converted_1633)
         } else {
             Ok(py.None())
         }
@@ -14137,8 +14399,8 @@ impl PyOperationGetQueryResultsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1586 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1586)
+            let converted_1634 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1634)
         } else {
             Ok(py.None())
         }
@@ -14147,20 +14409,20 @@ impl PyOperationGetQueryResultsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.update_count {
-            let converted_1587 = (value).to_owned().into_py_any(py)?;
-            result.set_item("update_count", converted_1587)?;
+            let converted_1635 = (value).to_owned().into_py_any(py)?;
+            result.set_item("update_count", converted_1635)?;
         } else {
             result.set_item("update_count", py.None())?;
         }
         if let Some(value) = &self.inner.result_set {
-            let converted_1588 = result_set_shared_to_py(py, value)?;
-            result.set_item("result_set", converted_1588)?;
+            let converted_1636 = result_set_shared_to_py(py, value)?;
+            result.set_item("result_set", converted_1636)?;
         } else {
             result.set_item("result_set", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1589 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1589)?;
+            let converted_1637 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1637)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -14202,14 +14464,14 @@ impl PyOperationGetQueryRuntimeStatisticsOutput {
     #[getter]
     fn query_runtime_statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_runtime_statistics {
-            let converted_1590 = Py::new(
+            let converted_1638 = Py::new(
                 py,
                 PyQueryRuntimeStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1590)
+            Ok(converted_1638)
         } else {
             Ok(py.None())
         }
@@ -14218,8 +14480,8 @@ impl PyOperationGetQueryRuntimeStatisticsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_runtime_statistics {
-            let converted_1591 = query_runtime_statistics_shared_to_py(py, value)?;
-            result.set_item("query_runtime_statistics", converted_1591)?;
+            let converted_1639 = query_runtime_statistics_shared_to_py(py, value)?;
+            result.set_item("query_runtime_statistics", converted_1639)?;
         } else {
             result.set_item("query_runtime_statistics", py.None())?;
         }
@@ -14240,14 +14502,14 @@ struct PyOperationGetResourceDashboardOutput {
 impl PyOperationGetResourceDashboardOutput {
     #[getter]
     fn url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1592 = (&self.inner.url).as_str().into_py_any(py)?;
-        Ok(converted_1592)
+        let converted_1640 = (&self.inner.url).as_str().into_py_any(py)?;
+        Ok(converted_1640)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1593 = (&self.inner.url).as_str().into_py_any(py)?;
-        result.set_item("url", converted_1593)?;
+        let converted_1641 = (&self.inner.url).as_str().into_py_any(py)?;
+        result.set_item("url", converted_1641)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -14302,8 +14564,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1594 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1594)
+            let converted_1642 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1642)
         } else {
             Ok(py.None())
         }
@@ -14312,8 +14574,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_1595 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1595)
+            let converted_1643 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1643)
         } else {
             Ok(py.None())
         }
@@ -14322,8 +14584,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn work_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group {
-            let converted_1596 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1596)
+            let converted_1644 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1644)
         } else {
             Ok(py.None())
         }
@@ -14332,8 +14594,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn engine_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_version {
-            let converted_1597 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1597)
+            let converted_1645 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1645)
         } else {
             Ok(py.None())
         }
@@ -14342,14 +14604,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn engine_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_configuration {
-            let converted_1598 = Py::new(
+            let converted_1646 = Py::new(
                 py,
                 PyEngineConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1598)
+            Ok(converted_1646)
         } else {
             Ok(py.None())
         }
@@ -14358,8 +14620,8 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn notebook_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_version {
-            let converted_1599 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1599)
+            let converted_1647 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1647)
         } else {
             Ok(py.None())
         }
@@ -14368,14 +14630,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn monitoring_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.monitoring_configuration {
-            let converted_1600 = Py::new(
+            let converted_1648 = Py::new(
                 py,
                 PyMonitoringConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1600)
+            Ok(converted_1648)
         } else {
             Ok(py.None())
         }
@@ -14384,14 +14646,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn session_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_configuration {
-            let converted_1601 = Py::new(
+            let converted_1649 = Py::new(
                 py,
                 PySessionConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1601)
+            Ok(converted_1649)
         } else {
             Ok(py.None())
         }
@@ -14400,14 +14662,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1602 = Py::new(
+            let converted_1650 = Py::new(
                 py,
                 PySessionStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1602)
+            Ok(converted_1650)
         } else {
             Ok(py.None())
         }
@@ -14416,14 +14678,14 @@ impl PyOperationGetSessionOutput {
     #[getter]
     fn statistics(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statistics {
-            let converted_1603 = Py::new(
+            let converted_1651 = Py::new(
                 py,
                 PySessionStatistics {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1603)
+            Ok(converted_1651)
         } else {
             Ok(py.None())
         }
@@ -14432,62 +14694,62 @@ impl PyOperationGetSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.session_id {
-            let converted_1604 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_1604)?;
+            let converted_1652 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_1652)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_1605 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_1605)?;
+            let converted_1653 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_1653)?;
         } else {
             result.set_item("description", py.None())?;
         }
         if let Some(value) = &self.inner.work_group {
-            let converted_1606 = (value).as_str().into_py_any(py)?;
-            result.set_item("work_group", converted_1606)?;
+            let converted_1654 = (value).as_str().into_py_any(py)?;
+            result.set_item("work_group", converted_1654)?;
         } else {
             result.set_item("work_group", py.None())?;
         }
         if let Some(value) = &self.inner.engine_version {
-            let converted_1607 = (value).as_str().into_py_any(py)?;
-            result.set_item("engine_version", converted_1607)?;
+            let converted_1655 = (value).as_str().into_py_any(py)?;
+            result.set_item("engine_version", converted_1655)?;
         } else {
             result.set_item("engine_version", py.None())?;
         }
         if let Some(value) = &self.inner.engine_configuration {
-            let converted_1608 = engine_configuration_shared_to_py(py, value)?;
-            result.set_item("engine_configuration", converted_1608)?;
+            let converted_1656 = engine_configuration_shared_to_py(py, value)?;
+            result.set_item("engine_configuration", converted_1656)?;
         } else {
             result.set_item("engine_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.notebook_version {
-            let converted_1609 = (value).as_str().into_py_any(py)?;
-            result.set_item("notebook_version", converted_1609)?;
+            let converted_1657 = (value).as_str().into_py_any(py)?;
+            result.set_item("notebook_version", converted_1657)?;
         } else {
             result.set_item("notebook_version", py.None())?;
         }
         if let Some(value) = &self.inner.monitoring_configuration {
-            let converted_1610 = monitoring_configuration_shared_to_py(py, value)?;
-            result.set_item("monitoring_configuration", converted_1610)?;
+            let converted_1658 = monitoring_configuration_shared_to_py(py, value)?;
+            result.set_item("monitoring_configuration", converted_1658)?;
         } else {
             result.set_item("monitoring_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.session_configuration {
-            let converted_1611 = session_configuration_shared_to_py(py, value)?;
-            result.set_item("session_configuration", converted_1611)?;
+            let converted_1659 = session_configuration_shared_to_py(py, value)?;
+            result.set_item("session_configuration", converted_1659)?;
         } else {
             result.set_item("session_configuration", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1612 = session_status_to_py(py, value)?;
-            result.set_item("status", converted_1612)?;
+            let converted_1660 = session_status_to_py(py, value)?;
+            result.set_item("status", converted_1660)?;
         } else {
             result.set_item("status", py.None())?;
         }
         if let Some(value) = &self.inner.statistics {
-            let converted_1613 = session_statistics_to_py(py, value)?;
-            result.set_item("statistics", converted_1613)?;
+            let converted_1661 = session_statistics_to_py(py, value)?;
+            result.set_item("statistics", converted_1661)?;
         } else {
             result.set_item("statistics", py.None())?;
         }
@@ -14508,34 +14770,34 @@ struct PyOperationGetSessionEndpointOutput {
 impl PyOperationGetSessionEndpointOutput {
     #[getter]
     fn endpoint_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1614 = (&self.inner.endpoint_url).as_str().into_py_any(py)?;
-        Ok(converted_1614)
+        let converted_1662 = (&self.inner.endpoint_url).as_str().into_py_any(py)?;
+        Ok(converted_1662)
     }
 
     #[getter]
     fn auth_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1615 = (&self.inner.auth_token).as_str().into_py_any(py)?;
-        Ok(converted_1615)
+        let converted_1663 = (&self.inner.auth_token).as_str().into_py_any(py)?;
+        Ok(converted_1663)
     }
 
     #[getter]
     fn auth_token_expiration_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1616 = (&self.inner.auth_token_expiration_time)
+        let converted_1664 = (&self.inner.auth_token_expiration_time)
             .to_string()
             .into_py_any(py)?;
-        Ok(converted_1616)
+        Ok(converted_1664)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1617 = (&self.inner.endpoint_url).as_str().into_py_any(py)?;
-        result.set_item("endpoint_url", converted_1617)?;
-        let converted_1618 = (&self.inner.auth_token).as_str().into_py_any(py)?;
-        result.set_item("auth_token", converted_1618)?;
-        let converted_1619 = (&self.inner.auth_token_expiration_time)
+        let converted_1665 = (&self.inner.endpoint_url).as_str().into_py_any(py)?;
+        result.set_item("endpoint_url", converted_1665)?;
+        let converted_1666 = (&self.inner.auth_token).as_str().into_py_any(py)?;
+        result.set_item("auth_token", converted_1666)?;
+        let converted_1667 = (&self.inner.auth_token_expiration_time)
             .to_string()
             .into_py_any(py)?;
-        result.set_item("auth_token_expiration_time", converted_1619)?;
+        result.set_item("auth_token_expiration_time", converted_1667)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -14572,8 +14834,8 @@ impl PyOperationGetSessionStatusOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1620 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1620)
+            let converted_1668 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1668)
         } else {
             Ok(py.None())
         }
@@ -14582,14 +14844,14 @@ impl PyOperationGetSessionStatusOutput {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_1621 = Py::new(
+            let converted_1669 = Py::new(
                 py,
                 PySessionStatus {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1621)
+            Ok(converted_1669)
         } else {
             Ok(py.None())
         }
@@ -14598,16 +14860,97 @@ impl PyOperationGetSessionStatusOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.session_id {
-            let converted_1622 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_1622)?;
+            let converted_1670 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_1670)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.status {
-            let converted_1623 = session_status_to_py(py, value)?;
-            result.set_item("status", converted_1623)?;
+            let converted_1671 = session_status_to_py(py, value)?;
+            result.set_item("status", converted_1671)?;
         } else {
             result.set_item("status", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "GetSystemTableConfigurationOutput",
+    module = "rboto_athena._native",
+    frozen
+)]
+struct PyOperationGetSystemTableConfigurationOutput {
+    inner: aws_sdk_athena::operation::get_system_table_configuration::GetSystemTableConfigurationOutput,
+}
+
+#[pymethods]
+impl PyOperationGetSystemTableConfigurationOutput {
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_name {
+            let converted_1672 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1672)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1673 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1673)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.created_at {
+            let converted_1674 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1674)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1675 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1675)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.table_name {
+            let converted_1676 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_1676)?;
+        } else {
+            result.set_item("table_name", py.None())?;
+        }
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1677 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_1677)?;
+        } else {
+            result.set_item("kms_key_arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.created_at {
+            let converted_1678 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_1678)?;
+        } else {
+            result.set_item("created_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1679 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_at", converted_1679)?;
+        } else {
+            result.set_item("last_modified_at", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -14645,14 +14988,14 @@ impl PyOperationGetTableMetadataOutput {
     #[getter]
     fn table_metadata(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_metadata {
-            let converted_1624 = Py::new(
+            let converted_1680 = Py::new(
                 py,
                 PyTableMetadata {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1624)
+            Ok(converted_1680)
         } else {
             Ok(py.None())
         }
@@ -14661,8 +15004,8 @@ impl PyOperationGetTableMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_metadata {
-            let converted_1625 = table_metadata_shared_to_py(py, value)?;
-            result.set_item("table_metadata", converted_1625)?;
+            let converted_1681 = table_metadata_shared_to_py(py, value)?;
+            result.set_item("table_metadata", converted_1681)?;
         } else {
             result.set_item("table_metadata", py.None())?;
         }
@@ -14698,14 +15041,14 @@ impl PyOperationGetWorkGroupOutput {
     #[getter]
     fn work_group(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_group {
-            let converted_1626 = Py::new(
+            let converted_1682 = Py::new(
                 py,
                 PyWorkGroup {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_1626)
+            Ok(converted_1682)
         } else {
             Ok(py.None())
         }
@@ -14714,8 +15057,8 @@ impl PyOperationGetWorkGroupOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.work_group {
-            let converted_1627 = work_group_shared_to_py(py, value)?;
-            result.set_item("work_group", converted_1627)?;
+            let converted_1683 = work_group_shared_to_py(py, value)?;
+            result.set_item("work_group", converted_1683)?;
         } else {
             result.set_item("work_group", py.None())?;
         }
@@ -14733,8 +15076,8 @@ impl PyOperationImportNotebookOutput {
     #[getter]
     fn notebook_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_id {
-            let converted_1628 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1628)
+            let converted_1684 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1684)
         } else {
             Ok(py.None())
         }
@@ -14743,8 +15086,8 @@ impl PyOperationImportNotebookOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.notebook_id {
-            let converted_1629 = (value).as_str().into_py_any(py)?;
-            result.set_item("notebook_id", converted_1629)?;
+            let converted_1685 = (value).as_str().into_py_any(py)?;
+            result.set_item("notebook_id", converted_1685)?;
         } else {
             result.set_item("notebook_id", py.None())?;
         }
@@ -14769,7 +15112,7 @@ impl From<aws_sdk_athena::operation::list_application_dpu_sizes::ListApplication
             application_dpu_sizes: value.application_dpu_sizes.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1634| Arc::new(owned_1634))
+                    .map(|owned_1690| Arc::new(owned_1690))
                     .collect()
             }),
             next_token: value.next_token,
@@ -14791,19 +15134,19 @@ impl PyOperationListApplicationDPUSizesOutput {
     #[getter]
     fn application_dpu_sizes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.application_dpu_sizes {
-            let converted_1630_list = PyList::empty(py);
-            for item_1631 in value {
-                let converted_item_1632 = Py::new(
+            let converted_1686_list = PyList::empty(py);
+            for item_1687 in value {
+                let converted_item_1688 = Py::new(
                     py,
                     PyApplicationDpuSizes {
-                        inner: Arc::clone(item_1631),
+                        inner: Arc::clone(item_1687),
                     },
                 )?
                 .into_any();
-                converted_1630_list.append(converted_item_1632)?;
+                converted_1686_list.append(converted_item_1688)?;
             }
-            let converted_1630 = converted_1630_list.into_any().unbind();
-            Ok(converted_1630)
+            let converted_1686 = converted_1686_list.into_any().unbind();
+            Ok(converted_1686)
         } else {
             Ok(py.None())
         }
@@ -14812,8 +15155,8 @@ impl PyOperationListApplicationDPUSizesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1633 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1633)
+            let converted_1689 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1689)
         } else {
             Ok(py.None())
         }
@@ -14822,19 +15165,19 @@ impl PyOperationListApplicationDPUSizesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.application_dpu_sizes {
-            let converted_1635_list = PyList::empty(py);
-            for item_1636 in value {
-                let converted_item_1637 = application_dpu_sizes_to_py(py, item_1636)?;
-                converted_1635_list.append(converted_item_1637)?;
+            let converted_1691_list = PyList::empty(py);
+            for item_1692 in value {
+                let converted_item_1693 = application_dpu_sizes_to_py(py, item_1692)?;
+                converted_1691_list.append(converted_item_1693)?;
             }
-            let converted_1635 = converted_1635_list.into_any().unbind();
-            result.set_item("application_dpu_sizes", converted_1635)?;
+            let converted_1691 = converted_1691_list.into_any().unbind();
+            result.set_item("application_dpu_sizes", converted_1691)?;
         } else {
             result.set_item("application_dpu_sizes", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1638 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1638)?;
+            let converted_1694 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1694)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -14860,7 +15203,7 @@ impl From<aws_sdk_athena::operation::list_calculation_executions::ListCalculatio
             calculations: value.calculations.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1643| Arc::new(SharedCalculationSummary::from(owned_1643)))
+                    .map(|owned_1699| Arc::new(SharedCalculationSummary::from(owned_1699)))
                     .collect()
             }),
         }
@@ -14881,8 +15224,8 @@ impl PyOperationListCalculationExecutionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1639 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1639)
+            let converted_1695 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1695)
         } else {
             Ok(py.None())
         }
@@ -14891,19 +15234,19 @@ impl PyOperationListCalculationExecutionsOutput {
     #[getter]
     fn calculations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.calculations {
-            let converted_1640_list = PyList::empty(py);
-            for item_1641 in value {
-                let converted_item_1642 = Py::new(
+            let converted_1696_list = PyList::empty(py);
+            for item_1697 in value {
+                let converted_item_1698 = Py::new(
                     py,
                     PyCalculationSummary {
-                        inner: Arc::clone(item_1641),
+                        inner: Arc::clone(item_1697),
                     },
                 )?
                 .into_any();
-                converted_1640_list.append(converted_item_1642)?;
+                converted_1696_list.append(converted_item_1698)?;
             }
-            let converted_1640 = converted_1640_list.into_any().unbind();
-            Ok(converted_1640)
+            let converted_1696 = converted_1696_list.into_any().unbind();
+            Ok(converted_1696)
         } else {
             Ok(py.None())
         }
@@ -14912,19 +15255,19 @@ impl PyOperationListCalculationExecutionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1644 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1644)?;
+            let converted_1700 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1700)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.calculations {
-            let converted_1645_list = PyList::empty(py);
-            for item_1646 in value {
-                let converted_item_1647 = calculation_summary_shared_to_py(py, item_1646)?;
-                converted_1645_list.append(converted_item_1647)?;
+            let converted_1701_list = PyList::empty(py);
+            for item_1702 in value {
+                let converted_item_1703 = calculation_summary_shared_to_py(py, item_1702)?;
+                converted_1701_list.append(converted_item_1703)?;
             }
-            let converted_1645 = converted_1645_list.into_any().unbind();
-            result.set_item("calculations", converted_1645)?;
+            let converted_1701 = converted_1701_list.into_any().unbind();
+            result.set_item("calculations", converted_1701)?;
         } else {
             result.set_item("calculations", py.None())?;
         }
@@ -14949,7 +15292,7 @@ impl From<aws_sdk_athena::operation::list_capacity_reservations::ListCapacityRes
             next_token: value.next_token,
             capacity_reservations: (value.capacity_reservations)
                 .into_iter()
-                .map(|owned_1652| Arc::new(SharedCapacityReservation::from(owned_1652)))
+                .map(|owned_1708| Arc::new(SharedCapacityReservation::from(owned_1708)))
                 .collect(),
         }
     }
@@ -14969,8 +15312,8 @@ impl PyOperationListCapacityReservationsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1648 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1648)
+            let converted_1704 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1704)
         } else {
             Ok(py.None())
         }
@@ -14978,36 +15321,36 @@ impl PyOperationListCapacityReservationsOutput {
 
     #[getter]
     fn capacity_reservations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1649_list = PyList::empty(py);
-        for item_1650 in &self.inner.capacity_reservations {
-            let converted_item_1651 = Py::new(
+        let converted_1705_list = PyList::empty(py);
+        for item_1706 in &self.inner.capacity_reservations {
+            let converted_item_1707 = Py::new(
                 py,
                 PyCapacityReservation {
-                    inner: Arc::clone(item_1650),
+                    inner: Arc::clone(item_1706),
                 },
             )?
             .into_any();
-            converted_1649_list.append(converted_item_1651)?;
+            converted_1705_list.append(converted_item_1707)?;
         }
-        let converted_1649 = converted_1649_list.into_any().unbind();
-        Ok(converted_1649)
+        let converted_1705 = converted_1705_list.into_any().unbind();
+        Ok(converted_1705)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1653 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1653)?;
+            let converted_1709 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1709)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
-        let converted_1654_list = PyList::empty(py);
-        for item_1655 in &self.inner.capacity_reservations {
-            let converted_item_1656 = capacity_reservation_shared_to_py(py, item_1655)?;
-            converted_1654_list.append(converted_item_1656)?;
+        let converted_1710_list = PyList::empty(py);
+        for item_1711 in &self.inner.capacity_reservations {
+            let converted_item_1712 = capacity_reservation_shared_to_py(py, item_1711)?;
+            converted_1710_list.append(converted_item_1712)?;
         }
-        let converted_1654 = converted_1654_list.into_any().unbind();
-        result.set_item("capacity_reservations", converted_1654)?;
+        let converted_1710 = converted_1710_list.into_any().unbind();
+        result.set_item("capacity_reservations", converted_1710)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -15027,7 +15370,7 @@ impl From<aws_sdk_athena::operation::list_data_catalogs::ListDataCatalogsOutput>
             data_catalogs_summary: value.data_catalogs_summary.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1661| Arc::new(owned_1661))
+                    .map(|owned_1717| Arc::new(owned_1717))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15049,19 +15392,19 @@ impl PyOperationListDataCatalogsOutput {
     #[getter]
     fn data_catalogs_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.data_catalogs_summary {
-            let converted_1657_list = PyList::empty(py);
-            for item_1658 in value {
-                let converted_item_1659 = Py::new(
+            let converted_1713_list = PyList::empty(py);
+            for item_1714 in value {
+                let converted_item_1715 = Py::new(
                     py,
                     PyDataCatalogSummary {
-                        inner: Arc::clone(item_1658),
+                        inner: Arc::clone(item_1714),
                     },
                 )?
                 .into_any();
-                converted_1657_list.append(converted_item_1659)?;
+                converted_1713_list.append(converted_item_1715)?;
             }
-            let converted_1657 = converted_1657_list.into_any().unbind();
-            Ok(converted_1657)
+            let converted_1713 = converted_1713_list.into_any().unbind();
+            Ok(converted_1713)
         } else {
             Ok(py.None())
         }
@@ -15070,8 +15413,8 @@ impl PyOperationListDataCatalogsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1660 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1660)
+            let converted_1716 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1716)
         } else {
             Ok(py.None())
         }
@@ -15080,19 +15423,19 @@ impl PyOperationListDataCatalogsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.data_catalogs_summary {
-            let converted_1662_list = PyList::empty(py);
-            for item_1663 in value {
-                let converted_item_1664 = data_catalog_summary_to_py(py, item_1663)?;
-                converted_1662_list.append(converted_item_1664)?;
+            let converted_1718_list = PyList::empty(py);
+            for item_1719 in value {
+                let converted_item_1720 = data_catalog_summary_to_py(py, item_1719)?;
+                converted_1718_list.append(converted_item_1720)?;
             }
-            let converted_1662 = converted_1662_list.into_any().unbind();
-            result.set_item("data_catalogs_summary", converted_1662)?;
+            let converted_1718 = converted_1718_list.into_any().unbind();
+            result.set_item("data_catalogs_summary", converted_1718)?;
         } else {
             result.set_item("data_catalogs_summary", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1665 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1665)?;
+            let converted_1721 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1721)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15115,7 +15458,7 @@ impl From<aws_sdk_athena::operation::list_databases::ListDatabasesOutput>
             database_list: value.database_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1670| Arc::new(owned_1670))
+                    .map(|owned_1726| Arc::new(owned_1726))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15133,19 +15476,19 @@ impl PyOperationListDatabasesOutput {
     #[getter]
     fn database_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.database_list {
-            let converted_1666_list = PyList::empty(py);
-            for item_1667 in value {
-                let converted_item_1668 = Py::new(
+            let converted_1722_list = PyList::empty(py);
+            for item_1723 in value {
+                let converted_item_1724 = Py::new(
                     py,
                     PyDatabase {
-                        inner: Arc::clone(item_1667),
+                        inner: Arc::clone(item_1723),
                     },
                 )?
                 .into_any();
-                converted_1666_list.append(converted_item_1668)?;
+                converted_1722_list.append(converted_item_1724)?;
             }
-            let converted_1666 = converted_1666_list.into_any().unbind();
-            Ok(converted_1666)
+            let converted_1722 = converted_1722_list.into_any().unbind();
+            Ok(converted_1722)
         } else {
             Ok(py.None())
         }
@@ -15154,8 +15497,8 @@ impl PyOperationListDatabasesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1669 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1669)
+            let converted_1725 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1725)
         } else {
             Ok(py.None())
         }
@@ -15164,19 +15507,19 @@ impl PyOperationListDatabasesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.database_list {
-            let converted_1671_list = PyList::empty(py);
-            for item_1672 in value {
-                let converted_item_1673 = database_to_py(py, item_1672)?;
-                converted_1671_list.append(converted_item_1673)?;
+            let converted_1727_list = PyList::empty(py);
+            for item_1728 in value {
+                let converted_item_1729 = database_to_py(py, item_1728)?;
+                converted_1727_list.append(converted_item_1729)?;
             }
-            let converted_1671 = converted_1671_list.into_any().unbind();
-            result.set_item("database_list", converted_1671)?;
+            let converted_1727 = converted_1727_list.into_any().unbind();
+            result.set_item("database_list", converted_1727)?;
         } else {
             result.set_item("database_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1674 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1674)?;
+            let converted_1730 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1730)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15201,7 +15544,7 @@ impl From<aws_sdk_athena::operation::list_engine_versions::ListEngineVersionsOut
             engine_versions: value.engine_versions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1679| Arc::new(owned_1679))
+                    .map(|owned_1735| Arc::new(owned_1735))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15223,19 +15566,19 @@ impl PyOperationListEngineVersionsOutput {
     #[getter]
     fn engine_versions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine_versions {
-            let converted_1675_list = PyList::empty(py);
-            for item_1676 in value {
-                let converted_item_1677 = Py::new(
+            let converted_1731_list = PyList::empty(py);
+            for item_1732 in value {
+                let converted_item_1733 = Py::new(
                     py,
                     PyEngineVersion {
-                        inner: Arc::clone(item_1676),
+                        inner: Arc::clone(item_1732),
                     },
                 )?
                 .into_any();
-                converted_1675_list.append(converted_item_1677)?;
+                converted_1731_list.append(converted_item_1733)?;
             }
-            let converted_1675 = converted_1675_list.into_any().unbind();
-            Ok(converted_1675)
+            let converted_1731 = converted_1731_list.into_any().unbind();
+            Ok(converted_1731)
         } else {
             Ok(py.None())
         }
@@ -15244,8 +15587,8 @@ impl PyOperationListEngineVersionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1678 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1678)
+            let converted_1734 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1734)
         } else {
             Ok(py.None())
         }
@@ -15254,19 +15597,19 @@ impl PyOperationListEngineVersionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.engine_versions {
-            let converted_1680_list = PyList::empty(py);
-            for item_1681 in value {
-                let converted_item_1682 = engine_version_to_py(py, item_1681)?;
-                converted_1680_list.append(converted_item_1682)?;
+            let converted_1736_list = PyList::empty(py);
+            for item_1737 in value {
+                let converted_item_1738 = engine_version_to_py(py, item_1737)?;
+                converted_1736_list.append(converted_item_1738)?;
             }
-            let converted_1680 = converted_1680_list.into_any().unbind();
-            result.set_item("engine_versions", converted_1680)?;
+            let converted_1736 = converted_1736_list.into_any().unbind();
+            result.set_item("engine_versions", converted_1736)?;
         } else {
             result.set_item("engine_versions", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1683 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1683)?;
+            let converted_1739 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1739)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15292,7 +15635,7 @@ impl From<aws_sdk_athena::operation::list_executors::ListExecutorsOutput>
             executors_summary: value.executors_summary.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1689| Arc::new(owned_1689))
+                    .map(|owned_1745| Arc::new(owned_1745))
                     .collect()
             }),
         }
@@ -15308,15 +15651,15 @@ struct PyOperationListExecutorsOutput {
 impl PyOperationListExecutorsOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1684 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_1684)
+        let converted_1740 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_1740)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1685 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1685)
+            let converted_1741 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1741)
         } else {
             Ok(py.None())
         }
@@ -15325,19 +15668,19 @@ impl PyOperationListExecutorsOutput {
     #[getter]
     fn executors_summary(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.executors_summary {
-            let converted_1686_list = PyList::empty(py);
-            for item_1687 in value {
-                let converted_item_1688 = Py::new(
+            let converted_1742_list = PyList::empty(py);
+            for item_1743 in value {
+                let converted_item_1744 = Py::new(
                     py,
                     PyExecutorsSummary {
-                        inner: Arc::clone(item_1687),
+                        inner: Arc::clone(item_1743),
                     },
                 )?
                 .into_any();
-                converted_1686_list.append(converted_item_1688)?;
+                converted_1742_list.append(converted_item_1744)?;
             }
-            let converted_1686 = converted_1686_list.into_any().unbind();
-            Ok(converted_1686)
+            let converted_1742 = converted_1742_list.into_any().unbind();
+            Ok(converted_1742)
         } else {
             Ok(py.None())
         }
@@ -15345,22 +15688,22 @@ impl PyOperationListExecutorsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1690 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_1690)?;
+        let converted_1746 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_1746)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1691 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1691)?;
+            let converted_1747 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1747)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.executors_summary {
-            let converted_1692_list = PyList::empty(py);
-            for item_1693 in value {
-                let converted_item_1694 = executors_summary_to_py(py, item_1693)?;
-                converted_1692_list.append(converted_item_1694)?;
+            let converted_1748_list = PyList::empty(py);
+            for item_1749 in value {
+                let converted_item_1750 = executors_summary_to_py(py, item_1749)?;
+                converted_1748_list.append(converted_item_1750)?;
             }
-            let converted_1692 = converted_1692_list.into_any().unbind();
-            result.set_item("executors_summary", converted_1692)?;
+            let converted_1748 = converted_1748_list.into_any().unbind();
+            result.set_item("executors_summary", converted_1748)?;
         } else {
             result.set_item("executors_summary", py.None())?;
         }
@@ -15382,13 +15725,13 @@ impl PyOperationListNamedQueriesOutput {
     #[getter]
     fn named_query_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.named_query_ids {
-            let converted_1695_list = PyList::empty(py);
-            for item_1696 in value {
-                let converted_item_1697 = (item_1696).as_str().into_py_any(py)?;
-                converted_1695_list.append(converted_item_1697)?;
+            let converted_1751_list = PyList::empty(py);
+            for item_1752 in value {
+                let converted_item_1753 = (item_1752).as_str().into_py_any(py)?;
+                converted_1751_list.append(converted_item_1753)?;
             }
-            let converted_1695 = converted_1695_list.into_any().unbind();
-            Ok(converted_1695)
+            let converted_1751 = converted_1751_list.into_any().unbind();
+            Ok(converted_1751)
         } else {
             Ok(py.None())
         }
@@ -15397,8 +15740,8 @@ impl PyOperationListNamedQueriesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1698 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1698)
+            let converted_1754 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1754)
         } else {
             Ok(py.None())
         }
@@ -15407,19 +15750,19 @@ impl PyOperationListNamedQueriesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.named_query_ids {
-            let converted_1699_list = PyList::empty(py);
-            for item_1700 in value {
-                let converted_item_1701 = (item_1700).as_str().into_py_any(py)?;
-                converted_1699_list.append(converted_item_1701)?;
+            let converted_1755_list = PyList::empty(py);
+            for item_1756 in value {
+                let converted_item_1757 = (item_1756).as_str().into_py_any(py)?;
+                converted_1755_list.append(converted_item_1757)?;
             }
-            let converted_1699 = converted_1699_list.into_any().unbind();
-            result.set_item("named_query_ids", converted_1699)?;
+            let converted_1755 = converted_1755_list.into_any().unbind();
+            result.set_item("named_query_ids", converted_1755)?;
         } else {
             result.set_item("named_query_ids", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1702 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1702)?;
+            let converted_1758 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1758)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15445,7 +15788,7 @@ impl From<aws_sdk_athena::operation::list_notebook_metadata::ListNotebookMetadat
             notebook_metadata_list: value.notebook_metadata_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1707| Arc::new(owned_1707))
+                    .map(|owned_1763| Arc::new(owned_1763))
                     .collect()
             }),
         }
@@ -15466,8 +15809,8 @@ impl PyOperationListNotebookMetadataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1703 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1703)
+            let converted_1759 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1759)
         } else {
             Ok(py.None())
         }
@@ -15476,19 +15819,19 @@ impl PyOperationListNotebookMetadataOutput {
     #[getter]
     fn notebook_metadata_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.notebook_metadata_list {
-            let converted_1704_list = PyList::empty(py);
-            for item_1705 in value {
-                let converted_item_1706 = Py::new(
+            let converted_1760_list = PyList::empty(py);
+            for item_1761 in value {
+                let converted_item_1762 = Py::new(
                     py,
                     PyNotebookMetadata {
-                        inner: Arc::clone(item_1705),
+                        inner: Arc::clone(item_1761),
                     },
                 )?
                 .into_any();
-                converted_1704_list.append(converted_item_1706)?;
+                converted_1760_list.append(converted_item_1762)?;
             }
-            let converted_1704 = converted_1704_list.into_any().unbind();
-            Ok(converted_1704)
+            let converted_1760 = converted_1760_list.into_any().unbind();
+            Ok(converted_1760)
         } else {
             Ok(py.None())
         }
@@ -15497,19 +15840,19 @@ impl PyOperationListNotebookMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1708 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1708)?;
+            let converted_1764 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1764)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.notebook_metadata_list {
-            let converted_1709_list = PyList::empty(py);
-            for item_1710 in value {
-                let converted_item_1711 = notebook_metadata_to_py(py, item_1710)?;
-                converted_1709_list.append(converted_item_1711)?;
+            let converted_1765_list = PyList::empty(py);
+            for item_1766 in value {
+                let converted_item_1767 = notebook_metadata_to_py(py, item_1766)?;
+                converted_1765_list.append(converted_item_1767)?;
             }
-            let converted_1709 = converted_1709_list.into_any().unbind();
-            result.set_item("notebook_metadata_list", converted_1709)?;
+            let converted_1765 = converted_1765_list.into_any().unbind();
+            result.set_item("notebook_metadata_list", converted_1765)?;
         } else {
             result.set_item("notebook_metadata_list", py.None())?;
         }
@@ -15533,7 +15876,7 @@ impl From<aws_sdk_athena::operation::list_notebook_sessions::ListNotebookSession
         Self {
             notebook_sessions_list: (value.notebook_sessions_list)
                 .into_iter()
-                .map(|owned_1716| Arc::new(owned_1716))
+                .map(|owned_1772| Arc::new(owned_1772))
                 .collect(),
             next_token: value.next_token,
         }
@@ -15553,26 +15896,26 @@ struct PyOperationListNotebookSessionsOutput {
 impl PyOperationListNotebookSessionsOutput {
     #[getter]
     fn notebook_sessions_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_1712_list = PyList::empty(py);
-        for item_1713 in &self.inner.notebook_sessions_list {
-            let converted_item_1714 = Py::new(
+        let converted_1768_list = PyList::empty(py);
+        for item_1769 in &self.inner.notebook_sessions_list {
+            let converted_item_1770 = Py::new(
                 py,
                 PyNotebookSessionSummary {
-                    inner: Arc::clone(item_1713),
+                    inner: Arc::clone(item_1769),
                 },
             )?
             .into_any();
-            converted_1712_list.append(converted_item_1714)?;
+            converted_1768_list.append(converted_item_1770)?;
         }
-        let converted_1712 = converted_1712_list.into_any().unbind();
-        Ok(converted_1712)
+        let converted_1768 = converted_1768_list.into_any().unbind();
+        Ok(converted_1768)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1715 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1715)
+            let converted_1771 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1771)
         } else {
             Ok(py.None())
         }
@@ -15580,16 +15923,16 @@ impl PyOperationListNotebookSessionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_1717_list = PyList::empty(py);
-        for item_1718 in &self.inner.notebook_sessions_list {
-            let converted_item_1719 = notebook_session_summary_to_py(py, item_1718)?;
-            converted_1717_list.append(converted_item_1719)?;
+        let converted_1773_list = PyList::empty(py);
+        for item_1774 in &self.inner.notebook_sessions_list {
+            let converted_item_1775 = notebook_session_summary_to_py(py, item_1774)?;
+            converted_1773_list.append(converted_item_1775)?;
         }
-        let converted_1717 = converted_1717_list.into_any().unbind();
-        result.set_item("notebook_sessions_list", converted_1717)?;
+        let converted_1773 = converted_1773_list.into_any().unbind();
+        result.set_item("notebook_sessions_list", converted_1773)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_1720 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1720)?;
+            let converted_1776 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1776)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15615,7 +15958,7 @@ impl From<aws_sdk_athena::operation::list_prepared_statements::ListPreparedState
             prepared_statements: value.prepared_statements.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1725| Arc::new(owned_1725))
+                    .map(|owned_1781| Arc::new(owned_1781))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15637,19 +15980,19 @@ impl PyOperationListPreparedStatementsOutput {
     #[getter]
     fn prepared_statements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.prepared_statements {
-            let converted_1721_list = PyList::empty(py);
-            for item_1722 in value {
-                let converted_item_1723 = Py::new(
+            let converted_1777_list = PyList::empty(py);
+            for item_1778 in value {
+                let converted_item_1779 = Py::new(
                     py,
                     PyPreparedStatementSummary {
-                        inner: Arc::clone(item_1722),
+                        inner: Arc::clone(item_1778),
                     },
                 )?
                 .into_any();
-                converted_1721_list.append(converted_item_1723)?;
+                converted_1777_list.append(converted_item_1779)?;
             }
-            let converted_1721 = converted_1721_list.into_any().unbind();
-            Ok(converted_1721)
+            let converted_1777 = converted_1777_list.into_any().unbind();
+            Ok(converted_1777)
         } else {
             Ok(py.None())
         }
@@ -15658,8 +16001,8 @@ impl PyOperationListPreparedStatementsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1724 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1724)
+            let converted_1780 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1780)
         } else {
             Ok(py.None())
         }
@@ -15668,19 +16011,19 @@ impl PyOperationListPreparedStatementsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.prepared_statements {
-            let converted_1726_list = PyList::empty(py);
-            for item_1727 in value {
-                let converted_item_1728 = prepared_statement_summary_to_py(py, item_1727)?;
-                converted_1726_list.append(converted_item_1728)?;
+            let converted_1782_list = PyList::empty(py);
+            for item_1783 in value {
+                let converted_item_1784 = prepared_statement_summary_to_py(py, item_1783)?;
+                converted_1782_list.append(converted_item_1784)?;
             }
-            let converted_1726 = converted_1726_list.into_any().unbind();
-            result.set_item("prepared_statements", converted_1726)?;
+            let converted_1782 = converted_1782_list.into_any().unbind();
+            result.set_item("prepared_statements", converted_1782)?;
         } else {
             result.set_item("prepared_statements", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1729 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1729)?;
+            let converted_1785 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1785)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15702,13 +16045,13 @@ impl PyOperationListQueryExecutionsOutput {
     #[getter]
     fn query_execution_ids(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution_ids {
-            let converted_1730_list = PyList::empty(py);
-            for item_1731 in value {
-                let converted_item_1732 = (item_1731).as_str().into_py_any(py)?;
-                converted_1730_list.append(converted_item_1732)?;
+            let converted_1786_list = PyList::empty(py);
+            for item_1787 in value {
+                let converted_item_1788 = (item_1787).as_str().into_py_any(py)?;
+                converted_1786_list.append(converted_item_1788)?;
             }
-            let converted_1730 = converted_1730_list.into_any().unbind();
-            Ok(converted_1730)
+            let converted_1786 = converted_1786_list.into_any().unbind();
+            Ok(converted_1786)
         } else {
             Ok(py.None())
         }
@@ -15717,8 +16060,8 @@ impl PyOperationListQueryExecutionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1733 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1733)
+            let converted_1789 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1789)
         } else {
             Ok(py.None())
         }
@@ -15727,19 +16070,19 @@ impl PyOperationListQueryExecutionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_execution_ids {
-            let converted_1734_list = PyList::empty(py);
-            for item_1735 in value {
-                let converted_item_1736 = (item_1735).as_str().into_py_any(py)?;
-                converted_1734_list.append(converted_item_1736)?;
+            let converted_1790_list = PyList::empty(py);
+            for item_1791 in value {
+                let converted_item_1792 = (item_1791).as_str().into_py_any(py)?;
+                converted_1790_list.append(converted_item_1792)?;
             }
-            let converted_1734 = converted_1734_list.into_any().unbind();
-            result.set_item("query_execution_ids", converted_1734)?;
+            let converted_1790 = converted_1790_list.into_any().unbind();
+            result.set_item("query_execution_ids", converted_1790)?;
         } else {
             result.set_item("query_execution_ids", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1737 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1737)?;
+            let converted_1793 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1793)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15763,7 +16106,7 @@ impl From<aws_sdk_athena::operation::list_sessions::ListSessionsOutput>
             sessions: value.sessions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1742| Arc::new(SharedSessionSummary::from(owned_1742)))
+                    .map(|owned_1798| Arc::new(SharedSessionSummary::from(owned_1798)))
                     .collect()
             }),
         }
@@ -15780,8 +16123,8 @@ impl PyOperationListSessionsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1738 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1738)
+            let converted_1794 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1794)
         } else {
             Ok(py.None())
         }
@@ -15790,19 +16133,19 @@ impl PyOperationListSessionsOutput {
     #[getter]
     fn sessions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sessions {
-            let converted_1739_list = PyList::empty(py);
-            for item_1740 in value {
-                let converted_item_1741 = Py::new(
+            let converted_1795_list = PyList::empty(py);
+            for item_1796 in value {
+                let converted_item_1797 = Py::new(
                     py,
                     PySessionSummary {
-                        inner: Arc::clone(item_1740),
+                        inner: Arc::clone(item_1796),
                     },
                 )?
                 .into_any();
-                converted_1739_list.append(converted_item_1741)?;
+                converted_1795_list.append(converted_item_1797)?;
             }
-            let converted_1739 = converted_1739_list.into_any().unbind();
-            Ok(converted_1739)
+            let converted_1795 = converted_1795_list.into_any().unbind();
+            Ok(converted_1795)
         } else {
             Ok(py.None())
         }
@@ -15811,21 +16154,101 @@ impl PyOperationListSessionsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_1743 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1743)?;
+            let converted_1799 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1799)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.sessions {
-            let converted_1744_list = PyList::empty(py);
-            for item_1745 in value {
-                let converted_item_1746 = session_summary_shared_to_py(py, item_1745)?;
-                converted_1744_list.append(converted_item_1746)?;
+            let converted_1800_list = PyList::empty(py);
+            for item_1801 in value {
+                let converted_item_1802 = session_summary_shared_to_py(py, item_1801)?;
+                converted_1800_list.append(converted_item_1802)?;
             }
-            let converted_1744 = converted_1744_list.into_any().unbind();
-            result.set_item("sessions", converted_1744)?;
+            let converted_1800 = converted_1800_list.into_any().unbind();
+            result.set_item("sessions", converted_1800)?;
         } else {
             result.set_item("sessions", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationListSystemTableStatusesOutput {
+    items: ::std::vec::Vec<Arc<aws_sdk_athena::types::SystemTableStatus>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_athena::operation::list_system_table_statuses::ListSystemTableStatusesOutput>
+    for SharedPyOperationListSystemTableStatusesOutput
+{
+    fn from(
+        value: aws_sdk_athena::operation::list_system_table_statuses::ListSystemTableStatusesOutput,
+    ) -> Self {
+        Self {
+            items: (value.items)
+                .into_iter()
+                .map(|owned_1807| Arc::new(owned_1807))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(
+    name = "ListSystemTableStatusesOutput",
+    module = "rboto_athena._native",
+    frozen
+)]
+struct PyOperationListSystemTableStatusesOutput {
+    inner: SharedPyOperationListSystemTableStatusesOutput,
+}
+
+#[pymethods]
+impl PyOperationListSystemTableStatusesOutput {
+    #[getter]
+    fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_1803_list = PyList::empty(py);
+        for item_1804 in &self.inner.items {
+            let converted_item_1805 = Py::new(
+                py,
+                PySystemTableStatus {
+                    inner: Arc::clone(item_1804),
+                },
+            )?
+            .into_any();
+            converted_1803_list.append(converted_item_1805)?;
+        }
+        let converted_1803 = converted_1803_list.into_any().unbind();
+        Ok(converted_1803)
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_1806 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1806)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_1808_list = PyList::empty(py);
+        for item_1809 in &self.inner.items {
+            let converted_item_1810 = system_table_status_to_py(py, item_1809)?;
+            converted_1808_list.append(converted_item_1810)?;
+        }
+        let converted_1808 = converted_1808_list.into_any().unbind();
+        result.set_item("items", converted_1808)?;
+        if let Some(value) = &self.inner.next_token {
+            let converted_1811 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1811)?;
+        } else {
+            result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -15848,7 +16271,7 @@ impl From<aws_sdk_athena::operation::list_table_metadata::ListTableMetadataOutpu
             table_metadata_list: value.table_metadata_list.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1751| Arc::new(SharedTableMetadata::from(owned_1751)))
+                    .map(|owned_1816| Arc::new(SharedTableMetadata::from(owned_1816)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15870,19 +16293,19 @@ impl PyOperationListTableMetadataOutput {
     #[getter]
     fn table_metadata_list(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.table_metadata_list {
-            let converted_1747_list = PyList::empty(py);
-            for item_1748 in value {
-                let converted_item_1749 = Py::new(
+            let converted_1812_list = PyList::empty(py);
+            for item_1813 in value {
+                let converted_item_1814 = Py::new(
                     py,
                     PyTableMetadata {
-                        inner: Arc::clone(item_1748),
+                        inner: Arc::clone(item_1813),
                     },
                 )?
                 .into_any();
-                converted_1747_list.append(converted_item_1749)?;
+                converted_1812_list.append(converted_item_1814)?;
             }
-            let converted_1747 = converted_1747_list.into_any().unbind();
-            Ok(converted_1747)
+            let converted_1812 = converted_1812_list.into_any().unbind();
+            Ok(converted_1812)
         } else {
             Ok(py.None())
         }
@@ -15891,8 +16314,8 @@ impl PyOperationListTableMetadataOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1750 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1750)
+            let converted_1815 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1815)
         } else {
             Ok(py.None())
         }
@@ -15901,19 +16324,19 @@ impl PyOperationListTableMetadataOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.table_metadata_list {
-            let converted_1752_list = PyList::empty(py);
-            for item_1753 in value {
-                let converted_item_1754 = table_metadata_shared_to_py(py, item_1753)?;
-                converted_1752_list.append(converted_item_1754)?;
+            let converted_1817_list = PyList::empty(py);
+            for item_1818 in value {
+                let converted_item_1819 = table_metadata_shared_to_py(py, item_1818)?;
+                converted_1817_list.append(converted_item_1819)?;
             }
-            let converted_1752 = converted_1752_list.into_any().unbind();
-            result.set_item("table_metadata_list", converted_1752)?;
+            let converted_1817 = converted_1817_list.into_any().unbind();
+            result.set_item("table_metadata_list", converted_1817)?;
         } else {
             result.set_item("table_metadata_list", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1755 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1755)?;
+            let converted_1820 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1820)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -15938,7 +16361,7 @@ impl From<aws_sdk_athena::operation::list_tags_for_resource::ListTagsForResource
             tags: value.tags.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1760| Arc::new(owned_1760))
+                    .map(|owned_1825| Arc::new(owned_1825))
                     .collect()
             }),
             next_token: value.next_token,
@@ -15960,19 +16383,19 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_1756_list = PyList::empty(py);
-            for item_1757 in value {
-                let converted_item_1758 = Py::new(
+            let converted_1821_list = PyList::empty(py);
+            for item_1822 in value {
+                let converted_item_1823 = Py::new(
                     py,
                     PyTag {
-                        inner: Arc::clone(item_1757),
+                        inner: Arc::clone(item_1822),
                     },
                 )?
                 .into_any();
-                converted_1756_list.append(converted_item_1758)?;
+                converted_1821_list.append(converted_item_1823)?;
             }
-            let converted_1756 = converted_1756_list.into_any().unbind();
-            Ok(converted_1756)
+            let converted_1821 = converted_1821_list.into_any().unbind();
+            Ok(converted_1821)
         } else {
             Ok(py.None())
         }
@@ -15981,8 +16404,8 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1759 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1759)
+            let converted_1824 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1824)
         } else {
             Ok(py.None())
         }
@@ -15991,19 +16414,19 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_1761_list = PyList::empty(py);
-            for item_1762 in value {
-                let converted_item_1763 = tag_to_py(py, item_1762)?;
-                converted_1761_list.append(converted_item_1763)?;
+            let converted_1826_list = PyList::empty(py);
+            for item_1827 in value {
+                let converted_item_1828 = tag_to_py(py, item_1827)?;
+                converted_1826_list.append(converted_item_1828)?;
             }
-            let converted_1761 = converted_1761_list.into_any().unbind();
-            result.set_item("tags", converted_1761)?;
+            let converted_1826 = converted_1826_list.into_any().unbind();
+            result.set_item("tags", converted_1826)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1764 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1764)?;
+            let converted_1829 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1829)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -16026,7 +16449,7 @@ impl From<aws_sdk_athena::operation::list_work_groups::ListWorkGroupsOutput>
             work_groups: value.work_groups.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_1769| Arc::new(SharedWorkGroupSummary::from(owned_1769)))
+                    .map(|owned_1834| Arc::new(SharedWorkGroupSummary::from(owned_1834)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -16044,19 +16467,19 @@ impl PyOperationListWorkGroupsOutput {
     #[getter]
     fn work_groups(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.work_groups {
-            let converted_1765_list = PyList::empty(py);
-            for item_1766 in value {
-                let converted_item_1767 = Py::new(
+            let converted_1830_list = PyList::empty(py);
+            for item_1831 in value {
+                let converted_item_1832 = Py::new(
                     py,
                     PyWorkGroupSummary {
-                        inner: Arc::clone(item_1766),
+                        inner: Arc::clone(item_1831),
                     },
                 )?
                 .into_any();
-                converted_1765_list.append(converted_item_1767)?;
+                converted_1830_list.append(converted_item_1832)?;
             }
-            let converted_1765 = converted_1765_list.into_any().unbind();
-            Ok(converted_1765)
+            let converted_1830 = converted_1830_list.into_any().unbind();
+            Ok(converted_1830)
         } else {
             Ok(py.None())
         }
@@ -16065,8 +16488,8 @@ impl PyOperationListWorkGroupsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_1768 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1768)
+            let converted_1833 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1833)
         } else {
             Ok(py.None())
         }
@@ -16075,19 +16498,19 @@ impl PyOperationListWorkGroupsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.work_groups {
-            let converted_1770_list = PyList::empty(py);
-            for item_1771 in value {
-                let converted_item_1772 = work_group_summary_shared_to_py(py, item_1771)?;
-                converted_1770_list.append(converted_item_1772)?;
+            let converted_1835_list = PyList::empty(py);
+            for item_1836 in value {
+                let converted_item_1837 = work_group_summary_shared_to_py(py, item_1836)?;
+                converted_1835_list.append(converted_item_1837)?;
             }
-            let converted_1770 = converted_1770_list.into_any().unbind();
-            result.set_item("work_groups", converted_1770)?;
+            let converted_1835 = converted_1835_list.into_any().unbind();
+            result.set_item("work_groups", converted_1835)?;
         } else {
             result.set_item("work_groups", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_1773 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_1773)?;
+            let converted_1838 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_1838)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -16126,8 +16549,8 @@ impl PyOperationStartCalculationExecutionOutput {
     #[getter]
     fn calculation_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.calculation_execution_id {
-            let converted_1774 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1774)
+            let converted_1839 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1839)
         } else {
             Ok(py.None())
         }
@@ -16136,8 +16559,8 @@ impl PyOperationStartCalculationExecutionOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1775 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1775)
+            let converted_1840 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1840)
         } else {
             Ok(py.None())
         }
@@ -16146,14 +16569,14 @@ impl PyOperationStartCalculationExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.calculation_execution_id {
-            let converted_1776 = (value).as_str().into_py_any(py)?;
-            result.set_item("calculation_execution_id", converted_1776)?;
+            let converted_1841 = (value).as_str().into_py_any(py)?;
+            result.set_item("calculation_execution_id", converted_1841)?;
         } else {
             result.set_item("calculation_execution_id", py.None())?;
         }
         if let Some(value) = &self.inner.state {
-            let converted_1777 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_1777)?;
+            let converted_1842 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_1842)?;
         } else {
             result.set_item("state", py.None())?;
         }
@@ -16175,8 +16598,8 @@ impl PyOperationStartQueryExecutionOutput {
     #[getter]
     fn query_execution_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.query_execution_id {
-            let converted_1778 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1778)
+            let converted_1843 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1843)
         } else {
             Ok(py.None())
         }
@@ -16185,8 +16608,8 @@ impl PyOperationStartQueryExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.query_execution_id {
-            let converted_1779 = (value).as_str().into_py_any(py)?;
-            result.set_item("query_execution_id", converted_1779)?;
+            let converted_1844 = (value).as_str().into_py_any(py)?;
+            result.set_item("query_execution_id", converted_1844)?;
         } else {
             result.set_item("query_execution_id", py.None())?;
         }
@@ -16204,8 +16627,8 @@ impl PyOperationStartSessionOutput {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_1780 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1780)
+            let converted_1845 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1845)
         } else {
             Ok(py.None())
         }
@@ -16214,8 +16637,8 @@ impl PyOperationStartSessionOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1781 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1781)
+            let converted_1846 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1846)
         } else {
             Ok(py.None())
         }
@@ -16224,14 +16647,14 @@ impl PyOperationStartSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.session_id {
-            let converted_1782 = (value).as_str().into_py_any(py)?;
-            result.set_item("session_id", converted_1782)?;
+            let converted_1847 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_id", converted_1847)?;
         } else {
             result.set_item("session_id", py.None())?;
         }
         if let Some(value) = &self.inner.state {
-            let converted_1783 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_1783)?;
+            let converted_1848 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_1848)?;
         } else {
             result.set_item("state", py.None())?;
         }
@@ -16253,8 +16676,8 @@ impl PyOperationStopCalculationExecutionOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1784 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1784)
+            let converted_1849 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1849)
         } else {
             Ok(py.None())
         }
@@ -16263,8 +16686,8 @@ impl PyOperationStopCalculationExecutionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.state {
-            let converted_1785 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_1785)?;
+            let converted_1850 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_1850)?;
         } else {
             result.set_item("state", py.None())?;
         }
@@ -16316,8 +16739,8 @@ impl PyOperationTerminateSessionOutput {
     #[getter]
     fn state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.state {
-            let converted_1786 = (value).as_str().into_py_any(py)?;
-            Ok(converted_1786)
+            let converted_1851 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1851)
         } else {
             Ok(py.None())
         }
@@ -16326,8 +16749,8 @@ impl PyOperationTerminateSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.state {
-            let converted_1787 = (value).as_str().into_py_any(py)?;
-            result.set_item("state", converted_1787)?;
+            let converted_1852 = (value).as_str().into_py_any(py)?;
+            result.set_item("state", converted_1852)?;
         } else {
             result.set_item("state", py.None())?;
         }
@@ -16447,6 +16870,87 @@ impl PyOperationUpdatePreparedStatementOutput {
 }
 
 #[pyclass(
+    name = "UpdateSystemTableConfigurationOutput",
+    module = "rboto_athena._native",
+    frozen
+)]
+struct PyOperationUpdateSystemTableConfigurationOutput {
+    inner: aws_sdk_athena::operation::update_system_table_configuration::UpdateSystemTableConfigurationOutput,
+}
+
+#[pymethods]
+impl PyOperationUpdateSystemTableConfigurationOutput {
+    #[getter]
+    fn table_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.table_name {
+            let converted_1853 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1853)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1854 = (value).as_str().into_py_any(py)?;
+            Ok(converted_1854)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.created_at {
+            let converted_1855 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1855)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn last_modified_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1856 = (value).to_string().into_py_any(py)?;
+            Ok(converted_1856)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.table_name {
+            let converted_1857 = (value).as_str().into_py_any(py)?;
+            result.set_item("table_name", converted_1857)?;
+        } else {
+            result.set_item("table_name", py.None())?;
+        }
+        if let Some(value) = &self.inner.kms_key_arn {
+            let converted_1858 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_1858)?;
+        } else {
+            result.set_item("kms_key_arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.created_at {
+            let converted_1859 = (value).to_string().into_py_any(py)?;
+            result.set_item("created_at", converted_1859)?;
+        } else {
+            result.set_item("created_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.last_modified_at {
+            let converted_1860 = (value).to_string().into_py_any(py)?;
+            result.set_item("last_modified_at", converted_1860)?;
+        } else {
+            result.set_item("last_modified_at", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
     name = "UpdateWorkGroupOutput",
     module = "rboto_athena._native",
     frozen
@@ -16469,8 +16973,8 @@ fn invalid_request_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.athena_error_code {
-        let detail_1788 = (value).as_str().into_py_any(py)?;
-        result.set_item("athena_error_code", detail_1788)?;
+        let detail_1861 = (value).as_str().into_py_any(py)?;
+        result.set_item("athena_error_code", detail_1861)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -16481,8 +16985,8 @@ fn resource_not_found_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.resource_name {
-        let detail_1789 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource_name", detail_1789)?;
+        let detail_1862 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource_name", detail_1862)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -16493,8 +16997,8 @@ fn too_many_requests_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.reason {
-        let detail_1790 = (value).as_str().into_py_any(py)?;
-        result.set_item("reason", detail_1790)?;
+        let detail_1863 = (value).as_str().into_py_any(py)?;
+        result.set_item("reason", detail_1863)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -16631,6 +17135,16 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_athena::operation::create_system_table_configuration::CreateSystemTableConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_athena::operation::create_work_group::CreateWorkGroupError {
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
@@ -16704,6 +17218,16 @@ impl ModeledErrorDetails
             Self::ResourceNotFoundException(value) => {
                 resource_not_found_exception_error_details(py, value)
             }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_athena::operation::delete_system_table_configuration::DeleteSystemTableConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
             _ => Ok(PyDict::new(py).into_any().unbind()),
         }
     }
@@ -16963,6 +17487,25 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_session_status::GetS
     }
 }
 
+impl ModeledErrorDetails
+    for aws_sdk_athena::operation::get_system_table_configuration::GetSystemTableConfigurationError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidRequestException(value) => {
+                invalid_request_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_table_metadata::GetTableMetadataError {
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
@@ -17170,6 +17713,22 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_sessions::ListSessi
             }
             Self::ResourceNotFoundException(value) => {
                 resource_not_found_exception_error_details(py, value)
+            }
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_athena::operation::list_system_table_statuses::ListSystemTableStatusesError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidRequestException(value) => {
+                invalid_request_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsException(value) => {
+                too_many_requests_exception_error_details(py, value)
             }
             _ => Ok(PyDict::new(py).into_any().unbind()),
         }
@@ -17428,6 +17987,17 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_athena::operation::update_system_table_configuration::UpdateSystemTableConfigurationError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
+            Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_athena::operation::update_work_group::UpdateWorkGroupError {
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
@@ -17496,6 +18066,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySessionStatistics>()?;
     module.add_class::<PySessionStatus>()?;
     module.add_class::<PySessionSummary>()?;
+    module.add_class::<PySystemTableStatus>()?;
     module.add_class::<PyTableMetadata>()?;
     module.add_class::<PyTag>()?;
     module.add_class::<PyUnprocessedNamedQueryId>()?;
@@ -17514,12 +18085,14 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationCreateNotebookOutput>()?;
     module.add_class::<PyOperationCreatePreparedStatementOutput>()?;
     module.add_class::<PyOperationCreatePresignedNotebookUrlOutput>()?;
+    module.add_class::<PyOperationCreateSystemTableConfigurationOutput>()?;
     module.add_class::<PyOperationCreateWorkGroupOutput>()?;
     module.add_class::<PyOperationDeleteCapacityReservationOutput>()?;
     module.add_class::<PyOperationDeleteDataCatalogOutput>()?;
     module.add_class::<PyOperationDeleteNamedQueryOutput>()?;
     module.add_class::<PyOperationDeleteNotebookOutput>()?;
     module.add_class::<PyOperationDeletePreparedStatementOutput>()?;
+    module.add_class::<PyOperationDeleteSystemTableConfigurationOutput>()?;
     module.add_class::<PyOperationDeleteWorkGroupOutput>()?;
     module.add_class::<PyOperationExportNotebookOutput>()?;
     module.add_class::<PyOperationGetCalculationExecutionOutput>()?;
@@ -17539,6 +18112,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationGetSessionOutput>()?;
     module.add_class::<PyOperationGetSessionEndpointOutput>()?;
     module.add_class::<PyOperationGetSessionStatusOutput>()?;
+    module.add_class::<PyOperationGetSystemTableConfigurationOutput>()?;
     module.add_class::<PyOperationGetTableMetadataOutput>()?;
     module.add_class::<PyOperationGetWorkGroupOutput>()?;
     module.add_class::<PyOperationImportNotebookOutput>()?;
@@ -17555,6 +18129,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationListPreparedStatementsOutput>()?;
     module.add_class::<PyOperationListQueryExecutionsOutput>()?;
     module.add_class::<PyOperationListSessionsOutput>()?;
+    module.add_class::<PyOperationListSystemTableStatusesOutput>()?;
     module.add_class::<PyOperationListTableMetadataOutput>()?;
     module.add_class::<PyOperationListTagsForResourceOutput>()?;
     module.add_class::<PyOperationListWorkGroupsOutput>()?;
@@ -17573,6 +18148,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationUpdateNotebookOutput>()?;
     module.add_class::<PyOperationUpdateNotebookMetadataOutput>()?;
     module.add_class::<PyOperationUpdatePreparedStatementOutput>()?;
+    module.add_class::<PyOperationUpdateSystemTableConfigurationOutput>()?;
     module.add_class::<PyOperationUpdateWorkGroupOutput>()?;
 
     Ok(())
@@ -17641,32 +18217,32 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_ids_value = if let Some(value) = dict_value(params, "named_query_ids")? {
-            let converted_763 = (|| -> PyResult<_> {
-                let mut converted_763 =
+            let converted_776 = (|| -> PyResult<_> {
+                let mut converted_776 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_767, item_result_764) in value.try_iter()?.enumerate() {
-                    let item_765 = item_result_764.map_err(|error| {
+                for (index_780, item_result_777) in value.try_iter()?.enumerate() {
+                    let item_778 = item_result_777.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_767),
+                            rboto_core::InputPath::Index(index_780),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_766 = (|| -> PyResult<_> {
-                        let converted_item_766: String = item_765.extract()?;
-                        Ok(converted_item_766)
+                    let converted_item_779 = (|| -> PyResult<_> {
+                        let converted_item_779: String = item_778.extract()?;
+                        Ok(converted_item_779)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_767),
+                            rboto_core::InputPath::Index(index_780),
                             "str",
                         )
                     })?;
-                    converted_763.push(converted_item_766);
+                    converted_776.push(converted_item_779);
                 }
-                Ok(converted_763)
+                Ok(converted_776)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17679,7 +18255,7 @@ impl AthenaClient {
                     "BatchGetNamedQuery",
                 )
             })?;
-            Some(converted_763)
+            Some(converted_776)
         } else {
             None
         };
@@ -17723,32 +18299,32 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let prepared_statement_names_value =
             if let Some(value) = dict_value(params, "prepared_statement_names")? {
-                let converted_768 = (|| -> PyResult<_> {
-                    let mut converted_768 =
+                let converted_781 = (|| -> PyResult<_> {
+                    let mut converted_781 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_772, item_result_769) in value.try_iter()?.enumerate() {
-                        let item_770 = item_result_769.map_err(|error| {
+                    for (index_785, item_result_782) in value.try_iter()?.enumerate() {
+                        let item_783 = item_result_782.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_772),
+                                rboto_core::InputPath::Index(index_785),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_771 = (|| -> PyResult<_> {
-                            let converted_item_771: String = item_770.extract()?;
-                            Ok(converted_item_771)
+                        let converted_item_784 = (|| -> PyResult<_> {
+                            let converted_item_784: String = item_783.extract()?;
+                            Ok(converted_item_784)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_772),
+                                rboto_core::InputPath::Index(index_785),
                                 "str",
                             )
                         })?;
-                        converted_768.push(converted_item_771);
+                        converted_781.push(converted_item_784);
                     }
-                    Ok(converted_768)
+                    Ok(converted_781)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17761,14 +18337,14 @@ impl AthenaClient {
                         "BatchGetPreparedStatement",
                     )
                 })?;
-                Some(converted_768)
+                Some(converted_781)
             } else {
                 None
             };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_773 = (|| -> PyResult<_> {
-                let converted_773: String = value.extract()?;
-                Ok(converted_773)
+            let converted_786 = (|| -> PyResult<_> {
+                let converted_786: String = value.extract()?;
+                Ok(converted_786)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17781,7 +18357,7 @@ impl AthenaClient {
                     "BatchGetPreparedStatement",
                 )
             })?;
-            Some(converted_773)
+            Some(converted_786)
         } else {
             None
         };
@@ -17826,32 +18402,32 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_ids_value =
             if let Some(value) = dict_value(params, "query_execution_ids")? {
-                let converted_774 = (|| -> PyResult<_> {
-                    let mut converted_774 =
+                let converted_787 = (|| -> PyResult<_> {
+                    let mut converted_787 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_778, item_result_775) in value.try_iter()?.enumerate() {
-                        let item_776 = item_result_775.map_err(|error| {
+                    for (index_791, item_result_788) in value.try_iter()?.enumerate() {
+                        let item_789 = item_result_788.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_778),
+                                rboto_core::InputPath::Index(index_791),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_777 = (|| -> PyResult<_> {
-                            let converted_item_777: String = item_776.extract()?;
-                            Ok(converted_item_777)
+                        let converted_item_790 = (|| -> PyResult<_> {
+                            let converted_item_790: String = item_789.extract()?;
+                            Ok(converted_item_790)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_778),
+                                rboto_core::InputPath::Index(index_791),
                                 "str",
                             )
                         })?;
-                        converted_774.push(converted_item_777);
+                        converted_787.push(converted_item_790);
                     }
-                    Ok(converted_774)
+                    Ok(converted_787)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -17864,7 +18440,7 @@ impl AthenaClient {
                         "BatchGetQueryExecution",
                     )
                 })?;
-                Some(converted_774)
+                Some(converted_787)
             } else {
                 None
             };
@@ -17907,9 +18483,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_779 = (|| -> PyResult<_> {
-                let converted_779: String = value.extract()?;
-                Ok(converted_779)
+            let converted_792 = (|| -> PyResult<_> {
+                let converted_792: String = value.extract()?;
+                Ok(converted_792)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17918,7 +18494,7 @@ impl AthenaClient {
                     "CancelCapacityReservation",
                 )
             })?;
-            Some(converted_779)
+            Some(converted_792)
         } else {
             None
         };
@@ -17957,9 +18533,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_dpus_value = if let Some(value) = dict_value(params, "target_dpus")? {
-            let converted_780 = (|| -> PyResult<_> {
-                let converted_780: i32 = value.extract()?;
-                Ok(converted_780)
+            let converted_793 = (|| -> PyResult<_> {
+                let converted_793: i32 = value.extract()?;
+                Ok(converted_793)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17972,14 +18548,14 @@ impl AthenaClient {
                     "CreateCapacityReservation",
                 )
             })?;
-            Some(converted_780)
+            Some(converted_793)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_781 = (|| -> PyResult<_> {
-                let converted_781: String = value.extract()?;
-                Ok(converted_781)
+            let converted_794 = (|| -> PyResult<_> {
+                let converted_794: String = value.extract()?;
+                Ok(converted_794)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -17988,37 +18564,37 @@ impl AthenaClient {
                     "CreateCapacityReservation",
                 )
             })?;
-            Some(converted_781)
+            Some(converted_794)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_782 = (|| -> PyResult<_> {
-                let mut converted_782 =
+            let converted_795 = (|| -> PyResult<_> {
+                let mut converted_795 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_786, item_result_783) in value.try_iter()?.enumerate() {
-                    let item_784 = item_result_783.map_err(|error| {
+                for (index_799, item_result_796) in value.try_iter()?.enumerate() {
+                    let item_797 = item_result_796.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_786),
+                            rboto_core::InputPath::Index(index_799),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_785 = (|| -> PyResult<_> {
-                        let converted_item_785 = tag_from_py(&item_784)?;
-                        Ok(converted_item_785)
+                    let converted_item_798 = (|| -> PyResult<_> {
+                        let converted_item_798 = tag_from_py(&item_797)?;
+                        Ok(converted_item_798)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_786),
+                            rboto_core::InputPath::Index(index_799),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_782.push(converted_item_785);
+                    converted_795.push(converted_item_798);
                 }
-                Ok(converted_782)
+                Ok(converted_795)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18031,7 +18607,7 @@ impl AthenaClient {
                     "CreateCapacityReservation",
                 )
             })?;
-            Some(converted_782)
+            Some(converted_795)
         } else {
             None
         };
@@ -18074,9 +18650,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_787 = (|| -> PyResult<_> {
-                let converted_787: String = value.extract()?;
-                Ok(converted_787)
+            let converted_800 = (|| -> PyResult<_> {
+                let converted_800: String = value.extract()?;
+                Ok(converted_800)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18085,16 +18661,16 @@ impl AthenaClient {
                     "CreateDataCatalog",
                 )
             })?;
-            Some(converted_787)
+            Some(converted_800)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let converted_788 = (|| -> PyResult<_> {
-                let enum_value_789: String = value.extract()?;
-                let converted_788 =
-                    aws_sdk_athena::types::DataCatalogType::from(enum_value_789.as_str());
-                Ok(converted_788)
+            let converted_801 = (|| -> PyResult<_> {
+                let enum_value_802: String = value.extract()?;
+                let converted_801 =
+                    aws_sdk_athena::types::DataCatalogType::from(enum_value_802.as_str());
+                Ok(converted_801)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18107,14 +18683,14 @@ impl AthenaClient {
                     "CreateDataCatalog",
                 )
             })?;
-            Some(converted_788)
+            Some(converted_801)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_790 = (|| -> PyResult<_> {
-                let converted_790: String = value.extract()?;
-                Ok(converted_790)
+            let converted_803 = (|| -> PyResult<_> {
+                let converted_803: String = value.extract()?;
+                Ok(converted_803)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18127,40 +18703,40 @@ impl AthenaClient {
                     "CreateDataCatalog",
                 )
             })?;
-            Some(converted_790)
+            Some(converted_803)
         } else {
             None
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
-            let converted_791 = (|| -> PyResult<_> {
-                let mapping_792 = value.cast::<PyDict>()?;
-                let mut converted_791 = HashMap::with_capacity(mapping_792.len());
-                for (index_797, (key_793, value_794)) in mapping_792.iter().enumerate() {
-                    let converted_key_795 = (|| -> PyResult<_> {
-                        let converted_key_795: String = key_793.extract()?;
-                        Ok(converted_key_795)
+            let converted_804 = (|| -> PyResult<_> {
+                let mapping_805 = value.cast::<PyDict>()?;
+                let mut converted_804 = HashMap::with_capacity(mapping_805.len());
+                for (index_810, (key_806, value_807)) in mapping_805.iter().enumerate() {
+                    let converted_key_808 = (|| -> PyResult<_> {
+                        let converted_key_808: String = key_806.extract()?;
+                        Ok(converted_key_808)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_797),
+                            rboto_core::InputPath::MapKey(index_810),
                             "str",
                         )
                     })?;
-                    let converted_value_796 = (|| -> PyResult<_> {
-                        let converted_value_796: String = value_794.extract()?;
-                        Ok(converted_value_796)
+                    let converted_value_809 = (|| -> PyResult<_> {
+                        let converted_value_809: String = value_807.extract()?;
+                        Ok(converted_value_809)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_797),
+                            rboto_core::InputPath::MapValue(index_810),
                             "str",
                         )
                     })?;
-                    converted_791.insert(converted_key_795, converted_value_796);
+                    converted_804.insert(converted_key_808, converted_value_809);
                 }
-                Ok(converted_791)
+                Ok(converted_804)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18173,37 +18749,37 @@ impl AthenaClient {
                     "CreateDataCatalog",
                 )
             })?;
-            Some(converted_791)
+            Some(converted_804)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_798 = (|| -> PyResult<_> {
-                let mut converted_798 =
+            let converted_811 = (|| -> PyResult<_> {
+                let mut converted_811 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_802, item_result_799) in value.try_iter()?.enumerate() {
-                    let item_800 = item_result_799.map_err(|error| {
+                for (index_815, item_result_812) in value.try_iter()?.enumerate() {
+                    let item_813 = item_result_812.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_802),
+                            rboto_core::InputPath::Index(index_815),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_801 = (|| -> PyResult<_> {
-                        let converted_item_801 = tag_from_py(&item_800)?;
-                        Ok(converted_item_801)
+                    let converted_item_814 = (|| -> PyResult<_> {
+                        let converted_item_814 = tag_from_py(&item_813)?;
+                        Ok(converted_item_814)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_802),
+                            rboto_core::InputPath::Index(index_815),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_798.push(converted_item_801);
+                    converted_811.push(converted_item_814);
                 }
-                Ok(converted_798)
+                Ok(converted_811)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18216,7 +18792,7 @@ impl AthenaClient {
                     "CreateDataCatalog",
                 )
             })?;
-            Some(converted_798)
+            Some(converted_811)
         } else {
             None
         };
@@ -18263,9 +18839,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_803 = (|| -> PyResult<_> {
-                let converted_803: String = value.extract()?;
-                Ok(converted_803)
+            let converted_816 = (|| -> PyResult<_> {
+                let converted_816: String = value.extract()?;
+                Ok(converted_816)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18274,14 +18850,14 @@ impl AthenaClient {
                     "CreateNamedQuery",
                 )
             })?;
-            Some(converted_803)
+            Some(converted_816)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_804 = (|| -> PyResult<_> {
-                let converted_804: String = value.extract()?;
-                Ok(converted_804)
+            let converted_817 = (|| -> PyResult<_> {
+                let converted_817: String = value.extract()?;
+                Ok(converted_817)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18294,14 +18870,14 @@ impl AthenaClient {
                     "CreateNamedQuery",
                 )
             })?;
-            Some(converted_804)
+            Some(converted_817)
         } else {
             None
         };
         let database_value = if let Some(value) = dict_value(params, "database")? {
-            let converted_805 = (|| -> PyResult<_> {
-                let converted_805: String = value.extract()?;
-                Ok(converted_805)
+            let converted_818 = (|| -> PyResult<_> {
+                let converted_818: String = value.extract()?;
+                Ok(converted_818)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18310,14 +18886,14 @@ impl AthenaClient {
                     "CreateNamedQuery",
                 )
             })?;
-            Some(converted_805)
+            Some(converted_818)
         } else {
             None
         };
         let query_string_value = if let Some(value) = dict_value(params, "query_string")? {
-            let converted_806 = (|| -> PyResult<_> {
-                let converted_806: String = value.extract()?;
-                Ok(converted_806)
+            let converted_819 = (|| -> PyResult<_> {
+                let converted_819: String = value.extract()?;
+                Ok(converted_819)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18330,15 +18906,15 @@ impl AthenaClient {
                     "CreateNamedQuery",
                 )
             })?;
-            Some(converted_806)
+            Some(converted_819)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_807 = (|| -> PyResult<_> {
-                    let converted_807: String = value.extract()?;
-                    Ok(converted_807)
+                let converted_820 = (|| -> PyResult<_> {
+                    let converted_820: String = value.extract()?;
+                    Ok(converted_820)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18351,14 +18927,14 @@ impl AthenaClient {
                         "CreateNamedQuery",
                     )
                 })?;
-                Some(converted_807)
+                Some(converted_820)
             } else {
                 None
             };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_808 = (|| -> PyResult<_> {
-                let converted_808: String = value.extract()?;
-                Ok(converted_808)
+            let converted_821 = (|| -> PyResult<_> {
+                let converted_821: String = value.extract()?;
+                Ok(converted_821)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18371,7 +18947,7 @@ impl AthenaClient {
                     "CreateNamedQuery",
                 )
             })?;
-            Some(converted_808)
+            Some(converted_821)
         } else {
             None
         };
@@ -18417,9 +18993,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_809 = (|| -> PyResult<_> {
-                let converted_809: String = value.extract()?;
-                Ok(converted_809)
+            let converted_822 = (|| -> PyResult<_> {
+                let converted_822: String = value.extract()?;
+                Ok(converted_822)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18432,14 +19008,14 @@ impl AthenaClient {
                     "CreateNotebook",
                 )
             })?;
-            Some(converted_809)
+            Some(converted_822)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_810 = (|| -> PyResult<_> {
-                let converted_810: String = value.extract()?;
-                Ok(converted_810)
+            let converted_823 = (|| -> PyResult<_> {
+                let converted_823: String = value.extract()?;
+                Ok(converted_823)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18448,15 +19024,15 @@ impl AthenaClient {
                     "CreateNotebook",
                 )
             })?;
-            Some(converted_810)
+            Some(converted_823)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_811 = (|| -> PyResult<_> {
-                    let converted_811: String = value.extract()?;
-                    Ok(converted_811)
+                let converted_824 = (|| -> PyResult<_> {
+                    let converted_824: String = value.extract()?;
+                    Ok(converted_824)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18469,7 +19045,7 @@ impl AthenaClient {
                         "CreateNotebook",
                     )
                 })?;
-                Some(converted_811)
+                Some(converted_824)
             } else {
                 None
             };
@@ -18507,9 +19083,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
-            let converted_812 = (|| -> PyResult<_> {
-                let converted_812: String = value.extract()?;
-                Ok(converted_812)
+            let converted_825 = (|| -> PyResult<_> {
+                let converted_825: String = value.extract()?;
+                Ok(converted_825)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18522,14 +19098,14 @@ impl AthenaClient {
                     "CreatePreparedStatement",
                 )
             })?;
-            Some(converted_812)
+            Some(converted_825)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_813 = (|| -> PyResult<_> {
-                let converted_813: String = value.extract()?;
-                Ok(converted_813)
+            let converted_826 = (|| -> PyResult<_> {
+                let converted_826: String = value.extract()?;
+                Ok(converted_826)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18542,14 +19118,14 @@ impl AthenaClient {
                     "CreatePreparedStatement",
                 )
             })?;
-            Some(converted_813)
+            Some(converted_826)
         } else {
             None
         };
         let query_statement_value = if let Some(value) = dict_value(params, "query_statement")? {
-            let converted_814 = (|| -> PyResult<_> {
-                let converted_814: String = value.extract()?;
-                Ok(converted_814)
+            let converted_827 = (|| -> PyResult<_> {
+                let converted_827: String = value.extract()?;
+                Ok(converted_827)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18562,14 +19138,14 @@ impl AthenaClient {
                     "CreatePreparedStatement",
                 )
             })?;
-            Some(converted_814)
+            Some(converted_827)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_815 = (|| -> PyResult<_> {
-                let converted_815: String = value.extract()?;
-                Ok(converted_815)
+            let converted_828 = (|| -> PyResult<_> {
+                let converted_828: String = value.extract()?;
+                Ok(converted_828)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18582,7 +19158,7 @@ impl AthenaClient {
                     "CreatePreparedStatement",
                 )
             })?;
-            Some(converted_815)
+            Some(converted_828)
         } else {
             None
         };
@@ -18626,9 +19202,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_816 = (|| -> PyResult<_> {
-                let converted_816: String = value.extract()?;
-                Ok(converted_816)
+            let converted_829 = (|| -> PyResult<_> {
+                let converted_829: String = value.extract()?;
+                Ok(converted_829)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18641,7 +19217,7 @@ impl AthenaClient {
                     "CreatePresignedNotebookUrl",
                 )
             })?;
-            Some(converted_816)
+            Some(converted_829)
         } else {
             None
         };
@@ -18674,6 +19250,151 @@ impl AthenaClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn create_system_table_configuration<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let client_request_token_value =
+            if let Some(value) = dict_value(params, "client_request_token")? {
+                let converted_830 = (|| -> PyResult<_> {
+                    let converted_830: String = value.extract()?;
+                    Ok(converted_830)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("client_request_token"),
+                            "str",
+                        ),
+                        "athena",
+                        "CreateSystemTableConfiguration",
+                    )
+                })?;
+                Some(converted_830)
+            } else {
+                None
+            };
+        let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
+            let converted_831 = (|| -> PyResult<_> {
+                let enum_value_832: String = value.extract()?;
+                let converted_831 =
+                    aws_sdk_athena::types::SystemTableName::from(enum_value_832.as_str());
+                Ok(converted_831)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("table_name"),
+                        "str (SystemTableName)",
+                    ),
+                    "athena",
+                    "CreateSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_831)
+        } else {
+            None
+        };
+        let kms_key_arn_value = if let Some(value) = dict_value(params, "kms_key_arn")? {
+            let converted_833 = (|| -> PyResult<_> {
+                let converted_833: String = value.extract()?;
+                Ok(converted_833)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_arn"),
+                        "str",
+                    ),
+                    "athena",
+                    "CreateSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_833)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_834 = (|| -> PyResult<_> {
+                let mut converted_834 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_838, item_result_835) in value.try_iter()?.enumerate() {
+                    let item_836 = item_result_835.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_838),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_837 = (|| -> PyResult<_> {
+                        let converted_item_837 = tag_from_py(&item_836)?;
+                        Ok(converted_item_837)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_838),
+                            "dict (Tag)",
+                        )
+                    })?;
+                    converted_834.push(converted_item_837);
+                }
+                Ok(converted_834)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tags"),
+                        "sequence",
+                    ),
+                    "athena",
+                    "CreateSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_834)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .create_system_table_configuration()
+                .set_client_request_token(client_request_token_value)
+                .set_table_name(table_name_value)
+                .set_kms_key_arn(kms_key_arn_value)
+                .set_tags(tags_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateSystemTableConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationCreateSystemTableConfigurationOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn create_work_group<'py>(
         &self,
         py: Python<'py>,
@@ -18682,9 +19403,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_817 = (|| -> PyResult<_> {
-                let converted_817: String = value.extract()?;
-                Ok(converted_817)
+            let converted_839 = (|| -> PyResult<_> {
+                let converted_839: String = value.extract()?;
+                Ok(converted_839)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18693,14 +19414,14 @@ impl AthenaClient {
                     "CreateWorkGroup",
                 )
             })?;
-            Some(converted_817)
+            Some(converted_839)
         } else {
             None
         };
         let configuration_value = if let Some(value) = dict_value(params, "configuration")? {
-            let converted_818 = (|| -> PyResult<_> {
-                let converted_818 = work_group_configuration_from_py(&value)?;
-                Ok(converted_818)
+            let converted_840 = (|| -> PyResult<_> {
+                let converted_840 = work_group_configuration_from_py(&value)?;
+                Ok(converted_840)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18713,14 +19434,14 @@ impl AthenaClient {
                     "CreateWorkGroup",
                 )
             })?;
-            Some(converted_818)
+            Some(converted_840)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_819 = (|| -> PyResult<_> {
-                let converted_819: String = value.extract()?;
-                Ok(converted_819)
+            let converted_841 = (|| -> PyResult<_> {
+                let converted_841: String = value.extract()?;
+                Ok(converted_841)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18733,37 +19454,37 @@ impl AthenaClient {
                     "CreateWorkGroup",
                 )
             })?;
-            Some(converted_819)
+            Some(converted_841)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_820 = (|| -> PyResult<_> {
-                let mut converted_820 =
+            let converted_842 = (|| -> PyResult<_> {
+                let mut converted_842 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_824, item_result_821) in value.try_iter()?.enumerate() {
-                    let item_822 = item_result_821.map_err(|error| {
+                for (index_846, item_result_843) in value.try_iter()?.enumerate() {
+                    let item_844 = item_result_843.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_824),
+                            rboto_core::InputPath::Index(index_846),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_823 = (|| -> PyResult<_> {
-                        let converted_item_823 = tag_from_py(&item_822)?;
-                        Ok(converted_item_823)
+                    let converted_item_845 = (|| -> PyResult<_> {
+                        let converted_item_845 = tag_from_py(&item_844)?;
+                        Ok(converted_item_845)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_824),
+                            rboto_core::InputPath::Index(index_846),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_820.push(converted_item_823);
+                    converted_842.push(converted_item_845);
                 }
-                Ok(converted_820)
+                Ok(converted_842)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18776,7 +19497,7 @@ impl AthenaClient {
                     "CreateWorkGroup",
                 )
             })?;
-            Some(converted_820)
+            Some(converted_842)
         } else {
             None
         };
@@ -18815,9 +19536,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_825 = (|| -> PyResult<_> {
-                let converted_825: String = value.extract()?;
-                Ok(converted_825)
+            let converted_847 = (|| -> PyResult<_> {
+                let converted_847: String = value.extract()?;
+                Ok(converted_847)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18826,7 +19547,7 @@ impl AthenaClient {
                     "DeleteCapacityReservation",
                 )
             })?;
-            Some(converted_825)
+            Some(converted_847)
         } else {
             None
         };
@@ -18865,9 +19586,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_826 = (|| -> PyResult<_> {
-                let converted_826: String = value.extract()?;
-                Ok(converted_826)
+            let converted_848 = (|| -> PyResult<_> {
+                let converted_848: String = value.extract()?;
+                Ok(converted_848)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18876,15 +19597,15 @@ impl AthenaClient {
                     "DeleteDataCatalog",
                 )
             })?;
-            Some(converted_826)
+            Some(converted_848)
         } else {
             None
         };
         let delete_catalog_only_value =
             if let Some(value) = dict_value(params, "delete_catalog_only")? {
-                let converted_827 = (|| -> PyResult<_> {
-                    let converted_827: bool = value.extract()?;
-                    Ok(converted_827)
+                let converted_849 = (|| -> PyResult<_> {
+                    let converted_849: bool = value.extract()?;
+                    Ok(converted_849)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -18897,7 +19618,7 @@ impl AthenaClient {
                         "DeleteDataCatalog",
                     )
                 })?;
-                Some(converted_827)
+                Some(converted_849)
             } else {
                 None
             };
@@ -18941,9 +19662,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
-            let converted_828 = (|| -> PyResult<_> {
-                let converted_828: String = value.extract()?;
-                Ok(converted_828)
+            let converted_850 = (|| -> PyResult<_> {
+                let converted_850: String = value.extract()?;
+                Ok(converted_850)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -18956,7 +19677,7 @@ impl AthenaClient {
                     "DeleteNamedQuery",
                 )
             })?;
-            Some(converted_828)
+            Some(converted_850)
         } else {
             None
         };
@@ -18997,9 +19718,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_829 = (|| -> PyResult<_> {
-                let converted_829: String = value.extract()?;
-                Ok(converted_829)
+            let converted_851 = (|| -> PyResult<_> {
+                let converted_851: String = value.extract()?;
+                Ok(converted_851)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19012,7 +19733,7 @@ impl AthenaClient {
                     "DeleteNotebook",
                 )
             })?;
-            Some(converted_829)
+            Some(converted_851)
         } else {
             None
         };
@@ -19046,9 +19767,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
-            let converted_830 = (|| -> PyResult<_> {
-                let converted_830: String = value.extract()?;
-                Ok(converted_830)
+            let converted_852 = (|| -> PyResult<_> {
+                let converted_852: String = value.extract()?;
+                Ok(converted_852)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19061,14 +19782,14 @@ impl AthenaClient {
                     "DeletePreparedStatement",
                 )
             })?;
-            Some(converted_830)
+            Some(converted_852)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_831 = (|| -> PyResult<_> {
-                let converted_831: String = value.extract()?;
-                Ok(converted_831)
+            let converted_853 = (|| -> PyResult<_> {
+                let converted_853: String = value.extract()?;
+                Ok(converted_853)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19081,7 +19802,7 @@ impl AthenaClient {
                     "DeletePreparedStatement",
                 )
             })?;
-            Some(converted_831)
+            Some(converted_853)
         } else {
             None
         };
@@ -19115,6 +19836,64 @@ impl AthenaClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn delete_system_table_configuration<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
+            let converted_854 = (|| -> PyResult<_> {
+                let enum_value_855: String = value.extract()?;
+                let converted_854 =
+                    aws_sdk_athena::types::SystemTableName::from(enum_value_855.as_str());
+                Ok(converted_854)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("table_name"),
+                        "str (SystemTableName)",
+                    ),
+                    "athena",
+                    "DeleteSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_854)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .delete_system_table_configuration()
+                .set_table_name(table_name_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "DeleteSystemTableConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationDeleteSystemTableConfigurationOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn delete_work_group<'py>(
         &self,
         py: Python<'py>,
@@ -19123,9 +19902,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_832 = (|| -> PyResult<_> {
-                let converted_832: String = value.extract()?;
-                Ok(converted_832)
+            let converted_856 = (|| -> PyResult<_> {
+                let converted_856: String = value.extract()?;
+                Ok(converted_856)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19138,15 +19917,15 @@ impl AthenaClient {
                     "DeleteWorkGroup",
                 )
             })?;
-            Some(converted_832)
+            Some(converted_856)
         } else {
             None
         };
         let recursive_delete_option_value =
             if let Some(value) = dict_value(params, "recursive_delete_option")? {
-                let converted_833 = (|| -> PyResult<_> {
-                    let converted_833: bool = value.extract()?;
-                    Ok(converted_833)
+                let converted_857 = (|| -> PyResult<_> {
+                    let converted_857: bool = value.extract()?;
+                    Ok(converted_857)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19159,7 +19938,7 @@ impl AthenaClient {
                         "DeleteWorkGroup",
                     )
                 })?;
-                Some(converted_833)
+                Some(converted_857)
             } else {
                 None
             };
@@ -19196,9 +19975,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_834 = (|| -> PyResult<_> {
-                let converted_834: String = value.extract()?;
-                Ok(converted_834)
+            let converted_858 = (|| -> PyResult<_> {
+                let converted_858: String = value.extract()?;
+                Ok(converted_858)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19211,7 +19990,7 @@ impl AthenaClient {
                     "ExportNotebook",
                 )
             })?;
-            Some(converted_834)
+            Some(converted_858)
         } else {
             None
         };
@@ -19248,9 +20027,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
-                let converted_835 = (|| -> PyResult<_> {
-                    let converted_835: String = value.extract()?;
-                    Ok(converted_835)
+                let converted_859 = (|| -> PyResult<_> {
+                    let converted_859: String = value.extract()?;
+                    Ok(converted_859)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19263,7 +20042,7 @@ impl AthenaClient {
                         "GetCalculationExecution",
                     )
                 })?;
-                Some(converted_835)
+                Some(converted_859)
             } else {
                 None
             };
@@ -19307,9 +20086,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
-                let converted_836 = (|| -> PyResult<_> {
-                    let converted_836: String = value.extract()?;
-                    Ok(converted_836)
+                let converted_860 = (|| -> PyResult<_> {
+                    let converted_860: String = value.extract()?;
+                    Ok(converted_860)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19322,7 +20101,7 @@ impl AthenaClient {
                         "GetCalculationExecutionCode",
                     )
                 })?;
-                Some(converted_836)
+                Some(converted_860)
             } else {
                 None
             };
@@ -19364,9 +20143,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
-                let converted_837 = (|| -> PyResult<_> {
-                    let converted_837: String = value.extract()?;
-                    Ok(converted_837)
+                let converted_861 = (|| -> PyResult<_> {
+                    let converted_861: String = value.extract()?;
+                    Ok(converted_861)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19379,7 +20158,7 @@ impl AthenaClient {
                         "GetCalculationExecutionStatus",
                     )
                 })?;
-                Some(converted_837)
+                Some(converted_861)
             } else {
                 None
             };
@@ -19423,9 +20202,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_reservation_name_value =
             if let Some(value) = dict_value(params, "capacity_reservation_name")? {
-                let converted_838 = (|| -> PyResult<_> {
-                    let converted_838: String = value.extract()?;
-                    Ok(converted_838)
+                let converted_862 = (|| -> PyResult<_> {
+                    let converted_862: String = value.extract()?;
+                    Ok(converted_862)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19438,7 +20217,7 @@ impl AthenaClient {
                         "GetCapacityAssignmentConfiguration",
                     )
                 })?;
-                Some(converted_838)
+                Some(converted_862)
             } else {
                 None
             };
@@ -19481,9 +20260,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_839 = (|| -> PyResult<_> {
-                let converted_839: String = value.extract()?;
-                Ok(converted_839)
+            let converted_863 = (|| -> PyResult<_> {
+                let converted_863: String = value.extract()?;
+                Ok(converted_863)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19492,7 +20271,7 @@ impl AthenaClient {
                     "GetCapacityReservation",
                 )
             })?;
-            Some(converted_839)
+            Some(converted_863)
         } else {
             None
         };
@@ -19533,9 +20312,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_840 = (|| -> PyResult<_> {
-                let converted_840: String = value.extract()?;
-                Ok(converted_840)
+            let converted_864 = (|| -> PyResult<_> {
+                let converted_864: String = value.extract()?;
+                Ok(converted_864)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19544,14 +20323,14 @@ impl AthenaClient {
                     "GetDataCatalog",
                 )
             })?;
-            Some(converted_840)
+            Some(converted_864)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_841 = (|| -> PyResult<_> {
-                let converted_841: String = value.extract()?;
-                Ok(converted_841)
+            let converted_865 = (|| -> PyResult<_> {
+                let converted_865: String = value.extract()?;
+                Ok(converted_865)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19564,7 +20343,7 @@ impl AthenaClient {
                     "GetDataCatalog",
                 )
             })?;
-            Some(converted_841)
+            Some(converted_865)
         } else {
             None
         };
@@ -19603,9 +20382,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
-            let converted_842 = (|| -> PyResult<_> {
-                let converted_842: String = value.extract()?;
-                Ok(converted_842)
+            let converted_866 = (|| -> PyResult<_> {
+                let converted_866: String = value.extract()?;
+                Ok(converted_866)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19618,14 +20397,14 @@ impl AthenaClient {
                     "GetDatabase",
                 )
             })?;
-            Some(converted_842)
+            Some(converted_866)
         } else {
             None
         };
         let database_name_value = if let Some(value) = dict_value(params, "database_name")? {
-            let converted_843 = (|| -> PyResult<_> {
-                let converted_843: String = value.extract()?;
-                Ok(converted_843)
+            let converted_867 = (|| -> PyResult<_> {
+                let converted_867: String = value.extract()?;
+                Ok(converted_867)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19638,14 +20417,14 @@ impl AthenaClient {
                     "GetDatabase",
                 )
             })?;
-            Some(converted_843)
+            Some(converted_867)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_844 = (|| -> PyResult<_> {
-                let converted_844: String = value.extract()?;
-                Ok(converted_844)
+            let converted_868 = (|| -> PyResult<_> {
+                let converted_868: String = value.extract()?;
+                Ok(converted_868)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19658,7 +20437,7 @@ impl AthenaClient {
                     "GetDatabase",
                 )
             })?;
-            Some(converted_844)
+            Some(converted_868)
         } else {
             None
         };
@@ -19698,9 +20477,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
-            let converted_845 = (|| -> PyResult<_> {
-                let converted_845: String = value.extract()?;
-                Ok(converted_845)
+            let converted_869 = (|| -> PyResult<_> {
+                let converted_869: String = value.extract()?;
+                Ok(converted_869)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19713,7 +20492,7 @@ impl AthenaClient {
                     "GetNamedQuery",
                 )
             })?;
-            Some(converted_845)
+            Some(converted_869)
         } else {
             None
         };
@@ -19751,9 +20530,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_846 = (|| -> PyResult<_> {
-                let converted_846: String = value.extract()?;
-                Ok(converted_846)
+            let converted_870 = (|| -> PyResult<_> {
+                let converted_870: String = value.extract()?;
+                Ok(converted_870)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19766,7 +20545,7 @@ impl AthenaClient {
                     "GetNotebookMetadata",
                 )
             })?;
-            Some(converted_846)
+            Some(converted_870)
         } else {
             None
         };
@@ -19809,9 +20588,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
-            let converted_847 = (|| -> PyResult<_> {
-                let converted_847: String = value.extract()?;
-                Ok(converted_847)
+            let converted_871 = (|| -> PyResult<_> {
+                let converted_871: String = value.extract()?;
+                Ok(converted_871)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19824,14 +20603,14 @@ impl AthenaClient {
                     "GetPreparedStatement",
                 )
             })?;
-            Some(converted_847)
+            Some(converted_871)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_848 = (|| -> PyResult<_> {
-                let converted_848: String = value.extract()?;
-                Ok(converted_848)
+            let converted_872 = (|| -> PyResult<_> {
+                let converted_872: String = value.extract()?;
+                Ok(converted_872)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19844,7 +20623,7 @@ impl AthenaClient {
                     "GetPreparedStatement",
                 )
             })?;
-            Some(converted_848)
+            Some(converted_872)
         } else {
             None
         };
@@ -19889,9 +20668,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
-                let converted_849 = (|| -> PyResult<_> {
-                    let converted_849: String = value.extract()?;
-                    Ok(converted_849)
+                let converted_873 = (|| -> PyResult<_> {
+                    let converted_873: String = value.extract()?;
+                    Ok(converted_873)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19904,7 +20683,7 @@ impl AthenaClient {
                         "GetQueryExecution",
                     )
                 })?;
-                Some(converted_849)
+                Some(converted_873)
             } else {
                 None
             };
@@ -19948,9 +20727,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
-                let converted_850 = (|| -> PyResult<_> {
-                    let converted_850: String = value.extract()?;
-                    Ok(converted_850)
+                let converted_874 = (|| -> PyResult<_> {
+                    let converted_874: String = value.extract()?;
+                    Ok(converted_874)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -19963,14 +20742,14 @@ impl AthenaClient {
                         "GetQueryResults",
                     )
                 })?;
-                Some(converted_850)
+                Some(converted_874)
             } else {
                 None
             };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_851 = (|| -> PyResult<_> {
-                let converted_851: String = value.extract()?;
-                Ok(converted_851)
+            let converted_875 = (|| -> PyResult<_> {
+                let converted_875: String = value.extract()?;
+                Ok(converted_875)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -19983,14 +20762,14 @@ impl AthenaClient {
                     "GetQueryResults",
                 )
             })?;
-            Some(converted_851)
+            Some(converted_875)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_852 = (|| -> PyResult<_> {
-                let converted_852: i32 = value.extract()?;
-                Ok(converted_852)
+            let converted_876 = (|| -> PyResult<_> {
+                let converted_876: i32 = value.extract()?;
+                Ok(converted_876)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20003,17 +20782,17 @@ impl AthenaClient {
                     "GetQueryResults",
                 )
             })?;
-            Some(converted_852)
+            Some(converted_876)
         } else {
             None
         };
         let query_result_type_value = if let Some(value) = dict_value(params, "query_result_type")?
         {
-            let converted_853 = (|| -> PyResult<_> {
-                let enum_value_854: String = value.extract()?;
-                let converted_853 =
-                    aws_sdk_athena::types::QueryResultType::from(enum_value_854.as_str());
-                Ok(converted_853)
+            let converted_877 = (|| -> PyResult<_> {
+                let enum_value_878: String = value.extract()?;
+                let converted_877 =
+                    aws_sdk_athena::types::QueryResultType::from(enum_value_878.as_str());
+                Ok(converted_877)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20026,7 +20805,7 @@ impl AthenaClient {
                     "GetQueryResults",
                 )
             })?;
-            Some(converted_853)
+            Some(converted_877)
         } else {
             None
         };
@@ -20068,9 +20847,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
-                let converted_855 = (|| -> PyResult<_> {
-                    let converted_855: String = value.extract()?;
-                    Ok(converted_855)
+                let converted_879 = (|| -> PyResult<_> {
+                    let converted_879: String = value.extract()?;
+                    Ok(converted_879)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -20083,7 +20862,7 @@ impl AthenaClient {
                         "GetQueryRuntimeStatistics",
                     )
                 })?;
-                Some(converted_855)
+                Some(converted_879)
             } else {
                 None
             };
@@ -20126,9 +20905,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_856 = (|| -> PyResult<_> {
-                let converted_856: String = value.extract()?;
-                Ok(converted_856)
+            let converted_880 = (|| -> PyResult<_> {
+                let converted_880: String = value.extract()?;
+                Ok(converted_880)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20141,7 +20920,7 @@ impl AthenaClient {
                     "GetResourceDashboard",
                 )
             })?;
-            Some(converted_856)
+            Some(converted_880)
         } else {
             None
         };
@@ -20182,9 +20961,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_857 = (|| -> PyResult<_> {
-                let converted_857: String = value.extract()?;
-                Ok(converted_857)
+            let converted_881 = (|| -> PyResult<_> {
+                let converted_881: String = value.extract()?;
+                Ok(converted_881)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20197,7 +20976,7 @@ impl AthenaClient {
                     "GetSession",
                 )
             })?;
-            Some(converted_857)
+            Some(converted_881)
         } else {
             None
         };
@@ -20233,9 +21012,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_858 = (|| -> PyResult<_> {
-                let converted_858: String = value.extract()?;
-                Ok(converted_858)
+            let converted_882 = (|| -> PyResult<_> {
+                let converted_882: String = value.extract()?;
+                Ok(converted_882)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20248,7 +21027,7 @@ impl AthenaClient {
                     "GetSessionEndpoint",
                 )
             })?;
-            Some(converted_858)
+            Some(converted_882)
         } else {
             None
         };
@@ -20289,9 +21068,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_859 = (|| -> PyResult<_> {
-                let converted_859: String = value.extract()?;
-                Ok(converted_859)
+            let converted_883 = (|| -> PyResult<_> {
+                let converted_883: String = value.extract()?;
+                Ok(converted_883)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20304,7 +21083,7 @@ impl AthenaClient {
                     "GetSessionStatus",
                 )
             })?;
-            Some(converted_859)
+            Some(converted_883)
         } else {
             None
         };
@@ -20337,6 +21116,64 @@ impl AthenaClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn get_system_table_configuration<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
+            let converted_884 = (|| -> PyResult<_> {
+                let enum_value_885: String = value.extract()?;
+                let converted_884 =
+                    aws_sdk_athena::types::SystemTableName::from(enum_value_885.as_str());
+                Ok(converted_884)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("table_name"),
+                        "str (SystemTableName)",
+                    ),
+                    "athena",
+                    "GetSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_884)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .get_system_table_configuration()
+                .set_table_name(table_name_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetSystemTableConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationGetSystemTableConfigurationOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn get_table_metadata<'py>(
         &self,
         py: Python<'py>,
@@ -20345,9 +21182,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
-            let converted_860 = (|| -> PyResult<_> {
-                let converted_860: String = value.extract()?;
-                Ok(converted_860)
+            let converted_886 = (|| -> PyResult<_> {
+                let converted_886: String = value.extract()?;
+                Ok(converted_886)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20360,14 +21197,14 @@ impl AthenaClient {
                     "GetTableMetadata",
                 )
             })?;
-            Some(converted_860)
+            Some(converted_886)
         } else {
             None
         };
         let database_name_value = if let Some(value) = dict_value(params, "database_name")? {
-            let converted_861 = (|| -> PyResult<_> {
-                let converted_861: String = value.extract()?;
-                Ok(converted_861)
+            let converted_887 = (|| -> PyResult<_> {
+                let converted_887: String = value.extract()?;
+                Ok(converted_887)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20380,14 +21217,14 @@ impl AthenaClient {
                     "GetTableMetadata",
                 )
             })?;
-            Some(converted_861)
+            Some(converted_887)
         } else {
             None
         };
         let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
-            let converted_862 = (|| -> PyResult<_> {
-                let converted_862: String = value.extract()?;
-                Ok(converted_862)
+            let converted_888 = (|| -> PyResult<_> {
+                let converted_888: String = value.extract()?;
+                Ok(converted_888)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20400,14 +21237,14 @@ impl AthenaClient {
                     "GetTableMetadata",
                 )
             })?;
-            Some(converted_862)
+            Some(converted_888)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_863 = (|| -> PyResult<_> {
-                let converted_863: String = value.extract()?;
-                Ok(converted_863)
+            let converted_889 = (|| -> PyResult<_> {
+                let converted_889: String = value.extract()?;
+                Ok(converted_889)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20420,7 +21257,7 @@ impl AthenaClient {
                     "GetTableMetadata",
                 )
             })?;
-            Some(converted_863)
+            Some(converted_889)
         } else {
             None
         };
@@ -20466,9 +21303,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_864 = (|| -> PyResult<_> {
-                let converted_864: String = value.extract()?;
-                Ok(converted_864)
+            let converted_890 = (|| -> PyResult<_> {
+                let converted_890: String = value.extract()?;
+                Ok(converted_890)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20481,7 +21318,7 @@ impl AthenaClient {
                     "GetWorkGroup",
                 )
             })?;
-            Some(converted_864)
+            Some(converted_890)
         } else {
             None
         };
@@ -20517,9 +21354,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_865 = (|| -> PyResult<_> {
-                let converted_865: String = value.extract()?;
-                Ok(converted_865)
+            let converted_891 = (|| -> PyResult<_> {
+                let converted_891: String = value.extract()?;
+                Ok(converted_891)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20532,14 +21369,14 @@ impl AthenaClient {
                     "ImportNotebook",
                 )
             })?;
-            Some(converted_865)
+            Some(converted_891)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_866 = (|| -> PyResult<_> {
-                let converted_866: String = value.extract()?;
-                Ok(converted_866)
+            let converted_892 = (|| -> PyResult<_> {
+                let converted_892: String = value.extract()?;
+                Ok(converted_892)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20548,14 +21385,14 @@ impl AthenaClient {
                     "ImportNotebook",
                 )
             })?;
-            Some(converted_866)
+            Some(converted_892)
         } else {
             None
         };
         let payload_value = if let Some(value) = dict_value(params, "payload")? {
-            let converted_867 = (|| -> PyResult<_> {
-                let converted_867: String = value.extract()?;
-                Ok(converted_867)
+            let converted_893 = (|| -> PyResult<_> {
+                let converted_893: String = value.extract()?;
+                Ok(converted_893)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20564,16 +21401,16 @@ impl AthenaClient {
                     "ImportNotebook",
                 )
             })?;
-            Some(converted_867)
+            Some(converted_893)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let converted_868 = (|| -> PyResult<_> {
-                let enum_value_869: String = value.extract()?;
-                let converted_868 =
-                    aws_sdk_athena::types::NotebookType::from(enum_value_869.as_str());
-                Ok(converted_868)
+            let converted_894 = (|| -> PyResult<_> {
+                let enum_value_895: String = value.extract()?;
+                let converted_894 =
+                    aws_sdk_athena::types::NotebookType::from(enum_value_895.as_str());
+                Ok(converted_894)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20586,15 +21423,15 @@ impl AthenaClient {
                     "ImportNotebook",
                 )
             })?;
-            Some(converted_868)
+            Some(converted_894)
         } else {
             None
         };
         let notebook_s3_location_uri_value =
             if let Some(value) = dict_value(params, "notebook_s3_location_uri")? {
-                let converted_870 = (|| -> PyResult<_> {
-                    let converted_870: String = value.extract()?;
-                    Ok(converted_870)
+                let converted_896 = (|| -> PyResult<_> {
+                    let converted_896: String = value.extract()?;
+                    Ok(converted_896)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -20607,15 +21444,15 @@ impl AthenaClient {
                         "ImportNotebook",
                     )
                 })?;
-                Some(converted_870)
+                Some(converted_896)
             } else {
                 None
             };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_871 = (|| -> PyResult<_> {
-                    let converted_871: String = value.extract()?;
-                    Ok(converted_871)
+                let converted_897 = (|| -> PyResult<_> {
+                    let converted_897: String = value.extract()?;
+                    Ok(converted_897)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -20628,7 +21465,7 @@ impl AthenaClient {
                         "ImportNotebook",
                     )
                 })?;
-                Some(converted_871)
+                Some(converted_897)
             } else {
                 None
             };
@@ -20669,9 +21506,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_872 = (|| -> PyResult<_> {
-                let converted_872: i32 = value.extract()?;
-                Ok(converted_872)
+            let converted_898 = (|| -> PyResult<_> {
+                let converted_898: i32 = value.extract()?;
+                Ok(converted_898)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20684,14 +21521,14 @@ impl AthenaClient {
                     "ListApplicationDPUSizes",
                 )
             })?;
-            Some(converted_872)
+            Some(converted_898)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_873 = (|| -> PyResult<_> {
-                let converted_873: String = value.extract()?;
-                Ok(converted_873)
+            let converted_899 = (|| -> PyResult<_> {
+                let converted_899: String = value.extract()?;
+                Ok(converted_899)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20704,7 +21541,7 @@ impl AthenaClient {
                     "ListApplicationDPUSizes",
                 )
             })?;
-            Some(converted_873)
+            Some(converted_899)
         } else {
             None
         };
@@ -20748,9 +21585,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_874 = (|| -> PyResult<_> {
-                let converted_874: String = value.extract()?;
-                Ok(converted_874)
+            let converted_900 = (|| -> PyResult<_> {
+                let converted_900: String = value.extract()?;
+                Ok(converted_900)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20763,16 +21600,16 @@ impl AthenaClient {
                     "ListCalculationExecutions",
                 )
             })?;
-            Some(converted_874)
+            Some(converted_900)
         } else {
             None
         };
         let state_filter_value = if let Some(value) = dict_value(params, "state_filter")? {
-            let converted_875 = (|| -> PyResult<_> {
-                let enum_value_876: String = value.extract()?;
-                let converted_875 =
-                    aws_sdk_athena::types::CalculationExecutionState::from(enum_value_876.as_str());
-                Ok(converted_875)
+            let converted_901 = (|| -> PyResult<_> {
+                let enum_value_902: String = value.extract()?;
+                let converted_901 =
+                    aws_sdk_athena::types::CalculationExecutionState::from(enum_value_902.as_str());
+                Ok(converted_901)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20785,14 +21622,14 @@ impl AthenaClient {
                     "ListCalculationExecutions",
                 )
             })?;
-            Some(converted_875)
+            Some(converted_901)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_877 = (|| -> PyResult<_> {
-                let converted_877: i32 = value.extract()?;
-                Ok(converted_877)
+            let converted_903 = (|| -> PyResult<_> {
+                let converted_903: i32 = value.extract()?;
+                Ok(converted_903)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20805,14 +21642,14 @@ impl AthenaClient {
                     "ListCalculationExecutions",
                 )
             })?;
-            Some(converted_877)
+            Some(converted_903)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_878 = (|| -> PyResult<_> {
-                let converted_878: String = value.extract()?;
-                Ok(converted_878)
+            let converted_904 = (|| -> PyResult<_> {
+                let converted_904: String = value.extract()?;
+                Ok(converted_904)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20825,7 +21662,7 @@ impl AthenaClient {
                     "ListCalculationExecutions",
                 )
             })?;
-            Some(converted_878)
+            Some(converted_904)
         } else {
             None
         };
@@ -20871,9 +21708,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_879 = (|| -> PyResult<_> {
-                let converted_879: String = value.extract()?;
-                Ok(converted_879)
+            let converted_905 = (|| -> PyResult<_> {
+                let converted_905: String = value.extract()?;
+                Ok(converted_905)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20886,14 +21723,14 @@ impl AthenaClient {
                     "ListCapacityReservations",
                 )
             })?;
-            Some(converted_879)
+            Some(converted_905)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_880 = (|| -> PyResult<_> {
-                let converted_880: i32 = value.extract()?;
-                Ok(converted_880)
+            let converted_906 = (|| -> PyResult<_> {
+                let converted_906: i32 = value.extract()?;
+                Ok(converted_906)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20906,7 +21743,7 @@ impl AthenaClient {
                     "ListCapacityReservations",
                 )
             })?;
-            Some(converted_880)
+            Some(converted_906)
         } else {
             None
         };
@@ -20950,9 +21787,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_881 = (|| -> PyResult<_> {
-                let converted_881: String = value.extract()?;
-                Ok(converted_881)
+            let converted_907 = (|| -> PyResult<_> {
+                let converted_907: String = value.extract()?;
+                Ok(converted_907)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20965,14 +21802,14 @@ impl AthenaClient {
                     "ListDataCatalogs",
                 )
             })?;
-            Some(converted_881)
+            Some(converted_907)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_882 = (|| -> PyResult<_> {
-                let converted_882: i32 = value.extract()?;
-                Ok(converted_882)
+            let converted_908 = (|| -> PyResult<_> {
+                let converted_908: i32 = value.extract()?;
+                Ok(converted_908)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -20985,14 +21822,14 @@ impl AthenaClient {
                     "ListDataCatalogs",
                 )
             })?;
-            Some(converted_882)
+            Some(converted_908)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_883 = (|| -> PyResult<_> {
-                let converted_883: String = value.extract()?;
-                Ok(converted_883)
+            let converted_909 = (|| -> PyResult<_> {
+                let converted_909: String = value.extract()?;
+                Ok(converted_909)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21005,7 +21842,7 @@ impl AthenaClient {
                     "ListDataCatalogs",
                 )
             })?;
-            Some(converted_883)
+            Some(converted_909)
         } else {
             None
         };
@@ -21050,9 +21887,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
-            let converted_884 = (|| -> PyResult<_> {
-                let converted_884: String = value.extract()?;
-                Ok(converted_884)
+            let converted_910 = (|| -> PyResult<_> {
+                let converted_910: String = value.extract()?;
+                Ok(converted_910)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21065,14 +21902,14 @@ impl AthenaClient {
                     "ListDatabases",
                 )
             })?;
-            Some(converted_884)
+            Some(converted_910)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_885 = (|| -> PyResult<_> {
-                let converted_885: String = value.extract()?;
-                Ok(converted_885)
+            let converted_911 = (|| -> PyResult<_> {
+                let converted_911: String = value.extract()?;
+                Ok(converted_911)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21085,14 +21922,14 @@ impl AthenaClient {
                     "ListDatabases",
                 )
             })?;
-            Some(converted_885)
+            Some(converted_911)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_886 = (|| -> PyResult<_> {
-                let converted_886: i32 = value.extract()?;
-                Ok(converted_886)
+            let converted_912 = (|| -> PyResult<_> {
+                let converted_912: i32 = value.extract()?;
+                Ok(converted_912)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21105,14 +21942,14 @@ impl AthenaClient {
                     "ListDatabases",
                 )
             })?;
-            Some(converted_886)
+            Some(converted_912)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_887 = (|| -> PyResult<_> {
-                let converted_887: String = value.extract()?;
-                Ok(converted_887)
+            let converted_913 = (|| -> PyResult<_> {
+                let converted_913: String = value.extract()?;
+                Ok(converted_913)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21125,7 +21962,7 @@ impl AthenaClient {
                     "ListDatabases",
                 )
             })?;
-            Some(converted_887)
+            Some(converted_913)
         } else {
             None
         };
@@ -21166,9 +22003,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_888 = (|| -> PyResult<_> {
-                let converted_888: String = value.extract()?;
-                Ok(converted_888)
+            let converted_914 = (|| -> PyResult<_> {
+                let converted_914: String = value.extract()?;
+                Ok(converted_914)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21181,14 +22018,14 @@ impl AthenaClient {
                     "ListEngineVersions",
                 )
             })?;
-            Some(converted_888)
+            Some(converted_914)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_889 = (|| -> PyResult<_> {
-                let converted_889: i32 = value.extract()?;
-                Ok(converted_889)
+            let converted_915 = (|| -> PyResult<_> {
+                let converted_915: i32 = value.extract()?;
+                Ok(converted_915)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21201,7 +22038,7 @@ impl AthenaClient {
                     "ListEngineVersions",
                 )
             })?;
-            Some(converted_889)
+            Some(converted_915)
         } else {
             None
         };
@@ -21245,9 +22082,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_890 = (|| -> PyResult<_> {
-                let converted_890: String = value.extract()?;
-                Ok(converted_890)
+            let converted_916 = (|| -> PyResult<_> {
+                let converted_916: String = value.extract()?;
+                Ok(converted_916)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21260,17 +22097,17 @@ impl AthenaClient {
                     "ListExecutors",
                 )
             })?;
-            Some(converted_890)
+            Some(converted_916)
         } else {
             None
         };
         let executor_state_filter_value =
             if let Some(value) = dict_value(params, "executor_state_filter")? {
-                let converted_891 = (|| -> PyResult<_> {
-                    let enum_value_892: String = value.extract()?;
-                    let converted_891 =
-                        aws_sdk_athena::types::ExecutorState::from(enum_value_892.as_str());
-                    Ok(converted_891)
+                let converted_917 = (|| -> PyResult<_> {
+                    let enum_value_918: String = value.extract()?;
+                    let converted_917 =
+                        aws_sdk_athena::types::ExecutorState::from(enum_value_918.as_str());
+                    Ok(converted_917)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -21283,14 +22120,14 @@ impl AthenaClient {
                         "ListExecutors",
                     )
                 })?;
-                Some(converted_891)
+                Some(converted_917)
             } else {
                 None
             };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_893 = (|| -> PyResult<_> {
-                let converted_893: i32 = value.extract()?;
-                Ok(converted_893)
+            let converted_919 = (|| -> PyResult<_> {
+                let converted_919: i32 = value.extract()?;
+                Ok(converted_919)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21303,14 +22140,14 @@ impl AthenaClient {
                     "ListExecutors",
                 )
             })?;
-            Some(converted_893)
+            Some(converted_919)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_894 = (|| -> PyResult<_> {
-                let converted_894: String = value.extract()?;
-                Ok(converted_894)
+            let converted_920 = (|| -> PyResult<_> {
+                let converted_920: String = value.extract()?;
+                Ok(converted_920)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21323,7 +22160,7 @@ impl AthenaClient {
                     "ListExecutors",
                 )
             })?;
-            Some(converted_894)
+            Some(converted_920)
         } else {
             None
         };
@@ -21364,9 +22201,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_895 = (|| -> PyResult<_> {
-                let converted_895: String = value.extract()?;
-                Ok(converted_895)
+            let converted_921 = (|| -> PyResult<_> {
+                let converted_921: String = value.extract()?;
+                Ok(converted_921)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21379,14 +22216,14 @@ impl AthenaClient {
                     "ListNamedQueries",
                 )
             })?;
-            Some(converted_895)
+            Some(converted_921)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_896 = (|| -> PyResult<_> {
-                let converted_896: i32 = value.extract()?;
-                Ok(converted_896)
+            let converted_922 = (|| -> PyResult<_> {
+                let converted_922: i32 = value.extract()?;
+                Ok(converted_922)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21399,14 +22236,14 @@ impl AthenaClient {
                     "ListNamedQueries",
                 )
             })?;
-            Some(converted_896)
+            Some(converted_922)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_897 = (|| -> PyResult<_> {
-                let converted_897: String = value.extract()?;
-                Ok(converted_897)
+            let converted_923 = (|| -> PyResult<_> {
+                let converted_923: String = value.extract()?;
+                Ok(converted_923)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21419,7 +22256,7 @@ impl AthenaClient {
                     "ListNamedQueries",
                 )
             })?;
-            Some(converted_897)
+            Some(converted_923)
         } else {
             None
         };
@@ -21462,9 +22299,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let filters_value = if let Some(value) = dict_value(params, "filters")? {
-            let converted_898 = (|| -> PyResult<_> {
-                let converted_898 = filter_definition_from_py(&value)?;
-                Ok(converted_898)
+            let converted_924 = (|| -> PyResult<_> {
+                let converted_924 = filter_definition_from_py(&value)?;
+                Ok(converted_924)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21477,14 +22314,14 @@ impl AthenaClient {
                     "ListNotebookMetadata",
                 )
             })?;
-            Some(converted_898)
+            Some(converted_924)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_899 = (|| -> PyResult<_> {
-                let converted_899: String = value.extract()?;
-                Ok(converted_899)
+            let converted_925 = (|| -> PyResult<_> {
+                let converted_925: String = value.extract()?;
+                Ok(converted_925)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21497,14 +22334,14 @@ impl AthenaClient {
                     "ListNotebookMetadata",
                 )
             })?;
-            Some(converted_899)
+            Some(converted_925)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_900 = (|| -> PyResult<_> {
-                let converted_900: i32 = value.extract()?;
-                Ok(converted_900)
+            let converted_926 = (|| -> PyResult<_> {
+                let converted_926: i32 = value.extract()?;
+                Ok(converted_926)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21517,14 +22354,14 @@ impl AthenaClient {
                     "ListNotebookMetadata",
                 )
             })?;
-            Some(converted_900)
+            Some(converted_926)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_901 = (|| -> PyResult<_> {
-                let converted_901: String = value.extract()?;
-                Ok(converted_901)
+            let converted_927 = (|| -> PyResult<_> {
+                let converted_927: String = value.extract()?;
+                Ok(converted_927)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21537,7 +22374,7 @@ impl AthenaClient {
                     "ListNotebookMetadata",
                 )
             })?;
-            Some(converted_901)
+            Some(converted_927)
         } else {
             None
         };
@@ -21583,9 +22420,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_902 = (|| -> PyResult<_> {
-                let converted_902: String = value.extract()?;
-                Ok(converted_902)
+            let converted_928 = (|| -> PyResult<_> {
+                let converted_928: String = value.extract()?;
+                Ok(converted_928)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21598,14 +22435,14 @@ impl AthenaClient {
                     "ListNotebookSessions",
                 )
             })?;
-            Some(converted_902)
+            Some(converted_928)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_903 = (|| -> PyResult<_> {
-                let converted_903: i32 = value.extract()?;
-                Ok(converted_903)
+            let converted_929 = (|| -> PyResult<_> {
+                let converted_929: i32 = value.extract()?;
+                Ok(converted_929)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21618,14 +22455,14 @@ impl AthenaClient {
                     "ListNotebookSessions",
                 )
             })?;
-            Some(converted_903)
+            Some(converted_929)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_904 = (|| -> PyResult<_> {
-                let converted_904: String = value.extract()?;
-                Ok(converted_904)
+            let converted_930 = (|| -> PyResult<_> {
+                let converted_930: String = value.extract()?;
+                Ok(converted_930)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21638,7 +22475,7 @@ impl AthenaClient {
                     "ListNotebookSessions",
                 )
             })?;
-            Some(converted_904)
+            Some(converted_930)
         } else {
             None
         };
@@ -21683,9 +22520,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_905 = (|| -> PyResult<_> {
-                let converted_905: String = value.extract()?;
-                Ok(converted_905)
+            let converted_931 = (|| -> PyResult<_> {
+                let converted_931: String = value.extract()?;
+                Ok(converted_931)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21698,14 +22535,14 @@ impl AthenaClient {
                     "ListPreparedStatements",
                 )
             })?;
-            Some(converted_905)
+            Some(converted_931)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_906 = (|| -> PyResult<_> {
-                let converted_906: String = value.extract()?;
-                Ok(converted_906)
+            let converted_932 = (|| -> PyResult<_> {
+                let converted_932: String = value.extract()?;
+                Ok(converted_932)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21718,14 +22555,14 @@ impl AthenaClient {
                     "ListPreparedStatements",
                 )
             })?;
-            Some(converted_906)
+            Some(converted_932)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_907 = (|| -> PyResult<_> {
-                let converted_907: i32 = value.extract()?;
-                Ok(converted_907)
+            let converted_933 = (|| -> PyResult<_> {
+                let converted_933: i32 = value.extract()?;
+                Ok(converted_933)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21738,7 +22575,7 @@ impl AthenaClient {
                     "ListPreparedStatements",
                 )
             })?;
-            Some(converted_907)
+            Some(converted_933)
         } else {
             None
         };
@@ -21783,9 +22620,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_908 = (|| -> PyResult<_> {
-                let converted_908: String = value.extract()?;
-                Ok(converted_908)
+            let converted_934 = (|| -> PyResult<_> {
+                let converted_934: String = value.extract()?;
+                Ok(converted_934)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21798,14 +22635,14 @@ impl AthenaClient {
                     "ListQueryExecutions",
                 )
             })?;
-            Some(converted_908)
+            Some(converted_934)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_909 = (|| -> PyResult<_> {
-                let converted_909: i32 = value.extract()?;
-                Ok(converted_909)
+            let converted_935 = (|| -> PyResult<_> {
+                let converted_935: i32 = value.extract()?;
+                Ok(converted_935)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21818,14 +22655,14 @@ impl AthenaClient {
                     "ListQueryExecutions",
                 )
             })?;
-            Some(converted_909)
+            Some(converted_935)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_910 = (|| -> PyResult<_> {
-                let converted_910: String = value.extract()?;
-                Ok(converted_910)
+            let converted_936 = (|| -> PyResult<_> {
+                let converted_936: String = value.extract()?;
+                Ok(converted_936)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21838,7 +22675,7 @@ impl AthenaClient {
                     "ListQueryExecutions",
                 )
             })?;
-            Some(converted_910)
+            Some(converted_936)
         } else {
             None
         };
@@ -21881,9 +22718,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_911 = (|| -> PyResult<_> {
-                let converted_911: String = value.extract()?;
-                Ok(converted_911)
+            let converted_937 = (|| -> PyResult<_> {
+                let converted_937: String = value.extract()?;
+                Ok(converted_937)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21896,16 +22733,16 @@ impl AthenaClient {
                     "ListSessions",
                 )
             })?;
-            Some(converted_911)
+            Some(converted_937)
         } else {
             None
         };
         let state_filter_value = if let Some(value) = dict_value(params, "state_filter")? {
-            let converted_912 = (|| -> PyResult<_> {
-                let enum_value_913: String = value.extract()?;
-                let converted_912 =
-                    aws_sdk_athena::types::SessionState::from(enum_value_913.as_str());
-                Ok(converted_912)
+            let converted_938 = (|| -> PyResult<_> {
+                let enum_value_939: String = value.extract()?;
+                let converted_938 =
+                    aws_sdk_athena::types::SessionState::from(enum_value_939.as_str());
+                Ok(converted_938)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21918,14 +22755,14 @@ impl AthenaClient {
                     "ListSessions",
                 )
             })?;
-            Some(converted_912)
+            Some(converted_938)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_914 = (|| -> PyResult<_> {
-                let converted_914: i32 = value.extract()?;
-                Ok(converted_914)
+            let converted_940 = (|| -> PyResult<_> {
+                let converted_940: i32 = value.extract()?;
+                Ok(converted_940)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21938,14 +22775,14 @@ impl AthenaClient {
                     "ListSessions",
                 )
             })?;
-            Some(converted_914)
+            Some(converted_940)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_915 = (|| -> PyResult<_> {
-                let converted_915: String = value.extract()?;
-                Ok(converted_915)
+            let converted_941 = (|| -> PyResult<_> {
+                let converted_941: String = value.extract()?;
+                Ok(converted_941)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -21958,7 +22795,7 @@ impl AthenaClient {
                     "ListSessions",
                 )
             })?;
-            Some(converted_915)
+            Some(converted_941)
         } else {
             None
         };
@@ -21991,6 +22828,85 @@ impl AthenaClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_system_table_statuses<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
+            let converted_942 = (|| -> PyResult<_> {
+                let converted_942: String = value.extract()?;
+                Ok(converted_942)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "athena",
+                    "ListSystemTableStatuses",
+                )
+            })?;
+            Some(converted_942)
+        } else {
+            None
+        };
+        let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
+            let converted_943 = (|| -> PyResult<_> {
+                let converted_943: i32 = value.extract()?;
+                Ok(converted_943)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "athena",
+                    "ListSystemTableStatuses",
+                )
+            })?;
+            Some(converted_943)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_system_table_statuses()
+                .set_next_token(next_token_value)
+                .set_max_results(max_results_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListSystemTableStatuses",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationListSystemTableStatusesOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn list_table_metadata<'py>(
         &self,
         py: Python<'py>,
@@ -21999,9 +22915,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let catalog_name_value = if let Some(value) = dict_value(params, "catalog_name")? {
-            let converted_916 = (|| -> PyResult<_> {
-                let converted_916: String = value.extract()?;
-                Ok(converted_916)
+            let converted_944 = (|| -> PyResult<_> {
+                let converted_944: String = value.extract()?;
+                Ok(converted_944)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22014,14 +22930,14 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_916)
+            Some(converted_944)
         } else {
             None
         };
         let database_name_value = if let Some(value) = dict_value(params, "database_name")? {
-            let converted_917 = (|| -> PyResult<_> {
-                let converted_917: String = value.extract()?;
-                Ok(converted_917)
+            let converted_945 = (|| -> PyResult<_> {
+                let converted_945: String = value.extract()?;
+                Ok(converted_945)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22034,14 +22950,14 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_917)
+            Some(converted_945)
         } else {
             None
         };
         let expression_value = if let Some(value) = dict_value(params, "expression")? {
-            let converted_918 = (|| -> PyResult<_> {
-                let converted_918: String = value.extract()?;
-                Ok(converted_918)
+            let converted_946 = (|| -> PyResult<_> {
+                let converted_946: String = value.extract()?;
+                Ok(converted_946)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22054,14 +22970,14 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_918)
+            Some(converted_946)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_919 = (|| -> PyResult<_> {
-                let converted_919: String = value.extract()?;
-                Ok(converted_919)
+            let converted_947 = (|| -> PyResult<_> {
+                let converted_947: String = value.extract()?;
+                Ok(converted_947)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22074,14 +22990,14 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_919)
+            Some(converted_947)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_920 = (|| -> PyResult<_> {
-                let converted_920: i32 = value.extract()?;
-                Ok(converted_920)
+            let converted_948 = (|| -> PyResult<_> {
+                let converted_948: i32 = value.extract()?;
+                Ok(converted_948)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22094,14 +23010,14 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_920)
+            Some(converted_948)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_921 = (|| -> PyResult<_> {
-                let converted_921: String = value.extract()?;
-                Ok(converted_921)
+            let converted_949 = (|| -> PyResult<_> {
+                let converted_949: String = value.extract()?;
+                Ok(converted_949)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22114,7 +23030,7 @@ impl AthenaClient {
                     "ListTableMetadata",
                 )
             })?;
-            Some(converted_921)
+            Some(converted_949)
         } else {
             None
         };
@@ -22162,9 +23078,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_922 = (|| -> PyResult<_> {
-                let converted_922: String = value.extract()?;
-                Ok(converted_922)
+            let converted_950 = (|| -> PyResult<_> {
+                let converted_950: String = value.extract()?;
+                Ok(converted_950)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22177,14 +23093,14 @@ impl AthenaClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_922)
+            Some(converted_950)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_923 = (|| -> PyResult<_> {
-                let converted_923: String = value.extract()?;
-                Ok(converted_923)
+            let converted_951 = (|| -> PyResult<_> {
+                let converted_951: String = value.extract()?;
+                Ok(converted_951)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22197,14 +23113,14 @@ impl AthenaClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_923)
+            Some(converted_951)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_924 = (|| -> PyResult<_> {
-                let converted_924: i32 = value.extract()?;
-                Ok(converted_924)
+            let converted_952 = (|| -> PyResult<_> {
+                let converted_952: i32 = value.extract()?;
+                Ok(converted_952)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22217,7 +23133,7 @@ impl AthenaClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_924)
+            Some(converted_952)
         } else {
             None
         };
@@ -22262,9 +23178,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_925 = (|| -> PyResult<_> {
-                let converted_925: String = value.extract()?;
-                Ok(converted_925)
+            let converted_953 = (|| -> PyResult<_> {
+                let converted_953: String = value.extract()?;
+                Ok(converted_953)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22277,14 +23193,14 @@ impl AthenaClient {
                     "ListWorkGroups",
                 )
             })?;
-            Some(converted_925)
+            Some(converted_953)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_926 = (|| -> PyResult<_> {
-                let converted_926: i32 = value.extract()?;
-                Ok(converted_926)
+            let converted_954 = (|| -> PyResult<_> {
+                let converted_954: i32 = value.extract()?;
+                Ok(converted_954)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22297,7 +23213,7 @@ impl AthenaClient {
                     "ListWorkGroups",
                 )
             })?;
-            Some(converted_926)
+            Some(converted_954)
         } else {
             None
         };
@@ -22337,9 +23253,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let capacity_reservation_name_value =
             if let Some(value) = dict_value(params, "capacity_reservation_name")? {
-                let converted_927 = (|| -> PyResult<_> {
-                    let converted_927: String = value.extract()?;
-                    Ok(converted_927)
+                let converted_955 = (|| -> PyResult<_> {
+                    let converted_955: String = value.extract()?;
+                    Ok(converted_955)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22352,38 +23268,38 @@ impl AthenaClient {
                         "PutCapacityAssignmentConfiguration",
                     )
                 })?;
-                Some(converted_927)
+                Some(converted_955)
             } else {
                 None
             };
         let capacity_assignments_value =
             if let Some(value) = dict_value(params, "capacity_assignments")? {
-                let converted_928 = (|| -> PyResult<_> {
-                    let mut converted_928 =
+                let converted_956 = (|| -> PyResult<_> {
+                    let mut converted_956 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_932, item_result_929) in value.try_iter()?.enumerate() {
-                        let item_930 = item_result_929.map_err(|error| {
+                    for (index_960, item_result_957) in value.try_iter()?.enumerate() {
+                        let item_958 = item_result_957.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_932),
+                                rboto_core::InputPath::Index(index_960),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_931 = (|| -> PyResult<_> {
-                            let converted_item_931 = capacity_assignment_from_py(&item_930)?;
-                            Ok(converted_item_931)
+                        let converted_item_959 = (|| -> PyResult<_> {
+                            let converted_item_959 = capacity_assignment_from_py(&item_958)?;
+                            Ok(converted_item_959)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_932),
+                                rboto_core::InputPath::Index(index_960),
                                 "dict (CapacityAssignment)",
                             )
                         })?;
-                        converted_928.push(converted_item_931);
+                        converted_956.push(converted_item_959);
                     }
-                    Ok(converted_928)
+                    Ok(converted_956)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22396,7 +23312,7 @@ impl AthenaClient {
                         "PutCapacityAssignmentConfiguration",
                     )
                 })?;
-                Some(converted_928)
+                Some(converted_956)
             } else {
                 None
             };
@@ -22438,9 +23354,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_933 = (|| -> PyResult<_> {
-                let converted_933: String = value.extract()?;
-                Ok(converted_933)
+            let converted_961 = (|| -> PyResult<_> {
+                let converted_961: String = value.extract()?;
+                Ok(converted_961)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22453,14 +23369,14 @@ impl AthenaClient {
                     "StartCalculationExecution",
                 )
             })?;
-            Some(converted_933)
+            Some(converted_961)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_934 = (|| -> PyResult<_> {
-                let converted_934: String = value.extract()?;
-                Ok(converted_934)
+            let converted_962 = (|| -> PyResult<_> {
+                let converted_962: String = value.extract()?;
+                Ok(converted_962)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22473,15 +23389,15 @@ impl AthenaClient {
                     "StartCalculationExecution",
                 )
             })?;
-            Some(converted_934)
+            Some(converted_962)
         } else {
             None
         };
         let calculation_configuration_value =
             if let Some(value) = dict_value(params, "calculation_configuration")? {
-                let converted_935 = (|| -> PyResult<_> {
-                    let converted_935 = calculation_configuration_from_py(&value)?;
-                    Ok(converted_935)
+                let converted_963 = (|| -> PyResult<_> {
+                    let converted_963 = calculation_configuration_from_py(&value)?;
+                    Ok(converted_963)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22494,14 +23410,14 @@ impl AthenaClient {
                         "StartCalculationExecution",
                     )
                 })?;
-                Some(converted_935)
+                Some(converted_963)
             } else {
                 None
             };
         let code_block_value = if let Some(value) = dict_value(params, "code_block")? {
-            let converted_936 = (|| -> PyResult<_> {
-                let converted_936: String = value.extract()?;
-                Ok(converted_936)
+            let converted_964 = (|| -> PyResult<_> {
+                let converted_964: String = value.extract()?;
+                Ok(converted_964)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22514,15 +23430,15 @@ impl AthenaClient {
                     "StartCalculationExecution",
                 )
             })?;
-            Some(converted_936)
+            Some(converted_964)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_937 = (|| -> PyResult<_> {
-                    let converted_937: String = value.extract()?;
-                    Ok(converted_937)
+                let converted_965 = (|| -> PyResult<_> {
+                    let converted_965: String = value.extract()?;
+                    Ok(converted_965)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22535,7 +23451,7 @@ impl AthenaClient {
                         "StartCalculationExecution",
                     )
                 })?;
-                Some(converted_937)
+                Some(converted_965)
             } else {
                 None
             };
@@ -22580,9 +23496,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_string_value = if let Some(value) = dict_value(params, "query_string")? {
-            let converted_938 = (|| -> PyResult<_> {
-                let converted_938: String = value.extract()?;
-                Ok(converted_938)
+            let converted_966 = (|| -> PyResult<_> {
+                let converted_966: String = value.extract()?;
+                Ok(converted_966)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22595,15 +23511,15 @@ impl AthenaClient {
                     "StartQueryExecution",
                 )
             })?;
-            Some(converted_938)
+            Some(converted_966)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_939 = (|| -> PyResult<_> {
-                    let converted_939: String = value.extract()?;
-                    Ok(converted_939)
+                let converted_967 = (|| -> PyResult<_> {
+                    let converted_967: String = value.extract()?;
+                    Ok(converted_967)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22616,15 +23532,15 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_939)
+                Some(converted_967)
             } else {
                 None
             };
         let query_execution_context_value =
             if let Some(value) = dict_value(params, "query_execution_context")? {
-                let converted_940 = (|| -> PyResult<_> {
-                    let converted_940 = query_execution_context_from_py(&value)?;
-                    Ok(converted_940)
+                let converted_968 = (|| -> PyResult<_> {
+                    let converted_968 = query_execution_context_from_py(&value)?;
+                    Ok(converted_968)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22637,15 +23553,15 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_940)
+                Some(converted_968)
             } else {
                 None
             };
         let result_configuration_value =
             if let Some(value) = dict_value(params, "result_configuration")? {
-                let converted_941 = (|| -> PyResult<_> {
-                    let converted_941 = result_configuration_from_py(&value)?;
-                    Ok(converted_941)
+                let converted_969 = (|| -> PyResult<_> {
+                    let converted_969 = result_configuration_from_py(&value)?;
+                    Ok(converted_969)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22658,14 +23574,14 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_941)
+                Some(converted_969)
             } else {
                 None
             };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_942 = (|| -> PyResult<_> {
-                let converted_942: String = value.extract()?;
-                Ok(converted_942)
+            let converted_970 = (|| -> PyResult<_> {
+                let converted_970: String = value.extract()?;
+                Ok(converted_970)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22678,38 +23594,38 @@ impl AthenaClient {
                     "StartQueryExecution",
                 )
             })?;
-            Some(converted_942)
+            Some(converted_970)
         } else {
             None
         };
         let execution_parameters_value =
             if let Some(value) = dict_value(params, "execution_parameters")? {
-                let converted_943 = (|| -> PyResult<_> {
-                    let mut converted_943 =
+                let converted_971 = (|| -> PyResult<_> {
+                    let mut converted_971 =
                         Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                    for (index_947, item_result_944) in value.try_iter()?.enumerate() {
-                        let item_945 = item_result_944.map_err(|error| {
+                    for (index_975, item_result_972) in value.try_iter()?.enumerate() {
+                        let item_973 = item_result_972.map_err(|error| {
                             rboto_core::input_rule(
                                 error,
-                                rboto_core::InputPath::Index(index_947),
+                                rboto_core::InputPath::Index(index_975),
                                 "next sequence item",
                                 Some("iteration"),
                             )
                         })?;
-                        let converted_item_946 = (|| -> PyResult<_> {
-                            let converted_item_946: String = item_945.extract()?;
-                            Ok(converted_item_946)
+                        let converted_item_974 = (|| -> PyResult<_> {
+                            let converted_item_974: String = item_973.extract()?;
+                            Ok(converted_item_974)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::Index(index_947),
+                                rboto_core::InputPath::Index(index_975),
                                 "str",
                             )
                         })?;
-                        converted_943.push(converted_item_946);
+                        converted_971.push(converted_item_974);
                     }
-                    Ok(converted_943)
+                    Ok(converted_971)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22722,15 +23638,15 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_943)
+                Some(converted_971)
             } else {
                 None
             };
         let result_reuse_configuration_value =
             if let Some(value) = dict_value(params, "result_reuse_configuration")? {
-                let converted_948 = (|| -> PyResult<_> {
-                    let converted_948 = result_reuse_configuration_from_py(&value)?;
-                    Ok(converted_948)
+                let converted_976 = (|| -> PyResult<_> {
+                    let converted_976 = result_reuse_configuration_from_py(&value)?;
+                    Ok(converted_976)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22743,15 +23659,15 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_948)
+                Some(converted_976)
             } else {
                 None
             };
         let engine_configuration_value =
             if let Some(value) = dict_value(params, "engine_configuration")? {
-                let converted_949 = (|| -> PyResult<_> {
-                    let converted_949 = engine_configuration_from_py(&value)?;
-                    Ok(converted_949)
+                let converted_977 = (|| -> PyResult<_> {
+                    let converted_977 = engine_configuration_from_py(&value)?;
+                    Ok(converted_977)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22764,7 +23680,7 @@ impl AthenaClient {
                         "StartQueryExecution",
                     )
                 })?;
-                Some(converted_949)
+                Some(converted_977)
             } else {
                 None
             };
@@ -22812,9 +23728,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_950 = (|| -> PyResult<_> {
-                let converted_950: String = value.extract()?;
-                Ok(converted_950)
+            let converted_978 = (|| -> PyResult<_> {
+                let converted_978: String = value.extract()?;
+                Ok(converted_978)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22827,14 +23743,14 @@ impl AthenaClient {
                     "StartSession",
                 )
             })?;
-            Some(converted_950)
+            Some(converted_978)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_951 = (|| -> PyResult<_> {
-                let converted_951: String = value.extract()?;
-                Ok(converted_951)
+            let converted_979 = (|| -> PyResult<_> {
+                let converted_979: String = value.extract()?;
+                Ok(converted_979)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22847,15 +23763,15 @@ impl AthenaClient {
                     "StartSession",
                 )
             })?;
-            Some(converted_951)
+            Some(converted_979)
         } else {
             None
         };
         let engine_configuration_value =
             if let Some(value) = dict_value(params, "engine_configuration")? {
-                let converted_952 = (|| -> PyResult<_> {
-                    let converted_952 = engine_configuration_from_py(&value)?;
-                    Ok(converted_952)
+                let converted_980 = (|| -> PyResult<_> {
+                    let converted_980 = engine_configuration_from_py(&value)?;
+                    Ok(converted_980)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22868,14 +23784,14 @@ impl AthenaClient {
                         "StartSession",
                     )
                 })?;
-                Some(converted_952)
+                Some(converted_980)
             } else {
                 None
             };
         let execution_role_value = if let Some(value) = dict_value(params, "execution_role")? {
-            let converted_953 = (|| -> PyResult<_> {
-                let converted_953: String = value.extract()?;
-                Ok(converted_953)
+            let converted_981 = (|| -> PyResult<_> {
+                let converted_981: String = value.extract()?;
+                Ok(converted_981)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22888,15 +23804,15 @@ impl AthenaClient {
                     "StartSession",
                 )
             })?;
-            Some(converted_953)
+            Some(converted_981)
         } else {
             None
         };
         let monitoring_configuration_value =
             if let Some(value) = dict_value(params, "monitoring_configuration")? {
-                let converted_954 = (|| -> PyResult<_> {
-                    let converted_954 = monitoring_configuration_from_py(&value)?;
-                    Ok(converted_954)
+                let converted_982 = (|| -> PyResult<_> {
+                    let converted_982 = monitoring_configuration_from_py(&value)?;
+                    Ok(converted_982)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22909,14 +23825,14 @@ impl AthenaClient {
                         "StartSession",
                     )
                 })?;
-                Some(converted_954)
+                Some(converted_982)
             } else {
                 None
             };
         let notebook_version_value = if let Some(value) = dict_value(params, "notebook_version")? {
-            let converted_955 = (|| -> PyResult<_> {
-                let converted_955: String = value.extract()?;
-                Ok(converted_955)
+            let converted_983 = (|| -> PyResult<_> {
+                let converted_983: String = value.extract()?;
+                Ok(converted_983)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -22929,15 +23845,15 @@ impl AthenaClient {
                     "StartSession",
                 )
             })?;
-            Some(converted_955)
+            Some(converted_983)
         } else {
             None
         };
         let session_idle_timeout_in_minutes_value =
             if let Some(value) = dict_value(params, "session_idle_timeout_in_minutes")? {
-                let converted_956 = (|| -> PyResult<_> {
-                    let converted_956: i32 = value.extract()?;
-                    Ok(converted_956)
+                let converted_984 = (|| -> PyResult<_> {
+                    let converted_984: i32 = value.extract()?;
+                    Ok(converted_984)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22950,15 +23866,15 @@ impl AthenaClient {
                         "StartSession",
                     )
                 })?;
-                Some(converted_956)
+                Some(converted_984)
             } else {
                 None
             };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_957 = (|| -> PyResult<_> {
-                    let converted_957: String = value.extract()?;
-                    Ok(converted_957)
+                let converted_985 = (|| -> PyResult<_> {
+                    let converted_985: String = value.extract()?;
+                    Ok(converted_985)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -22971,37 +23887,37 @@ impl AthenaClient {
                         "StartSession",
                     )
                 })?;
-                Some(converted_957)
+                Some(converted_985)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_958 = (|| -> PyResult<_> {
-                let mut converted_958 =
+            let converted_986 = (|| -> PyResult<_> {
+                let mut converted_986 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_962, item_result_959) in value.try_iter()?.enumerate() {
-                    let item_960 = item_result_959.map_err(|error| {
+                for (index_990, item_result_987) in value.try_iter()?.enumerate() {
+                    let item_988 = item_result_987.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_962),
+                            rboto_core::InputPath::Index(index_990),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_961 = (|| -> PyResult<_> {
-                        let converted_item_961 = tag_from_py(&item_960)?;
-                        Ok(converted_item_961)
+                    let converted_item_989 = (|| -> PyResult<_> {
+                        let converted_item_989 = tag_from_py(&item_988)?;
+                        Ok(converted_item_989)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_962),
+                            rboto_core::InputPath::Index(index_990),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_958.push(converted_item_961);
+                    converted_986.push(converted_item_989);
                 }
-                Ok(converted_958)
+                Ok(converted_986)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23014,15 +23930,15 @@ impl AthenaClient {
                     "StartSession",
                 )
             })?;
-            Some(converted_958)
+            Some(converted_986)
         } else {
             None
         };
         let copy_work_group_tags_value =
             if let Some(value) = dict_value(params, "copy_work_group_tags")? {
-                let converted_963 = (|| -> PyResult<_> {
-                    let converted_963: bool = value.extract()?;
-                    Ok(converted_963)
+                let converted_991 = (|| -> PyResult<_> {
+                    let converted_991: bool = value.extract()?;
+                    Ok(converted_991)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23035,7 +23951,7 @@ impl AthenaClient {
                         "StartSession",
                     )
                 })?;
-                Some(converted_963)
+                Some(converted_991)
             } else {
                 None
             };
@@ -23081,9 +23997,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let calculation_execution_id_value =
             if let Some(value) = dict_value(params, "calculation_execution_id")? {
-                let converted_964 = (|| -> PyResult<_> {
-                    let converted_964: String = value.extract()?;
-                    Ok(converted_964)
+                let converted_992 = (|| -> PyResult<_> {
+                    let converted_992: String = value.extract()?;
+                    Ok(converted_992)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23096,7 +24012,7 @@ impl AthenaClient {
                         "StopCalculationExecution",
                     )
                 })?;
-                Some(converted_964)
+                Some(converted_992)
             } else {
                 None
             };
@@ -23138,9 +24054,9 @@ impl AthenaClient {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let query_execution_id_value =
             if let Some(value) = dict_value(params, "query_execution_id")? {
-                let converted_965 = (|| -> PyResult<_> {
-                    let converted_965: String = value.extract()?;
-                    Ok(converted_965)
+                let converted_993 = (|| -> PyResult<_> {
+                    let converted_993: String = value.extract()?;
+                    Ok(converted_993)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23153,7 +24069,7 @@ impl AthenaClient {
                         "StopQueryExecution",
                     )
                 })?;
-                Some(converted_965)
+                Some(converted_993)
             } else {
                 None
             };
@@ -23194,9 +24110,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_966 = (|| -> PyResult<_> {
-                let converted_966: String = value.extract()?;
-                Ok(converted_966)
+            let converted_994 = (|| -> PyResult<_> {
+                let converted_994: String = value.extract()?;
+                Ok(converted_994)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23209,37 +24125,37 @@ impl AthenaClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_966)
+            Some(converted_994)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_967 = (|| -> PyResult<_> {
-                let mut converted_967 =
+            let converted_995 = (|| -> PyResult<_> {
+                let mut converted_995 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_971, item_result_968) in value.try_iter()?.enumerate() {
-                    let item_969 = item_result_968.map_err(|error| {
+                for (index_999, item_result_996) in value.try_iter()?.enumerate() {
+                    let item_997 = item_result_996.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_971),
+                            rboto_core::InputPath::Index(index_999),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_970 = (|| -> PyResult<_> {
-                        let converted_item_970 = tag_from_py(&item_969)?;
-                        Ok(converted_item_970)
+                    let converted_item_998 = (|| -> PyResult<_> {
+                        let converted_item_998 = tag_from_py(&item_997)?;
+                        Ok(converted_item_998)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_971),
+                            rboto_core::InputPath::Index(index_999),
                             "dict (Tag)",
                         )
                     })?;
-                    converted_967.push(converted_item_970);
+                    converted_995.push(converted_item_998);
                 }
-                Ok(converted_967)
+                Ok(converted_995)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23252,7 +24168,7 @@ impl AthenaClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_967)
+            Some(converted_995)
         } else {
             None
         };
@@ -23289,9 +24205,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_972 = (|| -> PyResult<_> {
-                let converted_972: String = value.extract()?;
-                Ok(converted_972)
+            let converted_1000 = (|| -> PyResult<_> {
+                let converted_1000: String = value.extract()?;
+                Ok(converted_1000)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23304,7 +24220,7 @@ impl AthenaClient {
                     "TerminateSession",
                 )
             })?;
-            Some(converted_972)
+            Some(converted_1000)
         } else {
             None
         };
@@ -23343,9 +24259,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_973 = (|| -> PyResult<_> {
-                let converted_973: String = value.extract()?;
-                Ok(converted_973)
+            let converted_1001 = (|| -> PyResult<_> {
+                let converted_1001: String = value.extract()?;
+                Ok(converted_1001)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23358,37 +24274,37 @@ impl AthenaClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_973)
+            Some(converted_1001)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let converted_974 = (|| -> PyResult<_> {
-                let mut converted_974 =
+            let converted_1002 = (|| -> PyResult<_> {
+                let mut converted_1002 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_978, item_result_975) in value.try_iter()?.enumerate() {
-                    let item_976 = item_result_975.map_err(|error| {
+                for (index_1006, item_result_1003) in value.try_iter()?.enumerate() {
+                    let item_1004 = item_result_1003.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_978),
+                            rboto_core::InputPath::Index(index_1006),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_977 = (|| -> PyResult<_> {
-                        let converted_item_977: String = item_976.extract()?;
-                        Ok(converted_item_977)
+                    let converted_item_1005 = (|| -> PyResult<_> {
+                        let converted_item_1005: String = item_1004.extract()?;
+                        Ok(converted_item_1005)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_978),
+                            rboto_core::InputPath::Index(index_1006),
                             "str",
                         )
                     })?;
-                    converted_974.push(converted_item_977);
+                    converted_1002.push(converted_item_1005);
                 }
-                Ok(converted_974)
+                Ok(converted_1002)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23401,7 +24317,7 @@ impl AthenaClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_974)
+            Some(converted_1002)
         } else {
             None
         };
@@ -23438,9 +24354,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_dpus_value = if let Some(value) = dict_value(params, "target_dpus")? {
-            let converted_979 = (|| -> PyResult<_> {
-                let converted_979: i32 = value.extract()?;
-                Ok(converted_979)
+            let converted_1007 = (|| -> PyResult<_> {
+                let converted_1007: i32 = value.extract()?;
+                Ok(converted_1007)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23453,14 +24369,14 @@ impl AthenaClient {
                     "UpdateCapacityReservation",
                 )
             })?;
-            Some(converted_979)
+            Some(converted_1007)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_980 = (|| -> PyResult<_> {
-                let converted_980: String = value.extract()?;
-                Ok(converted_980)
+            let converted_1008 = (|| -> PyResult<_> {
+                let converted_1008: String = value.extract()?;
+                Ok(converted_1008)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23469,7 +24385,7 @@ impl AthenaClient {
                     "UpdateCapacityReservation",
                 )
             })?;
-            Some(converted_980)
+            Some(converted_1008)
         } else {
             None
         };
@@ -23511,9 +24427,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_981 = (|| -> PyResult<_> {
-                let converted_981: String = value.extract()?;
-                Ok(converted_981)
+            let converted_1009 = (|| -> PyResult<_> {
+                let converted_1009: String = value.extract()?;
+                Ok(converted_1009)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23522,16 +24438,16 @@ impl AthenaClient {
                     "UpdateDataCatalog",
                 )
             })?;
-            Some(converted_981)
+            Some(converted_1009)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let converted_982 = (|| -> PyResult<_> {
-                let enum_value_983: String = value.extract()?;
-                let converted_982 =
-                    aws_sdk_athena::types::DataCatalogType::from(enum_value_983.as_str());
-                Ok(converted_982)
+            let converted_1010 = (|| -> PyResult<_> {
+                let enum_value_1011: String = value.extract()?;
+                let converted_1010 =
+                    aws_sdk_athena::types::DataCatalogType::from(enum_value_1011.as_str());
+                Ok(converted_1010)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23544,14 +24460,14 @@ impl AthenaClient {
                     "UpdateDataCatalog",
                 )
             })?;
-            Some(converted_982)
+            Some(converted_1010)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_984 = (|| -> PyResult<_> {
-                let converted_984: String = value.extract()?;
-                Ok(converted_984)
+            let converted_1012 = (|| -> PyResult<_> {
+                let converted_1012: String = value.extract()?;
+                Ok(converted_1012)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23564,40 +24480,40 @@ impl AthenaClient {
                     "UpdateDataCatalog",
                 )
             })?;
-            Some(converted_984)
+            Some(converted_1012)
         } else {
             None
         };
         let parameters_value = if let Some(value) = dict_value(params, "parameters")? {
-            let converted_985 = (|| -> PyResult<_> {
-                let mapping_986 = value.cast::<PyDict>()?;
-                let mut converted_985 = HashMap::with_capacity(mapping_986.len());
-                for (index_991, (key_987, value_988)) in mapping_986.iter().enumerate() {
-                    let converted_key_989 = (|| -> PyResult<_> {
-                        let converted_key_989: String = key_987.extract()?;
-                        Ok(converted_key_989)
+            let converted_1013 = (|| -> PyResult<_> {
+                let mapping_1014 = value.cast::<PyDict>()?;
+                let mut converted_1013 = HashMap::with_capacity(mapping_1014.len());
+                for (index_1019, (key_1015, value_1016)) in mapping_1014.iter().enumerate() {
+                    let converted_key_1017 = (|| -> PyResult<_> {
+                        let converted_key_1017: String = key_1015.extract()?;
+                        Ok(converted_key_1017)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_991),
+                            rboto_core::InputPath::MapKey(index_1019),
                             "str",
                         )
                     })?;
-                    let converted_value_990 = (|| -> PyResult<_> {
-                        let converted_value_990: String = value_988.extract()?;
-                        Ok(converted_value_990)
+                    let converted_value_1018 = (|| -> PyResult<_> {
+                        let converted_value_1018: String = value_1016.extract()?;
+                        Ok(converted_value_1018)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_991),
+                            rboto_core::InputPath::MapValue(index_1019),
                             "str",
                         )
                     })?;
-                    converted_985.insert(converted_key_989, converted_value_990);
+                    converted_1013.insert(converted_key_1017, converted_value_1018);
                 }
-                Ok(converted_985)
+                Ok(converted_1013)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23610,7 +24526,7 @@ impl AthenaClient {
                     "UpdateDataCatalog",
                 )
             })?;
-            Some(converted_985)
+            Some(converted_1013)
         } else {
             None
         };
@@ -23654,9 +24570,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let named_query_id_value = if let Some(value) = dict_value(params, "named_query_id")? {
-            let converted_992 = (|| -> PyResult<_> {
-                let converted_992: String = value.extract()?;
-                Ok(converted_992)
+            let converted_1020 = (|| -> PyResult<_> {
+                let converted_1020: String = value.extract()?;
+                Ok(converted_1020)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23669,14 +24585,14 @@ impl AthenaClient {
                     "UpdateNamedQuery",
                 )
             })?;
-            Some(converted_992)
+            Some(converted_1020)
         } else {
             None
         };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_993 = (|| -> PyResult<_> {
-                let converted_993: String = value.extract()?;
-                Ok(converted_993)
+            let converted_1021 = (|| -> PyResult<_> {
+                let converted_1021: String = value.extract()?;
+                Ok(converted_1021)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23685,14 +24601,14 @@ impl AthenaClient {
                     "UpdateNamedQuery",
                 )
             })?;
-            Some(converted_993)
+            Some(converted_1021)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_994 = (|| -> PyResult<_> {
-                let converted_994: String = value.extract()?;
-                Ok(converted_994)
+            let converted_1022 = (|| -> PyResult<_> {
+                let converted_1022: String = value.extract()?;
+                Ok(converted_1022)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23705,14 +24621,14 @@ impl AthenaClient {
                     "UpdateNamedQuery",
                 )
             })?;
-            Some(converted_994)
+            Some(converted_1022)
         } else {
             None
         };
         let query_string_value = if let Some(value) = dict_value(params, "query_string")? {
-            let converted_995 = (|| -> PyResult<_> {
-                let converted_995: String = value.extract()?;
-                Ok(converted_995)
+            let converted_1023 = (|| -> PyResult<_> {
+                let converted_1023: String = value.extract()?;
+                Ok(converted_1023)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23725,7 +24641,7 @@ impl AthenaClient {
                     "UpdateNamedQuery",
                 )
             })?;
-            Some(converted_995)
+            Some(converted_1023)
         } else {
             None
         };
@@ -23769,9 +24685,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_996 = (|| -> PyResult<_> {
-                let converted_996: String = value.extract()?;
-                Ok(converted_996)
+            let converted_1024 = (|| -> PyResult<_> {
+                let converted_1024: String = value.extract()?;
+                Ok(converted_1024)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23784,14 +24700,14 @@ impl AthenaClient {
                     "UpdateNotebook",
                 )
             })?;
-            Some(converted_996)
+            Some(converted_1024)
         } else {
             None
         };
         let payload_value = if let Some(value) = dict_value(params, "payload")? {
-            let converted_997 = (|| -> PyResult<_> {
-                let converted_997: String = value.extract()?;
-                Ok(converted_997)
+            let converted_1025 = (|| -> PyResult<_> {
+                let converted_1025: String = value.extract()?;
+                Ok(converted_1025)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23800,16 +24716,16 @@ impl AthenaClient {
                     "UpdateNotebook",
                 )
             })?;
-            Some(converted_997)
+            Some(converted_1025)
         } else {
             None
         };
         let type_value = if let Some(value) = dict_value(params, "type")? {
-            let converted_998 = (|| -> PyResult<_> {
-                let enum_value_999: String = value.extract()?;
-                let converted_998 =
-                    aws_sdk_athena::types::NotebookType::from(enum_value_999.as_str());
-                Ok(converted_998)
+            let converted_1026 = (|| -> PyResult<_> {
+                let enum_value_1027: String = value.extract()?;
+                let converted_1026 =
+                    aws_sdk_athena::types::NotebookType::from(enum_value_1027.as_str());
+                Ok(converted_1026)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23822,14 +24738,14 @@ impl AthenaClient {
                     "UpdateNotebook",
                 )
             })?;
-            Some(converted_998)
+            Some(converted_1026)
         } else {
             None
         };
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_1000 = (|| -> PyResult<_> {
-                let converted_1000: String = value.extract()?;
-                Ok(converted_1000)
+            let converted_1028 = (|| -> PyResult<_> {
+                let converted_1028: String = value.extract()?;
+                Ok(converted_1028)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23842,15 +24758,15 @@ impl AthenaClient {
                     "UpdateNotebook",
                 )
             })?;
-            Some(converted_1000)
+            Some(converted_1028)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_1001 = (|| -> PyResult<_> {
-                    let converted_1001: String = value.extract()?;
-                    Ok(converted_1001)
+                let converted_1029 = (|| -> PyResult<_> {
+                    let converted_1029: String = value.extract()?;
+                    Ok(converted_1029)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23863,7 +24779,7 @@ impl AthenaClient {
                         "UpdateNotebook",
                     )
                 })?;
-                Some(converted_1001)
+                Some(converted_1029)
             } else {
                 None
             };
@@ -23903,9 +24819,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let notebook_id_value = if let Some(value) = dict_value(params, "notebook_id")? {
-            let converted_1002 = (|| -> PyResult<_> {
-                let converted_1002: String = value.extract()?;
-                Ok(converted_1002)
+            let converted_1030 = (|| -> PyResult<_> {
+                let converted_1030: String = value.extract()?;
+                Ok(converted_1030)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23918,15 +24834,15 @@ impl AthenaClient {
                     "UpdateNotebookMetadata",
                 )
             })?;
-            Some(converted_1002)
+            Some(converted_1030)
         } else {
             None
         };
         let client_request_token_value =
             if let Some(value) = dict_value(params, "client_request_token")? {
-                let converted_1003 = (|| -> PyResult<_> {
-                    let converted_1003: String = value.extract()?;
-                    Ok(converted_1003)
+                let converted_1031 = (|| -> PyResult<_> {
+                    let converted_1031: String = value.extract()?;
+                    Ok(converted_1031)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -23939,14 +24855,14 @@ impl AthenaClient {
                         "UpdateNotebookMetadata",
                     )
                 })?;
-                Some(converted_1003)
+                Some(converted_1031)
             } else {
                 None
             };
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_1004 = (|| -> PyResult<_> {
-                let converted_1004: String = value.extract()?;
-                Ok(converted_1004)
+            let converted_1032 = (|| -> PyResult<_> {
+                let converted_1032: String = value.extract()?;
+                Ok(converted_1032)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -23955,7 +24871,7 @@ impl AthenaClient {
                     "UpdateNotebookMetadata",
                 )
             })?;
-            Some(converted_1004)
+            Some(converted_1032)
         } else {
             None
         };
@@ -23998,9 +24914,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_name_value = if let Some(value) = dict_value(params, "statement_name")? {
-            let converted_1005 = (|| -> PyResult<_> {
-                let converted_1005: String = value.extract()?;
-                Ok(converted_1005)
+            let converted_1033 = (|| -> PyResult<_> {
+                let converted_1033: String = value.extract()?;
+                Ok(converted_1033)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24013,14 +24929,14 @@ impl AthenaClient {
                     "UpdatePreparedStatement",
                 )
             })?;
-            Some(converted_1005)
+            Some(converted_1033)
         } else {
             None
         };
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_1006 = (|| -> PyResult<_> {
-                let converted_1006: String = value.extract()?;
-                Ok(converted_1006)
+            let converted_1034 = (|| -> PyResult<_> {
+                let converted_1034: String = value.extract()?;
+                Ok(converted_1034)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24033,14 +24949,14 @@ impl AthenaClient {
                     "UpdatePreparedStatement",
                 )
             })?;
-            Some(converted_1006)
+            Some(converted_1034)
         } else {
             None
         };
         let query_statement_value = if let Some(value) = dict_value(params, "query_statement")? {
-            let converted_1007 = (|| -> PyResult<_> {
-                let converted_1007: String = value.extract()?;
-                Ok(converted_1007)
+            let converted_1035 = (|| -> PyResult<_> {
+                let converted_1035: String = value.extract()?;
+                Ok(converted_1035)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24053,14 +24969,14 @@ impl AthenaClient {
                     "UpdatePreparedStatement",
                 )
             })?;
-            Some(converted_1007)
+            Some(converted_1035)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_1008 = (|| -> PyResult<_> {
-                let converted_1008: String = value.extract()?;
-                Ok(converted_1008)
+            let converted_1036 = (|| -> PyResult<_> {
+                let converted_1036: String = value.extract()?;
+                Ok(converted_1036)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24073,7 +24989,7 @@ impl AthenaClient {
                     "UpdatePreparedStatement",
                 )
             })?;
-            Some(converted_1008)
+            Some(converted_1036)
         } else {
             None
         };
@@ -24109,6 +25025,85 @@ impl AthenaClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn update_system_table_configuration<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let table_name_value = if let Some(value) = dict_value(params, "table_name")? {
+            let converted_1037 = (|| -> PyResult<_> {
+                let enum_value_1038: String = value.extract()?;
+                let converted_1037 =
+                    aws_sdk_athena::types::SystemTableName::from(enum_value_1038.as_str());
+                Ok(converted_1037)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("table_name"),
+                        "str (SystemTableName)",
+                    ),
+                    "athena",
+                    "UpdateSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_1037)
+        } else {
+            None
+        };
+        let kms_key_arn_value = if let Some(value) = dict_value(params, "kms_key_arn")? {
+            let converted_1039 = (|| -> PyResult<_> {
+                let converted_1039: String = value.extract()?;
+                Ok(converted_1039)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("kms_key_arn"),
+                        "str",
+                    ),
+                    "athena",
+                    "UpdateSystemTableConfiguration",
+                )
+            })?;
+            Some(converted_1039)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .update_system_table_configuration()
+                .set_table_name(table_name_value)
+                .set_kms_key_arn(kms_key_arn_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "UpdateSystemTableConfiguration",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationUpdateSystemTableConfigurationOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn update_work_group<'py>(
         &self,
         py: Python<'py>,
@@ -24117,9 +25112,9 @@ impl AthenaClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let work_group_value = if let Some(value) = dict_value(params, "work_group")? {
-            let converted_1009 = (|| -> PyResult<_> {
-                let converted_1009: String = value.extract()?;
-                Ok(converted_1009)
+            let converted_1040 = (|| -> PyResult<_> {
+                let converted_1040: String = value.extract()?;
+                Ok(converted_1040)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24132,14 +25127,14 @@ impl AthenaClient {
                     "UpdateWorkGroup",
                 )
             })?;
-            Some(converted_1009)
+            Some(converted_1040)
         } else {
             None
         };
         let description_value = if let Some(value) = dict_value(params, "description")? {
-            let converted_1010 = (|| -> PyResult<_> {
-                let converted_1010: String = value.extract()?;
-                Ok(converted_1010)
+            let converted_1041 = (|| -> PyResult<_> {
+                let converted_1041: String = value.extract()?;
+                Ok(converted_1041)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24152,15 +25147,15 @@ impl AthenaClient {
                     "UpdateWorkGroup",
                 )
             })?;
-            Some(converted_1010)
+            Some(converted_1041)
         } else {
             None
         };
         let configuration_updates_value =
             if let Some(value) = dict_value(params, "configuration_updates")? {
-                let converted_1011 = (|| -> PyResult<_> {
-                    let converted_1011 = work_group_configuration_updates_from_py(&value)?;
-                    Ok(converted_1011)
+                let converted_1042 = (|| -> PyResult<_> {
+                    let converted_1042 = work_group_configuration_updates_from_py(&value)?;
+                    Ok(converted_1042)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -24173,16 +25168,16 @@ impl AthenaClient {
                         "UpdateWorkGroup",
                     )
                 })?;
-                Some(converted_1011)
+                Some(converted_1042)
             } else {
                 None
             };
         let state_value = if let Some(value) = dict_value(params, "state")? {
-            let converted_1012 = (|| -> PyResult<_> {
-                let enum_value_1013: String = value.extract()?;
-                let converted_1012 =
-                    aws_sdk_athena::types::WorkGroupState::from(enum_value_1013.as_str());
-                Ok(converted_1012)
+            let converted_1043 = (|| -> PyResult<_> {
+                let enum_value_1044: String = value.extract()?;
+                let converted_1043 =
+                    aws_sdk_athena::types::WorkGroupState::from(enum_value_1044.as_str());
+                Ok(converted_1043)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -24195,7 +25190,7 @@ impl AthenaClient {
                     "UpdateWorkGroup",
                 )
             })?;
-            Some(converted_1012)
+            Some(converted_1043)
         } else {
             None
         };

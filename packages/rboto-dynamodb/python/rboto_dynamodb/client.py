@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsOutput, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
+from ._native import DynamoDBClient as NativeClient, BatchExecuteStatementOutput, BatchGetItemOutput, BatchWriteItemOutput, CancelBulkOperationOutput, CreateBackupOutput, CreateGlobalTableOutput, CreateTableOutput, DeleteBackupOutput, DeleteItemOutput, DeleteResourcePolicyOutput, DeleteTableOutput, DescribeBackupOutput, DescribeBulkOperationOutput, DescribeContinuousBackupsOutput, DescribeContributorInsightsOutput, DescribeEndpointsOutput, DescribeExportOutput, DescribeGlobalTableOutput, DescribeGlobalTableSettingsOutput, DescribeImportOutput, DescribeKinesisStreamingDestinationOutput, DescribeLimitsOutput, DescribeTableOutput, DescribeTableReplicaAutoScalingOutput, DescribeTimeToLiveOutput, DisableKinesisStreamingDestinationOutput, EnableKinesisStreamingDestinationOutput, ExecuteStatementOutput, ExecuteTransactionOutput, ExportTableToPointInTimeOutput, GetItemOutput, GetResourcePolicyOutput, ImportTableOutput, ListBackupsOutput, ListBulkOperationsOutput, ListContributorInsightsOutput, ListExportsOutput, ListGlobalTablesOutput, ListImportsOutput, ListTablesOutput, ListTagsOfResourceOutput, PutItemOutput, PutResourcePolicyOutput, QueryOutput, RestoreTableFromBackupOutput, RestoreTableToPointInTimeOutput, ScanOutput, SearchVectorsOutput, StartBulkPutItemsOutput, TransactGetItemsOutput, TransactWriteItemsOutput, UpdateContinuousBackupsOutput, UpdateContributorInsightsOutput, UpdateGlobalTableOutput, UpdateGlobalTableSettingsOutput, UpdateItemOutput, UpdateKinesisStreamingDestinationOutput, UpdateTableOutput, UpdateTableReplicaAutoScalingOutput, UpdateTimeToLiveOutput
 from .types import (
     AttributeDefinition,
     AttributeValue,
@@ -20,6 +20,7 @@ from .types import (
     BackupTypeFilter,
     BatchStatementRequest,
     BillingMode,
+    BulkOperationPerformanceTier,
     Condition,
     ConditionalOperator,
     ContributorInsightsAction,
@@ -39,11 +40,13 @@ from .types import (
     InputCompressionType,
     InputFormat,
     InputFormatOptions,
+    InputS3Configuration,
     KeySchemaElement,
     KeysAndAttributes,
     LocalSecondaryIndex,
     MultiRegionConsistency,
     OnDemandThroughput,
+    OutputS3Configuration,
     ParameterizedStatement,
     PointInTimeRecoverySpecification,
     ProvisionedThroughput,
@@ -229,6 +232,31 @@ class DynamoDBClient:
             )
             return _response
         _response = await self._native.batch_write_item(params)
+        return _response
+
+
+    async def cancel_bulk_operation(
+        self,
+        *,
+        bulk_operation_arn: str,
+    ) -> CancelBulkOperationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/cancel_bulk_operation/)."""
+        params: dict[str, object] = {
+            "bulk_operation_arn": bulk_operation_arn,
+        }
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.cancel_bulk_operation, params, _interceptors,
+                "dynamodb", "CancelBulkOperation", self._region,
+                CancelBulkOperationOutput,
+                ("bulk_operation_arn", ),
+                ("bulk_operation_arn", ),
+                service_name='DynamoDB',
+            )
+            return _response
+        _response = await self._native.cancel_bulk_operation(params)
         return _response
 
 
@@ -516,6 +544,31 @@ class DynamoDBClient:
             )
             return _response
         _response = await self._native.describe_backup(params)
+        return _response
+
+
+    async def describe_bulk_operation(
+        self,
+        *,
+        bulk_operation_arn: str,
+    ) -> DescribeBulkOperationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_bulk_operation/)."""
+        params: dict[str, object] = {
+            "bulk_operation_arn": bulk_operation_arn,
+        }
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.describe_bulk_operation, params, _interceptors,
+                "dynamodb", "DescribeBulkOperation", self._region,
+                DescribeBulkOperationOutput,
+                ("bulk_operation_arn", ),
+                ("bulk_operation_arn", ),
+                service_name='DynamoDB',
+            )
+            return _response
+        _response = await self._native.describe_bulk_operation(params)
         return _response
 
 
@@ -1153,6 +1206,35 @@ class DynamoDBClient:
         return _response
 
 
+    async def list_bulk_operations(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListBulkOperationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/list_bulk_operations/)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_bulk_operations, params, _interceptors,
+                "dynamodb", "ListBulkOperations", self._region,
+                ListBulkOperationsOutput,
+                ("max_results", "next_token", ),
+                (),
+                service_name='DynamoDB',
+            )
+            return _response
+        _response = await self._native.list_bulk_operations(params)
+        return _response
+
+
     async def list_contributor_insights(
         self,
         *,
@@ -1717,6 +1799,44 @@ class DynamoDBClient:
             )
             return _response
         _response = await self._native.search_vectors(params)
+        return _response
+
+
+    async def start_bulk_put_items(
+        self,
+        *,
+        input_s3_configuration: InputS3Configuration,
+        output_s3_configuration: OutputS3Configuration,
+        table_name: str,
+        client_token: str | None = None,
+        max_write_request_units: int | None = None,
+        performance_tier: BulkOperationPerformanceTier | None = None,
+    ) -> StartBulkPutItemsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/start_bulk_put_items/)."""
+        params: dict[str, object] = {
+            "input_s3_configuration": input_s3_configuration,
+            "output_s3_configuration": output_s3_configuration,
+            "table_name": table_name,
+        }
+        if client_token is not None:
+            params["client_token"] = client_token
+        if max_write_request_units is not None:
+            params["max_write_request_units"] = max_write_request_units
+        if performance_tier is not None:
+            params["performance_tier"] = performance_tier
+        _interceptors = operation_interceptors("dynamodb", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_bulk_put_items, params, _interceptors,
+                "dynamodb", "StartBulkPutItems", self._region,
+                StartBulkPutItemsOutput,
+                ("input_s3_configuration", "output_s3_configuration", "table_name", "client_token", "max_write_request_units", "performance_tier", ),
+                ("input_s3_configuration", "output_s3_configuration", "table_name", ),
+                service_name='DynamoDB',
+            )
+            return _response
+        _response = await self._native.start_bulk_put_items(params)
         return _response
 
 

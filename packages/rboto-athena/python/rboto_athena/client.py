@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import AthenaClient as NativeClient, BatchGetNamedQueryOutput, BatchGetPreparedStatementOutput, BatchGetQueryExecutionOutput, CancelCapacityReservationOutput, CreateCapacityReservationOutput, CreateDataCatalogOutput, CreateNamedQueryOutput, CreateNotebookOutput, CreatePreparedStatementOutput, CreatePresignedNotebookUrlOutput, CreateWorkGroupOutput, DeleteCapacityReservationOutput, DeleteDataCatalogOutput, DeleteNamedQueryOutput, DeleteNotebookOutput, DeletePreparedStatementOutput, DeleteWorkGroupOutput, ExportNotebookOutput, GetCalculationExecutionCodeOutput, GetCalculationExecutionOutput, GetCalculationExecutionStatusOutput, GetCapacityAssignmentConfigurationOutput, GetCapacityReservationOutput, GetDataCatalogOutput, GetDatabaseOutput, GetNamedQueryOutput, GetNotebookMetadataOutput, GetPreparedStatementOutput, GetQueryExecutionOutput, GetQueryResultsOutput, GetQueryRuntimeStatisticsOutput, GetResourceDashboardOutput, GetSessionEndpointOutput, GetSessionOutput, GetSessionStatusOutput, GetTableMetadataOutput, GetWorkGroupOutput, ImportNotebookOutput, ListApplicationDPUSizesOutput, ListCalculationExecutionsOutput, ListCapacityReservationsOutput, ListDataCatalogsOutput, ListDatabasesOutput, ListEngineVersionsOutput, ListExecutorsOutput, ListNamedQueriesOutput, ListNotebookMetadataOutput, ListNotebookSessionsOutput, ListPreparedStatementsOutput, ListQueryExecutionsOutput, ListSessionsOutput, ListTableMetadataOutput, ListTagsForResourceOutput, ListWorkGroupsOutput, PutCapacityAssignmentConfigurationOutput, StartCalculationExecutionOutput, StartQueryExecutionOutput, StartSessionOutput, StopCalculationExecutionOutput, StopQueryExecutionOutput, TagResourceOutput, TerminateSessionOutput, UntagResourceOutput, UpdateCapacityReservationOutput, UpdateDataCatalogOutput, UpdateNamedQueryOutput, UpdateNotebookMetadataOutput, UpdateNotebookOutput, UpdatePreparedStatementOutput, UpdateWorkGroupOutput
+from ._native import AthenaClient as NativeClient, BatchGetNamedQueryOutput, BatchGetPreparedStatementOutput, BatchGetQueryExecutionOutput, CancelCapacityReservationOutput, CreateCapacityReservationOutput, CreateDataCatalogOutput, CreateNamedQueryOutput, CreateNotebookOutput, CreatePreparedStatementOutput, CreatePresignedNotebookUrlOutput, CreateSystemTableConfigurationOutput, CreateWorkGroupOutput, DeleteCapacityReservationOutput, DeleteDataCatalogOutput, DeleteNamedQueryOutput, DeleteNotebookOutput, DeletePreparedStatementOutput, DeleteSystemTableConfigurationOutput, DeleteWorkGroupOutput, ExportNotebookOutput, GetCalculationExecutionCodeOutput, GetCalculationExecutionOutput, GetCalculationExecutionStatusOutput, GetCapacityAssignmentConfigurationOutput, GetCapacityReservationOutput, GetDataCatalogOutput, GetDatabaseOutput, GetNamedQueryOutput, GetNotebookMetadataOutput, GetPreparedStatementOutput, GetQueryExecutionOutput, GetQueryResultsOutput, GetQueryRuntimeStatisticsOutput, GetResourceDashboardOutput, GetSessionEndpointOutput, GetSessionOutput, GetSessionStatusOutput, GetSystemTableConfigurationOutput, GetTableMetadataOutput, GetWorkGroupOutput, ImportNotebookOutput, ListApplicationDPUSizesOutput, ListCalculationExecutionsOutput, ListCapacityReservationsOutput, ListDataCatalogsOutput, ListDatabasesOutput, ListEngineVersionsOutput, ListExecutorsOutput, ListNamedQueriesOutput, ListNotebookMetadataOutput, ListNotebookSessionsOutput, ListPreparedStatementsOutput, ListQueryExecutionsOutput, ListSessionsOutput, ListSystemTableStatusesOutput, ListTableMetadataOutput, ListTagsForResourceOutput, ListWorkGroupsOutput, PutCapacityAssignmentConfigurationOutput, StartCalculationExecutionOutput, StartQueryExecutionOutput, StartSessionOutput, StopCalculationExecutionOutput, StopQueryExecutionOutput, TagResourceOutput, TerminateSessionOutput, UntagResourceOutput, UpdateCapacityReservationOutput, UpdateDataCatalogOutput, UpdateNamedQueryOutput, UpdateNotebookMetadataOutput, UpdateNotebookOutput, UpdatePreparedStatementOutput, UpdateSystemTableConfigurationOutput, UpdateWorkGroupOutput
 from .types import (
     CalculationConfiguration,
     CalculationExecutionState,
@@ -27,6 +27,7 @@ from .types import (
     ResultConfiguration,
     ResultReuseConfiguration,
     SessionState,
+    SystemTableName,
     Tag,
     WorkGroupConfiguration,
     WorkGroupConfigurationUpdates,
@@ -386,6 +387,40 @@ class AthenaClient:
         return _response
 
 
+    async def create_system_table_configuration(
+        self,
+        *,
+        table_name: SystemTableName,
+        client_request_token: str | None = None,
+        kms_key_arn: str | None = None,
+        tags: Sequence[Tag] | None = None,
+    ) -> CreateSystemTableConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/create_system_table_configuration/)."""
+        params: dict[str, object] = {
+            "table_name": table_name,
+        }
+        if client_request_token is not None:
+            params["client_request_token"] = client_request_token
+        if kms_key_arn is not None:
+            params["kms_key_arn"] = kms_key_arn
+        if tags is not None:
+            params["tags"] = tags
+        _interceptors = operation_interceptors("athena", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_system_table_configuration, params, _interceptors,
+                "athena", "CreateSystemTableConfiguration", self._region,
+                CreateSystemTableConfigurationOutput,
+                ("table_name", "client_request_token", "kms_key_arn", "tags", ),
+                ("table_name", ),
+                service_name='Athena',
+            )
+            return _response
+        _response = await self._native.create_system_table_configuration(params)
+        return _response
+
+
     async def create_work_group(
         self,
         *,
@@ -547,6 +582,31 @@ class AthenaClient:
             )
             return _response
         _response = await self._native.delete_prepared_statement(params)
+        return _response
+
+
+    async def delete_system_table_configuration(
+        self,
+        *,
+        table_name: SystemTableName,
+    ) -> DeleteSystemTableConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/delete_system_table_configuration/)."""
+        params: dict[str, object] = {
+            "table_name": table_name,
+        }
+        _interceptors = operation_interceptors("athena", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_system_table_configuration, params, _interceptors,
+                "athena", "DeleteSystemTableConfiguration", self._region,
+                DeleteSystemTableConfigurationOutput,
+                ("table_name", ),
+                ("table_name", ),
+                service_name='Athena',
+            )
+            return _response
+        _response = await self._native.delete_system_table_configuration(params)
         return _response
 
 
@@ -1044,6 +1104,31 @@ class AthenaClient:
             )
             return _response
         _response = await self._native.get_session_status(params)
+        return _response
+
+
+    async def get_system_table_configuration(
+        self,
+        *,
+        table_name: SystemTableName,
+    ) -> GetSystemTableConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/get_system_table_configuration/)."""
+        params: dict[str, object] = {
+            "table_name": table_name,
+        }
+        _interceptors = operation_interceptors("athena", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_system_table_configuration, params, _interceptors,
+                "athena", "GetSystemTableConfiguration", self._region,
+                GetSystemTableConfigurationOutput,
+                ("table_name", ),
+                ("table_name", ),
+                service_name='Athena',
+            )
+            return _response
+        _response = await self._native.get_system_table_configuration(params)
         return _response
 
 
@@ -1554,6 +1639,35 @@ class AthenaClient:
             )
             return _response
         _response = await self._native.list_sessions(params)
+        return _response
+
+
+    async def list_system_table_statuses(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> ListSystemTableStatusesOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_system_table_statuses/)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        _interceptors = operation_interceptors("athena", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_system_table_statuses, params, _interceptors,
+                "athena", "ListSystemTableStatuses", self._region,
+                ListSystemTableStatusesOutput,
+                ("next_token", "max_results", ),
+                (),
+                service_name='Athena',
+            )
+            return _response
+        _response = await self._native.list_system_table_statuses(params)
         return _response
 
 
@@ -2132,6 +2246,34 @@ class AthenaClient:
             )
             return _response
         _response = await self._native.update_prepared_statement(params)
+        return _response
+
+
+    async def update_system_table_configuration(
+        self,
+        *,
+        table_name: SystemTableName,
+        kms_key_arn: str | None = None,
+    ) -> UpdateSystemTableConfigurationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/update_system_table_configuration/)."""
+        params: dict[str, object] = {
+            "table_name": table_name,
+        }
+        if kms_key_arn is not None:
+            params["kms_key_arn"] = kms_key_arn
+        _interceptors = operation_interceptors("athena", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_system_table_configuration, params, _interceptors,
+                "athena", "UpdateSystemTableConfiguration", self._region,
+                UpdateSystemTableConfigurationOutput,
+                ("table_name", "kms_key_arn", ),
+                ("table_name", ),
+                service_name='Athena',
+            )
+            return _response
+        _response = await self._native.update_system_table_configuration(params)
         return _response
 
 

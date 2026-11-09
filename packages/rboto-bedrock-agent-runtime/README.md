@@ -257,6 +257,7 @@ async def get_document_content(
     knowledge_base_id: str,
     data_source_id: str,
     document_id: str,
+    media_id: str | None = None,
     output_format: DocumentOutputFormat | None = None,
     user_context: UserContext | None = None,
 ) -> GetDocumentContentOutput: ...

@@ -8,6 +8,7 @@ from rboto._waiters import Acceptor as _Acceptor, WaiterSpec as _WaiterSpec, wai
 from rboto.waiters import WaiterConfig
 
 from ._native import (
+    DescribeBulkOperationOutput,
     DescribeContributorInsightsOutput,
     DescribeExportOutput,
     DescribeImportOutput,
@@ -21,6 +22,7 @@ if TYPE_CHECKING:
 
 class DynamoDBClientWaiters:
     names: tuple[str, ...] = (
+        "bulk_operation_completed",
         "contributor_insights_enabled",
         "export_completed",
         "import_completed",
@@ -31,6 +33,53 @@ class DynamoDBClientWaiters:
 
     def __init__(self, client: _Client) -> None:
         self._client = client
+
+
+    async def bulk_operation_completed(
+        self,
+        *,
+        bulk_operation_arn: str,
+        waiter_config: WaiterConfig | None = None,
+    ) -> DescribeBulkOperationOutput:
+        """Wait using describe_bulk_operation. See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_bulk_operation/#waiters)."""
+        params: dict[str, object] = {
+            "bulk_operation_arn": bulk_operation_arn,
+        }
+        result = await _wait(
+            self._client.describe_bulk_operation, params,
+            _WaiterSpec(
+                name="dynamodb.bulk_operation_completed",
+                delay=20,
+                acceptors=(
+                    _Acceptor(
+                        state='success', matcher='output',
+                        expected='COMPLETED',
+                        expression=('subexpression', None, (('field', 'bulk_operation_description', ()), ('field', 'bulk_operation_status', ()))),
+                        comparator='stringEquals',
+                    ),
+                    _Acceptor(
+                        state='success', matcher='output',
+                        expected='COMPLETED_WITH_ERRORS',
+                        expression=('subexpression', None, (('field', 'bulk_operation_description', ()), ('field', 'bulk_operation_status', ()))),
+                        comparator='stringEquals',
+                    ),
+                    _Acceptor(
+                        state='failure', matcher='output',
+                        expected='CANCELLED',
+                        expression=('subexpression', None, (('field', 'bulk_operation_description', ()), ('field', 'bulk_operation_status', ()))),
+                        comparator='stringEquals',
+                    ),
+                    _Acceptor(
+                        state='failure', matcher='output',
+                        expected='FAILED',
+                        expression=('subexpression', None, (('field', 'bulk_operation_description', ()), ('field', 'bulk_operation_status', ()))),
+                        comparator='stringEquals',
+                    ),
+                ),
+            ),
+            waiter_config,
+        )
+        return cast(DescribeBulkOperationOutput, result)
 
 
     async def contributor_insights_enabled(

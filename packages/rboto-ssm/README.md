@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Systems Manager**,
 powered by Rust. This package contains `SSMClient` and
-**152 operations**.
+**154 operations**.
 
 ## Installation
 
@@ -130,6 +130,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_patch_baseline`](#delete_patch_baseline) | <code>baseline_id: str</code> | <code>DeletePatchBaselineOutput</code> |
 | [`delete_resource_data_sync`](#delete_resource_data_sync) | <code>sync_name: str</code> | <code>DeleteResourceDataSyncOutput</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code>, <code>policy_id: str</code>, <code>policy_hash: str</code> | <code>DeleteResourcePolicyOutput</code> |
+| [`deregister_default_host_management_configuration`](#deregister_default_host_management_configuration) | None | <code>DeregisterDefaultHostManagementConfigurationOutput</code> |
 | [`deregister_managed_instance`](#deregister_managed_instance) | <code>instance_id: str</code> | <code>DeregisterManagedInstanceOutput</code> |
 | [`deregister_patch_baseline_for_patch_group`](#deregister_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>DeregisterPatchBaselineForPatchGroupOutput</code> |
 | [`deregister_target_from_maintenance_window`](#deregister_target_from_maintenance_window) | <code>window_id: str</code>, <code>window_target_id: str</code> | <code>DeregisterTargetFromMaintenanceWindowOutput</code> |
@@ -221,6 +222,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_inventory`](#put_inventory) | <code>instance_id: str</code>, <code>items: Sequence[InventoryItem]</code> | <code>PutInventoryOutput</code> |
 | [`put_parameter`](#put_parameter) | <code>name: str</code>, <code>value: str</code> | <code>PutParameterOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`register_default_host_management_configuration`](#register_default_host_management_configuration) | <code>permission_model: DHMCPermissionModel</code> | <code>RegisterDefaultHostManagementConfigurationOutput</code> |
 | [`register_default_patch_baseline`](#register_default_patch_baseline) | <code>baseline_id: str</code> | <code>RegisterDefaultPatchBaselineOutput</code> |
 | [`register_patch_baseline_for_patch_group`](#register_patch_baseline_for_patch_group) | <code>baseline_id: str</code>, <code>patch_group: str</code> | <code>RegisterPatchBaselineForPatchGroupOutput</code> |
 | [`register_target_with_maintenance_window`](#register_target_with_maintenance_window) | <code>window_id: str</code>, <code>resource_type: MaintenanceWindowResourceType</code>, <code>targets: Sequence[Target]</code> | <code>RegisterTargetWithMaintenanceWindowOutput</code> |
@@ -629,6 +631,13 @@ async def delete_resource_policy(
     policy_hash: str,
     deletion_mode: DeletionMode | None = None,
 ) -> DeleteResourcePolicyOutput: ...
+```
+
+
+### deregister_default_host_management_configuration
+
+```python
+async def deregister_default_host_management_configuration() -> DeregisterDefaultHostManagementConfigurationOutput: ...
 ```
 
 
@@ -1908,6 +1917,18 @@ async def put_resource_policy(
     policy_id: str | None = None,
     policy_hash: str | None = None,
 ) -> PutResourcePolicyOutput: ...
+```
+
+
+### register_default_host_management_configuration
+
+```python
+async def register_default_host_management_configuration(
+    *,
+    permission_model: DHMCPermissionModel,
+    role_arn: str | None = None,
+    overwrite: bool | None = None,
+) -> RegisterDefaultHostManagementConfigurationOutput: ...
 ```
 
 

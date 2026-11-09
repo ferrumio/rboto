@@ -1273,8 +1273,8 @@ impl PyLexicon {
     #[getter]
     fn content(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content {
-            let converted_214 = (value).as_str().into_py_any(py)?;
-            Ok(converted_214)
+            let converted_236 = (value).as_str().into_py_any(py)?;
+            Ok(converted_236)
         } else {
             Ok(py.None())
         }
@@ -1283,8 +1283,8 @@ impl PyLexicon {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_215 = (value).as_str().into_py_any(py)?;
-            Ok(converted_215)
+            let converted_237 = (value).as_str().into_py_any(py)?;
+            Ok(converted_237)
         } else {
             Ok(py.None())
         }
@@ -1305,8 +1305,8 @@ impl PyLexiconAttributes {
     #[getter]
     fn alphabet(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.alphabet {
-            let converted_216 = (value).as_str().into_py_any(py)?;
-            Ok(converted_216)
+            let converted_238 = (value).as_str().into_py_any(py)?;
+            Ok(converted_238)
         } else {
             Ok(py.None())
         }
@@ -1315,8 +1315,8 @@ impl PyLexiconAttributes {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_217 = (value).as_str().into_py_any(py)?;
-            Ok(converted_217)
+            let converted_239 = (value).as_str().into_py_any(py)?;
+            Ok(converted_239)
         } else {
             Ok(py.None())
         }
@@ -1325,8 +1325,8 @@ impl PyLexiconAttributes {
     #[getter]
     fn last_modified(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.last_modified {
-            let converted_218 = (value).to_string().into_py_any(py)?;
-            Ok(converted_218)
+            let converted_240 = (value).to_string().into_py_any(py)?;
+            Ok(converted_240)
         } else {
             Ok(py.None())
         }
@@ -1335,8 +1335,8 @@ impl PyLexiconAttributes {
     #[getter]
     fn lexicon_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon_arn {
-            let converted_219 = (value).as_str().into_py_any(py)?;
-            Ok(converted_219)
+            let converted_241 = (value).as_str().into_py_any(py)?;
+            Ok(converted_241)
         } else {
             Ok(py.None())
         }
@@ -1344,14 +1344,14 @@ impl PyLexiconAttributes {
 
     #[getter]
     fn lexemes_count(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_220 = (&self.inner.lexemes_count).to_owned().into_py_any(py)?;
-        Ok(converted_220)
+        let converted_242 = (&self.inner.lexemes_count).to_owned().into_py_any(py)?;
+        Ok(converted_242)
     }
 
     #[getter]
     fn size(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_221 = (&self.inner.size).to_owned().into_py_any(py)?;
-        Ok(converted_221)
+        let converted_243 = (&self.inner.size).to_owned().into_py_any(py)?;
+        Ok(converted_243)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -1381,14 +1381,14 @@ fn lexicon_description_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.name {
-        let converted_224 = (value).as_str().into_py_any(py)?;
-        result.set_item("name", converted_224)?;
+        let converted_246 = (value).as_str().into_py_any(py)?;
+        result.set_item("name", converted_246)?;
     } else {
         result.set_item("name", py.None())?;
     }
     if let Some(value) = &value.attributes {
-        let converted_225 = lexicon_attributes_to_py(py, value)?;
-        result.set_item("attributes", converted_225)?;
+        let converted_247 = lexicon_attributes_to_py(py, value)?;
+        result.set_item("attributes", converted_247)?;
     } else {
         result.set_item("attributes", py.None())?;
     }
@@ -1405,8 +1405,8 @@ impl PyLexiconDescription {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_222 = (value).as_str().into_py_any(py)?;
-            Ok(converted_222)
+            let converted_244 = (value).as_str().into_py_any(py)?;
+            Ok(converted_244)
         } else {
             Ok(py.None())
         }
@@ -1415,14 +1415,14 @@ impl PyLexiconDescription {
     #[getter]
     fn attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.attributes {
-            let converted_223 = Py::new(
+            let converted_245 = Py::new(
                 py,
                 PyLexiconAttributes {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_223)
+            Ok(converted_245)
         } else {
             Ok(py.None())
         }
@@ -1443,8 +1443,8 @@ impl PySynthesisTask {
     #[getter]
     fn engine(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.engine {
-            let converted_226 = (value).as_str().into_py_any(py)?;
-            Ok(converted_226)
+            let converted_248 = (value).as_str().into_py_any(py)?;
+            Ok(converted_248)
         } else {
             Ok(py.None())
         }
@@ -1453,8 +1453,8 @@ impl PySynthesisTask {
     #[getter]
     fn task_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_id {
-            let converted_227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_227)
+            let converted_249 = (value).as_str().into_py_any(py)?;
+            Ok(converted_249)
         } else {
             Ok(py.None())
         }
@@ -1463,8 +1463,8 @@ impl PySynthesisTask {
     #[getter]
     fn task_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_status {
-            let converted_228 = (value).as_str().into_py_any(py)?;
-            Ok(converted_228)
+            let converted_250 = (value).as_str().into_py_any(py)?;
+            Ok(converted_250)
         } else {
             Ok(py.None())
         }
@@ -1473,8 +1473,8 @@ impl PySynthesisTask {
     #[getter]
     fn task_status_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.task_status_reason {
-            let converted_229 = (value).as_str().into_py_any(py)?;
-            Ok(converted_229)
+            let converted_251 = (value).as_str().into_py_any(py)?;
+            Ok(converted_251)
         } else {
             Ok(py.None())
         }
@@ -1483,8 +1483,8 @@ impl PySynthesisTask {
     #[getter]
     fn output_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_uri {
-            let converted_230 = (value).as_str().into_py_any(py)?;
-            Ok(converted_230)
+            let converted_252 = (value).as_str().into_py_any(py)?;
+            Ok(converted_252)
         } else {
             Ok(py.None())
         }
@@ -1493,8 +1493,8 @@ impl PySynthesisTask {
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_231 = (value).to_string().into_py_any(py)?;
-            Ok(converted_231)
+            let converted_253 = (value).to_string().into_py_any(py)?;
+            Ok(converted_253)
         } else {
             Ok(py.None())
         }
@@ -1502,17 +1502,17 @@ impl PySynthesisTask {
 
     #[getter]
     fn request_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_232 = (&self.inner.request_characters)
+        let converted_254 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_232)
+        Ok(converted_254)
     }
 
     #[getter]
     fn sns_topic_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sns_topic_arn {
-            let converted_233 = (value).as_str().into_py_any(py)?;
-            Ok(converted_233)
+            let converted_255 = (value).as_str().into_py_any(py)?;
+            Ok(converted_255)
         } else {
             Ok(py.None())
         }
@@ -1521,13 +1521,13 @@ impl PySynthesisTask {
     #[getter]
     fn lexicon_names(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon_names {
-            let converted_234_list = PyList::empty(py);
-            for item_235 in value {
-                let converted_item_236 = (item_235).as_str().into_py_any(py)?;
-                converted_234_list.append(converted_item_236)?;
+            let converted_256_list = PyList::empty(py);
+            for item_257 in value {
+                let converted_item_258 = (item_257).as_str().into_py_any(py)?;
+                converted_256_list.append(converted_item_258)?;
             }
-            let converted_234 = converted_234_list.into_any().unbind();
-            Ok(converted_234)
+            let converted_256 = converted_256_list.into_any().unbind();
+            Ok(converted_256)
         } else {
             Ok(py.None())
         }
@@ -1536,8 +1536,8 @@ impl PySynthesisTask {
     #[getter]
     fn output_format(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_format {
-            let converted_237 = (value).as_str().into_py_any(py)?;
-            Ok(converted_237)
+            let converted_259 = (value).as_str().into_py_any(py)?;
+            Ok(converted_259)
         } else {
             Ok(py.None())
         }
@@ -1546,8 +1546,8 @@ impl PySynthesisTask {
     #[getter]
     fn sample_rate(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sample_rate {
-            let converted_238 = (value).as_str().into_py_any(py)?;
-            Ok(converted_238)
+            let converted_260 = (value).as_str().into_py_any(py)?;
+            Ok(converted_260)
         } else {
             Ok(py.None())
         }
@@ -1556,13 +1556,13 @@ impl PySynthesisTask {
     #[getter]
     fn speech_mark_types(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.speech_mark_types {
-            let converted_239_list = PyList::empty(py);
-            for item_240 in value {
-                let converted_item_241 = (item_240).as_str().into_py_any(py)?;
-                converted_239_list.append(converted_item_241)?;
+            let converted_261_list = PyList::empty(py);
+            for item_262 in value {
+                let converted_item_263 = (item_262).as_str().into_py_any(py)?;
+                converted_261_list.append(converted_item_263)?;
             }
-            let converted_239 = converted_239_list.into_any().unbind();
-            Ok(converted_239)
+            let converted_261 = converted_261_list.into_any().unbind();
+            Ok(converted_261)
         } else {
             Ok(py.None())
         }
@@ -1571,8 +1571,8 @@ impl PySynthesisTask {
     #[getter]
     fn text_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.text_type {
-            let converted_242 = (value).as_str().into_py_any(py)?;
-            Ok(converted_242)
+            let converted_264 = (value).as_str().into_py_any(py)?;
+            Ok(converted_264)
         } else {
             Ok(py.None())
         }
@@ -1581,8 +1581,8 @@ impl PySynthesisTask {
     #[getter]
     fn voice_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.voice_id {
-            let converted_243 = (value).as_str().into_py_any(py)?;
-            Ok(converted_243)
+            let converted_265 = (value).as_str().into_py_any(py)?;
+            Ok(converted_265)
         } else {
             Ok(py.None())
         }
@@ -1591,8 +1591,8 @@ impl PySynthesisTask {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_244 = (value).as_str().into_py_any(py)?;
-            Ok(converted_244)
+            let converted_266 = (value).as_str().into_py_any(py)?;
+            Ok(converted_266)
         } else {
             Ok(py.None())
         }
@@ -1613,8 +1613,8 @@ impl PyVoice {
     #[getter]
     fn gender(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.gender {
-            let converted_245 = (value).as_str().into_py_any(py)?;
-            Ok(converted_245)
+            let converted_267 = (value).as_str().into_py_any(py)?;
+            Ok(converted_267)
         } else {
             Ok(py.None())
         }
@@ -1623,8 +1623,8 @@ impl PyVoice {
     #[getter]
     fn id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id {
-            let converted_246 = (value).as_str().into_py_any(py)?;
-            Ok(converted_246)
+            let converted_268 = (value).as_str().into_py_any(py)?;
+            Ok(converted_268)
         } else {
             Ok(py.None())
         }
@@ -1633,8 +1633,8 @@ impl PyVoice {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_247 = (value).as_str().into_py_any(py)?;
-            Ok(converted_247)
+            let converted_269 = (value).as_str().into_py_any(py)?;
+            Ok(converted_269)
         } else {
             Ok(py.None())
         }
@@ -1643,8 +1643,8 @@ impl PyVoice {
     #[getter]
     fn language_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_name {
-            let converted_248 = (value).as_str().into_py_any(py)?;
-            Ok(converted_248)
+            let converted_270 = (value).as_str().into_py_any(py)?;
+            Ok(converted_270)
         } else {
             Ok(py.None())
         }
@@ -1653,8 +1653,8 @@ impl PyVoice {
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.name {
-            let converted_249 = (value).as_str().into_py_any(py)?;
-            Ok(converted_249)
+            let converted_271 = (value).as_str().into_py_any(py)?;
+            Ok(converted_271)
         } else {
             Ok(py.None())
         }
@@ -1663,13 +1663,13 @@ impl PyVoice {
     #[getter]
     fn additional_language_codes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.additional_language_codes {
-            let converted_250_list = PyList::empty(py);
-            for item_251 in value {
-                let converted_item_252 = (item_251).as_str().into_py_any(py)?;
-                converted_250_list.append(converted_item_252)?;
+            let converted_272_list = PyList::empty(py);
+            for item_273 in value {
+                let converted_item_274 = (item_273).as_str().into_py_any(py)?;
+                converted_272_list.append(converted_item_274)?;
             }
-            let converted_250 = converted_250_list.into_any().unbind();
-            Ok(converted_250)
+            let converted_272 = converted_272_list.into_any().unbind();
+            Ok(converted_272)
         } else {
             Ok(py.None())
         }
@@ -1678,13 +1678,13 @@ impl PyVoice {
     #[getter]
     fn supported_engines(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.supported_engines {
-            let converted_253_list = PyList::empty(py);
-            for item_254 in value {
-                let converted_item_255 = (item_254).as_str().into_py_any(py)?;
-                converted_253_list.append(converted_item_255)?;
+            let converted_275_list = PyList::empty(py);
+            for item_276 in value {
+                let converted_item_277 = (item_276).as_str().into_py_any(py)?;
+                converted_275_list.append(converted_item_277)?;
             }
-            let converted_253 = converted_253_list.into_any().unbind();
-            Ok(converted_253)
+            let converted_275 = converted_275_list.into_any().unbind();
+            Ok(converted_275)
         } else {
             Ok(py.None())
         }
@@ -1723,7 +1723,7 @@ impl From<aws_sdk_polly::operation::describe_voices::DescribeVoicesOutput>
             voices: value.voices.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_260| Arc::new(owned_260))
+                    .map(|owned_282| Arc::new(owned_282))
                     .collect()
             }),
             next_token: value.next_token,
@@ -1741,19 +1741,19 @@ impl PyOperationDescribeVoicesOutput {
     #[getter]
     fn voices(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.voices {
-            let converted_256_list = PyList::empty(py);
-            for item_257 in value {
-                let converted_item_258 = Py::new(
+            let converted_278_list = PyList::empty(py);
+            for item_279 in value {
+                let converted_item_280 = Py::new(
                     py,
                     PyVoice {
-                        inner: Arc::clone(item_257),
+                        inner: Arc::clone(item_279),
                     },
                 )?
                 .into_any();
-                converted_256_list.append(converted_item_258)?;
+                converted_278_list.append(converted_item_280)?;
             }
-            let converted_256 = converted_256_list.into_any().unbind();
-            Ok(converted_256)
+            let converted_278 = converted_278_list.into_any().unbind();
+            Ok(converted_278)
         } else {
             Ok(py.None())
         }
@@ -1762,8 +1762,8 @@ impl PyOperationDescribeVoicesOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_259 = (value).as_str().into_py_any(py)?;
-            Ok(converted_259)
+            let converted_281 = (value).as_str().into_py_any(py)?;
+            Ok(converted_281)
         } else {
             Ok(py.None())
         }
@@ -1772,19 +1772,19 @@ impl PyOperationDescribeVoicesOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.voices {
-            let converted_261_list = PyList::empty(py);
-            for item_262 in value {
-                let converted_item_263 = voice_to_py(py, item_262)?;
-                converted_261_list.append(converted_item_263)?;
+            let converted_283_list = PyList::empty(py);
+            for item_284 in value {
+                let converted_item_285 = voice_to_py(py, item_284)?;
+                converted_283_list.append(converted_item_285)?;
             }
-            let converted_261 = converted_261_list.into_any().unbind();
-            result.set_item("voices", converted_261)?;
+            let converted_283 = converted_283_list.into_any().unbind();
+            result.set_item("voices", converted_283)?;
         } else {
             result.set_item("voices", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_264 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_264)?;
+            let converted_286 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_286)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1820,14 +1820,14 @@ impl PyOperationGetLexiconOutput {
     #[getter]
     fn lexicon(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon {
-            let converted_265 = Py::new(
+            let converted_287 = Py::new(
                 py,
                 PyLexicon {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_265)
+            Ok(converted_287)
         } else {
             Ok(py.None())
         }
@@ -1836,14 +1836,14 @@ impl PyOperationGetLexiconOutput {
     #[getter]
     fn lexicon_attributes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicon_attributes {
-            let converted_266 = Py::new(
+            let converted_288 = Py::new(
                 py,
                 PyLexiconAttributes {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_266)
+            Ok(converted_288)
         } else {
             Ok(py.None())
         }
@@ -1852,14 +1852,14 @@ impl PyOperationGetLexiconOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.lexicon {
-            let converted_267 = lexicon_to_py(py, value)?;
-            result.set_item("lexicon", converted_267)?;
+            let converted_289 = lexicon_to_py(py, value)?;
+            result.set_item("lexicon", converted_289)?;
         } else {
             result.set_item("lexicon", py.None())?;
         }
         if let Some(value) = &self.inner.lexicon_attributes {
-            let converted_268 = lexicon_attributes_to_py(py, value)?;
-            result.set_item("lexicon_attributes", converted_268)?;
+            let converted_290 = lexicon_attributes_to_py(py, value)?;
+            result.set_item("lexicon_attributes", converted_290)?;
         } else {
             result.set_item("lexicon_attributes", py.None())?;
         }
@@ -1899,14 +1899,14 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
     #[getter]
     fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_269 = Py::new(
+            let converted_291 = Py::new(
                 py,
                 PySynthesisTask {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_269)
+            Ok(converted_291)
         } else {
             Ok(py.None())
         }
@@ -1915,8 +1915,8 @@ impl PyOperationGetSpeechSynthesisTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_270 = synthesis_task_to_py(py, value)?;
-            result.set_item("synthesis_task", converted_270)?;
+            let converted_292 = synthesis_task_to_py(py, value)?;
+            result.set_item("synthesis_task", converted_292)?;
         } else {
             result.set_item("synthesis_task", py.None())?;
         }
@@ -1939,7 +1939,7 @@ impl From<aws_sdk_polly::operation::list_lexicons::ListLexiconsOutput>
             lexicons: value.lexicons.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_275| Arc::new(SharedLexiconDescription::from(owned_275)))
+                    .map(|owned_297| Arc::new(SharedLexiconDescription::from(owned_297)))
                     .collect()
             }),
             next_token: value.next_token,
@@ -1957,19 +1957,19 @@ impl PyOperationListLexiconsOutput {
     #[getter]
     fn lexicons(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.lexicons {
-            let converted_271_list = PyList::empty(py);
-            for item_272 in value {
-                let converted_item_273 = Py::new(
+            let converted_293_list = PyList::empty(py);
+            for item_294 in value {
+                let converted_item_295 = Py::new(
                     py,
                     PyLexiconDescription {
-                        inner: Arc::clone(item_272),
+                        inner: Arc::clone(item_294),
                     },
                 )?
                 .into_any();
-                converted_271_list.append(converted_item_273)?;
+                converted_293_list.append(converted_item_295)?;
             }
-            let converted_271 = converted_271_list.into_any().unbind();
-            Ok(converted_271)
+            let converted_293 = converted_293_list.into_any().unbind();
+            Ok(converted_293)
         } else {
             Ok(py.None())
         }
@@ -1978,8 +1978,8 @@ impl PyOperationListLexiconsOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_274 = (value).as_str().into_py_any(py)?;
-            Ok(converted_274)
+            let converted_296 = (value).as_str().into_py_any(py)?;
+            Ok(converted_296)
         } else {
             Ok(py.None())
         }
@@ -1988,19 +1988,19 @@ impl PyOperationListLexiconsOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.lexicons {
-            let converted_276_list = PyList::empty(py);
-            for item_277 in value {
-                let converted_item_278 = lexicon_description_shared_to_py(py, item_277)?;
-                converted_276_list.append(converted_item_278)?;
+            let converted_298_list = PyList::empty(py);
+            for item_299 in value {
+                let converted_item_300 = lexicon_description_shared_to_py(py, item_299)?;
+                converted_298_list.append(converted_item_300)?;
             }
-            let converted_276 = converted_276_list.into_any().unbind();
-            result.set_item("lexicons", converted_276)?;
+            let converted_298 = converted_298_list.into_any().unbind();
+            result.set_item("lexicons", converted_298)?;
         } else {
             result.set_item("lexicons", py.None())?;
         }
         if let Some(value) = &self.inner.next_token {
-            let converted_279 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_279)?;
+            let converted_301 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_301)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -2026,7 +2026,7 @@ impl From<aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynth
             synthesis_tasks: value.synthesis_tasks.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_284| Arc::new(owned_284))
+                    .map(|owned_306| Arc::new(owned_306))
                     .collect()
             }),
         }
@@ -2047,8 +2047,8 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_280 = (value).as_str().into_py_any(py)?;
-            Ok(converted_280)
+            let converted_302 = (value).as_str().into_py_any(py)?;
+            Ok(converted_302)
         } else {
             Ok(py.None())
         }
@@ -2057,19 +2057,19 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     #[getter]
     fn synthesis_tasks(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_tasks {
-            let converted_281_list = PyList::empty(py);
-            for item_282 in value {
-                let converted_item_283 = Py::new(
+            let converted_303_list = PyList::empty(py);
+            for item_304 in value {
+                let converted_item_305 = Py::new(
                     py,
                     PySynthesisTask {
-                        inner: Arc::clone(item_282),
+                        inner: Arc::clone(item_304),
                     },
                 )?
                 .into_any();
-                converted_281_list.append(converted_item_283)?;
+                converted_303_list.append(converted_item_305)?;
             }
-            let converted_281 = converted_281_list.into_any().unbind();
-            Ok(converted_281)
+            let converted_303 = converted_303_list.into_any().unbind();
+            Ok(converted_303)
         } else {
             Ok(py.None())
         }
@@ -2078,21 +2078,66 @@ impl PyOperationListSpeechSynthesisTasksOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.next_token {
-            let converted_285 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_285)?;
+            let converted_307 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_307)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
         if let Some(value) = &self.inner.synthesis_tasks {
-            let converted_286_list = PyList::empty(py);
-            for item_287 in value {
-                let converted_item_288 = synthesis_task_to_py(py, item_287)?;
-                converted_286_list.append(converted_item_288)?;
+            let converted_308_list = PyList::empty(py);
+            for item_309 in value {
+                let converted_item_310 = synthesis_task_to_py(py, item_309)?;
+                converted_308_list.append(converted_item_310)?;
             }
-            let converted_286 = converted_286_list.into_any().unbind();
-            result.set_item("synthesis_tasks", converted_286)?;
+            let converted_308 = converted_308_list.into_any().unbind();
+            result.set_item("synthesis_tasks", converted_308)?;
         } else {
             result.set_item("synthesis_tasks", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "ListTagsForResourceOutput",
+    module = "rboto_polly._native",
+    frozen
+)]
+struct PyOperationListTagsForResourceOutput {
+    inner: aws_sdk_polly::operation::list_tags_for_resource::ListTagsForResourceOutput,
+}
+
+#[pymethods]
+impl PyOperationListTagsForResourceOutput {
+    #[getter]
+    fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.tags {
+            let converted_311_dict = PyDict::new(py);
+            for (key_312, value_313) in value {
+                let converted_key_314 = (key_312).as_str().into_py_any(py)?;
+                let converted_value_315 = (value_313).as_str().into_py_any(py)?;
+                converted_311_dict.set_item(converted_key_314, converted_value_315)?;
+            }
+            let converted_311 = converted_311_dict.into_any().unbind();
+            Ok(converted_311)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        if let Some(value) = &self.inner.tags {
+            let converted_316_dict = PyDict::new(py);
+            for (key_317, value_318) in value {
+                let converted_key_319 = (key_317).as_str().into_py_any(py)?;
+                let converted_value_320 = (value_318).as_str().into_py_any(py)?;
+                converted_316_dict.set_item(converted_key_319, converted_value_320)?;
+            }
+            let converted_316 = converted_316_dict.into_any().unbind();
+            result.set_item("tags", converted_316)?;
+        } else {
+            result.set_item("tags", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -2143,14 +2188,14 @@ impl PyOperationStartSpeechSynthesisTaskOutput {
     #[getter]
     fn synthesis_task(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_289 = Py::new(
+            let converted_321 = Py::new(
                 py,
                 PySynthesisTask {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_289)
+            Ok(converted_321)
         } else {
             Ok(py.None())
         }
@@ -2159,8 +2204,8 @@ impl PyOperationStartSpeechSynthesisTaskOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.synthesis_task {
-            let converted_290 = synthesis_task_to_py(py, value)?;
-            result.set_item("synthesis_task", converted_290)?;
+            let converted_322 = synthesis_task_to_py(py, value)?;
+            result.set_item("synthesis_task", converted_322)?;
         } else {
             result.set_item("synthesis_task", py.None())?;
         }
@@ -2188,8 +2233,8 @@ impl PyOperationSynthesizeSpeechOutput {
     #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.content_type {
-            let converted_291 = (value).as_str().into_py_any(py)?;
-            Ok(converted_291)
+            let converted_323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_323)
         } else {
             Ok(py.None())
         }
@@ -2197,27 +2242,65 @@ impl PyOperationSynthesizeSpeechOutput {
 
     #[getter]
     fn request_characters(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_292 = (&self.inner.request_characters)
+        let converted_324 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_292)
+        Ok(converted_324)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         result.set_item("audio_stream", self.audio_stream.clone_ref(py))?;
         if let Some(value) = &self.inner.content_type {
-            let converted_293 = (value).as_str().into_py_any(py)?;
-            result.set_item("content_type", converted_293)?;
+            let converted_325 = (value).as_str().into_py_any(py)?;
+            result.set_item("content_type", converted_325)?;
         } else {
             result.set_item("content_type", py.None())?;
         }
-        let converted_294 = (&self.inner.request_characters)
+        let converted_326 = (&self.inner.request_characters)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("request_characters", converted_294)?;
+        result.set_item("request_characters", converted_326)?;
         Ok(result.into_any().unbind())
     }
+}
+
+#[pyclass(name = "TagResourceOutput", module = "rboto_polly._native", frozen)]
+struct PyOperationTagResourceOutput {
+    inner: aws_sdk_polly::operation::tag_resource::TagResourceOutput,
+}
+
+#[pymethods]
+impl PyOperationTagResourceOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "UntagResourceOutput", module = "rboto_polly._native", frozen)]
+struct PyOperationUntagResourceOutput {
+    inner: aws_sdk_polly::operation::untag_resource::UntagResourceOutput,
+}
+
+#[pymethods]
+impl PyOperationUntagResourceOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        Ok(result.into_any().unbind())
+    }
+}
+
+fn resource_not_found_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_polly::types::error::ResourceNotFoundException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_327 = (&value.resource_id).as_str().into_py_any(py)?;
+    result.set_item("resource_id", detail_327)?;
+    let detail_328 = (&value.resource_type).as_str().into_py_any(py)?;
+    result.set_item("resource_type", detail_328)?;
+    Ok(result.into_any().unbind())
 }
 
 fn service_quota_exceeded_exception_error_details(
@@ -2225,10 +2308,10 @@ fn service_quota_exceeded_exception_error_details(
     value: &aws_sdk_polly::types::error::ServiceQuotaExceededException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_295 = (&value.quota_code).as_str().into_py_any(py)?;
-    result.set_item("quota_code", detail_295)?;
-    let detail_296 = (&value.service_code).as_str().into_py_any(py)?;
-    result.set_item("service_code", detail_296)?;
+    let detail_329 = (&value.quota_code).as_str().into_py_any(py)?;
+    result.set_item("quota_code", detail_329)?;
+    let detail_330 = (&value.service_code).as_str().into_py_any(py)?;
+    result.set_item("service_code", detail_330)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2238,13 +2321,13 @@ fn throttling_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.throttling_reasons {
-        let detail_297_list = PyList::empty(py);
-        for item_298 in value {
-            let converted_item_299 = throttling_reason_to_py(py, item_298)?;
-            detail_297_list.append(converted_item_299)?;
+        let detail_331_list = PyList::empty(py);
+        for item_332 in value {
+            let converted_item_333 = throttling_reason_to_py(py, item_332)?;
+            detail_331_list.append(converted_item_333)?;
         }
-        let detail_297 = detail_297_list.into_any().unbind();
-        result.set_item("throttling_reasons", detail_297)?;
+        let detail_331 = detail_331_list.into_any().unbind();
+        result.set_item("throttling_reasons", detail_331)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -2254,16 +2337,16 @@ fn validation_exception_error_details(
     value: &aws_sdk_polly::types::error::ValidationException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_300 = (&value.reason).as_str().into_py_any(py)?;
-    result.set_item("reason", detail_300)?;
+    let detail_334 = (&value.reason).as_str().into_py_any(py)?;
+    result.set_item("reason", detail_334)?;
     if let Some(value) = &value.fields {
-        let detail_301_list = PyList::empty(py);
-        for item_302 in value {
-            let converted_item_303 = validation_exception_field_to_py(py, item_302)?;
-            detail_301_list.append(converted_item_303)?;
+        let detail_335_list = PyList::empty(py);
+        for item_336 in value {
+            let converted_item_337 = validation_exception_field_to_py(py, item_336)?;
+            detail_335_list.append(converted_item_337)?;
         }
-        let detail_301 = detail_301_list.into_any().unbind();
-        result.set_item("fields", detail_301)?;
+        let detail_335 = detail_335_list.into_any().unbind();
+        result.set_item("fields", detail_335)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -2280,7 +2363,30 @@ impl ModeledErrorDetails
     for aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksError
 {
 }
-impl ModeledErrorDetails for aws_sdk_polly::operation::put_lexicon::PutLexiconError {}
+impl ModeledErrorDetails
+    for aws_sdk_polly::operation::list_tags_for_resource::ListTagsForResourceError
+{
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::put_lexicon::PutLexiconError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::start_speech_synthesis_stream::StartSpeechSynthesisStreamError
 {
@@ -2301,6 +2407,32 @@ impl ModeledErrorDetails
 {
 }
 impl ModeledErrorDetails for aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechError {}
+impl ModeledErrorDetails for aws_sdk_polly::operation::tag_resource::TagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::untag_resource::UntagResourceError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError
 {
@@ -2429,9 +2561,12 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationGetSpeechSynthesisTaskOutput>()?;
     module.add_class::<PyOperationListLexiconsOutput>()?;
     module.add_class::<PyOperationListSpeechSynthesisTasksOutput>()?;
+    module.add_class::<PyOperationListTagsForResourceOutput>()?;
     module.add_class::<PyOperationPutLexiconOutput>()?;
     module.add_class::<PyOperationStartSpeechSynthesisTaskOutput>()?;
     module.add_class::<PyOperationSynthesizeSpeechOutput>()?;
+    module.add_class::<PyOperationTagResourceOutput>()?;
+    module.add_class::<PyOperationUntagResourceOutput>()?;
 
     module.add_class::<PyStartSpeechSynthesisStreamEventStreamReceiver>()?;
     Ok(())
@@ -2910,6 +3045,62 @@ impl PollyClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_tags_for_resource<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
+            let converted_148 = (|| -> PyResult<_> {
+                let converted_148: String = value.extract()?;
+                Ok(converted_148)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "polly",
+                    "ListTagsForResource",
+                )
+            })?;
+            Some(converted_148)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_tags_for_resource()
+                .set_resource_arn(resource_arn_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "ListTagsForResource",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationListTagsForResourceOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn put_lexicon<'py>(
         &self,
         py: Python<'py>,
@@ -2918,9 +3109,9 @@ impl PollyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_148 = (|| -> PyResult<_> {
-                let converted_148: String = value.extract()?;
-                Ok(converted_148)
+            let converted_149 = (|| -> PyResult<_> {
+                let converted_149: String = value.extract()?;
+                Ok(converted_149)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2929,14 +3120,14 @@ impl PollyClient {
                     "PutLexicon",
                 )
             })?;
-            Some(converted_148)
+            Some(converted_149)
         } else {
             None
         };
         let content_value = if let Some(value) = dict_value(params, "content")? {
-            let converted_149 = (|| -> PyResult<_> {
-                let converted_149: String = value.extract()?;
-                Ok(converted_149)
+            let converted_150 = (|| -> PyResult<_> {
+                let converted_150: String = value.extract()?;
+                Ok(converted_150)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2945,7 +3136,49 @@ impl PollyClient {
                     "PutLexicon",
                 )
             })?;
-            Some(converted_149)
+            Some(converted_150)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_151 = (|| -> PyResult<_> {
+                let mapping_152 = value.cast::<PyDict>()?;
+                let mut converted_151 = HashMap::with_capacity(mapping_152.len());
+                for (index_157, (key_153, value_154)) in mapping_152.iter().enumerate() {
+                    let converted_key_155 = (|| -> PyResult<_> {
+                        let converted_key_155: String = key_153.extract()?;
+                        Ok(converted_key_155)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_157),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_156 = (|| -> PyResult<_> {
+                        let converted_value_156: String = value_154.extract()?;
+                        Ok(converted_value_156)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_157),
+                            "str",
+                        )
+                    })?;
+                    converted_151.insert(converted_key_155, converted_value_156);
+                }
+                Ok(converted_151)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "dict"),
+                    "polly",
+                    "PutLexicon",
+                )
+            })?;
+            Some(converted_151)
         } else {
             None
         };
@@ -2954,7 +3187,8 @@ impl PollyClient {
             let request = client
                 .put_lexicon()
                 .set_name(name_value)
-                .set_content(content_value);
+                .set_content(content_value)
+                .set_tags(tags_value);
             let observer = rboto_core::OperationObservation::new(observation.is_some());
             let result = request
                 .customize()
@@ -2982,10 +3216,10 @@ impl PollyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
-            let converted_150 = (|| -> PyResult<_> {
-                let enum_value_151: String = value.extract()?;
-                let converted_150 = aws_sdk_polly::types::Engine::from(enum_value_151.as_str());
-                Ok(converted_150)
+            let converted_158 = (|| -> PyResult<_> {
+                let enum_value_159: String = value.extract()?;
+                let converted_158 = aws_sdk_polly::types::Engine::from(enum_value_159.as_str());
+                Ok(converted_158)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2998,16 +3232,16 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_150)
+            Some(converted_158)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let converted_152 = (|| -> PyResult<_> {
-                let enum_value_153: String = value.extract()?;
-                let converted_152 =
-                    aws_sdk_polly::types::LanguageCode::from(enum_value_153.as_str());
-                Ok(converted_152)
+            let converted_160 = (|| -> PyResult<_> {
+                let enum_value_161: String = value.extract()?;
+                let converted_160 =
+                    aws_sdk_polly::types::LanguageCode::from(enum_value_161.as_str());
+                Ok(converted_160)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3020,37 +3254,37 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_152)
+            Some(converted_160)
         } else {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let converted_154 = (|| -> PyResult<_> {
-                let mut converted_154 =
+            let converted_162 = (|| -> PyResult<_> {
+                let mut converted_162 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_158, item_result_155) in value.try_iter()?.enumerate() {
-                    let item_156 = item_result_155.map_err(|error| {
+                for (index_166, item_result_163) in value.try_iter()?.enumerate() {
+                    let item_164 = item_result_163.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_158),
+                            rboto_core::InputPath::Index(index_166),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_157 = (|| -> PyResult<_> {
-                        let converted_item_157: String = item_156.extract()?;
-                        Ok(converted_item_157)
+                    let converted_item_165 = (|| -> PyResult<_> {
+                        let converted_item_165: String = item_164.extract()?;
+                        Ok(converted_item_165)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_158),
+                            rboto_core::InputPath::Index(index_166),
                             "str",
                         )
                     })?;
-                    converted_154.push(converted_item_157);
+                    converted_162.push(converted_item_165);
                 }
-                Ok(converted_154)
+                Ok(converted_162)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3063,16 +3297,16 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_154)
+            Some(converted_162)
         } else {
             None
         };
         let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
-            let converted_159 = (|| -> PyResult<_> {
-                let enum_value_160: String = value.extract()?;
-                let converted_159 =
-                    aws_sdk_polly::types::OutputFormat::from(enum_value_160.as_str());
-                Ok(converted_159)
+            let converted_167 = (|| -> PyResult<_> {
+                let enum_value_168: String = value.extract()?;
+                let converted_167 =
+                    aws_sdk_polly::types::OutputFormat::from(enum_value_168.as_str());
+                Ok(converted_167)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3085,14 +3319,14 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_159)
+            Some(converted_167)
         } else {
             None
         };
         let sample_rate_value = if let Some(value) = dict_value(params, "sample_rate")? {
-            let converted_161 = (|| -> PyResult<_> {
-                let converted_161: String = value.extract()?;
-                Ok(converted_161)
+            let converted_169 = (|| -> PyResult<_> {
+                let converted_169: String = value.extract()?;
+                Ok(converted_169)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3105,15 +3339,15 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_161)
+            Some(converted_169)
         } else {
             None
         };
         let voice_id_value = if let Some(value) = dict_value(params, "voice_id")? {
-            let converted_162 = (|| -> PyResult<_> {
-                let enum_value_163: String = value.extract()?;
-                let converted_162 = aws_sdk_polly::types::VoiceId::from(enum_value_163.as_str());
-                Ok(converted_162)
+            let converted_170 = (|| -> PyResult<_> {
+                let enum_value_171: String = value.extract()?;
+                let converted_170 = aws_sdk_polly::types::VoiceId::from(enum_value_171.as_str());
+                Ok(converted_170)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3126,19 +3360,19 @@ impl PollyClient {
                     "StartSpeechSynthesisStream",
                 )
             })?;
-            Some(converted_162)
+            Some(converted_170)
         } else {
             None
         };
         let action_stream_value = if let Some(value) = dict_value(params, "action_stream")? {
-            let converted_164 = (|| -> PyResult<_> {
-                let converted_164: aws_sdk_polly::primitives::event_stream::EventStreamSender<aws_sdk_polly::types::StartSpeechSynthesisStreamActionStream, aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError> = rboto_core::python_event_stream(
+            let converted_172 = (|| -> PyResult<_> {
+                let converted_172: aws_sdk_polly::primitives::event_stream::EventStreamSender<aws_sdk_polly::types::StartSpeechSynthesisStreamActionStream, aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError> = rboto_core::python_event_stream(
                     &value, start_speech_synthesis_stream_action_stream_from_py,
                     aws_sdk_polly::types::error::StartSpeechSynthesisStreamActionStreamError::unhandled,
                 )?.into();
-                Ok(converted_164)
+                Ok(converted_172)
             })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("action_stream"), "async iterator"), "polly", "StartSpeechSynthesisStream"))?;
-            Some(converted_164)
+            Some(converted_172)
         } else {
             None
         };
@@ -3200,10 +3434,10 @@ impl PollyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
-            let converted_165 = (|| -> PyResult<_> {
-                let enum_value_166: String = value.extract()?;
-                let converted_165 = aws_sdk_polly::types::Engine::from(enum_value_166.as_str());
-                Ok(converted_165)
+            let converted_173 = (|| -> PyResult<_> {
+                let enum_value_174: String = value.extract()?;
+                let converted_173 = aws_sdk_polly::types::Engine::from(enum_value_174.as_str());
+                Ok(converted_173)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3216,16 +3450,16 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_165)
+            Some(converted_173)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let converted_167 = (|| -> PyResult<_> {
-                let enum_value_168: String = value.extract()?;
-                let converted_167 =
-                    aws_sdk_polly::types::LanguageCode::from(enum_value_168.as_str());
-                Ok(converted_167)
+            let converted_175 = (|| -> PyResult<_> {
+                let enum_value_176: String = value.extract()?;
+                let converted_175 =
+                    aws_sdk_polly::types::LanguageCode::from(enum_value_176.as_str());
+                Ok(converted_175)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3238,37 +3472,37 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_167)
+            Some(converted_175)
         } else {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let converted_169 = (|| -> PyResult<_> {
-                let mut converted_169 =
+            let converted_177 = (|| -> PyResult<_> {
+                let mut converted_177 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_173, item_result_170) in value.try_iter()?.enumerate() {
-                    let item_171 = item_result_170.map_err(|error| {
+                for (index_181, item_result_178) in value.try_iter()?.enumerate() {
+                    let item_179 = item_result_178.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_173),
+                            rboto_core::InputPath::Index(index_181),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_172 = (|| -> PyResult<_> {
-                        let converted_item_172: String = item_171.extract()?;
-                        Ok(converted_item_172)
+                    let converted_item_180 = (|| -> PyResult<_> {
+                        let converted_item_180: String = item_179.extract()?;
+                        Ok(converted_item_180)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_173),
+                            rboto_core::InputPath::Index(index_181),
                             "str",
                         )
                     })?;
-                    converted_169.push(converted_item_172);
+                    converted_177.push(converted_item_180);
                 }
-                Ok(converted_169)
+                Ok(converted_177)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3281,16 +3515,16 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_169)
+            Some(converted_177)
         } else {
             None
         };
         let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
-            let converted_174 = (|| -> PyResult<_> {
-                let enum_value_175: String = value.extract()?;
-                let converted_174 =
-                    aws_sdk_polly::types::OutputFormat::from(enum_value_175.as_str());
-                Ok(converted_174)
+            let converted_182 = (|| -> PyResult<_> {
+                let enum_value_183: String = value.extract()?;
+                let converted_182 =
+                    aws_sdk_polly::types::OutputFormat::from(enum_value_183.as_str());
+                Ok(converted_182)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3303,15 +3537,15 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_174)
+            Some(converted_182)
         } else {
             None
         };
         let output_s3_bucket_name_value =
             if let Some(value) = dict_value(params, "output_s3_bucket_name")? {
-                let converted_176 = (|| -> PyResult<_> {
-                    let converted_176: String = value.extract()?;
-                    Ok(converted_176)
+                let converted_184 = (|| -> PyResult<_> {
+                    let converted_184: String = value.extract()?;
+                    Ok(converted_184)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -3324,15 +3558,15 @@ impl PollyClient {
                         "StartSpeechSynthesisTask",
                     )
                 })?;
-                Some(converted_176)
+                Some(converted_184)
             } else {
                 None
             };
         let output_s3_key_prefix_value =
             if let Some(value) = dict_value(params, "output_s3_key_prefix")? {
-                let converted_177 = (|| -> PyResult<_> {
-                    let converted_177: String = value.extract()?;
-                    Ok(converted_177)
+                let converted_185 = (|| -> PyResult<_> {
+                    let converted_185: String = value.extract()?;
+                    Ok(converted_185)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -3345,14 +3579,14 @@ impl PollyClient {
                         "StartSpeechSynthesisTask",
                     )
                 })?;
-                Some(converted_177)
+                Some(converted_185)
             } else {
                 None
             };
         let sample_rate_value = if let Some(value) = dict_value(params, "sample_rate")? {
-            let converted_178 = (|| -> PyResult<_> {
-                let converted_178: String = value.extract()?;
-                Ok(converted_178)
+            let converted_186 = (|| -> PyResult<_> {
+                let converted_186: String = value.extract()?;
+                Ok(converted_186)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3365,14 +3599,14 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_178)
+            Some(converted_186)
         } else {
             None
         };
         let sns_topic_arn_value = if let Some(value) = dict_value(params, "sns_topic_arn")? {
-            let converted_179 = (|| -> PyResult<_> {
-                let converted_179: String = value.extract()?;
-                Ok(converted_179)
+            let converted_187 = (|| -> PyResult<_> {
+                let converted_187: String = value.extract()?;
+                Ok(converted_187)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3385,40 +3619,40 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_179)
+            Some(converted_187)
         } else {
             None
         };
         let speech_mark_types_value = if let Some(value) = dict_value(params, "speech_mark_types")?
         {
-            let converted_180 = (|| -> PyResult<_> {
-                let mut converted_180 =
+            let converted_188 = (|| -> PyResult<_> {
+                let mut converted_188 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_184, item_result_181) in value.try_iter()?.enumerate() {
-                    let item_182 = item_result_181.map_err(|error| {
+                for (index_192, item_result_189) in value.try_iter()?.enumerate() {
+                    let item_190 = item_result_189.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_184),
+                            rboto_core::InputPath::Index(index_192),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_183 = (|| -> PyResult<_> {
-                        let enum_value_185: String = item_182.extract()?;
-                        let converted_item_183 =
-                            aws_sdk_polly::types::SpeechMarkType::from(enum_value_185.as_str());
-                        Ok(converted_item_183)
+                    let converted_item_191 = (|| -> PyResult<_> {
+                        let enum_value_193: String = item_190.extract()?;
+                        let converted_item_191 =
+                            aws_sdk_polly::types::SpeechMarkType::from(enum_value_193.as_str());
+                        Ok(converted_item_191)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_184),
+                            rboto_core::InputPath::Index(index_192),
                             "str (SpeechMarkType)",
                         )
                     })?;
-                    converted_180.push(converted_item_183);
+                    converted_188.push(converted_item_191);
                 }
-                Ok(converted_180)
+                Ok(converted_188)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3431,14 +3665,14 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_180)
+            Some(converted_188)
         } else {
             None
         };
         let text_value = if let Some(value) = dict_value(params, "text")? {
-            let converted_186 = (|| -> PyResult<_> {
-                let converted_186: String = value.extract()?;
-                Ok(converted_186)
+            let converted_194 = (|| -> PyResult<_> {
+                let converted_194: String = value.extract()?;
+                Ok(converted_194)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3447,15 +3681,15 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_186)
+            Some(converted_194)
         } else {
             None
         };
         let text_type_value = if let Some(value) = dict_value(params, "text_type")? {
-            let converted_187 = (|| -> PyResult<_> {
-                let enum_value_188: String = value.extract()?;
-                let converted_187 = aws_sdk_polly::types::TextType::from(enum_value_188.as_str());
-                Ok(converted_187)
+            let converted_195 = (|| -> PyResult<_> {
+                let enum_value_196: String = value.extract()?;
+                let converted_195 = aws_sdk_polly::types::TextType::from(enum_value_196.as_str());
+                Ok(converted_195)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3468,15 +3702,15 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_187)
+            Some(converted_195)
         } else {
             None
         };
         let voice_id_value = if let Some(value) = dict_value(params, "voice_id")? {
-            let converted_189 = (|| -> PyResult<_> {
-                let enum_value_190: String = value.extract()?;
-                let converted_189 = aws_sdk_polly::types::VoiceId::from(enum_value_190.as_str());
-                Ok(converted_189)
+            let converted_197 = (|| -> PyResult<_> {
+                let enum_value_198: String = value.extract()?;
+                let converted_197 = aws_sdk_polly::types::VoiceId::from(enum_value_198.as_str());
+                Ok(converted_197)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3489,7 +3723,7 @@ impl PollyClient {
                     "StartSpeechSynthesisTask",
                 )
             })?;
-            Some(converted_189)
+            Some(converted_197)
         } else {
             None
         };
@@ -3543,10 +3777,10 @@ impl PollyClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let engine_value = if let Some(value) = dict_value(params, "engine")? {
-            let converted_191 = (|| -> PyResult<_> {
-                let enum_value_192: String = value.extract()?;
-                let converted_191 = aws_sdk_polly::types::Engine::from(enum_value_192.as_str());
-                Ok(converted_191)
+            let converted_199 = (|| -> PyResult<_> {
+                let enum_value_200: String = value.extract()?;
+                let converted_199 = aws_sdk_polly::types::Engine::from(enum_value_200.as_str());
+                Ok(converted_199)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3559,16 +3793,16 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_191)
+            Some(converted_199)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let converted_193 = (|| -> PyResult<_> {
-                let enum_value_194: String = value.extract()?;
-                let converted_193 =
-                    aws_sdk_polly::types::LanguageCode::from(enum_value_194.as_str());
-                Ok(converted_193)
+            let converted_201 = (|| -> PyResult<_> {
+                let enum_value_202: String = value.extract()?;
+                let converted_201 =
+                    aws_sdk_polly::types::LanguageCode::from(enum_value_202.as_str());
+                Ok(converted_201)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3581,97 +3815,11 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_193)
+            Some(converted_201)
         } else {
             None
         };
         let lexicon_names_value = if let Some(value) = dict_value(params, "lexicon_names")? {
-            let converted_195 = (|| -> PyResult<_> {
-                let mut converted_195 =
-                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_199, item_result_196) in value.try_iter()?.enumerate() {
-                    let item_197 = item_result_196.map_err(|error| {
-                        rboto_core::input_rule(
-                            error,
-                            rboto_core::InputPath::Index(index_199),
-                            "next sequence item",
-                            Some("iteration"),
-                        )
-                    })?;
-                    let converted_item_198 = (|| -> PyResult<_> {
-                        let converted_item_198: String = item_197.extract()?;
-                        Ok(converted_item_198)
-                    })()
-                    .map_err(|error| {
-                        rboto_core::input_error(
-                            error,
-                            rboto_core::InputPath::Index(index_199),
-                            "str",
-                        )
-                    })?;
-                    converted_195.push(converted_item_198);
-                }
-                Ok(converted_195)
-            })()
-            .map_err(|error| {
-                rboto_core::input_operation(
-                    rboto_core::input_error(
-                        error,
-                        rboto_core::InputPath::Field("lexicon_names"),
-                        "sequence",
-                    ),
-                    "polly",
-                    "SynthesizeSpeech",
-                )
-            })?;
-            Some(converted_195)
-        } else {
-            None
-        };
-        let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
-            let converted_200 = (|| -> PyResult<_> {
-                let enum_value_201: String = value.extract()?;
-                let converted_200 =
-                    aws_sdk_polly::types::OutputFormat::from(enum_value_201.as_str());
-                Ok(converted_200)
-            })()
-            .map_err(|error| {
-                rboto_core::input_operation(
-                    rboto_core::input_error(
-                        error,
-                        rboto_core::InputPath::Field("output_format"),
-                        "str (OutputFormat)",
-                    ),
-                    "polly",
-                    "SynthesizeSpeech",
-                )
-            })?;
-            Some(converted_200)
-        } else {
-            None
-        };
-        let sample_rate_value = if let Some(value) = dict_value(params, "sample_rate")? {
-            let converted_202 = (|| -> PyResult<_> {
-                let converted_202: String = value.extract()?;
-                Ok(converted_202)
-            })()
-            .map_err(|error| {
-                rboto_core::input_operation(
-                    rboto_core::input_error(
-                        error,
-                        rboto_core::InputPath::Field("sample_rate"),
-                        "str",
-                    ),
-                    "polly",
-                    "SynthesizeSpeech",
-                )
-            })?;
-            Some(converted_202)
-        } else {
-            None
-        };
-        let speech_mark_types_value = if let Some(value) = dict_value(params, "speech_mark_types")?
-        {
             let converted_203 = (|| -> PyResult<_> {
                 let mut converted_203 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
@@ -3685,21 +3833,107 @@ impl PollyClient {
                         )
                     })?;
                     let converted_item_206 = (|| -> PyResult<_> {
-                        let enum_value_208: String = item_205.extract()?;
-                        let converted_item_206 =
-                            aws_sdk_polly::types::SpeechMarkType::from(enum_value_208.as_str());
+                        let converted_item_206: String = item_205.extract()?;
                         Ok(converted_item_206)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
                             rboto_core::InputPath::Index(index_207),
-                            "str (SpeechMarkType)",
+                            "str",
                         )
                     })?;
                     converted_203.push(converted_item_206);
                 }
                 Ok(converted_203)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("lexicon_names"),
+                        "sequence",
+                    ),
+                    "polly",
+                    "SynthesizeSpeech",
+                )
+            })?;
+            Some(converted_203)
+        } else {
+            None
+        };
+        let output_format_value = if let Some(value) = dict_value(params, "output_format")? {
+            let converted_208 = (|| -> PyResult<_> {
+                let enum_value_209: String = value.extract()?;
+                let converted_208 =
+                    aws_sdk_polly::types::OutputFormat::from(enum_value_209.as_str());
+                Ok(converted_208)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("output_format"),
+                        "str (OutputFormat)",
+                    ),
+                    "polly",
+                    "SynthesizeSpeech",
+                )
+            })?;
+            Some(converted_208)
+        } else {
+            None
+        };
+        let sample_rate_value = if let Some(value) = dict_value(params, "sample_rate")? {
+            let converted_210 = (|| -> PyResult<_> {
+                let converted_210: String = value.extract()?;
+                Ok(converted_210)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("sample_rate"),
+                        "str",
+                    ),
+                    "polly",
+                    "SynthesizeSpeech",
+                )
+            })?;
+            Some(converted_210)
+        } else {
+            None
+        };
+        let speech_mark_types_value = if let Some(value) = dict_value(params, "speech_mark_types")?
+        {
+            let converted_211 = (|| -> PyResult<_> {
+                let mut converted_211 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_215, item_result_212) in value.try_iter()?.enumerate() {
+                    let item_213 = item_result_212.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_215),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_214 = (|| -> PyResult<_> {
+                        let enum_value_216: String = item_213.extract()?;
+                        let converted_item_214 =
+                            aws_sdk_polly::types::SpeechMarkType::from(enum_value_216.as_str());
+                        Ok(converted_item_214)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_215),
+                            "str (SpeechMarkType)",
+                        )
+                    })?;
+                    converted_211.push(converted_item_214);
+                }
+                Ok(converted_211)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3712,14 +3946,14 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_203)
+            Some(converted_211)
         } else {
             None
         };
         let text_value = if let Some(value) = dict_value(params, "text")? {
-            let converted_209 = (|| -> PyResult<_> {
-                let converted_209: String = value.extract()?;
-                Ok(converted_209)
+            let converted_217 = (|| -> PyResult<_> {
+                let converted_217: String = value.extract()?;
+                Ok(converted_217)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3728,15 +3962,15 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_209)
+            Some(converted_217)
         } else {
             None
         };
         let text_type_value = if let Some(value) = dict_value(params, "text_type")? {
-            let converted_210 = (|| -> PyResult<_> {
-                let enum_value_211: String = value.extract()?;
-                let converted_210 = aws_sdk_polly::types::TextType::from(enum_value_211.as_str());
-                Ok(converted_210)
+            let converted_218 = (|| -> PyResult<_> {
+                let enum_value_219: String = value.extract()?;
+                let converted_218 = aws_sdk_polly::types::TextType::from(enum_value_219.as_str());
+                Ok(converted_218)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3749,15 +3983,15 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_210)
+            Some(converted_218)
         } else {
             None
         };
         let voice_id_value = if let Some(value) = dict_value(params, "voice_id")? {
-            let converted_212 = (|| -> PyResult<_> {
-                let enum_value_213: String = value.extract()?;
-                let converted_212 = aws_sdk_polly::types::VoiceId::from(enum_value_213.as_str());
-                Ok(converted_212)
+            let converted_220 = (|| -> PyResult<_> {
+                let enum_value_221: String = value.extract()?;
+                let converted_220 = aws_sdk_polly::types::VoiceId::from(enum_value_221.as_str());
+                Ok(converted_220)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3770,7 +4004,7 @@ impl PollyClient {
                     "SynthesizeSpeech",
                 )
             })?;
-            Some(converted_212)
+            Some(converted_220)
         } else {
             None
         };
@@ -3822,6 +4056,195 @@ impl PollyClient {
                     },
                 )
             })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn tag_resource<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
+            let converted_222 = (|| -> PyResult<_> {
+                let converted_222: String = value.extract()?;
+                Ok(converted_222)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "polly",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_222)
+        } else {
+            None
+        };
+        let tags_value = if let Some(value) = dict_value(params, "tags")? {
+            let converted_223 = (|| -> PyResult<_> {
+                let mapping_224 = value.cast::<PyDict>()?;
+                let mut converted_223 = HashMap::with_capacity(mapping_224.len());
+                for (index_229, (key_225, value_226)) in mapping_224.iter().enumerate() {
+                    let converted_key_227 = (|| -> PyResult<_> {
+                        let converted_key_227: String = key_225.extract()?;
+                        Ok(converted_key_227)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapKey(index_229),
+                            "str",
+                        )
+                    })?;
+                    let converted_value_228 = (|| -> PyResult<_> {
+                        let converted_value_228: String = value_226.extract()?;
+                        Ok(converted_value_228)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::MapValue(index_229),
+                            "str",
+                        )
+                    })?;
+                    converted_223.insert(converted_key_227, converted_value_228);
+                }
+                Ok(converted_223)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("tags"), "dict"),
+                    "polly",
+                    "TagResource",
+                )
+            })?;
+            Some(converted_223)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .tag_resource()
+                .set_resource_arn(resource_arn_value)
+                .set_tags(tags_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "TagResource", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationTagResourceOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn untag_resource<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
+            let converted_230 = (|| -> PyResult<_> {
+                let converted_230: String = value.extract()?;
+                Ok(converted_230)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("resource_arn"),
+                        "str",
+                    ),
+                    "polly",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_230)
+        } else {
+            None
+        };
+        let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
+            let converted_231 = (|| -> PyResult<_> {
+                let mut converted_231 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_235, item_result_232) in value.try_iter()?.enumerate() {
+                    let item_233 = item_result_232.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_235),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_234 = (|| -> PyResult<_> {
+                        let converted_item_234: String = item_233.extract()?;
+                        Ok(converted_item_234)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_235),
+                            "str",
+                        )
+                    })?;
+                    converted_231.push(converted_item_234);
+                }
+                Ok(converted_231)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("tag_keys"),
+                        "sequence",
+                    ),
+                    "polly",
+                    "UntagResource",
+                )
+            })?;
+            Some(converted_231)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .untag_resource()
+                .set_resource_arn(resource_arn_value)
+                .set_tag_keys(tag_keys_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "UntagResource", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationUntagResourceOutput { inner: output })
         })
     }
 }

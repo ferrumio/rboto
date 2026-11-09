@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Bedrock AgentCore Control**,
 powered by Rust. This package contains `BedrockAgentCoreControlClient` and
-**171 operations**.
+**172 operations**.
 
 ## Installation
 
@@ -245,6 +245,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
 | [`list_workload_identities`](#list_workload_identities) | None | <code>ListWorkloadIdentitiesOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>PutResourcePolicyOutput</code> |
+| [`reset_token_vault_key_material`](#reset_token_vault_key_material) | <code>token_vault_id: str</code> | <code>ResetTokenVaultKeyMaterialOutput</code> |
 | [`rotate_payment_connector_credentials`](#rotate_payment_connector_credentials) | <code>payment_manager_id: str</code>, <code>payment_connector_id: str</code>, <code>credentials_to_rotate: CredentialRotationConfig</code> | <code>RotatePaymentConnectorCredentialsOutput</code> |
 | [`set_token_vault_cmk`](#set_token_vault_cmk) | <code>kms_configuration: KmsConfiguration</code> | <code>SetTokenVaultCMKOutput</code> |
 | [`start_policy_generation`](#start_policy_generation) | <code>policy_engine_id: str</code>, <code>resource: Resource</code>, <code>content: Content</code>, <code>name: str</code> | <code>StartPolicyGenerationOutput</code> |
@@ -326,6 +327,7 @@ async def create_agent_runtime(
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     tags: dict[str, str] | None = None,
     platform_version: str | None = None,
+    allowed_ports: Sequence[AllowedPort] | None = None,
 ) -> CreateAgentRuntimeOutput: ...
 ```
 
@@ -2078,6 +2080,16 @@ async def put_resource_policy(
 ```
 
 
+### reset_token_vault_key_material
+
+```python
+async def reset_token_vault_key_material(
+    *,
+    token_vault_id: str,
+) -> ResetTokenVaultKeyMaterialOutput: ...
+```
+
+
 ### rotate_payment_connector_credentials
 
 ```python
@@ -2179,6 +2191,7 @@ async def update_agent_runtime(
     filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
     capacity_provider_configuration: CapacityProviderConfiguration | None = None,
     platform_version: str | None = None,
+    allowed_ports: Sequence[AllowedPort] | None = None,
     client_token: str | None = None,
 ) -> UpdateAgentRuntimeOutput: ...
 ```

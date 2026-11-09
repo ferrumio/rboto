@@ -415,6 +415,7 @@ class BedrockAgentRuntimeClient:
         knowledge_base_id: str,
         data_source_id: str,
         document_id: str,
+        media_id: str | None = None,
         output_format: DocumentOutputFormat | None = None,
         user_context: UserContext | None = None,
     ) -> GetDocumentContentOutput:
@@ -424,6 +425,8 @@ class BedrockAgentRuntimeClient:
             "data_source_id": data_source_id,
             "document_id": document_id,
         }
+        if media_id is not None:
+            params["media_id"] = media_id
         if output_format is not None:
             params["output_format"] = output_format
         if user_context is not None:
@@ -435,7 +438,7 @@ class BedrockAgentRuntimeClient:
                 self._native.get_document_content, params, _interceptors,
                 "bedrock-agent-runtime", "GetDocumentContent", self._region,
                 GetDocumentContentOutput,
-                ("knowledge_base_id", "data_source_id", "document_id", "output_format", "user_context", ),
+                ("knowledge_base_id", "data_source_id", "document_id", "media_id", "output_format", "user_context", ),
                 ("knowledge_base_id", "data_source_id", "document_id", ),
                 service_name='Bedrock Agent Runtime',
             )

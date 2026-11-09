@@ -42,6 +42,10 @@ class InvalidSsmlError(PollyError):
     """Modeled polly error: InvalidSsmlException."""
 
 
+class InvalidTagParameterError(PollyError):
+    """Modeled polly error: InvalidTagParameterException."""
+
+
 class InvalidTaskIdError(PollyError):
     """Modeled polly error: InvalidTaskIdException."""
 
@@ -68,6 +72,14 @@ class MaxLexemeLengthExceededError(PollyError):
 
 class MaxLexiconsNumberExceededError(PollyError):
     """Modeled polly error: MaxLexiconsNumberExceededException."""
+
+
+class ResourceNotFoundError(PollyError):
+    """Modeled polly error: ResourceNotFoundException."""
+
+    @property
+    def details(self) -> _types.ResourceNotFoundErrorDetails:
+        return cast(_types.ResourceNotFoundErrorDetails, self._details)
 
 
 class ServiceFailureError(PollyError):
@@ -100,6 +112,10 @@ class ThrottlingError(PollyError):
     @property
     def details(self) -> _types.ThrottlingErrorDetails:
         return cast(_types.ThrottlingErrorDetails, self._details)
+
+
+class TooManyTagsError(PollyError):
+    """Modeled polly error: TooManyTagsException."""
 
 
 class UnsupportedPlsAlphabetError(PollyError):

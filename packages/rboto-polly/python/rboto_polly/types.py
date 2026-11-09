@@ -28,6 +28,8 @@ ListLexiconsOutput: TypeAlias = _native.ListLexiconsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListLexiconsOutput/)."""
 ListSpeechSynthesisTasksOutput: TypeAlias = _native.ListSpeechSynthesisTasksOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksOutput/)."""
+ListTagsForResourceOutput: TypeAlias = _native.ListTagsForResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListTagsForResourceOutput/)."""
 PutLexiconOutput: TypeAlias = _native.PutLexiconOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconOutput/)."""
 StartSpeechSynthesisStreamEventStreamReceiver: TypeAlias = _native.StartSpeechSynthesisStreamEventStreamReceiver
@@ -38,6 +40,10 @@ SynthesisTaskOutput: TypeAlias = _native.SynthesisTask
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesisTaskOutput/)."""
 SynthesizeSpeechOutput: TypeAlias = _native.SynthesizeSpeechOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechOutput/)."""
+TagResourceOutput: TypeAlias = _native.TagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TagResourceOutput/)."""
+UntagResourceOutput: TypeAlias = _native.UntagResourceOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/UntagResourceOutput/)."""
 VoiceOutput: TypeAlias = _native.Voice
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/VoiceOutput/)."""
 
@@ -64,6 +70,10 @@ QuotaCode: TypeAlias = Literal['input-stream-inbound-event-timeout', 'input-stre
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/QuotaCode/)."""
 QuotaCodeOutput: TypeAlias = QuotaCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/QuotaCodeOutput/)."""
+ResourceType: TypeAlias = Literal['lexicon']
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ResourceType/)."""
+ResourceTypeOutput: TypeAlias = ResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ResourceTypeOutput/)."""
 ServiceCode: TypeAlias = Literal['polly']
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ServiceCode/)."""
 ServiceCodeOutput: TypeAlias = ServiceCode | UnknownEnumValue
@@ -196,14 +206,30 @@ ListSpeechSynthesisTasksInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListSpeechSynthesisTasksInput/)."""
 
+ListTagsForResourceInput = TypedDict(
+    "ListTagsForResourceInput",
+    {
+    "resource_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ListTagsForResourceInput/)."""
+
 PutLexiconInput = TypedDict(
     "PutLexiconInput",
     {
     "name": Required["str"],
     "content": Required["str"],
+    "tags": NotRequired["dict[str, str]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/PutLexiconInput/)."""
+
+class ResourceNotFoundErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ResourceNotFoundErrorDetails/)."""
+    """Decoded fields of ResourceNotFoundError; values may contain application data."""
+    resource_id: str
+    resource_type: ResourceTypeOutput
+
 
 class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ServiceQuotaExceededErrorDetails/)."""
@@ -315,6 +341,15 @@ SynthesizeSpeechInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/SynthesizeSpeechInput/)."""
 
+TagResourceInput = TypedDict(
+    "TagResourceInput",
+    {
+    "resource_arn": Required["str"],
+    "tags": Required["dict[str, str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/TagResourceInput/)."""
+
 TextEvent = TypedDict(
     "TextEvent",
     {
@@ -339,6 +374,15 @@ ThrottlingReason = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ThrottlingReason/)."""
+
+UntagResourceInput = TypedDict(
+    "UntagResourceInput",
+    {
+    "resource_arn": Required["str"],
+    "tag_keys": Required["Sequence[str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/polly/types/UntagResourceInput/)."""
 
 class ValidationErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/ValidationErrorDetails/)."""

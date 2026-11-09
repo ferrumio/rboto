@@ -18,6 +18,8 @@ CreateOAuth2TokenResponseBodyOutput: TypeAlias = _native.CreateOAuth2TokenRespon
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenResponseBodyOutput/)."""
 CreateOAuth2TokenWithIAMOutput: TypeAlias = _native.CreateOAuth2TokenWithIAMOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMOutput/)."""
+CreateOAuth2TokenWithTokenExchangeOutput: TypeAlias = _native.CreateOAuth2TokenWithTokenExchangeOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithTokenExchangeOutput/)."""
 DeleteConsoleAuthorizationConfigurationOutput: TypeAlias = _native.DeleteConsoleAuthorizationConfigurationOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/DeleteConsoleAuthorizationConfigurationOutput/)."""
 DeleteResourcePermissionStatementOutput: TypeAlias = _native.DeleteResourcePermissionStatementOutput
@@ -46,7 +48,7 @@ SigninResourceBasedPolicyOutput: TypeAlias = _native.SigninResourceBasedPolicy
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/JSONValue/)."""
 
-OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED']
+OAuth2ErrorCode: TypeAlias = Literal['TOKEN_EXPIRED', 'USER_CREDENTIALS_CHANGED', 'INSUFFICIENT_PERMISSIONS', 'AUTHCODE_EXPIRED', 'server_error', 'INVALID_REQUEST', 'RESOURCE_NOT_FOUND', 'CONFLICT', 'SERVICE_QUOTA_EXCEEDED', 'unsupported_grant_type', 'invalid_request', 'invalid_grant', 'invalid_scope', 'invalid_target', 'rate_exceeded', 'service_unavailable']
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCode/)."""
 OAuth2ErrorCodeOutput: TypeAlias = OAuth2ErrorCode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/OAuth2ErrorCodeOutput/)."""
@@ -115,6 +117,18 @@ CreateOAuth2TokenWithIAMRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithIAMRequest/)."""
 
+CreateOAuth2TokenWithTokenExchangeRequest = TypedDict(
+    "CreateOAuth2TokenWithTokenExchangeRequest",
+    {
+    "grant_type": Required["str"],
+    "subject_token": NotRequired["str"],
+    "subject_token_type": NotRequired["str"],
+    "resource": NotRequired["str"],
+    "scope": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/signin/types/CreateOAuth2TokenWithTokenExchangeRequest/)."""
+
 DeleteConsoleAuthorizationConfigurationInput = TypedDict(
     "DeleteConsoleAuthorizationConfigurationInput",
     {
@@ -161,6 +175,18 @@ IntrospectOAuth2TokenWithIAMRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/IntrospectOAuth2TokenWithIAMRequest/)."""
+
+class InvalidGrantErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/InvalidGrantErrorDetails/)."""
+    """Decoded fields of InvalidGrantError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
+class InvalidScopeErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/InvalidScopeErrorDetails/)."""
+    """Decoded fields of InvalidScopeError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
 
 ListResourcePermissionStatementsInput = TypedDict(
     "ListResourcePermissionStatementsInput",
@@ -232,6 +258,12 @@ RevokeOAuth2TokenWithIAMRequest = TypedDict(
 class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ServiceQuotaExceededErrorDetails/)."""
     """Decoded fields of ServiceQuotaExceededError; values may contain application data."""
+    error: OAuth2ErrorCodeOutput
+
+
+class ServiceUnavailableErrorDetails(TypedDict, total=False):
+    """See [reference](https://ferrumio.github.io/rboto/reference/signin/types/ServiceUnavailableErrorDetails/)."""
+    """Decoded fields of ServiceUnavailableError; values may contain application data."""
     error: OAuth2ErrorCodeOutput
 
 

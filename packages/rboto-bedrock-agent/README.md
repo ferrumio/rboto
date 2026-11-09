@@ -1306,6 +1306,7 @@ async def update_knowledge_base(
     knowledge_base_configuration: KnowledgeBaseConfiguration,
     description: str | None = None,
     storage_configuration: StorageConfiguration | None = None,
+    metadata_configurations: Sequence[MetadataConfiguration] | None = None,
 ) -> UpdateKnowledgeBaseOutput: ...
 ```
 

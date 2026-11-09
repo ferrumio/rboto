@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import SignInClient as NativeClient, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
+from ._native import SignInClient as NativeClient, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, CreateOAuth2TokenWithTokenExchangeOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
 from .types import (
     CreateOAuth2TokenRequestBody,
 )
@@ -125,6 +125,43 @@ class SignInClient:
             )
             return _response
         _response = await self._native.create_o_auth2_token_with_iam(params)
+        return _response
+
+
+    async def create_o_auth2_token_with_token_exchange(
+        self,
+        *,
+        grant_type: str,
+        subject_token: str | None = None,
+        subject_token_type: str | None = None,
+        resource: str | None = None,
+        scope: str | None = None,
+    ) -> CreateOAuth2TokenWithTokenExchangeOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/create_o_auth2_token_with_token_exchange/)."""
+        params: dict[str, object] = {
+            "grant_type": grant_type,
+        }
+        if subject_token is not None:
+            params["subject_token"] = subject_token
+        if subject_token_type is not None:
+            params["subject_token_type"] = subject_token_type
+        if resource is not None:
+            params["resource"] = resource
+        if scope is not None:
+            params["scope"] = scope
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_o_auth2_token_with_token_exchange, params, _interceptors,
+                "signin", "CreateOAuth2TokenWithTokenExchange", self._region,
+                CreateOAuth2TokenWithTokenExchangeOutput,
+                ("grant_type", "subject_token", "subject_token_type", "resource", "scope", ),
+                ("grant_type", ),
+                service_name='Signin',
+            )
+            return _response
+        _response = await self._native.create_o_auth2_token_with_token_exchange(params)
         return _response
 
 
