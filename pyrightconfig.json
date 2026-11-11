@@ -26,6 +26,7 @@
     "packages/rboto-connecthealth/python",
     "packages/rboto-dynamodb/python",
     "packages/rboto-eventbridge/python",
+    "packages/rboto-glue/python",
     "packages/rboto-guardduty/python",
     "packages/rboto-kms/python",
     "packages/rboto-lambda/python",

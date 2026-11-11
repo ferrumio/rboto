@@ -1125,6 +1125,15 @@ async def test_sesv2_structured_content_and_binary_attachment(peer: Peer) -> Non
     ("service_name", "method", "params", "error_code", "exception_name", "operation"),
     [
         pytest.param(
+            "glue",
+            "get_database",
+            {"name": "missing-database"},
+            "EntityNotFoundException",
+            "EntityNotFoundError",
+            "GetDatabase",
+            marks=service("glue"),
+        ),
+        pytest.param(
             "athena",
             "get_query_execution",
             {"query_execution_id": "missing-query"},
@@ -1423,3 +1432,268 @@ async def test_athena_notebook_paginators_forward_tokens_and_terminate(
         wire_parameters,
         {**wire_parameters, "NextToken": "page-two"},
     ]
+
+
+@pytest.mark.asyncio
+@service("glue")
+@pytest.mark.parametrize("middleware", [False, True])
+async def test_glue_nested_catalog_conversion_and_native_ownership(
+    peer: Peer, middleware: bool,
+) -> None:
+    from rboto import GlueClient
+    from rboto_glue.types import TableInput
+
+    async def passthrough(request: OperationRequest, call_next: Next) -> OperationResponse:
+        return await call_next(request)
+
+    table: TableInput = {
+        "name": "events", "description": "café 東京", "last_access_time": "2026-10-26T00:00:00Z",
+        "parameters": {"arbitrary.key": "välue", "empty": ""},
+        "partition_keys": ({"name": "day", "type": "string"},),
+        "storage_descriptor": {
+            "columns": ({"name": "id", "type": "bigint", "parameters": {"custom": "✓"}},),
+            "location": "s3://example/events/", "compressed": False,
+            "serde_info": {"parameters": {"separatorChar": ","}},
+        },
+    }
+    async with GlueClient(
+        region="us-east-1", endpoint_url=peer.endpoint,
+        interceptors=(passthrough,) if middleware else (),
+    ) as client:
+        await client.create_table(database_name="example", table_input=table)
+        wire = json.loads(peer.requests[-1][1])
+        assert peer.request_headers[-1]["x-amz-target"] == "AWSGlue.CreateTable"
+        assert wire["TableInput"]["Description"] == "café 東京"
+        assert wire["TableInput"]["Parameters"] == table["parameters"]
+        assert wire["TableInput"]["LastAccessTime"] == 1792972800
+        storage = wire["TableInput"]["StorageDescriptor"]
+        assert storage.get("Compressed", False) is False
+        assert storage["Columns"][0]["Parameters"] == {"custom": "✓"}
+        # Table -> TableStatus -> StatusDetails -> Table is recursive in the model.
+        peer.body = json.dumps({"Table": {
+            **wire["TableInput"], "CreateTime": 1792972800,
+            "Status": {"State": "SUCCESS", "Details": {"RequestedChange": {
+                "Name": "next", "Status": {"Details": {"RequestedChange": {"Name": "leaf"}}},
+            }}},
+        }}).encode()
+        result = await client.get_table(database_name="example", name="events")
+    assert result.table is not None
+    output = result.table
+    assert output.description == "café 東京" and output.owner is None
+    assert output.create_time is not None and output.create_time.startswith("2026-10-26")
+    assert output.status is not None and output.status.details is not None
+    change = output.status.details.requested_change
+    assert change is not None and change.name == "next"
+    assert change.status is not None and change.status.details is not None
+    assert change.status.details.requested_change is not None
+    assert change.status.details.requested_change.name == "leaf"
+    assert output.storage_descriptor is not None and output.storage_descriptor.columns is not None
+    assert output.storage_descriptor.compressed is False
+    child = output.storage_descriptor.columns[0]
+    del result, output
+    assert child.name == "id" and child.parameters == {"custom": "✓"}
+    parameters = child.parameters
+    assert parameters is not None
+    parameters["custom"] = "changed"
+    assert child.parameters == {"custom": "✓"}
+    with pytest.raises(AttributeError):
+        child.name = "changed"
+
+
+@pytest.mark.asyncio
+@service("glue")
+async def test_glue_partition_batch_partial_failure_is_a_native_result(peer: Peer) -> None:
+    from rboto import GlueClient
+
+    peer.body = json.dumps({"Errors": [{
+        "PartitionValues": ["café"],
+        "ErrorDetail": {"ErrorCode": "AlreadyExistsException", "ErrorMessage": "duplicate"},
+    }]}).encode()
+    async with GlueClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        result = await client.batch_create_partition(
+            database_name="example", table_name="events",
+            partition_input_list=({"values": ("café",)}, {"values": ("東京",)}),
+        )
+    assert result.errors is not None and len(result.errors) == 1
+    assert result.errors[0].partition_values == ["café"]
+    assert result.errors[0].error_detail is not None
+    assert result.errors[0].error_detail.error_code == "AlreadyExistsException"
+    assert json.loads(peer.requests[0][1])["PartitionInputList"] == [
+        {"Values": ["café"]}, {"Values": ["東京"]},
+    ]
+    assert result.to_dict()["errors"][0]["error_detail"]["error_message"] == "duplicate"
+
+
+@pytest.mark.asyncio
+@service("glue")
+@pytest.mark.parametrize("middleware", [False, True])
+async def test_glue_unknown_nested_input_field_rejected_before_dispatch(
+    peer: Peer, middleware: bool,
+) -> None:
+    from rboto import GlueClient
+    from rboto.exceptions import get_conversion_context
+
+    async def inject(request: OperationRequest, call_next: Next) -> OperationResponse:
+        request.parameters["table_input"] = {"name": "example", "StorageDescriptor": None}
+        return await call_next(request)
+
+    async with GlueClient(
+        region="us-east-1", endpoint_url=peer.endpoint,
+        interceptors=(inject,) if middleware else (),
+    ) as client:
+        with pytest.raises(TypeError) as caught:
+            await getattr(client, "create_table")(
+                database_name="example", table_input={"name": "example", "StorageDescriptor": None},
+            )
+    context = get_conversion_context(caught.value)
+    assert context is not None and context.path == "table_input[key#1]"
+    assert context.category == "unknown_field" and context.operation == "CreateTable"
+    assert peer.requests == []
+
+
+@pytest.mark.asyncio
+@service("glue")
+@pytest.mark.parametrize(
+    ("operation", "parameters", "wire_parameters", "token"),
+    [
+        ("describe_inbound_integrations", {"max_records": 2}, {"MaxRecords": 2}, "Marker"),
+        ("describe_integrations", {"max_records": 2}, {"MaxRecords": 2}, "Marker"),
+        ("get_catalogs", {"max_results": 2}, {"MaxResults": 2}, "NextToken"),
+        ("get_entity_records", {"entity_name": "events", "limit": 2},
+         {"EntityName": "events", "Limit": 2}, "NextToken"),
+        ("list_crawls", {"crawler_name": "example", "max_results": 2},
+         {"CrawlerName": "example", "MaxResults": 2}, "NextToken"),
+        ("list_data_quality_statistic_annotations", {"max_results": 2},
+         {"MaxResults": 2}, "NextToken"),
+        ("list_data_quality_statistics", {"max_results": 2}, {"MaxResults": 2}, "NextToken"),
+        ("list_integration_resource_properties", {"max_records": 2},
+         {"MaxRecords": 2}, "Marker"),
+        ("list_integration_table_properties", {"max_records": 2}, {"MaxRecords": 2}, "Marker"),
+        ("list_statements", {"session_id": "example"}, {"SessionId": "example"}, "NextToken"),
+        ("query_schema_version_metadata", {"schema_version_id": "example", "max_results": 2},
+         {"SchemaVersionId": "example", "MaxResults": 2}, "NextToken"),
+    ],
+)
+@pytest.mark.parametrize("last_token", [None, "page-two"])
+async def test_glue_supplemented_paginators_forward_tokens_and_terminate(
+    peer: Peer, operation: str, parameters: dict[str, object],
+    wire_parameters: dict[str, object], token: str, last_token: str | None,
+) -> None:
+    from rboto import GlueClient
+
+    async with GlueClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        peer.body = json.dumps({token: "page-two"}).encode()
+        pages = getattr(client.paginators, operation)(**parameters)
+        assert peer.requests == []
+        await anext(pages)
+        peer.body = json.dumps({token: last_token} if last_token is not None else {}).encode()
+        await anext(pages)
+        with pytest.raises(StopAsyncIteration):
+            await anext(pages)
+    assert [json.loads(body) for _, body in peer.requests] == [
+        wire_parameters, {**wire_parameters, token: "page-two"},
+    ]
+
+
+@pytest.mark.asyncio
+@service("glue")
+async def test_glue_modeled_error_preserves_typed_details_and_response_metadata(peer: Peer) -> None:
+    from rboto import ClientConfig, GlueClient
+    from rboto_glue.exceptions import EntityNotFoundError
+
+    peer.status = 400
+    peer.body = json.dumps({
+        "__type": "EntityNotFoundException", "Message": "missing database",
+        "FromFederationSource": True,
+    }).encode()
+    async with GlueClient(
+        region="us-east-1", endpoint_url=peer.endpoint, config=ClientConfig(max_attempts=1),
+    ) as client:
+        with pytest.raises(EntityNotFoundError) as caught:
+            await client.get_database(name="missing")
+    error = caught.value
+    assert error.operation_name == "GetDatabase"
+    assert error.details == {"from_federation_source": True}
+    assert error.response_metadata == {
+        "HTTPStatusCode": 400, "RequestId": None, "HostId": None, "RetryAttempts": 0,
+    }
+    assert len(peer.requests) == 1
+
+
+@pytest.mark.asyncio
+@service("glue")
+async def test_glue_job_run_preserves_future_states_and_nullable_fields(peer: Peer) -> None:
+    from rboto import GlueClient
+    from rboto.types import UnknownEnumValue
+
+    peer.body = json.dumps({"JobRun": {
+        "Id": "run-1", "JobName": "example", "JobRunState": "FUTURE_STATE",
+        "StartedOn": 1792972800, "Arguments": {"--label": "café 東京"},
+        "ExecutionTime": 0, "DPUSeconds": 0.5,
+    }}).encode()
+    async with GlueClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        result = await client.get_job_run(
+            job_name="example", run_id="run-1", predecessors_included=True,
+        )
+    assert result.job_run is not None
+    run = result.job_run
+    assert run.job_run_state == UnknownEnumValue("FUTURE_STATE")
+    assert run.started_on is not None and run.started_on.startswith("2026-10-26")
+    assert run.completed_on is None and run.error_message is None
+    assert run.arguments == {"--label": "café 東京"}
+    assert run.execution_time == 0 and run.dpu_seconds == 0.5
+    assert json.loads(peer.requests[0][1]) == {
+        "JobName": "example", "RunId": "run-1", "PredecessorsIncluded": True,
+    }
+
+
+@pytest.mark.asyncio
+@service("glue")
+async def test_glue_schema_definition_round_trip_and_64_bit_version(peer: Peer) -> None:
+    from rboto import GlueClient
+
+    definition = json.dumps({"type": "record", "name": "Event", "fields": [
+        {"name": "label", "type": ["null", "string"], "default": None, "doc": "café 東京"},
+    ]}, ensure_ascii=False)
+    peer.body = json.dumps({
+        "SchemaVersionId": "version-1", "VersionNumber": 9007199254740993, "Status": "PENDING",
+    }).encode()
+    async with GlueClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        registered = await client.register_schema_version(
+            schema_id={"registry_name": "example", "schema_name": "events"},
+            schema_definition=definition,
+        )
+        assert registered.version_number == 9007199254740993 and registered.status == "PENDING"
+        peer.body = json.dumps({
+            "SchemaVersionId": "version-1", "VersionNumber": 9007199254740993,
+            "Status": "AVAILABLE", "DataFormat": "AVRO", "SchemaDefinition": definition,
+        }).encode()
+        result = await client.get_schema_version(schema_version_id="version-1")
+    assert result.schema_definition == definition
+    assert result.version_number == 9007199254740993 and result.status == "AVAILABLE"
+    assert json.loads(peer.requests[0][1]) == {
+        "SchemaId": {"RegistryName": "example", "SchemaName": "events"},
+        "SchemaDefinition": definition,
+    }
+
+
+@pytest.mark.asyncio
+@service("glue")
+@pytest.mark.parametrize("state", ["COMPLETED", "STOPPED"])
+async def test_glue_crawl_history_preserves_unmodeled_aws_states(peer: Peer, state: str) -> None:
+    from rboto import GlueClient
+    from rboto.types import UnknownEnumValue
+
+    # Real Glue returned these values absent from the pinned CrawlState literals.
+    peer.body = json.dumps({"Crawls": [{
+        "CrawlId": "crawl-1", "State": state,
+        "StartTime": 1792972800, "EndTime": 1792972801,
+    }]}).encode()
+    async with GlueClient(region="us-east-1", endpoint_url=peer.endpoint) as client:
+        history = await client.list_crawls(crawler_name="example", max_results=1)
+    assert history.crawls is not None
+    crawl = history.crawls[0]
+    assert crawl.state == UnknownEnumValue(state)
+    assert crawl.start_time is not None and crawl.start_time.startswith("2026-10-26")
+    assert crawl.end_time is not None and crawl.end_time.startswith("2026-10-26")
+    assert json.loads(peer.requests[0][1]) == {"CrawlerName": "example", "MaxResults": 1}

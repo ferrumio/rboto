@@ -14,6 +14,21 @@ from rboto_codegen.smithy import SmithyService, load_model
 ROOT = Path(__file__).parents[2]
 
 
+def test_glue_paginators_cover_every_modeled_continuation_token() -> None:
+    generator = ServiceGenerator(get_service("glue"), ROOT / "codegen/models/glue.json", ROOT)
+    shapes = generator.service.shapes
+    token_operations: set[str] = set()
+    for operation in generator.service.operations:
+        if not operation.input_target or not operation.output_target:
+            continue
+        inputs = {member.name for member in shapes[operation.input_target].members}
+        outputs = {member.name for member in shapes[operation.output_target].members}
+        if {"NextToken", "Marker"} & inputs & outputs:
+            token_operations.add(operation.rust_name)
+    assert {spec.operation for spec in generator.pagination} == token_operations
+    assert len(token_operations) == 64
+
+
 @pytest.fixture
 def modeled(tmp_path: Path) -> tuple[ServiceDescriptor, SmithyService]:
     model: dict[str, object] = {

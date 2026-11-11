@@ -19,6 +19,7 @@ from rboto_cognito_identity import CognitoIdentityClient as CognitoIdentityClien
 from rboto_connecthealth import ConnectHealthClient as ConnectHealthClient
 from rboto_dynamodb import DynamoDBClient as DynamoDBClient
 from rboto_eventbridge import EventBridgeClient as EventBridgeClient
+from rboto_glue import GlueClient as GlueClient
 from rboto_guardduty import GuardDutyClient as GuardDutyClient
 from rboto_kms import KMSClient as KMSClient
 from rboto_lambda import LambdaClient as LambdaClient
@@ -69,6 +70,7 @@ from .services import cognito_identity as cognito_identity
 from .services import connecthealth as connecthealth
 from .services import dynamodb as dynamodb
 from .services import eventbridge as eventbridge
+from .services import glue as glue
 from .services import guardduty as guardduty
 from .services import kms as kms
 from .services import lambda_ as lambda_

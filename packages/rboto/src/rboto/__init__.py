@@ -32,6 +32,7 @@ from .services import (
     connecthealth,
     dynamodb,
     eventbridge,
+    glue,
     guardduty,
     kms,
     lambda_,
@@ -73,6 +74,7 @@ if TYPE_CHECKING:
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
     from rboto_eventbridge import EventBridgeClient
+    from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
@@ -128,6 +130,7 @@ __all__ = [
     "ConnectHealthClient",
     "DynamoDBClient",
     "EventBridgeClient",
+    "GlueClient",
     "GuardDutyClient",
     "KMSClient",
     "LambdaClient",
@@ -164,6 +167,7 @@ __all__ = [
     "connecthealth",
     "dynamodb",
     "eventbridge",
+    "glue",
     "guardduty",
     "kms",
     "lambda_",
@@ -233,6 +237,9 @@ _CLIENT_MODULES = {
     ),
     "EventBridgeClient": (
         "rboto_eventbridge", "eventbridge",
+    ),
+    "GlueClient": (
+        "rboto_glue", "glue",
     ),
     "GuardDutyClient": (
         "rboto_guardduty", "guardduty",

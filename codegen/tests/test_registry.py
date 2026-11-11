@@ -11,6 +11,7 @@ def test_service_configs_are_discovered() -> None:
         *catalog["services"],
         "s3",
         "athena",
+        "glue",
         "cloudwatch-logs",
         "eventbridge",
         "kms",
