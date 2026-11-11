@@ -2606,7 +2606,7 @@ checksum = "63b8176103e19a2643978565ca18b50549f6101881c443590420e4dc998a3c69"
 
 [[package]]
 name = "rboto-api-gateway-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-apigateway",
@@ -2621,7 +2621,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-athena-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-athena",
@@ -2636,7 +2636,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-agent-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockagent",
@@ -2651,7 +2651,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-agent-runtime-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockagentruntime",
@@ -2666,7 +2666,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-agentcore-control-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockagentcorecontrol",
@@ -2681,7 +2681,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-agentcore-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockagentcore",
@@ -2696,7 +2696,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-data-automation-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockdataautomation",
@@ -2711,7 +2711,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-data-automation-runtime-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockdataautomationruntime",
@@ -2726,7 +2726,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrock",
@@ -2741,7 +2741,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-bedrock-runtime-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-bedrockruntime",
@@ -2756,7 +2756,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-cloudtrail-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-cloudtrail",
@@ -2771,7 +2771,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-cloudwatch-logs-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-cloudwatchlogs",
@@ -2786,7 +2786,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-cognito-identity-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-cognitoidentity",
@@ -2801,7 +2801,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-connecthealth-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-connecthealth",
@@ -2816,7 +2816,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-core"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-credential-types",
@@ -2836,7 +2836,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-dynamodb-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-dynamodb",
@@ -2851,7 +2851,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-eventbridge-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-eventbridge",
@@ -2866,7 +2866,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-guardduty-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-guardduty",
@@ -2881,7 +2881,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-kms-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-kms",
@@ -2896,7 +2896,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-lambda-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-lambda",
@@ -2911,7 +2911,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-lex-runtime-v2-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-lexruntimev2",
@@ -2926,7 +2926,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-pipes-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-pipes",
@@ -2941,7 +2941,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-polly-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-polly",
@@ -2956,7 +2956,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-qbusiness-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-qbusiness",
@@ -2971,7 +2971,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-s3-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-s3",
@@ -2986,7 +2986,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sagemaker-runtime-http2-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sagemakerruntimehttp2",
@@ -3001,7 +3001,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-scheduler-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-scheduler",
@@ -3016,7 +3016,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-secrets-manager-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-secretsmanager",
@@ -3031,7 +3031,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sesv2-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sesv2",
@@ -3046,7 +3046,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sfn-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sfn",
@@ -3061,7 +3061,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-signin-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-signin",
@@ -3076,7 +3076,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sns-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sns",
@@ -3091,7 +3091,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sqs-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sqs",
@@ -3106,7 +3106,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-ssm-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-ssm",
@@ -3121,7 +3121,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-sts-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-sts",
@@ -3136,7 +3136,7 @@ dependencies = [
 
 [[package]]
 name = "rboto-transcribe-streaming-native"
-version = "0.2.0"
+version = "0.3.0"
 dependencies = [
  "aws-config",
  "aws-sdk-transcribestreaming",
