@@ -118,6 +118,8 @@ DeleteResourceDataSyncOutput: TypeAlias = _native.DeleteResourceDataSyncOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourceDataSyncOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyOutput/)."""
+DeregisterDefaultHostManagementConfigurationOutput: TypeAlias = _native.DeregisterDefaultHostManagementConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterDefaultHostManagementConfigurationOutput/)."""
 DeregisterManagedInstanceOutput: TypeAlias = _native.DeregisterManagedInstanceOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterManagedInstanceOutput/)."""
 DeregisterPatchBaselineForPatchGroupOutput: TypeAlias = _native.DeregisterPatchBaselineForPatchGroupOutput
@@ -448,6 +450,8 @@ PutParameterOutput: TypeAlias = _native.PutParameterOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutParameterOutput/)."""
 PutResourcePolicyOutput: TypeAlias = _native.PutResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyOutput/)."""
+RegisterDefaultHostManagementConfigurationOutput: TypeAlias = _native.RegisterDefaultHostManagementConfigurationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultHostManagementConfigurationOutput/)."""
 RegisterDefaultPatchBaselineOutput: TypeAlias = _native.RegisterDefaultPatchBaselineOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultPatchBaselineOutput/)."""
 RegisterPatchBaselineForPatchGroupOutput: TypeAlias = _native.RegisterPatchBaselineForPatchGroupOutput
@@ -672,6 +676,10 @@ ConnectionStatus: TypeAlias = Literal['connected', 'notconnected']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConnectionStatus/)."""
 ConnectionStatusOutput: TypeAlias = ConnectionStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConnectionStatusOutput/)."""
+DHMCPermissionModel: TypeAlias = Literal['SERVICE_MANAGED', 'SELF_MANAGED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DHMCPermissionModel/)."""
+DHMCPermissionModelOutput: TypeAlias = DHMCPermissionModel | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DHMCPermissionModelOutput/)."""
 DeletionMode: TypeAlias = Literal['RemoveSharing', 'RollbackMigration']
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeletionMode/)."""
 DeletionModeOutput: TypeAlias = DeletionMode | UnknownEnumValue
@@ -1967,6 +1975,13 @@ DeleteResourcePolicyRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeleteResourcePolicyRequest/)."""
+
+DeregisterDefaultHostManagementConfigurationRequest = TypedDict(
+    "DeregisterDefaultHostManagementConfigurationRequest",
+    {
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/DeregisterDefaultHostManagementConfigurationRequest/)."""
 
 DeregisterManagedInstanceRequest = TypedDict(
     "DeregisterManagedInstanceRequest",
@@ -4246,6 +4261,16 @@ PutResourcePolicyRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/PutResourcePolicyRequest/)."""
+
+RegisterDefaultHostManagementConfigurationRequest = TypedDict(
+    "RegisterDefaultHostManagementConfigurationRequest",
+    {
+    "permission_model": Required["DHMCPermissionModel"],
+    "role_arn": NotRequired["str"],
+    "overwrite": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/RegisterDefaultHostManagementConfigurationRequest/)."""
 
 RegisterDefaultPatchBaselineRequest = TypedDict(
     "RegisterDefaultPatchBaselineRequest",

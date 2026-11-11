@@ -36,8 +36,22 @@ BatchWriteItemOutput: TypeAlias = _native.BatchWriteItemOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BatchWriteItemOutput/)."""
 BillingModeSummaryOutput: TypeAlias = _native.BillingModeSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BillingModeSummaryOutput/)."""
+BulkOperationBytesOutput: TypeAlias = _native.BulkOperationBytes
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationBytesOutput/)."""
+BulkOperationDescriptionOutput: TypeAlias = _native.BulkOperationDescription
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationDescriptionOutput/)."""
+BulkOperationSummaryOutput: TypeAlias = _native.BulkOperationSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationSummaryOutput/)."""
+BulkOperationTableDetailOutput: TypeAlias = _native.BulkOperationTableDetail
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationTableDetailOutput/)."""
+BulkOperationUsageOutput: TypeAlias = _native.BulkOperationUsage
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationUsageOutput/)."""
+BulkOperationVectorBytesOutput: TypeAlias = _native.BulkOperationVectorBytes
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationVectorBytesOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ByteStream/)."""
+CancelBulkOperationOutput: TypeAlias = _native.CancelBulkOperationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CancelBulkOperationOutput/)."""
 CapacityOutput: TypeAlias = _native.Capacity
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CapacityOutput/)."""
 ConsumedCapacityOutput: TypeAlias = _native.ConsumedCapacity
@@ -66,6 +80,8 @@ DeleteTableOutput: TypeAlias = _native.DeleteTableOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DeleteTableOutput/)."""
 DescribeBackupOutput: TypeAlias = _native.DescribeBackupOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeBackupOutput/)."""
+DescribeBulkOperationOutput: TypeAlias = _native.DescribeBulkOperationOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeBulkOperationOutput/)."""
 DescribeContinuousBackupsOutput: TypeAlias = _native.DescribeContinuousBackupsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeContinuousBackupsOutput/)."""
 DescribeContributorInsightsOutput: TypeAlias = _native.DescribeContributorInsightsOutput
@@ -140,6 +156,8 @@ IncrementalExportSpecificationOutput: TypeAlias = _native.IncrementalExportSpeci
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/IncrementalExportSpecificationOutput/)."""
 InputFormatOptionsOutput: TypeAlias = _native.InputFormatOptions
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/InputFormatOptionsOutput/)."""
+InputS3ConfigurationOutput: TypeAlias = _native.InputS3Configuration
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/InputS3ConfigurationOutput/)."""
 ItemCollectionMetricsOutput: TypeAlias = _native.ItemCollectionMetrics
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ItemCollectionMetricsOutput/)."""
 ItemResponseOutput: TypeAlias = _native.ItemResponse
@@ -152,6 +170,8 @@ KinesisDataStreamDestinationOutput: TypeAlias = _native.KinesisDataStreamDestina
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/KinesisDataStreamDestinationOutput/)."""
 ListBackupsOutput: TypeAlias = _native.ListBackupsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListBackupsOutput/)."""
+ListBulkOperationsOutput: TypeAlias = _native.ListBulkOperationsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListBulkOperationsOutput/)."""
 ListContributorInsightsOutput: TypeAlias = _native.ListContributorInsightsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListContributorInsightsOutput/)."""
 ListExportsOutput: TypeAlias = _native.ListExportsOutput
@@ -172,6 +192,8 @@ OnDemandThroughputOutput: TypeAlias = _native.OnDemandThroughput
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OnDemandThroughputOutput/)."""
 OnDemandThroughputOverrideOutput: TypeAlias = _native.OnDemandThroughputOverride
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OnDemandThroughputOverrideOutput/)."""
+OutputS3ConfigurationOutput: TypeAlias = _native.OutputS3Configuration
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OutputS3ConfigurationOutput/)."""
 PointInTimeRecoveryDescriptionOutput: TypeAlias = _native.PointInTimeRecoveryDescription
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PointInTimeRecoveryDescriptionOutput/)."""
 ProjectionOutput: TypeAlias = _native.Projection
@@ -228,6 +250,8 @@ SseDescription: TypeAlias = _native.SseDescription
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SseDescription-ce4cf0e0a831/)."""
 SseSpecification: TypeAlias = _native.SseSpecification
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SseSpecification-4dfa25d00dd9/)."""
+StartBulkPutItemsOutput: TypeAlias = _native.StartBulkPutItemsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/StartBulkPutItemsOutput/)."""
 StreamSpecificationOutput: TypeAlias = _native.StreamSpecification
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/StreamSpecificationOutput/)."""
 TableAutoScalingDescriptionOutput: TypeAlias = _native.TableAutoScalingDescription
@@ -316,6 +340,18 @@ BillingMode: TypeAlias = Literal['PROVISIONED', 'PAY_PER_REQUEST']
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BillingMode/)."""
 BillingModeOutput: TypeAlias = BillingMode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BillingModeOutput/)."""
+BulkOperationInputFormat: TypeAlias = Literal['DYNAMODB_JSON', 'ION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationInputFormat/)."""
+BulkOperationInputFormatOutput: TypeAlias = BulkOperationInputFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationInputFormatOutput/)."""
+BulkOperationPerformanceTier: TypeAlias = Literal['STANDARD', 'ACCELERATED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationPerformanceTier/)."""
+BulkOperationPerformanceTierOutput: TypeAlias = BulkOperationPerformanceTier | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationPerformanceTierOutput/)."""
+BulkOperationStatus: TypeAlias = Literal['IN_PROGRESS', 'COMPLETED', 'COMPLETED_WITH_ERRORS', 'CANCELLING', 'CANCELLED', 'FAILED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationStatus/)."""
+BulkOperationStatusOutput: TypeAlias = BulkOperationStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationStatusOutput/)."""
 ComparisonOperator: TypeAlias = Literal['EQ', 'NE', 'IN', 'LE', 'LT', 'GE', 'GT', 'BETWEEN', 'NOT_NULL', 'NULL', 'CONTAINS', 'NOT_CONTAINS', 'BEGINS_WITH']
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ComparisonOperator/)."""
 ComparisonOperatorOutput: TypeAlias = ComparisonOperator | UnknownEnumValue
@@ -396,6 +432,10 @@ MultiRegionConsistency: TypeAlias = Literal['EVENTUAL', 'STRONG']
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/MultiRegionConsistency/)."""
 MultiRegionConsistencyOutput: TypeAlias = MultiRegionConsistency | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/MultiRegionConsistencyOutput/)."""
+OutputTypeEnum: TypeAlias = Literal['ERROR', 'CONDITION_CHECK_FAILURE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OutputTypeEnum/)."""
+OutputTypeEnumOutput: TypeAlias = OutputTypeEnum | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OutputTypeEnumOutput/)."""
 PointInTimeRecoveryStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/PointInTimeRecoveryStatus/)."""
 PointInTimeRecoveryStatusOutput: TypeAlias = PointInTimeRecoveryStatus | UnknownEnumValue
@@ -722,6 +762,87 @@ BillingModeSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BillingModeSummary/)."""
 
+BulkOperationBytes = TypedDict(
+    "BulkOperationBytes",
+    {
+    "bulk_put_bytes": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationBytes/)."""
+
+BulkOperationDescription = TypedDict(
+    "BulkOperationDescription",
+    {
+    "bulk_operation_arn": NotRequired["str"],
+    "bulk_operation_status": NotRequired["BulkOperationStatus"],
+    "table_details": NotRequired["Sequence[BulkOperationTableDetail]"],
+    "client_token": NotRequired["str"],
+    "input_s3_configuration": NotRequired["InputS3Configuration"],
+    "output_s3_configuration": NotRequired["OutputS3Configuration"],
+    "start_time": NotRequired["str"],
+    "end_time": NotRequired["str"],
+    "processed_item_count": NotRequired["int"],
+    "processed_input_bytes": NotRequired["int"],
+    "total_input_bytes": NotRequired["int"],
+    "bulk_operation_usage": NotRequired["Sequence[BulkOperationUsage]"],
+    "failed_item_count": NotRequired["int"],
+    "failure_code": NotRequired["str"],
+    "failure_message": NotRequired["str"],
+    "max_write_request_units": NotRequired["int"],
+    "performance_tier": NotRequired["BulkOperationPerformanceTier"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationDescription/)."""
+
+BulkOperationSummary = TypedDict(
+    "BulkOperationSummary",
+    {
+    "bulk_operation_arn": Required["str"],
+    "bulk_operation_status": Required["BulkOperationStatus"],
+    "start_time": Required["str"],
+    "end_time": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationSummary/)."""
+
+BulkOperationTableDetail = TypedDict(
+    "BulkOperationTableDetail",
+    {
+    "table_name": NotRequired["str"],
+    "table_id": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationTableDetail/)."""
+
+BulkOperationUsage = TypedDict(
+    "BulkOperationUsage",
+    {
+    "table_name": NotRequired["str"],
+    "bulk_put_bytes": NotRequired["int"],
+    "table": NotRequired["BulkOperationBytes"],
+    "local_secondary_indexes": NotRequired["dict[str, BulkOperationBytes]"],
+    "global_secondary_indexes": NotRequired["dict[str, BulkOperationBytes]"],
+    "vector_indexes": NotRequired["dict[str, BulkOperationVectorBytes]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationUsage/)."""
+
+BulkOperationVectorBytes = TypedDict(
+    "BulkOperationVectorBytes",
+    {
+    "bulk_put_vector_bytes": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/BulkOperationVectorBytes/)."""
+
+CancelBulkOperationInput = TypedDict(
+    "CancelBulkOperationInput",
+    {
+    "bulk_operation_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/CancelBulkOperationInput/)."""
+
 CancellationReason = TypedDict(
     "CancellationReason",
     {
@@ -1023,6 +1144,14 @@ DescribeBackupInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeBackupInput/)."""
+
+DescribeBulkOperationInput = TypedDict(
+    "DescribeBulkOperationInput",
+    {
+    "bulk_operation_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/DescribeBulkOperationInput/)."""
 
 DescribeContinuousBackupsInput = TypedDict(
     "DescribeContinuousBackupsInput",
@@ -1485,6 +1614,18 @@ InputFormatOptions = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/InputFormatOptions/)."""
 
+InputS3Configuration = TypedDict(
+    "InputS3Configuration",
+    {
+    "s3_bucket_owner": NotRequired["str"],
+    "s3_bucket": Required["str"],
+    "s3_key_prefix": NotRequired["str"],
+    "input_format": Required["BulkOperationInputFormat"],
+    "input_compression_type": NotRequired["InputCompressionType"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/InputS3Configuration/)."""
+
 ItemCollectionMetrics = TypedDict(
     "ItemCollectionMetrics",
     {
@@ -1556,6 +1697,15 @@ ListBackupsInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListBackupsInput/)."""
+
+ListBulkOperationsInput = TypedDict(
+    "ListBulkOperationsInput",
+    {
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/ListBulkOperationsInput/)."""
 
 ListContributorInsightsInput = TypedDict(
     "ListContributorInsightsInput",
@@ -1664,6 +1814,19 @@ OnDemandThroughputOverride = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OnDemandThroughputOverride/)."""
+
+OutputS3Configuration = TypedDict(
+    "OutputS3Configuration",
+    {
+    "s3_bucket_owner": NotRequired["str"],
+    "s3_bucket": NotRequired["str"],
+    "s3_key_prefix": NotRequired["str"],
+    "s3_sse_algorithm": NotRequired["S3SseAlgorithm"],
+    "s3_sse_kms_key_id": NotRequired["str"],
+    "output_type": Required["Sequence[OutputTypeEnum]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/OutputS3Configuration/)."""
 
 ParameterizedStatement = TypedDict(
     "ParameterizedStatement",
@@ -2144,6 +2307,19 @@ SourceTableFeatureDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/SourceTableFeatureDetails/)."""
+
+StartBulkPutItemsInput = TypedDict(
+    "StartBulkPutItemsInput",
+    {
+    "client_token": NotRequired["str"],
+    "input_s3_configuration": Required["InputS3Configuration"],
+    "output_s3_configuration": Required["OutputS3Configuration"],
+    "table_name": Required["str"],
+    "max_write_request_units": NotRequired["int"],
+    "performance_tier": NotRequired["BulkOperationPerformanceTier"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/StartBulkPutItemsInput/)."""
 
 StreamSpecification = TypedDict(
     "StreamSpecification",

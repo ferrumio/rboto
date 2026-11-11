@@ -104,7 +104,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_log_stream`](#create_log_stream) | <code>log_group_name: str</code>, <code>log_stream_name: str</code> | <code>None</code> |
 | [`create_lookup_table`](#create_lookup_table) | <code>lookup_table_name: str</code> | <code>CreateLookupTableOutput</code> |
 | [`create_scheduled_query`](#create_scheduled_query) | <code>name: str</code>, <code>query_language: QueryLanguage</code>, <code>query_string: str</code>, <code>schedule_expression: str</code>, <code>execution_role_arn: str</code> | <code>CreateScheduledQueryOutput</code> |
-| [`delete_account_policy`](#delete_account_policy) | <code>policy_name: str</code>, <code>policy_type: PolicyType</code> | <code>None</code> |
+| [`delete_account_policy`](#delete_account_policy) | <code>policy_name: str</code>, <code>policy_type: PolicyType</code> | <code>DeleteAccountPolicyOutput</code> |
 | [`delete_data_protection_policy`](#delete_data_protection_policy) | <code>log_group_identifier: str</code> | <code>None</code> |
 | [`delete_delivery`](#delete_delivery) | <code>id: str</code> | <code>None</code> |
 | [`delete_delivery_destination`](#delete_delivery_destination) | <code>name: str</code> | <code>None</code> |
@@ -386,7 +386,8 @@ async def delete_account_policy(
     *,
     policy_name: str,
     policy_type: PolicyType,
-) -> None: ...
+    dry_run: bool | None = None,
+) -> DeleteAccountPolicyOutput: ...
 ```
 
 
@@ -1303,6 +1304,7 @@ async def put_account_policy(
     policy_type: PolicyType,
     scope: Scope | None = None,
     selection_criteria: str | None = None,
+    dry_run: bool | None = None,
 ) -> PutAccountPolicyOutput: ...
 ```
 

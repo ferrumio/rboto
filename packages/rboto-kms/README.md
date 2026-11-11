@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS KMS**,
 powered by Rust. This package contains `KMSClient` and
-**54 operations**.
+**56 operations**.
 
 ## Installation
 
@@ -97,6 +97,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_custom_key_store`](#create_custom_key_store) | <code>custom_key_store_name: str</code> | <code>CreateCustomKeyStoreOutput</code> |
 | [`create_grant`](#create_grant) | <code>key_id: str</code>, <code>operations: Sequence[GrantOperation]</code> | <code>CreateGrantOutput</code> |
 | [`create_key`](#create_key) | None | <code>CreateKeyOutput</code> |
+| [`decapsulate`](#decapsulate) | <code>key_id: str</code>, <code>shared_secret_ciphertext_blob: bytes</code>, <code>encapsulation_algorithm: EncapsulationAlgorithmSpec</code> | <code>DecapsulateOutput</code> |
 | [`decrypt`](#decrypt) | None | <code>DecryptOutput</code> |
 | [`delete_alias`](#delete_alias) | <code>alias_name: str</code> | <code>None</code> |
 | [`delete_custom_key_store`](#delete_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DeleteCustomKeyStoreOutput</code> |
@@ -109,6 +110,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`disconnect_custom_key_store`](#disconnect_custom_key_store) | <code>custom_key_store_id: str</code> | <code>DisconnectCustomKeyStoreOutput</code> |
 | [`enable_key`](#enable_key) | <code>key_id: str</code> | <code>None</code> |
 | [`enable_key_rotation`](#enable_key_rotation) | <code>key_id: str</code> | <code>None</code> |
+| [`encapsulate`](#encapsulate) | <code>key_id: str</code>, <code>encapsulation_algorithm: EncapsulationAlgorithmSpec</code> | <code>EncapsulateOutput</code> |
 | [`encrypt`](#encrypt) | <code>key_id: str</code>, <code>plaintext: bytes</code> | <code>EncryptOutput</code> |
 | [`generate_data_key`](#generate_data_key) | <code>key_id: str</code> | <code>GenerateDataKeyOutput</code> |
 | [`generate_data_key_pair`](#generate_data_key_pair) | <code>key_id: str</code>, <code>key_pair_spec: DataKeyPairSpec</code> | <code>GenerateDataKeyPairOutput</code> |
@@ -235,6 +237,20 @@ async def create_key(
     multi_region: bool | None = None,
     xks_key_id: str | None = None,
 ) -> CreateKeyOutput: ...
+```
+
+
+### decapsulate
+
+```python
+async def decapsulate(
+    *,
+    key_id: str,
+    shared_secret_ciphertext_blob: bytes,
+    encapsulation_algorithm: EncapsulationAlgorithmSpec,
+    grant_tokens: Sequence[str] | None = None,
+    dry_run: bool | None = None,
+) -> DecapsulateOutput: ...
 ```
 
 
@@ -376,6 +392,19 @@ async def enable_key_rotation(
     key_id: str,
     rotation_period_in_days: int | None = None,
 ) -> None: ...
+```
+
+
+### encapsulate
+
+```python
+async def encapsulate(
+    *,
+    key_id: str,
+    encapsulation_algorithm: EncapsulationAlgorithmSpec,
+    grant_tokens: Sequence[str] | None = None,
+    dry_run: bool | None = None,
+) -> EncapsulateOutput: ...
 ```
 
 

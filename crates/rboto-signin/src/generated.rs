@@ -763,20 +763,20 @@ struct PyAccessToken {
 impl PyAccessToken {
     #[getter]
     fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_142 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
-        Ok(converted_142)
+        let converted_147 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
+        Ok(converted_147)
     }
 
     #[getter]
     fn secret_access_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_143 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
-        Ok(converted_143)
+        let converted_148 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
+        Ok(converted_148)
     }
 
     #[getter]
     fn session_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_144 = (&self.inner.session_token).as_str().into_py_any(py)?;
-        Ok(converted_144)
+        let converted_149 = (&self.inner.session_token).as_str().into_py_any(py)?;
+        Ok(converted_149)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -814,20 +814,20 @@ fn create_o_auth2_token_response_body_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.access_token {
-        let converted_150 = access_token_to_py(py, value)?;
-        result.set_item("access_token", converted_150)?;
+        let converted_155 = access_token_to_py(py, value)?;
+        result.set_item("access_token", converted_155)?;
     } else {
         result.set_item("access_token", py.None())?;
     }
-    let converted_151 = (&value.token_type).as_str().into_py_any(py)?;
-    result.set_item("token_type", converted_151)?;
-    let converted_152 = (&value.expires_in).to_owned().into_py_any(py)?;
-    result.set_item("expires_in", converted_152)?;
-    let converted_153 = (&value.refresh_token).as_str().into_py_any(py)?;
-    result.set_item("refresh_token", converted_153)?;
+    let converted_156 = (&value.token_type).as_str().into_py_any(py)?;
+    result.set_item("token_type", converted_156)?;
+    let converted_157 = (&value.expires_in).to_owned().into_py_any(py)?;
+    result.set_item("expires_in", converted_157)?;
+    let converted_158 = (&value.refresh_token).as_str().into_py_any(py)?;
+    result.set_item("refresh_token", converted_158)?;
     if let Some(value) = &value.id_token {
-        let converted_154 = (value).as_str().into_py_any(py)?;
-        result.set_item("id_token", converted_154)?;
+        let converted_159 = (value).as_str().into_py_any(py)?;
+        result.set_item("id_token", converted_159)?;
     } else {
         result.set_item("id_token", py.None())?;
     }
@@ -848,14 +848,14 @@ impl PyCreateOAuth2TokenResponseBody {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.access_token {
-            let converted_145 = Py::new(
+            let converted_150 = Py::new(
                 py,
                 PyAccessToken {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_145)
+            Ok(converted_150)
         } else {
             Ok(py.None())
         }
@@ -863,27 +863,27 @@ impl PyCreateOAuth2TokenResponseBody {
 
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_146 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        Ok(converted_146)
+        let converted_151 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_151)
     }
 
     #[getter]
     fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_147 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        Ok(converted_147)
+        let converted_152 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_152)
     }
 
     #[getter]
     fn refresh_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_148 = (&self.inner.refresh_token).as_str().into_py_any(py)?;
-        Ok(converted_148)
+        let converted_153 = (&self.inner.refresh_token).as_str().into_py_any(py)?;
+        Ok(converted_153)
     }
 
     #[getter]
     fn id_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id_token {
-            let converted_149 = (value).as_str().into_py_any(py)?;
-            Ok(converted_149)
+            let converted_154 = (value).as_str().into_py_any(py)?;
+            Ok(converted_154)
         } else {
             Ok(py.None())
         }
@@ -907,32 +907,32 @@ struct PyPermissionStatementSummary {
 impl PyPermissionStatementSummary {
     #[getter]
     fn sid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_155 = (&self.inner.sid).as_str().into_py_any(py)?;
-        Ok(converted_155)
+        let converted_160 = (&self.inner.sid).as_str().into_py_any(py)?;
+        Ok(converted_160)
     }
 
     #[getter]
     fn condition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.condition {
-            let converted_156_dict = PyDict::new(py);
-            for (key_157, value_158) in value {
-                let converted_key_159 = (key_157).as_str().into_py_any(py)?;
-                let converted_value_160_dict = PyDict::new(py);
-                for (key_161, value_162) in value_158 {
-                    let converted_key_163 = (key_161).as_str().into_py_any(py)?;
-                    let converted_value_164_list = PyList::empty(py);
-                    for item_165 in value_162 {
-                        let converted_item_166 = (item_165).as_str().into_py_any(py)?;
-                        converted_value_164_list.append(converted_item_166)?;
+            let converted_161_dict = PyDict::new(py);
+            for (key_162, value_163) in value {
+                let converted_key_164 = (key_162).as_str().into_py_any(py)?;
+                let converted_value_165_dict = PyDict::new(py);
+                for (key_166, value_167) in value_163 {
+                    let converted_key_168 = (key_166).as_str().into_py_any(py)?;
+                    let converted_value_169_list = PyList::empty(py);
+                    for item_170 in value_167 {
+                        let converted_item_171 = (item_170).as_str().into_py_any(py)?;
+                        converted_value_169_list.append(converted_item_171)?;
                     }
-                    let converted_value_164 = converted_value_164_list.into_any().unbind();
-                    converted_value_160_dict.set_item(converted_key_163, converted_value_164)?;
+                    let converted_value_169 = converted_value_169_list.into_any().unbind();
+                    converted_value_165_dict.set_item(converted_key_168, converted_value_169)?;
                 }
-                let converted_value_160 = converted_value_160_dict.into_any().unbind();
-                converted_156_dict.set_item(converted_key_159, converted_value_160)?;
+                let converted_value_165 = converted_value_165_dict.into_any().unbind();
+                converted_161_dict.set_item(converted_key_164, converted_value_165)?;
             }
-            let converted_156 = converted_156_dict.into_any().unbind();
-            Ok(converted_156)
+            let converted_161 = converted_161_dict.into_any().unbind();
+            Ok(converted_161)
         } else {
             Ok(py.None())
         }
@@ -953,8 +953,8 @@ impl PyPolicyStatement {
     #[getter]
     fn effect(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.effect {
-            let converted_167 = (value).as_str().into_py_any(py)?;
-            Ok(converted_167)
+            let converted_172 = (value).as_str().into_py_any(py)?;
+            Ok(converted_172)
         } else {
             Ok(py.None())
         }
@@ -963,14 +963,14 @@ impl PyPolicyStatement {
     #[getter]
     fn principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.principal {
-            let converted_168_dict = PyDict::new(py);
-            for (key_169, value_170) in value {
-                let converted_key_171 = (key_169).as_str().into_py_any(py)?;
-                let converted_value_172 = (value_170).as_str().into_py_any(py)?;
-                converted_168_dict.set_item(converted_key_171, converted_value_172)?;
+            let converted_173_dict = PyDict::new(py);
+            for (key_174, value_175) in value {
+                let converted_key_176 = (key_174).as_str().into_py_any(py)?;
+                let converted_value_177 = (value_175).as_str().into_py_any(py)?;
+                converted_173_dict.set_item(converted_key_176, converted_value_177)?;
             }
-            let converted_168 = converted_168_dict.into_any().unbind();
-            Ok(converted_168)
+            let converted_173 = converted_173_dict.into_any().unbind();
+            Ok(converted_173)
         } else {
             Ok(py.None())
         }
@@ -979,13 +979,13 @@ impl PyPolicyStatement {
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action {
-            let converted_173_list = PyList::empty(py);
-            for item_174 in value {
-                let converted_item_175 = (item_174).as_str().into_py_any(py)?;
-                converted_173_list.append(converted_item_175)?;
+            let converted_178_list = PyList::empty(py);
+            for item_179 in value {
+                let converted_item_180 = (item_179).as_str().into_py_any(py)?;
+                converted_178_list.append(converted_item_180)?;
             }
-            let converted_173 = converted_173_list.into_any().unbind();
-            Ok(converted_173)
+            let converted_178 = converted_178_list.into_any().unbind();
+            Ok(converted_178)
         } else {
             Ok(py.None())
         }
@@ -994,8 +994,8 @@ impl PyPolicyStatement {
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource {
-            let converted_176 = (value).as_str().into_py_any(py)?;
-            Ok(converted_176)
+            let converted_181 = (value).as_str().into_py_any(py)?;
+            Ok(converted_181)
         } else {
             Ok(py.None())
         }
@@ -1004,25 +1004,25 @@ impl PyPolicyStatement {
     #[getter]
     fn condition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.condition {
-            let converted_177_dict = PyDict::new(py);
-            for (key_178, value_179) in value {
-                let converted_key_180 = (key_178).as_str().into_py_any(py)?;
-                let converted_value_181_dict = PyDict::new(py);
-                for (key_182, value_183) in value_179 {
-                    let converted_key_184 = (key_182).as_str().into_py_any(py)?;
-                    let converted_value_185_list = PyList::empty(py);
-                    for item_186 in value_183 {
-                        let converted_item_187 = (item_186).as_str().into_py_any(py)?;
-                        converted_value_185_list.append(converted_item_187)?;
+            let converted_182_dict = PyDict::new(py);
+            for (key_183, value_184) in value {
+                let converted_key_185 = (key_183).as_str().into_py_any(py)?;
+                let converted_value_186_dict = PyDict::new(py);
+                for (key_187, value_188) in value_184 {
+                    let converted_key_189 = (key_187).as_str().into_py_any(py)?;
+                    let converted_value_190_list = PyList::empty(py);
+                    for item_191 in value_188 {
+                        let converted_item_192 = (item_191).as_str().into_py_any(py)?;
+                        converted_value_190_list.append(converted_item_192)?;
                     }
-                    let converted_value_185 = converted_value_185_list.into_any().unbind();
-                    converted_value_181_dict.set_item(converted_key_184, converted_value_185)?;
+                    let converted_value_190 = converted_value_190_list.into_any().unbind();
+                    converted_value_186_dict.set_item(converted_key_189, converted_value_190)?;
                 }
-                let converted_value_181 = converted_value_181_dict.into_any().unbind();
-                converted_177_dict.set_item(converted_key_180, converted_value_181)?;
+                let converted_value_186 = converted_value_186_dict.into_any().unbind();
+                converted_182_dict.set_item(converted_key_185, converted_value_186)?;
             }
-            let converted_177 = converted_177_dict.into_any().unbind();
-            Ok(converted_177)
+            let converted_182 = converted_182_dict.into_any().unbind();
+            Ok(converted_182)
         } else {
             Ok(py.None())
         }
@@ -1047,7 +1047,7 @@ impl From<aws_sdk_signin::types::SigninResourceBasedPolicy> for SharedSigninReso
             statement: value.statement.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_192| Arc::new(owned_192))
+                    .map(|owned_197| Arc::new(owned_197))
                     .collect()
             }),
         }
@@ -1060,19 +1060,19 @@ fn signin_resource_based_policy_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.version {
-        let converted_193 = (value).as_str().into_py_any(py)?;
-        result.set_item("version", converted_193)?;
+        let converted_198 = (value).as_str().into_py_any(py)?;
+        result.set_item("version", converted_198)?;
     } else {
         result.set_item("version", py.None())?;
     }
     if let Some(value) = &value.statement {
-        let converted_194_list = PyList::empty(py);
-        for item_195 in value {
-            let converted_item_196 = policy_statement_to_py(py, item_195)?;
-            converted_194_list.append(converted_item_196)?;
+        let converted_199_list = PyList::empty(py);
+        for item_200 in value {
+            let converted_item_201 = policy_statement_to_py(py, item_200)?;
+            converted_199_list.append(converted_item_201)?;
         }
-        let converted_194 = converted_194_list.into_any().unbind();
-        result.set_item("statement", converted_194)?;
+        let converted_199 = converted_199_list.into_any().unbind();
+        result.set_item("statement", converted_199)?;
     } else {
         result.set_item("statement", py.None())?;
     }
@@ -1093,8 +1093,8 @@ impl PySigninResourceBasedPolicy {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
-            let converted_188 = (value).as_str().into_py_any(py)?;
-            Ok(converted_188)
+            let converted_193 = (value).as_str().into_py_any(py)?;
+            Ok(converted_193)
         } else {
             Ok(py.None())
         }
@@ -1103,19 +1103,19 @@ impl PySigninResourceBasedPolicy {
     #[getter]
     fn statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement {
-            let converted_189_list = PyList::empty(py);
-            for item_190 in value {
-                let converted_item_191 = Py::new(
+            let converted_194_list = PyList::empty(py);
+            for item_195 in value {
+                let converted_item_196 = Py::new(
                     py,
                     PyPolicyStatement {
-                        inner: Arc::clone(item_190),
+                        inner: Arc::clone(item_195),
                     },
                 )?
                 .into_any();
-                converted_189_list.append(converted_item_191)?;
+                converted_194_list.append(converted_item_196)?;
             }
-            let converted_189 = converted_189_list.into_any().unbind();
-            Ok(converted_189)
+            let converted_194 = converted_194_list.into_any().unbind();
+            Ok(converted_194)
         } else {
             Ok(py.None())
         }
@@ -1160,14 +1160,14 @@ impl PyOperationCreateOAuth2TokenOutput {
     #[getter]
     fn token_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token_output {
-            let converted_197 = Py::new(
+            let converted_202 = Py::new(
                 py,
                 PyCreateOAuth2TokenResponseBody {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_197)
+            Ok(converted_202)
         } else {
             Ok(py.None())
         }
@@ -1176,8 +1176,8 @@ impl PyOperationCreateOAuth2TokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.token_output {
-            let converted_198 = create_o_auth2_token_response_body_shared_to_py(py, value)?;
-            result.set_item("token_output", converted_198)?;
+            let converted_203 = create_o_auth2_token_response_body_shared_to_py(py, value)?;
+            result.set_item("token_output", converted_203)?;
         } else {
             result.set_item("token_output", py.None())?;
         }
@@ -1198,30 +1198,87 @@ struct PyOperationCreateOAuth2TokenWithIAMOutput {
 impl PyOperationCreateOAuth2TokenWithIAMOutput {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_199 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        Ok(converted_199)
+        let converted_204 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        Ok(converted_204)
     }
 
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_200 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        Ok(converted_200)
+        let converted_205 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_205)
     }
 
     #[getter]
     fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_201 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        Ok(converted_201)
+        let converted_206 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_206)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_202 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        result.set_item("access_token", converted_202)?;
-        let converted_203 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        result.set_item("token_type", converted_203)?;
-        let converted_204 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        result.set_item("expires_in", converted_204)?;
+        let converted_207 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        result.set_item("access_token", converted_207)?;
+        let converted_208 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        result.set_item("token_type", converted_208)?;
+        let converted_209 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        result.set_item("expires_in", converted_209)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "CreateOAuth2TokenWithTokenExchangeOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
+struct PyOperationCreateOAuth2TokenWithTokenExchangeOutput {
+    inner: aws_sdk_signin::operation::create_o_auth2_token_with_token_exchange::CreateOAuth2TokenWithTokenExchangeOutput,
+}
+
+#[pymethods]
+impl PyOperationCreateOAuth2TokenWithTokenExchangeOutput {
+    #[getter]
+    fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_210 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        Ok(converted_210)
+    }
+
+    #[getter]
+    fn issued_token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.issued_token_type {
+            let converted_211 = (value).as_str().into_py_any(py)?;
+            Ok(converted_211)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_212 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_212)
+    }
+
+    #[getter]
+    fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_213 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_213)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_214 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        result.set_item("access_token", converted_214)?;
+        if let Some(value) = &self.inner.issued_token_type {
+            let converted_215 = (value).as_str().into_py_any(py)?;
+            result.set_item("issued_token_type", converted_215)?;
+        } else {
+            result.set_item("issued_token_type", py.None())?;
+        }
+        let converted_216 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        result.set_item("token_type", converted_216)?;
+        let converted_217 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        result.set_item("expires_in", converted_217)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1239,34 +1296,34 @@ struct PyOperationDeleteConsoleAuthorizationConfigurationOutput {
 impl PyOperationDeleteConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_205 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_205)
+        let converted_218 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_218)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_206 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_206)
+        let converted_219 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_219)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_207 = (&self.inner.console_authorization_enabled)
+        let converted_220 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_207)
+        Ok(converted_220)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_208 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_208)?;
-        let converted_209 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_209)?;
-        let converted_210 = (&self.inner.console_authorization_enabled)
+        let converted_221 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_221)?;
+        let converted_222 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_222)?;
+        let converted_223 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_210)?;
+        result.set_item("console_authorization_enabled", converted_223)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1301,34 +1358,34 @@ struct PyOperationGetConsoleAuthorizationConfigurationOutput {
 impl PyOperationGetConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_211 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_211)
+        let converted_224 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_224)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_212 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_212)
+        let converted_225 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_225)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_213 = (&self.inner.console_authorization_enabled)
+        let converted_226 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_213)
+        Ok(converted_226)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_214 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_214)?;
-        let converted_215 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_215)?;
-        let converted_216 = (&self.inner.console_authorization_enabled)
+        let converted_227 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_227)?;
+        let converted_228 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_228)?;
+        let converted_229 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_216)?;
+        result.set_item("console_authorization_enabled", converted_229)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1367,14 +1424,14 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn signin_resource_based_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signin_resource_based_policy {
-            let converted_217 = Py::new(
+            let converted_230 = Py::new(
                 py,
                 PySigninResourceBasedPolicy {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_217)
+            Ok(converted_230)
         } else {
             Ok(py.None())
         }
@@ -1383,8 +1440,8 @@ impl PyOperationGetResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.signin_resource_based_policy {
-            let converted_218 = signin_resource_based_policy_shared_to_py(py, value)?;
-            result.set_item("signin_resource_based_policy", converted_218)?;
+            let converted_231 = signin_resource_based_policy_shared_to_py(py, value)?;
+            result.set_item("signin_resource_based_policy", converted_231)?;
         } else {
             result.set_item("signin_resource_based_policy", py.None())?;
         }
@@ -1405,15 +1462,15 @@ struct PyOperationIntrospectOAuth2TokenWithIAMOutput {
 impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn active(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_219 = (&self.inner.active).to_owned().into_py_any(py)?;
-        Ok(converted_219)
+        let converted_232 = (&self.inner.active).to_owned().into_py_any(py)?;
+        Ok(converted_232)
     }
 
     #[getter]
     fn client_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_id {
-            let converted_220 = (value).as_str().into_py_any(py)?;
-            Ok(converted_220)
+            let converted_233 = (value).as_str().into_py_any(py)?;
+            Ok(converted_233)
         } else {
             Ok(py.None())
         }
@@ -1422,8 +1479,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_id {
-            let converted_221 = (value).as_str().into_py_any(py)?;
-            Ok(converted_221)
+            let converted_234 = (value).as_str().into_py_any(py)?;
+            Ok(converted_234)
         } else {
             Ok(py.None())
         }
@@ -1432,8 +1489,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token_type {
-            let converted_222 = (value).as_str().into_py_any(py)?;
-            Ok(converted_222)
+            let converted_235 = (value).as_str().into_py_any(py)?;
+            Ok(converted_235)
         } else {
             Ok(py.None())
         }
@@ -1442,8 +1499,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn exp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exp {
-            let converted_223 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_223)
+            let converted_236 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_236)
         } else {
             Ok(py.None())
         }
@@ -1452,8 +1509,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn iat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.iat {
-            let converted_224 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_224)
+            let converted_237 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_237)
         } else {
             Ok(py.None())
         }
@@ -1462,8 +1519,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn nbf(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.nbf {
-            let converted_225 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_225)
+            let converted_238 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_238)
         } else {
             Ok(py.None())
         }
@@ -1472,8 +1529,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn sub(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sub {
-            let converted_226 = (value).as_str().into_py_any(py)?;
-            Ok(converted_226)
+            let converted_239 = (value).as_str().into_py_any(py)?;
+            Ok(converted_239)
         } else {
             Ok(py.None())
         }
@@ -1482,8 +1539,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn aud(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aud {
-            let converted_227 = (value).as_str().into_py_any(py)?;
-            Ok(converted_227)
+            let converted_240 = (value).as_str().into_py_any(py)?;
+            Ok(converted_240)
         } else {
             Ok(py.None())
         }
@@ -1492,8 +1549,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn iss(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.iss {
-            let converted_228 = (value).as_str().into_py_any(py)?;
-            Ok(converted_228)
+            let converted_241 = (value).as_str().into_py_any(py)?;
+            Ok(converted_241)
         } else {
             Ok(py.None())
         }
@@ -1502,8 +1559,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn jti(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.jti {
-            let converted_229 = (value).as_str().into_py_any(py)?;
-            Ok(converted_229)
+            let converted_242 = (value).as_str().into_py_any(py)?;
+            Ok(converted_242)
         } else {
             Ok(py.None())
         }
@@ -1512,8 +1569,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_id {
-            let converted_230 = (value).as_str().into_py_any(py)?;
-            Ok(converted_230)
+            let converted_243 = (value).as_str().into_py_any(py)?;
+            Ok(converted_243)
         } else {
             Ok(py.None())
         }
@@ -1522,8 +1579,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn signin_session(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signin_session {
-            let converted_231 = (value).as_str().into_py_any(py)?;
-            Ok(converted_231)
+            let converted_244 = (value).as_str().into_py_any(py)?;
+            Ok(converted_244)
         } else {
             Ok(py.None())
         }
@@ -1532,8 +1589,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource {
-            let converted_232 = (value).as_str().into_py_any(py)?;
-            Ok(converted_232)
+            let converted_245 = (value).as_str().into_py_any(py)?;
+            Ok(converted_245)
         } else {
             Ok(py.None())
         }
@@ -1541,83 +1598,83 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_233 = (&self.inner.active).to_owned().into_py_any(py)?;
-        result.set_item("active", converted_233)?;
+        let converted_246 = (&self.inner.active).to_owned().into_py_any(py)?;
+        result.set_item("active", converted_246)?;
         if let Some(value) = &self.inner.client_id {
-            let converted_234 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_id", converted_234)?;
+            let converted_247 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_id", converted_247)?;
         } else {
             result.set_item("client_id", py.None())?;
         }
         if let Some(value) = &self.inner.user_id {
-            let converted_235 = (value).as_str().into_py_any(py)?;
-            result.set_item("user_id", converted_235)?;
+            let converted_248 = (value).as_str().into_py_any(py)?;
+            result.set_item("user_id", converted_248)?;
         } else {
             result.set_item("user_id", py.None())?;
         }
         if let Some(value) = &self.inner.token_type {
-            let converted_236 = (value).as_str().into_py_any(py)?;
-            result.set_item("token_type", converted_236)?;
+            let converted_249 = (value).as_str().into_py_any(py)?;
+            result.set_item("token_type", converted_249)?;
         } else {
             result.set_item("token_type", py.None())?;
         }
         if let Some(value) = &self.inner.exp {
-            let converted_237 = (value).to_owned().into_py_any(py)?;
-            result.set_item("exp", converted_237)?;
+            let converted_250 = (value).to_owned().into_py_any(py)?;
+            result.set_item("exp", converted_250)?;
         } else {
             result.set_item("exp", py.None())?;
         }
         if let Some(value) = &self.inner.iat {
-            let converted_238 = (value).to_owned().into_py_any(py)?;
-            result.set_item("iat", converted_238)?;
+            let converted_251 = (value).to_owned().into_py_any(py)?;
+            result.set_item("iat", converted_251)?;
         } else {
             result.set_item("iat", py.None())?;
         }
         if let Some(value) = &self.inner.nbf {
-            let converted_239 = (value).to_owned().into_py_any(py)?;
-            result.set_item("nbf", converted_239)?;
+            let converted_252 = (value).to_owned().into_py_any(py)?;
+            result.set_item("nbf", converted_252)?;
         } else {
             result.set_item("nbf", py.None())?;
         }
         if let Some(value) = &self.inner.sub {
-            let converted_240 = (value).as_str().into_py_any(py)?;
-            result.set_item("sub", converted_240)?;
+            let converted_253 = (value).as_str().into_py_any(py)?;
+            result.set_item("sub", converted_253)?;
         } else {
             result.set_item("sub", py.None())?;
         }
         if let Some(value) = &self.inner.aud {
-            let converted_241 = (value).as_str().into_py_any(py)?;
-            result.set_item("aud", converted_241)?;
+            let converted_254 = (value).as_str().into_py_any(py)?;
+            result.set_item("aud", converted_254)?;
         } else {
             result.set_item("aud", py.None())?;
         }
         if let Some(value) = &self.inner.iss {
-            let converted_242 = (value).as_str().into_py_any(py)?;
-            result.set_item("iss", converted_242)?;
+            let converted_255 = (value).as_str().into_py_any(py)?;
+            result.set_item("iss", converted_255)?;
         } else {
             result.set_item("iss", py.None())?;
         }
         if let Some(value) = &self.inner.jti {
-            let converted_243 = (value).as_str().into_py_any(py)?;
-            result.set_item("jti", converted_243)?;
+            let converted_256 = (value).as_str().into_py_any(py)?;
+            result.set_item("jti", converted_256)?;
         } else {
             result.set_item("jti", py.None())?;
         }
         if let Some(value) = &self.inner.account_id {
-            let converted_244 = (value).as_str().into_py_any(py)?;
-            result.set_item("account_id", converted_244)?;
+            let converted_257 = (value).as_str().into_py_any(py)?;
+            result.set_item("account_id", converted_257)?;
         } else {
             result.set_item("account_id", py.None())?;
         }
         if let Some(value) = &self.inner.signin_session {
-            let converted_245 = (value).as_str().into_py_any(py)?;
-            result.set_item("signin_session", converted_245)?;
+            let converted_258 = (value).as_str().into_py_any(py)?;
+            result.set_item("signin_session", converted_258)?;
         } else {
             result.set_item("signin_session", py.None())?;
         }
         if let Some(value) = &self.inner.resource {
-            let converted_246 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource", converted_246)?;
+            let converted_259 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource", converted_259)?;
         } else {
             result.set_item("resource", py.None())?;
         }
@@ -1635,7 +1692,7 @@ struct SharedPyOperationListResourcePermissionStatementsOutput {
 impl From<aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput> for SharedPyOperationListResourcePermissionStatementsOutput {
     fn from(value: aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput) -> Self {
         Self {
-            permission_statements: (value.permission_statements).into_iter().map(|owned_251| Arc::new(owned_251)).collect(),
+            permission_statements: (value.permission_statements).into_iter().map(|owned_264| Arc::new(owned_264)).collect(),
             next_token: value.next_token,
         }
     }
@@ -1654,26 +1711,26 @@ struct PyOperationListResourcePermissionStatementsOutput {
 impl PyOperationListResourcePermissionStatementsOutput {
     #[getter]
     fn permission_statements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_247_list = PyList::empty(py);
-        for item_248 in &self.inner.permission_statements {
-            let converted_item_249 = Py::new(
+        let converted_260_list = PyList::empty(py);
+        for item_261 in &self.inner.permission_statements {
+            let converted_item_262 = Py::new(
                 py,
                 PyPermissionStatementSummary {
-                    inner: Arc::clone(item_248),
+                    inner: Arc::clone(item_261),
                 },
             )?
             .into_any();
-            converted_247_list.append(converted_item_249)?;
+            converted_260_list.append(converted_item_262)?;
         }
-        let converted_247 = converted_247_list.into_any().unbind();
-        Ok(converted_247)
+        let converted_260 = converted_260_list.into_any().unbind();
+        Ok(converted_260)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_250 = (value).as_str().into_py_any(py)?;
-            Ok(converted_250)
+            let converted_263 = (value).as_str().into_py_any(py)?;
+            Ok(converted_263)
         } else {
             Ok(py.None())
         }
@@ -1681,16 +1738,16 @@ impl PyOperationListResourcePermissionStatementsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_252_list = PyList::empty(py);
-        for item_253 in &self.inner.permission_statements {
-            let converted_item_254 = permission_statement_summary_to_py(py, item_253)?;
-            converted_252_list.append(converted_item_254)?;
+        let converted_265_list = PyList::empty(py);
+        for item_266 in &self.inner.permission_statements {
+            let converted_item_267 = permission_statement_summary_to_py(py, item_266)?;
+            converted_265_list.append(converted_item_267)?;
         }
-        let converted_252 = converted_252_list.into_any().unbind();
-        result.set_item("permission_statements", converted_252)?;
+        let converted_265 = converted_265_list.into_any().unbind();
+        result.set_item("permission_statements", converted_265)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_255 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_255)?;
+            let converted_268 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_268)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1711,34 +1768,34 @@ struct PyOperationPutConsoleAuthorizationConfigurationOutput {
 impl PyOperationPutConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_256 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_256)
+        let converted_269 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_269)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_257 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_257)
+        let converted_270 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_270)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_258 = (&self.inner.console_authorization_enabled)
+        let converted_271 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_258)
+        Ok(converted_271)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_259 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_259)?;
-        let converted_260 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_260)?;
-        let converted_261 = (&self.inner.console_authorization_enabled)
+        let converted_272 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_272)?;
+        let converted_273 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_273)?;
+        let converted_274 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_261)?;
+        result.set_item("console_authorization_enabled", converted_274)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1756,14 +1813,14 @@ struct PyOperationPutResourcePermissionStatementOutput {
 impl PyOperationPutResourcePermissionStatementOutput {
     #[getter]
     fn statement_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_262 = (&self.inner.statement_id).as_str().into_py_any(py)?;
-        Ok(converted_262)
+        let converted_275 = (&self.inner.statement_id).as_str().into_py_any(py)?;
+        Ok(converted_275)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_263 = (&self.inner.statement_id).as_str().into_py_any(py)?;
-        result.set_item("statement_id", converted_263)?;
+        let converted_276 = (&self.inner.statement_id).as_str().into_py_any(py)?;
+        result.set_item("statement_id", converted_276)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1790,8 +1847,8 @@ fn access_denied_exception_error_details(
     value: &aws_sdk_signin::types::error::AccessDeniedException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_264 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_264)?;
+    let detail_277 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_277)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1800,8 +1857,8 @@ fn conflict_exception_error_details(
     value: &aws_sdk_signin::types::error::ConflictException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_265 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_265)?;
+    let detail_278 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_278)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1810,8 +1867,28 @@ fn internal_server_exception_error_details(
     value: &aws_sdk_signin::types::error::InternalServerException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_266 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_266)?;
+    let detail_279 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_279)?;
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_grant_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::InvalidGrantException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_280 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_280)?;
+    Ok(result.into_any().unbind())
+}
+
+fn invalid_scope_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::InvalidScopeException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_281 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_281)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1820,8 +1897,8 @@ fn resource_not_found_exception_error_details(
     value: &aws_sdk_signin::types::error::ResourceNotFoundException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_267 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_267)?;
+    let detail_282 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_282)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1830,8 +1907,18 @@ fn service_quota_exceeded_exception_error_details(
     value: &aws_sdk_signin::types::error::ServiceQuotaExceededException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_268 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_268)?;
+    let detail_283 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_283)?;
+    Ok(result.into_any().unbind())
+}
+
+fn service_unavailable_exception_error_details(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::error::ServiceUnavailableException,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let detail_284 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_284)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1840,8 +1927,8 @@ fn too_many_requests_error_error_details(
     value: &aws_sdk_signin::types::error::TooManyRequestsError,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_269 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_269)?;
+    let detail_285 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_285)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1850,8 +1937,8 @@ fn validation_exception_error_details(
     value: &aws_sdk_signin::types::error::ValidationException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_270 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_270)?;
+    let detail_286 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_286)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1880,6 +1967,20 @@ impl ModeledErrorDetails
             Self::InternalServerException(value) => {
                 internal_server_exception_error_details(py, value)
             }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::create_o_auth2_token_with_token_exchange::CreateOAuth2TokenWithTokenExchangeError {
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
+            Self::InvalidGrantException(value) => invalid_grant_exception_error_details(py, value),
+            Self::InvalidScopeException(value) => invalid_scope_exception_error_details(py, value),
+            Self::ServiceUnavailableException(value) => service_unavailable_exception_error_details(py, value),
             Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
             Self::ValidationException(value) => validation_exception_error_details(py, value),
             _ => Ok(PyDict::new(py).into_any().unbind()),
@@ -2021,6 +2122,7 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PySigninResourceBasedPolicy>()?;
     module.add_class::<PyOperationCreateOAuth2TokenOutput>()?;
     module.add_class::<PyOperationCreateOAuth2TokenWithIAMOutput>()?;
+    module.add_class::<PyOperationCreateOAuth2TokenWithTokenExchangeOutput>()?;
     module.add_class::<PyOperationDeleteConsoleAuthorizationConfigurationOutput>()?;
     module.add_class::<PyOperationDeleteResourcePermissionStatementOutput>()?;
     module.add_class::<PyOperationGetConsoleAuthorizationConfigurationOutput>()?;
@@ -2220,6 +2322,139 @@ impl SignInClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn create_o_auth2_token_with_token_exchange<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
+            let converted_124 = (|| -> PyResult<_> {
+                let converted_124: String = value.extract()?;
+                Ok(converted_124)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_type"),
+                        "str",
+                    ),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_124)
+        } else {
+            None
+        };
+        let subject_token_value = if let Some(value) = dict_value(params, "subject_token")? {
+            let converted_125 = (|| -> PyResult<_> {
+                let converted_125: String = value.extract()?;
+                Ok(converted_125)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("subject_token"),
+                        "str",
+                    ),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_125)
+        } else {
+            None
+        };
+        let subject_token_type_value =
+            if let Some(value) = dict_value(params, "subject_token_type")? {
+                let converted_126 = (|| -> PyResult<_> {
+                    let converted_126: String = value.extract()?;
+                    Ok(converted_126)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("subject_token_type"),
+                            "str",
+                        ),
+                        "signin",
+                        "CreateOAuth2TokenWithTokenExchange",
+                    )
+                })?;
+                Some(converted_126)
+            } else {
+                None
+            };
+        let resource_value = if let Some(value) = dict_value(params, "resource")? {
+            let converted_127 = (|| -> PyResult<_> {
+                let converted_127: String = value.extract()?;
+                Ok(converted_127)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("resource"), "str"),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_127)
+        } else {
+            None
+        };
+        let scope_value = if let Some(value) = dict_value(params, "scope")? {
+            let converted_128 = (|| -> PyResult<_> {
+                let converted_128: String = value.extract()?;
+                Ok(converted_128)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("scope"), "str"),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_128)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .create_o_auth2_token_with_token_exchange()
+                .set_grant_type(grant_type_value)
+                .set_subject_token(subject_token_value)
+                .set_subject_token_type(subject_token_type_value)
+                .set_resource(resource_value)
+                .set_scope(scope_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateOAuth2TokenWithTokenExchange",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationCreateOAuth2TokenWithTokenExchangeOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn delete_console_authorization_configuration<'py>(
         &self,
         py: Python<'py>,
@@ -2228,9 +2463,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_124 = (|| -> PyResult<_> {
-                let converted_124: String = value.extract()?;
-                Ok(converted_124)
+            let converted_129 = (|| -> PyResult<_> {
+                let converted_129: String = value.extract()?;
+                Ok(converted_129)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2243,7 +2478,7 @@ impl SignInClient {
                     "DeleteConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_124)
+            Some(converted_129)
         } else {
             None
         };
@@ -2284,9 +2519,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_id_value = if let Some(value) = dict_value(params, "statement_id")? {
-            let converted_125 = (|| -> PyResult<_> {
-                let converted_125: String = value.extract()?;
-                Ok(converted_125)
+            let converted_130 = (|| -> PyResult<_> {
+                let converted_130: String = value.extract()?;
+                Ok(converted_130)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2299,14 +2534,14 @@ impl SignInClient {
                     "DeleteResourcePermissionStatement",
                 )
             })?;
-            Some(converted_125)
+            Some(converted_130)
         } else {
             None
         };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_126 = (|| -> PyResult<_> {
-                let converted_126: String = value.extract()?;
-                Ok(converted_126)
+            let converted_131 = (|| -> PyResult<_> {
+                let converted_131: String = value.extract()?;
+                Ok(converted_131)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2319,7 +2554,7 @@ impl SignInClient {
                     "DeleteResourcePermissionStatement",
                 )
             })?;
-            Some(converted_126)
+            Some(converted_131)
         } else {
             None
         };
@@ -2361,9 +2596,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_127 = (|| -> PyResult<_> {
-                let converted_127: String = value.extract()?;
-                Ok(converted_127)
+            let converted_132 = (|| -> PyResult<_> {
+                let converted_132: String = value.extract()?;
+                Ok(converted_132)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2376,7 +2611,7 @@ impl SignInClient {
                     "GetConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_127)
+            Some(converted_132)
         } else {
             None
         };
@@ -2453,9 +2688,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_128 = (|| -> PyResult<_> {
-                let converted_128: String = value.extract()?;
-                Ok(converted_128)
+            let converted_133 = (|| -> PyResult<_> {
+                let converted_133: String = value.extract()?;
+                Ok(converted_133)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2464,14 +2699,14 @@ impl SignInClient {
                     "IntrospectOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_128)
+            Some(converted_133)
         } else {
             None
         };
         let token_type_hint_value = if let Some(value) = dict_value(params, "token_type_hint")? {
-            let converted_129 = (|| -> PyResult<_> {
-                let converted_129: String = value.extract()?;
-                Ok(converted_129)
+            let converted_134 = (|| -> PyResult<_> {
+                let converted_134: String = value.extract()?;
+                Ok(converted_134)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2484,7 +2719,7 @@ impl SignInClient {
                     "IntrospectOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_129)
+            Some(converted_134)
         } else {
             None
         };
@@ -2526,9 +2761,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_130 = (|| -> PyResult<_> {
-                let converted_130: i32 = value.extract()?;
-                Ok(converted_130)
+            let converted_135 = (|| -> PyResult<_> {
+                let converted_135: i32 = value.extract()?;
+                Ok(converted_135)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2541,14 +2776,14 @@ impl SignInClient {
                     "ListResourcePermissionStatements",
                 )
             })?;
-            Some(converted_130)
+            Some(converted_135)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_131 = (|| -> PyResult<_> {
-                let converted_131: String = value.extract()?;
-                Ok(converted_131)
+            let converted_136 = (|| -> PyResult<_> {
+                let converted_136: String = value.extract()?;
+                Ok(converted_136)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2561,7 +2796,7 @@ impl SignInClient {
                     "ListResourcePermissionStatements",
                 )
             })?;
-            Some(converted_131)
+            Some(converted_136)
         } else {
             None
         };
@@ -2605,9 +2840,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_132 = (|| -> PyResult<_> {
-                let converted_132: String = value.extract()?;
-                Ok(converted_132)
+            let converted_137 = (|| -> PyResult<_> {
+                let converted_137: String = value.extract()?;
+                Ok(converted_137)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2620,7 +2855,7 @@ impl SignInClient {
                     "PutConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_132)
+            Some(converted_137)
         } else {
             None
         };
@@ -2661,9 +2896,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_vpc_value = if let Some(value) = dict_value(params, "source_vpc")? {
-            let converted_133 = (|| -> PyResult<_> {
-                let converted_133: String = value.extract()?;
-                Ok(converted_133)
+            let converted_138 = (|| -> PyResult<_> {
+                let converted_138: String = value.extract()?;
+                Ok(converted_138)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2676,15 +2911,15 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_133)
+            Some(converted_138)
         } else {
             None
         };
         let signin_source_vpce_value =
             if let Some(value) = dict_value(params, "signin_source_vpce")? {
-                let converted_134 = (|| -> PyResult<_> {
-                    let converted_134: String = value.extract()?;
-                    Ok(converted_134)
+                let converted_139 = (|| -> PyResult<_> {
+                    let converted_139: String = value.extract()?;
+                    Ok(converted_139)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -2697,15 +2932,15 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_134)
+                Some(converted_139)
             } else {
                 None
             };
         let console_source_vpce_value =
             if let Some(value) = dict_value(params, "console_source_vpce")? {
-                let converted_135 = (|| -> PyResult<_> {
-                    let converted_135: String = value.extract()?;
-                    Ok(converted_135)
+                let converted_140 = (|| -> PyResult<_> {
+                    let converted_140: String = value.extract()?;
+                    Ok(converted_140)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -2718,14 +2953,14 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_135)
+                Some(converted_140)
             } else {
                 None
             };
         let vpc_source_ip_value = if let Some(value) = dict_value(params, "vpc_source_ip")? {
-            let converted_136 = (|| -> PyResult<_> {
-                let converted_136: String = value.extract()?;
-                Ok(converted_136)
+            let converted_141 = (|| -> PyResult<_> {
+                let converted_141: String = value.extract()?;
+                Ok(converted_141)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2738,14 +2973,14 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_136)
+            Some(converted_141)
         } else {
             None
         };
         let source_ip_value = if let Some(value) = dict_value(params, "source_ip")? {
-            let converted_137 = (|| -> PyResult<_> {
-                let converted_137: String = value.extract()?;
-                Ok(converted_137)
+            let converted_142 = (|| -> PyResult<_> {
+                let converted_142: String = value.extract()?;
+                Ok(converted_142)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2758,14 +2993,14 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_137)
+            Some(converted_142)
         } else {
             None
         };
         let requested_region_value = if let Some(value) = dict_value(params, "requested_region")? {
-            let converted_138 = (|| -> PyResult<_> {
-                let converted_138: String = value.extract()?;
-                Ok(converted_138)
+            let converted_143 = (|| -> PyResult<_> {
+                let converted_143: String = value.extract()?;
+                Ok(converted_143)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2778,15 +3013,15 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_138)
+            Some(converted_143)
         } else {
             None
         };
         let excluded_principal_value =
             if let Some(value) = dict_value(params, "excluded_principal")? {
-                let converted_139 = (|| -> PyResult<_> {
-                    let converted_139: String = value.extract()?;
-                    Ok(converted_139)
+                let converted_144 = (|| -> PyResult<_> {
+                    let converted_144: String = value.extract()?;
+                    Ok(converted_144)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -2799,14 +3034,14 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_139)
+                Some(converted_144)
             } else {
                 None
             };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_140 = (|| -> PyResult<_> {
-                let converted_140: String = value.extract()?;
-                Ok(converted_140)
+            let converted_145 = (|| -> PyResult<_> {
+                let converted_145: String = value.extract()?;
+                Ok(converted_145)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2819,7 +3054,7 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_140)
+            Some(converted_145)
         } else {
             None
         };
@@ -2867,9 +3102,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_141 = (|| -> PyResult<_> {
-                let converted_141: String = value.extract()?;
-                Ok(converted_141)
+            let converted_146 = (|| -> PyResult<_> {
+                let converted_146: String = value.extract()?;
+                Ok(converted_146)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2878,7 +3113,7 @@ impl SignInClient {
                     "RevokeOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_141)
+            Some(converted_146)
         } else {
             None
         };

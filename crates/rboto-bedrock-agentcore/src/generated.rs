@@ -30719,8 +30719,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn mcp_session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.mcp_session_id {
+    fn session_endpoint_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.session_endpoint_url {
             let converted_3589 = (value).as_str().into_py_any(py)?;
             Ok(converted_3589)
         } else {
@@ -30729,8 +30729,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn mcp_protocol_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.mcp_protocol_version {
+    fn mcp_session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.mcp_session_id {
             let converted_3590 = (value).as_str().into_py_any(py)?;
             Ok(converted_3590)
         } else {
@@ -30739,8 +30739,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn trace_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.trace_id {
+    fn mcp_protocol_version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.mcp_protocol_version {
             let converted_3591 = (value).as_str().into_py_any(py)?;
             Ok(converted_3591)
         } else {
@@ -30749,8 +30749,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn trace_parent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.trace_parent {
+    fn trace_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.trace_id {
             let converted_3592 = (value).as_str().into_py_any(py)?;
             Ok(converted_3592)
         } else {
@@ -30759,8 +30759,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn trace_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.trace_state {
+    fn trace_parent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.trace_parent {
             let converted_3593 = (value).as_str().into_py_any(py)?;
             Ok(converted_3593)
         } else {
@@ -30769,8 +30769,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
-    fn baggage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.baggage {
+    fn trace_state(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.trace_state {
             let converted_3594 = (value).as_str().into_py_any(py)?;
             Ok(converted_3594)
         } else {
@@ -30779,9 +30779,19 @@ impl PyOperationInvokeAgentRuntimeOutput {
     }
 
     #[getter]
+    fn baggage(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.baggage {
+            let converted_3595 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3595)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
     fn content_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3595 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        Ok(converted_3595)
+        let converted_3596 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        Ok(converted_3596)
     }
 
     #[getter]
@@ -30792,8 +30802,8 @@ impl PyOperationInvokeAgentRuntimeOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
-            let converted_3596 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3596)
+            let converted_3597 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3597)
         } else {
             Ok(py.None())
         }
@@ -30802,53 +30812,59 @@ impl PyOperationInvokeAgentRuntimeOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.runtime_session_id {
-            let converted_3597 = (value).as_str().into_py_any(py)?;
-            result.set_item("runtime_session_id", converted_3597)?;
+            let converted_3598 = (value).as_str().into_py_any(py)?;
+            result.set_item("runtime_session_id", converted_3598)?;
         } else {
             result.set_item("runtime_session_id", py.None())?;
         }
+        if let Some(value) = &self.inner.session_endpoint_url {
+            let converted_3599 = (value).as_str().into_py_any(py)?;
+            result.set_item("session_endpoint_url", converted_3599)?;
+        } else {
+            result.set_item("session_endpoint_url", py.None())?;
+        }
         if let Some(value) = &self.inner.mcp_session_id {
-            let converted_3598 = (value).as_str().into_py_any(py)?;
-            result.set_item("mcp_session_id", converted_3598)?;
+            let converted_3600 = (value).as_str().into_py_any(py)?;
+            result.set_item("mcp_session_id", converted_3600)?;
         } else {
             result.set_item("mcp_session_id", py.None())?;
         }
         if let Some(value) = &self.inner.mcp_protocol_version {
-            let converted_3599 = (value).as_str().into_py_any(py)?;
-            result.set_item("mcp_protocol_version", converted_3599)?;
+            let converted_3601 = (value).as_str().into_py_any(py)?;
+            result.set_item("mcp_protocol_version", converted_3601)?;
         } else {
             result.set_item("mcp_protocol_version", py.None())?;
         }
         if let Some(value) = &self.inner.trace_id {
-            let converted_3600 = (value).as_str().into_py_any(py)?;
-            result.set_item("trace_id", converted_3600)?;
+            let converted_3602 = (value).as_str().into_py_any(py)?;
+            result.set_item("trace_id", converted_3602)?;
         } else {
             result.set_item("trace_id", py.None())?;
         }
         if let Some(value) = &self.inner.trace_parent {
-            let converted_3601 = (value).as_str().into_py_any(py)?;
-            result.set_item("trace_parent", converted_3601)?;
+            let converted_3603 = (value).as_str().into_py_any(py)?;
+            result.set_item("trace_parent", converted_3603)?;
         } else {
             result.set_item("trace_parent", py.None())?;
         }
         if let Some(value) = &self.inner.trace_state {
-            let converted_3602 = (value).as_str().into_py_any(py)?;
-            result.set_item("trace_state", converted_3602)?;
+            let converted_3604 = (value).as_str().into_py_any(py)?;
+            result.set_item("trace_state", converted_3604)?;
         } else {
             result.set_item("trace_state", py.None())?;
         }
         if let Some(value) = &self.inner.baggage {
-            let converted_3603 = (value).as_str().into_py_any(py)?;
-            result.set_item("baggage", converted_3603)?;
+            let converted_3605 = (value).as_str().into_py_any(py)?;
+            result.set_item("baggage", converted_3605)?;
         } else {
             result.set_item("baggage", py.None())?;
         }
-        let converted_3604 = (&self.inner.content_type).as_str().into_py_any(py)?;
-        result.set_item("content_type", converted_3604)?;
+        let converted_3606 = (&self.inner.content_type).as_str().into_py_any(py)?;
+        result.set_item("content_type", converted_3606)?;
         result.set_item("response", self.response.clone_ref(py))?;
         if let Some(value) = &self.inner.status_code {
-            let converted_3605 = (value).to_owned().into_py_any(py)?;
-            result.set_item("status_code", converted_3605)?;
+            let converted_3607 = (value).to_owned().into_py_any(py)?;
+            result.set_item("status_code", converted_3607)?;
         } else {
             result.set_item("status_code", py.None())?;
         }
@@ -30870,8 +30886,8 @@ impl PyOperationInvokeBrowserOutput {
     #[getter]
     fn result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.result {
-            let converted_3606 = browser_action_result_to_py(py, value)?;
-            Ok(converted_3606)
+            let converted_3608 = browser_action_result_to_py(py, value)?;
+            Ok(converted_3608)
         } else {
             Ok(py.None())
         }
@@ -30879,20 +30895,20 @@ impl PyOperationInvokeBrowserOutput {
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3607 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3607)
+        let converted_3609 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3609)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.result {
-            let converted_3608 = browser_action_result_to_py(py, value)?;
-            result.set_item("result", converted_3608)?;
+            let converted_3610 = browser_action_result_to_py(py, value)?;
+            result.set_item("result", converted_3610)?;
         } else {
             result.set_item("result", py.None())?;
         }
-        let converted_3609 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3609)?;
+        let converted_3611 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3611)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -30911,7 +30927,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_ab_tests::ListAbTestsOutput>
         Self {
             ab_tests: (value.ab_tests)
                 .into_iter()
-                .map(|owned_3614| Arc::new(owned_3614))
+                .map(|owned_3616| Arc::new(owned_3616))
                 .collect(),
             next_token: value.next_token,
         }
@@ -30931,26 +30947,26 @@ struct PyOperationListABTestsOutput {
 impl PyOperationListABTestsOutput {
     #[getter]
     fn ab_tests(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3610_list = PyList::empty(py);
-        for item_3611 in &self.inner.ab_tests {
-            let converted_item_3612 = Py::new(
+        let converted_3612_list = PyList::empty(py);
+        for item_3613 in &self.inner.ab_tests {
+            let converted_item_3614 = Py::new(
                 py,
                 PyAbTestSummary {
-                    inner: Arc::clone(item_3611),
+                    inner: Arc::clone(item_3613),
                 },
             )?
             .into_any();
-            converted_3610_list.append(converted_item_3612)?;
+            converted_3612_list.append(converted_item_3614)?;
         }
-        let converted_3610 = converted_3610_list.into_any().unbind();
-        Ok(converted_3610)
+        let converted_3612 = converted_3612_list.into_any().unbind();
+        Ok(converted_3612)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3613 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3613)
+            let converted_3615 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3615)
         } else {
             Ok(py.None())
         }
@@ -30958,16 +30974,16 @@ impl PyOperationListABTestsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3615_list = PyList::empty(py);
-        for item_3616 in &self.inner.ab_tests {
-            let converted_item_3617 = ab_test_summary_to_py(py, item_3616)?;
-            converted_3615_list.append(converted_item_3617)?;
+        let converted_3617_list = PyList::empty(py);
+        for item_3618 in &self.inner.ab_tests {
+            let converted_item_3619 = ab_test_summary_to_py(py, item_3618)?;
+            converted_3617_list.append(converted_item_3619)?;
         }
-        let converted_3615 = converted_3615_list.into_any().unbind();
-        result.set_item("ab_tests", converted_3615)?;
+        let converted_3617 = converted_3617_list.into_any().unbind();
+        result.set_item("ab_tests", converted_3617)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3618 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3618)?;
+            let converted_3620 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3620)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -30989,7 +31005,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_actors::ListActorsOutput>
         Self {
             actor_summaries: (value.actor_summaries)
                 .into_iter()
-                .map(|owned_3623| Arc::new(owned_3623))
+                .map(|owned_3625| Arc::new(owned_3625))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31009,26 +31025,26 @@ struct PyOperationListActorsOutput {
 impl PyOperationListActorsOutput {
     #[getter]
     fn actor_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3619_list = PyList::empty(py);
-        for item_3620 in &self.inner.actor_summaries {
-            let converted_item_3621 = Py::new(
+        let converted_3621_list = PyList::empty(py);
+        for item_3622 in &self.inner.actor_summaries {
+            let converted_item_3623 = Py::new(
                 py,
                 PyActorSummary {
-                    inner: Arc::clone(item_3620),
+                    inner: Arc::clone(item_3622),
                 },
             )?
             .into_any();
-            converted_3619_list.append(converted_item_3621)?;
+            converted_3621_list.append(converted_item_3623)?;
         }
-        let converted_3619 = converted_3619_list.into_any().unbind();
-        Ok(converted_3619)
+        let converted_3621 = converted_3621_list.into_any().unbind();
+        Ok(converted_3621)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3622 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3622)
+            let converted_3624 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3624)
         } else {
             Ok(py.None())
         }
@@ -31036,16 +31052,16 @@ impl PyOperationListActorsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3624_list = PyList::empty(py);
-        for item_3625 in &self.inner.actor_summaries {
-            let converted_item_3626 = actor_summary_to_py(py, item_3625)?;
-            converted_3624_list.append(converted_item_3626)?;
+        let converted_3626_list = PyList::empty(py);
+        for item_3627 in &self.inner.actor_summaries {
+            let converted_item_3628 = actor_summary_to_py(py, item_3627)?;
+            converted_3626_list.append(converted_item_3628)?;
         }
-        let converted_3624 = converted_3624_list.into_any().unbind();
-        result.set_item("actor_summaries", converted_3624)?;
+        let converted_3626 = converted_3626_list.into_any().unbind();
+        result.set_item("actor_summaries", converted_3626)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3627 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3627)?;
+            let converted_3629 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3629)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31069,7 +31085,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_batch_evaluations::ListBatch
         Self {
             batch_evaluations: (value.batch_evaluations)
                 .into_iter()
-                .map(|owned_3632| Arc::new(SharedBatchEvaluationSummary::from(owned_3632)))
+                .map(|owned_3634| Arc::new(SharedBatchEvaluationSummary::from(owned_3634)))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31089,26 +31105,26 @@ struct PyOperationListBatchEvaluationsOutput {
 impl PyOperationListBatchEvaluationsOutput {
     #[getter]
     fn batch_evaluations(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3628_list = PyList::empty(py);
-        for item_3629 in &self.inner.batch_evaluations {
-            let converted_item_3630 = Py::new(
+        let converted_3630_list = PyList::empty(py);
+        for item_3631 in &self.inner.batch_evaluations {
+            let converted_item_3632 = Py::new(
                 py,
                 PyBatchEvaluationSummary {
-                    inner: Arc::clone(item_3629),
+                    inner: Arc::clone(item_3631),
                 },
             )?
             .into_any();
-            converted_3628_list.append(converted_item_3630)?;
+            converted_3630_list.append(converted_item_3632)?;
         }
-        let converted_3628 = converted_3628_list.into_any().unbind();
-        Ok(converted_3628)
+        let converted_3630 = converted_3630_list.into_any().unbind();
+        Ok(converted_3630)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3631 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3631)
+            let converted_3633 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3633)
         } else {
             Ok(py.None())
         }
@@ -31116,16 +31132,16 @@ impl PyOperationListBatchEvaluationsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3633_list = PyList::empty(py);
-        for item_3634 in &self.inner.batch_evaluations {
-            let converted_item_3635 = batch_evaluation_summary_shared_to_py(py, item_3634)?;
-            converted_3633_list.append(converted_item_3635)?;
+        let converted_3635_list = PyList::empty(py);
+        for item_3636 in &self.inner.batch_evaluations {
+            let converted_item_3637 = batch_evaluation_summary_shared_to_py(py, item_3636)?;
+            converted_3635_list.append(converted_item_3637)?;
         }
-        let converted_3633 = converted_3633_list.into_any().unbind();
-        result.set_item("batch_evaluations", converted_3633)?;
+        let converted_3635 = converted_3635_list.into_any().unbind();
+        result.set_item("batch_evaluations", converted_3635)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3636 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3636)?;
+            let converted_3638 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3638)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31149,7 +31165,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_browser_sessions::ListBrowse
         Self {
             items: (value.items)
                 .into_iter()
-                .map(|owned_3641| Arc::new(owned_3641))
+                .map(|owned_3643| Arc::new(owned_3643))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31169,26 +31185,26 @@ struct PyOperationListBrowserSessionsOutput {
 impl PyOperationListBrowserSessionsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3637_list = PyList::empty(py);
-        for item_3638 in &self.inner.items {
-            let converted_item_3639 = Py::new(
+        let converted_3639_list = PyList::empty(py);
+        for item_3640 in &self.inner.items {
+            let converted_item_3641 = Py::new(
                 py,
                 PyBrowserSessionSummary {
-                    inner: Arc::clone(item_3638),
+                    inner: Arc::clone(item_3640),
                 },
             )?
             .into_any();
-            converted_3637_list.append(converted_item_3639)?;
+            converted_3639_list.append(converted_item_3641)?;
         }
-        let converted_3637 = converted_3637_list.into_any().unbind();
-        Ok(converted_3637)
+        let converted_3639 = converted_3639_list.into_any().unbind();
+        Ok(converted_3639)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3640 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3640)
+            let converted_3642 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3642)
         } else {
             Ok(py.None())
         }
@@ -31196,16 +31212,16 @@ impl PyOperationListBrowserSessionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3642_list = PyList::empty(py);
-        for item_3643 in &self.inner.items {
-            let converted_item_3644 = browser_session_summary_to_py(py, item_3643)?;
-            converted_3642_list.append(converted_item_3644)?;
+        let converted_3644_list = PyList::empty(py);
+        for item_3645 in &self.inner.items {
+            let converted_item_3646 = browser_session_summary_to_py(py, item_3645)?;
+            converted_3644_list.append(converted_item_3646)?;
         }
-        let converted_3642 = converted_3642_list.into_any().unbind();
-        result.set_item("items", converted_3642)?;
+        let converted_3644 = converted_3644_list.into_any().unbind();
+        result.set_item("items", converted_3644)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3645 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3645)?;
+            let converted_3647 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3647)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31223,7 +31239,7 @@ struct SharedPyOperationListCodeInterpreterSessionsOutput {
 impl From<aws_sdk_bedrockagentcore::operation::list_code_interpreter_sessions::ListCodeInterpreterSessionsOutput> for SharedPyOperationListCodeInterpreterSessionsOutput {
     fn from(value: aws_sdk_bedrockagentcore::operation::list_code_interpreter_sessions::ListCodeInterpreterSessionsOutput) -> Self {
         Self {
-            items: (value.items).into_iter().map(|owned_3650| Arc::new(owned_3650)).collect(),
+            items: (value.items).into_iter().map(|owned_3652| Arc::new(owned_3652)).collect(),
             next_token: value.next_token,
         }
     }
@@ -31242,26 +31258,26 @@ struct PyOperationListCodeInterpreterSessionsOutput {
 impl PyOperationListCodeInterpreterSessionsOutput {
     #[getter]
     fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3646_list = PyList::empty(py);
-        for item_3647 in &self.inner.items {
-            let converted_item_3648 = Py::new(
+        let converted_3648_list = PyList::empty(py);
+        for item_3649 in &self.inner.items {
+            let converted_item_3650 = Py::new(
                 py,
                 PyCodeInterpreterSessionSummary {
-                    inner: Arc::clone(item_3647),
+                    inner: Arc::clone(item_3649),
                 },
             )?
             .into_any();
-            converted_3646_list.append(converted_item_3648)?;
+            converted_3648_list.append(converted_item_3650)?;
         }
-        let converted_3646 = converted_3646_list.into_any().unbind();
-        Ok(converted_3646)
+        let converted_3648 = converted_3648_list.into_any().unbind();
+        Ok(converted_3648)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3649 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3649)
+            let converted_3651 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3651)
         } else {
             Ok(py.None())
         }
@@ -31269,16 +31285,16 @@ impl PyOperationListCodeInterpreterSessionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3651_list = PyList::empty(py);
-        for item_3652 in &self.inner.items {
-            let converted_item_3653 = code_interpreter_session_summary_to_py(py, item_3652)?;
-            converted_3651_list.append(converted_item_3653)?;
+        let converted_3653_list = PyList::empty(py);
+        for item_3654 in &self.inner.items {
+            let converted_item_3655 = code_interpreter_session_summary_to_py(py, item_3654)?;
+            converted_3653_list.append(converted_item_3655)?;
         }
-        let converted_3651 = converted_3651_list.into_any().unbind();
-        result.set_item("items", converted_3651)?;
+        let converted_3653 = converted_3653_list.into_any().unbind();
+        result.set_item("items", converted_3653)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3654 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3654)?;
+            let converted_3656 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3656)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31300,7 +31316,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_events::ListEventsOutput>
         Self {
             events: (value.events)
                 .into_iter()
-                .map(|owned_3659| Arc::new(SharedEvent::from(owned_3659)))
+                .map(|owned_3661| Arc::new(SharedEvent::from(owned_3661)))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31320,26 +31336,26 @@ struct PyOperationListEventsOutput {
 impl PyOperationListEventsOutput {
     #[getter]
     fn events(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3655_list = PyList::empty(py);
-        for item_3656 in &self.inner.events {
-            let converted_item_3657 = Py::new(
+        let converted_3657_list = PyList::empty(py);
+        for item_3658 in &self.inner.events {
+            let converted_item_3659 = Py::new(
                 py,
                 PyEvent {
-                    inner: Arc::clone(item_3656),
+                    inner: Arc::clone(item_3658),
                 },
             )?
             .into_any();
-            converted_3655_list.append(converted_item_3657)?;
+            converted_3657_list.append(converted_item_3659)?;
         }
-        let converted_3655 = converted_3655_list.into_any().unbind();
-        Ok(converted_3655)
+        let converted_3657 = converted_3657_list.into_any().unbind();
+        Ok(converted_3657)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3658 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3658)
+            let converted_3660 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3660)
         } else {
             Ok(py.None())
         }
@@ -31347,16 +31363,16 @@ impl PyOperationListEventsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3660_list = PyList::empty(py);
-        for item_3661 in &self.inner.events {
-            let converted_item_3662 = event_shared_to_py(py, item_3661)?;
-            converted_3660_list.append(converted_item_3662)?;
+        let converted_3662_list = PyList::empty(py);
+        for item_3663 in &self.inner.events {
+            let converted_item_3664 = event_shared_to_py(py, item_3663)?;
+            converted_3662_list.append(converted_item_3664)?;
         }
-        let converted_3660 = converted_3660_list.into_any().unbind();
-        result.set_item("events", converted_3660)?;
+        let converted_3662 = converted_3662_list.into_any().unbind();
+        result.set_item("events", converted_3662)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3663 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3663)?;
+            let converted_3665 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3665)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31374,7 +31390,7 @@ struct SharedPyOperationListMemoryExtractionJobsOutput {
 impl From<aws_sdk_bedrockagentcore::operation::list_memory_extraction_jobs::ListMemoryExtractionJobsOutput> for SharedPyOperationListMemoryExtractionJobsOutput {
     fn from(value: aws_sdk_bedrockagentcore::operation::list_memory_extraction_jobs::ListMemoryExtractionJobsOutput) -> Self {
         Self {
-            jobs: (value.jobs).into_iter().map(|owned_3668| Arc::new(owned_3668)).collect(),
+            jobs: (value.jobs).into_iter().map(|owned_3670| Arc::new(owned_3670)).collect(),
             next_token: value.next_token,
         }
     }
@@ -31393,26 +31409,26 @@ struct PyOperationListMemoryExtractionJobsOutput {
 impl PyOperationListMemoryExtractionJobsOutput {
     #[getter]
     fn jobs(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3664_list = PyList::empty(py);
-        for item_3665 in &self.inner.jobs {
-            let converted_item_3666 = Py::new(
+        let converted_3666_list = PyList::empty(py);
+        for item_3667 in &self.inner.jobs {
+            let converted_item_3668 = Py::new(
                 py,
                 PyExtractionJobMetadata {
-                    inner: Arc::clone(item_3665),
+                    inner: Arc::clone(item_3667),
                 },
             )?
             .into_any();
-            converted_3664_list.append(converted_item_3666)?;
+            converted_3666_list.append(converted_item_3668)?;
         }
-        let converted_3664 = converted_3664_list.into_any().unbind();
-        Ok(converted_3664)
+        let converted_3666 = converted_3666_list.into_any().unbind();
+        Ok(converted_3666)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3667 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3667)
+            let converted_3669 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3669)
         } else {
             Ok(py.None())
         }
@@ -31420,16 +31436,16 @@ impl PyOperationListMemoryExtractionJobsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3669_list = PyList::empty(py);
-        for item_3670 in &self.inner.jobs {
-            let converted_item_3671 = extraction_job_metadata_to_py(py, item_3670)?;
-            converted_3669_list.append(converted_item_3671)?;
+        let converted_3671_list = PyList::empty(py);
+        for item_3672 in &self.inner.jobs {
+            let converted_item_3673 = extraction_job_metadata_to_py(py, item_3672)?;
+            converted_3671_list.append(converted_item_3673)?;
         }
-        let converted_3669 = converted_3669_list.into_any().unbind();
-        result.set_item("jobs", converted_3669)?;
+        let converted_3671 = converted_3671_list.into_any().unbind();
+        result.set_item("jobs", converted_3671)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3672 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3672)?;
+            let converted_3674 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3674)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31454,7 +31470,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_memory_records::ListMemoryRe
         Self {
             memory_record_summaries: (value.memory_record_summaries)
                 .into_iter()
-                .map(|owned_3677| Arc::new(owned_3677))
+                .map(|owned_3679| Arc::new(owned_3679))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31474,26 +31490,26 @@ struct PyOperationListMemoryRecordsOutput {
 impl PyOperationListMemoryRecordsOutput {
     #[getter]
     fn memory_record_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3673_list = PyList::empty(py);
-        for item_3674 in &self.inner.memory_record_summaries {
-            let converted_item_3675 = Py::new(
+        let converted_3675_list = PyList::empty(py);
+        for item_3676 in &self.inner.memory_record_summaries {
+            let converted_item_3677 = Py::new(
                 py,
                 PyMemoryRecordSummary {
-                    inner: Arc::clone(item_3674),
+                    inner: Arc::clone(item_3676),
                 },
             )?
             .into_any();
-            converted_3673_list.append(converted_item_3675)?;
+            converted_3675_list.append(converted_item_3677)?;
         }
-        let converted_3673 = converted_3673_list.into_any().unbind();
-        Ok(converted_3673)
+        let converted_3675 = converted_3675_list.into_any().unbind();
+        Ok(converted_3675)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3676 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3676)
+            let converted_3678 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3678)
         } else {
             Ok(py.None())
         }
@@ -31501,16 +31517,16 @@ impl PyOperationListMemoryRecordsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3678_list = PyList::empty(py);
-        for item_3679 in &self.inner.memory_record_summaries {
-            let converted_item_3680 = memory_record_summary_to_py(py, item_3679)?;
-            converted_3678_list.append(converted_item_3680)?;
+        let converted_3680_list = PyList::empty(py);
+        for item_3681 in &self.inner.memory_record_summaries {
+            let converted_item_3682 = memory_record_summary_to_py(py, item_3681)?;
+            converted_3680_list.append(converted_item_3682)?;
         }
-        let converted_3678 = converted_3678_list.into_any().unbind();
-        result.set_item("memory_record_summaries", converted_3678)?;
+        let converted_3680 = converted_3680_list.into_any().unbind();
+        result.set_item("memory_record_summaries", converted_3680)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3681 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3681)?;
+            let converted_3683 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3683)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31537,7 +31553,7 @@ impl
         Self {
             payment_instruments: (value.payment_instruments)
                 .into_iter()
-                .map(|owned_3686| Arc::new(owned_3686))
+                .map(|owned_3688| Arc::new(owned_3688))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31557,26 +31573,26 @@ struct PyOperationListPaymentInstrumentsOutput {
 impl PyOperationListPaymentInstrumentsOutput {
     #[getter]
     fn payment_instruments(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3682_list = PyList::empty(py);
-        for item_3683 in &self.inner.payment_instruments {
-            let converted_item_3684 = Py::new(
+        let converted_3684_list = PyList::empty(py);
+        for item_3685 in &self.inner.payment_instruments {
+            let converted_item_3686 = Py::new(
                 py,
                 PyPaymentInstrumentSummary {
-                    inner: Arc::clone(item_3683),
+                    inner: Arc::clone(item_3685),
                 },
             )?
             .into_any();
-            converted_3682_list.append(converted_item_3684)?;
+            converted_3684_list.append(converted_item_3686)?;
         }
-        let converted_3682 = converted_3682_list.into_any().unbind();
-        Ok(converted_3682)
+        let converted_3684 = converted_3684_list.into_any().unbind();
+        Ok(converted_3684)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3685 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3685)
+            let converted_3687 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3687)
         } else {
             Ok(py.None())
         }
@@ -31584,16 +31600,16 @@ impl PyOperationListPaymentInstrumentsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3687_list = PyList::empty(py);
-        for item_3688 in &self.inner.payment_instruments {
-            let converted_item_3689 = payment_instrument_summary_to_py(py, item_3688)?;
-            converted_3687_list.append(converted_item_3689)?;
+        let converted_3689_list = PyList::empty(py);
+        for item_3690 in &self.inner.payment_instruments {
+            let converted_item_3691 = payment_instrument_summary_to_py(py, item_3690)?;
+            converted_3689_list.append(converted_item_3691)?;
         }
-        let converted_3687 = converted_3687_list.into_any().unbind();
-        result.set_item("payment_instruments", converted_3687)?;
+        let converted_3689 = converted_3689_list.into_any().unbind();
+        result.set_item("payment_instruments", converted_3689)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3690 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3690)?;
+            let converted_3692 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3692)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31617,7 +31633,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_payment_sessions::ListPaymen
         Self {
             payment_sessions: (value.payment_sessions)
                 .into_iter()
-                .map(|owned_3695| Arc::new(owned_3695))
+                .map(|owned_3697| Arc::new(owned_3697))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31637,26 +31653,26 @@ struct PyOperationListPaymentSessionsOutput {
 impl PyOperationListPaymentSessionsOutput {
     #[getter]
     fn payment_sessions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3691_list = PyList::empty(py);
-        for item_3692 in &self.inner.payment_sessions {
-            let converted_item_3693 = Py::new(
+        let converted_3693_list = PyList::empty(py);
+        for item_3694 in &self.inner.payment_sessions {
+            let converted_item_3695 = Py::new(
                 py,
                 PyPaymentSessionSummary {
-                    inner: Arc::clone(item_3692),
+                    inner: Arc::clone(item_3694),
                 },
             )?
             .into_any();
-            converted_3691_list.append(converted_item_3693)?;
+            converted_3693_list.append(converted_item_3695)?;
         }
-        let converted_3691 = converted_3691_list.into_any().unbind();
-        Ok(converted_3691)
+        let converted_3693 = converted_3693_list.into_any().unbind();
+        Ok(converted_3693)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3694 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3694)
+            let converted_3696 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3696)
         } else {
             Ok(py.None())
         }
@@ -31664,16 +31680,16 @@ impl PyOperationListPaymentSessionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3696_list = PyList::empty(py);
-        for item_3697 in &self.inner.payment_sessions {
-            let converted_item_3698 = payment_session_summary_to_py(py, item_3697)?;
-            converted_3696_list.append(converted_item_3698)?;
+        let converted_3698_list = PyList::empty(py);
+        for item_3699 in &self.inner.payment_sessions {
+            let converted_item_3700 = payment_session_summary_to_py(py, item_3699)?;
+            converted_3698_list.append(converted_item_3700)?;
         }
-        let converted_3696 = converted_3696_list.into_any().unbind();
-        result.set_item("payment_sessions", converted_3696)?;
+        let converted_3698 = converted_3698_list.into_any().unbind();
+        result.set_item("payment_sessions", converted_3698)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3699 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3699)?;
+            let converted_3701 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3701)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31698,7 +31714,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_recommendations::ListRecomme
         Self {
             recommendation_summaries: (value.recommendation_summaries)
                 .into_iter()
-                .map(|owned_3704| Arc::new(owned_3704))
+                .map(|owned_3706| Arc::new(owned_3706))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31718,26 +31734,26 @@ struct PyOperationListRecommendationsOutput {
 impl PyOperationListRecommendationsOutput {
     #[getter]
     fn recommendation_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3700_list = PyList::empty(py);
-        for item_3701 in &self.inner.recommendation_summaries {
-            let converted_item_3702 = Py::new(
+        let converted_3702_list = PyList::empty(py);
+        for item_3703 in &self.inner.recommendation_summaries {
+            let converted_item_3704 = Py::new(
                 py,
                 PyRecommendationSummary {
-                    inner: Arc::clone(item_3701),
+                    inner: Arc::clone(item_3703),
                 },
             )?
             .into_any();
-            converted_3700_list.append(converted_item_3702)?;
+            converted_3702_list.append(converted_item_3704)?;
         }
-        let converted_3700 = converted_3700_list.into_any().unbind();
-        Ok(converted_3700)
+        let converted_3702 = converted_3702_list.into_any().unbind();
+        Ok(converted_3702)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3703 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3703)
+            let converted_3705 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3705)
         } else {
             Ok(py.None())
         }
@@ -31745,16 +31761,16 @@ impl PyOperationListRecommendationsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3705_list = PyList::empty(py);
-        for item_3706 in &self.inner.recommendation_summaries {
-            let converted_item_3707 = recommendation_summary_to_py(py, item_3706)?;
-            converted_3705_list.append(converted_item_3707)?;
+        let converted_3707_list = PyList::empty(py);
+        for item_3708 in &self.inner.recommendation_summaries {
+            let converted_item_3709 = recommendation_summary_to_py(py, item_3708)?;
+            converted_3707_list.append(converted_item_3709)?;
         }
-        let converted_3705 = converted_3705_list.into_any().unbind();
-        result.set_item("recommendation_summaries", converted_3705)?;
+        let converted_3707 = converted_3707_list.into_any().unbind();
+        result.set_item("recommendation_summaries", converted_3707)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3708 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3708)?;
+            let converted_3710 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3710)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31776,7 +31792,7 @@ impl From<aws_sdk_bedrockagentcore::operation::list_sessions::ListSessionsOutput
         Self {
             session_summaries: (value.session_summaries)
                 .into_iter()
-                .map(|owned_3713| Arc::new(owned_3713))
+                .map(|owned_3715| Arc::new(owned_3715))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31796,26 +31812,26 @@ struct PyOperationListSessionsOutput {
 impl PyOperationListSessionsOutput {
     #[getter]
     fn session_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3709_list = PyList::empty(py);
-        for item_3710 in &self.inner.session_summaries {
-            let converted_item_3711 = Py::new(
+        let converted_3711_list = PyList::empty(py);
+        for item_3712 in &self.inner.session_summaries {
+            let converted_item_3713 = Py::new(
                 py,
                 PySessionSummary {
-                    inner: Arc::clone(item_3710),
+                    inner: Arc::clone(item_3712),
                 },
             )?
             .into_any();
-            converted_3709_list.append(converted_item_3711)?;
+            converted_3711_list.append(converted_item_3713)?;
         }
-        let converted_3709 = converted_3709_list.into_any().unbind();
-        Ok(converted_3709)
+        let converted_3711 = converted_3711_list.into_any().unbind();
+        Ok(converted_3711)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3712 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3712)
+            let converted_3714 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3714)
         } else {
             Ok(py.None())
         }
@@ -31823,16 +31839,16 @@ impl PyOperationListSessionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3714_list = PyList::empty(py);
-        for item_3715 in &self.inner.session_summaries {
-            let converted_item_3716 = session_summary_to_py(py, item_3715)?;
-            converted_3714_list.append(converted_item_3716)?;
+        let converted_3716_list = PyList::empty(py);
+        for item_3717 in &self.inner.session_summaries {
+            let converted_item_3718 = session_summary_to_py(py, item_3717)?;
+            converted_3716_list.append(converted_item_3718)?;
         }
-        let converted_3714 = converted_3714_list.into_any().unbind();
-        result.set_item("session_summaries", converted_3714)?;
+        let converted_3716 = converted_3716_list.into_any().unbind();
+        result.set_item("session_summaries", converted_3716)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3717 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3717)?;
+            let converted_3719 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3719)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -31853,47 +31869,47 @@ struct PyOperationProcessPaymentOutput {
 impl PyOperationProcessPaymentOutput {
     #[getter]
     fn process_payment_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3718 = (&self.inner.process_payment_id).as_str().into_py_any(py)?;
-        Ok(converted_3718)
-    }
-
-    #[getter]
-    fn payment_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3719 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
-        Ok(converted_3719)
-    }
-
-    #[getter]
-    fn payment_session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3720 = (&self.inner.payment_session_id).as_str().into_py_any(py)?;
+        let converted_3720 = (&self.inner.process_payment_id).as_str().into_py_any(py)?;
         Ok(converted_3720)
     }
 
     #[getter]
-    fn payment_instrument_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3721 = (&self.inner.payment_instrument_id)
-            .as_str()
-            .into_py_any(py)?;
+    fn payment_manager_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3721 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
         Ok(converted_3721)
     }
 
     #[getter]
-    fn payment_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3722 = (&self.inner.payment_type).as_str().into_py_any(py)?;
+    fn payment_session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3722 = (&self.inner.payment_session_id).as_str().into_py_any(py)?;
         Ok(converted_3722)
     }
 
     #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3723 = (&self.inner.status).as_str().into_py_any(py)?;
+    fn payment_instrument_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3723 = (&self.inner.payment_instrument_id)
+            .as_str()
+            .into_py_any(py)?;
         Ok(converted_3723)
+    }
+
+    #[getter]
+    fn payment_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3724 = (&self.inner.payment_type).as_str().into_py_any(py)?;
+        Ok(converted_3724)
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3725 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3725)
     }
 
     #[getter]
     fn payment_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.payment_output {
-            let converted_3724 = payment_output_to_py(py, value)?;
-            Ok(converted_3724)
+            let converted_3726 = payment_output_to_py(py, value)?;
+            Ok(converted_3726)
         } else {
             Ok(py.None())
         }
@@ -31901,42 +31917,42 @@ impl PyOperationProcessPaymentOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3725 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3725)
+        let converted_3727 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3727)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3726 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3726)
+        let converted_3728 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3728)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3727 = (&self.inner.process_payment_id).as_str().into_py_any(py)?;
-        result.set_item("process_payment_id", converted_3727)?;
-        let converted_3728 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
-        result.set_item("payment_manager_arn", converted_3728)?;
-        let converted_3729 = (&self.inner.payment_session_id).as_str().into_py_any(py)?;
-        result.set_item("payment_session_id", converted_3729)?;
-        let converted_3730 = (&self.inner.payment_instrument_id)
+        let converted_3729 = (&self.inner.process_payment_id).as_str().into_py_any(py)?;
+        result.set_item("process_payment_id", converted_3729)?;
+        let converted_3730 = (&self.inner.payment_manager_arn).as_str().into_py_any(py)?;
+        result.set_item("payment_manager_arn", converted_3730)?;
+        let converted_3731 = (&self.inner.payment_session_id).as_str().into_py_any(py)?;
+        result.set_item("payment_session_id", converted_3731)?;
+        let converted_3732 = (&self.inner.payment_instrument_id)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("payment_instrument_id", converted_3730)?;
-        let converted_3731 = (&self.inner.payment_type).as_str().into_py_any(py)?;
-        result.set_item("payment_type", converted_3731)?;
-        let converted_3732 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3732)?;
+        result.set_item("payment_instrument_id", converted_3732)?;
+        let converted_3733 = (&self.inner.payment_type).as_str().into_py_any(py)?;
+        result.set_item("payment_type", converted_3733)?;
+        let converted_3734 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3734)?;
         if let Some(value) = &self.inner.payment_output {
-            let converted_3733 = payment_output_to_py(py, value)?;
-            result.set_item("payment_output", converted_3733)?;
+            let converted_3735 = payment_output_to_py(py, value)?;
+            result.set_item("payment_output", converted_3735)?;
         } else {
             result.set_item("payment_output", py.None())?;
         }
-        let converted_3734 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3734)?;
-        let converted_3735 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3735)?;
+        let converted_3736 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3736)?;
+        let converted_3737 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3737)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -31958,7 +31974,7 @@ impl From<aws_sdk_bedrockagentcore::operation::retrieve_memory_records::Retrieve
         Self {
             memory_record_summaries: (value.memory_record_summaries)
                 .into_iter()
-                .map(|owned_3740| Arc::new(owned_3740))
+                .map(|owned_3742| Arc::new(owned_3742))
                 .collect(),
             next_token: value.next_token,
         }
@@ -31978,26 +31994,26 @@ struct PyOperationRetrieveMemoryRecordsOutput {
 impl PyOperationRetrieveMemoryRecordsOutput {
     #[getter]
     fn memory_record_summaries(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3736_list = PyList::empty(py);
-        for item_3737 in &self.inner.memory_record_summaries {
-            let converted_item_3738 = Py::new(
+        let converted_3738_list = PyList::empty(py);
+        for item_3739 in &self.inner.memory_record_summaries {
+            let converted_item_3740 = Py::new(
                 py,
                 PyMemoryRecordSummary {
-                    inner: Arc::clone(item_3737),
+                    inner: Arc::clone(item_3739),
                 },
             )?
             .into_any();
-            converted_3736_list.append(converted_item_3738)?;
+            converted_3738_list.append(converted_item_3740)?;
         }
-        let converted_3736 = converted_3736_list.into_any().unbind();
-        Ok(converted_3736)
+        let converted_3738 = converted_3738_list.into_any().unbind();
+        Ok(converted_3738)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_3739 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3739)
+            let converted_3741 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3741)
         } else {
             Ok(py.None())
         }
@@ -32005,16 +32021,16 @@ impl PyOperationRetrieveMemoryRecordsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3741_list = PyList::empty(py);
-        for item_3742 in &self.inner.memory_record_summaries {
-            let converted_item_3743 = memory_record_summary_to_py(py, item_3742)?;
-            converted_3741_list.append(converted_item_3743)?;
+        let converted_3743_list = PyList::empty(py);
+        for item_3744 in &self.inner.memory_record_summaries {
+            let converted_item_3745 = memory_record_summary_to_py(py, item_3744)?;
+            converted_3743_list.append(converted_item_3745)?;
         }
-        let converted_3741 = converted_3741_list.into_any().unbind();
-        result.set_item("memory_record_summaries", converted_3741)?;
+        let converted_3743 = converted_3743_list.into_any().unbind();
+        result.set_item("memory_record_summaries", converted_3743)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_3744 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_3744)?;
+            let converted_3746 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_3746)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -32035,38 +32051,38 @@ struct PyOperationSaveBrowserSessionProfileOutput {
 impl PyOperationSaveBrowserSessionProfileOutput {
     #[getter]
     fn profile_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3745 = (&self.inner.profile_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3745)
-    }
-
-    #[getter]
-    fn browser_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3746 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3746)
-    }
-
-    #[getter]
-    fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3747 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        let converted_3747 = (&self.inner.profile_identifier).as_str().into_py_any(py)?;
         Ok(converted_3747)
     }
 
     #[getter]
-    fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3748 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+    fn browser_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3748 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
         Ok(converted_3748)
+    }
+
+    #[getter]
+    fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3749 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3749)
+    }
+
+    #[getter]
+    fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3750 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3750)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3749 = (&self.inner.profile_identifier).as_str().into_py_any(py)?;
-        result.set_item("profile_identifier", converted_3749)?;
-        let converted_3750 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        result.set_item("browser_identifier", converted_3750)?;
-        let converted_3751 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3751)?;
-        let converted_3752 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        result.set_item("last_updated_at", converted_3752)?;
+        let converted_3751 = (&self.inner.profile_identifier).as_str().into_py_any(py)?;
+        result.set_item("profile_identifier", converted_3751)?;
+        let converted_3752 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        result.set_item("browser_identifier", converted_3752)?;
+        let converted_3753 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3753)?;
+        let converted_3754 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        result.set_item("last_updated_at", converted_3754)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32086,7 +32102,7 @@ impl From<aws_sdk_bedrockagentcore::operation::search_registry_records::SearchRe
         Self {
             registry_records: (value.registry_records)
                 .into_iter()
-                .map(|owned_3756| Arc::new(SharedRegistryRecordSummary::from(owned_3756)))
+                .map(|owned_3758| Arc::new(SharedRegistryRecordSummary::from(owned_3758)))
                 .collect(),
         }
     }
@@ -32105,30 +32121,30 @@ struct PyOperationSearchRegistryRecordsOutput {
 impl PyOperationSearchRegistryRecordsOutput {
     #[getter]
     fn registry_records(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3753_list = PyList::empty(py);
-        for item_3754 in &self.inner.registry_records {
-            let converted_item_3755 = Py::new(
+        let converted_3755_list = PyList::empty(py);
+        for item_3756 in &self.inner.registry_records {
+            let converted_item_3757 = Py::new(
                 py,
                 PyRegistryRecordSummary {
-                    inner: Arc::clone(item_3754),
+                    inner: Arc::clone(item_3756),
                 },
             )?
             .into_any();
-            converted_3753_list.append(converted_item_3755)?;
+            converted_3755_list.append(converted_item_3757)?;
         }
-        let converted_3753 = converted_3753_list.into_any().unbind();
-        Ok(converted_3753)
+        let converted_3755 = converted_3755_list.into_any().unbind();
+        Ok(converted_3755)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3757_list = PyList::empty(py);
-        for item_3758 in &self.inner.registry_records {
-            let converted_item_3759 = registry_record_summary_shared_to_py(py, item_3758)?;
-            converted_3757_list.append(converted_item_3759)?;
+        let converted_3759_list = PyList::empty(py);
+        for item_3760 in &self.inner.registry_records {
+            let converted_item_3761 = registry_record_summary_shared_to_py(py, item_3760)?;
+            converted_3759_list.append(converted_item_3761)?;
         }
-        let converted_3757 = converted_3757_list.into_any().unbind();
-        result.set_item("registry_records", converted_3757)?;
+        let converted_3759 = converted_3759_list.into_any().unbind();
+        result.set_item("registry_records", converted_3759)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32162,13 +32178,13 @@ impl From<aws_sdk_bedrockagentcore::operation::start_batch_evaluation::StartBatc
             evaluators: value.evaluators.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_3779| Arc::new(owned_3779))
+                    .map(|owned_3781| Arc::new(owned_3781))
                     .collect()
             }),
             insights: value.insights.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_3780| Arc::new(owned_3780))
+                    .map(|owned_3782| Arc::new(owned_3782))
                     .collect()
             }),
             status: value.status,
@@ -32194,42 +32210,42 @@ struct PyOperationStartBatchEvaluationOutput {
 impl PyOperationStartBatchEvaluationOutput {
     #[getter]
     fn batch_evaluation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3760 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
-        Ok(converted_3760)
+        let converted_3762 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
+        Ok(converted_3762)
     }
 
     #[getter]
     fn batch_evaluation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3761 = (&self.inner.batch_evaluation_arn)
+        let converted_3763 = (&self.inner.batch_evaluation_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3761)
+        Ok(converted_3763)
     }
 
     #[getter]
     fn batch_evaluation_name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3762 = (&self.inner.batch_evaluation_name)
+        let converted_3764 = (&self.inner.batch_evaluation_name)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3762)
+        Ok(converted_3764)
     }
 
     #[getter]
     fn evaluators(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.evaluators {
-            let converted_3763_list = PyList::empty(py);
-            for item_3764 in value {
-                let converted_item_3765 = Py::new(
+            let converted_3765_list = PyList::empty(py);
+            for item_3766 in value {
+                let converted_item_3767 = Py::new(
                     py,
                     PyEvaluator {
-                        inner: Arc::clone(item_3764),
+                        inner: Arc::clone(item_3766),
                     },
                 )?
                 .into_any();
-                converted_3763_list.append(converted_item_3765)?;
+                converted_3765_list.append(converted_item_3767)?;
             }
-            let converted_3763 = converted_3763_list.into_any().unbind();
-            Ok(converted_3763)
+            let converted_3765 = converted_3765_list.into_any().unbind();
+            Ok(converted_3765)
         } else {
             Ok(py.None())
         }
@@ -32238,19 +32254,19 @@ impl PyOperationStartBatchEvaluationOutput {
     #[getter]
     fn insights(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights {
-            let converted_3766_list = PyList::empty(py);
-            for item_3767 in value {
-                let converted_item_3768 = Py::new(
+            let converted_3768_list = PyList::empty(py);
+            for item_3769 in value {
+                let converted_item_3770 = Py::new(
                     py,
                     PyInsight {
-                        inner: Arc::clone(item_3767),
+                        inner: Arc::clone(item_3769),
                     },
                 )?
                 .into_any();
-                converted_3766_list.append(converted_item_3768)?;
+                converted_3768_list.append(converted_item_3770)?;
             }
-            let converted_3766 = converted_3766_list.into_any().unbind();
-            Ok(converted_3766)
+            let converted_3768 = converted_3768_list.into_any().unbind();
+            Ok(converted_3768)
         } else {
             Ok(py.None())
         }
@@ -32258,21 +32274,21 @@ impl PyOperationStartBatchEvaluationOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3769 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3769)
+        let converted_3771 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3771)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3770 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3770)
+        let converted_3772 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3772)
     }
 
     #[getter]
     fn output_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_config {
-            let converted_3771 = output_config_to_py(py, value)?;
-            Ok(converted_3771)
+            let converted_3773 = output_config_to_py(py, value)?;
+            Ok(converted_3773)
         } else {
             Ok(py.None())
         }
@@ -32281,14 +32297,14 @@ impl PyOperationStartBatchEvaluationOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_3772_dict = PyDict::new(py);
-            for (key_3773, value_3774) in value {
-                let converted_key_3775 = (key_3773).as_str().into_py_any(py)?;
-                let converted_value_3776 = (value_3774).as_str().into_py_any(py)?;
-                converted_3772_dict.set_item(converted_key_3775, converted_value_3776)?;
+            let converted_3774_dict = PyDict::new(py);
+            for (key_3775, value_3776) in value {
+                let converted_key_3777 = (key_3775).as_str().into_py_any(py)?;
+                let converted_value_3778 = (value_3776).as_str().into_py_any(py)?;
+                converted_3774_dict.set_item(converted_key_3777, converted_value_3778)?;
             }
-            let converted_3772 = converted_3772_dict.into_any().unbind();
-            Ok(converted_3772)
+            let converted_3774 = converted_3774_dict.into_any().unbind();
+            Ok(converted_3774)
         } else {
             Ok(py.None())
         }
@@ -32297,8 +32313,8 @@ impl PyOperationStartBatchEvaluationOutput {
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3777 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3777)
+            let converted_3779 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3779)
         } else {
             Ok(py.None())
         }
@@ -32307,8 +32323,8 @@ impl PyOperationStartBatchEvaluationOutput {
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3778 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3778)
+            let converted_3780 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3780)
         } else {
             Ok(py.None())
         }
@@ -32316,69 +32332,69 @@ impl PyOperationStartBatchEvaluationOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3781 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
-        result.set_item("batch_evaluation_id", converted_3781)?;
-        let converted_3782 = (&self.inner.batch_evaluation_arn)
+        let converted_3783 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
+        result.set_item("batch_evaluation_id", converted_3783)?;
+        let converted_3784 = (&self.inner.batch_evaluation_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("batch_evaluation_arn", converted_3782)?;
-        let converted_3783 = (&self.inner.batch_evaluation_name)
+        result.set_item("batch_evaluation_arn", converted_3784)?;
+        let converted_3785 = (&self.inner.batch_evaluation_name)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("batch_evaluation_name", converted_3783)?;
+        result.set_item("batch_evaluation_name", converted_3785)?;
         if let Some(value) = &self.inner.evaluators {
-            let converted_3784_list = PyList::empty(py);
-            for item_3785 in value {
-                let converted_item_3786 = evaluator_to_py(py, item_3785)?;
-                converted_3784_list.append(converted_item_3786)?;
+            let converted_3786_list = PyList::empty(py);
+            for item_3787 in value {
+                let converted_item_3788 = evaluator_to_py(py, item_3787)?;
+                converted_3786_list.append(converted_item_3788)?;
             }
-            let converted_3784 = converted_3784_list.into_any().unbind();
-            result.set_item("evaluators", converted_3784)?;
+            let converted_3786 = converted_3786_list.into_any().unbind();
+            result.set_item("evaluators", converted_3786)?;
         } else {
             result.set_item("evaluators", py.None())?;
         }
         if let Some(value) = &self.inner.insights {
-            let converted_3787_list = PyList::empty(py);
-            for item_3788 in value {
-                let converted_item_3789 = insight_to_py(py, item_3788)?;
-                converted_3787_list.append(converted_item_3789)?;
+            let converted_3789_list = PyList::empty(py);
+            for item_3790 in value {
+                let converted_item_3791 = insight_to_py(py, item_3790)?;
+                converted_3789_list.append(converted_item_3791)?;
             }
-            let converted_3787 = converted_3787_list.into_any().unbind();
-            result.set_item("insights", converted_3787)?;
+            let converted_3789 = converted_3789_list.into_any().unbind();
+            result.set_item("insights", converted_3789)?;
         } else {
             result.set_item("insights", py.None())?;
         }
-        let converted_3790 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3790)?;
-        let converted_3791 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3791)?;
+        let converted_3792 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3792)?;
+        let converted_3793 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3793)?;
         if let Some(value) = &self.inner.output_config {
-            let converted_3792 = output_config_to_py(py, value)?;
-            result.set_item("output_config", converted_3792)?;
+            let converted_3794 = output_config_to_py(py, value)?;
+            result.set_item("output_config", converted_3794)?;
         } else {
             result.set_item("output_config", py.None())?;
         }
         if let Some(value) = &self.inner.tags {
-            let converted_3793_dict = PyDict::new(py);
-            for (key_3794, value_3795) in value {
-                let converted_key_3796 = (key_3794).as_str().into_py_any(py)?;
-                let converted_value_3797 = (value_3795).as_str().into_py_any(py)?;
-                converted_3793_dict.set_item(converted_key_3796, converted_value_3797)?;
+            let converted_3795_dict = PyDict::new(py);
+            for (key_3796, value_3797) in value {
+                let converted_key_3798 = (key_3796).as_str().into_py_any(py)?;
+                let converted_value_3799 = (value_3797).as_str().into_py_any(py)?;
+                converted_3795_dict.set_item(converted_key_3798, converted_value_3799)?;
             }
-            let converted_3793 = converted_3793_dict.into_any().unbind();
-            result.set_item("tags", converted_3793)?;
+            let converted_3795 = converted_3795_dict.into_any().unbind();
+            result.set_item("tags", converted_3795)?;
         } else {
             result.set_item("tags", py.None())?;
         }
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_3798 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_3798)?;
+            let converted_3800 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_3800)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.description {
-            let converted_3799 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3799)?;
+            let converted_3801 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3801)?;
         } else {
             result.set_item("description", py.None())?;
         }
@@ -32425,33 +32441,33 @@ struct PyOperationStartBrowserSessionOutput {
 impl PyOperationStartBrowserSessionOutput {
     #[getter]
     fn browser_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3800 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3800)
+        let converted_3802 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3802)
     }
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3801 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3801)
+        let converted_3803 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3803)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3802 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3802)
+        let converted_3804 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3804)
     }
 
     #[getter]
     fn streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.streams {
-            let converted_3803 = Py::new(
+            let converted_3805 = Py::new(
                 py,
                 PyBrowserSessionStream {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3803)
+            Ok(converted_3805)
         } else {
             Ok(py.None())
         }
@@ -32459,15 +32475,15 @@ impl PyOperationStartBrowserSessionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3804 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        result.set_item("browser_identifier", converted_3804)?;
-        let converted_3805 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3805)?;
-        let converted_3806 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3806)?;
+        let converted_3806 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        result.set_item("browser_identifier", converted_3806)?;
+        let converted_3807 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3807)?;
+        let converted_3808 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3808)?;
         if let Some(value) = &self.inner.streams {
-            let converted_3807 = browser_session_stream_shared_to_py(py, value)?;
-            result.set_item("streams", converted_3807)?;
+            let converted_3809 = browser_session_stream_shared_to_py(py, value)?;
+            result.set_item("streams", converted_3809)?;
         } else {
             result.set_item("streams", py.None())?;
         }
@@ -32488,34 +32504,34 @@ struct PyOperationStartCodeInterpreterSessionOutput {
 impl PyOperationStartCodeInterpreterSessionOutput {
     #[getter]
     fn code_interpreter_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3808 = (&self.inner.code_interpreter_identifier)
+        let converted_3810 = (&self.inner.code_interpreter_identifier)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3808)
+        Ok(converted_3810)
     }
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3809 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3809)
+        let converted_3811 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3811)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3810 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3810)
+        let converted_3812 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3812)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3811 = (&self.inner.code_interpreter_identifier)
+        let converted_3813 = (&self.inner.code_interpreter_identifier)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("code_interpreter_identifier", converted_3811)?;
-        let converted_3812 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3812)?;
-        let converted_3813 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3813)?;
+        result.set_item("code_interpreter_identifier", converted_3813)?;
+        let converted_3814 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3814)?;
+        let converted_3815 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3815)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32533,14 +32549,14 @@ struct PyOperationStartMemoryExtractionJobOutput {
 impl PyOperationStartMemoryExtractionJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3814 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        Ok(converted_3814)
+        let converted_3816 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_3816)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3815 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        result.set_item("job_id", converted_3815)?;
+        let converted_3817 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_3817)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32558,42 +32574,26 @@ struct PyOperationStartRecommendationOutput {
 impl PyOperationStartRecommendationOutput {
     #[getter]
     fn recommendation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3816 = (&self.inner.recommendation_id).as_str().into_py_any(py)?;
-        Ok(converted_3816)
+        let converted_3818 = (&self.inner.recommendation_id).as_str().into_py_any(py)?;
+        Ok(converted_3818)
     }
 
     #[getter]
     fn recommendation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3817 = (&self.inner.recommendation_arn).as_str().into_py_any(py)?;
-        Ok(converted_3817)
+        let converted_3819 = (&self.inner.recommendation_arn).as_str().into_py_any(py)?;
+        Ok(converted_3819)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3818 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_3818)
+        let converted_3820 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_3820)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3819 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3819)
-        } else {
-            Ok(py.None())
-        }
-    }
-
-    #[getter]
-    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3820 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        Ok(converted_3820)
-    }
-
-    #[getter]
-    fn recommendation_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        if let Some(value) = &self.inner.recommendation_config {
-            let converted_3821 = recommendation_config_to_py(py, value)?;
+            let converted_3821 = (value).as_str().into_py_any(py)?;
             Ok(converted_3821)
         } else {
             Ok(py.None())
@@ -32601,51 +32601,67 @@ impl PyOperationStartRecommendationOutput {
     }
 
     #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3822 = (&self.inner.status).as_str().into_py_any(py)?;
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3822 = (&self.inner.r#type).as_str().into_py_any(py)?;
         Ok(converted_3822)
     }
 
     #[getter]
+    fn recommendation_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.recommendation_config {
+            let converted_3823 = recommendation_config_to_py(py, value)?;
+            Ok(converted_3823)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3824 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3824)
+    }
+
+    #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3823 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_3823)
+        let converted_3825 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_3825)
     }
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3824 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3824)
+        let converted_3826 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3826)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3825 = (&self.inner.recommendation_id).as_str().into_py_any(py)?;
-        result.set_item("recommendation_id", converted_3825)?;
-        let converted_3826 = (&self.inner.recommendation_arn).as_str().into_py_any(py)?;
-        result.set_item("recommendation_arn", converted_3826)?;
-        let converted_3827 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_3827)?;
+        let converted_3827 = (&self.inner.recommendation_id).as_str().into_py_any(py)?;
+        result.set_item("recommendation_id", converted_3827)?;
+        let converted_3828 = (&self.inner.recommendation_arn).as_str().into_py_any(py)?;
+        result.set_item("recommendation_arn", converted_3828)?;
+        let converted_3829 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_3829)?;
         if let Some(value) = &self.inner.description {
-            let converted_3828 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3828)?;
+            let converted_3830 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3830)?;
         } else {
             result.set_item("description", py.None())?;
         }
-        let converted_3829 = (&self.inner.r#type).as_str().into_py_any(py)?;
-        result.set_item("type", converted_3829)?;
+        let converted_3831 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_3831)?;
         if let Some(value) = &self.inner.recommendation_config {
-            let converted_3830 = recommendation_config_to_py(py, value)?;
-            result.set_item("recommendation_config", converted_3830)?;
+            let converted_3832 = recommendation_config_to_py(py, value)?;
+            result.set_item("recommendation_config", converted_3832)?;
         } else {
             result.set_item("recommendation_config", py.None())?;
         }
-        let converted_3831 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3831)?;
-        let converted_3832 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_3832)?;
-        let converted_3833 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3833)?;
+        let converted_3833 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3833)?;
+        let converted_3834 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_3834)?;
+        let converted_3835 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3835)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32663,29 +32679,29 @@ struct PyOperationStopBatchEvaluationOutput {
 impl PyOperationStopBatchEvaluationOutput {
     #[getter]
     fn batch_evaluation_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3834 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
-        Ok(converted_3834)
+        let converted_3836 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
+        Ok(converted_3836)
     }
 
     #[getter]
     fn batch_evaluation_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3835 = (&self.inner.batch_evaluation_arn)
+        let converted_3837 = (&self.inner.batch_evaluation_arn)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3835)
+        Ok(converted_3837)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3836 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_3836)
+        let converted_3838 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_3838)
     }
 
     #[getter]
     fn description(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.description {
-            let converted_3837 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3837)
+            let converted_3839 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3839)
         } else {
             Ok(py.None())
         }
@@ -32693,17 +32709,17 @@ impl PyOperationStopBatchEvaluationOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3838 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
-        result.set_item("batch_evaluation_id", converted_3838)?;
-        let converted_3839 = (&self.inner.batch_evaluation_arn)
+        let converted_3840 = (&self.inner.batch_evaluation_id).as_str().into_py_any(py)?;
+        result.set_item("batch_evaluation_id", converted_3840)?;
+        let converted_3841 = (&self.inner.batch_evaluation_arn)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("batch_evaluation_arn", converted_3839)?;
-        let converted_3840 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3840)?;
+        result.set_item("batch_evaluation_arn", converted_3841)?;
+        let converted_3842 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3842)?;
         if let Some(value) = &self.inner.description {
-            let converted_3841 = (value).as_str().into_py_any(py)?;
-            result.set_item("description", converted_3841)?;
+            let converted_3843 = (value).as_str().into_py_any(py)?;
+            result.set_item("description", converted_3843)?;
         } else {
             result.set_item("description", py.None())?;
         }
@@ -32724,30 +32740,30 @@ struct PyOperationStopBrowserSessionOutput {
 impl PyOperationStopBrowserSessionOutput {
     #[getter]
     fn browser_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3842 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3842)
+        let converted_3844 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3844)
     }
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3843 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3843)
+        let converted_3845 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3845)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3844 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3844)
+        let converted_3846 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3846)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3845 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        result.set_item("browser_identifier", converted_3845)?;
-        let converted_3846 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3846)?;
-        let converted_3847 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        result.set_item("last_updated_at", converted_3847)?;
+        let converted_3847 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        result.set_item("browser_identifier", converted_3847)?;
+        let converted_3848 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3848)?;
+        let converted_3849 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        result.set_item("last_updated_at", converted_3849)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32765,34 +32781,34 @@ struct PyOperationStopCodeInterpreterSessionOutput {
 impl PyOperationStopCodeInterpreterSessionOutput {
     #[getter]
     fn code_interpreter_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3848 = (&self.inner.code_interpreter_identifier)
+        let converted_3850 = (&self.inner.code_interpreter_identifier)
             .as_str()
             .into_py_any(py)?;
-        Ok(converted_3848)
+        Ok(converted_3850)
     }
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3849 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3849)
+        let converted_3851 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3851)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3850 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3850)
+        let converted_3852 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3852)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3851 = (&self.inner.code_interpreter_identifier)
+        let converted_3853 = (&self.inner.code_interpreter_identifier)
             .as_str()
             .into_py_any(py)?;
-        result.set_item("code_interpreter_identifier", converted_3851)?;
-        let converted_3852 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3852)?;
-        let converted_3853 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        result.set_item("last_updated_at", converted_3853)?;
+        result.set_item("code_interpreter_identifier", converted_3853)?;
+        let converted_3854 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3854)?;
+        let converted_3855 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        result.set_item("last_updated_at", converted_3855)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32811,8 +32827,8 @@ impl PyOperationStopRuntimeSessionOutput {
     #[getter]
     fn runtime_session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.runtime_session_id {
-            let converted_3854 = (value).as_str().into_py_any(py)?;
-            Ok(converted_3854)
+            let converted_3856 = (value).as_str().into_py_any(py)?;
+            Ok(converted_3856)
         } else {
             Ok(py.None())
         }
@@ -32821,8 +32837,8 @@ impl PyOperationStopRuntimeSessionOutput {
     #[getter]
     fn status_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_code {
-            let converted_3855 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_3855)
+            let converted_3857 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_3857)
         } else {
             Ok(py.None())
         }
@@ -32831,14 +32847,14 @@ impl PyOperationStopRuntimeSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.runtime_session_id {
-            let converted_3856 = (value).as_str().into_py_any(py)?;
-            result.set_item("runtime_session_id", converted_3856)?;
+            let converted_3858 = (value).as_str().into_py_any(py)?;
+            result.set_item("runtime_session_id", converted_3858)?;
         } else {
             result.set_item("runtime_session_id", py.None())?;
         }
         if let Some(value) = &self.inner.status_code {
-            let converted_3857 = (value).to_owned().into_py_any(py)?;
-            result.set_item("status_code", converted_3857)?;
+            let converted_3859 = (value).to_owned().into_py_any(py)?;
+            result.set_item("status_code", converted_3859)?;
         } else {
             result.set_item("status_code", py.None())?;
         }
@@ -32859,46 +32875,46 @@ struct PyOperationUpdateABTestOutput {
 impl PyOperationUpdateABTestOutput {
     #[getter]
     fn ab_test_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3858 = (&self.inner.ab_test_id).as_str().into_py_any(py)?;
-        Ok(converted_3858)
-    }
-
-    #[getter]
-    fn ab_test_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3859 = (&self.inner.ab_test_arn).as_str().into_py_any(py)?;
-        Ok(converted_3859)
-    }
-
-    #[getter]
-    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3860 = (&self.inner.status).as_str().into_py_any(py)?;
+        let converted_3860 = (&self.inner.ab_test_id).as_str().into_py_any(py)?;
         Ok(converted_3860)
     }
 
     #[getter]
-    fn execution_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3861 = (&self.inner.execution_status).as_str().into_py_any(py)?;
+    fn ab_test_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3861 = (&self.inner.ab_test_arn).as_str().into_py_any(py)?;
         Ok(converted_3861)
     }
 
     #[getter]
-    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3862 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3862 = (&self.inner.status).as_str().into_py_any(py)?;
         Ok(converted_3862)
+    }
+
+    #[getter]
+    fn execution_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3863 = (&self.inner.execution_status).as_str().into_py_any(py)?;
+        Ok(converted_3863)
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_3864 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3864)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3863 = (&self.inner.ab_test_id).as_str().into_py_any(py)?;
-        result.set_item("ab_test_id", converted_3863)?;
-        let converted_3864 = (&self.inner.ab_test_arn).as_str().into_py_any(py)?;
-        result.set_item("ab_test_arn", converted_3864)?;
-        let converted_3865 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_3865)?;
-        let converted_3866 = (&self.inner.execution_status).as_str().into_py_any(py)?;
-        result.set_item("execution_status", converted_3866)?;
-        let converted_3867 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3867)?;
+        let converted_3865 = (&self.inner.ab_test_id).as_str().into_py_any(py)?;
+        result.set_item("ab_test_id", converted_3865)?;
+        let converted_3866 = (&self.inner.ab_test_arn).as_str().into_py_any(py)?;
+        result.set_item("ab_test_arn", converted_3866)?;
+        let converted_3867 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_3867)?;
+        let converted_3868 = (&self.inner.execution_status).as_str().into_py_any(py)?;
+        result.set_item("execution_status", converted_3868)?;
+        let converted_3869 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3869)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32942,27 +32958,27 @@ struct PyOperationUpdateBrowserStreamOutput {
 impl PyOperationUpdateBrowserStreamOutput {
     #[getter]
     fn browser_identifier(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3868 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        Ok(converted_3868)
+        let converted_3870 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        Ok(converted_3870)
     }
 
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3869 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        Ok(converted_3869)
+        let converted_3871 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        Ok(converted_3871)
     }
 
     #[getter]
     fn streams(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.streams {
-            let converted_3870 = Py::new(
+            let converted_3872 = Py::new(
                 py,
                 PyBrowserSessionStream {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_3870)
+            Ok(converted_3872)
         } else {
             Ok(py.None())
         }
@@ -32970,24 +32986,24 @@ impl PyOperationUpdateBrowserStreamOutput {
 
     #[getter]
     fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_3871 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        Ok(converted_3871)
+        let converted_3873 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_3873)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_3872 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
-        result.set_item("browser_identifier", converted_3872)?;
-        let converted_3873 = (&self.inner.session_id).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_3873)?;
+        let converted_3874 = (&self.inner.browser_identifier).as_str().into_py_any(py)?;
+        result.set_item("browser_identifier", converted_3874)?;
+        let converted_3875 = (&self.inner.session_id).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_3875)?;
         if let Some(value) = &self.inner.streams {
-            let converted_3874 = browser_session_stream_shared_to_py(py, value)?;
-            result.set_item("streams", converted_3874)?;
+            let converted_3876 = browser_session_stream_shared_to_py(py, value)?;
+            result.set_item("streams", converted_3876)?;
         } else {
             result.set_item("streams", py.None())?;
         }
-        let converted_3875 = (&self.inner.updated_at).to_string().into_py_any(py)?;
-        result.set_item("updated_at", converted_3875)?;
+        let converted_3877 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_3877)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -32998,12 +33014,12 @@ fn subscription_required_exception_error_details(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.subscription_url {
-        let detail_3876 = (value).as_str().into_py_any(py)?;
-        result.set_item("subscription_url", detail_3876)?;
+        let detail_3878 = (value).as_str().into_py_any(py)?;
+        result.set_item("subscription_url", detail_3878)?;
     }
     if let Some(value) = &value.product_name {
-        let detail_3877 = (value).as_str().into_py_any(py)?;
-        result.set_item("product_name", detail_3877)?;
+        let detail_3879 = (value).as_str().into_py_any(py)?;
+        result.set_item("product_name", detail_3879)?;
     }
     Ok(result.into_any().unbind())
 }
@@ -33013,16 +33029,16 @@ fn validation_exception_error_details(
     value: &aws_sdk_bedrockagentcore::types::error::ValidationException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_3878 = (&value.reason).as_str().into_py_any(py)?;
-    result.set_item("reason", detail_3878)?;
+    let detail_3880 = (&value.reason).as_str().into_py_any(py)?;
+    result.set_item("reason", detail_3880)?;
     if let Some(value) = &value.field_list {
-        let detail_3879_list = PyList::empty(py);
-        for item_3880 in value {
-            let converted_item_3881 = validation_exception_field_to_py(py, item_3880)?;
-            detail_3879_list.append(converted_item_3881)?;
+        let detail_3881_list = PyList::empty(py);
+        for item_3882 in value {
+            let converted_item_3883 = validation_exception_field_to_py(py, item_3882)?;
+            detail_3881_list.append(converted_item_3883)?;
         }
-        let detail_3879 = detail_3879_list.into_any().unbind();
-        result.set_item("field_list", detail_3879)?;
+        let detail_3881 = detail_3881_list.into_any().unbind();
+        result.set_item("field_list", detail_3881)?;
     }
     Ok(result.into_any().unbind())
 }

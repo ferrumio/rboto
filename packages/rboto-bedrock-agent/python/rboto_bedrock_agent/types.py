@@ -282,6 +282,8 @@ MediaExtractionConfigurationOutput: TypeAlias = _native.MediaExtractionConfigura
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MediaExtractionConfigurationOutput/)."""
 MemoryConfigurationOutput: TypeAlias = _native.MemoryConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MemoryConfigurationOutput/)."""
+MetadataConfigurationOutput: TypeAlias = _native.MetadataConfiguration
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MetadataConfigurationOutput/)."""
 MongoDbAtlasConfigurationOutput: TypeAlias = _native.MongoDbAtlasConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MongoDbAtlasConfigurationOutput/)."""
 MongoDbAtlasFieldMappingOutput: TypeAlias = _native.MongoDbAtlasFieldMapping
@@ -584,6 +586,10 @@ EnrichmentStrategyMethod: TypeAlias = Literal['CHUNK_ENTITY_EXTRACTION']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/EnrichmentStrategyMethod/)."""
 EnrichmentStrategyMethodOutput: TypeAlias = EnrichmentStrategyMethod | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/EnrichmentStrategyMethodOutput/)."""
+FieldType: TypeAlias = Literal['STRING', 'STRING_LIST']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/FieldType/)."""
+FieldTypeOutput: TypeAlias = FieldType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/FieldTypeOutput/)."""
 FlowConnectionType: TypeAlias = Literal['Data', 'Conditional']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/FlowConnectionType/)."""
 FlowConnectionTypeOutput: TypeAlias = FlowConnectionType | UnknownEnumValue
@@ -752,6 +758,10 @@ SalesforceAuthType: TypeAlias = Literal['OAUTH2_CLIENT_CREDENTIALS']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/SalesforceAuthType/)."""
 SalesforceAuthTypeOutput: TypeAlias = SalesforceAuthType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/SalesforceAuthTypeOutput/)."""
+SearchableStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/SearchableStatus/)."""
+SearchableStatusOutput: TypeAlias = SearchableStatus | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/SearchableStatusOutput/)."""
 SharePointAuthType: TypeAlias = Literal['OAUTH2_CLIENT_CREDENTIALS', 'OAUTH2_SHAREPOINT_APP_ONLY_CLIENT_CREDENTIALS']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/SharePointAuthType/)."""
 SharePointAuthTypeOutput: TypeAlias = SharePointAuthType | UnknownEnumValue
@@ -2754,6 +2764,7 @@ KnowledgeBase = TypedDict(
     "created_at": Required["str"],
     "updated_at": Required["str"],
     "failure_reasons": NotRequired["Sequence[str]"],
+    "metadata_configurations": NotRequired["Sequence[MetadataConfiguration]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/KnowledgeBase/)."""
@@ -3262,6 +3273,16 @@ MetadataAttributeValue = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MetadataAttributeValue/)."""
+
+MetadataConfiguration = TypedDict(
+    "MetadataConfiguration",
+    {
+    "name": Required["str"],
+    "type": Required["FieldType"],
+    "searchability": Required["SearchableStatus"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/MetadataConfiguration/)."""
 
 MetadataConfigurationForReranking = TypedDict(
     "MetadataConfigurationForReranking",
@@ -4825,6 +4846,7 @@ UpdateKnowledgeBaseRequest = TypedDict(
     "role_arn": Required["str"],
     "knowledge_base_configuration": Required["KnowledgeBaseConfiguration"],
     "storage_configuration": NotRequired["StorageConfiguration"],
+    "metadata_configurations": NotRequired["Sequence[MetadataConfiguration]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent/types/UpdateKnowledgeBaseRequest/)."""

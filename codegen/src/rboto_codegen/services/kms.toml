@@ -8,11 +8,11 @@ client_class = "KMSClient"
 adapter_crate = "rboto-kms-native"
 rust_crate = "aws-sdk-kms"
 rust_module = "aws_sdk_kms"
-rust_crate_version = "1.126.0"
-model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-10-22/aws-models/kms.json"
-model_sha256 = "82e414ec6095a69dabe0e7de071a5b9704c413d3277ed1b293d3cbcd8dd6ce5f"
-aws_model_hash = "eb55db3ab5443684dc5a0bd59a0dc819b5b7977d01cd7d921b603929943632ed"
-smithy_codegen_revision = "05b51124ec26a1bc5ad4330ac2803b46b8a4b337"
+rust_crate_version = "1.129.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/kms.json"
+model_sha256 = "db45df5c4a2c72ed9e08b6b3c321dec4677244845ee4ea3c2bc699df4fce7cd5"
+aws_model_hash = "3ef520eacb2c964df42e3f42a83bca1f4fe458d134991b51405c2d0414e59175"
+smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
 native_outputs = true
 
 [pagination.ListAliases]

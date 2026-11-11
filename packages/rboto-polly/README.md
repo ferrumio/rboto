@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Polly**,
 powered by Rust. This package contains `PollyClient` and
-**10 operations**.
+**13 operations**.
 
 ## Installation
 
@@ -101,10 +101,13 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_speech_synthesis_task`](#get_speech_synthesis_task) | <code>task_id: str</code> | <code>GetSpeechSynthesisTaskOutput</code> |
 | [`list_lexicons`](#list_lexicons) | None | <code>ListLexiconsOutput</code> |
 | [`list_speech_synthesis_tasks`](#list_speech_synthesis_tasks) | None | <code>ListSpeechSynthesisTasksOutput</code> |
+| [`list_tags_for_resource`](#list_tags_for_resource) | <code>resource_arn: str</code> | <code>ListTagsForResourceOutput</code> |
 | [`put_lexicon`](#put_lexicon) | <code>name: str</code>, <code>content: str</code> | <code>PutLexiconOutput</code> |
 | [`start_speech_synthesis_stream`](#start_speech_synthesis_stream) | <code>engine: Engine</code>, <code>output_format: OutputFormat</code>, <code>voice_id: VoiceId</code> | <code>StartSpeechSynthesisStreamOutput</code> |
 | [`start_speech_synthesis_task`](#start_speech_synthesis_task) | <code>output_format: OutputFormat</code>, <code>output_s3_bucket_name: str</code>, <code>text: str</code>, <code>voice_id: VoiceId</code> | <code>StartSpeechSynthesisTaskOutput</code> |
 | [`synthesize_speech`](#synthesize_speech) | <code>output_format: OutputFormat</code>, <code>text: str</code>, <code>voice_id: VoiceId</code> | <code>SynthesizeSpeechOutput</code> |
+| [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: dict[str, str]</code> | <code>TagResourceOutput</code> |
+| [`untag_resource`](#untag_resource) | <code>resource_arn: str</code>, <code>tag_keys: Sequence[str]</code> | <code>UntagResourceOutput</code> |
 
 ## Complete signatures
 
@@ -182,6 +185,16 @@ Also available as `client.paginators.list_speech_synthesis_tasks(...)`, returnin
 async iterator of the response type above.
 
 
+### list_tags_for_resource
+
+```python
+async def list_tags_for_resource(
+    *,
+    resource_arn: str,
+) -> ListTagsForResourceOutput: ...
+```
+
+
 ### put_lexicon
 
 ```python
@@ -189,6 +202,7 @@ async def put_lexicon(
     *,
     name: str,
     content: str,
+    tags: dict[str, str] | None = None,
 ) -> PutLexiconOutput: ...
 ```
 
@@ -245,6 +259,28 @@ async def synthesize_speech(
     speech_mark_types: Sequence[SpeechMarkType] | None = None,
     text_type: TextType | None = None,
 ) -> SynthesizeSpeechOutput: ...
+```
+
+
+### tag_resource
+
+```python
+async def tag_resource(
+    *,
+    resource_arn: str,
+    tags: dict[str, str],
+) -> TagResourceOutput: ...
+```
+
+
+### untag_resource
+
+```python
+async def untag_resource(
+    *,
+    resource_arn: str,
+    tag_keys: Sequence[str],
+) -> UntagResourceOutput: ...
 ```
 
 

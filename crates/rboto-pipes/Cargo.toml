@@ -19,7 +19,7 @@ crate-type = ["cdylib"]
 
 [dependencies]
 aws-config.workspace = true
-aws-sdk-pipes = { version = "=1.120.0", default-features = false, features = ["default-https-client", "rt-tokio"] }
+aws-sdk-pipes = { version = "=1.122.0", default-features = false, features = ["default-https-client", "rt-tokio"] }
 aws-smithy-async.workspace = true
 aws-smithy-runtime-api.workspace = true
 aws-smithy-types.workspace = true

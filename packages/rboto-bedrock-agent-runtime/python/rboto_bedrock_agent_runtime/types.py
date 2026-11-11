@@ -190,7 +190,7 @@ AgenticRetrieveStatus: TypeAlias = Literal['IN_PROGRESS', 'SUCCEEDED', 'FAILED']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStatus/)."""
 AgenticRetrieveStatusOutput: TypeAlias = AgenticRetrieveStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStatusOutput/)."""
-AgenticRetrieveStep: TypeAlias = Literal['Planning', 'Retrieval', 'SpeculativeRetrieval', 'FullDocumentExpansion', 'SessionHistoryLoad']
+AgenticRetrieveStep: TypeAlias = Literal['Planning', 'Retrieval', 'SpeculativeRetrieval', 'FullDocumentExpansion', 'SessionHistoryLoad', 'CodeExecution']
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStep/)."""
 AgenticRetrieveStepOutput: TypeAlias = AgenticRetrieveStep | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStepOutput/)."""
@@ -582,6 +582,7 @@ AgenticRetrieveAction = TypedDict(
     "retrieve": Required["AgenticRetrieveActionDetails | None"],
     "full_document_expansion": Required["AgenticRetrieveFullDocExpansionDetails | None"],
     "memory_retrieve": Required["AgenticRetrieveMemoryRetrieveDetails | None"],
+    "code_execution": Required["AgenticRetrieveCodeExecutionDetails | None"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveAction/)."""
@@ -646,6 +647,23 @@ AgenticRetrieveCitationReference = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveCitationReference/)."""
+
+AgenticRetrieveCodeExecutionDetails = TypedDict(
+    "AgenticRetrieveCodeExecutionDetails",
+    {
+    "documents": Required["list[AgenticRetrieveCodeExecutionDocument] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveCodeExecutionDetails/)."""
+
+AgenticRetrieveCodeExecutionDocument = TypedDict(
+    "AgenticRetrieveCodeExecutionDocument",
+    {
+    "document_id": Required["str | None"],
+    "source_retriever": Required["AgenticRetrieveSourceRetriever | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveCodeExecutionDocument/)."""
 
 AgenticRetrieveConfiguration = TypedDict(
     "AgenticRetrieveConfiguration",
@@ -1930,6 +1948,7 @@ GetDocumentContentRequest = TypedDict(
     "knowledge_base_id": Required["str"],
     "data_source_id": Required["str"],
     "document_id": Required["str"],
+    "media_id": NotRequired["str"],
     "output_format": NotRequired["DocumentOutputFormat"],
     "user_context": NotRequired["UserContext"],
     },

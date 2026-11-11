@@ -24,6 +24,8 @@ CreateKeyOutput: TypeAlias = _native.CreateKeyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CreateKeyOutput/)."""
 CustomKeyStoresListEntryOutput: TypeAlias = _native.CustomKeyStoresListEntry
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoresListEntryOutput/)."""
+DecapsulateOutput: TypeAlias = _native.DecapsulateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecapsulateOutput/)."""
 DecryptOutput: TypeAlias = _native.DecryptOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecryptOutput/)."""
 DeleteCustomKeyStoreOutput: TypeAlias = _native.DeleteCustomKeyStoreOutput
@@ -38,6 +40,8 @@ DescribeKeyOutput: TypeAlias = _native.DescribeKeyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DescribeKeyOutput/)."""
 DisconnectCustomKeyStoreOutput: TypeAlias = _native.DisconnectCustomKeyStoreOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DisconnectCustomKeyStoreOutput/)."""
+EncapsulateOutput: TypeAlias = _native.EncapsulateOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncapsulateOutput/)."""
 EncryptOutput: TypeAlias = _native.EncryptOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptOutput/)."""
 GenerateDataKeyOutput: TypeAlias = _native.GenerateDataKeyOutput
@@ -140,7 +144,7 @@ CustomerMasterKeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', '
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomerMasterKeySpec/)."""
 CustomerMasterKeySpecOutput: TypeAlias = CustomerMasterKeySpec | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomerMasterKeySpecOutput/)."""
-DataKeyPairSpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SM2', 'ECC_NIST_EDWARDS25519']
+DataKeyPairSpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SM2', 'ECC_NIST_EDWARDS25519', 'ML_KEM_512', 'ML_KEM_768', 'ML_KEM_1024']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeyPairSpec/)."""
 DataKeyPairSpecOutput: TypeAlias = DataKeyPairSpec | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DataKeyPairSpecOutput/)."""
@@ -152,6 +156,10 @@ DryRunModifierType: TypeAlias = Literal['IGNORE_CIPHERTEXT']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DryRunModifierType/)."""
 DryRunModifierTypeOutput: TypeAlias = DryRunModifierType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DryRunModifierTypeOutput/)."""
+EncapsulationAlgorithmSpec: TypeAlias = Literal['ML_KEM']
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncapsulationAlgorithmSpec/)."""
+EncapsulationAlgorithmSpecOutput: TypeAlias = EncapsulationAlgorithmSpec | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncapsulationAlgorithmSpecOutput/)."""
 EncryptionAlgorithmSpec: TypeAlias = Literal['SYMMETRIC_DEFAULT', 'RSAES_OAEP_SHA_1', 'RSAES_OAEP_SHA_256', 'SM2PKE']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncryptionAlgorithmSpec/)."""
 EncryptionAlgorithmSpecOutput: TypeAlias = EncryptionAlgorithmSpec | UnknownEnumValue
@@ -160,7 +168,7 @@ ExpirationModelType: TypeAlias = Literal['KEY_MATERIAL_EXPIRES', 'KEY_MATERIAL_D
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ExpirationModelType/)."""
 ExpirationModelTypeOutput: TypeAlias = ExpirationModelType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/ExpirationModelTypeOutput/)."""
-GrantOperation: TypeAlias = Literal['Decrypt', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyWithoutPlaintext', 'ReEncryptFrom', 'ReEncryptTo', 'Sign', 'Verify', 'GetPublicKey', 'CreateGrant', 'RetireGrant', 'DescribeKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateMac', 'VerifyMac', 'DeriveSharedSecret']
+GrantOperation: TypeAlias = Literal['Decrypt', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyWithoutPlaintext', 'ReEncryptFrom', 'ReEncryptTo', 'Sign', 'Verify', 'GetPublicKey', 'CreateGrant', 'RetireGrant', 'DescribeKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateMac', 'VerifyMac', 'DeriveSharedSecret', 'Encapsulate', 'Decapsulate']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantOperation/)."""
 GrantOperationOutput: TypeAlias = GrantOperation | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/GrantOperationOutput/)."""
@@ -184,7 +192,7 @@ KeyEncryptionMechanism: TypeAlias = Literal['RSAES_OAEP_SHA_256']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyEncryptionMechanism/)."""
 KeyEncryptionMechanismOutput: TypeAlias = KeyEncryptionMechanism | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyEncryptionMechanismOutput/)."""
-KeyLastUsageTrackingOperation: TypeAlias = Literal['Decrypt', 'DeriveSharedSecret', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateDataKeyWithoutPlaintext', 'GenerateMac', 'ReEncrypt', 'Sign', 'Verify', 'VerifyMac']
+KeyLastUsageTrackingOperation: TypeAlias = Literal['Decrypt', 'DeriveSharedSecret', 'Encrypt', 'GenerateDataKey', 'GenerateDataKeyPair', 'GenerateDataKeyPairWithoutPlaintext', 'GenerateDataKeyWithoutPlaintext', 'GenerateMac', 'ReEncrypt', 'Sign', 'Verify', 'VerifyMac', 'Encapsulate', 'Decapsulate']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageTrackingOperation/)."""
 KeyLastUsageTrackingOperationOutput: TypeAlias = KeyLastUsageTrackingOperation | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyLastUsageTrackingOperationOutput/)."""
@@ -196,7 +204,7 @@ KeyMaterialState: TypeAlias = Literal['NON_CURRENT', 'CURRENT', 'PENDING_ROTATIO
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMaterialState/)."""
 KeyMaterialStateOutput: TypeAlias = KeyMaterialState | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyMaterialStateOutput/)."""
-KeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SYMMETRIC_DEFAULT', 'HMAC_224', 'HMAC_256', 'HMAC_384', 'HMAC_512', 'SM2', 'ML_DSA_44', 'ML_DSA_65', 'ML_DSA_87', 'ECC_NIST_EDWARDS25519']
+KeySpec: TypeAlias = Literal['RSA_2048', 'RSA_3072', 'RSA_4096', 'ECC_NIST_P256', 'ECC_NIST_P384', 'ECC_NIST_P521', 'ECC_SECG_P256K1', 'SYMMETRIC_DEFAULT', 'HMAC_224', 'HMAC_256', 'HMAC_384', 'HMAC_512', 'SM2', 'ML_DSA_44', 'ML_DSA_65', 'ML_DSA_87', 'ECC_NIST_EDWARDS25519', 'ML_KEM_512', 'ML_KEM_768', 'ML_KEM_1024']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeySpec/)."""
 KeySpecOutput: TypeAlias = KeySpec | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeySpecOutput/)."""
@@ -204,7 +212,7 @@ KeyState: TypeAlias = Literal['Creating', 'Enabled', 'Disabled', 'PendingDeletio
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyState/)."""
 KeyStateOutput: TypeAlias = KeyState | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyStateOutput/)."""
-KeyUsageType: TypeAlias = Literal['SIGN_VERIFY', 'ENCRYPT_DECRYPT', 'GENERATE_VERIFY_MAC', 'KEY_AGREEMENT']
+KeyUsageType: TypeAlias = Literal['SIGN_VERIFY', 'ENCRYPT_DECRYPT', 'GENERATE_VERIFY_MAC', 'KEY_AGREEMENT', 'ENCAPSULATE_DECAPSULATE']
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyUsageType/)."""
 KeyUsageTypeOutput: TypeAlias = KeyUsageType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/KeyUsageTypeOutput/)."""
@@ -347,6 +355,18 @@ CustomKeyStoresListEntry = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/CustomKeyStoresListEntry/)."""
 
+DecapsulateRequest = TypedDict(
+    "DecapsulateRequest",
+    {
+    "key_id": Required["str"],
+    "shared_secret_ciphertext_blob": Required["bytes"],
+    "encapsulation_algorithm": Required["EncapsulationAlgorithmSpec"],
+    "grant_tokens": NotRequired["Sequence[str]"],
+    "dry_run": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/DecapsulateRequest/)."""
+
 DecryptRequest = TypedDict(
     "DecryptRequest",
     {
@@ -460,6 +480,17 @@ EnableKeyRotationRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EnableKeyRotationRequest/)."""
+
+EncapsulateRequest = TypedDict(
+    "EncapsulateRequest",
+    {
+    "key_id": Required["str"],
+    "encapsulation_algorithm": Required["EncapsulationAlgorithmSpec"],
+    "grant_tokens": NotRequired["Sequence[str]"],
+    "dry_run": NotRequired["bool"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/kms/types/EncapsulateRequest/)."""
 
 EncryptRequest = TypedDict(
     "EncryptRequest",
@@ -678,6 +709,7 @@ KeyMetadata = TypedDict(
     "encryption_algorithms": NotRequired["Sequence[EncryptionAlgorithmSpec]"],
     "signing_algorithms": NotRequired["Sequence[SigningAlgorithmSpec]"],
     "key_agreement_algorithms": NotRequired["Sequence[KeyAgreementAlgorithmSpec]"],
+    "encapsulation_algorithms": NotRequired["Sequence[EncapsulationAlgorithmSpec]"],
     "multi_region": NotRequired["bool"],
     "multi_region_configuration": NotRequired["MultiRegionConfiguration"],
     "pending_deletion_window_in_days": NotRequired["int"],

@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon DynamoDB**,
 powered by Rust. This package contains `DynamoDBClient` and
-**58 operations**.
+**62 operations**.
 
 ## Installation
 
@@ -88,6 +88,7 @@ timeout. See the [waiter guide](https://ferrumio.github.io/rboto/guides/waiters/
 
 | Waiter | Polling operation |
 |---|---|
+| [`bulk_operation_completed`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_bulk_operation/#waiters) | `describe_bulk_operation` |
 | [`contributor_insights_enabled`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_contributor_insights/#waiters) | `describe_contributor_insights` |
 | [`export_completed`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_export/#waiters) | `describe_export` |
 | [`import_completed`](https://ferrumio.github.io/rboto/reference/dynamodb/operations/describe_import/#waiters) | `describe_import` |
@@ -112,6 +113,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`batch_execute_statement`](#batch_execute_statement) | <code>statements: Sequence[BatchStatementRequest]</code> | <code>BatchExecuteStatementOutput</code> |
 | [`batch_get_item`](#batch_get_item) | <code>request_items: dict[str, KeysAndAttributes]</code> | <code>BatchGetItemOutput</code> |
 | [`batch_write_item`](#batch_write_item) | <code>request_items: dict[str, Sequence[WriteRequest]]</code> | <code>BatchWriteItemOutput</code> |
+| [`cancel_bulk_operation`](#cancel_bulk_operation) | <code>bulk_operation_arn: str</code> | <code>CancelBulkOperationOutput</code> |
 | [`create_backup`](#create_backup) | <code>table_name: str</code>, <code>backup_name: str</code> | <code>CreateBackupOutput</code> |
 | [`create_global_table`](#create_global_table) | <code>global_table_name: str</code>, <code>replication_group: Sequence[Replica]</code> | <code>CreateGlobalTableOutput</code> |
 | [`create_table`](#create_table) | <code>table_name: str</code> | <code>CreateTableOutput</code> |
@@ -120,6 +122,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>DeleteResourcePolicyOutput</code> |
 | [`delete_table`](#delete_table) | <code>table_name: str</code> | <code>DeleteTableOutput</code> |
 | [`describe_backup`](#describe_backup) | <code>backup_arn: str</code> | <code>DescribeBackupOutput</code> |
+| [`describe_bulk_operation`](#describe_bulk_operation) | <code>bulk_operation_arn: str</code> | <code>DescribeBulkOperationOutput</code> |
 | [`describe_continuous_backups`](#describe_continuous_backups) | <code>table_name: str</code> | <code>DescribeContinuousBackupsOutput</code> |
 | [`describe_contributor_insights`](#describe_contributor_insights) | <code>table_name: str</code> | <code>DescribeContributorInsightsOutput</code> |
 | [`describe_endpoints`](#describe_endpoints) | None | <code>DescribeEndpointsOutput</code> |
@@ -141,6 +144,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_resource_policy`](#get_resource_policy) | <code>resource_arn: str</code> | <code>GetResourcePolicyOutput</code> |
 | [`import_table`](#import_table) | <code>s3_bucket_source: S3BucketSource</code>, <code>input_format: InputFormat</code>, <code>table_creation_parameters: TableCreationParameters</code> | <code>ImportTableOutput</code> |
 | [`list_backups`](#list_backups) | None | <code>ListBackupsOutput</code> |
+| [`list_bulk_operations`](#list_bulk_operations) | None | <code>ListBulkOperationsOutput</code> |
 | [`list_contributor_insights`](#list_contributor_insights) | None | <code>ListContributorInsightsOutput</code> |
 | [`list_exports`](#list_exports) | None | <code>ListExportsOutput</code> |
 | [`list_global_tables`](#list_global_tables) | None | <code>ListGlobalTablesOutput</code> |
@@ -154,6 +158,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`restore_table_to_point_in_time`](#restore_table_to_point_in_time) | <code>target_table_name: str</code> | <code>RestoreTableToPointInTimeOutput</code> |
 | [`scan`](#scan) | <code>table_name: str</code> | <code>ScanOutput</code> |
 | [`search_vectors`](#search_vectors) | <code>table_name: str</code>, <code>index_name: str</code>, <code>search_vector: Sequence[AttributeValue]</code>, <code>top_k: int</code> | <code>SearchVectorsOutput</code> |
+| [`start_bulk_put_items`](#start_bulk_put_items) | <code>input_s3_configuration: InputS3Configuration</code>, <code>output_s3_configuration: OutputS3Configuration</code>, <code>table_name: str</code> | <code>StartBulkPutItemsOutput</code> |
 | [`tag_resource`](#tag_resource) | <code>resource_arn: str</code>, <code>tags: Sequence[Tag]</code> | <code>None</code> |
 | [`transact_get_items`](#transact_get_items) | <code>transact_items: Sequence[TransactGetItem]</code> | <code>TransactGetItemsOutput</code> |
 | [`transact_write_items`](#transact_write_items) | <code>transact_items: Sequence[TransactWriteItem]</code> | <code>TransactWriteItemsOutput</code> |
@@ -201,6 +206,16 @@ async def batch_write_item(
     return_consumed_capacity: ReturnConsumedCapacity | None = None,
     return_item_collection_metrics: ReturnItemCollectionMetrics | None = None,
 ) -> BatchWriteItemOutput: ...
+```
+
+
+### cancel_bulk_operation
+
+```python
+async def cancel_bulk_operation(
+    *,
+    bulk_operation_arn: str,
+) -> CancelBulkOperationOutput: ...
 ```
 
 
@@ -311,6 +326,16 @@ async def describe_backup(
     *,
     backup_arn: str,
 ) -> DescribeBackupOutput: ...
+```
+
+
+### describe_bulk_operation
+
+```python
+async def describe_bulk_operation(
+    *,
+    bulk_operation_arn: str,
+) -> DescribeBulkOperationOutput: ...
 ```
 
 
@@ -561,6 +586,20 @@ Also available as `client.paginators.list_backups(...)`, returning an
 async iterator of the response type above.
 
 
+### list_bulk_operations
+
+```python
+async def list_bulk_operations(
+    *,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListBulkOperationsOutput: ...
+```
+
+Also available as `client.paginators.list_bulk_operations(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_contributor_insights
 
 ```python
@@ -790,6 +829,21 @@ async def search_vectors(
     projection_expression: str | None = None,
     search_condition_expression: str | None = None,
 ) -> SearchVectorsOutput: ...
+```
+
+
+### start_bulk_put_items
+
+```python
+async def start_bulk_put_items(
+    *,
+    input_s3_configuration: InputS3Configuration,
+    output_s3_configuration: OutputS3Configuration,
+    table_name: str,
+    client_token: str | None = None,
+    max_write_request_units: int | None = None,
+    performance_tier: BulkOperationPerformanceTier | None = None,
+) -> StartBulkPutItemsOutput: ...
 ```
 
 

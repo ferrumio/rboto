@@ -34,6 +34,22 @@ class InternalServerError(SignInError):
         return cast(_types.InternalServerErrorDetails, self._details)
 
 
+class InvalidGrantError(SignInError):
+    """Modeled signin error: InvalidGrantException."""
+
+    @property
+    def details(self) -> _types.InvalidGrantErrorDetails:
+        return cast(_types.InvalidGrantErrorDetails, self._details)
+
+
+class InvalidScopeError(SignInError):
+    """Modeled signin error: InvalidScopeException."""
+
+    @property
+    def details(self) -> _types.InvalidScopeErrorDetails:
+        return cast(_types.InvalidScopeErrorDetails, self._details)
+
+
 class ResourceNotFoundError(SignInError):
     """Modeled signin error: ResourceNotFoundException."""
 
@@ -48,6 +64,14 @@ class ServiceQuotaExceededError(SignInError):
     @property
     def details(self) -> _types.ServiceQuotaExceededErrorDetails:
         return cast(_types.ServiceQuotaExceededErrorDetails, self._details)
+
+
+class ServiceUnavailableError(SignInError):
+    """Modeled signin error: ServiceUnavailableException."""
+
+    @property
+    def details(self) -> _types.ServiceUnavailableErrorDetails:
+        return cast(_types.ServiceUnavailableErrorDetails, self._details)
 
 
 class TooManyRequestsError(SignInError):

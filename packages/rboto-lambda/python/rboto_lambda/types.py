@@ -466,6 +466,10 @@ InvokeMode: TypeAlias = Literal['BUFFERED', 'RESPONSE_STREAM']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeMode/)."""
 InvokeModeOutput: TypeAlias = InvokeMode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeModeOutput/)."""
+KafkaEventSourceMappingConsumptionMode: TypeAlias = Literal['Stream', 'Queue']
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaEventSourceMappingConsumptionMode/)."""
+KafkaEventSourceMappingConsumptionModeOutput: TypeAlias = KafkaEventSourceMappingConsumptionMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaEventSourceMappingConsumptionModeOutput/)."""
 KafkaSchemaRegistryAuthType: TypeAlias = Literal['BASIC_AUTH', 'CLIENT_CERTIFICATE_TLS_AUTH', 'SERVER_ROOT_CA_CERTIFICATE', 'OAUTHBEARER_AUTH']
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/KafkaSchemaRegistryAuthType/)."""
 KafkaSchemaRegistryAuthTypeOutput: TypeAlias = KafkaSchemaRegistryAuthType | UnknownEnumValue
@@ -2643,6 +2647,7 @@ SelfManagedKafkaEventSourceConfig = TypedDict(
     {
     "consumer_group_id": NotRequired["str"],
     "schema_registry_config": NotRequired["KafkaSchemaRegistryConfig"],
+    "consumption_mode": NotRequired["KafkaEventSourceMappingConsumptionMode"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/SelfManagedKafkaEventSourceConfig/)."""

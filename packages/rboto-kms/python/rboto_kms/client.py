@@ -11,7 +11,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import KMSClient as NativeClient, CancelKeyDeletionOutput, ConnectCustomKeyStoreOutput, CreateCustomKeyStoreOutput, CreateGrantOutput, CreateKeyOutput, DecryptOutput, DeleteCustomKeyStoreOutput, DeleteImportedKeyMaterialOutput, DeriveSharedSecretOutput, DescribeCustomKeyStoresOutput, DescribeKeyOutput, DisconnectCustomKeyStoreOutput, EncryptOutput, GenerateDataKeyOutput, GenerateDataKeyPairOutput, GenerateDataKeyPairWithoutPlaintextOutput, GenerateDataKeyWithoutPlaintextOutput, GenerateMacOutput, GenerateRandomOutput, GetKeyLastUsageOutput, GetKeyPolicyOutput, GetKeyRotationStatusOutput, GetParametersForImportOutput, GetPublicKeyOutput, ImportKeyMaterialOutput, ListAliasesOutput, ListGrantsOutput, ListKeyPoliciesOutput, ListKeyRotationsOutput, ListKeysOutput, ListResourceTagsOutput, ListRetirableGrantsOutput, ReEncryptOutput, ReplicateKeyOutput, RotateKeyOnDemandOutput, ScheduleKeyDeletionOutput, SignOutput, UpdateCustomKeyStoreOutput, VerifyMacOutput, VerifyOutput
+from ._native import KMSClient as NativeClient, CancelKeyDeletionOutput, ConnectCustomKeyStoreOutput, CreateCustomKeyStoreOutput, CreateGrantOutput, CreateKeyOutput, DecapsulateOutput, DecryptOutput, DeleteCustomKeyStoreOutput, DeleteImportedKeyMaterialOutput, DeriveSharedSecretOutput, DescribeCustomKeyStoresOutput, DescribeKeyOutput, DisconnectCustomKeyStoreOutput, EncapsulateOutput, EncryptOutput, GenerateDataKeyOutput, GenerateDataKeyPairOutput, GenerateDataKeyPairWithoutPlaintextOutput, GenerateDataKeyWithoutPlaintextOutput, GenerateMacOutput, GenerateRandomOutput, GetKeyLastUsageOutput, GetKeyPolicyOutput, GetKeyRotationStatusOutput, GetParametersForImportOutput, GetPublicKeyOutput, ImportKeyMaterialOutput, ListAliasesOutput, ListGrantsOutput, ListKeyPoliciesOutput, ListKeyRotationsOutput, ListKeysOutput, ListResourceTagsOutput, ListRetirableGrantsOutput, ReEncryptOutput, ReplicateKeyOutput, RotateKeyOnDemandOutput, ScheduleKeyDeletionOutput, SignOutput, UpdateCustomKeyStoreOutput, VerifyMacOutput, VerifyOutput
 from .types import (
     AlgorithmSpec,
     CustomKeyStoreType,
@@ -19,6 +19,7 @@ from .types import (
     DataKeyPairSpec,
     DataKeySpec,
     DryRunModifierType,
+    EncapsulationAlgorithmSpec,
     EncryptionAlgorithmSpec,
     ExpirationModelType,
     GrantConstraints,
@@ -335,6 +336,41 @@ class KMSClient:
             )
             return _response
         _response = await self._native.create_key(params)
+        return _response
+
+
+    async def decapsulate(
+        self,
+        *,
+        key_id: str,
+        shared_secret_ciphertext_blob: bytes,
+        encapsulation_algorithm: EncapsulationAlgorithmSpec,
+        grant_tokens: Sequence[str] | None = None,
+        dry_run: bool | None = None,
+    ) -> DecapsulateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/decapsulate/)."""
+        params: dict[str, object] = {
+            "key_id": key_id,
+            "shared_secret_ciphertext_blob": shared_secret_ciphertext_blob,
+            "encapsulation_algorithm": encapsulation_algorithm,
+        }
+        if grant_tokens is not None:
+            params["grant_tokens"] = grant_tokens
+        if dry_run is not None:
+            params["dry_run"] = dry_run
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.decapsulate, params, _interceptors,
+                "kms", "Decapsulate", self._region,
+                DecapsulateOutput,
+                ("key_id", "shared_secret_ciphertext_blob", "encapsulation_algorithm", "grant_tokens", "dry_run", ),
+                ("key_id", "shared_secret_ciphertext_blob", "encapsulation_algorithm", ),
+                service_name='KMS',
+            )
+            return _response
+        _response = await self._native.decapsulate(params)
         return _response
 
 
@@ -690,6 +726,39 @@ class KMSClient:
             return None
         await self._native.enable_key_rotation(params)
         return None
+
+
+    async def encapsulate(
+        self,
+        *,
+        key_id: str,
+        encapsulation_algorithm: EncapsulationAlgorithmSpec,
+        grant_tokens: Sequence[str] | None = None,
+        dry_run: bool | None = None,
+    ) -> EncapsulateOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/encapsulate/)."""
+        params: dict[str, object] = {
+            "key_id": key_id,
+            "encapsulation_algorithm": encapsulation_algorithm,
+        }
+        if grant_tokens is not None:
+            params["grant_tokens"] = grant_tokens
+        if dry_run is not None:
+            params["dry_run"] = dry_run
+        _interceptors = operation_interceptors("kms", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.encapsulate, params, _interceptors,
+                "kms", "Encapsulate", self._region,
+                EncapsulateOutput,
+                ("key_id", "encapsulation_algorithm", "grant_tokens", "dry_run", ),
+                ("key_id", "encapsulation_algorithm", ),
+                service_name='KMS',
+            )
+            return _response
+        _response = await self._native.encapsulate(params)
+        return _response
 
 
     async def encrypt(
