@@ -49,6 +49,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0032: Preserve typed error context across response consumption](0032-operation-and-stream-error-context.md)
 - [ADR-0033: Validate model and SDK semantics before generation](0033-validate-codegen-semantics-before-generation.md)
 - [ADR-0034: Reject unknown fields in input structures](0034-reject-unknown-input-structure-fields.md)
+- [ADR-0035: Measure application code generation with a bounded evaluation pilot](0035-bounded-agent-evaluation-pilot.md)
 
 ## Creating an ADR
 

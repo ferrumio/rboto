@@ -14,3 +14,7 @@
 /packages/rboto/src/rboto/__init__.py linguist-generated=true
 /packages/rboto/src/rboto/__init__.pyi linguist-generated=true
 /packages/rboto/src/rboto/services.py linguist-generated=true
+
+# Recorded evaluation evidence; keep task definitions, graders, and reports visible.
+/evals/results/*.json linguist-generated=true
+/evals/results/*.jsonl linguist-generated=true

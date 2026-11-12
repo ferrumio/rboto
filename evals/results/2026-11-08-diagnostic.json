@@ -1,0 +1,978 @@
+{
+  "schema_version": 1,
+  "purpose": "diagnostic replay; original experiment scores are unchanged",
+  "source_results_sha256": "5e5fd42576b653f79c66a530947fe3442062f203a0512e3a799b67207a86be4a",
+  "canonical_dependencies": true,
+  "environment": {
+    "base": "python:3.12.15-slim@sha256:a0f57064cbdcd6285fa45f51237ab0b35ea8ebaed06a1f5973e89e19dfb86704",
+    "python": "3.12.15",
+    "platform": "Linux-6.18.48-109.150.amzn2023.aarch64-aarch64-with-glibc2.34",
+    "sdk_version": "0.2.0",
+    "sdk_source_revision": "e4ec3b58e4d1b29f9701c6dbd71a5356d3ca8196",
+    "sdk_source_dirty": false,
+    "files": {
+      "rboto/__init__.py": "1f826f87624eebc203ab3d7d04982bcb1eac7623bc2fd5a82169c691ff767b5a",
+      "rboto/__init__.pyi": "8954cfeb42e1fa7d04a5a42288e7cbecfb99b5099b814b57119d3d03a094c856",
+      "rboto/_conversion.py": "3c60dcb84da6ec623c9b75f92b928843d5f60abd845e359f31effe9b1f9d2140",
+      "rboto/_imports.py": "84d64db252c25ab1947fbf02a9463514f7be4f5929559b711be4070f87324df8",
+      "rboto/_observability.py": "171428fd806caf1c6803faf6d0f522d929f5a3455522d561c5235e74f2eb58b8",
+      "rboto/_pagination.py": "a846a53d3d636ff2cf03428c822763990d0053152bb19be2d81b78a4db568048",
+      "rboto/_streams.py": "b02c3775a0e47f317abcb00d2bf0d24cb530e870cca199be6d3f2146c3b10cb9",
+      "rboto/_telemetry.py": "ec48075e94921e3957e79c1aefe9db02ed512db40a1bb9ca1aca15e6b1e8d64b",
+      "rboto/_waiters.py": "dc0cd3b9e6fda1eaf45376f0c9ef33e53beedc64ffc5572cefa30e07311bcb51",
+      "rboto/config.py": "a35ba29521ad7f436139ff19f673069ff369d33835d46057b35355021eb2a4b9",
+      "rboto/exceptions.py": "bdef5961d5b2efc7a761222d608eec6f272e6c6c3db253f624886c124b2c3d52",
+      "rboto/integrations/__init__.py": "c2c53dd03971a5fb2584a0a872881a6fac037f3c89cd776d264356de53ade542",
+      "rboto/integrations/opentelemetry.py": "2548420c46cc24e3eea8aab4ef6f7cb2d779eee1df0baac3b33e81d732dfe290",
+      "rboto/interceptors.py": "4b5f8543776a69b38f0b82781a8cea0dce875fe137c8dca45e49304ceb0daa19",
+      "rboto/logging.py": "c87f9ed1f1cac4d98a8ef60a60e10f83a7d019db2d07cc77d44a727657f132df",
+      "rboto/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto/runtime.py": "e037cd232d41b5b60ac4050a27931198963ea6ff4401ff705c11408be21aed2a",
+      "rboto/services.py": "f65b19c9734f7ae9493ca2f40e93e17db906ddbc61a9348194b38570f2a42c5b",
+      "rboto/session.py": "c9d8ffb33656d499465305a091f55dd4dde9ff2c48850fc7fdcbfc78a63b8f1b",
+      "rboto/types.py": "6a132ae53d1e20c0b182839e7b6eb55976a2247404f7af38d5671020bae4913f",
+      "rboto/waiters.py": "d67a5bad58fd100fea48fb04898158dd286ac4f219f6218cfb6af88d17096f56",
+      "rboto_s3/__init__.py": "f82dec7d0af35ef7763a29dac33a3db53e0d8232b849d093c55dd0ca3fda11ac",
+      "rboto_s3/_native.cpython-312-aarch64-linux-gnu.so": "167883a6db4c6fa37707dde5f7d3cfc85026e1e06f2f9af04146d31e70ebba7b",
+      "rboto_s3/_native.pyi": "250fbbe5e0eef5d9bbd0ad214b50b2473a7401302958bd08f2766526ed5196c4",
+      "rboto_s3/client.py": "8130ece3f470ad36377009ef2b6c1db3ed0043de2c32ace6247d85aa3600a55b",
+      "rboto_s3/exceptions.py": "5a4dcae792c32fbebf453bf7a5e7569b2aed2724380ef230b34f7cc2f3494b72",
+      "rboto_s3/paginators.py": "7018dae9d28779a9a77009ed919f506fad88cac522830968efe9b555c3aa831c",
+      "rboto_s3/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_s3/types.py": "806b1b5ba3a6c5541d0b100dc84fe5da6b82bd0b2eb5e8791f4542fc3ca9d161",
+      "rboto_s3/waiters.py": "633bcac0ae200ce35f4f9fe06c091e18a152f919e27690dfc43a2d62162d71e4",
+      "rboto_dynamodb/__init__.py": "2bef91c064d21dd45c621e032f7c1fa165c26c741e0a57d4a6dda76d4fac6bfd",
+      "rboto_dynamodb/_native.cpython-312-aarch64-linux-gnu.so": "e3c1c0d2a49a58ba4dca5a586f4f167e54560dd6bf3f3ca756d2b55e127e5436",
+      "rboto_dynamodb/_native.pyi": "9470061c8799f6882c524f0193052b3bdfd4ed8bd45121f59c3cd97ee4d4d291",
+      "rboto_dynamodb/client.py": "6b69c2682474417dc2caa26f1bac6091e63f388c0ec085f46cc008951bc2ad8d",
+      "rboto_dynamodb/exceptions.py": "a74f047e898eafe93c8441c160669f68338e8cf985e9587f5c5ddd760c22ff69",
+      "rboto_dynamodb/paginators.py": "8e1c135946bb6cad8dad3b45361c9eba6db7ab69818b27806a362f9ebc06272f",
+      "rboto_dynamodb/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_dynamodb/types.py": "0c607bfbcea4d45ea217a7aad47d265d7aa3242de038570594386deaf09313e4",
+      "rboto_dynamodb/waiters.py": "9b59495521d20739d5276f65e93315ded4e946911201d210a6a7f991cb216cb6",
+      "rboto_sqs/__init__.py": "dc68829c4d8841a0c1e7b35545bc3b9844cc85692f83e9876cbd2c18c8f4b612",
+      "rboto_sqs/_native.cpython-312-aarch64-linux-gnu.so": "870410054caef57584ed01a9882b5506e6ed753c1b4192e5cefdd8d5dd1445d8",
+      "rboto_sqs/_native.pyi": "540064e91ee566fa487a4cb674cb7fb633e2df86703d3bfe5c3aa32d49ce67ec",
+      "rboto_sqs/client.py": "e1c82a9f5d43a46cca247ac816ece0a440cd448817647a4b5e706a83dd97840d",
+      "rboto_sqs/exceptions.py": "a43c2362fc763aaccfe631202d9400e4c5c9ab155d2dd399c4a60db825067a97",
+      "rboto_sqs/paginators.py": "6a0ca876aa38b9b965e19ab2942db959b84fb0f63ab19d66b956aa6b66441241",
+      "rboto_sqs/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_sqs/types.py": "70f550888a77bfac451706a441294c3d6d81222b1aa35ef5ce5266a9556d71ce",
+      "rboto_bedrock_runtime/__init__.py": "f8bf7a329724515de04a0b4b72074f7d9fce3a1fbd89fab35097a7e0cc5e2e9a",
+      "rboto_bedrock_runtime/_native.cpython-312-aarch64-linux-gnu.so": "d8f6eaf28d7d8966a790f1589942f811cd44214f4ed7fe17f446bc353a906fad",
+      "rboto_bedrock_runtime/_native.pyi": "d6f197bfbbfe3111d4059f4bb1ba15f47fb30139e99b7834225046e67873a8ce",
+      "rboto_bedrock_runtime/client.py": "dc2ee2896c2e2ef6cffcbc588e8d5310d979f237984d55883cd968abe18a361a",
+      "rboto_bedrock_runtime/exceptions.py": "c83fedc0e647b8a9fa9cd895ccf20ce0d3ff4b9931f2c9bc74fbe89607f614ab",
+      "rboto_bedrock_runtime/paginators.py": "de436a76d7c7be4dc1fc4308d06af7391e9323569d1ee6a8311a901452c78e7c",
+      "rboto_bedrock_runtime/py.typed": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "rboto_bedrock_runtime/types.py": "a24d7253e886c052b3b142fd0a48f68a9bfb548f9da7d0bbb1a3b8458fff5e12"
+    },
+    "native_source_files": {
+      "rboto_s3/_native.cpython-312-aarch64-linux-gnu.so": "cbaf7e5357bc0b81095e81289eb3d925df9020608e62259c044739ae08045769",
+      "rboto_dynamodb/_native.cpython-312-aarch64-linux-gnu.so": "f7fb939c97fa605c70cc2ffede0f84d2a8ee555baa19d27ce37e86741a8d7865",
+      "rboto_sqs/_native.cpython-312-aarch64-linux-gnu.so": "9eb5b2e3a26e6538da214dae1bb37d9bb2fe37b94f5f8636e102bfcaf88c88c5",
+      "rboto_bedrock_runtime/_native.cpython-312-aarch64-linux-gnu.so": "5f761d4c74640c9916e2c8eaeca921b0522815346bfe45ca3def42279f79994c"
+    },
+    "provenance": "snapshot of existing installed bindings; source revision alone does not attest native compilation provenance",
+    "requirements_sha256": "97df60b87072fcbbd9f9fca66a78e1bd500d2eb94f18b97fb5b56c8a55048988",
+    "grader_files": {
+      "rboto_evals/__init__.py": "c67f0e3873adc495ccb2f2131024e905d6133c8b4f1ca57db399db63089e5c80",
+      "rboto_evals/catalog.py": "04e402e68baea33060d3796f43ab29c1df887b9ef931879385e6c072ec6b5390",
+      "rboto_evals/cli.py": "0f321e9aeaf0e660e24b7d0f2f80f00b0084d43df69e6a4f9b84c33131c70e7e",
+      "rboto_evals/container.py": "7979c7b240d614860ed19d5d97b8015e91e9431eeb5eb2429a37664170c8afbe",
+      "rboto_evals/grading.py": "2fd89030e9ade3592aede3e274f9503d8e652e83b3315ab311f13da75ea923ff",
+      "rboto_evals/providers.py": "c373a80109812fd78671dc1e505b876a0c806d5645299e9a8398cee9b5fa53d3",
+      "rboto_evals/runner.py": "6a2eb7c21d00b54f073db1eb534c09b64fab648a0a6c24a42774551259084fb9"
+    },
+    "image_id": "sha256:ef7f3db54be447c8aacab024f83cea6ce0130d3ba22258e70a86c1f26e1f69f3",
+    "installed_dependencies": [
+      "annotated-types==0.8.0",
+      "ast_serialize==0.13.1",
+      "librt==0.16.0",
+      "mypy==2.4.0",
+      "mypy_extensions==1.2.0",
+      "pathspec==1.1.1",
+      "pydantic==2.14.3",
+      "pydantic_core==2.50.4",
+      "typing-inspection==0.4.5",
+      "typing_extensions==4.16.0"
+    ]
+  },
+  "cases": [
+    {
+      "task": "bedrock_input",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "grader_timeout"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "c4b5f299b80d850f5b1d7ae568c83511ac5af0858b4ccc9fb02b77ec67e63442",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:40: error: Item \"ConverseValueOutputmessage\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:40: error: Item \"ConverseValueOutputUnknown\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:53: error: \"BedrockRuntimeClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1,
+            "union-attr": 2
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "62449fb36ae50ac99e24d74e873233d0bd96027e3e921a25e814a3e545d8faca",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:42: error: Item \"ConverseValueOutputmessage\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:42: error: Item \"ConverseValueOutputUnknown\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:55: error: \"BedrockRuntimeClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1,
+            "union-attr": 2
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "a8a94abcfbd225287114eb2be00434b5b91be758a8de82debc0a13cf53e11b49",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:38: error: \"object\" has no attribute \"get\"  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:38: error: \"object\" has no attribute \"get\"  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0"
+      ],
+      "source_sha256": "a8a94abcfbd225287114eb2be00434b5b91be758a8de82debc0a13cf53e11b49",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:38: error: \"object\" has no attribute \"get\"  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "s3_stream",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 3
+        },
+        "reason": null
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0"
+      ],
+      "source_sha256": "aced1db06d635339f9e06979ff619585a6d097503310fa5dc825cb0a846bc359",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 3
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "s3_stream",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0"
+      ],
+      "source_sha256": "a54e38cb989666a5f5c2256ba764bc9e61eb24e619e4659c635552ab8209b3d5",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      }
+    },
+    {
+      "task": "s3_stream",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 3
+        },
+        "reason": null
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0"
+      ],
+      "source_sha256": "439d67cb6b87827dc1c361cf02eaaf23c6f6b0579cbd09c752b7a71cb57fd6be",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 3
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "57215086f66c26fc2f5ddb615177a88cc4f17277ebba40755533fbac03d31cc7",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:25: error: Argument \"exclusive_start_key\" to \"query\" of \"DynamoDBClient\" has incompatible type \"dict[str, AttributeValueOutput] | None\"; expected \"dict[str, AttributeValue] | None\"  [arg-type]\n<project>/solution.py:33: error: Name \"AttributeValueOutputS\" is not defined; did you mean \"AttributeValueOutput\"?  [name-defined]\n<project>/solution.py:43: error: \"DynamoDBClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "arg-type": 1,
+            "attr-defined": 1,
+            "name-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:25: error: Argument \"exclusive_start_key\" to \"query\" of \"DynamoDBClient\" has incompatible type \"dict[str, AttributeValueOutput] | None\"; expected \"dict[str, AttributeValue] | None\"  [arg-type]\n<project>/solution.py:33: error: Name \"AttributeValueOutputS\" is not defined; did you mean \"AttributeValueOutput\"?  [name-defined]\n<project>/solution.py:43: error: \"DynamoDBClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "arg-type": 1,
+            "attr-defined": 1,
+            "name-defined": 1
+          }
+        },
+        "reason": "typing"
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0"
+      ],
+      "source_sha256": "57215086f66c26fc2f5ddb615177a88cc4f17277ebba40755533fbac03d31cc7",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:25: error: Argument \"exclusive_start_key\" to \"query\" of \"DynamoDBClient\" has incompatible type \"dict[str, AttributeValueOutput] | None\"; expected \"dict[str, AttributeValue] | None\"  [arg-type]\n<project>/solution.py:33: error: Name \"AttributeValueOutputS\" is not defined; did you mean \"AttributeValueOutput\"?  [name-defined]\n<project>/solution.py:43: error: \"DynamoDBClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "arg-type": 1,
+            "attr-defined": 1,
+            "name-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "59619c7d07c1b4ecb3a43c849d943c9d2e5c25802056177ff30681c6e6824b1f",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 4
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 4
+        },
+        "reason": null
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0"
+      ],
+      "source_sha256": "59619c7d07c1b4ecb3a43c849d943c9d2e5c25802056177ff30681c6e6824b1f",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 4
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "s3_projection",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 2
+        },
+        "reason": null
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "bf9ce780a589dc08c688a159440c0da2ea1fe672f754ae1419035cd280127350",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 2
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "s3_projection",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "e63574c7e5c17286de23988617f3d078949424e6c9475003cce7d2b31bce6ff9",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "s3_projection",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 2,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "attribute_validation_required",
+          "requests": 1
+        },
+        "reason": "attribute_validation_required"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "9ea8d0fa584e7229dd7ba3271bc58df35db750e138090b121334aded9fdc8f24",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "attribute_validation_required",
+          "requests": 1
+        },
+        "reason": "attribute_validation_required"
+      }
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "references",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[sqs]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "67c1884e45fa1fd53b6c06bb93ae352d38d0cb63ad7bbc65d43cb347ccc8b9a3",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:61: error: \"SQSClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "guides",
+      "repetition": 1,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[sqs]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "deb6d65db318a6eb890607c8389f5547a2dd3b3ac45da0175e8f978b5089855b",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 6
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "guides",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "a8a94abcfbd225287114eb2be00434b5b91be758a8de82debc0a13cf53e11b49",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:38: error: \"object\" has no attribute \"get\"  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "bedrock_input",
+      "condition": "references",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[bedrock-runtime]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "c4b5f299b80d850f5b1d7ae568c83511ac5af0858b4ccc9fb02b77ec67e63442",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:40: error: Item \"ConverseValueOutputmessage\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:40: error: Item \"ConverseValueOutputUnknown\" of \"ConverseValueOutputmessage | ConverseValueOutputUnknown\" has no attribute \"message\"  [union-attr]\n<project>/solution.py:53: error: \"BedrockRuntimeClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1,
+            "union-attr": 2
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "s3_stream",
+      "condition": "references",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0"
+      ],
+      "source_sha256": "a54e38cb989666a5f5c2256ba764bc9e61eb24e619e4659c635552ab8209b3d5",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      }
+    },
+    {
+      "task": "s3_stream",
+      "condition": "guides",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0"
+      ],
+      "source_sha256": "13f52fd95bfc377c9933d30e5c4c24bf3fd9b7deab8e14e9d2e5593fb485c6fa",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": false,
+          "reason": "close_client",
+          "requests": 3
+        },
+        "reason": "close_client"
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "guides",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "59619c7d07c1b4ecb3a43c849d943c9d2e5c25802056177ff30681c6e6824b1f",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 4
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "dynamodb_pages",
+      "condition": "references",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[dynamodb]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "57215086f66c26fc2f5ddb615177a88cc4f17277ebba40755533fbac03d31cc7",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:25: error: Argument \"exclusive_start_key\" to \"query\" of \"DynamoDBClient\" has incompatible type \"dict[str, AttributeValueOutput] | None\"; expected \"dict[str, AttributeValue] | None\"  [arg-type]\n<project>/solution.py:33: error: Name \"AttributeValueOutputS\" is not defined; did you mean \"AttributeValueOutput\"?  [name-defined]\n<project>/solution.py:43: error: \"DynamoDBClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 3 errors in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "arg-type": 1,
+            "attr-defined": 1,
+            "name-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "s3_projection",
+      "condition": "references",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "e63574c7e5c17286de23988617f3d078949424e6c9475003cce7d2b31bce6ff9",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:42: error: \"S3Client\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    },
+    {
+      "task": "s3_projection",
+      "condition": "guides",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 2
+        },
+        "reason": null
+      },
+      "original_dependencies": [
+        "rboto[s3]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "bf9ce780a589dc08c688a159440c0da2ea1fe672f754ae1419035cd280127350",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 2
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "guides",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[sqs]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "deb6d65db318a6eb890607c8389f5547a2dd3b3ac45da0175e8f978b5089855b",
+      "grade": {
+        "ok": true,
+        "policy_errors": [],
+        "typing": {
+          "ok": true,
+          "diagnostics": "Success: no issues found in 1 source file\n",
+          "error_codes": {}
+        },
+        "behavior": {
+          "ok": true,
+          "reason": null,
+          "requests": 6
+        },
+        "reason": null
+      }
+    },
+    {
+      "task": "sqs_ack",
+      "condition": "references",
+      "repetition": 2,
+      "attempt": 1,
+      "original_grade": {
+        "ok": false,
+        "reason": "dependency_selection"
+      },
+      "original_dependencies": [
+        "rboto[sqs]==0.2.0",
+        "pydantic==2.14.3"
+      ],
+      "source_sha256": "67c1884e45fa1fd53b6c06bb93ae352d38d0cb63ad7bbc65d43cb347ccc8b9a3",
+      "grade": {
+        "ok": false,
+        "policy_errors": [],
+        "typing": {
+          "ok": false,
+          "diagnostics": "<project>/solution.py:61: error: \"SQSClient\" has no attribute \"close\"; maybe \"aclose\"?  [attr-defined]\nFound 1 error in 1 file (checked 1 source file)\n",
+          "error_codes": {
+            "attr-defined": 1
+          }
+        },
+        "reason": "typing"
+      }
+    }
+  ]
+}

@@ -36,3 +36,19 @@ family that existing tests do not exercise.
 
 The generated-source CI job regenerates the complete catalog twice and requires
 both passes to match committed files. See ADR-0006 and ADR-0033.
+
+## Application code evaluations
+
+`evals/tests/test_runner.py` exercises budgets, pairing, and reporting without a
+model. `evals/tests/test_grading.py` validates trusted reference solutions and
+incorrect variants through installed native clients and controlled HTTP peers.
+It honors `RBOTO_TEST_SERVICES` in wheel jobs. CI never calls a paid model.
+
+Follow `evals/README.md` for opt-in comparisons. Only execute model-produced code
+with the Docker grader. Keep solutions and private grading cases out of model
+inputs. This five-task pilot measures supplied documentation, not shell-agent
+tool use or general AWS compatibility; see ADR-0035.
+
+Start reviews with `evals/results/README.md`. Read individual records from the
+JSON/JSONL evidence only when investigating a result; do not load all model
+responses into routine agent context.
