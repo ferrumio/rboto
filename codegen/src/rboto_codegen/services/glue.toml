@@ -1,0 +1,81 @@
+service_id = "glue"
+display_name = "AWS Glue"
+documentation_path = "guides/glue/"
+python_name = "glue"
+distribution_name = "rboto-glue"
+python_package = "rboto_glue"
+client_class = "GlueClient"
+adapter_crate = "rboto-glue-native"
+rust_crate = "aws-sdk-glue"
+rust_module = "aws_sdk_glue"
+rust_crate_version = "1.184.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/glue.json"
+model_sha256 = "4db0624437f6c95b03ae2161034a3bad86c57e81684372ba9176210df9a62def"
+aws_model_hash = "9bb29ce500d950aa315432fdb99356b045074e78f6942d0bf5e756dd8b6edef5"
+smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+native_outputs = true
+
+# The pinned model and SDK omit pagination metadata for DescribeInboundIntegrations.
+[pagination.DescribeInboundIntegrations]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxRecords"
+
+# The pinned model and SDK omit pagination metadata for DescribeIntegrations.
+[pagination.DescribeIntegrations]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxRecords"
+
+# The pinned model and SDK omit pagination metadata for GetCatalogs.
+[pagination.GetCatalogs]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+# The pinned model and SDK omit pagination metadata for GetEntityRecords.
+[pagination.GetEntityRecords]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "Limit"
+
+# The pinned model and SDK omit pagination metadata for ListCrawls.
+[pagination.ListCrawls]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+# The pinned model and SDK omit pagination metadata for ListDataQualityStatisticAnnotations.
+[pagination.ListDataQualityStatisticAnnotations]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+# The pinned model and SDK omit pagination metadata for ListDataQualityStatistics.
+[pagination.ListDataQualityStatistics]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"
+
+# The pinned model and SDK omit pagination metadata for ListIntegrationResourceProperties.
+[pagination.ListIntegrationResourceProperties]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxRecords"
+
+# The pinned model and SDK omit pagination metadata for ListIntegrationTableProperties.
+[pagination.ListIntegrationTableProperties]
+input_tokens = ["Marker"]
+output_tokens = ["Marker"]
+page_size = "MaxRecords"
+
+# The pinned model and SDK omit pagination metadata for ListStatements.
+[pagination.ListStatements]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+
+# The pinned model and SDK omit pagination metadata for QuerySchemaVersionMetadata.
+[pagination.QuerySchemaVersionMetadata]
+input_tokens = ["NextToken"]
+output_tokens = ["NextToken"]
+page_size = "MaxResults"

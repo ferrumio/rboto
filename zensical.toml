@@ -28,6 +28,7 @@ nav = [
     ] },
     { "Service guides" = [
         { "Athena" = "guides/athena.md" },
+        { "Glue" = "guides/glue.md" },
         { "S3" = "guides/s3.md" },
         { "DynamoDB" = "guides/dynamodb.md" },
         { "SNS and SQS" = "guides/messaging.md" },

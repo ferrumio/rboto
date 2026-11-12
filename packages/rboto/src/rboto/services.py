@@ -26,6 +26,7 @@ SERVICE_IDS = frozenset((
     "connecthealth",
     "dynamodb",
     "eventbridge",
+    "glue",
     "guardduty",
     "kms",
     "lambda",
@@ -64,6 +65,7 @@ if TYPE_CHECKING:
     from rboto_connecthealth import ConnectHealthClient
     from rboto_dynamodb import DynamoDBClient
     from rboto_eventbridge import EventBridgeClient
+    from rboto_glue import GlueClient
     from rboto_guardduty import GuardDutyClient
     from rboto_kms import KMSClient
     from rboto_lambda import LambdaClient
@@ -491,6 +493,32 @@ def eventbridge(
     client_class = cast(
         "type[EventBridgeClient]",
         getattr(module, "EventBridgeClient"),
+    )
+    return client_class(
+        session=session,
+        region=region,
+        profile=profile,
+        endpoint_url=endpoint_url,
+        config=config,
+        interceptors=interceptors,
+    )
+
+
+def glue(
+    *,
+    session: Session | None = None,
+    region: str | None = None,
+    profile: str | None = None,
+    endpoint_url: str | None = None,
+    config: ClientConfig | None = None,
+    interceptors: Sequence[Interceptor] | None = None,
+) -> GlueClient:
+    module = import_service(
+        "rboto_glue", "glue",
+    )
+    client_class = cast(
+        "type[GlueClient]",
+        getattr(module, "GlueClient"),
     )
     return client_class(
         session=session,

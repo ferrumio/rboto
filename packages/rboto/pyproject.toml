@@ -53,6 +53,7 @@ cognito-identity = ["rboto-cognito-identity==0.3.0"]
 connecthealth = ["rboto-connecthealth==0.3.0"]
 dynamodb = ["rboto-dynamodb==0.3.0"]
 eventbridge = ["rboto-eventbridge==0.3.0"]
+glue = ["rboto-glue==0.3.0"]
 guardduty = ["rboto-guardduty==0.3.0"]
 kms = ["rboto-kms==0.3.0"]
 lambda = ["rboto-lambda==0.3.0"]
@@ -89,6 +90,7 @@ all = [
     "rboto-connecthealth==0.3.0",
     "rboto-dynamodb==0.3.0",
     "rboto-eventbridge==0.3.0",
+    "rboto-glue==0.3.0",
     "rboto-guardduty==0.3.0",
     "rboto-kms==0.3.0",
     "rboto-lambda==0.3.0",
