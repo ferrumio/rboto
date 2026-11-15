@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -1590,9 +1591,9 @@ GetLogObjectOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectOutput/)."""
 
-GetLogObjectResponseStreamfields = TypedDict("GetLogObjectResponseStreamfields", {"fields": Required["FieldsData"]})
+GetLogObjectResponseStreamfields = TypedDict("GetLogObjectResponseStreamfields", {"fields": Required["FieldsData"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStreamfields/)."""
-GetLogObjectResponseStreamUnknown = TypedDict("GetLogObjectResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+GetLogObjectResponseStreamUnknown = TypedDict("GetLogObjectResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStreamUnknown/)."""
 GetLogObjectResponseStream: TypeAlias = GetLogObjectResponseStreamfields | GetLogObjectResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/GetLogObjectResponseStream/)."""
@@ -1742,9 +1743,9 @@ InputLogEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/InputLogEvent/)."""
 
-IntegrationDetailsopenSearchIntegrationDetails = TypedDict("IntegrationDetailsopenSearchIntegrationDetails", {"open_search_integration_details": Required["OpenSearchIntegrationDetails"]})
+IntegrationDetailsopenSearchIntegrationDetails = TypedDict("IntegrationDetailsopenSearchIntegrationDetails", {"open_search_integration_details": Required["OpenSearchIntegrationDetails"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetailsopenSearchIntegrationDetails/)."""
-IntegrationDetailsUnknown = TypedDict("IntegrationDetailsUnknown", {"unknown": Required[Literal[True]]})
+IntegrationDetailsUnknown = TypedDict("IntegrationDetailsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetailsUnknown/)."""
 IntegrationDetails: TypeAlias = IntegrationDetailsopenSearchIntegrationDetails | IntegrationDetailsUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/IntegrationDetails/)."""
@@ -2709,7 +2710,7 @@ RenameKeys = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/RenameKeys/)."""
 
-ResourceConfigopenSearchResourceConfig = TypedDict("ResourceConfigopenSearchResourceConfig", {"open_search_resource_config": Required["OpenSearchResourceConfig"]})
+ResourceConfigopenSearchResourceConfig = TypedDict("ResourceConfigopenSearchResourceConfig", {"open_search_resource_config": Required["OpenSearchResourceConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourceConfigopenSearchResourceConfig/)."""
 ResourceConfig: TypeAlias = ResourceConfigopenSearchResourceConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/ResourceConfig/)."""
@@ -2853,11 +2854,11 @@ StartLiveTailOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailOutput/)."""
 
-StartLiveTailResponseStreamsessionStart = TypedDict("StartLiveTailResponseStreamsessionStart", {"session_start": Required["LiveTailSessionStart"]})
+StartLiveTailResponseStreamsessionStart = TypedDict("StartLiveTailResponseStreamsessionStart", {"session_start": Required["LiveTailSessionStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamsessionStart/)."""
-StartLiveTailResponseStreamsessionUpdate = TypedDict("StartLiveTailResponseStreamsessionUpdate", {"session_update": Required["LiveTailSessionUpdate"]})
+StartLiveTailResponseStreamsessionUpdate = TypedDict("StartLiveTailResponseStreamsessionUpdate", {"session_update": Required["LiveTailSessionUpdate"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamsessionUpdate/)."""
-StartLiveTailResponseStreamUnknown = TypedDict("StartLiveTailResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+StartLiveTailResponseStreamUnknown = TypedDict("StartLiveTailResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStreamUnknown/)."""
 StartLiveTailResponseStream: TypeAlias = StartLiveTailResponseStreamsessionStart | StartLiveTailResponseStreamsessionUpdate | StartLiveTailResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch-logs/types/StartLiveTailResponseStream/)."""

@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -157,9 +158,9 @@ AudioEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/AudioEvent/)."""
 
-AudioStreamAudioEvent = TypedDict("AudioStreamAudioEvent", {"audio_event": Required["AudioEvent"]})
+AudioStreamAudioEvent = TypedDict("AudioStreamAudioEvent", {"audio_event": Required["AudioEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/AudioStreamAudioEvent/)."""
-AudioStreamConfigurationEvent = TypedDict("AudioStreamConfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]})
+AudioStreamConfigurationEvent = TypedDict("AudioStreamConfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/AudioStreamConfigurationEvent/)."""
 AudioStream: TypeAlias = AudioStreamAudioEvent | AudioStreamConfigurationEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/AudioStream/)."""
@@ -200,11 +201,11 @@ CallAnalyticsLanguageWithScore = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsLanguageWithScore/)."""
 
-CallAnalyticsTranscriptResultStreamUtteranceEvent = TypedDict("CallAnalyticsTranscriptResultStreamUtteranceEvent", {"utterance_event": Required["UtteranceEvent"]})
+CallAnalyticsTranscriptResultStreamUtteranceEvent = TypedDict("CallAnalyticsTranscriptResultStreamUtteranceEvent", {"utterance_event": Required["UtteranceEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsTranscriptResultStreamUtteranceEvent/)."""
-CallAnalyticsTranscriptResultStreamCategoryEvent = TypedDict("CallAnalyticsTranscriptResultStreamCategoryEvent", {"category_event": Required["CategoryEvent"]})
+CallAnalyticsTranscriptResultStreamCategoryEvent = TypedDict("CallAnalyticsTranscriptResultStreamCategoryEvent", {"category_event": Required["CategoryEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsTranscriptResultStreamCategoryEvent/)."""
-CallAnalyticsTranscriptResultStreamUnknown = TypedDict("CallAnalyticsTranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]})
+CallAnalyticsTranscriptResultStreamUnknown = TypedDict("CallAnalyticsTranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsTranscriptResultStreamUnknown/)."""
 CallAnalyticsTranscriptResultStream: TypeAlias = CallAnalyticsTranscriptResultStreamUtteranceEvent | CallAnalyticsTranscriptResultStreamCategoryEvent | CallAnalyticsTranscriptResultStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/CallAnalyticsTranscriptResultStream/)."""
@@ -415,11 +416,11 @@ MedicalScribeEncryptionSettings = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeEncryptionSettings/)."""
 
-MedicalScribeInputStreamAudioEvent = TypedDict("MedicalScribeInputStreamAudioEvent", {"audio_event": Required["MedicalScribeAudioEvent"]})
+MedicalScribeInputStreamAudioEvent = TypedDict("MedicalScribeInputStreamAudioEvent", {"audio_event": Required["MedicalScribeAudioEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeInputStreamAudioEvent/)."""
-MedicalScribeInputStreamSessionControlEvent = TypedDict("MedicalScribeInputStreamSessionControlEvent", {"session_control_event": Required["MedicalScribeSessionControlEvent"]})
+MedicalScribeInputStreamSessionControlEvent = TypedDict("MedicalScribeInputStreamSessionControlEvent", {"session_control_event": Required["MedicalScribeSessionControlEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeInputStreamSessionControlEvent/)."""
-MedicalScribeInputStreamConfigurationEvent = TypedDict("MedicalScribeInputStreamConfigurationEvent", {"configuration_event": Required["MedicalScribeConfigurationEvent"]})
+MedicalScribeInputStreamConfigurationEvent = TypedDict("MedicalScribeInputStreamConfigurationEvent", {"configuration_event": Required["MedicalScribeConfigurationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeInputStreamConfigurationEvent/)."""
 MedicalScribeInputStream: TypeAlias = MedicalScribeInputStreamAudioEvent | MedicalScribeInputStreamSessionControlEvent | MedicalScribeInputStreamConfigurationEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeInputStream/)."""
@@ -448,9 +449,9 @@ MedicalScribePostStreamAnalyticsSettings = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribePostStreamAnalyticsSettings/)."""
 
-MedicalScribeResultStreamTranscriptEvent = TypedDict("MedicalScribeResultStreamTranscriptEvent", {"transcript_event": Required["MedicalScribeTranscriptEvent"]})
+MedicalScribeResultStreamTranscriptEvent = TypedDict("MedicalScribeResultStreamTranscriptEvent", {"transcript_event": Required["MedicalScribeTranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeResultStreamTranscriptEvent/)."""
-MedicalScribeResultStreamUnknown = TypedDict("MedicalScribeResultStreamUnknown", {"unknown": Required[Literal[True]]})
+MedicalScribeResultStreamUnknown = TypedDict("MedicalScribeResultStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeResultStreamUnknown/)."""
 MedicalScribeResultStream: TypeAlias = MedicalScribeResultStreamTranscriptEvent | MedicalScribeResultStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalScribeResultStream/)."""
@@ -537,9 +538,9 @@ MedicalTranscriptEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalTranscriptEvent/)."""
 
-MedicalTranscriptResultStreamTranscriptEvent = TypedDict("MedicalTranscriptResultStreamTranscriptEvent", {"transcript_event": Required["MedicalTranscriptEvent"]})
+MedicalTranscriptResultStreamTranscriptEvent = TypedDict("MedicalTranscriptResultStreamTranscriptEvent", {"transcript_event": Required["MedicalTranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalTranscriptResultStreamTranscriptEvent/)."""
-MedicalTranscriptResultStreamUnknown = TypedDict("MedicalTranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]})
+MedicalTranscriptResultStreamUnknown = TypedDict("MedicalTranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalTranscriptResultStreamUnknown/)."""
 MedicalTranscriptResultStream: TypeAlias = MedicalTranscriptResultStreamTranscriptEvent | MedicalTranscriptResultStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/MedicalTranscriptResultStream/)."""
@@ -785,9 +786,9 @@ TranscriptEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/TranscriptEvent/)."""
 
-TranscriptResultStreamTranscriptEvent = TypedDict("TranscriptResultStreamTranscriptEvent", {"transcript_event": Required["TranscriptEvent"]})
+TranscriptResultStreamTranscriptEvent = TypedDict("TranscriptResultStreamTranscriptEvent", {"transcript_event": Required["TranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/TranscriptResultStreamTranscriptEvent/)."""
-TranscriptResultStreamUnknown = TypedDict("TranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]})
+TranscriptResultStreamUnknown = TypedDict("TranscriptResultStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/TranscriptResultStreamUnknown/)."""
 TranscriptResultStream: TypeAlias = TranscriptResultStreamTranscriptEvent | TranscriptResultStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/transcribe-streaming/types/TranscriptResultStream/)."""

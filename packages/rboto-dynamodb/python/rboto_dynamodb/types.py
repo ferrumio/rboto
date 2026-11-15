@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -532,50 +533,50 @@ AttributeDefinition = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeDefinition/)."""
 
-AttributeValueS = TypedDict("AttributeValueS", {"s": Required["str"]})
+AttributeValueS = TypedDict("AttributeValueS", {"s": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueS/)."""
-AttributeValueN = TypedDict("AttributeValueN", {"n": Required["str"]})
+AttributeValueN = TypedDict("AttributeValueN", {"n": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueN/)."""
-AttributeValueB = TypedDict("AttributeValueB", {"b": Required["bytes"]})
+AttributeValueB = TypedDict("AttributeValueB", {"b": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueB/)."""
-AttributeValueSS = TypedDict("AttributeValueSS", {"ss": Required["Sequence[str]"]})
+AttributeValueSS = TypedDict("AttributeValueSS", {"ss": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueSS/)."""
-AttributeValueNS = TypedDict("AttributeValueNS", {"ns": Required["Sequence[str]"]})
+AttributeValueNS = TypedDict("AttributeValueNS", {"ns": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueNS/)."""
-AttributeValueBS = TypedDict("AttributeValueBS", {"bs": Required["Sequence[bytes]"]})
+AttributeValueBS = TypedDict("AttributeValueBS", {"bs": Required["Sequence[bytes]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueBS/)."""
-AttributeValueM = TypedDict("AttributeValueM", {"m": Required["dict[str, AttributeValue]"]})
+AttributeValueM = TypedDict("AttributeValueM", {"m": Required["dict[str, AttributeValue]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueM/)."""
-AttributeValueL = TypedDict("AttributeValueL", {"l": Required["Sequence[AttributeValue]"]})
+AttributeValueL = TypedDict("AttributeValueL", {"l": Required["Sequence[AttributeValue]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueL/)."""
-AttributeValueNULL = TypedDict("AttributeValueNULL", {"null": Required["bool"]})
+AttributeValueNULL = TypedDict("AttributeValueNULL", {"null": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueNULL/)."""
-AttributeValueBOOL = TypedDict("AttributeValueBOOL", {"bool": Required["bool"]})
+AttributeValueBOOL = TypedDict("AttributeValueBOOL", {"bool": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueBOOL/)."""
 AttributeValue: TypeAlias = AttributeValueS | AttributeValueN | AttributeValueB | AttributeValueSS | AttributeValueNS | AttributeValueBS | AttributeValueM | AttributeValueL | AttributeValueNULL | AttributeValueBOOL
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValue/)."""
 
-AttributeValueOutputS = TypedDict("AttributeValueOutputS", {"s": Required["str"]})
+AttributeValueOutputS = TypedDict("AttributeValueOutputS", {"s": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputS/)."""
-AttributeValueOutputN = TypedDict("AttributeValueOutputN", {"n": Required["str"]})
+AttributeValueOutputN = TypedDict("AttributeValueOutputN", {"n": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputN/)."""
-AttributeValueOutputB = TypedDict("AttributeValueOutputB", {"b": Required["bytes"]})
+AttributeValueOutputB = TypedDict("AttributeValueOutputB", {"b": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputB/)."""
-AttributeValueOutputSS = TypedDict("AttributeValueOutputSS", {"ss": Required["list[str]"]})
+AttributeValueOutputSS = TypedDict("AttributeValueOutputSS", {"ss": Required["list[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputSS/)."""
-AttributeValueOutputNS = TypedDict("AttributeValueOutputNS", {"ns": Required["list[str]"]})
+AttributeValueOutputNS = TypedDict("AttributeValueOutputNS", {"ns": Required["list[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputNS/)."""
-AttributeValueOutputBS = TypedDict("AttributeValueOutputBS", {"bs": Required["list[bytes]"]})
+AttributeValueOutputBS = TypedDict("AttributeValueOutputBS", {"bs": Required["list[bytes]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputBS/)."""
-AttributeValueOutputM = TypedDict("AttributeValueOutputM", {"m": Required["dict[str, AttributeValueOutput]"]})
+AttributeValueOutputM = TypedDict("AttributeValueOutputM", {"m": Required["dict[str, AttributeValueOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputM/)."""
-AttributeValueOutputL = TypedDict("AttributeValueOutputL", {"l": Required["list[AttributeValueOutput]"]})
+AttributeValueOutputL = TypedDict("AttributeValueOutputL", {"l": Required["list[AttributeValueOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputL/)."""
-AttributeValueOutputNULL = TypedDict("AttributeValueOutputNULL", {"null": Required["bool"]})
+AttributeValueOutputNULL = TypedDict("AttributeValueOutputNULL", {"null": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputNULL/)."""
-AttributeValueOutputBOOL = TypedDict("AttributeValueOutputBOOL", {"bool": Required["bool"]})
+AttributeValueOutputBOOL = TypedDict("AttributeValueOutputBOOL", {"bool": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputBOOL/)."""
-AttributeValueOutputUnknown = TypedDict("AttributeValueOutputUnknown", {"unknown": Required[Literal[True]]})
+AttributeValueOutputUnknown = TypedDict("AttributeValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutputUnknown/)."""
 AttributeValueOutput: TypeAlias = AttributeValueOutputS | AttributeValueOutputN | AttributeValueOutputB | AttributeValueOutputSS | AttributeValueOutputNS | AttributeValueOutputBS | AttributeValueOutputM | AttributeValueOutputL | AttributeValueOutputNULL | AttributeValueOutputBOOL | AttributeValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/dynamodb/types/AttributeValueOutput/)."""

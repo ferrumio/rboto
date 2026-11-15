@@ -100,11 +100,35 @@ For application-defined inputs and outputs, see
 [Pydantic and dataclasses](models.md). Pydantic can validate selected response
 attributes without calling `to_dict()`.
 
-## Unions and documents
+## Union variants
 
 Tagged unions select exactly one variant. DynamoDB `AttributeValue` uses
 `{"s": "Ada"}` for a string and `{"n": "37"}` for a number. Do not combine
 variants. See [DynamoDB](dynamodb.md).
+
+Every modeled union uses closed typed dictionaries: each variant contains
+exactly its declared key. Check that key before accessing its value. The type
+checker then knows both the variant and the field's type:
+
+```python
+--8<-- "examples/docs/union_variants.py"
+```
+
+This pattern applies to unions in all services, including event-stream values.
+The generated reference for each union includes an example with its own names.
+It does not require a cast or a handwritten `TypeGuard`. Unknown response
+variants still need handling; they are not valid request variants.
+
+Use mypy 2.2 or newer, or Pyright 1.1.414 or newer. Service packages install
+`typing-extensions` to provide the same closed TypedDict behavior across
+supported Python versions.
+
+Closed variants also reject structurally compatible dictionaries with extra
+keys. When constructing a union, annotate it with the service's public type or
+pass the dictionary directly to the typed operation. Extending a variant with
+additional keys is not supported.
+
+## Documents
 
 Document inputs accept JSON-like values: `None`, booleans, integers, finite floats,
 strings, lists, and dictionaries with string keys. Their recursive alias is
@@ -169,7 +193,7 @@ marker over `str`, not a runtime class to use with `isinstance`.
 ## Check your code
 
 ```bash
-python -m pip install mypy pyright
+python -m pip install "mypy>=2.2" "pyright>=1.1.414"
 mypy --strict app.py
 pyright app.py
 ```

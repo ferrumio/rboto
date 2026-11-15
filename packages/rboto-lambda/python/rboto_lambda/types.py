@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -1973,11 +1974,11 @@ InvokeWithResponseStreamOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamOutput/)."""
 
-InvokeWithResponseStreamResponseEventPayloadChunk = TypedDict("InvokeWithResponseStreamResponseEventPayloadChunk", {"payload_chunk": Required["InvokeResponseStreamUpdate"]})
+InvokeWithResponseStreamResponseEventPayloadChunk = TypedDict("InvokeWithResponseStreamResponseEventPayloadChunk", {"payload_chunk": Required["InvokeResponseStreamUpdate"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEventPayloadChunk/)."""
-InvokeWithResponseStreamResponseEventInvokeComplete = TypedDict("InvokeWithResponseStreamResponseEventInvokeComplete", {"invoke_complete": Required["InvokeWithResponseStreamCompleteEvent"]})
+InvokeWithResponseStreamResponseEventInvokeComplete = TypedDict("InvokeWithResponseStreamResponseEventInvokeComplete", {"invoke_complete": Required["InvokeWithResponseStreamCompleteEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEventInvokeComplete/)."""
-InvokeWithResponseStreamResponseEventUnknown = TypedDict("InvokeWithResponseStreamResponseEventUnknown", {"unknown": Required[Literal[True]]})
+InvokeWithResponseStreamResponseEventUnknown = TypedDict("InvokeWithResponseStreamResponseEventUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEventUnknown/)."""
 InvokeWithResponseStreamResponseEvent: TypeAlias = InvokeWithResponseStreamResponseEventPayloadChunk | InvokeWithResponseStreamResponseEventInvokeComplete | InvokeWithResponseStreamResponseEventUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/lambda/types/InvokeWithResponseStreamResponseEvent/)."""

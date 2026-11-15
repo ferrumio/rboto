@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -76,7 +77,7 @@ RequestPayloadPart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestPayloadPart/)."""
 
-RequestStreamEventPayloadPart = TypedDict("RequestStreamEventPayloadPart", {"payload_part": Required["RequestPayloadPart"]})
+RequestStreamEventPayloadPart = TypedDict("RequestStreamEventPayloadPart", {"payload_part": Required["RequestPayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestStreamEventPayloadPart/)."""
 RequestStreamEvent: TypeAlias = RequestStreamEventPayloadPart
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/RequestStreamEvent/)."""
@@ -92,9 +93,9 @@ ResponsePayloadPart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponsePayloadPart/)."""
 
-ResponseStreamEventPayloadPart = TypedDict("ResponseStreamEventPayloadPart", {"payload_part": Required["ResponsePayloadPart"]})
+ResponseStreamEventPayloadPart = TypedDict("ResponseStreamEventPayloadPart", {"payload_part": Required["ResponsePayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventPayloadPart/)."""
-ResponseStreamEventUnknown = TypedDict("ResponseStreamEventUnknown", {"unknown": Required[Literal[True]]})
+ResponseStreamEventUnknown = TypedDict("ResponseStreamEventUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEventUnknown/)."""
 ResponseStreamEvent: TypeAlias = ResponseStreamEventPayloadPart | ResponseStreamEventUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/sagemaker-runtime-http2/types/ResponseStreamEvent/)."""

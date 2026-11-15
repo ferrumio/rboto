@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -9206,20 +9207,20 @@ SearchAttributeFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchAttributeFilter/)."""
 
-SearchFilterClauseAndAllFilters = TypedDict("SearchFilterClauseAndAllFilters", {"and_all_filters": Required["Sequence[SearchFilterClause]"]})
+SearchFilterClauseAndAllFilters = TypedDict("SearchFilterClauseAndAllFilters", {"and_all_filters": Required["Sequence[SearchFilterClause]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterClauseAndAllFilters/)."""
-SearchFilterClauseOrAnyFilters = TypedDict("SearchFilterClauseOrAnyFilters", {"or_any_filters": Required["Sequence[SearchFilterClause]"]})
+SearchFilterClauseOrAnyFilters = TypedDict("SearchFilterClauseOrAnyFilters", {"or_any_filters": Required["Sequence[SearchFilterClause]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterClauseOrAnyFilters/)."""
-SearchFilterClauseAttributeFilter = TypedDict("SearchFilterClauseAttributeFilter", {"attribute_filter": Required["SearchAttributeFilter"]})
+SearchFilterClauseAttributeFilter = TypedDict("SearchFilterClauseAttributeFilter", {"attribute_filter": Required["SearchAttributeFilter"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterClauseAttributeFilter/)."""
-SearchFilterClauseMapFilter = TypedDict("SearchFilterClauseMapFilter", {"map_filter": Required["SearchMapFilter"]})
+SearchFilterClauseMapFilter = TypedDict("SearchFilterClauseMapFilter", {"map_filter": Required["SearchMapFilter"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterClauseMapFilter/)."""
 SearchFilterClause: TypeAlias = SearchFilterClauseAndAllFilters | SearchFilterClauseOrAnyFilters | SearchFilterClauseAttributeFilter | SearchFilterClauseMapFilter
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterClause/)."""
 
-SearchFilterValueStringValue = TypedDict("SearchFilterValueStringValue", {"string_value": Required["str"]})
+SearchFilterValueStringValue = TypedDict("SearchFilterValueStringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterValueStringValue/)."""
-SearchFilterValueLongValue = TypedDict("SearchFilterValueLongValue", {"long_value": Required["int"]})
+SearchFilterValueLongValue = TypedDict("SearchFilterValueLongValue", {"long_value": Required["int"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterValueLongValue/)."""
 SearchFilterValue: TypeAlias = SearchFilterValueStringValue | SearchFilterValueLongValue
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchFilterValue/)."""
@@ -9234,7 +9235,7 @@ SearchMapFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchMapFilter/)."""
 
-SearchMapFilterValueStringValue = TypedDict("SearchMapFilterValueStringValue", {"string_value": Required["str"]})
+SearchMapFilterValueStringValue = TypedDict("SearchMapFilterValueStringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchMapFilterValueStringValue/)."""
 SearchMapFilterValue: TypeAlias = SearchMapFilterValueStringValue
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/SearchMapFilterValue/)."""
@@ -10085,14 +10086,14 @@ TableOptimizerRun = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerRun/)."""
 
-TableOptimizerVpcConfigurationglueConnectionName = TypedDict("TableOptimizerVpcConfigurationglueConnectionName", {"glue_connection_name": Required["str"]})
+TableOptimizerVpcConfigurationglueConnectionName = TypedDict("TableOptimizerVpcConfigurationglueConnectionName", {"glue_connection_name": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerVpcConfigurationglueConnectionName/)."""
 TableOptimizerVpcConfiguration: TypeAlias = TableOptimizerVpcConfigurationglueConnectionName
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerVpcConfiguration/)."""
 
-TableOptimizerVpcConfigurationOutputglueConnectionName = TypedDict("TableOptimizerVpcConfigurationOutputglueConnectionName", {"glue_connection_name": Required["str"]})
+TableOptimizerVpcConfigurationOutputglueConnectionName = TypedDict("TableOptimizerVpcConfigurationOutputglueConnectionName", {"glue_connection_name": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerVpcConfigurationOutputglueConnectionName/)."""
-TableOptimizerVpcConfigurationOutputUnknown = TypedDict("TableOptimizerVpcConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+TableOptimizerVpcConfigurationOutputUnknown = TypedDict("TableOptimizerVpcConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerVpcConfigurationOutputUnknown/)."""
 TableOptimizerVpcConfigurationOutput: TypeAlias = TableOptimizerVpcConfigurationOutputglueConnectionName | TableOptimizerVpcConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/glue/types/TableOptimizerVpcConfigurationOutput/)."""

@@ -46,6 +46,11 @@ resolve through `typing.get_type_hints` and schema generators can follow its
 recursive definition. Do not replace it with a quoted string assigned to
 `TypeAlias`: `JSONValue | None` would then fail during runtime introspection.
 
+Modeled union variants use closed `typing_extensions.TypedDict` definitions
+(ADR-0035). Preserve closedness in reference rendering and include the output
+unknown sentinel. Do not close ordinary structures, maps, or documents as a
+side effect. Keep consumer checks and generated narrowing examples generic.
+
 Input diagnostics unwind through `_from_py` and `rboto-core/src/input_error.rs`.
 Construct paths and format context only on failure. Use public parameter names
 at the operation boundary, literal TypedDict field names for nested members,

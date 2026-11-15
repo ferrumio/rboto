@@ -72,7 +72,7 @@ def test_manifests_bootstrap_a_crate_that_is_not_downloaded(tmp_path: Path) -> N
     assert dependency["features"] == ["default-https-client", "rt-tokio"]
     project = tomllib.loads(package.read_text())["project"]
     assert project["version"] == "0.1.0"
-    assert project["dependencies"] == ["rboto==0.1.0"]
+    assert project["dependencies"] == ["rboto==0.1.0", "typing-extensions>=4.15,<5"]
     assert not (tmp_path / "codegen/models").exists()
     assert not (cargo.parent / "src/generated.rs").exists()
 
@@ -102,7 +102,7 @@ def test_version_bump_keeps_package_dependencies_synchronized(
     if broken_pin is None:
         project = tomllib.loads(package.read_text())["project"]
         assert project["version"] == "0.2.1"
-        assert project["dependencies"] == ["rboto==0.2.1"]
+        assert project["dependencies"] == ["rboto==0.2.1", "typing-extensions>=4.15,<5"]
         return
     if broken_pin == "service":
         package.write_text(package.read_text().replace("rboto==0.2.1", "rboto==0.1.0"))

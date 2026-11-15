@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -541,18 +542,18 @@ A2aDescriptor = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/A2aDescriptor/)."""
 
-ABTestEvaluationConfigonlineEvaluationConfigArn = TypedDict("ABTestEvaluationConfigonlineEvaluationConfigArn", {"online_evaluation_config_arn": Required["str"]})
+ABTestEvaluationConfigonlineEvaluationConfigArn = TypedDict("ABTestEvaluationConfigonlineEvaluationConfigArn", {"online_evaluation_config_arn": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigonlineEvaluationConfigArn/)."""
-ABTestEvaluationConfigperVariantOnlineEvaluationConfig = TypedDict("ABTestEvaluationConfigperVariantOnlineEvaluationConfig", {"per_variant_online_evaluation_config": Required["Sequence[PerVariantOnlineEvaluationConfig]"]})
+ABTestEvaluationConfigperVariantOnlineEvaluationConfig = TypedDict("ABTestEvaluationConfigperVariantOnlineEvaluationConfig", {"per_variant_online_evaluation_config": Required["Sequence[PerVariantOnlineEvaluationConfig]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigperVariantOnlineEvaluationConfig/)."""
 ABTestEvaluationConfig: TypeAlias = ABTestEvaluationConfigonlineEvaluationConfigArn | ABTestEvaluationConfigperVariantOnlineEvaluationConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfig/)."""
 
-ABTestEvaluationConfigOutputonlineEvaluationConfigArn = TypedDict("ABTestEvaluationConfigOutputonlineEvaluationConfigArn", {"online_evaluation_config_arn": Required["str"]})
+ABTestEvaluationConfigOutputonlineEvaluationConfigArn = TypedDict("ABTestEvaluationConfigOutputonlineEvaluationConfigArn", {"online_evaluation_config_arn": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigOutputonlineEvaluationConfigArn/)."""
-ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig = TypedDict("ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig", {"per_variant_online_evaluation_config": Required["list[PerVariantOnlineEvaluationConfigOutput]"]})
+ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig = TypedDict("ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig", {"per_variant_online_evaluation_config": Required["list[PerVariantOnlineEvaluationConfigOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig/)."""
-ABTestEvaluationConfigOutputUnknown = TypedDict("ABTestEvaluationConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+ABTestEvaluationConfigOutputUnknown = TypedDict("ABTestEvaluationConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigOutputUnknown/)."""
 ABTestEvaluationConfigOutput: TypeAlias = ABTestEvaluationConfigOutputonlineEvaluationConfigArn | ABTestEvaluationConfigOutputperVariantOnlineEvaluationConfig | ABTestEvaluationConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ABTestEvaluationConfigOutput/)."""
@@ -620,26 +621,26 @@ AgentSkillsDescriptor = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentSkillsDescriptor/)."""
 
-AgentTracesConfigsessionSpans = TypedDict("AgentTracesConfigsessionSpans", {"session_spans": Required["Sequence[JSONValue]"]})
+AgentTracesConfigsessionSpans = TypedDict("AgentTracesConfigsessionSpans", {"session_spans": Required["Sequence[JSONValue]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigsessionSpans/)."""
-AgentTracesConfigcloudwatchLogs = TypedDict("AgentTracesConfigcloudwatchLogs", {"cloudwatch_logs": Required["CloudWatchLogsTraceConfig"]})
+AgentTracesConfigcloudwatchLogs = TypedDict("AgentTracesConfigcloudwatchLogs", {"cloudwatch_logs": Required["CloudWatchLogsTraceConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigcloudwatchLogs/)."""
-AgentTracesConfigbatchEvaluation = TypedDict("AgentTracesConfigbatchEvaluation", {"batch_evaluation": Required["BatchEvaluationTraceConfig"]})
+AgentTracesConfigbatchEvaluation = TypedDict("AgentTracesConfigbatchEvaluation", {"batch_evaluation": Required["BatchEvaluationTraceConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigbatchEvaluation/)."""
-AgentTracesConfigonlineEvaluation = TypedDict("AgentTracesConfigonlineEvaluation", {"online_evaluation": Required["OnlineEvaluationTraceConfig"]})
+AgentTracesConfigonlineEvaluation = TypedDict("AgentTracesConfigonlineEvaluation", {"online_evaluation": Required["OnlineEvaluationTraceConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigonlineEvaluation/)."""
 AgentTracesConfig: TypeAlias = AgentTracesConfigsessionSpans | AgentTracesConfigcloudwatchLogs | AgentTracesConfigbatchEvaluation | AgentTracesConfigonlineEvaluation
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfig/)."""
 
-AgentTracesConfigOutputsessionSpans = TypedDict("AgentTracesConfigOutputsessionSpans", {"session_spans": Required["list[JSONValue]"]})
+AgentTracesConfigOutputsessionSpans = TypedDict("AgentTracesConfigOutputsessionSpans", {"session_spans": Required["list[JSONValue]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutputsessionSpans/)."""
-AgentTracesConfigOutputcloudwatchLogs = TypedDict("AgentTracesConfigOutputcloudwatchLogs", {"cloudwatch_logs": Required["CloudWatchLogsTraceConfigOutput"]})
+AgentTracesConfigOutputcloudwatchLogs = TypedDict("AgentTracesConfigOutputcloudwatchLogs", {"cloudwatch_logs": Required["CloudWatchLogsTraceConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutputcloudwatchLogs/)."""
-AgentTracesConfigOutputbatchEvaluation = TypedDict("AgentTracesConfigOutputbatchEvaluation", {"batch_evaluation": Required["BatchEvaluationTraceConfigOutput"]})
+AgentTracesConfigOutputbatchEvaluation = TypedDict("AgentTracesConfigOutputbatchEvaluation", {"batch_evaluation": Required["BatchEvaluationTraceConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutputbatchEvaluation/)."""
-AgentTracesConfigOutputonlineEvaluation = TypedDict("AgentTracesConfigOutputonlineEvaluation", {"online_evaluation": Required["OnlineEvaluationTraceConfigOutput"]})
+AgentTracesConfigOutputonlineEvaluation = TypedDict("AgentTracesConfigOutputonlineEvaluation", {"online_evaluation": Required["OnlineEvaluationTraceConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutputonlineEvaluation/)."""
-AgentTracesConfigOutputUnknown = TypedDict("AgentTracesConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+AgentTracesConfigOutputUnknown = TypedDict("AgentTracesConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutputUnknown/)."""
 AgentTracesConfigOutput: TypeAlias = AgentTracesConfigOutputsessionSpans | AgentTracesConfigOutputcloudwatchLogs | AgentTracesConfigOutputbatchEvaluation | AgentTracesConfigOutputonlineEvaluation | AgentTracesConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/AgentTracesConfigOutput/)."""
@@ -778,42 +779,42 @@ BranchFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BranchFilter/)."""
 
-BrowserActionmouseClick = TypedDict("BrowserActionmouseClick", {"mouse_click": Required["MouseClickArguments"]})
+BrowserActionmouseClick = TypedDict("BrowserActionmouseClick", {"mouse_click": Required["MouseClickArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionmouseClick/)."""
-BrowserActionmouseMove = TypedDict("BrowserActionmouseMove", {"mouse_move": Required["MouseMoveArguments"]})
+BrowserActionmouseMove = TypedDict("BrowserActionmouseMove", {"mouse_move": Required["MouseMoveArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionmouseMove/)."""
-BrowserActionmouseDrag = TypedDict("BrowserActionmouseDrag", {"mouse_drag": Required["MouseDragArguments"]})
+BrowserActionmouseDrag = TypedDict("BrowserActionmouseDrag", {"mouse_drag": Required["MouseDragArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionmouseDrag/)."""
-BrowserActionmouseScroll = TypedDict("BrowserActionmouseScroll", {"mouse_scroll": Required["MouseScrollArguments"]})
+BrowserActionmouseScroll = TypedDict("BrowserActionmouseScroll", {"mouse_scroll": Required["MouseScrollArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionmouseScroll/)."""
-BrowserActionkeyType = TypedDict("BrowserActionkeyType", {"key_type": Required["KeyTypeArguments"]})
+BrowserActionkeyType = TypedDict("BrowserActionkeyType", {"key_type": Required["KeyTypeArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionkeyType/)."""
-BrowserActionkeyPress = TypedDict("BrowserActionkeyPress", {"key_press": Required["KeyPressArguments"]})
+BrowserActionkeyPress = TypedDict("BrowserActionkeyPress", {"key_press": Required["KeyPressArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionkeyPress/)."""
-BrowserActionkeyShortcut = TypedDict("BrowserActionkeyShortcut", {"key_shortcut": Required["KeyShortcutArguments"]})
+BrowserActionkeyShortcut = TypedDict("BrowserActionkeyShortcut", {"key_shortcut": Required["KeyShortcutArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionkeyShortcut/)."""
-BrowserActionscreenshot = TypedDict("BrowserActionscreenshot", {"screenshot": Required["ScreenshotArguments"]})
+BrowserActionscreenshot = TypedDict("BrowserActionscreenshot", {"screenshot": Required["ScreenshotArguments"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionscreenshot/)."""
 BrowserAction: TypeAlias = BrowserActionmouseClick | BrowserActionmouseMove | BrowserActionmouseDrag | BrowserActionmouseScroll | BrowserActionkeyType | BrowserActionkeyPress | BrowserActionkeyShortcut | BrowserActionscreenshot
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserAction/)."""
 
-BrowserActionResultmouseClick = TypedDict("BrowserActionResultmouseClick", {"mouse_click": Required["MouseClickResult"]})
+BrowserActionResultmouseClick = TypedDict("BrowserActionResultmouseClick", {"mouse_click": Required["MouseClickResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultmouseClick/)."""
-BrowserActionResultmouseMove = TypedDict("BrowserActionResultmouseMove", {"mouse_move": Required["MouseMoveResult"]})
+BrowserActionResultmouseMove = TypedDict("BrowserActionResultmouseMove", {"mouse_move": Required["MouseMoveResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultmouseMove/)."""
-BrowserActionResultmouseDrag = TypedDict("BrowserActionResultmouseDrag", {"mouse_drag": Required["MouseDragResult"]})
+BrowserActionResultmouseDrag = TypedDict("BrowserActionResultmouseDrag", {"mouse_drag": Required["MouseDragResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultmouseDrag/)."""
-BrowserActionResultmouseScroll = TypedDict("BrowserActionResultmouseScroll", {"mouse_scroll": Required["MouseScrollResult"]})
+BrowserActionResultmouseScroll = TypedDict("BrowserActionResultmouseScroll", {"mouse_scroll": Required["MouseScrollResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultmouseScroll/)."""
-BrowserActionResultkeyType = TypedDict("BrowserActionResultkeyType", {"key_type": Required["KeyTypeResult"]})
+BrowserActionResultkeyType = TypedDict("BrowserActionResultkeyType", {"key_type": Required["KeyTypeResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultkeyType/)."""
-BrowserActionResultkeyPress = TypedDict("BrowserActionResultkeyPress", {"key_press": Required["KeyPressResult"]})
+BrowserActionResultkeyPress = TypedDict("BrowserActionResultkeyPress", {"key_press": Required["KeyPressResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultkeyPress/)."""
-BrowserActionResultkeyShortcut = TypedDict("BrowserActionResultkeyShortcut", {"key_shortcut": Required["KeyShortcutResult"]})
+BrowserActionResultkeyShortcut = TypedDict("BrowserActionResultkeyShortcut", {"key_shortcut": Required["KeyShortcutResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultkeyShortcut/)."""
-BrowserActionResultscreenshot = TypedDict("BrowserActionResultscreenshot", {"screenshot": Required["ScreenshotResult"]})
+BrowserActionResultscreenshot = TypedDict("BrowserActionResultscreenshot", {"screenshot": Required["ScreenshotResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultscreenshot/)."""
-BrowserActionResultUnknown = TypedDict("BrowserActionResultUnknown", {"unknown": Required[Literal[True]]})
+BrowserActionResultUnknown = TypedDict("BrowserActionResultUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResultUnknown/)."""
 BrowserActionResult: TypeAlias = BrowserActionResultmouseClick | BrowserActionResultmouseMove | BrowserActionResultmouseDrag | BrowserActionResultmouseScroll | BrowserActionResultkeyType | BrowserActionResultkeyPress | BrowserActionResultkeyShortcut | BrowserActionResultscreenshot | BrowserActionResultUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/BrowserActionResult/)."""
@@ -873,14 +874,14 @@ Certificate = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/Certificate/)."""
 
-CertificateLocationsecretsManager = TypedDict("CertificateLocationsecretsManager", {"secrets_manager": Required["SecretsManagerLocation"]})
+CertificateLocationsecretsManager = TypedDict("CertificateLocationsecretsManager", {"secrets_manager": Required["SecretsManagerLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateLocationsecretsManager/)."""
 CertificateLocation: TypeAlias = CertificateLocationsecretsManager
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateLocation/)."""
 
-CertificateLocationOutputsecretsManager = TypedDict("CertificateLocationOutputsecretsManager", {"secrets_manager": Required["SecretsManagerLocationOutput"]})
+CertificateLocationOutputsecretsManager = TypedDict("CertificateLocationOutputsecretsManager", {"secrets_manager": Required["SecretsManagerLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateLocationOutputsecretsManager/)."""
-CertificateLocationOutputUnknown = TypedDict("CertificateLocationOutputUnknown", {"unknown": Required[Literal[True]]})
+CertificateLocationOutputUnknown = TypedDict("CertificateLocationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateLocationOutputUnknown/)."""
 CertificateLocationOutput: TypeAlias = CertificateLocationOutputsecretsManager | CertificateLocationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CertificateLocationOutput/)."""
@@ -1032,9 +1033,9 @@ CodeInterpreterSessionSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterSessionSummary/)."""
 
-CodeInterpreterStreamOutputresult = TypedDict("CodeInterpreterStreamOutputresult", {"result": Required["CodeInterpreterResult"]})
+CodeInterpreterStreamOutputresult = TypedDict("CodeInterpreterStreamOutputresult", {"result": Required["CodeInterpreterResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterStreamOutputresult/)."""
-CodeInterpreterStreamOutputUnknown = TypedDict("CodeInterpreterStreamOutputUnknown", {"unknown": Required[Literal[True]]})
+CodeInterpreterStreamOutputUnknown = TypedDict("CodeInterpreterStreamOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterStreamOutputUnknown/)."""
 CodeInterpreterStreamOutput: TypeAlias = CodeInterpreterStreamOutputresult | CodeInterpreterStreamOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CodeInterpreterStreamOutput/)."""
@@ -1105,14 +1106,14 @@ ConfigurationBundleToolEntryOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ConfigurationBundleToolEntryOutput/)."""
 
-Contenttext = TypedDict("Contenttext", {"text": Required["str"]})
+Contenttext = TypedDict("Contenttext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/Contenttext/)."""
 Content: TypeAlias = Contenttext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/Content/)."""
 
-ContentOutputtext = TypedDict("ContentOutputtext", {"text": Required["str"]})
+ContentOutputtext = TypedDict("ContentOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentOutputtext/)."""
-ContentOutputUnknown = TypedDict("ContentOutputUnknown", {"unknown": Required[Literal[True]]})
+ContentOutputUnknown = TypedDict("ContentOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentOutputUnknown/)."""
 ContentOutput: TypeAlias = ContentOutputtext | ContentOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentOutput/)."""
@@ -1142,7 +1143,7 @@ ContentDeltaEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentDeltaEvent/)."""
 
-ContentSourceinline = TypedDict("ContentSourceinline", {"inline": Required["InlineMemoryContent"]})
+ContentSourceinline = TypedDict("ContentSourceinline", {"inline": Required["InlineMemoryContent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentSourceinline/)."""
 ContentSource: TypeAlias = ContentSourceinline
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentSource/)."""
@@ -1163,14 +1164,14 @@ ContentStopEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContentStopEvent/)."""
 
-ContextspanContext = TypedDict("ContextspanContext", {"span_context": Required["SpanContext"]})
+ContextspanContext = TypedDict("ContextspanContext", {"span_context": Required["SpanContext"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContextspanContext/)."""
 Context: TypeAlias = ContextspanContext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/Context/)."""
 
-ContextOutputspanContext = TypedDict("ContextOutputspanContext", {"span_context": Required["SpanContextOutput"]})
+ContextOutputspanContext = TypedDict("ContextOutputspanContext", {"span_context": Required["SpanContextOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContextOutputspanContext/)."""
-ContextOutputUnknown = TypedDict("ContextOutputUnknown", {"unknown": Required[Literal[True]]})
+ContextOutputUnknown = TypedDict("ContextOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContextOutputUnknown/)."""
 ContextOutput: TypeAlias = ContextOutputspanContext | ContextOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ContextOutput/)."""
@@ -1291,18 +1292,18 @@ CustomDescriptor = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/CustomDescriptor/)."""
 
-DataSourceConfigcloudWatchLogs = TypedDict("DataSourceConfigcloudWatchLogs", {"cloud_watch_logs": Required["CloudWatchLogsSource"]})
+DataSourceConfigcloudWatchLogs = TypedDict("DataSourceConfigcloudWatchLogs", {"cloud_watch_logs": Required["CloudWatchLogsSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigcloudWatchLogs/)."""
-DataSourceConfigonlineEvaluationConfigSource = TypedDict("DataSourceConfigonlineEvaluationConfigSource", {"online_evaluation_config_source": Required["OnlineEvaluationConfigSource"]})
+DataSourceConfigonlineEvaluationConfigSource = TypedDict("DataSourceConfigonlineEvaluationConfigSource", {"online_evaluation_config_source": Required["OnlineEvaluationConfigSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigonlineEvaluationConfigSource/)."""
 DataSourceConfig: TypeAlias = DataSourceConfigcloudWatchLogs | DataSourceConfigonlineEvaluationConfigSource
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfig/)."""
 
-DataSourceConfigOutputcloudWatchLogs = TypedDict("DataSourceConfigOutputcloudWatchLogs", {"cloud_watch_logs": Required["CloudWatchLogsSourceOutput"]})
+DataSourceConfigOutputcloudWatchLogs = TypedDict("DataSourceConfigOutputcloudWatchLogs", {"cloud_watch_logs": Required["CloudWatchLogsSourceOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigOutputcloudWatchLogs/)."""
-DataSourceConfigOutputonlineEvaluationConfigSource = TypedDict("DataSourceConfigOutputonlineEvaluationConfigSource", {"online_evaluation_config_source": Required["OnlineEvaluationConfigSourceOutput"]})
+DataSourceConfigOutputonlineEvaluationConfigSource = TypedDict("DataSourceConfigOutputonlineEvaluationConfigSource", {"online_evaluation_config_source": Required["OnlineEvaluationConfigSourceOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigOutputonlineEvaluationConfigSource/)."""
-DataSourceConfigOutputUnknown = TypedDict("DataSourceConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+DataSourceConfigOutputUnknown = TypedDict("DataSourceConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigOutputUnknown/)."""
 DataSourceConfigOutput: TypeAlias = DataSourceConfigOutputcloudWatchLogs | DataSourceConfigOutputonlineEvaluationConfigSource | DataSourceConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/DataSourceConfigOutput/)."""
@@ -1446,7 +1447,7 @@ EvaluateRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluateRequest/)."""
 
-EvaluationContenttext = TypedDict("EvaluationContenttext", {"text": Required["str"]})
+EvaluationContenttext = TypedDict("EvaluationContenttext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationContenttext/)."""
 EvaluationContent: TypeAlias = EvaluationContenttext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationContent/)."""
@@ -1459,7 +1460,7 @@ EvaluationExpectedTrajectory = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationExpectedTrajectory/)."""
 
-EvaluationInputsessionSpans = TypedDict("EvaluationInputsessionSpans", {"session_spans": Required["Sequence[JSONValue]"]})
+EvaluationInputsessionSpans = TypedDict("EvaluationInputsessionSpans", {"session_spans": Required["Sequence[JSONValue]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationInputsessionSpans/)."""
 EvaluationInput: TypeAlias = EvaluationInputsessionSpans
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationInput/)."""
@@ -1477,7 +1478,7 @@ EvaluationJobResults = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationJobResults/)."""
 
-EvaluationMetadatasessionMetadata = TypedDict("EvaluationMetadatasessionMetadata", {"session_metadata": Required["Sequence[SessionMetadataShape]"]})
+EvaluationMetadatasessionMetadata = TypedDict("EvaluationMetadatasessionMetadata", {"session_metadata": Required["Sequence[SessionMetadataShape]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationMetadatasessionMetadata/)."""
 EvaluationMetadata: TypeAlias = EvaluationMetadatasessionMetadata
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationMetadata/)."""
@@ -1512,9 +1513,9 @@ EvaluationResultContent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationResultContent/)."""
 
-EvaluationTargetspanIds = TypedDict("EvaluationTargetspanIds", {"span_ids": Required["Sequence[str]"]})
+EvaluationTargetspanIds = TypedDict("EvaluationTargetspanIds", {"span_ids": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationTargetspanIds/)."""
-EvaluationTargettraceIds = TypedDict("EvaluationTargettraceIds", {"trace_ids": Required["Sequence[str]"]})
+EvaluationTargettraceIds = TypedDict("EvaluationTargettraceIds", {"trace_ids": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationTargettraceIds/)."""
 EvaluationTarget: TypeAlias = EvaluationTargetspanIds | EvaluationTargettraceIds
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/EvaluationTarget/)."""
@@ -1661,9 +1662,9 @@ ExtractionJobFilterInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExtractionJobFilterInput/)."""
 
-ExtractionJobMessagesmessagesList = TypedDict("ExtractionJobMessagesmessagesList", {"messages_list": Required["list[MessageMetadata]"]})
+ExtractionJobMessagesmessagesList = TypedDict("ExtractionJobMessagesmessagesList", {"messages_list": Required["list[MessageMetadata]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExtractionJobMessagesmessagesList/)."""
-ExtractionJobMessagesUnknown = TypedDict("ExtractionJobMessagesUnknown", {"unknown": Required[Literal[True]]})
+ExtractionJobMessagesUnknown = TypedDict("ExtractionJobMessagesUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExtractionJobMessagesUnknown/)."""
 ExtractionJobMessages: TypeAlias = ExtractionJobMessagesmessagesList | ExtractionJobMessagesUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ExtractionJobMessages/)."""
@@ -1733,22 +1734,22 @@ FilterInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterInput/)."""
 
-FilterValuestringValue = TypedDict("FilterValuestringValue", {"string_value": Required["str"]})
+FilterValuestringValue = TypedDict("FilterValuestringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValuestringValue/)."""
-FilterValuedoubleValue = TypedDict("FilterValuedoubleValue", {"double_value": Required["float"]})
+FilterValuedoubleValue = TypedDict("FilterValuedoubleValue", {"double_value": Required["float"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValuedoubleValue/)."""
-FilterValuebooleanValue = TypedDict("FilterValuebooleanValue", {"boolean_value": Required["bool"]})
+FilterValuebooleanValue = TypedDict("FilterValuebooleanValue", {"boolean_value": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValuebooleanValue/)."""
 FilterValue: TypeAlias = FilterValuestringValue | FilterValuedoubleValue | FilterValuebooleanValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValue/)."""
 
-FilterValueOutputstringValue = TypedDict("FilterValueOutputstringValue", {"string_value": Required["str"]})
+FilterValueOutputstringValue = TypedDict("FilterValueOutputstringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValueOutputstringValue/)."""
-FilterValueOutputdoubleValue = TypedDict("FilterValueOutputdoubleValue", {"double_value": Required["float"]})
+FilterValueOutputdoubleValue = TypedDict("FilterValueOutputdoubleValue", {"double_value": Required["float"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValueOutputdoubleValue/)."""
-FilterValueOutputbooleanValue = TypedDict("FilterValueOutputbooleanValue", {"boolean_value": Required["bool"]})
+FilterValueOutputbooleanValue = TypedDict("FilterValueOutputbooleanValue", {"boolean_value": Required["bool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValueOutputbooleanValue/)."""
-FilterValueOutputUnknown = TypedDict("FilterValueOutputUnknown", {"unknown": Required[Literal[True]]})
+FilterValueOutputUnknown = TypedDict("FilterValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValueOutputUnknown/)."""
 FilterValueOutput: TypeAlias = FilterValueOutputstringValue | FilterValueOutputdoubleValue | FilterValueOutputbooleanValue | FilterValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/FilterValueOutput/)."""
@@ -1934,7 +1935,7 @@ GetWorkloadAccessTokenRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GetWorkloadAccessTokenRequest/)."""
 
-GroundTruthSourceinline = TypedDict("GroundTruthSourceinline", {"inline": Required["InlineGroundTruth"]})
+GroundTruthSourceinline = TypedDict("GroundTruthSourceinline", {"inline": Required["InlineGroundTruth"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GroundTruthSourceinline/)."""
 GroundTruthSource: TypeAlias = GroundTruthSourceinline
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GroundTruthSource/)."""
@@ -1948,7 +1949,7 @@ GroundTruthTurn = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GroundTruthTurn/)."""
 
-GroundTruthTurnInputprompt = TypedDict("GroundTruthTurnInputprompt", {"prompt": Required["str"]})
+GroundTruthTurnInputprompt = TypedDict("GroundTruthTurnInputprompt", {"prompt": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GroundTruthTurnInputprompt/)."""
 GroundTruthTurnInput: TypeAlias = GroundTruthTurnInputprompt
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/GroundTruthTurnInput/)."""
@@ -1991,28 +1992,28 @@ HarnessBedrockModelConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessBedrockModelConfig/)."""
 
-HarnessContentBlocktext = TypedDict("HarnessContentBlocktext", {"text": Required["str"]})
+HarnessContentBlocktext = TypedDict("HarnessContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlocktext/)."""
-HarnessContentBlocktoolUse = TypedDict("HarnessContentBlocktoolUse", {"tool_use": Required["HarnessToolUseBlock"]})
+HarnessContentBlocktoolUse = TypedDict("HarnessContentBlocktoolUse", {"tool_use": Required["HarnessToolUseBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlocktoolUse/)."""
-HarnessContentBlocktoolResult = TypedDict("HarnessContentBlocktoolResult", {"tool_result": Required["HarnessToolResultBlock"]})
+HarnessContentBlocktoolResult = TypedDict("HarnessContentBlocktoolResult", {"tool_result": Required["HarnessToolResultBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlocktoolResult/)."""
-HarnessContentBlockreasoningContent = TypedDict("HarnessContentBlockreasoningContent", {"reasoning_content": Required["HarnessReasoningContentBlock"]})
+HarnessContentBlockreasoningContent = TypedDict("HarnessContentBlockreasoningContent", {"reasoning_content": Required["HarnessReasoningContentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockreasoningContent/)."""
 HarnessContentBlock: TypeAlias = HarnessContentBlocktext | HarnessContentBlocktoolUse | HarnessContentBlocktoolResult | HarnessContentBlockreasoningContent
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlock/)."""
 
-HarnessContentBlockDeltatext = TypedDict("HarnessContentBlockDeltatext", {"text": Required["str"]})
+HarnessContentBlockDeltatext = TypedDict("HarnessContentBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltatext/)."""
-HarnessContentBlockDeltatoolUse = TypedDict("HarnessContentBlockDeltatoolUse", {"tool_use": Required["HarnessToolUseBlockDelta"]})
+HarnessContentBlockDeltatoolUse = TypedDict("HarnessContentBlockDeltatoolUse", {"tool_use": Required["HarnessToolUseBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltatoolUse/)."""
-HarnessContentBlockDeltatoolResult = TypedDict("HarnessContentBlockDeltatoolResult", {"tool_result": Required["list[HarnessToolResultBlockDelta]"]})
+HarnessContentBlockDeltatoolResult = TypedDict("HarnessContentBlockDeltatoolResult", {"tool_result": Required["list[HarnessToolResultBlockDelta]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltatoolResult/)."""
-HarnessContentBlockDeltareasoningContent = TypedDict("HarnessContentBlockDeltareasoningContent", {"reasoning_content": Required["HarnessReasoningContentBlockDelta"]})
+HarnessContentBlockDeltareasoningContent = TypedDict("HarnessContentBlockDeltareasoningContent", {"reasoning_content": Required["HarnessReasoningContentBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltareasoningContent/)."""
-HarnessContentBlockDeltatoolResultMetadata = TypedDict("HarnessContentBlockDeltatoolResultMetadata", {"tool_result_metadata": Required["HarnessToolResultMetadataBlockDelta"]})
+HarnessContentBlockDeltatoolResultMetadata = TypedDict("HarnessContentBlockDeltatoolResultMetadata", {"tool_result_metadata": Required["HarnessToolResultMetadataBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltatoolResultMetadata/)."""
-HarnessContentBlockDeltaUnknown = TypedDict("HarnessContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+HarnessContentBlockDeltaUnknown = TypedDict("HarnessContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltaUnknown/)."""
 HarnessContentBlockDelta: TypeAlias = HarnessContentBlockDeltatext | HarnessContentBlockDeltatoolUse | HarnessContentBlockDeltatoolResult | HarnessContentBlockDeltareasoningContent | HarnessContentBlockDeltatoolResultMetadata | HarnessContentBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDelta/)."""
@@ -2026,11 +2027,11 @@ HarnessContentBlockDeltaEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockDeltaEvent/)."""
 
-HarnessContentBlockStarttoolUse = TypedDict("HarnessContentBlockStarttoolUse", {"tool_use": Required["HarnessToolUseBlockStart"]})
+HarnessContentBlockStarttoolUse = TypedDict("HarnessContentBlockStarttoolUse", {"tool_use": Required["HarnessToolUseBlockStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockStarttoolUse/)."""
-HarnessContentBlockStarttoolResult = TypedDict("HarnessContentBlockStarttoolResult", {"tool_result": Required["HarnessToolResultBlockStart"]})
+HarnessContentBlockStarttoolResult = TypedDict("HarnessContentBlockStarttoolResult", {"tool_result": Required["HarnessToolResultBlockStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockStarttoolResult/)."""
-HarnessContentBlockStartUnknown = TypedDict("HarnessContentBlockStartUnknown", {"unknown": Required[Literal[True]]})
+HarnessContentBlockStartUnknown = TypedDict("HarnessContentBlockStartUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockStartUnknown/)."""
 HarnessContentBlockStart: TypeAlias = HarnessContentBlockStarttoolUse | HarnessContentBlockStarttoolResult | HarnessContentBlockStartUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockStart/)."""
@@ -2052,11 +2053,11 @@ HarnessContentBlockStopEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessContentBlockStopEvent/)."""
 
-HarnessGatewayOutboundAuthawsIam = TypedDict("HarnessGatewayOutboundAuthawsIam", {"aws_iam": Required["None"]})
+HarnessGatewayOutboundAuthawsIam = TypedDict("HarnessGatewayOutboundAuthawsIam", {"aws_iam": Required["None"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessGatewayOutboundAuthawsIam/)."""
-HarnessGatewayOutboundAuthnone = TypedDict("HarnessGatewayOutboundAuthnone", {"none": Required["None"]})
+HarnessGatewayOutboundAuthnone = TypedDict("HarnessGatewayOutboundAuthnone", {"none": Required["None"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessGatewayOutboundAuthnone/)."""
-HarnessGatewayOutboundAuthoauth = TypedDict("HarnessGatewayOutboundAuthoauth", {"oauth": Required["OAuthCredentialProvider"]})
+HarnessGatewayOutboundAuthoauth = TypedDict("HarnessGatewayOutboundAuthoauth", {"oauth": Required["OAuthCredentialProvider"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessGatewayOutboundAuthoauth/)."""
 HarnessGatewayOutboundAuth: TypeAlias = HarnessGatewayOutboundAuthawsIam | HarnessGatewayOutboundAuthnone | HarnessGatewayOutboundAuthoauth
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessGatewayOutboundAuth/)."""
@@ -2144,13 +2145,13 @@ HarnessMetadataEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessMetadataEvent/)."""
 
-HarnessModelConfigurationbedrockModelConfig = TypedDict("HarnessModelConfigurationbedrockModelConfig", {"bedrock_model_config": Required["HarnessBedrockModelConfig"]})
+HarnessModelConfigurationbedrockModelConfig = TypedDict("HarnessModelConfigurationbedrockModelConfig", {"bedrock_model_config": Required["HarnessBedrockModelConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessModelConfigurationbedrockModelConfig/)."""
-HarnessModelConfigurationopenAiModelConfig = TypedDict("HarnessModelConfigurationopenAiModelConfig", {"open_ai_model_config": Required["HarnessOpenAiModelConfig"]})
+HarnessModelConfigurationopenAiModelConfig = TypedDict("HarnessModelConfigurationopenAiModelConfig", {"open_ai_model_config": Required["HarnessOpenAiModelConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessModelConfigurationopenAiModelConfig/)."""
-HarnessModelConfigurationgeminiModelConfig = TypedDict("HarnessModelConfigurationgeminiModelConfig", {"gemini_model_config": Required["HarnessGeminiModelConfig"]})
+HarnessModelConfigurationgeminiModelConfig = TypedDict("HarnessModelConfigurationgeminiModelConfig", {"gemini_model_config": Required["HarnessGeminiModelConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessModelConfigurationgeminiModelConfig/)."""
-HarnessModelConfigurationliteLlmModelConfig = TypedDict("HarnessModelConfigurationliteLlmModelConfig", {"lite_llm_model_config": Required["HarnessLiteLlmModelConfig"]})
+HarnessModelConfigurationliteLlmModelConfig = TypedDict("HarnessModelConfigurationliteLlmModelConfig", {"lite_llm_model_config": Required["HarnessLiteLlmModelConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessModelConfigurationliteLlmModelConfig/)."""
 HarnessModelConfiguration: TypeAlias = HarnessModelConfigurationbedrockModelConfig | HarnessModelConfigurationopenAiModelConfig | HarnessModelConfigurationgeminiModelConfig | HarnessModelConfigurationliteLlmModelConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessModelConfiguration/)."""
@@ -2170,20 +2171,20 @@ HarnessOpenAiModelConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessOpenAiModelConfig/)."""
 
-HarnessReasoningContentBlockreasoningText = TypedDict("HarnessReasoningContentBlockreasoningText", {"reasoning_text": Required["HarnessReasoningTextBlock"]})
+HarnessReasoningContentBlockreasoningText = TypedDict("HarnessReasoningContentBlockreasoningText", {"reasoning_text": Required["HarnessReasoningTextBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockreasoningText/)."""
-HarnessReasoningContentBlockredactedContent = TypedDict("HarnessReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]})
+HarnessReasoningContentBlockredactedContent = TypedDict("HarnessReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockredactedContent/)."""
 HarnessReasoningContentBlock: TypeAlias = HarnessReasoningContentBlockreasoningText | HarnessReasoningContentBlockredactedContent
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlock/)."""
 
-HarnessReasoningContentBlockDeltatext = TypedDict("HarnessReasoningContentBlockDeltatext", {"text": Required["str"]})
+HarnessReasoningContentBlockDeltatext = TypedDict("HarnessReasoningContentBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockDeltatext/)."""
-HarnessReasoningContentBlockDeltaredactedContent = TypedDict("HarnessReasoningContentBlockDeltaredactedContent", {"redacted_content": Required["bytes"]})
+HarnessReasoningContentBlockDeltaredactedContent = TypedDict("HarnessReasoningContentBlockDeltaredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockDeltaredactedContent/)."""
-HarnessReasoningContentBlockDeltasignature = TypedDict("HarnessReasoningContentBlockDeltasignature", {"signature": Required["str"]})
+HarnessReasoningContentBlockDeltasignature = TypedDict("HarnessReasoningContentBlockDeltasignature", {"signature": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockDeltasignature/)."""
-HarnessReasoningContentBlockDeltaUnknown = TypedDict("HarnessReasoningContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+HarnessReasoningContentBlockDeltaUnknown = TypedDict("HarnessReasoningContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockDeltaUnknown/)."""
 HarnessReasoningContentBlockDelta: TypeAlias = HarnessReasoningContentBlockDeltatext | HarnessReasoningContentBlockDeltaredactedContent | HarnessReasoningContentBlockDeltasignature | HarnessReasoningContentBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessReasoningContentBlockDelta/)."""
@@ -2206,13 +2207,13 @@ HarnessRemoteMcpConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessRemoteMcpConfig/)."""
 
-HarnessSkillpath = TypedDict("HarnessSkillpath", {"path": Required["str"]})
+HarnessSkillpath = TypedDict("HarnessSkillpath", {"path": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSkillpath/)."""
-HarnessSkills3 = TypedDict("HarnessSkills3", {"s3": Required["HarnessSkillS3Source"]})
+HarnessSkills3 = TypedDict("HarnessSkills3", {"s3": Required["HarnessSkillS3Source"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSkills3/)."""
-HarnessSkillgit = TypedDict("HarnessSkillgit", {"git": Required["HarnessSkillGitSource"]})
+HarnessSkillgit = TypedDict("HarnessSkillgit", {"git": Required["HarnessSkillGitSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSkillgit/)."""
-HarnessSkillawsSkills = TypedDict("HarnessSkillawsSkills", {"aws_skills": Required["HarnessSkillAwsSkillsSource"]})
+HarnessSkillawsSkills = TypedDict("HarnessSkillawsSkills", {"aws_skills": Required["HarnessSkillAwsSkillsSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSkillawsSkills/)."""
 HarnessSkill: TypeAlias = HarnessSkillpath | HarnessSkills3 | HarnessSkillgit | HarnessSkillawsSkills
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSkill/)."""
@@ -2260,7 +2261,7 @@ HarnessStreamMetrics = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessStreamMetrics/)."""
 
-HarnessSystemContentBlocktext = TypedDict("HarnessSystemContentBlocktext", {"text": Required["str"]})
+HarnessSystemContentBlocktext = TypedDict("HarnessSystemContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSystemContentBlocktext/)."""
 HarnessSystemContentBlock: TypeAlias = HarnessSystemContentBlocktext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessSystemContentBlock/)."""
@@ -2287,15 +2288,15 @@ HarnessTool = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessTool/)."""
 
-HarnessToolConfigurationremoteMcp = TypedDict("HarnessToolConfigurationremoteMcp", {"remote_mcp": Required["HarnessRemoteMcpConfig"]})
+HarnessToolConfigurationremoteMcp = TypedDict("HarnessToolConfigurationremoteMcp", {"remote_mcp": Required["HarnessRemoteMcpConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfigurationremoteMcp/)."""
-HarnessToolConfigurationagentCoreBrowser = TypedDict("HarnessToolConfigurationagentCoreBrowser", {"agent_core_browser": Required["HarnessAgentCoreBrowserConfig"]})
+HarnessToolConfigurationagentCoreBrowser = TypedDict("HarnessToolConfigurationagentCoreBrowser", {"agent_core_browser": Required["HarnessAgentCoreBrowserConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfigurationagentCoreBrowser/)."""
-HarnessToolConfigurationagentCoreGateway = TypedDict("HarnessToolConfigurationagentCoreGateway", {"agent_core_gateway": Required["HarnessAgentCoreGatewayConfig"]})
+HarnessToolConfigurationagentCoreGateway = TypedDict("HarnessToolConfigurationagentCoreGateway", {"agent_core_gateway": Required["HarnessAgentCoreGatewayConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfigurationagentCoreGateway/)."""
-HarnessToolConfigurationinlineFunction = TypedDict("HarnessToolConfigurationinlineFunction", {"inline_function": Required["HarnessInlineFunctionConfig"]})
+HarnessToolConfigurationinlineFunction = TypedDict("HarnessToolConfigurationinlineFunction", {"inline_function": Required["HarnessInlineFunctionConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfigurationinlineFunction/)."""
-HarnessToolConfigurationagentCoreCodeInterpreter = TypedDict("HarnessToolConfigurationagentCoreCodeInterpreter", {"agent_core_code_interpreter": Required["HarnessAgentCoreCodeInterpreterConfig"]})
+HarnessToolConfigurationagentCoreCodeInterpreter = TypedDict("HarnessToolConfigurationagentCoreCodeInterpreter", {"agent_core_code_interpreter": Required["HarnessAgentCoreCodeInterpreterConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfigurationagentCoreCodeInterpreter/)."""
 HarnessToolConfiguration: TypeAlias = HarnessToolConfigurationremoteMcp | HarnessToolConfigurationagentCoreBrowser | HarnessToolConfigurationagentCoreGateway | HarnessToolConfigurationinlineFunction | HarnessToolConfigurationagentCoreCodeInterpreter
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolConfiguration/)."""
@@ -2311,11 +2312,11 @@ HarnessToolResultBlock = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlock/)."""
 
-HarnessToolResultBlockDeltatext = TypedDict("HarnessToolResultBlockDeltatext", {"text": Required["str"]})
+HarnessToolResultBlockDeltatext = TypedDict("HarnessToolResultBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlockDeltatext/)."""
-HarnessToolResultBlockDeltajson = TypedDict("HarnessToolResultBlockDeltajson", {"json": Required["JSONValue"]})
+HarnessToolResultBlockDeltajson = TypedDict("HarnessToolResultBlockDeltajson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlockDeltajson/)."""
-HarnessToolResultBlockDeltaUnknown = TypedDict("HarnessToolResultBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+HarnessToolResultBlockDeltaUnknown = TypedDict("HarnessToolResultBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlockDeltaUnknown/)."""
 HarnessToolResultBlockDelta: TypeAlias = HarnessToolResultBlockDeltatext | HarnessToolResultBlockDeltajson | HarnessToolResultBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlockDelta/)."""
@@ -2329,9 +2330,9 @@ HarnessToolResultBlockStart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultBlockStart/)."""
 
-HarnessToolResultContentBlocktext = TypedDict("HarnessToolResultContentBlocktext", {"text": Required["str"]})
+HarnessToolResultContentBlocktext = TypedDict("HarnessToolResultContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultContentBlocktext/)."""
-HarnessToolResultContentBlockjson = TypedDict("HarnessToolResultContentBlockjson", {"json": Required["JSONValue"]})
+HarnessToolResultContentBlockjson = TypedDict("HarnessToolResultContentBlockjson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultContentBlockjson/)."""
 HarnessToolResultContentBlock: TypeAlias = HarnessToolResultContentBlocktext | HarnessToolResultContentBlockjson
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/HarnessToolResultContentBlock/)."""
@@ -2390,9 +2391,9 @@ IngestDataInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/IngestDataInput/)."""
 
-IngestPayloadTypeconversational = TypedDict("IngestPayloadTypeconversational", {"conversational": Required["Conversational"]})
+IngestPayloadTypeconversational = TypedDict("IngestPayloadTypeconversational", {"conversational": Required["Conversational"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/IngestPayloadTypeconversational/)."""
-IngestPayloadTypejson = TypedDict("IngestPayloadTypejson", {"json": Required["MemoryJsonData"]})
+IngestPayloadTypejson = TypedDict("IngestPayloadTypejson", {"json": Required["MemoryJsonData"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/IngestPayloadTypejson/)."""
 IngestPayloadType: TypeAlias = IngestPayloadTypeconversational | IngestPayloadTypejson
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/IngestPayloadType/)."""
@@ -2511,9 +2512,9 @@ InvokeAgentRuntimeCommandOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeCommandOutput/)."""
 
-InvokeAgentRuntimeCommandStreamOutputchunk = TypedDict("InvokeAgentRuntimeCommandStreamOutputchunk", {"chunk": Required["ResponseChunk"]})
+InvokeAgentRuntimeCommandStreamOutputchunk = TypedDict("InvokeAgentRuntimeCommandStreamOutputchunk", {"chunk": Required["ResponseChunk"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeCommandStreamOutputchunk/)."""
-InvokeAgentRuntimeCommandStreamOutputUnknown = TypedDict("InvokeAgentRuntimeCommandStreamOutputUnknown", {"unknown": Required[Literal[True]]})
+InvokeAgentRuntimeCommandStreamOutputUnknown = TypedDict("InvokeAgentRuntimeCommandStreamOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeCommandStreamOutputUnknown/)."""
 InvokeAgentRuntimeCommandStreamOutput: TypeAlias = InvokeAgentRuntimeCommandStreamOutputchunk | InvokeAgentRuntimeCommandStreamOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeAgentRuntimeCommandStreamOutput/)."""
@@ -2606,21 +2607,21 @@ InvokeHarnessOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessOutput/)."""
 
-InvokeHarnessStreamOutputmessageStart = TypedDict("InvokeHarnessStreamOutputmessageStart", {"message_start": Required["HarnessMessageStartEvent"]})
+InvokeHarnessStreamOutputmessageStart = TypedDict("InvokeHarnessStreamOutputmessageStart", {"message_start": Required["HarnessMessageStartEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputmessageStart/)."""
-InvokeHarnessStreamOutputcontentBlockStart = TypedDict("InvokeHarnessStreamOutputcontentBlockStart", {"content_block_start": Required["HarnessContentBlockStartEvent"]})
+InvokeHarnessStreamOutputcontentBlockStart = TypedDict("InvokeHarnessStreamOutputcontentBlockStart", {"content_block_start": Required["HarnessContentBlockStartEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputcontentBlockStart/)."""
-InvokeHarnessStreamOutputcontentBlockDelta = TypedDict("InvokeHarnessStreamOutputcontentBlockDelta", {"content_block_delta": Required["HarnessContentBlockDeltaEvent"]})
+InvokeHarnessStreamOutputcontentBlockDelta = TypedDict("InvokeHarnessStreamOutputcontentBlockDelta", {"content_block_delta": Required["HarnessContentBlockDeltaEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputcontentBlockDelta/)."""
-InvokeHarnessStreamOutputcontentBlockStop = TypedDict("InvokeHarnessStreamOutputcontentBlockStop", {"content_block_stop": Required["HarnessContentBlockStopEvent"]})
+InvokeHarnessStreamOutputcontentBlockStop = TypedDict("InvokeHarnessStreamOutputcontentBlockStop", {"content_block_stop": Required["HarnessContentBlockStopEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputcontentBlockStop/)."""
-InvokeHarnessStreamOutputmessageStop = TypedDict("InvokeHarnessStreamOutputmessageStop", {"message_stop": Required["HarnessMessageStopEvent"]})
+InvokeHarnessStreamOutputmessageStop = TypedDict("InvokeHarnessStreamOutputmessageStop", {"message_stop": Required["HarnessMessageStopEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputmessageStop/)."""
-InvokeHarnessStreamOutputmetadata = TypedDict("InvokeHarnessStreamOutputmetadata", {"metadata": Required["HarnessMetadataEvent"]})
+InvokeHarnessStreamOutputmetadata = TypedDict("InvokeHarnessStreamOutputmetadata", {"metadata": Required["HarnessMetadataEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputmetadata/)."""
-InvokeHarnessStreamOutputhookEvent = TypedDict("InvokeHarnessStreamOutputhookEvent", {"hook_event": Required["HarnessHookEvent"]})
+InvokeHarnessStreamOutputhookEvent = TypedDict("InvokeHarnessStreamOutputhookEvent", {"hook_event": Required["HarnessHookEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputhookEvent/)."""
-InvokeHarnessStreamOutputUnknown = TypedDict("InvokeHarnessStreamOutputUnknown", {"unknown": Required[Literal[True]]})
+InvokeHarnessStreamOutputUnknown = TypedDict("InvokeHarnessStreamOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutputUnknown/)."""
 InvokeHarnessStreamOutput: TypeAlias = InvokeHarnessStreamOutputmessageStart | InvokeHarnessStreamOutputcontentBlockStart | InvokeHarnessStreamOutputcontentBlockDelta | InvokeHarnessStreamOutputcontentBlockStop | InvokeHarnessStreamOutputmessageStop | InvokeHarnessStreamOutputmetadata | InvokeHarnessStreamOutputhookEvent | InvokeHarnessStreamOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/InvokeHarnessStreamOutput/)."""
@@ -2677,31 +2678,31 @@ KeyTypeResult = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/KeyTypeResult/)."""
 
-LeftExpressionmetadataKey = TypedDict("LeftExpressionmetadataKey", {"metadata_key": Required["str"]})
+LeftExpressionmetadataKey = TypedDict("LeftExpressionmetadataKey", {"metadata_key": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LeftExpressionmetadataKey/)."""
 LeftExpression: TypeAlias = LeftExpressionmetadataKey
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LeftExpression/)."""
 
-LinkedAccountemail = TypedDict("LinkedAccountemail", {"email": Required["LinkedAccountEmail"]})
+LinkedAccountemail = TypedDict("LinkedAccountemail", {"email": Required["LinkedAccountEmail"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountemail-d30b9a03f8e8/)."""
-LinkedAccountsms = TypedDict("LinkedAccountsms", {"sms": Required["LinkedAccountSms"]})
+LinkedAccountsms = TypedDict("LinkedAccountsms", {"sms": Required["LinkedAccountSms"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountsms-090d7daf2e1d/)."""
-LinkedAccountdeveloperJwt = TypedDict("LinkedAccountdeveloperJwt", {"developer_jwt": Required["LinkedAccountDeveloperJwt"]})
+LinkedAccountdeveloperJwt = TypedDict("LinkedAccountdeveloperJwt", {"developer_jwt": Required["LinkedAccountDeveloperJwt"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountdeveloperJwt-fcf0c44e4072/)."""
-LinkedAccountoAuth2 = TypedDict("LinkedAccountoAuth2", {"o_auth2": Required["LinkedAccountOAuth2"]})
+LinkedAccountoAuth2 = TypedDict("LinkedAccountoAuth2", {"o_auth2": Required["LinkedAccountOAuth2"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountoAuth2-813fc9611bd4/)."""
 LinkedAccount: TypeAlias = LinkedAccountemail | LinkedAccountsms | LinkedAccountdeveloperJwt | LinkedAccountoAuth2
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccount/)."""
 
-LinkedAccountOutputemail = TypedDict("LinkedAccountOutputemail", {"email": Required["LinkedAccountEmailOutput"]})
+LinkedAccountOutputemail = TypedDict("LinkedAccountOutputemail", {"email": Required["LinkedAccountEmailOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutputemail/)."""
-LinkedAccountOutputsms = TypedDict("LinkedAccountOutputsms", {"sms": Required["LinkedAccountSmsOutput"]})
+LinkedAccountOutputsms = TypedDict("LinkedAccountOutputsms", {"sms": Required["LinkedAccountSmsOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutputsms/)."""
-LinkedAccountOutputdeveloperJwt = TypedDict("LinkedAccountOutputdeveloperJwt", {"developer_jwt": Required["LinkedAccountDeveloperJwtOutput"]})
+LinkedAccountOutputdeveloperJwt = TypedDict("LinkedAccountOutputdeveloperJwt", {"developer_jwt": Required["LinkedAccountDeveloperJwtOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutputdeveloperJwt/)."""
-LinkedAccountOutputoAuth2 = TypedDict("LinkedAccountOutputoAuth2", {"o_auth2": Required["LinkedAccountOAuth2Output"]})
+LinkedAccountOutputoAuth2 = TypedDict("LinkedAccountOutputoAuth2", {"o_auth2": Required["LinkedAccountOAuth2Output"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutputoAuth2/)."""
-LinkedAccountOutputUnknown = TypedDict("LinkedAccountOutputUnknown", {"unknown": Required[Literal[True]]})
+LinkedAccountOutputUnknown = TypedDict("LinkedAccountOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutputUnknown/)."""
 LinkedAccountOutput: TypeAlias = LinkedAccountOutputemail | LinkedAccountOutputsms | LinkedAccountOutputdeveloperJwt | LinkedAccountOutputoAuth2 | LinkedAccountOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOutput/)."""
@@ -2740,30 +2741,30 @@ LinkedAccountEmailOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountEmailOutput/)."""
 
-LinkedAccountOAuth2google = TypedDict("LinkedAccountOAuth2google", {"google": Required["OAuth2Authentication"]})
+LinkedAccountOAuth2google = TypedDict("LinkedAccountOAuth2google", {"google": Required["OAuth2Authentication"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2google/)."""
-LinkedAccountOAuth2apple = TypedDict("LinkedAccountOAuth2apple", {"apple": Required["OAuth2Authentication"]})
+LinkedAccountOAuth2apple = TypedDict("LinkedAccountOAuth2apple", {"apple": Required["OAuth2Authentication"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2apple/)."""
-LinkedAccountOAuth2x = TypedDict("LinkedAccountOAuth2x", {"x": Required["OAuth2Authentication"]})
+LinkedAccountOAuth2x = TypedDict("LinkedAccountOAuth2x", {"x": Required["OAuth2Authentication"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2x/)."""
-LinkedAccountOAuth2telegram = TypedDict("LinkedAccountOAuth2telegram", {"telegram": Required["OAuth2Authentication"]})
+LinkedAccountOAuth2telegram = TypedDict("LinkedAccountOAuth2telegram", {"telegram": Required["OAuth2Authentication"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2telegram/)."""
-LinkedAccountOAuth2github = TypedDict("LinkedAccountOAuth2github", {"github": Required["OAuth2Authentication"]})
+LinkedAccountOAuth2github = TypedDict("LinkedAccountOAuth2github", {"github": Required["OAuth2Authentication"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2github/)."""
 LinkedAccountOAuth2: TypeAlias = LinkedAccountOAuth2google | LinkedAccountOAuth2apple | LinkedAccountOAuth2x | LinkedAccountOAuth2telegram | LinkedAccountOAuth2github
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2-26d03c74ead8/)."""
 
-LinkedAccountOAuth2Outputgoogle = TypedDict("LinkedAccountOAuth2Outputgoogle", {"google": Required["OAuth2AuthenticationOutput"]})
+LinkedAccountOAuth2Outputgoogle = TypedDict("LinkedAccountOAuth2Outputgoogle", {"google": Required["OAuth2AuthenticationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Outputgoogle/)."""
-LinkedAccountOAuth2Outputapple = TypedDict("LinkedAccountOAuth2Outputapple", {"apple": Required["OAuth2AuthenticationOutput"]})
+LinkedAccountOAuth2Outputapple = TypedDict("LinkedAccountOAuth2Outputapple", {"apple": Required["OAuth2AuthenticationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Outputapple/)."""
-LinkedAccountOAuth2Outputx = TypedDict("LinkedAccountOAuth2Outputx", {"x": Required["OAuth2AuthenticationOutput"]})
+LinkedAccountOAuth2Outputx = TypedDict("LinkedAccountOAuth2Outputx", {"x": Required["OAuth2AuthenticationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Outputx/)."""
-LinkedAccountOAuth2Outputtelegram = TypedDict("LinkedAccountOAuth2Outputtelegram", {"telegram": Required["OAuth2AuthenticationOutput"]})
+LinkedAccountOAuth2Outputtelegram = TypedDict("LinkedAccountOAuth2Outputtelegram", {"telegram": Required["OAuth2AuthenticationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Outputtelegram/)."""
-LinkedAccountOAuth2Outputgithub = TypedDict("LinkedAccountOAuth2Outputgithub", {"github": Required["OAuth2AuthenticationOutput"]})
+LinkedAccountOAuth2Outputgithub = TypedDict("LinkedAccountOAuth2Outputgithub", {"github": Required["OAuth2AuthenticationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Outputgithub/)."""
-LinkedAccountOAuth2OutputUnknown = TypedDict("LinkedAccountOAuth2OutputUnknown", {"unknown": Required[Literal[True]]})
+LinkedAccountOAuth2OutputUnknown = TypedDict("LinkedAccountOAuth2OutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2OutputUnknown/)."""
 LinkedAccountOAuth2Output: TypeAlias = LinkedAccountOAuth2Outputgoogle | LinkedAccountOAuth2Outputapple | LinkedAccountOAuth2Outputx | LinkedAccountOAuth2Outputtelegram | LinkedAccountOAuth2Outputgithub | LinkedAccountOAuth2OutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/LinkedAccountOAuth2Output/)."""
@@ -2937,14 +2938,14 @@ McpDescriptor = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/McpDescriptor/)."""
 
-MemoryContenttext = TypedDict("MemoryContenttext", {"text": Required["str"]})
+MemoryContenttext = TypedDict("MemoryContenttext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryContenttext/)."""
 MemoryContent: TypeAlias = MemoryContenttext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryContent/)."""
 
-MemoryContentOutputtext = TypedDict("MemoryContentOutputtext", {"text": Required["str"]})
+MemoryContentOutputtext = TypedDict("MemoryContentOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryContentOutputtext/)."""
-MemoryContentOutputUnknown = TypedDict("MemoryContentOutputUnknown", {"unknown": Required[Literal[True]]})
+MemoryContentOutputUnknown = TypedDict("MemoryContentOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryContentOutputUnknown/)."""
 MemoryContentOutput: TypeAlias = MemoryContentOutputtext | MemoryContentOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryContentOutput/)."""
@@ -3012,31 +3013,31 @@ MemoryRecordDeleteInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordDeleteInput/)."""
 
-MemoryRecordLeftExpressionmetadataKey = TypedDict("MemoryRecordLeftExpressionmetadataKey", {"metadata_key": Required["str"]})
+MemoryRecordLeftExpressionmetadataKey = TypedDict("MemoryRecordLeftExpressionmetadataKey", {"metadata_key": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordLeftExpressionmetadataKey/)."""
 MemoryRecordLeftExpression: TypeAlias = MemoryRecordLeftExpressionmetadataKey
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordLeftExpression/)."""
 
-MemoryRecordMetadataValuestringValue = TypedDict("MemoryRecordMetadataValuestringValue", {"string_value": Required["str"]})
+MemoryRecordMetadataValuestringValue = TypedDict("MemoryRecordMetadataValuestringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValuestringValue/)."""
-MemoryRecordMetadataValuestringListValue = TypedDict("MemoryRecordMetadataValuestringListValue", {"string_list_value": Required["Sequence[str]"]})
+MemoryRecordMetadataValuestringListValue = TypedDict("MemoryRecordMetadataValuestringListValue", {"string_list_value": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValuestringListValue/)."""
-MemoryRecordMetadataValuenumberValue = TypedDict("MemoryRecordMetadataValuenumberValue", {"number_value": Required["float"]})
+MemoryRecordMetadataValuenumberValue = TypedDict("MemoryRecordMetadataValuenumberValue", {"number_value": Required["float"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValuenumberValue/)."""
-MemoryRecordMetadataValuedateTimeValue = TypedDict("MemoryRecordMetadataValuedateTimeValue", {"date_time_value": Required["str"]})
+MemoryRecordMetadataValuedateTimeValue = TypedDict("MemoryRecordMetadataValuedateTimeValue", {"date_time_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValuedateTimeValue/)."""
 MemoryRecordMetadataValue: TypeAlias = MemoryRecordMetadataValuestringValue | MemoryRecordMetadataValuestringListValue | MemoryRecordMetadataValuenumberValue | MemoryRecordMetadataValuedateTimeValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValue/)."""
 
-MemoryRecordMetadataValueOutputstringValue = TypedDict("MemoryRecordMetadataValueOutputstringValue", {"string_value": Required["str"]})
+MemoryRecordMetadataValueOutputstringValue = TypedDict("MemoryRecordMetadataValueOutputstringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutputstringValue/)."""
-MemoryRecordMetadataValueOutputstringListValue = TypedDict("MemoryRecordMetadataValueOutputstringListValue", {"string_list_value": Required["list[str]"]})
+MemoryRecordMetadataValueOutputstringListValue = TypedDict("MemoryRecordMetadataValueOutputstringListValue", {"string_list_value": Required["list[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutputstringListValue/)."""
-MemoryRecordMetadataValueOutputnumberValue = TypedDict("MemoryRecordMetadataValueOutputnumberValue", {"number_value": Required["float"]})
+MemoryRecordMetadataValueOutputnumberValue = TypedDict("MemoryRecordMetadataValueOutputnumberValue", {"number_value": Required["float"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutputnumberValue/)."""
-MemoryRecordMetadataValueOutputdateTimeValue = TypedDict("MemoryRecordMetadataValueOutputdateTimeValue", {"date_time_value": Required["str"]})
+MemoryRecordMetadataValueOutputdateTimeValue = TypedDict("MemoryRecordMetadataValueOutputdateTimeValue", {"date_time_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutputdateTimeValue/)."""
-MemoryRecordMetadataValueOutputUnknown = TypedDict("MemoryRecordMetadataValueOutputUnknown", {"unknown": Required[Literal[True]]})
+MemoryRecordMetadataValueOutputUnknown = TypedDict("MemoryRecordMetadataValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutputUnknown/)."""
 MemoryRecordMetadataValueOutput: TypeAlias = MemoryRecordMetadataValueOutputstringValue | MemoryRecordMetadataValueOutputstringListValue | MemoryRecordMetadataValueOutputnumberValue | MemoryRecordMetadataValueOutputdateTimeValue | MemoryRecordMetadataValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordMetadataValueOutput/)."""
@@ -3053,7 +3054,7 @@ MemoryRecordOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordOutput/)."""
 
-MemoryRecordRightExpressionmetadataValue = TypedDict("MemoryRecordRightExpressionmetadataValue", {"metadata_value": Required["MemoryRecordMetadataValue"]})
+MemoryRecordRightExpressionmetadataValue = TypedDict("MemoryRecordRightExpressionmetadataValue", {"metadata_value": Required["MemoryRecordMetadataValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordRightExpressionmetadataValue/)."""
 MemoryRecordRightExpression: TypeAlias = MemoryRecordRightExpressionmetadataValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MemoryRecordRightExpression/)."""
@@ -3096,14 +3097,14 @@ MessageMetadata = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MessageMetadata/)."""
 
-MetadataValuestringValue = TypedDict("MetadataValuestringValue", {"string_value": Required["str"]})
+MetadataValuestringValue = TypedDict("MetadataValuestringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MetadataValuestringValue/)."""
 MetadataValue: TypeAlias = MetadataValuestringValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MetadataValue/)."""
 
-MetadataValueOutputstringValue = TypedDict("MetadataValueOutputstringValue", {"string_value": Required["str"]})
+MetadataValueOutputstringValue = TypedDict("MetadataValueOutputstringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MetadataValueOutputstringValue/)."""
-MetadataValueOutputUnknown = TypedDict("MetadataValueOutputUnknown", {"unknown": Required[Literal[True]]})
+MetadataValueOutputUnknown = TypedDict("MetadataValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MetadataValueOutputUnknown/)."""
 MetadataValueOutput: TypeAlias = MetadataValueOutputstringValue | MetadataValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/MetadataValueOutput/)."""
@@ -3279,41 +3280,41 @@ OnlineEvaluationTraceConfigOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OnlineEvaluationTraceConfigOutput/)."""
 
-OutputConfigcloudWatchConfig = TypedDict("OutputConfigcloudWatchConfig", {"cloud_watch_config": Required["CloudWatchOutputConfig"]})
+OutputConfigcloudWatchConfig = TypedDict("OutputConfigcloudWatchConfig", {"cloud_watch_config": Required["CloudWatchOutputConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OutputConfigcloudWatchConfig/)."""
 OutputConfig: TypeAlias = OutputConfigcloudWatchConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OutputConfig/)."""
 
-OutputConfigOutputcloudWatchConfig = TypedDict("OutputConfigOutputcloudWatchConfig", {"cloud_watch_config": Required["CloudWatchOutputConfigOutput"]})
+OutputConfigOutputcloudWatchConfig = TypedDict("OutputConfigOutputcloudWatchConfig", {"cloud_watch_config": Required["CloudWatchOutputConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OutputConfigOutputcloudWatchConfig/)."""
-OutputConfigOutputUnknown = TypedDict("OutputConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+OutputConfigOutputUnknown = TypedDict("OutputConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OutputConfigOutputUnknown/)."""
 OutputConfigOutput: TypeAlias = OutputConfigOutputcloudWatchConfig | OutputConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/OutputConfigOutput/)."""
 
-PayloadTypeconversational = TypedDict("PayloadTypeconversational", {"conversational": Required["Conversational"]})
+PayloadTypeconversational = TypedDict("PayloadTypeconversational", {"conversational": Required["Conversational"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeconversational/)."""
-PayloadTypeblob = TypedDict("PayloadTypeblob", {"blob": Required["JSONValue"]})
+PayloadTypeblob = TypedDict("PayloadTypeblob", {"blob": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeblob/)."""
-PayloadTypejson = TypedDict("PayloadTypejson", {"json": Required["MemoryJsonData"]})
+PayloadTypejson = TypedDict("PayloadTypejson", {"json": Required["MemoryJsonData"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypejson/)."""
 PayloadType: TypeAlias = PayloadTypeconversational | PayloadTypeblob | PayloadTypejson
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadType/)."""
 
-PayloadTypeOutputconversational = TypedDict("PayloadTypeOutputconversational", {"conversational": Required["ConversationalOutput"]})
+PayloadTypeOutputconversational = TypedDict("PayloadTypeOutputconversational", {"conversational": Required["ConversationalOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeOutputconversational/)."""
-PayloadTypeOutputblob = TypedDict("PayloadTypeOutputblob", {"blob": Required["JSONValue"]})
+PayloadTypeOutputblob = TypedDict("PayloadTypeOutputblob", {"blob": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeOutputblob/)."""
-PayloadTypeOutputjson = TypedDict("PayloadTypeOutputjson", {"json": Required["MemoryJsonDataOutput"]})
+PayloadTypeOutputjson = TypedDict("PayloadTypeOutputjson", {"json": Required["MemoryJsonDataOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeOutputjson/)."""
-PayloadTypeOutputUnknown = TypedDict("PayloadTypeOutputUnknown", {"unknown": Required[Literal[True]]})
+PayloadTypeOutputUnknown = TypedDict("PayloadTypeOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeOutputUnknown/)."""
 PayloadTypeOutput: TypeAlias = PayloadTypeOutputconversational | PayloadTypeOutputblob | PayloadTypeOutputjson | PayloadTypeOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PayloadTypeOutput/)."""
 
-PaymentInputcryptoX402 = TypedDict("PaymentInputcryptoX402", {"crypto_x402": Required["CryptoX402PaymentInput"]})
+PaymentInputcryptoX402 = TypedDict("PaymentInputcryptoX402", {"crypto_x402": Required["CryptoX402PaymentInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInputcryptoX402/)."""
-PaymentInputmpp = TypedDict("PaymentInputmpp", {"mpp": Required["MppPaymentInput"]})
+PaymentInputmpp = TypedDict("PaymentInputmpp", {"mpp": Required["MppPaymentInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInputmpp/)."""
 PaymentInput: TypeAlias = PaymentInputcryptoX402 | PaymentInputmpp
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInput/)."""
@@ -3334,14 +3335,14 @@ PaymentInstrument = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrument/)."""
 
-PaymentInstrumentDetailsembeddedCryptoWallet = TypedDict("PaymentInstrumentDetailsembeddedCryptoWallet", {"embedded_crypto_wallet": Required["EmbeddedCryptoWallet"]})
+PaymentInstrumentDetailsembeddedCryptoWallet = TypedDict("PaymentInstrumentDetailsembeddedCryptoWallet", {"embedded_crypto_wallet": Required["EmbeddedCryptoWallet"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentDetailsembeddedCryptoWallet/)."""
 PaymentInstrumentDetails: TypeAlias = PaymentInstrumentDetailsembeddedCryptoWallet
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentDetails/)."""
 
-PaymentInstrumentDetailsOutputembeddedCryptoWallet = TypedDict("PaymentInstrumentDetailsOutputembeddedCryptoWallet", {"embedded_crypto_wallet": Required["EmbeddedCryptoWalletOutput"]})
+PaymentInstrumentDetailsOutputembeddedCryptoWallet = TypedDict("PaymentInstrumentDetailsOutputembeddedCryptoWallet", {"embedded_crypto_wallet": Required["EmbeddedCryptoWalletOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentDetailsOutputembeddedCryptoWallet/)."""
-PaymentInstrumentDetailsOutputUnknown = TypedDict("PaymentInstrumentDetailsOutputUnknown", {"unknown": Required[Literal[True]]})
+PaymentInstrumentDetailsOutputUnknown = TypedDict("PaymentInstrumentDetailsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentDetailsOutputUnknown/)."""
 PaymentInstrumentDetailsOutput: TypeAlias = PaymentInstrumentDetailsOutputembeddedCryptoWallet | PaymentInstrumentDetailsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentDetailsOutput/)."""
@@ -3361,11 +3362,11 @@ PaymentInstrumentSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentInstrumentSummary/)."""
 
-PaymentOutputcryptoX402 = TypedDict("PaymentOutputcryptoX402", {"crypto_x402": Required["CryptoX402PaymentOutput"]})
+PaymentOutputcryptoX402 = TypedDict("PaymentOutputcryptoX402", {"crypto_x402": Required["CryptoX402PaymentOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentOutputcryptoX402/)."""
-PaymentOutputmpp = TypedDict("PaymentOutputmpp", {"mpp": Required["MppPaymentOutput"]})
+PaymentOutputmpp = TypedDict("PaymentOutputmpp", {"mpp": Required["MppPaymentOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentOutputmpp/)."""
-PaymentOutputUnknown = TypedDict("PaymentOutputUnknown", {"unknown": Required[Literal[True]]})
+PaymentOutputUnknown = TypedDict("PaymentOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentOutputUnknown/)."""
 PaymentOutput: TypeAlias = PaymentOutputcryptoX402 | PaymentOutputmpp | PaymentOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentOutput/)."""
@@ -3398,18 +3399,18 @@ PaymentSessionSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentSessionSummary/)."""
 
-PaymentTokenRequestInputcoinbaseCdpTokenRequest = TypedDict("PaymentTokenRequestInputcoinbaseCdpTokenRequest", {"coinbase_cdp_token_request": Required["CoinbaseCdpTokenRequestInput"]})
+PaymentTokenRequestInputcoinbaseCdpTokenRequest = TypedDict("PaymentTokenRequestInputcoinbaseCdpTokenRequest", {"coinbase_cdp_token_request": Required["CoinbaseCdpTokenRequestInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenRequestInputcoinbaseCdpTokenRequest/)."""
-PaymentTokenRequestInputstripePrivyTokenRequest = TypedDict("PaymentTokenRequestInputstripePrivyTokenRequest", {"stripe_privy_token_request": Required["StripePrivyTokenRequestInput"]})
+PaymentTokenRequestInputstripePrivyTokenRequest = TypedDict("PaymentTokenRequestInputstripePrivyTokenRequest", {"stripe_privy_token_request": Required["StripePrivyTokenRequestInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenRequestInputstripePrivyTokenRequest/)."""
 PaymentTokenRequestInput: TypeAlias = PaymentTokenRequestInputcoinbaseCdpTokenRequest | PaymentTokenRequestInputstripePrivyTokenRequest
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenRequestInput/)."""
 
-PaymentTokenResponseOutputcoinbaseCdpTokenResponse = TypedDict("PaymentTokenResponseOutputcoinbaseCdpTokenResponse", {"coinbase_cdp_token_response": Required["CoinbaseCdpTokenResponseOutput"]})
+PaymentTokenResponseOutputcoinbaseCdpTokenResponse = TypedDict("PaymentTokenResponseOutputcoinbaseCdpTokenResponse", {"coinbase_cdp_token_response": Required["CoinbaseCdpTokenResponseOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenResponseOutputcoinbaseCdpTokenResponse/)."""
-PaymentTokenResponseOutputstripePrivyTokenResponse = TypedDict("PaymentTokenResponseOutputstripePrivyTokenResponse", {"stripe_privy_token_response": Required["StripePrivyTokenResponseOutput"]})
+PaymentTokenResponseOutputstripePrivyTokenResponse = TypedDict("PaymentTokenResponseOutputstripePrivyTokenResponse", {"stripe_privy_token_response": Required["StripePrivyTokenResponseOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenResponseOutputstripePrivyTokenResponse/)."""
-PaymentTokenResponseOutputUnknown = TypedDict("PaymentTokenResponseOutputUnknown", {"unknown": Required[Literal[True]]})
+PaymentTokenResponseOutputUnknown = TypedDict("PaymentTokenResponseOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenResponseOutputUnknown/)."""
 PaymentTokenResponseOutput: TypeAlias = PaymentTokenResponseOutputcoinbaseCdpTokenResponse | PaymentTokenResponseOutputstripePrivyTokenResponse | PaymentTokenResponseOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/PaymentTokenResponseOutput/)."""
@@ -3447,14 +3448,14 @@ ProcessPaymentRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProcessPaymentRequest/)."""
 
-ProxyexternalProxy = TypedDict("ProxyexternalProxy", {"external_proxy": Required["ExternalProxy"]})
+ProxyexternalProxy = TypedDict("ProxyexternalProxy", {"external_proxy": Required["ExternalProxy"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyexternalProxy/)."""
 Proxy: TypeAlias = ProxyexternalProxy
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/Proxy/)."""
 
-ProxyOutputexternalProxy = TypedDict("ProxyOutputexternalProxy", {"external_proxy": Required["ExternalProxyOutput"]})
+ProxyOutputexternalProxy = TypedDict("ProxyOutputexternalProxy", {"external_proxy": Required["ExternalProxyOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyOutputexternalProxy/)."""
-ProxyOutputUnknown = TypedDict("ProxyOutputUnknown", {"unknown": Required[Literal[True]]})
+ProxyOutputUnknown = TypedDict("ProxyOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyOutputUnknown/)."""
 ProxyOutput: TypeAlias = ProxyOutputexternalProxy | ProxyOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyOutput/)."""
@@ -3476,30 +3477,30 @@ ProxyConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyConfiguration/)."""
 
-ProxyCredentialsbasicAuth = TypedDict("ProxyCredentialsbasicAuth", {"basic_auth": Required["BasicAuth"]})
+ProxyCredentialsbasicAuth = TypedDict("ProxyCredentialsbasicAuth", {"basic_auth": Required["BasicAuth"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyCredentialsbasicAuth/)."""
 ProxyCredentials: TypeAlias = ProxyCredentialsbasicAuth
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyCredentials/)."""
 
-ProxyCredentialsOutputbasicAuth = TypedDict("ProxyCredentialsOutputbasicAuth", {"basic_auth": Required["BasicAuthOutput"]})
+ProxyCredentialsOutputbasicAuth = TypedDict("ProxyCredentialsOutputbasicAuth", {"basic_auth": Required["BasicAuthOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyCredentialsOutputbasicAuth/)."""
-ProxyCredentialsOutputUnknown = TypedDict("ProxyCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+ProxyCredentialsOutputUnknown = TypedDict("ProxyCredentialsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyCredentialsOutputUnknown/)."""
 ProxyCredentialsOutput: TypeAlias = ProxyCredentialsOutputbasicAuth | ProxyCredentialsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ProxyCredentialsOutput/)."""
 
-RecommendationConfigsystemPromptRecommendationConfig = TypedDict("RecommendationConfigsystemPromptRecommendationConfig", {"system_prompt_recommendation_config": Required["SystemPromptRecommendationConfig"]})
+RecommendationConfigsystemPromptRecommendationConfig = TypedDict("RecommendationConfigsystemPromptRecommendationConfig", {"system_prompt_recommendation_config": Required["SystemPromptRecommendationConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigsystemPromptRecommendationConfig/)."""
-RecommendationConfigtoolDescriptionRecommendationConfig = TypedDict("RecommendationConfigtoolDescriptionRecommendationConfig", {"tool_description_recommendation_config": Required["ToolDescriptionRecommendationConfig"]})
+RecommendationConfigtoolDescriptionRecommendationConfig = TypedDict("RecommendationConfigtoolDescriptionRecommendationConfig", {"tool_description_recommendation_config": Required["ToolDescriptionRecommendationConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigtoolDescriptionRecommendationConfig/)."""
 RecommendationConfig: TypeAlias = RecommendationConfigsystemPromptRecommendationConfig | RecommendationConfigtoolDescriptionRecommendationConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfig/)."""
 
-RecommendationConfigOutputsystemPromptRecommendationConfig = TypedDict("RecommendationConfigOutputsystemPromptRecommendationConfig", {"system_prompt_recommendation_config": Required["SystemPromptRecommendationConfigOutput"]})
+RecommendationConfigOutputsystemPromptRecommendationConfig = TypedDict("RecommendationConfigOutputsystemPromptRecommendationConfig", {"system_prompt_recommendation_config": Required["SystemPromptRecommendationConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigOutputsystemPromptRecommendationConfig/)."""
-RecommendationConfigOutputtoolDescriptionRecommendationConfig = TypedDict("RecommendationConfigOutputtoolDescriptionRecommendationConfig", {"tool_description_recommendation_config": Required["ToolDescriptionRecommendationConfigOutput"]})
+RecommendationConfigOutputtoolDescriptionRecommendationConfig = TypedDict("RecommendationConfigOutputtoolDescriptionRecommendationConfig", {"tool_description_recommendation_config": Required["ToolDescriptionRecommendationConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigOutputtoolDescriptionRecommendationConfig/)."""
-RecommendationConfigOutputUnknown = TypedDict("RecommendationConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+RecommendationConfigOutputUnknown = TypedDict("RecommendationConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigOutputUnknown/)."""
 RecommendationConfigOutput: TypeAlias = RecommendationConfigOutputsystemPromptRecommendationConfig | RecommendationConfigOutputtoolDescriptionRecommendationConfig | RecommendationConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationConfigOutput/)."""
@@ -3536,11 +3537,11 @@ RecommendationEvaluatorReferenceOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationEvaluatorReferenceOutput/)."""
 
-RecommendationResultsystemPromptRecommendationResult = TypedDict("RecommendationResultsystemPromptRecommendationResult", {"system_prompt_recommendation_result": Required["SystemPromptRecommendationResult"]})
+RecommendationResultsystemPromptRecommendationResult = TypedDict("RecommendationResultsystemPromptRecommendationResult", {"system_prompt_recommendation_result": Required["SystemPromptRecommendationResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationResultsystemPromptRecommendationResult/)."""
-RecommendationResulttoolDescriptionRecommendationResult = TypedDict("RecommendationResulttoolDescriptionRecommendationResult", {"tool_description_recommendation_result": Required["ToolDescriptionRecommendationResult"]})
+RecommendationResulttoolDescriptionRecommendationResult = TypedDict("RecommendationResulttoolDescriptionRecommendationResult", {"tool_description_recommendation_result": Required["ToolDescriptionRecommendationResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationResulttoolDescriptionRecommendationResult/)."""
-RecommendationResultUnknown = TypedDict("RecommendationResultUnknown", {"unknown": Required[Literal[True]]})
+RecommendationResultUnknown = TypedDict("RecommendationResultUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationResultUnknown/)."""
 RecommendationResult: TypeAlias = RecommendationResultsystemPromptRecommendationResult | RecommendationResulttoolDescriptionRecommendationResult | RecommendationResultUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationResult/)."""
@@ -3569,9 +3570,9 @@ RecommendationSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecommendationSummary/)."""
 
-RecordExpirySpecificationrecordExpiryDurationDays = TypedDict("RecordExpirySpecificationrecordExpiryDurationDays", {"record_expiry_duration_days": Required["int"]})
+RecordExpirySpecificationrecordExpiryDurationDays = TypedDict("RecordExpirySpecificationrecordExpiryDurationDays", {"record_expiry_duration_days": Required["int"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecordExpirySpecificationrecordExpiryDurationDays/)."""
-RecordExpirySpecificationaction = TypedDict("RecordExpirySpecificationaction", {"action": Required["RecordExpiryAction"]})
+RecordExpirySpecificationaction = TypedDict("RecordExpirySpecificationaction", {"action": Required["RecordExpiryAction"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecordExpirySpecificationaction/)."""
 RecordExpirySpecification: TypeAlias = RecordExpirySpecificationrecordExpiryDurationDays | RecordExpirySpecificationaction
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RecordExpirySpecification/)."""
@@ -3606,14 +3607,14 @@ ResourceContent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceContent/)."""
 
-ResourceLocations3 = TypedDict("ResourceLocations3", {"s3": Required["S3Location"]})
+ResourceLocations3 = TypedDict("ResourceLocations3", {"s3": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceLocations3/)."""
 ResourceLocation: TypeAlias = ResourceLocations3
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceLocation/)."""
 
-ResourceLocationOutputs3 = TypedDict("ResourceLocationOutputs3", {"s3": Required["S3LocationOutput"]})
+ResourceLocationOutputs3 = TypedDict("ResourceLocationOutputs3", {"s3": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceLocationOutputs3/)."""
-ResourceLocationOutputUnknown = TypedDict("ResourceLocationOutputUnknown", {"unknown": Required[Literal[True]]})
+ResourceLocationOutputUnknown = TypedDict("ResourceLocationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceLocationOutputUnknown/)."""
 ResourceLocationOutput: TypeAlias = ResourceLocationOutputs3 | ResourceLocationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ResourceLocationOutput/)."""
@@ -3641,7 +3642,7 @@ RetrieveMemoryRecordsInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RetrieveMemoryRecordsInput/)."""
 
-RightExpressionmetadataValue = TypedDict("RightExpressionmetadataValue", {"metadata_value": Required["MetadataValue"]})
+RightExpressionmetadataValue = TypedDict("RightExpressionmetadataValue", {"metadata_value": Required["MetadataValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RightExpressionmetadataValue/)."""
 RightExpression: TypeAlias = RightExpressionmetadataValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/RightExpression/)."""
@@ -4028,7 +4029,7 @@ StopRuntimeSessionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StopRuntimeSessionRequest/)."""
 
-StreamUpdateautomationStreamUpdate = TypedDict("StreamUpdateautomationStreamUpdate", {"automation_stream_update": Required["AutomationStreamUpdate"]})
+StreamUpdateautomationStreamUpdate = TypedDict("StreamUpdateautomationStreamUpdate", {"automation_stream_update": Required["AutomationStreamUpdate"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StreamUpdateautomationStreamUpdate/)."""
 StreamUpdate: TypeAlias = StreamUpdateautomationStreamUpdate
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/StreamUpdate/)."""
@@ -4062,18 +4063,18 @@ class SubscriptionRequiredErrorDetails(TypedDict, total=False):
     product_name: str
 
 
-SystemPromptConfigtext = TypedDict("SystemPromptConfigtext", {"text": Required["str"]})
+SystemPromptConfigtext = TypedDict("SystemPromptConfigtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigtext/)."""
-SystemPromptConfigconfigurationBundle = TypedDict("SystemPromptConfigconfigurationBundle", {"configuration_bundle": Required["SystemPromptConfigurationBundle"]})
+SystemPromptConfigconfigurationBundle = TypedDict("SystemPromptConfigconfigurationBundle", {"configuration_bundle": Required["SystemPromptConfigurationBundle"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigconfigurationBundle/)."""
 SystemPromptConfig: TypeAlias = SystemPromptConfigtext | SystemPromptConfigconfigurationBundle
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfig/)."""
 
-SystemPromptConfigOutputtext = TypedDict("SystemPromptConfigOutputtext", {"text": Required["str"]})
+SystemPromptConfigOutputtext = TypedDict("SystemPromptConfigOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigOutputtext/)."""
-SystemPromptConfigOutputconfigurationBundle = TypedDict("SystemPromptConfigOutputconfigurationBundle", {"configuration_bundle": Required["SystemPromptConfigurationBundleOutput"]})
+SystemPromptConfigOutputconfigurationBundle = TypedDict("SystemPromptConfigOutputconfigurationBundle", {"configuration_bundle": Required["SystemPromptConfigurationBundleOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigOutputconfigurationBundle/)."""
-SystemPromptConfigOutputUnknown = TypedDict("SystemPromptConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+SystemPromptConfigOutputUnknown = TypedDict("SystemPromptConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigOutputUnknown/)."""
 SystemPromptConfigOutput: TypeAlias = SystemPromptConfigOutputtext | SystemPromptConfigOutputconfigurationBundle | SystemPromptConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/SystemPromptConfigOutput/)."""
@@ -4177,14 +4178,14 @@ ToolArguments = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolArguments/)."""
 
-ToolDescriptionConfigtext = TypedDict("ToolDescriptionConfigtext", {"text": Required["str"]})
+ToolDescriptionConfigtext = TypedDict("ToolDescriptionConfigtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionConfigtext/)."""
 ToolDescriptionConfig: TypeAlias = ToolDescriptionConfigtext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionConfig/)."""
 
-ToolDescriptionConfigOutputtext = TypedDict("ToolDescriptionConfigOutputtext", {"text": Required["str"]})
+ToolDescriptionConfigOutputtext = TypedDict("ToolDescriptionConfigOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionConfigOutputtext/)."""
-ToolDescriptionConfigOutputUnknown = TypedDict("ToolDescriptionConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+ToolDescriptionConfigOutputUnknown = TypedDict("ToolDescriptionConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionConfigOutputUnknown/)."""
 ToolDescriptionConfigOutput: TypeAlias = ToolDescriptionConfigOutputtext | ToolDescriptionConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionConfigOutput/)."""
@@ -4266,18 +4267,18 @@ ToolDescriptionRecommendationResult = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionRecommendationResult/)."""
 
-ToolDescriptionSourcetoolDescriptionText = TypedDict("ToolDescriptionSourcetoolDescriptionText", {"tool_description_text": Required["ToolDescriptionTextInput"]})
+ToolDescriptionSourcetoolDescriptionText = TypedDict("ToolDescriptionSourcetoolDescriptionText", {"tool_description_text": Required["ToolDescriptionTextInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourcetoolDescriptionText/)."""
-ToolDescriptionSourceconfigurationBundle = TypedDict("ToolDescriptionSourceconfigurationBundle", {"configuration_bundle": Required["ToolDescriptionConfigurationBundle"]})
+ToolDescriptionSourceconfigurationBundle = TypedDict("ToolDescriptionSourceconfigurationBundle", {"configuration_bundle": Required["ToolDescriptionConfigurationBundle"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourceconfigurationBundle/)."""
 ToolDescriptionSource: TypeAlias = ToolDescriptionSourcetoolDescriptionText | ToolDescriptionSourceconfigurationBundle
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSource/)."""
 
-ToolDescriptionSourceOutputtoolDescriptionText = TypedDict("ToolDescriptionSourceOutputtoolDescriptionText", {"tool_description_text": Required["ToolDescriptionTextInputOutput"]})
+ToolDescriptionSourceOutputtoolDescriptionText = TypedDict("ToolDescriptionSourceOutputtoolDescriptionText", {"tool_description_text": Required["ToolDescriptionTextInputOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourceOutputtoolDescriptionText/)."""
-ToolDescriptionSourceOutputconfigurationBundle = TypedDict("ToolDescriptionSourceOutputconfigurationBundle", {"configuration_bundle": Required["ToolDescriptionConfigurationBundleOutput"]})
+ToolDescriptionSourceOutputconfigurationBundle = TypedDict("ToolDescriptionSourceOutputconfigurationBundle", {"configuration_bundle": Required["ToolDescriptionConfigurationBundleOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourceOutputconfigurationBundle/)."""
-ToolDescriptionSourceOutputUnknown = TypedDict("ToolDescriptionSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+ToolDescriptionSourceOutputUnknown = TypedDict("ToolDescriptionSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourceOutputUnknown/)."""
 ToolDescriptionSourceOutput: TypeAlias = ToolDescriptionSourceOutputtoolDescriptionText | ToolDescriptionSourceOutputconfigurationBundle | ToolDescriptionSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolDescriptionSourceOutput/)."""
@@ -4320,18 +4321,18 @@ ToolsDefinition = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsDefinition/)."""
 
-ToolsFileSystemConfigurations3FilesConfiguration = TypedDict("ToolsFileSystemConfigurations3FilesConfiguration", {"s3_files_configuration": Required["S3FilesConfiguration"]})
+ToolsFileSystemConfigurations3FilesConfiguration = TypedDict("ToolsFileSystemConfigurations3FilesConfiguration", {"s3_files_configuration": Required["S3FilesConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurations3FilesConfiguration/)."""
-ToolsFileSystemConfigurationefsConfiguration = TypedDict("ToolsFileSystemConfigurationefsConfiguration", {"efs_configuration": Required["EfsConfiguration"]})
+ToolsFileSystemConfigurationefsConfiguration = TypedDict("ToolsFileSystemConfigurationefsConfiguration", {"efs_configuration": Required["EfsConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurationefsConfiguration/)."""
 ToolsFileSystemConfiguration: TypeAlias = ToolsFileSystemConfigurations3FilesConfiguration | ToolsFileSystemConfigurationefsConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfiguration/)."""
 
-ToolsFileSystemConfigurationOutputs3FilesConfiguration = TypedDict("ToolsFileSystemConfigurationOutputs3FilesConfiguration", {"s3_files_configuration": Required["S3FilesConfigurationOutput"]})
+ToolsFileSystemConfigurationOutputs3FilesConfiguration = TypedDict("ToolsFileSystemConfigurationOutputs3FilesConfiguration", {"s3_files_configuration": Required["S3FilesConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurationOutputs3FilesConfiguration/)."""
-ToolsFileSystemConfigurationOutputefsConfiguration = TypedDict("ToolsFileSystemConfigurationOutputefsConfiguration", {"efs_configuration": Required["EfsConfigurationOutput"]})
+ToolsFileSystemConfigurationOutputefsConfiguration = TypedDict("ToolsFileSystemConfigurationOutputefsConfiguration", {"efs_configuration": Required["EfsConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurationOutputefsConfiguration/)."""
-ToolsFileSystemConfigurationOutputUnknown = TypedDict("ToolsFileSystemConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+ToolsFileSystemConfigurationOutputUnknown = TypedDict("ToolsFileSystemConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurationOutputUnknown/)."""
 ToolsFileSystemConfigurationOutput: TypeAlias = ToolsFileSystemConfigurationOutputs3FilesConfiguration | ToolsFileSystemConfigurationOutputefsConfiguration | ToolsFileSystemConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/ToolsFileSystemConfigurationOutput/)."""
@@ -4363,9 +4364,9 @@ UpdateBrowserStreamRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UpdateBrowserStreamRequest/)."""
 
-UserIdentifieruserToken = TypedDict("UserIdentifieruserToken", {"user_token": Required["str"]})
+UserIdentifieruserToken = TypedDict("UserIdentifieruserToken", {"user_token": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIdentifieruserToken/)."""
-UserIdentifieruserId = TypedDict("UserIdentifieruserId", {"user_id": Required["str"]})
+UserIdentifieruserId = TypedDict("UserIdentifieruserId", {"user_id": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIdentifieruserId/)."""
 UserIdentifier: TypeAlias = UserIdentifieruserToken | UserIdentifieruserId
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/types/UserIdentifier/)."""

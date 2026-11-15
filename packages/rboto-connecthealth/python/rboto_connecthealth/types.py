@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -433,13 +434,13 @@ MedicalScribeConfigurationEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeConfigurationEvent/)."""
 
-MedicalScribeInputStreamaudioEvent = TypedDict("MedicalScribeInputStreamaudioEvent", {"audio_event": Required["MedicalScribeAudioEvent"]})
+MedicalScribeInputStreamaudioEvent = TypedDict("MedicalScribeInputStreamaudioEvent", {"audio_event": Required["MedicalScribeAudioEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeInputStreamaudioEvent/)."""
-MedicalScribeInputStreambinaryAudioEvent = TypedDict("MedicalScribeInputStreambinaryAudioEvent", {"binary_audio_event": Required["MedicalScribeBinaryAudioEvent"]})
+MedicalScribeInputStreambinaryAudioEvent = TypedDict("MedicalScribeInputStreambinaryAudioEvent", {"binary_audio_event": Required["MedicalScribeBinaryAudioEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeInputStreambinaryAudioEvent/)."""
-MedicalScribeInputStreamsessionControlEvent = TypedDict("MedicalScribeInputStreamsessionControlEvent", {"session_control_event": Required["MedicalScribeSessionControlEvent"]})
+MedicalScribeInputStreamsessionControlEvent = TypedDict("MedicalScribeInputStreamsessionControlEvent", {"session_control_event": Required["MedicalScribeSessionControlEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeInputStreamsessionControlEvent/)."""
-MedicalScribeInputStreamconfigurationEvent = TypedDict("MedicalScribeInputStreamconfigurationEvent", {"configuration_event": Required["MedicalScribeConfigurationEvent"]})
+MedicalScribeInputStreamconfigurationEvent = TypedDict("MedicalScribeInputStreamconfigurationEvent", {"configuration_event": Required["MedicalScribeConfigurationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeInputStreamconfigurationEvent/)."""
 MedicalScribeInputStream: TypeAlias = MedicalScribeInputStreamaudioEvent | MedicalScribeInputStreambinaryAudioEvent | MedicalScribeInputStreamsessionControlEvent | MedicalScribeInputStreamconfigurationEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeInputStream/)."""
@@ -464,9 +465,9 @@ MedicalScribeListeningSessionDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeListeningSessionDetails/)."""
 
-MedicalScribeOutputStreamtranscriptEvent = TypedDict("MedicalScribeOutputStreamtranscriptEvent", {"transcript_event": Required["MedicalScribeTranscriptEvent"]})
+MedicalScribeOutputStreamtranscriptEvent = TypedDict("MedicalScribeOutputStreamtranscriptEvent", {"transcript_event": Required["MedicalScribeTranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamtranscriptEvent/)."""
-MedicalScribeOutputStreamUnknown = TypedDict("MedicalScribeOutputStreamUnknown", {"unknown": Required[Literal[True]]})
+MedicalScribeOutputStreamUnknown = TypedDict("MedicalScribeOutputStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStreamUnknown/)."""
 MedicalScribeOutputStream: TypeAlias = MedicalScribeOutputStreamtranscriptEvent | MedicalScribeOutputStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeOutputStream/)."""
@@ -526,18 +527,18 @@ MedicalScribeTranscriptSegment = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/MedicalScribeTranscriptSegment/)."""
 
-NoteTemplateSettingsmanagedTemplate = TypedDict("NoteTemplateSettingsmanagedTemplate", {"managed_template": Required["ManagedTemplate"]})
+NoteTemplateSettingsmanagedTemplate = TypedDict("NoteTemplateSettingsmanagedTemplate", {"managed_template": Required["ManagedTemplate"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingsmanagedTemplate/)."""
-NoteTemplateSettingscustomTemplate = TypedDict("NoteTemplateSettingscustomTemplate", {"custom_template": Required["CustomTemplate"]})
+NoteTemplateSettingscustomTemplate = TypedDict("NoteTemplateSettingscustomTemplate", {"custom_template": Required["CustomTemplate"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingscustomTemplate/)."""
 NoteTemplateSettings: TypeAlias = NoteTemplateSettingsmanagedTemplate | NoteTemplateSettingscustomTemplate
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettings/)."""
 
-NoteTemplateSettingsResponsemanagedTemplate = TypedDict("NoteTemplateSettingsResponsemanagedTemplate", {"managed_template": Required["ManagedTemplateResponse"]})
+NoteTemplateSettingsResponsemanagedTemplate = TypedDict("NoteTemplateSettingsResponsemanagedTemplate", {"managed_template": Required["ManagedTemplateResponse"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingsResponsemanagedTemplate/)."""
-NoteTemplateSettingsResponsecustomTemplate = TypedDict("NoteTemplateSettingsResponsecustomTemplate", {"custom_template": Required["CustomTemplateResponse"]})
+NoteTemplateSettingsResponsecustomTemplate = TypedDict("NoteTemplateSettingsResponsecustomTemplate", {"custom_template": Required["CustomTemplateResponse"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingsResponsecustomTemplate/)."""
-NoteTemplateSettingsResponseUnknown = TypedDict("NoteTemplateSettingsResponseUnknown", {"unknown": Required[Literal[True]]})
+NoteTemplateSettingsResponseUnknown = TypedDict("NoteTemplateSettingsResponseUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingsResponseUnknown/)."""
 NoteTemplateSettingsResponse: TypeAlias = NoteTemplateSettingsResponsemanagedTemplate | NoteTemplateSettingsResponsecustomTemplate | NoteTemplateSettingsResponseUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/connecthealth/types/NoteTemplateSettingsResponse/)."""

@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -2595,18 +2596,18 @@ SendingOptions = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingOptions/)."""
 
-SigningSchemeDefaultScheme = TypedDict("SigningSchemeDefaultScheme", {"default_scheme": Required["DefaultSigningScheme"]})
+SigningSchemeDefaultScheme = TypedDict("SigningSchemeDefaultScheme", {"default_scheme": Required["DefaultSigningScheme"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeDefaultScheme/)."""
-SigningSchemeSmimeScheme = TypedDict("SigningSchemeSmimeScheme", {"smime_scheme": Required["SmimeSigningScheme"]})
+SigningSchemeSmimeScheme = TypedDict("SigningSchemeSmimeScheme", {"smime_scheme": Required["SmimeSigningScheme"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeSmimeScheme/)."""
 SigningScheme: TypeAlias = SigningSchemeDefaultScheme | SigningSchemeSmimeScheme
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningScheme/)."""
 
-SigningSchemeOutputDefaultScheme = TypedDict("SigningSchemeOutputDefaultScheme", {"default_scheme": Required["DefaultSigningSchemeOutput"]})
+SigningSchemeOutputDefaultScheme = TypedDict("SigningSchemeOutputDefaultScheme", {"default_scheme": Required["DefaultSigningSchemeOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputDefaultScheme/)."""
-SigningSchemeOutputSmimeScheme = TypedDict("SigningSchemeOutputSmimeScheme", {"smime_scheme": Required["SmimeSigningSchemeOutput"]})
+SigningSchemeOutputSmimeScheme = TypedDict("SigningSchemeOutputSmimeScheme", {"smime_scheme": Required["SmimeSigningSchemeOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputSmimeScheme/)."""
-SigningSchemeOutputUnknown = TypedDict("SigningSchemeOutputUnknown", {"unknown": Required[Literal[True]]})
+SigningSchemeOutputUnknown = TypedDict("SigningSchemeOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutputUnknown/)."""
 SigningSchemeOutput: TypeAlias = SigningSchemeOutputDefaultScheme | SigningSchemeOutputSmimeScheme | SigningSchemeOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SigningSchemeOutput/)."""

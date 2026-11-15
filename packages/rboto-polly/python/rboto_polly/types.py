@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -238,18 +239,18 @@ class ServiceQuotaExceededErrorDetails(TypedDict, total=False):
     service_code: ServiceCodeOutput
 
 
-StartSpeechSynthesisStreamActionStreamTextEvent = TypedDict("StartSpeechSynthesisStreamActionStreamTextEvent", {"text_event": Required["TextEvent"]})
+StartSpeechSynthesisStreamActionStreamTextEvent = TypedDict("StartSpeechSynthesisStreamActionStreamTextEvent", {"text_event": Required["TextEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStreamTextEvent/)."""
-StartSpeechSynthesisStreamActionStreamCloseStreamEvent = TypedDict("StartSpeechSynthesisStreamActionStreamCloseStreamEvent", {"close_stream_event": Required["CloseStreamEvent"]})
+StartSpeechSynthesisStreamActionStreamCloseStreamEvent = TypedDict("StartSpeechSynthesisStreamActionStreamCloseStreamEvent", {"close_stream_event": Required["CloseStreamEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStreamCloseStreamEvent/)."""
 StartSpeechSynthesisStreamActionStream: TypeAlias = StartSpeechSynthesisStreamActionStreamTextEvent | StartSpeechSynthesisStreamActionStreamCloseStreamEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamActionStream/)."""
 
-StartSpeechSynthesisStreamEventStreamAudioEvent = TypedDict("StartSpeechSynthesisStreamEventStreamAudioEvent", {"audio_event": Required["AudioEvent"]})
+StartSpeechSynthesisStreamEventStreamAudioEvent = TypedDict("StartSpeechSynthesisStreamEventStreamAudioEvent", {"audio_event": Required["AudioEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamAudioEvent/)."""
-StartSpeechSynthesisStreamEventStreamStreamClosedEvent = TypedDict("StartSpeechSynthesisStreamEventStreamStreamClosedEvent", {"stream_closed_event": Required["StreamClosedEvent"]})
+StartSpeechSynthesisStreamEventStreamStreamClosedEvent = TypedDict("StartSpeechSynthesisStreamEventStreamStreamClosedEvent", {"stream_closed_event": Required["StreamClosedEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamStreamClosedEvent/)."""
-StartSpeechSynthesisStreamEventStreamUnknown = TypedDict("StartSpeechSynthesisStreamEventStreamUnknown", {"unknown": Required[Literal[True]]})
+StartSpeechSynthesisStreamEventStreamUnknown = TypedDict("StartSpeechSynthesisStreamEventStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStreamUnknown/)."""
 StartSpeechSynthesisStreamEventStream: TypeAlias = StartSpeechSynthesisStreamEventStreamAudioEvent | StartSpeechSynthesisStreamEventStreamStreamClosedEvent | StartSpeechSynthesisStreamEventStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/polly/types/StartSpeechSynthesisStreamEventStream/)."""

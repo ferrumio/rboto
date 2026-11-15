@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -483,16 +484,16 @@ VectorSearchRerankingConfigurationType: TypeAlias = Literal['BEDROCK_RERANKING_M
 VectorSearchRerankingConfigurationTypeOutput: TypeAlias = VectorSearchRerankingConfigurationType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/VectorSearchRerankingConfigurationTypeOutput/)."""
 
-APISchemas3 = TypedDict("APISchemas3", {"s3": Required["S3Identifier"]})
+APISchemas3 = TypedDict("APISchemas3", {"s3": Required["S3Identifier"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/APISchemas3/)."""
-APISchemapayload = TypedDict("APISchemapayload", {"payload": Required["str"]})
+APISchemapayload = TypedDict("APISchemapayload", {"payload": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/APISchemapayload/)."""
 APISchema: TypeAlias = APISchemas3 | APISchemapayload
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/APISchema/)."""
 
-ActionGroupExecutorlambda = TypedDict("ActionGroupExecutorlambda", {"lambda": Required["str"]})
+ActionGroupExecutorlambda = TypedDict("ActionGroupExecutorlambda", {"lambda": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ActionGroupExecutorlambda/)."""
-ActionGroupExecutorcustomControl = TypedDict("ActionGroupExecutorcustomControl", {"custom_control": Required["CustomControlMethod"]})
+ActionGroupExecutorcustomControl = TypedDict("ActionGroupExecutorcustomControl", {"custom_control": Required["CustomControlMethod"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ActionGroupExecutorcustomControl/)."""
 ActionGroupExecutor: TypeAlias = ActionGroupExecutorlambda | ActionGroupExecutorcustomControl
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ActionGroupExecutor/)."""
@@ -744,23 +745,23 @@ AgenticRetrieveMemoryMetadataFilter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataFilter/)."""
 
-AgenticRetrieveMemoryMetadataFilterLeftmetadataKey = TypedDict("AgenticRetrieveMemoryMetadataFilterLeftmetadataKey", {"metadata_key": Required["str"]})
+AgenticRetrieveMemoryMetadataFilterLeftmetadataKey = TypedDict("AgenticRetrieveMemoryMetadataFilterLeftmetadataKey", {"metadata_key": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataFilterLeftmetadataKey/)."""
 AgenticRetrieveMemoryMetadataFilterLeft: TypeAlias = AgenticRetrieveMemoryMetadataFilterLeftmetadataKey
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataFilterLeft/)."""
 
-AgenticRetrieveMemoryMetadataFilterRightmetadataValue = TypedDict("AgenticRetrieveMemoryMetadataFilterRightmetadataValue", {"metadata_value": Required["AgenticRetrieveMemoryMetadataValue"]})
+AgenticRetrieveMemoryMetadataFilterRightmetadataValue = TypedDict("AgenticRetrieveMemoryMetadataFilterRightmetadataValue", {"metadata_value": Required["AgenticRetrieveMemoryMetadataValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataFilterRightmetadataValue/)."""
 AgenticRetrieveMemoryMetadataFilterRight: TypeAlias = AgenticRetrieveMemoryMetadataFilterRightmetadataValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataFilterRight/)."""
 
-AgenticRetrieveMemoryMetadataValuestringValue = TypedDict("AgenticRetrieveMemoryMetadataValuestringValue", {"string_value": Required["str"]})
+AgenticRetrieveMemoryMetadataValuestringValue = TypedDict("AgenticRetrieveMemoryMetadataValuestringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataValuestringValue/)."""
-AgenticRetrieveMemoryMetadataValuenumberValue = TypedDict("AgenticRetrieveMemoryMetadataValuenumberValue", {"number_value": Required["float"]})
+AgenticRetrieveMemoryMetadataValuenumberValue = TypedDict("AgenticRetrieveMemoryMetadataValuenumberValue", {"number_value": Required["float"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataValuenumberValue/)."""
-AgenticRetrieveMemoryMetadataValuestringListValue = TypedDict("AgenticRetrieveMemoryMetadataValuestringListValue", {"string_list_value": Required["Sequence[str]"]})
+AgenticRetrieveMemoryMetadataValuestringListValue = TypedDict("AgenticRetrieveMemoryMetadataValuestringListValue", {"string_list_value": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataValuestringListValue/)."""
-AgenticRetrieveMemoryMetadataValuedateTimeValue = TypedDict("AgenticRetrieveMemoryMetadataValuedateTimeValue", {"date_time_value": Required["str"]})
+AgenticRetrieveMemoryMetadataValuedateTimeValue = TypedDict("AgenticRetrieveMemoryMetadataValuedateTimeValue", {"date_time_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataValuedateTimeValue/)."""
 AgenticRetrieveMemoryMetadataValue: TypeAlias = AgenticRetrieveMemoryMetadataValuestringValue | AgenticRetrieveMemoryMetadataValuenumberValue | AgenticRetrieveMemoryMetadataValuestringListValue | AgenticRetrieveMemoryMetadataValuedateTimeValue
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveMemoryMetadataValue/)."""
@@ -908,13 +909,13 @@ AgenticRetrieveStreamOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamOutput/)."""
 
-AgenticRetrieveStreamResponseOutputresult = TypedDict("AgenticRetrieveStreamResponseOutputresult", {"result": Required["AgenticRetrieveResultEvent"]})
+AgenticRetrieveStreamResponseOutputresult = TypedDict("AgenticRetrieveStreamResponseOutputresult", {"result": Required["AgenticRetrieveResultEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutputresult/)."""
-AgenticRetrieveStreamResponseOutputtraceEvent = TypedDict("AgenticRetrieveStreamResponseOutputtraceEvent", {"trace_event": Required["AgenticRetrieveTraceEvent"]})
+AgenticRetrieveStreamResponseOutputtraceEvent = TypedDict("AgenticRetrieveStreamResponseOutputtraceEvent", {"trace_event": Required["AgenticRetrieveTraceEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutputtraceEvent/)."""
-AgenticRetrieveStreamResponseOutputresponseEvent = TypedDict("AgenticRetrieveStreamResponseOutputresponseEvent", {"response_event": Required["AgenticRetrieveResponseEvent"]})
+AgenticRetrieveStreamResponseOutputresponseEvent = TypedDict("AgenticRetrieveStreamResponseOutputresponseEvent", {"response_event": Required["AgenticRetrieveResponseEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutputresponseEvent/)."""
-AgenticRetrieveStreamResponseOutputUnknown = TypedDict("AgenticRetrieveStreamResponseOutputUnknown", {"unknown": Required[Literal[True]]})
+AgenticRetrieveStreamResponseOutputUnknown = TypedDict("AgenticRetrieveStreamResponseOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutputUnknown/)."""
 AgenticRetrieveStreamResponseOutput: TypeAlias = AgenticRetrieveStreamResponseOutputresult | AgenticRetrieveStreamResponseOutputtraceEvent | AgenticRetrieveStreamResponseOutputresponseEvent | AgenticRetrieveStreamResponseOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveStreamResponseOutput/)."""
@@ -955,11 +956,11 @@ AgenticRetrieveTraceResultItem = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveTraceResultItem/)."""
 
-AgenticRetrieveWarningmessage = TypedDict("AgenticRetrieveWarningmessage", {"message": Required["AgenticRetrieveWarningMessage"]})
+AgenticRetrieveWarningmessage = TypedDict("AgenticRetrieveWarningmessage", {"message": Required["AgenticRetrieveWarningMessage"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveWarningmessage-da25658d2887/)."""
-AgenticRetrieveWarningguardrail = TypedDict("AgenticRetrieveWarningguardrail", {"guardrail": Required["AgenticRetrieveGuardrailWarning"]})
+AgenticRetrieveWarningguardrail = TypedDict("AgenticRetrieveWarningguardrail", {"guardrail": Required["AgenticRetrieveGuardrailWarning"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveWarningguardrail/)."""
-AgenticRetrieveWarningUnknown = TypedDict("AgenticRetrieveWarningUnknown", {"unknown": Required[Literal[True]]})
+AgenticRetrieveWarningUnknown = TypedDict("AgenticRetrieveWarningUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveWarningUnknown/)."""
 AgenticRetrieveWarning: TypeAlias = AgenticRetrieveWarningmessage | AgenticRetrieveWarningguardrail | AgenticRetrieveWarningUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/AgenticRetrieveWarning/)."""
@@ -1117,18 +1118,18 @@ BedrockRerankingModelConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockRerankingModelConfiguration/)."""
 
-BedrockSessionContentBlocktext = TypedDict("BedrockSessionContentBlocktext", {"text": Required["str"]})
+BedrockSessionContentBlocktext = TypedDict("BedrockSessionContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlocktext/)."""
-BedrockSessionContentBlockimage = TypedDict("BedrockSessionContentBlockimage", {"image": Required["ImageBlock"]})
+BedrockSessionContentBlockimage = TypedDict("BedrockSessionContentBlockimage", {"image": Required["ImageBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlockimage/)."""
 BedrockSessionContentBlock: TypeAlias = BedrockSessionContentBlocktext | BedrockSessionContentBlockimage
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlock/)."""
 
-BedrockSessionContentBlockOutputtext = TypedDict("BedrockSessionContentBlockOutputtext", {"text": Required["str"]})
+BedrockSessionContentBlockOutputtext = TypedDict("BedrockSessionContentBlockOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlockOutputtext/)."""
-BedrockSessionContentBlockOutputimage = TypedDict("BedrockSessionContentBlockOutputimage", {"image": Required["ImageBlockOutput"]})
+BedrockSessionContentBlockOutputimage = TypedDict("BedrockSessionContentBlockOutputimage", {"image": Required["ImageBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlockOutputimage/)."""
-BedrockSessionContentBlockOutputUnknown = TypedDict("BedrockSessionContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+BedrockSessionContentBlockOutputUnknown = TypedDict("BedrockSessionContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlockOutputUnknown/)."""
 BedrockSessionContentBlockOutput: TypeAlias = BedrockSessionContentBlockOutputtext | BedrockSessionContentBlockOutputimage | BedrockSessionContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/BedrockSessionContentBlockOutput/)."""
@@ -1152,9 +1153,9 @@ ByteContentFile = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ByteContentFile/)."""
 
-CalleragentAliasArn = TypedDict("CalleragentAliasArn", {"agent_alias_arn": Required["str"]})
+CalleragentAliasArn = TypedDict("CalleragentAliasArn", {"agent_alias_arn": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CalleragentAliasArn/)."""
-CallerUnknown = TypedDict("CallerUnknown", {"unknown": Required[Literal[True]]})
+CallerUnknown = TypedDict("CallerUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/CallerUnknown/)."""
 Caller: TypeAlias = CalleragentAliasArn | CallerUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/Caller/)."""
@@ -1249,7 +1250,7 @@ ConditionResultEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ConditionResultEvent/)."""
 
-ContentBlocktext = TypedDict("ContentBlocktext", {"text": Required["str"]})
+ContentBlocktext = TypedDict("ContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ContentBlocktext/)."""
 ContentBlock: TypeAlias = ContentBlocktext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ContentBlock/)."""
@@ -1499,9 +1500,9 @@ FlowCompletionEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowCompletionEvent/)."""
 
-FlowExecutionContentdocument = TypedDict("FlowExecutionContentdocument", {"document": Required["JSONValue"]})
+FlowExecutionContentdocument = TypedDict("FlowExecutionContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionContentdocument/)."""
-FlowExecutionContentUnknown = TypedDict("FlowExecutionContentUnknown", {"unknown": Required[Literal[True]]})
+FlowExecutionContentUnknown = TypedDict("FlowExecutionContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionContentUnknown/)."""
 FlowExecutionContent: TypeAlias = FlowExecutionContentdocument | FlowExecutionContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionContent/)."""
@@ -1516,25 +1517,25 @@ FlowExecutionError = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionError/)."""
 
-FlowExecutionEventflowInputEvent = TypedDict("FlowExecutionEventflowInputEvent", {"flow_input_event": Required["FlowExecutionInputEvent"]})
+FlowExecutionEventflowInputEvent = TypedDict("FlowExecutionEventflowInputEvent", {"flow_input_event": Required["FlowExecutionInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventflowInputEvent/)."""
-FlowExecutionEventflowOutputEvent = TypedDict("FlowExecutionEventflowOutputEvent", {"flow_output_event": Required["FlowExecutionOutputEvent"]})
+FlowExecutionEventflowOutputEvent = TypedDict("FlowExecutionEventflowOutputEvent", {"flow_output_event": Required["FlowExecutionOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventflowOutputEvent/)."""
-FlowExecutionEventnodeInputEvent = TypedDict("FlowExecutionEventnodeInputEvent", {"node_input_event": Required["NodeInputEvent"]})
+FlowExecutionEventnodeInputEvent = TypedDict("FlowExecutionEventnodeInputEvent", {"node_input_event": Required["NodeInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventnodeInputEvent/)."""
-FlowExecutionEventnodeOutputEvent = TypedDict("FlowExecutionEventnodeOutputEvent", {"node_output_event": Required["NodeOutputEvent"]})
+FlowExecutionEventnodeOutputEvent = TypedDict("FlowExecutionEventnodeOutputEvent", {"node_output_event": Required["NodeOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventnodeOutputEvent/)."""
-FlowExecutionEventconditionResultEvent = TypedDict("FlowExecutionEventconditionResultEvent", {"condition_result_event": Required["ConditionResultEvent"]})
+FlowExecutionEventconditionResultEvent = TypedDict("FlowExecutionEventconditionResultEvent", {"condition_result_event": Required["ConditionResultEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventconditionResultEvent/)."""
-FlowExecutionEventnodeFailureEvent = TypedDict("FlowExecutionEventnodeFailureEvent", {"node_failure_event": Required["NodeFailureEvent"]})
+FlowExecutionEventnodeFailureEvent = TypedDict("FlowExecutionEventnodeFailureEvent", {"node_failure_event": Required["NodeFailureEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventnodeFailureEvent/)."""
-FlowExecutionEventflowFailureEvent = TypedDict("FlowExecutionEventflowFailureEvent", {"flow_failure_event": Required["FlowFailureEvent"]})
+FlowExecutionEventflowFailureEvent = TypedDict("FlowExecutionEventflowFailureEvent", {"flow_failure_event": Required["FlowFailureEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventflowFailureEvent/)."""
-FlowExecutionEventnodeActionEvent = TypedDict("FlowExecutionEventnodeActionEvent", {"node_action_event": Required["NodeActionEvent"]})
+FlowExecutionEventnodeActionEvent = TypedDict("FlowExecutionEventnodeActionEvent", {"node_action_event": Required["NodeActionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventnodeActionEvent/)."""
-FlowExecutionEventnodeDependencyEvent = TypedDict("FlowExecutionEventnodeDependencyEvent", {"node_dependency_event": Required["NodeDependencyEvent"]})
+FlowExecutionEventnodeDependencyEvent = TypedDict("FlowExecutionEventnodeDependencyEvent", {"node_dependency_event": Required["NodeDependencyEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventnodeDependencyEvent/)."""
-FlowExecutionEventUnknown = TypedDict("FlowExecutionEventUnknown", {"unknown": Required[Literal[True]]})
+FlowExecutionEventUnknown = TypedDict("FlowExecutionEventUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEventUnknown/)."""
 FlowExecutionEvent: TypeAlias = FlowExecutionEventflowInputEvent | FlowExecutionEventflowOutputEvent | FlowExecutionEventnodeInputEvent | FlowExecutionEventnodeOutputEvent | FlowExecutionEventconditionResultEvent | FlowExecutionEventnodeFailureEvent | FlowExecutionEventflowFailureEvent | FlowExecutionEventnodeActionEvent | FlowExecutionEventnodeDependencyEvent | FlowExecutionEventUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowExecutionEvent/)."""
@@ -1594,7 +1595,7 @@ FlowInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowInput/)."""
 
-FlowInputContentdocument = TypedDict("FlowInputContentdocument", {"document": Required["JSONValue"]})
+FlowInputContentdocument = TypedDict("FlowInputContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowInputContentdocument/)."""
 FlowInputContent: TypeAlias = FlowInputContentdocument
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowInputContent/)."""
@@ -1608,9 +1609,9 @@ FlowInputField = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowInputField/)."""
 
-FlowMultiTurnInputContentdocument = TypedDict("FlowMultiTurnInputContentdocument", {"document": Required["JSONValue"]})
+FlowMultiTurnInputContentdocument = TypedDict("FlowMultiTurnInputContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowMultiTurnInputContentdocument/)."""
-FlowMultiTurnInputContentUnknown = TypedDict("FlowMultiTurnInputContentUnknown", {"unknown": Required[Literal[True]]})
+FlowMultiTurnInputContentUnknown = TypedDict("FlowMultiTurnInputContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowMultiTurnInputContentUnknown/)."""
 FlowMultiTurnInputContent: TypeAlias = FlowMultiTurnInputContentdocument | FlowMultiTurnInputContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowMultiTurnInputContent/)."""
@@ -1625,9 +1626,9 @@ FlowMultiTurnInputRequestEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowMultiTurnInputRequestEvent/)."""
 
-FlowOutputContentdocument = TypedDict("FlowOutputContentdocument", {"document": Required["JSONValue"]})
+FlowOutputContentdocument = TypedDict("FlowOutputContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowOutputContentdocument/)."""
-FlowOutputContentUnknown = TypedDict("FlowOutputContentUnknown", {"unknown": Required[Literal[True]]})
+FlowOutputContentUnknown = TypedDict("FlowOutputContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowOutputContentUnknown/)."""
 FlowOutputContent: TypeAlias = FlowOutputContentdocument | FlowOutputContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowOutputContent/)."""
@@ -1651,30 +1652,30 @@ FlowOutputField = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowOutputField/)."""
 
-FlowResponseStreamflowOutputEvent = TypedDict("FlowResponseStreamflowOutputEvent", {"flow_output_event": Required["FlowOutputEvent"]})
+FlowResponseStreamflowOutputEvent = TypedDict("FlowResponseStreamflowOutputEvent", {"flow_output_event": Required["FlowOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamflowOutputEvent/)."""
-FlowResponseStreamflowCompletionEvent = TypedDict("FlowResponseStreamflowCompletionEvent", {"flow_completion_event": Required["FlowCompletionEvent"]})
+FlowResponseStreamflowCompletionEvent = TypedDict("FlowResponseStreamflowCompletionEvent", {"flow_completion_event": Required["FlowCompletionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamflowCompletionEvent/)."""
-FlowResponseStreamflowTraceEvent = TypedDict("FlowResponseStreamflowTraceEvent", {"flow_trace_event": Required["FlowTraceEvent"]})
+FlowResponseStreamflowTraceEvent = TypedDict("FlowResponseStreamflowTraceEvent", {"flow_trace_event": Required["FlowTraceEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamflowTraceEvent/)."""
-FlowResponseStreamflowMultiTurnInputRequestEvent = TypedDict("FlowResponseStreamflowMultiTurnInputRequestEvent", {"flow_multi_turn_input_request_event": Required["FlowMultiTurnInputRequestEvent"]})
+FlowResponseStreamflowMultiTurnInputRequestEvent = TypedDict("FlowResponseStreamflowMultiTurnInputRequestEvent", {"flow_multi_turn_input_request_event": Required["FlowMultiTurnInputRequestEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamflowMultiTurnInputRequestEvent/)."""
-FlowResponseStreamUnknown = TypedDict("FlowResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+FlowResponseStreamUnknown = TypedDict("FlowResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStreamUnknown/)."""
 FlowResponseStream: TypeAlias = FlowResponseStreamflowOutputEvent | FlowResponseStreamflowCompletionEvent | FlowResponseStreamflowTraceEvent | FlowResponseStreamflowMultiTurnInputRequestEvent | FlowResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowResponseStream/)."""
 
-FlowTracenodeInputTrace = TypedDict("FlowTracenodeInputTrace", {"node_input_trace": Required["FlowTraceNodeInputEvent"]})
+FlowTracenodeInputTrace = TypedDict("FlowTracenodeInputTrace", {"node_input_trace": Required["FlowTraceNodeInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTracenodeInputTrace/)."""
-FlowTracenodeOutputTrace = TypedDict("FlowTracenodeOutputTrace", {"node_output_trace": Required["FlowTraceNodeOutputEvent"]})
+FlowTracenodeOutputTrace = TypedDict("FlowTracenodeOutputTrace", {"node_output_trace": Required["FlowTraceNodeOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTracenodeOutputTrace/)."""
-FlowTraceconditionNodeResultTrace = TypedDict("FlowTraceconditionNodeResultTrace", {"condition_node_result_trace": Required["FlowTraceConditionNodeResultEvent"]})
+FlowTraceconditionNodeResultTrace = TypedDict("FlowTraceconditionNodeResultTrace", {"condition_node_result_trace": Required["FlowTraceConditionNodeResultEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceconditionNodeResultTrace/)."""
-FlowTracenodeActionTrace = TypedDict("FlowTracenodeActionTrace", {"node_action_trace": Required["FlowTraceNodeActionEvent"]})
+FlowTracenodeActionTrace = TypedDict("FlowTracenodeActionTrace", {"node_action_trace": Required["FlowTraceNodeActionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTracenodeActionTrace/)."""
-FlowTracenodeDependencyTrace = TypedDict("FlowTracenodeDependencyTrace", {"node_dependency_trace": Required["FlowTraceDependencyEvent"]})
+FlowTracenodeDependencyTrace = TypedDict("FlowTracenodeDependencyTrace", {"node_dependency_trace": Required["FlowTraceDependencyEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTracenodeDependencyTrace/)."""
-FlowTraceUnknown = TypedDict("FlowTraceUnknown", {"unknown": Required[Literal[True]]})
+FlowTraceUnknown = TypedDict("FlowTraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceUnknown/)."""
 FlowTrace: TypeAlias = FlowTracenodeInputTrace | FlowTracenodeOutputTrace | FlowTraceconditionNodeResultTrace | FlowTracenodeActionTrace | FlowTracenodeDependencyTrace | FlowTraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTrace/)."""
@@ -1729,9 +1730,9 @@ FlowTraceNodeActionEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeActionEvent/)."""
 
-FlowTraceNodeInputContentdocument = TypedDict("FlowTraceNodeInputContentdocument", {"document": Required["JSONValue"]})
+FlowTraceNodeInputContentdocument = TypedDict("FlowTraceNodeInputContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeInputContentdocument/)."""
-FlowTraceNodeInputContentUnknown = TypedDict("FlowTraceNodeInputContentUnknown", {"unknown": Required[Literal[True]]})
+FlowTraceNodeInputContentUnknown = TypedDict("FlowTraceNodeInputContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeInputContentUnknown/)."""
 FlowTraceNodeInputContent: TypeAlias = FlowTraceNodeInputContentdocument | FlowTraceNodeInputContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeInputContent/)."""
@@ -1779,9 +1780,9 @@ FlowTraceNodeInputSource = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeInputSource/)."""
 
-FlowTraceNodeOutputContentdocument = TypedDict("FlowTraceNodeOutputContentdocument", {"document": Required["JSONValue"]})
+FlowTraceNodeOutputContentdocument = TypedDict("FlowTraceNodeOutputContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeOutputContentdocument/)."""
-FlowTraceNodeOutputContentUnknown = TypedDict("FlowTraceNodeOutputContentUnknown", {"unknown": Required[Literal[True]]})
+FlowTraceNodeOutputContentUnknown = TypedDict("FlowTraceNodeOutputContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeOutputContentUnknown/)."""
 FlowTraceNodeOutputContent: TypeAlias = FlowTraceNodeOutputContentdocument | FlowTraceNodeOutputContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FlowTraceNodeOutputContent/)."""
@@ -1886,7 +1887,7 @@ FunctionResultOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FunctionResultOutput/)."""
 
-FunctionSchemafunctions = TypedDict("FunctionSchemafunctions", {"functions": Required["Sequence[FunctionDefinition]"]})
+FunctionSchemafunctions = TypedDict("FunctionSchemafunctions", {"functions": Required["Sequence[FunctionDefinition]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FunctionSchemafunctions/)."""
 FunctionSchema: TypeAlias = FunctionSchemafunctions
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/FunctionSchema/)."""
@@ -2182,30 +2183,30 @@ ImageInputOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputOutput/)."""
 
-ImageInputSourcebytes = TypedDict("ImageInputSourcebytes", {"bytes": Required["bytes"]})
+ImageInputSourcebytes = TypedDict("ImageInputSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputSourcebytes/)."""
 ImageInputSource: TypeAlias = ImageInputSourcebytes
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputSource/)."""
 
-ImageInputSourceOutputbytes = TypedDict("ImageInputSourceOutputbytes", {"bytes": Required["bytes"]})
+ImageInputSourceOutputbytes = TypedDict("ImageInputSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputSourceOutputbytes/)."""
-ImageInputSourceOutputUnknown = TypedDict("ImageInputSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+ImageInputSourceOutputUnknown = TypedDict("ImageInputSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputSourceOutputUnknown/)."""
 ImageInputSourceOutput: TypeAlias = ImageInputSourceOutputbytes | ImageInputSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageInputSourceOutput/)."""
 
-ImageSourcebytes = TypedDict("ImageSourcebytes", {"bytes": Required["bytes"]})
+ImageSourcebytes = TypedDict("ImageSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSourcebytes/)."""
-ImageSources3Location = TypedDict("ImageSources3Location", {"s3_location": Required["S3Location"]})
+ImageSources3Location = TypedDict("ImageSources3Location", {"s3_location": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSources3Location/)."""
 ImageSource: TypeAlias = ImageSourcebytes | ImageSources3Location
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSource/)."""
 
-ImageSourceOutputbytes = TypedDict("ImageSourceOutputbytes", {"bytes": Required["bytes"]})
+ImageSourceOutputbytes = TypedDict("ImageSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSourceOutputbytes/)."""
-ImageSourceOutputs3Location = TypedDict("ImageSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]})
+ImageSourceOutputs3Location = TypedDict("ImageSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSourceOutputs3Location/)."""
-ImageSourceOutputUnknown = TypedDict("ImageSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+ImageSourceOutputUnknown = TypedDict("ImageSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSourceOutputUnknown/)."""
 ImageSourceOutput: TypeAlias = ImageSourceOutputbytes | ImageSourceOutputs3Location | ImageSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ImageSourceOutput/)."""
@@ -2268,15 +2269,15 @@ InlineAgentPayloadPart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentPayloadPart/)."""
 
-InlineAgentResponseStreamchunk = TypedDict("InlineAgentResponseStreamchunk", {"chunk": Required["InlineAgentPayloadPart"]})
+InlineAgentResponseStreamchunk = TypedDict("InlineAgentResponseStreamchunk", {"chunk": Required["InlineAgentPayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamchunk/)."""
-InlineAgentResponseStreamtrace = TypedDict("InlineAgentResponseStreamtrace", {"trace": Required["InlineAgentTracePart"]})
+InlineAgentResponseStreamtrace = TypedDict("InlineAgentResponseStreamtrace", {"trace": Required["InlineAgentTracePart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamtrace/)."""
-InlineAgentResponseStreamreturnControl = TypedDict("InlineAgentResponseStreamreturnControl", {"return_control": Required["InlineAgentReturnControlPayload"]})
+InlineAgentResponseStreamreturnControl = TypedDict("InlineAgentResponseStreamreturnControl", {"return_control": Required["InlineAgentReturnControlPayload"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamreturnControl/)."""
-InlineAgentResponseStreamfiles = TypedDict("InlineAgentResponseStreamfiles", {"files": Required["InlineAgentFilePart"]})
+InlineAgentResponseStreamfiles = TypedDict("InlineAgentResponseStreamfiles", {"files": Required["InlineAgentFilePart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamfiles/)."""
-InlineAgentResponseStreamUnknown = TypedDict("InlineAgentResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+InlineAgentResponseStreamUnknown = TypedDict("InlineAgentResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStreamUnknown/)."""
 InlineAgentResponseStream: TypeAlias = InlineAgentResponseStreamchunk | InlineAgentResponseStreamtrace | InlineAgentResponseStreamreturnControl | InlineAgentResponseStreamfiles | InlineAgentResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InlineAgentResponseStream/)."""
@@ -2342,7 +2343,7 @@ InputImage = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InputImage/)."""
 
-InputPrompttextPrompt = TypedDict("InputPrompttextPrompt", {"text_prompt": Required["TextPrompt"]})
+InputPrompttextPrompt = TypedDict("InputPrompttextPrompt", {"text_prompt": Required["TextPrompt"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InputPrompttextPrompt/)."""
 InputPrompt: TypeAlias = InputPrompttextPrompt
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InputPrompt/)."""
@@ -2366,27 +2367,27 @@ InvocationInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationInput/)."""
 
-InvocationInputMemberapiInvocationInput = TypedDict("InvocationInputMemberapiInvocationInput", {"api_invocation_input": Required["ApiInvocationInput"]})
+InvocationInputMemberapiInvocationInput = TypedDict("InvocationInputMemberapiInvocationInput", {"api_invocation_input": Required["ApiInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationInputMemberapiInvocationInput/)."""
-InvocationInputMemberfunctionInvocationInput = TypedDict("InvocationInputMemberfunctionInvocationInput", {"function_invocation_input": Required["FunctionInvocationInput"]})
+InvocationInputMemberfunctionInvocationInput = TypedDict("InvocationInputMemberfunctionInvocationInput", {"function_invocation_input": Required["FunctionInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationInputMemberfunctionInvocationInput/)."""
-InvocationInputMemberUnknown = TypedDict("InvocationInputMemberUnknown", {"unknown": Required[Literal[True]]})
+InvocationInputMemberUnknown = TypedDict("InvocationInputMemberUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationInputMemberUnknown/)."""
 InvocationInputMember: TypeAlias = InvocationInputMemberapiInvocationInput | InvocationInputMemberfunctionInvocationInput | InvocationInputMemberUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationInputMember/)."""
 
-InvocationResultMemberapiResult = TypedDict("InvocationResultMemberapiResult", {"api_result": Required["ApiResult"]})
+InvocationResultMemberapiResult = TypedDict("InvocationResultMemberapiResult", {"api_result": Required["ApiResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberapiResult/)."""
-InvocationResultMemberfunctionResult = TypedDict("InvocationResultMemberfunctionResult", {"function_result": Required["FunctionResult"]})
+InvocationResultMemberfunctionResult = TypedDict("InvocationResultMemberfunctionResult", {"function_result": Required["FunctionResult"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberfunctionResult/)."""
 InvocationResultMember: TypeAlias = InvocationResultMemberapiResult | InvocationResultMemberfunctionResult
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMember/)."""
 
-InvocationResultMemberOutputapiResult = TypedDict("InvocationResultMemberOutputapiResult", {"api_result": Required["ApiResultOutput"]})
+InvocationResultMemberOutputapiResult = TypedDict("InvocationResultMemberOutputapiResult", {"api_result": Required["ApiResultOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberOutputapiResult/)."""
-InvocationResultMemberOutputfunctionResult = TypedDict("InvocationResultMemberOutputfunctionResult", {"function_result": Required["FunctionResultOutput"]})
+InvocationResultMemberOutputfunctionResult = TypedDict("InvocationResultMemberOutputfunctionResult", {"function_result": Required["FunctionResultOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberOutputfunctionResult/)."""
-InvocationResultMemberOutputUnknown = TypedDict("InvocationResultMemberOutputUnknown", {"unknown": Required[Literal[True]]})
+InvocationResultMemberOutputUnknown = TypedDict("InvocationResultMemberOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberOutputUnknown/)."""
 InvocationResultMemberOutput: TypeAlias = InvocationResultMemberOutputapiResult | InvocationResultMemberOutputfunctionResult | InvocationResultMemberOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationResultMemberOutput/)."""
@@ -2403,14 +2404,14 @@ InvocationStep = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStep/)."""
 
-InvocationStepPayloadcontentBlocks = TypedDict("InvocationStepPayloadcontentBlocks", {"content_blocks": Required["Sequence[BedrockSessionContentBlock]"]})
+InvocationStepPayloadcontentBlocks = TypedDict("InvocationStepPayloadcontentBlocks", {"content_blocks": Required["Sequence[BedrockSessionContentBlock]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepPayloadcontentBlocks/)."""
 InvocationStepPayload: TypeAlias = InvocationStepPayloadcontentBlocks
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepPayload/)."""
 
-InvocationStepPayloadOutputcontentBlocks = TypedDict("InvocationStepPayloadOutputcontentBlocks", {"content_blocks": Required["list[BedrockSessionContentBlockOutput]"]})
+InvocationStepPayloadOutputcontentBlocks = TypedDict("InvocationStepPayloadOutputcontentBlocks", {"content_blocks": Required["list[BedrockSessionContentBlockOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepPayloadOutputcontentBlocks/)."""
-InvocationStepPayloadOutputUnknown = TypedDict("InvocationStepPayloadOutputUnknown", {"unknown": Required[Literal[True]]})
+InvocationStepPayloadOutputUnknown = TypedDict("InvocationStepPayloadOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepPayloadOutputUnknown/)."""
 InvocationStepPayloadOutput: TypeAlias = InvocationStepPayloadOutputcontentBlocks | InvocationStepPayloadOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/InvocationStepPayloadOutput/)."""
@@ -2746,9 +2747,9 @@ MantleFoundationModelModelConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/MantleFoundationModelModelConfiguration/)."""
 
-MemorysessionSummary = TypedDict("MemorysessionSummary", {"session_summary": Required["MemorySessionSummary"]})
+MemorysessionSummary = TypedDict("MemorysessionSummary", {"session_summary": Required["MemorySessionSummary"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/MemorysessionSummary-3d498bd79ed8/)."""
-MemoryUnknown = TypedDict("MemoryUnknown", {"unknown": Required[Literal[True]]})
+MemoryUnknown = TypedDict("MemoryUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/MemoryUnknown/)."""
 Memory: TypeAlias = MemorysessionSummary | MemoryUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/Memory/)."""
@@ -2853,9 +2854,9 @@ NodeDependencyEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeDependencyEvent/)."""
 
-NodeExecutionContentdocument = TypedDict("NodeExecutionContentdocument", {"document": Required["JSONValue"]})
+NodeExecutionContentdocument = TypedDict("NodeExecutionContentdocument", {"document": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeExecutionContentdocument/)."""
-NodeExecutionContentUnknown = TypedDict("NodeExecutionContentUnknown", {"unknown": Required[Literal[True]]})
+NodeExecutionContentUnknown = TypedDict("NodeExecutionContentUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeExecutionContentUnknown/)."""
 NodeExecutionContent: TypeAlias = NodeExecutionContentdocument | NodeExecutionContentUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeExecutionContent/)."""
@@ -2944,9 +2945,9 @@ NodeOutputNext = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeOutputNext/)."""
 
-NodeTraceElementsagentTraces = TypedDict("NodeTraceElementsagentTraces", {"agent_traces": Required["list[TracePart]"]})
+NodeTraceElementsagentTraces = TypedDict("NodeTraceElementsagentTraces", {"agent_traces": Required["list[TracePart]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeTraceElementsagentTraces/)."""
-NodeTraceElementsUnknown = TypedDict("NodeTraceElementsUnknown", {"unknown": Required[Literal[True]]})
+NodeTraceElementsUnknown = TypedDict("NodeTraceElementsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeTraceElementsUnknown/)."""
 NodeTraceElements: TypeAlias = NodeTraceElementsagentTraces | NodeTraceElementsUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/NodeTraceElements/)."""
@@ -2983,9 +2984,9 @@ OptimizePromptOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizePromptOutput/)."""
 
-OptimizedPrompttextPrompt = TypedDict("OptimizedPrompttextPrompt", {"text_prompt": Required["TextPromptOutput"]})
+OptimizedPrompttextPrompt = TypedDict("OptimizedPrompttextPrompt", {"text_prompt": Required["TextPromptOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPrompttextPrompt/)."""
-OptimizedPromptUnknown = TypedDict("OptimizedPromptUnknown", {"unknown": Required[Literal[True]]})
+OptimizedPromptUnknown = TypedDict("OptimizedPromptUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptUnknown/)."""
 OptimizedPrompt: TypeAlias = OptimizedPrompttextPrompt | OptimizedPromptUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPrompt/)."""
@@ -2998,11 +2999,11 @@ OptimizedPromptEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptEvent/)."""
 
-OptimizedPromptStreamoptimizedPromptEvent = TypedDict("OptimizedPromptStreamoptimizedPromptEvent", {"optimized_prompt_event": Required["OptimizedPromptEvent"]})
+OptimizedPromptStreamoptimizedPromptEvent = TypedDict("OptimizedPromptStreamoptimizedPromptEvent", {"optimized_prompt_event": Required["OptimizedPromptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptStreamoptimizedPromptEvent/)."""
-OptimizedPromptStreamanalyzePromptEvent = TypedDict("OptimizedPromptStreamanalyzePromptEvent", {"analyze_prompt_event": Required["AnalyzePromptEvent"]})
+OptimizedPromptStreamanalyzePromptEvent = TypedDict("OptimizedPromptStreamanalyzePromptEvent", {"analyze_prompt_event": Required["AnalyzePromptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptStreamanalyzePromptEvent/)."""
-OptimizedPromptStreamUnknown = TypedDict("OptimizedPromptStreamUnknown", {"unknown": Required[Literal[True]]})
+OptimizedPromptStreamUnknown = TypedDict("OptimizedPromptStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptStreamUnknown/)."""
 OptimizedPromptStream: TypeAlias = OptimizedPromptStreamoptimizedPromptEvent | OptimizedPromptStreamanalyzePromptEvent | OptimizedPromptStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OptimizedPromptStream/)."""
@@ -3019,7 +3020,7 @@ OrchestrationConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationConfiguration/)."""
 
-OrchestrationExecutorlambda = TypedDict("OrchestrationExecutorlambda", {"lambda": Required["str"]})
+OrchestrationExecutorlambda = TypedDict("OrchestrationExecutorlambda", {"lambda": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationExecutorlambda/)."""
 OrchestrationExecutor: TypeAlias = OrchestrationExecutorlambda
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationExecutor/)."""
@@ -3035,17 +3036,17 @@ OrchestrationModelInvocationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationModelInvocationOutput/)."""
 
-OrchestrationTracerationale = TypedDict("OrchestrationTracerationale", {"rationale": Required["Rationale"]})
+OrchestrationTracerationale = TypedDict("OrchestrationTracerationale", {"rationale": Required["Rationale"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTracerationale/)."""
-OrchestrationTraceinvocationInput = TypedDict("OrchestrationTraceinvocationInput", {"invocation_input": Required["InvocationInput"]})
+OrchestrationTraceinvocationInput = TypedDict("OrchestrationTraceinvocationInput", {"invocation_input": Required["InvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTraceinvocationInput/)."""
-OrchestrationTraceobservation = TypedDict("OrchestrationTraceobservation", {"observation": Required["Observation"]})
+OrchestrationTraceobservation = TypedDict("OrchestrationTraceobservation", {"observation": Required["Observation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTraceobservation/)."""
-OrchestrationTracemodelInvocationInput = TypedDict("OrchestrationTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]})
+OrchestrationTracemodelInvocationInput = TypedDict("OrchestrationTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTracemodelInvocationInput/)."""
-OrchestrationTracemodelInvocationOutput = TypedDict("OrchestrationTracemodelInvocationOutput", {"model_invocation_output": Required["OrchestrationModelInvocationOutput"]})
+OrchestrationTracemodelInvocationOutput = TypedDict("OrchestrationTracemodelInvocationOutput", {"model_invocation_output": Required["OrchestrationModelInvocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTracemodelInvocationOutput/)."""
-OrchestrationTraceUnknown = TypedDict("OrchestrationTraceUnknown", {"unknown": Required[Literal[True]]})
+OrchestrationTraceUnknown = TypedDict("OrchestrationTraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTraceUnknown/)."""
 OrchestrationTrace: TypeAlias = OrchestrationTracerationale | OrchestrationTraceinvocationInput | OrchestrationTraceobservation | OrchestrationTracemodelInvocationInput | OrchestrationTracemodelInvocationOutput | OrchestrationTraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/OrchestrationTrace/)."""
@@ -3117,11 +3118,11 @@ PostProcessingParsedResponse = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PostProcessingParsedResponse/)."""
 
-PostProcessingTracemodelInvocationInput = TypedDict("PostProcessingTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]})
+PostProcessingTracemodelInvocationInput = TypedDict("PostProcessingTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PostProcessingTracemodelInvocationInput/)."""
-PostProcessingTracemodelInvocationOutput = TypedDict("PostProcessingTracemodelInvocationOutput", {"model_invocation_output": Required["PostProcessingModelInvocationOutput"]})
+PostProcessingTracemodelInvocationOutput = TypedDict("PostProcessingTracemodelInvocationOutput", {"model_invocation_output": Required["PostProcessingModelInvocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PostProcessingTracemodelInvocationOutput/)."""
-PostProcessingTraceUnknown = TypedDict("PostProcessingTraceUnknown", {"unknown": Required[Literal[True]]})
+PostProcessingTraceUnknown = TypedDict("PostProcessingTraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PostProcessingTraceUnknown/)."""
 PostProcessingTrace: TypeAlias = PostProcessingTracemodelInvocationInput | PostProcessingTracemodelInvocationOutput | PostProcessingTraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PostProcessingTrace/)."""
@@ -3147,11 +3148,11 @@ PreProcessingParsedResponse = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PreProcessingParsedResponse/)."""
 
-PreProcessingTracemodelInvocationInput = TypedDict("PreProcessingTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]})
+PreProcessingTracemodelInvocationInput = TypedDict("PreProcessingTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PreProcessingTracemodelInvocationInput/)."""
-PreProcessingTracemodelInvocationOutput = TypedDict("PreProcessingTracemodelInvocationOutput", {"model_invocation_output": Required["PreProcessingModelInvocationOutput"]})
+PreProcessingTracemodelInvocationOutput = TypedDict("PreProcessingTracemodelInvocationOutput", {"model_invocation_output": Required["PreProcessingModelInvocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PreProcessingTracemodelInvocationOutput/)."""
-PreProcessingTraceUnknown = TypedDict("PreProcessingTraceUnknown", {"unknown": Required[Literal[True]]})
+PreProcessingTraceUnknown = TypedDict("PreProcessingTraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PreProcessingTraceUnknown/)."""
 PreProcessingTrace: TypeAlias = PreProcessingTracemodelInvocationInput | PreProcessingTracemodelInvocationOutput | PreProcessingTraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/PreProcessingTrace/)."""
@@ -3251,11 +3252,11 @@ RawResponse = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RawResponse/)."""
 
-ReasoningContentBlockreasoningText = TypedDict("ReasoningContentBlockreasoningText", {"reasoning_text": Required["ReasoningTextBlock"]})
+ReasoningContentBlockreasoningText = TypedDict("ReasoningContentBlockreasoningText", {"reasoning_text": Required["ReasoningTextBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ReasoningContentBlockreasoningText/)."""
-ReasoningContentBlockredactedContent = TypedDict("ReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]})
+ReasoningContentBlockredactedContent = TypedDict("ReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ReasoningContentBlockredactedContent/)."""
-ReasoningContentBlockUnknown = TypedDict("ReasoningContentBlockUnknown", {"unknown": Required[Literal[True]]})
+ReasoningContentBlockUnknown = TypedDict("ReasoningContentBlockUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ReasoningContentBlockUnknown/)."""
 ReasoningContentBlock: TypeAlias = ReasoningContentBlockreasoningText | ReasoningContentBlockredactedContent | ReasoningContentBlockUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ReasoningContentBlock/)."""
@@ -3352,22 +3353,22 @@ RerankingConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankingConfiguration/)."""
 
-RerankingMetadataSelectiveModeConfigurationfieldsToInclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToInclude", {"fields_to_include": Required["Sequence[FieldForReranking]"]})
+RerankingMetadataSelectiveModeConfigurationfieldsToInclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToInclude", {"fields_to_include": Required["Sequence[FieldForReranking]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankingMetadataSelectiveModeConfigurationfieldsToInclude/)."""
-RerankingMetadataSelectiveModeConfigurationfieldsToExclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToExclude", {"fields_to_exclude": Required["Sequence[FieldForReranking]"]})
+RerankingMetadataSelectiveModeConfigurationfieldsToExclude = TypedDict("RerankingMetadataSelectiveModeConfigurationfieldsToExclude", {"fields_to_exclude": Required["Sequence[FieldForReranking]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankingMetadataSelectiveModeConfigurationfieldsToExclude/)."""
 RerankingMetadataSelectiveModeConfiguration: TypeAlias = RerankingMetadataSelectiveModeConfigurationfieldsToInclude | RerankingMetadataSelectiveModeConfigurationfieldsToExclude
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RerankingMetadataSelectiveModeConfiguration/)."""
 
-ResponseStreamchunk = TypedDict("ResponseStreamchunk", {"chunk": Required["PayloadPart"]})
+ResponseStreamchunk = TypedDict("ResponseStreamchunk", {"chunk": Required["PayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamchunk/)."""
-ResponseStreamtrace = TypedDict("ResponseStreamtrace", {"trace": Required["TracePart"]})
+ResponseStreamtrace = TypedDict("ResponseStreamtrace", {"trace": Required["TracePart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamtrace/)."""
-ResponseStreamreturnControl = TypedDict("ResponseStreamreturnControl", {"return_control": Required["ReturnControlPayload"]})
+ResponseStreamreturnControl = TypedDict("ResponseStreamreturnControl", {"return_control": Required["ReturnControlPayload"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamreturnControl/)."""
-ResponseStreamfiles = TypedDict("ResponseStreamfiles", {"files": Required["FilePart"]})
+ResponseStreamfiles = TypedDict("ResponseStreamfiles", {"files": Required["FilePart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamfiles/)."""
-ResponseStreamUnknown = TypedDict("ResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+ResponseStreamUnknown = TypedDict("ResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStreamUnknown/)."""
 ResponseStream: TypeAlias = ResponseStreamchunk | ResponseStreamtrace | ResponseStreamreturnControl | ResponseStreamfiles | ResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/ResponseStream/)."""
@@ -3382,31 +3383,31 @@ RetrievalContent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalContent/)."""
 
-RetrievalFilterequals = TypedDict("RetrievalFilterequals", {"equals": Required["FilterAttribute"]})
+RetrievalFilterequals = TypedDict("RetrievalFilterequals", {"equals": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterequals/)."""
-RetrievalFilternotEquals = TypedDict("RetrievalFilternotEquals", {"not_equals": Required["FilterAttribute"]})
+RetrievalFilternotEquals = TypedDict("RetrievalFilternotEquals", {"not_equals": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilternotEquals/)."""
-RetrievalFiltergreaterThan = TypedDict("RetrievalFiltergreaterThan", {"greater_than": Required["FilterAttribute"]})
+RetrievalFiltergreaterThan = TypedDict("RetrievalFiltergreaterThan", {"greater_than": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFiltergreaterThan/)."""
-RetrievalFiltergreaterThanOrEquals = TypedDict("RetrievalFiltergreaterThanOrEquals", {"greater_than_or_equals": Required["FilterAttribute"]})
+RetrievalFiltergreaterThanOrEquals = TypedDict("RetrievalFiltergreaterThanOrEquals", {"greater_than_or_equals": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFiltergreaterThanOrEquals/)."""
-RetrievalFilterlessThan = TypedDict("RetrievalFilterlessThan", {"less_than": Required["FilterAttribute"]})
+RetrievalFilterlessThan = TypedDict("RetrievalFilterlessThan", {"less_than": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterlessThan/)."""
-RetrievalFilterlessThanOrEquals = TypedDict("RetrievalFilterlessThanOrEquals", {"less_than_or_equals": Required["FilterAttribute"]})
+RetrievalFilterlessThanOrEquals = TypedDict("RetrievalFilterlessThanOrEquals", {"less_than_or_equals": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterlessThanOrEquals/)."""
-RetrievalFilterin = TypedDict("RetrievalFilterin", {"in": Required["FilterAttribute"]})
+RetrievalFilterin = TypedDict("RetrievalFilterin", {"in": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterin/)."""
-RetrievalFilternotIn = TypedDict("RetrievalFilternotIn", {"not_in": Required["FilterAttribute"]})
+RetrievalFilternotIn = TypedDict("RetrievalFilternotIn", {"not_in": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilternotIn/)."""
-RetrievalFilterstartsWith = TypedDict("RetrievalFilterstartsWith", {"starts_with": Required["FilterAttribute"]})
+RetrievalFilterstartsWith = TypedDict("RetrievalFilterstartsWith", {"starts_with": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterstartsWith/)."""
-RetrievalFilterlistContains = TypedDict("RetrievalFilterlistContains", {"list_contains": Required["FilterAttribute"]})
+RetrievalFilterlistContains = TypedDict("RetrievalFilterlistContains", {"list_contains": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterlistContains/)."""
-RetrievalFilterstringContains = TypedDict("RetrievalFilterstringContains", {"string_contains": Required["FilterAttribute"]})
+RetrievalFilterstringContains = TypedDict("RetrievalFilterstringContains", {"string_contains": Required["FilterAttribute"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterstringContains/)."""
-RetrievalFilterandAll = TypedDict("RetrievalFilterandAll", {"and_all": Required["Sequence[RetrievalFilter]"]})
+RetrievalFilterandAll = TypedDict("RetrievalFilterandAll", {"and_all": Required["Sequence[RetrievalFilter]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterandAll/)."""
-RetrievalFilterorAll = TypedDict("RetrievalFilterorAll", {"or_all": Required["Sequence[RetrievalFilter]"]})
+RetrievalFilterorAll = TypedDict("RetrievalFilterorAll", {"or_all": Required["Sequence[RetrievalFilter]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilterorAll/)."""
 RetrievalFilter: TypeAlias = RetrievalFilterequals | RetrievalFilternotEquals | RetrievalFiltergreaterThan | RetrievalFiltergreaterThanOrEquals | RetrievalFilterlessThan | RetrievalFilterlessThanOrEquals | RetrievalFilterin | RetrievalFilternotIn | RetrievalFilterstartsWith | RetrievalFilterlistContains | RetrievalFilterstringContains | RetrievalFilterandAll | RetrievalFilterorAll
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievalFilter/)."""
@@ -3608,13 +3609,13 @@ RetrieveAndGenerateStreamOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamOutput/)."""
 
-RetrieveAndGenerateStreamResponseOutputoutput = TypedDict("RetrieveAndGenerateStreamResponseOutputoutput", {"output": Required["RetrieveAndGenerateOutputEvent"]})
+RetrieveAndGenerateStreamResponseOutputoutput = TypedDict("RetrieveAndGenerateStreamResponseOutputoutput", {"output": Required["RetrieveAndGenerateOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutputoutput/)."""
-RetrieveAndGenerateStreamResponseOutputcitation = TypedDict("RetrieveAndGenerateStreamResponseOutputcitation", {"citation": Required["CitationEvent"]})
+RetrieveAndGenerateStreamResponseOutputcitation = TypedDict("RetrieveAndGenerateStreamResponseOutputcitation", {"citation": Required["CitationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutputcitation/)."""
-RetrieveAndGenerateStreamResponseOutputguardrail = TypedDict("RetrieveAndGenerateStreamResponseOutputguardrail", {"guardrail": Required["GuardrailEvent"]})
+RetrieveAndGenerateStreamResponseOutputguardrail = TypedDict("RetrieveAndGenerateStreamResponseOutputguardrail", {"guardrail": Required["GuardrailEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutputguardrail/)."""
-RetrieveAndGenerateStreamResponseOutputUnknown = TypedDict("RetrieveAndGenerateStreamResponseOutputUnknown", {"unknown": Required[Literal[True]]})
+RetrieveAndGenerateStreamResponseOutputUnknown = TypedDict("RetrieveAndGenerateStreamResponseOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutputUnknown/)."""
 RetrieveAndGenerateStreamResponseOutput: TypeAlias = RetrieveAndGenerateStreamResponseOutputoutput | RetrieveAndGenerateStreamResponseOutputcitation | RetrieveAndGenerateStreamResponseOutputguardrail | RetrieveAndGenerateStreamResponseOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieveAndGenerateStreamResponseOutput/)."""
@@ -3642,7 +3643,7 @@ RetrievedReference = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrievedReference/)."""
 
-RetrieverConfigurationknowledgeBase = TypedDict("RetrieverConfigurationknowledgeBase", {"knowledge_base": Required["KnowledgeBaseRetrieverConfiguration"]})
+RetrieverConfigurationknowledgeBase = TypedDict("RetrieverConfigurationknowledgeBase", {"knowledge_base": Required["KnowledgeBaseRetrieverConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieverConfigurationknowledgeBase/)."""
 RetrieverConfiguration: TypeAlias = RetrieverConfigurationknowledgeBase
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RetrieverConfiguration/)."""
@@ -3675,15 +3676,15 @@ RoutingClassifierModelInvocationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierModelInvocationOutput/)."""
 
-RoutingClassifierTraceinvocationInput = TypedDict("RoutingClassifierTraceinvocationInput", {"invocation_input": Required["InvocationInput"]})
+RoutingClassifierTraceinvocationInput = TypedDict("RoutingClassifierTraceinvocationInput", {"invocation_input": Required["InvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTraceinvocationInput/)."""
-RoutingClassifierTraceobservation = TypedDict("RoutingClassifierTraceobservation", {"observation": Required["Observation"]})
+RoutingClassifierTraceobservation = TypedDict("RoutingClassifierTraceobservation", {"observation": Required["Observation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTraceobservation/)."""
-RoutingClassifierTracemodelInvocationInput = TypedDict("RoutingClassifierTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]})
+RoutingClassifierTracemodelInvocationInput = TypedDict("RoutingClassifierTracemodelInvocationInput", {"model_invocation_input": Required["ModelInvocationInput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTracemodelInvocationInput/)."""
-RoutingClassifierTracemodelInvocationOutput = TypedDict("RoutingClassifierTracemodelInvocationOutput", {"model_invocation_output": Required["RoutingClassifierModelInvocationOutput"]})
+RoutingClassifierTracemodelInvocationOutput = TypedDict("RoutingClassifierTracemodelInvocationOutput", {"model_invocation_output": Required["RoutingClassifierModelInvocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTracemodelInvocationOutput/)."""
-RoutingClassifierTraceUnknown = TypedDict("RoutingClassifierTraceUnknown", {"unknown": Required[Literal[True]]})
+RoutingClassifierTraceUnknown = TypedDict("RoutingClassifierTraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTraceUnknown/)."""
 RoutingClassifierTrace: TypeAlias = RoutingClassifierTraceinvocationInput | RoutingClassifierTraceobservation | RoutingClassifierTracemodelInvocationInput | RoutingClassifierTracemodelInvocationOutput | RoutingClassifierTraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/RoutingClassifierTrace/)."""
@@ -3865,28 +3866,28 @@ TextToSqlKnowledgeBaseConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TextToSqlKnowledgeBaseConfiguration/)."""
 
-TraceguardrailTrace = TypedDict("TraceguardrailTrace", {"guardrail_trace": Required["GuardrailTrace"]})
+TraceguardrailTrace = TypedDict("TraceguardrailTrace", {"guardrail_trace": Required["GuardrailTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceguardrailTrace/)."""
-TracepreProcessingTrace = TypedDict("TracepreProcessingTrace", {"pre_processing_trace": Required["PreProcessingTrace"]})
+TracepreProcessingTrace = TypedDict("TracepreProcessingTrace", {"pre_processing_trace": Required["PreProcessingTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TracepreProcessingTrace/)."""
-TraceorchestrationTrace = TypedDict("TraceorchestrationTrace", {"orchestration_trace": Required["OrchestrationTrace"]})
+TraceorchestrationTrace = TypedDict("TraceorchestrationTrace", {"orchestration_trace": Required["OrchestrationTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceorchestrationTrace/)."""
-TracepostProcessingTrace = TypedDict("TracepostProcessingTrace", {"post_processing_trace": Required["PostProcessingTrace"]})
+TracepostProcessingTrace = TypedDict("TracepostProcessingTrace", {"post_processing_trace": Required["PostProcessingTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TracepostProcessingTrace/)."""
-TraceroutingClassifierTrace = TypedDict("TraceroutingClassifierTrace", {"routing_classifier_trace": Required["RoutingClassifierTrace"]})
+TraceroutingClassifierTrace = TypedDict("TraceroutingClassifierTrace", {"routing_classifier_trace": Required["RoutingClassifierTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceroutingClassifierTrace/)."""
-TracefailureTrace = TypedDict("TracefailureTrace", {"failure_trace": Required["FailureTrace"]})
+TracefailureTrace = TypedDict("TracefailureTrace", {"failure_trace": Required["FailureTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TracefailureTrace/)."""
-TracecustomOrchestrationTrace = TypedDict("TracecustomOrchestrationTrace", {"custom_orchestration_trace": Required["CustomOrchestrationTrace"]})
+TracecustomOrchestrationTrace = TypedDict("TracecustomOrchestrationTrace", {"custom_orchestration_trace": Required["CustomOrchestrationTrace"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TracecustomOrchestrationTrace/)."""
-TraceUnknown = TypedDict("TraceUnknown", {"unknown": Required[Literal[True]]})
+TraceUnknown = TypedDict("TraceUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceUnknown/)."""
 Trace: TypeAlias = TraceguardrailTrace | TracepreProcessingTrace | TraceorchestrationTrace | TracepostProcessingTrace | TraceroutingClassifierTrace | TracefailureTrace | TracecustomOrchestrationTrace | TraceUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/Trace/)."""
 
-TraceElementsagentTraces = TypedDict("TraceElementsagentTraces", {"agent_traces": Required["list[TracePart]"]})
+TraceElementsagentTraces = TypedDict("TraceElementsagentTraces", {"agent_traces": Required["list[TracePart]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceElementsagentTraces/)."""
-TraceElementsUnknown = TypedDict("TraceElementsUnknown", {"unknown": Required[Literal[True]]})
+TraceElementsUnknown = TypedDict("TraceElementsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceElementsUnknown/)."""
 TraceElements: TypeAlias = TraceElementsagentTraces | TraceElementsUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agent-runtime/types/TraceElements/)."""

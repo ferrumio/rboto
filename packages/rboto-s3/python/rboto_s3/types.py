@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -767,22 +768,22 @@ AnalyticsExportDestination = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsExportDestination/)."""
 
-AnalyticsFilterPrefix = TypedDict("AnalyticsFilterPrefix", {"prefix": Required["str"]})
+AnalyticsFilterPrefix = TypedDict("AnalyticsFilterPrefix", {"prefix": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterPrefix/)."""
-AnalyticsFilterTag = TypedDict("AnalyticsFilterTag", {"tag": Required["Tag"]})
+AnalyticsFilterTag = TypedDict("AnalyticsFilterTag", {"tag": Required["Tag"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterTag/)."""
-AnalyticsFilterAnd = TypedDict("AnalyticsFilterAnd", {"and": Required["AnalyticsAndOperator"]})
+AnalyticsFilterAnd = TypedDict("AnalyticsFilterAnd", {"and": Required["AnalyticsAndOperator"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterAnd/)."""
 AnalyticsFilter: TypeAlias = AnalyticsFilterPrefix | AnalyticsFilterTag | AnalyticsFilterAnd
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilter/)."""
 
-AnalyticsFilterOutputPrefix = TypedDict("AnalyticsFilterOutputPrefix", {"prefix": Required["str"]})
+AnalyticsFilterOutputPrefix = TypedDict("AnalyticsFilterOutputPrefix", {"prefix": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputPrefix/)."""
-AnalyticsFilterOutputTag = TypedDict("AnalyticsFilterOutputTag", {"tag": Required["TagOutput"]})
+AnalyticsFilterOutputTag = TypedDict("AnalyticsFilterOutputTag", {"tag": Required["TagOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputTag/)."""
-AnalyticsFilterOutputAnd = TypedDict("AnalyticsFilterOutputAnd", {"and": Required["AnalyticsAndOperatorOutput"]})
+AnalyticsFilterOutputAnd = TypedDict("AnalyticsFilterOutputAnd", {"and": Required["AnalyticsAndOperatorOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputAnd/)."""
-AnalyticsFilterOutputUnknown = TypedDict("AnalyticsFilterOutputUnknown", {"unknown": Required[Literal[True]]})
+AnalyticsFilterOutputUnknown = TypedDict("AnalyticsFilterOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutputUnknown/)."""
 AnalyticsFilterOutput: TypeAlias = AnalyticsFilterOutputPrefix | AnalyticsFilterOutputTag | AnalyticsFilterOutputAnd | AnalyticsFilterOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/AnalyticsFilterOutput/)."""
@@ -2576,26 +2577,26 @@ MetricsConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsConfiguration/)."""
 
-MetricsFilterPrefix = TypedDict("MetricsFilterPrefix", {"prefix": Required["str"]})
+MetricsFilterPrefix = TypedDict("MetricsFilterPrefix", {"prefix": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterPrefix/)."""
-MetricsFilterTag = TypedDict("MetricsFilterTag", {"tag": Required["Tag"]})
+MetricsFilterTag = TypedDict("MetricsFilterTag", {"tag": Required["Tag"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterTag/)."""
-MetricsFilterAccessPointArn = TypedDict("MetricsFilterAccessPointArn", {"access_point_arn": Required["str"]})
+MetricsFilterAccessPointArn = TypedDict("MetricsFilterAccessPointArn", {"access_point_arn": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterAccessPointArn/)."""
-MetricsFilterAnd = TypedDict("MetricsFilterAnd", {"and": Required["MetricsAndOperator"]})
+MetricsFilterAnd = TypedDict("MetricsFilterAnd", {"and": Required["MetricsAndOperator"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterAnd/)."""
 MetricsFilter: TypeAlias = MetricsFilterPrefix | MetricsFilterTag | MetricsFilterAccessPointArn | MetricsFilterAnd
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilter/)."""
 
-MetricsFilterOutputPrefix = TypedDict("MetricsFilterOutputPrefix", {"prefix": Required["str"]})
+MetricsFilterOutputPrefix = TypedDict("MetricsFilterOutputPrefix", {"prefix": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputPrefix/)."""
-MetricsFilterOutputTag = TypedDict("MetricsFilterOutputTag", {"tag": Required["TagOutput"]})
+MetricsFilterOutputTag = TypedDict("MetricsFilterOutputTag", {"tag": Required["TagOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputTag/)."""
-MetricsFilterOutputAccessPointArn = TypedDict("MetricsFilterOutputAccessPointArn", {"access_point_arn": Required["str"]})
+MetricsFilterOutputAccessPointArn = TypedDict("MetricsFilterOutputAccessPointArn", {"access_point_arn": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputAccessPointArn/)."""
-MetricsFilterOutputAnd = TypedDict("MetricsFilterOutputAnd", {"and": Required["MetricsAndOperatorOutput"]})
+MetricsFilterOutputAnd = TypedDict("MetricsFilterOutputAnd", {"and": Required["MetricsAndOperatorOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputAnd/)."""
-MetricsFilterOutputUnknown = TypedDict("MetricsFilterOutputUnknown", {"unknown": Required[Literal[True]]})
+MetricsFilterOutputUnknown = TypedDict("MetricsFilterOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutputUnknown/)."""
 MetricsFilterOutput: TypeAlias = MetricsFilterOutputPrefix | MetricsFilterOutputTag | MetricsFilterOutputAccessPointArn | MetricsFilterOutputAnd | MetricsFilterOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/MetricsFilterOutput/)."""
@@ -2669,7 +2670,7 @@ Object = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/Object/)."""
 
-ObjectEncryptionSSEKMS = TypedDict("ObjectEncryptionSSEKMS", {"ssekms": Required["SSEKMSEncryption"]})
+ObjectEncryptionSSEKMS = TypedDict("ObjectEncryptionSSEKMS", {"ssekms": Required["SSEKMSEncryption"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectEncryptionSSEKMS/)."""
 ObjectEncryption: TypeAlias = ObjectEncryptionSSEKMS
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ObjectEncryption/)."""
@@ -3556,17 +3557,17 @@ ScanRange = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/ScanRange/)."""
 
-SelectObjectContentEventStreamRecords = TypedDict("SelectObjectContentEventStreamRecords", {"records": Required["RecordsEvent"]})
+SelectObjectContentEventStreamRecords = TypedDict("SelectObjectContentEventStreamRecords", {"records": Required["RecordsEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamRecords/)."""
-SelectObjectContentEventStreamStats = TypedDict("SelectObjectContentEventStreamStats", {"stats": Required["StatsEvent"]})
+SelectObjectContentEventStreamStats = TypedDict("SelectObjectContentEventStreamStats", {"stats": Required["StatsEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamStats/)."""
-SelectObjectContentEventStreamProgress = TypedDict("SelectObjectContentEventStreamProgress", {"progress": Required["ProgressEvent"]})
+SelectObjectContentEventStreamProgress = TypedDict("SelectObjectContentEventStreamProgress", {"progress": Required["ProgressEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamProgress/)."""
-SelectObjectContentEventStreamCont = TypedDict("SelectObjectContentEventStreamCont", {"cont": Required["ContinuationEvent"]})
+SelectObjectContentEventStreamCont = TypedDict("SelectObjectContentEventStreamCont", {"cont": Required["ContinuationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamCont/)."""
-SelectObjectContentEventStreamEnd = TypedDict("SelectObjectContentEventStreamEnd", {"end": Required["EndEvent"]})
+SelectObjectContentEventStreamEnd = TypedDict("SelectObjectContentEventStreamEnd", {"end": Required["EndEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamEnd/)."""
-SelectObjectContentEventStreamUnknown = TypedDict("SelectObjectContentEventStreamUnknown", {"unknown": Required[Literal[True]]})
+SelectObjectContentEventStreamUnknown = TypedDict("SelectObjectContentEventStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStreamUnknown/)."""
 SelectObjectContentEventStream: TypeAlias = SelectObjectContentEventStreamRecords | SelectObjectContentEventStreamStats | SelectObjectContentEventStreamProgress | SelectObjectContentEventStreamCont | SelectObjectContentEventStreamEnd | SelectObjectContentEventStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/s3/types/SelectObjectContentEventStream/)."""

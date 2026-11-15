@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -545,9 +546,9 @@ DataAutomationLibraryConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryConfiguration/)."""
 
-DataAutomationLibraryEntitySummaryvocabulary = TypedDict("DataAutomationLibraryEntitySummaryvocabulary", {"vocabulary": Required["VocabularyEntitySummary"]})
+DataAutomationLibraryEntitySummaryvocabulary = TypedDict("DataAutomationLibraryEntitySummaryvocabulary", {"vocabulary": Required["VocabularyEntitySummary"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummaryvocabulary/)."""
-DataAutomationLibraryEntitySummaryUnknown = TypedDict("DataAutomationLibraryEntitySummaryUnknown", {"unknown": Required[Literal[True]]})
+DataAutomationLibraryEntitySummaryUnknown = TypedDict("DataAutomationLibraryEntitySummaryUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummaryUnknown/)."""
 DataAutomationLibraryEntitySummary: TypeAlias = DataAutomationLibraryEntitySummaryvocabulary | DataAutomationLibraryEntitySummaryUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/DataAutomationLibraryEntitySummary/)."""
@@ -777,9 +778,9 @@ EncryptionConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EncryptionConfiguration/)."""
 
-EntityDetailsvocabulary = TypedDict("EntityDetailsvocabulary", {"vocabulary": Required["VocabularyEntity"]})
+EntityDetailsvocabulary = TypedDict("EntityDetailsvocabulary", {"vocabulary": Required["VocabularyEntity"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetailsvocabulary/)."""
-EntityDetailsUnknown = TypedDict("EntityDetailsUnknown", {"unknown": Required[Literal[True]]})
+EntityDetailsUnknown = TypedDict("EntityDetailsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetailsUnknown/)."""
 EntityDetails: TypeAlias = EntityDetailsvocabulary | EntityDetailsUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/EntityDetails/)."""
@@ -908,9 +909,9 @@ ImageStandardOutputConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/ImageStandardOutputConfiguration/)."""
 
-InlinePayloadupsertEntitiesInfo = TypedDict("InlinePayloadupsertEntitiesInfo", {"upsert_entities_info": Required["Sequence[UpsertEntityInfo]"]})
+InlinePayloadupsertEntitiesInfo = TypedDict("InlinePayloadupsertEntitiesInfo", {"upsert_entities_info": Required["Sequence[UpsertEntityInfo]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayloadupsertEntitiesInfo/)."""
-InlinePayloaddeleteEntitiesInfo = TypedDict("InlinePayloaddeleteEntitiesInfo", {"delete_entities_info": Required["DeleteEntitiesInfo"]})
+InlinePayloaddeleteEntitiesInfo = TypedDict("InlinePayloaddeleteEntitiesInfo", {"delete_entities_info": Required["DeleteEntitiesInfo"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayloaddeleteEntitiesInfo/)."""
 InlinePayload: TypeAlias = InlinePayloadupsertEntitiesInfo | InlinePayloaddeleteEntitiesInfo
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/InlinePayload/)."""
@@ -1209,7 +1210,7 @@ UpdateDataAutomationProjectRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpdateDataAutomationProjectRequest/)."""
 
-UpsertEntityInfovocabulary = TypedDict("UpsertEntityInfovocabulary", {"vocabulary": Required["VocabularyEntityInfo"]})
+UpsertEntityInfovocabulary = TypedDict("UpsertEntityInfovocabulary", {"vocabulary": Required["VocabularyEntityInfo"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpsertEntityInfovocabulary/)."""
 UpsertEntityInfo: TypeAlias = UpsertEntityInfovocabulary
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation/types/UpsertEntityInfo/)."""

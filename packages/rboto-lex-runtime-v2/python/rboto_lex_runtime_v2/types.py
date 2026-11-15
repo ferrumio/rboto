@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -590,17 +591,17 @@ StartConversationRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequest/)."""
 
-StartConversationRequestEventStreamConfigurationEvent = TypedDict("StartConversationRequestEventStreamConfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]})
+StartConversationRequestEventStreamConfigurationEvent = TypedDict("StartConversationRequestEventStreamConfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamConfigurationEvent/)."""
-StartConversationRequestEventStreamAudioInputEvent = TypedDict("StartConversationRequestEventStreamAudioInputEvent", {"audio_input_event": Required["AudioInputEvent"]})
+StartConversationRequestEventStreamAudioInputEvent = TypedDict("StartConversationRequestEventStreamAudioInputEvent", {"audio_input_event": Required["AudioInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamAudioInputEvent/)."""
-StartConversationRequestEventStreamDTMFInputEvent = TypedDict("StartConversationRequestEventStreamDTMFInputEvent", {"dtmf_input_event": Required["DTMFInputEvent"]})
+StartConversationRequestEventStreamDTMFInputEvent = TypedDict("StartConversationRequestEventStreamDTMFInputEvent", {"dtmf_input_event": Required["DTMFInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamDTMFInputEvent/)."""
-StartConversationRequestEventStreamTextInputEvent = TypedDict("StartConversationRequestEventStreamTextInputEvent", {"text_input_event": Required["TextInputEvent"]})
+StartConversationRequestEventStreamTextInputEvent = TypedDict("StartConversationRequestEventStreamTextInputEvent", {"text_input_event": Required["TextInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamTextInputEvent/)."""
-StartConversationRequestEventStreamPlaybackCompletionEvent = TypedDict("StartConversationRequestEventStreamPlaybackCompletionEvent", {"playback_completion_event": Required["PlaybackCompletionEvent"]})
+StartConversationRequestEventStreamPlaybackCompletionEvent = TypedDict("StartConversationRequestEventStreamPlaybackCompletionEvent", {"playback_completion_event": Required["PlaybackCompletionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamPlaybackCompletionEvent/)."""
-StartConversationRequestEventStreamDisconnectionEvent = TypedDict("StartConversationRequestEventStreamDisconnectionEvent", {"disconnection_event": Required["DisconnectionEvent"]})
+StartConversationRequestEventStreamDisconnectionEvent = TypedDict("StartConversationRequestEventStreamDisconnectionEvent", {"disconnection_event": Required["DisconnectionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStreamDisconnectionEvent/)."""
 StartConversationRequestEventStream: TypeAlias = StartConversationRequestEventStreamConfigurationEvent | StartConversationRequestEventStreamAudioInputEvent | StartConversationRequestEventStreamDTMFInputEvent | StartConversationRequestEventStreamTextInputEvent | StartConversationRequestEventStreamPlaybackCompletionEvent | StartConversationRequestEventStreamDisconnectionEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationRequestEventStream/)."""
@@ -613,19 +614,19 @@ StartConversationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationOutput/)."""
 
-StartConversationResponseEventStreamPlaybackInterruptionEvent = TypedDict("StartConversationResponseEventStreamPlaybackInterruptionEvent", {"playback_interruption_event": Required["PlaybackInterruptionEvent"]})
+StartConversationResponseEventStreamPlaybackInterruptionEvent = TypedDict("StartConversationResponseEventStreamPlaybackInterruptionEvent", {"playback_interruption_event": Required["PlaybackInterruptionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamPlaybackInterruptionEvent/)."""
-StartConversationResponseEventStreamTranscriptEvent = TypedDict("StartConversationResponseEventStreamTranscriptEvent", {"transcript_event": Required["TranscriptEvent"]})
+StartConversationResponseEventStreamTranscriptEvent = TypedDict("StartConversationResponseEventStreamTranscriptEvent", {"transcript_event": Required["TranscriptEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamTranscriptEvent/)."""
-StartConversationResponseEventStreamIntentResultEvent = TypedDict("StartConversationResponseEventStreamIntentResultEvent", {"intent_result_event": Required["IntentResultEvent"]})
+StartConversationResponseEventStreamIntentResultEvent = TypedDict("StartConversationResponseEventStreamIntentResultEvent", {"intent_result_event": Required["IntentResultEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamIntentResultEvent/)."""
-StartConversationResponseEventStreamTextResponseEvent = TypedDict("StartConversationResponseEventStreamTextResponseEvent", {"text_response_event": Required["TextResponseEvent"]})
+StartConversationResponseEventStreamTextResponseEvent = TypedDict("StartConversationResponseEventStreamTextResponseEvent", {"text_response_event": Required["TextResponseEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamTextResponseEvent/)."""
-StartConversationResponseEventStreamAudioResponseEvent = TypedDict("StartConversationResponseEventStreamAudioResponseEvent", {"audio_response_event": Required["AudioResponseEvent"]})
+StartConversationResponseEventStreamAudioResponseEvent = TypedDict("StartConversationResponseEventStreamAudioResponseEvent", {"audio_response_event": Required["AudioResponseEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamAudioResponseEvent/)."""
-StartConversationResponseEventStreamHeartbeatEvent = TypedDict("StartConversationResponseEventStreamHeartbeatEvent", {"heartbeat_event": Required["HeartbeatEvent"]})
+StartConversationResponseEventStreamHeartbeatEvent = TypedDict("StartConversationResponseEventStreamHeartbeatEvent", {"heartbeat_event": Required["HeartbeatEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamHeartbeatEvent/)."""
-StartConversationResponseEventStreamUnknown = TypedDict("StartConversationResponseEventStreamUnknown", {"unknown": Required[Literal[True]]})
+StartConversationResponseEventStreamUnknown = TypedDict("StartConversationResponseEventStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStreamUnknown/)."""
 StartConversationResponseEventStream: TypeAlias = StartConversationResponseEventStreamPlaybackInterruptionEvent | StartConversationResponseEventStreamTranscriptEvent | StartConversationResponseEventStreamIntentResultEvent | StartConversationResponseEventStreamTextResponseEvent | StartConversationResponseEventStreamAudioResponseEvent | StartConversationResponseEventStreamHeartbeatEvent | StartConversationResponseEventStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/types/StartConversationResponseEventStream/)."""

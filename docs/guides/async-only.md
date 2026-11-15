@@ -58,7 +58,8 @@ operation directly. Do not call `asyncio.run()` inside an already running loop.
 ```
 
 Create clients during application setup and pass them to code that needs them.
-The current clients do not implement context managers or a `close()` method.
+Use `async with` or `await client.aclose()` when their work is finished. See
+[closing clients and streams](lifecycle.md) for ownership and cancellation.
 
 For a synchronous Lambda entry point that calls async code, see
 [AWS Lambda](aws-lambda.md).
