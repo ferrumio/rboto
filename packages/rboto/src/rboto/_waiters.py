@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-import asyncio
 from collections.abc import Awaitable, Callable, Mapping, Sequence, Sized
 from dataclasses import dataclass
 from typing import TypeVar, cast
 
+from . import _async_backend
 from .exceptions import ServiceError
 from .waiters import WaiterAttempt, WaiterConfig, WaiterFailedError, WaiterTimeoutError
 
@@ -135,18 +135,17 @@ async def wait(
     spec: WaiterSpec, config: WaiterConfig | None,
 ) -> _T | None:
     settings = config or WaiterConfig()
-    loop = asyncio.get_running_loop()
-    started = loop.time()
+    started = _async_backend.current_time()
     deadline = started + settings.timeout if settings.timeout is not None else None
     delay = spec.delay if settings.delay is None else settings.delay
     attempts = 0
     last_attempt: WaiterAttempt | None = None
-    timer = asyncio.timeout_at(deadline)
+    timer = _async_backend.timeout_at(deadline)
     try:
         async with timer:
             while attempts < settings.max_attempts:
                 # Also check synchronously: an interceptor can complete without yielding.
-                if deadline is not None and loop.time() >= deadline:
+                if deadline is not None and _async_backend.current_time() >= deadline:
                     raise WaiterTimeoutError(spec.name, attempts, last_attempt, "deadline")
                 attempts += 1
                 error: ServiceError | None = None
@@ -155,13 +154,13 @@ async def wait(
                     output = await call(**params)
                 except ServiceError as caught:
                     error = caught
-                if deadline is not None and loop.time() >= deadline:
+                if deadline is not None and _async_backend.current_time() >= deadline:
                     output = None
                     raise WaiterTimeoutError(spec.name, attempts, last_attempt, "deadline")
                 index = next((i for i, acceptor in enumerate(spec.acceptors)
                               if _matches(acceptor, output, error)), None)
                 last_attempt = WaiterAttempt(
-                    attempts, loop.time() - started, index,
+                    attempts, _async_backend.current_time() - started, index,
                     error.error_code if error else None, error.request_id if error else None,
                 )
                 if index is None:
@@ -181,7 +180,7 @@ async def wait(
                 error = None
                 if attempts == settings.max_attempts:
                     raise WaiterTimeoutError(spec.name, attempts, last_attempt, "max_attempts")
-                await asyncio.sleep(delay)
+                await _async_backend.sleep(delay)
     except TimeoutError:
         if not timer.expired():
             raise

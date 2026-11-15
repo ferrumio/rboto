@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio "mypy>=2.2" "pyright>=1.1.414" "typing-extensions>=4.15,<5" ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
+          .venv/bin/pip install -e codegen -e "packages/rboto[opentelemetry,trio]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio "anyio>=4.16,<5" "mypy>=2.2" "pyright>=1.1.414" "typing-extensions>=4.15,<5" ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
 
       - name: Service catalog
         id: catalog
@@ -114,7 +114,7 @@ jobs:
         shell: bash
         run: |
           python -m venv .venv
-          .venv/bin/pip install "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" -e codegen pytest pytest-asyncio "pydantic>=2,<3" twine
+          .venv/bin/pip install "packages/rboto[opentelemetry,trio]" "opentelemetry-sdk>=1.39,<2" -e codegen pytest pytest-asyncio "anyio>=4.16,<5" "pydantic>=2,<3" twine
           .venv/bin/pip install packages/rboto-${{ matrix.service }}/dist/*.whl
           .venv/bin/python -c "import importlib; importlib.import_module('rboto_${{ matrix.service }}'.replace('-', '_'))"
 
@@ -125,7 +125,7 @@ jobs:
         env:
           RBOTO_TEST_SERVICES: ${{ matrix.service }}
         run: >-
-          .venv/bin/pytest tests/integration/test_generated_client_bridge.py
+          .venv/bin/pytest tests/integration/test_generated_client_bridge.py tests/integration/test_async_backends.py
           tests/integration/test_new_client_protocols.py
           tests/integration/test_model_interop.py
           tests/integration/test_input_conversion.py

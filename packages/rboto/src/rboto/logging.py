@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import json
 import logging
 import sys
@@ -13,6 +12,7 @@ from threading import RLock
 from time import perf_counter
 from typing import Literal, NotRequired, TextIO, TypedDict, cast
 
+from ._async_backend import is_cancelled
 from ._telemetry import operation_trace
 from .exceptions import ClientError
 from .interceptors import Interceptor, Next, OperationRequest, OperationResponse
@@ -87,11 +87,8 @@ class _LoggingInterceptor:
         outcome: Literal["success", "error", "cancelled"] = "success"
         try:
             return await call_next(request)
-        except asyncio.CancelledError as caught:
-            error, outcome = caught, "cancelled"
-            raise
         except BaseException as caught:
-            error, outcome = caught, "error"
+            error, outcome = caught, "cancelled" if is_cancelled(caught) else "error"
             raise
         finally:
             try:
