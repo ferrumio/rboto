@@ -10,6 +10,32 @@ chooses which requests can run concurrently.
 For the native worker pools shared by clients of each service, see
 [runtime workers](runtime.md).
 
+## asyncio, Trio, and AnyIO
+
+rboto uses the scheduler of the calling task. Client methods, typed responses,
+paginators, waiters, and streams have the same API on asyncio and Trio.
+Native network operations run on Tokio with either Python scheduler.
+
+asyncio requires no additional runtime dependency. For Trio, install its extra
+alongside the services you need:
+
+```bash
+pip install "rboto[s3,trio]"
+```
+
+```python
+--8<-- "examples/docs/trio_request.py"
+```
+
+With AnyIO, call the same async function using
+`anyio.run(main, backend="asyncio")` or `anyio.run(main, backend="trio")`.
+Install AnyIO separately; the Trio backend also needs the `trio` extra.
+The tested dependency baselines are Trio 0.35 and AnyIO 4.16.
+
+Use concurrency and cancellation primitives from the active scheduler. For
+example, use a Trio nursery or an AnyIO task group when running on Trio.
+Application interceptors and input iterators must also support that scheduler.
+
 ## Event-loop work
 
 Async network I/O does not make every part of a call asynchronous. rboto still
@@ -18,7 +44,7 @@ Large inputs, large collections, and application callbacks can delay other tasks
 
 | Work | Where it runs | Effect on the Python event loop |
 | --- | --- | --- |
-| Build parameters; copy input strings/bytes; convert nested inputs | Calling thread, with the GIL on standard CPython | Occupies the loop thread when called from asyncio |
+| Build parameters; copy input strings/bytes; convert nested inputs | Calling thread, with the GIL on standard CPython | Occupies the Python scheduler's thread |
 | Initialize the worker pool on first use | Calling thread; pool construction releases the GIL | Startup still occupies the calling thread |
 | Resolve credentials, send requests, wait for retries or response bodies | Native runtime | Network waits do not occupy the loop thread |
 | Serialize requests, decode responses, prepare native output ownership | Native runtime, without the GIL | Uses native CPU; can compete for CPU resources |
@@ -86,6 +112,13 @@ Use `asyncio.timeout()` to bound your coroutine's wait:
 ```python
 --8<-- "examples/docs/deadline.py"
 ```
+
+On Trio, use `with trio.fail_after(seconds):`; on AnyIO, use
+`with anyio.fail_after(seconds):`. Cancellation interrupts native work and stops
+pending Python input polls. Closing a client or stream stays terminal even if
+the wait for cleanup is cancelled. Use a shielded cancellation scope around
+`await resource.aclose()` when cleanup must finish inside an already cancelled
+Trio or AnyIO scope.
 
 For streams, keep iteration inside the timeout block if the deadline must include
 reading the body. Cancellation does not prove that a remote write was rejected.

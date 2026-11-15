@@ -19,6 +19,7 @@ def generate_catalog(repository_root: Path) -> None:
     extras = [
         "[project.optional-dependencies]",
         'opentelemetry = ["opentelemetry-api>=1.39,<2"]',
+        'trio = ["trio>=0.35,<1"]',
     ]
     for service in services:
         extras.append(f'{service.service_id} = ["{service.distribution_name}=={version}"]')

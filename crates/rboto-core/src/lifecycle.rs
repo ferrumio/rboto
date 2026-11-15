@@ -229,11 +229,16 @@ pub fn stream_closed() -> PyErr {
 
 /// An already-completed Python awaitable without initializing a native runtime.
 pub fn ready_future(py: Python<'_>, value: Py<PyAny>) -> PyResult<Bound<'_, PyAny>> {
-    let future = pyo3_async_runtimes::tokio::get_current_locals(py)?
-        .event_loop(py)
-        .call_method0("create_future")?;
-    future.call_method1("set_result", (value,))?;
-    Ok(future)
+    match crate::runtime::PythonRuntime::current(py)? {
+        crate::runtime::PythonRuntime::Asyncio(locals) => {
+            let future = locals.event_loop(py).call_method0("create_future")?;
+            future.call_method1("set_result", (value,))?;
+            Ok(future)
+        }
+        crate::runtime::PythonRuntime::Trio(context) => {
+            context.bind(py).call_method1("ready", (value,))
+        }
+    }
 }
 
 #[cfg(test)]

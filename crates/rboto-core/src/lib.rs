@@ -13,6 +13,7 @@ mod observation;
 mod runtime;
 mod stream;
 mod transport;
+mod trio;
 
 pub use byte_stream::python_byte_stream;
 pub use config::RequestConfig;

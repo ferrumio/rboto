@@ -66,6 +66,11 @@ initialization. Each extension keeps its own lazy Tokio pool; the core's
 `future_into_py` wrapper applies the policy to operations and streams. Do not
 bypass it with a direct pyo3-async-runtimes future bridge. See ADR-0024.
 
+The shared bridge selects asyncio or Trio from the calling task. Trio is optional;
+its helpers are imported only when needed. Input polls, cancellation, and closure
+must stay on their originating Python scheduler while native I/O stays on Tokio.
+Use `rboto._async_backend` for Python scheduler operations. See ADR-0036.
+
 ## Operation middleware
 
 Clients and streams have independent terminal lifetimes, implemented by

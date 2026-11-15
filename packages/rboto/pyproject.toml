@@ -37,6 +37,7 @@ Changelog = "https://github.com/ferrumio/rboto/releases"
 
 [project.optional-dependencies]
 opentelemetry = ["opentelemetry-api>=1.39,<2"]
+trio = ["trio>=0.35,<1"]
 api-gateway = ["rboto-api-gateway==0.3.0"]
 athena = ["rboto-athena==0.3.0"]
 bedrock = ["rboto-bedrock==0.3.0"]
@@ -114,6 +115,8 @@ all = [
 
 [dependency-groups]
 test = [
+    "anyio>=4.16,<5",
+    "trio>=0.35,<1",
     "mypy>=2.2",
     "pyright>=1.1.414",
     "pytest>=8.3",

@@ -49,6 +49,7 @@ def test_all_clients_have_installable_extras_and_typecheck_paths() -> None:
         assert f"packages/{service.distribution_name}/python" in paths
     assert sorted(extras["all"]) == sorted(expected_all)
     assert extras["opentelemetry"] == ["opentelemetry-api>=1.39,<2"]
+    assert extras["trio"] == ["trio>=0.35,<1"]
     assert not project.get("dependencies")
 
 

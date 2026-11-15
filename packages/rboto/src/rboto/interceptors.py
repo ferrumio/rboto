@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 import keyword
 from collections.abc import Awaitable, Callable, Generator, Sequence
 from contextlib import contextmanager
@@ -12,6 +11,7 @@ from time import perf_counter
 from typing import Protocol, TypeVar, cast
 from uuid import uuid4
 
+from ._async_backend import current_task
 from ._conversion import attach_conversion_context
 from ._telemetry import TelemetryInterceptor
 from .exceptions import ClientError
@@ -222,7 +222,7 @@ async def invoke(
 
         active = True
         used = False
-        task = asyncio.current_task()
+        task = current_task()
 
         async def call_next(forwarded: OperationRequest) -> OperationResponse:
             nonlocal used
@@ -230,7 +230,7 @@ async def invoke(
                 raise RuntimeError("next cannot be called after its interceptor returns")
             if used:
                 raise RuntimeError("next can only be called once per interceptor")
-            if asyncio.current_task() is not task:
+            if current_task() is not task:
                 raise RuntimeError("next must be awaited in the interceptor's task")
             used = True
             return await dispatch(index + 1, forwarded)

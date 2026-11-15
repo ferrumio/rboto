@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-import asyncio
 from contextvars import Token
 from time import perf_counter
 from typing import Literal
@@ -19,6 +18,7 @@ except ImportError as error:
     ) from error
 
 from rboto import _observability
+from rboto._async_backend import is_cancelled
 from rboto._telemetry import TelemetryInterceptor, operation_trace
 from rboto.interceptors import Next, OperationRequest, OperationResponse
 from rboto.logging import LogTraceContext
@@ -137,11 +137,8 @@ class OpenTelemetry(TelemetryInterceptor):
                     # A provider failure cannot prevent a service call.
                     pass
             return await call_next(request)
-        except asyncio.CancelledError as caught:
-            error, outcome = caught, "cancelled"
-            raise
         except BaseException as caught:
-            error, outcome = caught, "error"
+            error, outcome = caught, "cancelled" if is_cancelled(caught) else "error"
             raise
         finally:
             elapsed = perf_counter() - started
