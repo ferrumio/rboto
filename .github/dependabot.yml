@@ -6,6 +6,9 @@ updates:
       interval: weekly
     commit-message:
       prefix: ci
+    groups:
+      codeql-actions:
+        patterns: ["github/codeql-action*"]
 
   - package-ecosystem: pip
     directories:
