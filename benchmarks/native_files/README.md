@@ -7,6 +7,9 @@ This benchmark compares `FileBody` and `ByteStream.write_to()` with Python file
 producers/writers through the same compiled S3 client. It also measures a Python
 writer that batches chunks into approximately 1 MiB writes.
 
+See the [recorded measurements](results.md) for results and compressed raw data.
+Use `gzip -dc measurements-2026-11-15.jsonl.gz` to inspect the raw JSON lines.
+
 Build the S3 package from the revision under test using the release profile.
 Install the matching rboto facade, plus `anyio`, `trio`, `aiohttp` and `psutil`
 in the interpreter used below. Do not compare optimized native code with debug
