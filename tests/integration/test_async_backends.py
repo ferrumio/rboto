@@ -772,7 +772,6 @@ async def logging_and_otel_cancellation(peer):
         assert [record["outcome"] for record in records] == ["success", "cancelled"]
         assert records[1]["level"] == "WARNING"
     finally:
-        configure_logging(level="OFF")
         provider.shutdown()
     await disconnected(peer)
 
@@ -824,6 +823,7 @@ def local_peer(monkeypatch):
         yield peer
 
 
+@pytest.mark.usefixtures("json_logging")
 @pytest.mark.parametrize("backend", ["asyncio", "trio"])
 @pytest.mark.parametrize("name", [
     pytest.param(name, marks=pytest.mark.skipif(
