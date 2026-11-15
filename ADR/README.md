@@ -51,6 +51,7 @@ separate from the public documentation under `docs/`.
 - [ADR-0034: Reject unknown fields in input structures](0034-reject-unknown-input-structure-fields.md)
 - [ADR-0035: Generate closed typed dictionary union variants](0035-closed-union-variants.md)
 - [ADR-0036: Support Trio through a shared native bridge](0036-trio-runtime-bridge.md)
+- [ADR-0037: Native file sources and response sinks](0037-native-file-streaming.md)
 
 ## Creating an ADR
 

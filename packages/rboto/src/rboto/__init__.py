@@ -54,6 +54,7 @@ from .services import (
     transcribe_streaming,
 )
 from .session import Session
+from .streaming import FileBody
 from .types import UnknownEnumValue
 from .waiters import WaiterConfig
 
@@ -99,6 +100,7 @@ __version__ = "0.3.0"
 __all__ = [
     "Attempt",
     "ClientConfig",
+    "FileBody",
     "Interceptor",
     "LogLevel",
     "LogTraceContext",

@@ -7,6 +7,7 @@ from typing import Self as _Self
 
 
 from rboto.config import ClientConfig
+from rboto.streaming import FileBody as _FileBody
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
@@ -223,7 +224,7 @@ class LexRuntimeV2Client:
         session_state: str | None = None,
         request_attributes: str | None = None,
         response_content_type: str | None = None,
-        input_stream: bytes | AsyncIterator[bytes] | None = None,
+        input_stream: bytes | _FileBody | AsyncIterator[bytes] | None = None,
     ) -> RecognizeUtteranceOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lex-runtime-v2/operations/recognize_utterance/)."""
         params: dict[str, object] = {

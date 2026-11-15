@@ -24,6 +24,18 @@ CLIENTS = tuple(
 )
 
 
+@pytest.mark.parametrize(
+    "package",
+    [
+        service.python_package for service in list_services()
+        if not SELECTED_SERVICES or service.service_id in SELECTED_SERVICES
+    ],
+)
+def test_native_byte_stream_exposes_file_sink(package: str) -> None:
+    native = importlib.import_module(f"{package}._native")
+    assert callable(native.ByteStream.write_to)
+
+
 class NativeSpy:
     def __init__(self, result: object) -> None:
         self.result = result

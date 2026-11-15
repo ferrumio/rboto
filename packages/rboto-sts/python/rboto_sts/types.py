@@ -6,6 +6,7 @@ from typing import Literal, NotRequired, Required, TypeAlias
 from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
+from rboto.streaming import FileBody as _FileBody
 
 from . import _native
 

@@ -20,6 +20,7 @@ from .logging import get_logger as get_logger
 from .runtime import configure_runtime as configure_runtime
 {% for service in services %}from .services import {{ service.python_name }} as {{ service.python_name }}
 {% endfor %}from .session import Session as Session
+from .streaming import FileBody as FileBody
 from .types import UnknownEnumValue as UnknownEnumValue
 from .waiters import WaiterConfig as WaiterConfig
 

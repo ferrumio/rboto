@@ -19,6 +19,7 @@ from .services import (
 {% for service in services %}    {{ service.python_name }},
 {% endfor %})
 from .session import Session
+from .streaming import FileBody
 from .types import UnknownEnumValue
 from .waiters import WaiterConfig
 
@@ -29,6 +30,7 @@ __version__ = "{{ version }}"
 __all__ = [
     "Attempt",
     "ClientConfig",
+    "FileBody",
     "Interceptor",
     "LogLevel",
     "LogTraceContext",

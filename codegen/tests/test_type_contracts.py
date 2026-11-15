@@ -56,6 +56,33 @@ async def send(sqs: SQSClient, ddb: DynamoDBClient, url: str) -> None:
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+def test_file_sources_and_sinks_preserve_streaming_type_boundaries(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "files_valid.py", """
+from pathlib import Path
+from typing import assert_type
+from rboto import FileBody, LambdaClient, S3Client
+
+async def transfer(s3: S3Client, lamb: LambdaClient, source: Path, target: Path) -> None:
+    await s3.put_object(bucket="example", key="file", body=FileBody(source))
+    await lamb.invoke_async(function_name="example", invoke_args=FileBody(source))
+    response = await s3.get_object(bucket="example", key="file")
+    assert_type(await response.body.write_to(target), int)
+""")
+    assert result.returncode == 0, result.stdout + result.stderr
+    result = check_consumer(tmp_path / "files_invalid.py", """
+from pathlib import Path
+from rboto import BedrockRuntimeClient, FileBody, S3Client
+
+async def invalid(s3: S3Client, bedrock: BedrockRuntimeClient, path: Path) -> None:
+    await s3.put_object(bucket="example", key="file", body=path)
+    await bedrock.invoke_model(model_id="example", body=FileBody(path))
+    response = await s3.get_object(bucket="example", key="file")
+    await response.body.write_to(b"bytes-path")
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert len([line for line in result.stdout.splitlines() if ": error:" in line]) == 3
+
+
 def test_invalid_inputs_and_unsafe_response_usage_are_rejected(tmp_path: Path) -> None:
     result = check_consumer(tmp_path / "invalid.py", """
 from rboto import DynamoDBClient

@@ -19,9 +19,9 @@ aws-credential-types.workspace = true
 aws-smithy-async.workspace = true
 aws-smithy-http-client = { workspace = true, features = ["rustls-aws-lc"] }
 rustls = { version = "0.23", default-features = false, features = ["std"] }
-tokio.workspace = true
+tokio = { workspace = true, features = ["fs", "io-util"] }
 aws-smithy-runtime-api = { workspace = true, features = ["client"] }
-aws-smithy-types = { workspace = true, features = ["http-body-1-x"] }
+aws-smithy-types = { workspace = true, features = ["http-body-1-x", "rt-tokio"] }
 bytes = "1"
 futures-util.workspace = true
 http-body = "1"

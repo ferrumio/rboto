@@ -380,6 +380,7 @@ def render_reference(
     builtins = {
         "str", "int", "bool", "float", "bytes", "list", "dict",
         "AsyncIterator", "Awaitable", "Sequence", "_Sequence", "Literal", "UnknownEnumValue",
+        "_FileBody", "_PathLike",
     }
     unresolved = (inputs | outputs | set[str]().union(
         *(item.references for item in types.values())

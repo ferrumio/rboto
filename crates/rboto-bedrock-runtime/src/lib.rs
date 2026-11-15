@@ -159,6 +159,15 @@ impl PyByteStream {
                 .unwrap_or_else(|| Err(rboto_core::stream_closed()))
         })
     }
+
+    /// Write remaining bytes to a new file. Failures can leave a partial file.
+    fn write_to<'py>(
+        &self,
+        py: Python<'py>,
+        path: std::path::PathBuf,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        rboto_core::write_stream_to_path(py, self.inner.clone(), self.context.clone(), path)
+    }
 }
 
 #[pyclass(module = "rboto_bedrock_runtime._native")]

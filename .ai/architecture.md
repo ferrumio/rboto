@@ -61,6 +61,11 @@ changing this representation. See ADR-0025.
 
 ## Native runtime
 
+ADR-0037 adds `FileBody` for native file uploads and `ByteStream.write_to` for
+native response-to-file writes. File I/O and retry source checks belong to
+`rboto-core/src/file_stream.rs`; templates only delegate and carry strict types.
+The application owns source stability and partial-file cleanup.
+
 `configure_runtime()` sets a global worker policy before native runtime
 initialization. Each extension keeps its own lazy Tokio pool; the core's
 `future_into_py` wrapper applies the policy to operations and streams. Do not

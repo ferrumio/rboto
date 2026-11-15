@@ -45492,7 +45492,7 @@ impl S3Client {
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_1969 = (|| -> PyResult<_> {
                 let converted_1969 =
-                    rboto_core::python_byte_stream(&value, content_length_hint, true)?;
+                    rboto_core::python_request_body(&value, content_length_hint, true)?;
                 Ok(converted_1969)
             })()
             .map_err(|error| {
@@ -45500,7 +45500,7 @@ impl S3Client {
                     rboto_core::input_error(
                         error,
                         rboto_core::InputPath::Field("body"),
-                        "bytes or async iterable of bytes",
+                        "bytes, FileBody or async iterable of bytes",
                     ),
                     "s3",
                     "PutObject",
@@ -46505,6 +46505,22 @@ impl S3Client {
                 None
             };
         rboto_core::client_future_into_py(py, lease, async move {
+            let body_value = match body_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("body"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "s3",
+                            "PutObject",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .put_object()
@@ -46988,7 +47004,7 @@ impl S3Client {
         let annotation_payload_value =
             if let Some(value) = dict_value(params, "annotation_payload")? {
                 let converted_2053 = (|| -> PyResult<_> {
-                    let converted_2053 = rboto_core::python_byte_stream(&value, None, false)?;
+                    let converted_2053 = rboto_core::python_request_body(&value, None, false)?;
                     Ok(converted_2053)
                 })()
                 .map_err(|error| {
@@ -46996,7 +47012,7 @@ impl S3Client {
                         rboto_core::input_error(
                             error,
                             rboto_core::InputPath::Field("annotation_payload"),
-                            "bytes or async iterable of bytes",
+                            "bytes, FileBody or async iterable of bytes",
                         ),
                         "s3",
                         "PutObjectAnnotation",
@@ -47316,6 +47332,22 @@ impl S3Client {
                 None
             };
         rboto_core::client_future_into_py(py, lease, async move {
+            let annotation_payload_value = match annotation_payload_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("annotation_payload"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "s3",
+                            "PutObjectAnnotation",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .put_object_annotation()
@@ -49749,7 +49781,7 @@ impl S3Client {
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_2183 = (|| -> PyResult<_> {
                 let converted_2183 =
-                    rboto_core::python_byte_stream(&value, content_length_hint, true)?;
+                    rboto_core::python_request_body(&value, content_length_hint, true)?;
                 Ok(converted_2183)
             })()
             .map_err(|error| {
@@ -49757,7 +49789,7 @@ impl S3Client {
                     rboto_core::input_error(
                         error,
                         rboto_core::InputPath::Field("body"),
-                        "bytes or async iterable of bytes",
+                        "bytes, FileBody or async iterable of bytes",
                     ),
                     "s3",
                     "UploadPart",
@@ -50211,6 +50243,22 @@ impl S3Client {
                 None
             };
         rboto_core::client_future_into_py(py, lease, async move {
+            let body_value = match body_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("body"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "s3",
+                            "UploadPart",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .upload_part()
@@ -50767,7 +50815,7 @@ impl S3Client {
         let body_value = if let Some(value) = dict_value(params, "body")? {
             let converted_2232 = (|| -> PyResult<_> {
                 let converted_2232 =
-                    rboto_core::python_byte_stream(&value, content_length_hint, true)?;
+                    rboto_core::python_request_body(&value, content_length_hint, true)?;
                 Ok(converted_2232)
             })()
             .map_err(|error| {
@@ -50775,7 +50823,7 @@ impl S3Client {
                     rboto_core::input_error(
                         error,
                         rboto_core::InputPath::Field("body"),
-                        "bytes or async iterable of bytes",
+                        "bytes, FileBody or async iterable of bytes",
                     ),
                     "s3",
                     "WriteGetObjectResponse",
@@ -51703,6 +51751,22 @@ impl S3Client {
                 None
             };
         rboto_core::client_future_into_py(py, lease, async move {
+            let body_value = match body_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("body"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "s3",
+                            "WriteGetObjectResponse",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .write_get_object_response()

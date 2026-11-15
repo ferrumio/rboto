@@ -7,6 +7,7 @@ mod config;
 mod document;
 mod error;
 mod event_stream;
+mod file_stream;
 mod input_error;
 mod lifecycle;
 mod observation;
@@ -15,7 +16,7 @@ mod stream;
 mod transport;
 mod trio;
 
-pub use byte_stream::python_byte_stream;
+pub use byte_stream::{python_byte_stream, python_request_body};
 pub use config::RequestConfig;
 pub use document::{document_from_py, document_to_py};
 pub use error::{
@@ -23,6 +24,7 @@ pub use error::{
     stream_error_to_py,
 };
 pub use event_stream::python_event_stream;
+pub use file_stream::write_stream_to_path;
 pub use input_error::{
     InputPath, input_builder_error, input_error, input_operation, input_rule, validate_input_fields,
 };

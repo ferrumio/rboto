@@ -495,6 +495,7 @@ class ServiceGenerator:
     # Name of the declared body length while emitting an operation whose streaming body
     # must forward `content_length` as its exact size (see ADR-0030).
     _stream_length: str | None = None
+    _defer_stream: bool = False
 
     def _stream_length_hint(self, operation: RustOperation) -> str | None:
         has_stream = any(
@@ -515,7 +516,7 @@ class ServiceGenerator:
             "string": "str", "bool": "bool", "i8": "int", "i16": "int",
             "i32": "int", "i64": "int", "f32": "float", "f64": "float",
             "document": "JSONValue", "datetime": "ISO 8601 timestamp string",
-            "blob": "bytes", "byte_stream": "bytes or async iterable of bytes", "vec": "sequence",
+            "blob": "bytes", "byte_stream": "bytes, FileBody or async iterable of bytes", "vec": "sequence",
             "map": "dict", "union": "exactly one known union variant",
             "event_sender": "async iterator", "box": "valid boxed value",
             "option": "valid optional value",
@@ -596,9 +597,8 @@ class ServiceGenerator:
             stream_arguments = (
                 f"{self._stream_length}, true" if self._stream_length is not None else "None, false"
             )
-            return [
-                f"{indent}let {target} = rboto_core::python_byte_stream(&{source}, {stream_arguments})?;",
-            ]
+            converter = "python_request_body" if self._defer_stream else "python_byte_stream"
+            return [f"{indent}let {target} = rboto_core::{converter}(&{source}, {stream_arguments})?;"]
         if kind == "enum":
             name = _crate_type_name(rust_type)
             raw = self._next("enum_value")
@@ -1369,11 +1369,13 @@ class ServiceGenerator:
             lines.append(
                 f'        let {converted} = if let Some(value) = dict_value(params, "{field.name}")? {{'
             )
+            self._defer_stream = self._kind(field.rust_type) == "byte_stream"
             lines.extend(self._from_py(
                 field.rust_type, "value", inner, "            ",
                 path=f'rboto_core::InputPath::Field("{_safe_parameter(field.name)}")',
                 operation=smithy.name,
             ))
+            self._defer_stream = False
             lines.append(f"            Some({inner})")
             lines.append("        } else { None };")
             converted_fields.append((field, converted))
@@ -1382,10 +1384,25 @@ class ServiceGenerator:
         lines.extend(
             [
                 "        rboto_core::client_future_into_py(py, lease, async move {",
-                "            let client = state.client().await?;",
-                f"            let request = client.{operation_name}()",
             ]
         )
+        for field, converted in converted_fields:
+            if self._kind(field.rust_type) == "byte_stream":
+                lines.extend([
+                    f"            let {converted} = match {converted} {{",
+                    "                Some(body) => Some(body.resolve().await.map_err(|error| {",
+                    "                    Python::attach(|py| rboto_core::input_operation(",
+                    f'                        rboto_core::input_error(error, rboto_core::InputPath::Field("{_safe_parameter(field.name)}"), "valid FileBody source and content_length"),',
+                    f'                        "{self.descriptor.service_id}", "{smithy.name}",',
+                    "                    ))",
+                    "                })?),",
+                    "                None => None,",
+                    "            };",
+                ])
+        lines.extend([
+            "            let client = state.client().await?;",
+            f"            let request = client.{operation_name}()",
+        ])
         for field, converted in converted_fields:
             lines.append(f"                .set_{field.name}({converted})")
         lines[-1] += ";"
@@ -1693,7 +1710,7 @@ class ServiceGenerator:
     def _python_input_type(self, target: str) -> str:
         shape = self.service.shapes.get(target)
         if shape is not None and shape.kind == "blob" and shape.streaming:
-            return "bytes | AsyncIterator[bytes]"
+            return "bytes | _FileBody | AsyncIterator[bytes]"
         return self._python_type(target)
 
     def _rust_output_annotation(self, rust_type: str, optional: bool = False) -> str:
@@ -1794,6 +1811,7 @@ class ServiceGenerator:
             "from typing_extensions import TypedDict",
             "",
             "from rboto.types import UnknownEnumValue",
+            "from rboto.streaming import FileBody as _FileBody",
             "",
             "from . import _native",
             "",
@@ -2019,7 +2037,7 @@ class ServiceGenerator:
         type_names: set[str] = set()
         ignored = {
             "str", "int", "bool", "float", "bytes", "list", "dict", "None",
-            "AsyncIterator", self._sequence_type,
+            "AsyncIterator", self._sequence_type, "_FileBody",
         }
         native_output_names = {
             metadata["class_name"] for metadata in self._native_output_operations()
