@@ -31,7 +31,7 @@ jobs:
       - name: Install tools
         run: |
           python -m venv .venv
-          .venv/bin/pip install -e codegen -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio mypy pyright ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
+          .venv/bin/pip install -e codegen -e "packages/rboto[opentelemetry]" "opentelemetry-sdk>=1.39,<2" pytest pytest-asyncio "mypy>=2.2" "pyright>=1.1.414" "typing-extensions>=4.15,<5" ruff "pydantic>=2,<3" "types-jmespath>=1,<2" build hatchling twine
 
       - name: Service catalog
         id: catalog

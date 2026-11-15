@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -531,30 +532,30 @@ ListTagsForResourceRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/ListTagsForResourceRequest/)."""
 
-MQBrokerAccessCredentialsBasicAuth = TypedDict("MQBrokerAccessCredentialsBasicAuth", {"basic_auth": Required["str"]})
+MQBrokerAccessCredentialsBasicAuth = TypedDict("MQBrokerAccessCredentialsBasicAuth", {"basic_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsBasicAuth/)."""
 MQBrokerAccessCredentials: TypeAlias = MQBrokerAccessCredentialsBasicAuth
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentials/)."""
 
-MQBrokerAccessCredentialsOutputBasicAuth = TypedDict("MQBrokerAccessCredentialsOutputBasicAuth", {"basic_auth": Required["str"]})
+MQBrokerAccessCredentialsOutputBasicAuth = TypedDict("MQBrokerAccessCredentialsOutputBasicAuth", {"basic_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutputBasicAuth/)."""
-MQBrokerAccessCredentialsOutputUnknown = TypedDict("MQBrokerAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+MQBrokerAccessCredentialsOutputUnknown = TypedDict("MQBrokerAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutputUnknown/)."""
 MQBrokerAccessCredentialsOutput: TypeAlias = MQBrokerAccessCredentialsOutputBasicAuth | MQBrokerAccessCredentialsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MQBrokerAccessCredentialsOutput/)."""
 
-MSKAccessCredentialsSaslScram512Auth = TypedDict("MSKAccessCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+MSKAccessCredentialsSaslScram512Auth = TypedDict("MSKAccessCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsSaslScram512Auth/)."""
-MSKAccessCredentialsClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+MSKAccessCredentialsClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsClientCertificateTlsAuth/)."""
 MSKAccessCredentials: TypeAlias = MSKAccessCredentialsSaslScram512Auth | MSKAccessCredentialsClientCertificateTlsAuth
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentials/)."""
 
-MSKAccessCredentialsOutputSaslScram512Auth = TypedDict("MSKAccessCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+MSKAccessCredentialsOutputSaslScram512Auth = TypedDict("MSKAccessCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputSaslScram512Auth/)."""
-MSKAccessCredentialsOutputClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+MSKAccessCredentialsOutputClientCertificateTlsAuth = TypedDict("MSKAccessCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputClientCertificateTlsAuth/)."""
-MSKAccessCredentialsOutputUnknown = TypedDict("MSKAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+MSKAccessCredentialsOutputUnknown = TypedDict("MSKAccessCredentialsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutputUnknown/)."""
 MSKAccessCredentialsOutput: TypeAlias = MSKAccessCredentialsOutputSaslScram512Auth | MSKAccessCredentialsOutputClientCertificateTlsAuth | MSKAccessCredentialsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/MSKAccessCredentialsOutput/)."""
@@ -958,26 +959,26 @@ SageMakerPipelineParameter = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SageMakerPipelineParameter/)."""
 
-SelfManagedKafkaAccessConfigurationCredentialsBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsBasicAuth", {"basic_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsBasicAuth", {"basic_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsBasicAuth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth", {"sasl_scram512_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth", {"sasl_scram256_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth", {"sasl_scram256_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth/)."""
 SelfManagedKafkaAccessConfigurationCredentials: TypeAlias = SelfManagedKafkaAccessConfigurationCredentialsBasicAuth | SelfManagedKafkaAccessConfigurationCredentialsSaslScram512Auth | SelfManagedKafkaAccessConfigurationCredentialsSaslScram256Auth | SelfManagedKafkaAccessConfigurationCredentialsClientCertificateTlsAuth
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentials/)."""
 
-SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth", {"basic_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth", {"basic_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth", {"sasl_scram512_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth", {"sasl_scram256_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth", {"sasl_scram256_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]})
+SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth", {"client_certificate_tls_auth": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth/)."""
-SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown", {"unknown": Required[Literal[True]]})
+SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown = TypedDict("SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown/)."""
 SelfManagedKafkaAccessConfigurationCredentialsOutput: TypeAlias = SelfManagedKafkaAccessConfigurationCredentialsOutputBasicAuth | SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram512Auth | SelfManagedKafkaAccessConfigurationCredentialsOutputSaslScram256Auth | SelfManagedKafkaAccessConfigurationCredentialsOutputClientCertificateTlsAuth | SelfManagedKafkaAccessConfigurationCredentialsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/pipes/types/SelfManagedKafkaAccessConfigurationCredentialsOutput/)."""

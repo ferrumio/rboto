@@ -120,6 +120,9 @@ Response nullability follows Rust fields; unknown union variants are output-only
 Response enums retain their known literals plus the erased `UnknownEnumValue`
 string type for future SDK values. Input lists accept sequences, while maps
 continue to require dictionaries.
+ADR-0035 closes modeled union variants, including the output-only unknown
+sentinel, so key checks narrow their static types. Ordinary structures, maps,
+and JSON documents keep their existing contracts.
 ADR-0034 rejects unknown keys in input structures during native conversion.
 Maps and documents keep their arbitrary keys; diagnostics identify unknown
 structure keys by position without including their contents.

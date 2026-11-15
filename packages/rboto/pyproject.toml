@@ -114,9 +114,10 @@ all = [
 
 [dependency-groups]
 test = [
-    "mypy>=1.15",
-    "pyright>=1.1.400",
+    "mypy>=2.2",
+    "pyright>=1.1.414",
     "pytest>=8.3",
+    "typing-extensions>=4.15,<5",
 ]
 
 [tool.hatch.build.targets.wheel]

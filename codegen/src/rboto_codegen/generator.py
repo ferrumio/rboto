@@ -1790,7 +1790,8 @@ class ServiceGenerator:
             "",
             "from collections.abc import AsyncIterator, "
             + ("Sequence as _Sequence" if self._sequence_type == "_Sequence" else "Sequence"),
-            "from typing import Literal, NotRequired, Required, TypeAlias, TypedDict",
+            "from typing import Literal, NotRequired, Required, TypeAlias",
+            "from typing_extensions import TypedDict",
             "",
             "from rboto.types import UnknownEnumValue",
             "",
@@ -1940,14 +1941,14 @@ class ServiceGenerator:
                 lines.append(
                     f'{variant} = TypedDict("{variant}", '
                     f'{{"{member.rust_name}": '
-                    f'Required["{self._python_type(member.target, output=output)}"]}})'
+                    f'Required["{self._python_type(member.target, output=output)}"]}}, closed=True)'
                 )
                 variants.append(variant)
             if output:
                 variants.append(f"{name}Unknown")
                 lines.append(
                     f'{name}Unknown = TypedDict("{name}Unknown", '
-                    '{"unknown": Required[Literal[True]]})'
+                    '{"unknown": Required[Literal[True]]}, closed=True)'
                 )
             lines.append(f"{name}: TypeAlias = {' | '.join(variants)}")
             lines.append("")

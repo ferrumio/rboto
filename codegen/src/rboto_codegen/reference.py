@@ -74,6 +74,7 @@ class Type:
     fields: tuple[Field, ...]
     references: frozenset[str]
     filename: str = ""
+    closed: bool = False
 
 
 def _field(name: str, annotation: ast.expr) -> Field:
@@ -118,6 +119,7 @@ def types_from_contract(types_source: str, stub_source: str) -> dict[str, Type]:
     for node in tree.body:
         fields: list[Field] = []
         expressions: list[str] = []
+        closed = False
         if isinstance(node, ast.AnnAssign) and isinstance(node.target, ast.Name):
             assert node.value is not None
             name = node.target.id
@@ -164,6 +166,10 @@ def types_from_contract(types_source: str, stub_source: str) -> dict[str, Type]:
               and isinstance(node.value.func, ast.Name) and node.value.func.id == "TypedDict"):
             name = node.targets[0].id
             kind = "mapping"
+            closed = any(
+                keyword.arg == "closed" and isinstance(keyword.value, ast.Constant)
+                and keyword.value.value is True for keyword in node.value.keywords
+            )
             members = node.value.args[1]
             assert isinstance(members, ast.Dict)
             for key, annotation_node in zip(members.keys, members.values, strict=True):
@@ -175,10 +181,14 @@ def types_from_contract(types_source: str, stub_source: str) -> dict[str, Type]:
             for field in fields:
                 wrapper = "Required" if field.required else "NotRequired"
                 definition += f'        "{field.name}": {wrapper}[{field.annotation!r}],\n'
-            definition += "    },\n)"
+            definition += "    },\n" + ("    closed=True,\n" if closed else "") + ")"
         elif isinstance(node, ast.ClassDef):
             name = node.name
             kind = "mapping"
+            closed = any(
+                keyword.arg == "closed" and isinstance(keyword.value, ast.Constant)
+                and keyword.value.value is True for keyword in node.keywords
+            )
             for member in node.body:
                 if not isinstance(member, ast.AnnAssign) or not isinstance(member.target, ast.Name):
                     continue
@@ -191,6 +201,7 @@ def types_from_contract(types_source: str, stub_source: str) -> dict[str, Type]:
         result[name] = Type(
             name, kind, definition, tuple(fields),
             frozenset[str]().union(*(names(expression) for expression in expressions)),
+            closed=closed,
         )
     folded: dict[str, list[str]] = {}
     for name in result:
@@ -284,6 +295,30 @@ def _fields(fields: tuple[Field, ...], types: dict[str, Type], prefix: str) -> s
 
 def _error_name(shape_id: str) -> str:
     return shape_id.rsplit("#", 1)[-1].removesuffix("Exception").removesuffix("Error") + "Error"
+
+
+def union_example(item: Type, types: dict[str, Type], package: str) -> str:
+    """Illustrate key narrowing for any modeled union, using its public names."""
+    if item.kind != "alias" or not item.references:
+        return ""
+    variants = [types.get(name) for name in sorted(item.references)]
+    if any(variant is None or not variant.closed or len(variant.fields) != 1
+           for variant in variants):
+        return ""
+    variant = next(
+        (variant for variant in variants
+         if variant is not None and variant.fields[0].name != "unknown"), None,
+    )
+    if variant is None:
+        return ""
+    field = variant.fields[0]
+    return (
+        f"from {package}.types import {item.name}\n\n\n"
+        f"def handle(value: {item.name}) -> None:\n"
+        f"    if {field.name!r} in value:\n"
+        f"        # value is {variant.name}; this field has type {field.annotation}.\n"
+        f"        print(value[{field.name!r}])\n"
+    )
 
 
 def _stream_errors(operation: SmithyOperation, service: SmithyService) -> set[str]:
@@ -548,6 +583,7 @@ def render_reference(
             "input" if name in input_types else "output" if name in output_types
             else "not referenced by operation signatures"
         )
+        example = union_example(item, types, descriptor.python_package)
         files[f"types/{item.filename}"] = "\n".join([
             NOTICE, f"# {name}\n", identity.format(prefix="../"),
             f"Public import: `from {descriptor.python_package}.types import {name}`.\n",
@@ -556,6 +592,16 @@ def render_reference(
             "`UnknownEnumValue` preserve future service values; they do not widen valid inputs.\n"
             if "Unknown" in item.definition or "unknown:" in item.definition else "",
             f"```python\n{item.definition}\n```\n",
+            "This variant is closed: it contains only its declared key. "
+            "Check that key to narrow the union before reading its value.\n"
+            if item.closed else "",
+            "## Selecting a variant\n\n"
+            "Each variant has exactly one declared key. Checking that key narrows "
+            "the type without a cast or a custom type guard. Handle other variants "
+            "according to your application, including `unknown` for output unions.\n\n"
+            f"```python\n{example}```\n\n"
+            f"[Union typing and checker requirements]({SITE}/guides/types/#union-variants).\n"
+            if example else "",
             "## Related types\n", _links(item.references, types, "") + "\n",
         ])
     files["types/index.md"] = "\n".join([

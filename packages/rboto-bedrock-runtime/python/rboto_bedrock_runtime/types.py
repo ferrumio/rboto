@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -330,14 +331,14 @@ ApplyGuardrailRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ApplyGuardrailRequest/)."""
 
-AsyncInvokeOutputDataConfigs3OutputDataConfig = TypedDict("AsyncInvokeOutputDataConfigs3OutputDataConfig", {"s3_output_data_config": Required["AsyncInvokeS3OutputDataConfig"]})
+AsyncInvokeOutputDataConfigs3OutputDataConfig = TypedDict("AsyncInvokeOutputDataConfigs3OutputDataConfig", {"s3_output_data_config": Required["AsyncInvokeS3OutputDataConfig"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeOutputDataConfigs3OutputDataConfig/)."""
 AsyncInvokeOutputDataConfig: TypeAlias = AsyncInvokeOutputDataConfigs3OutputDataConfig
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeOutputDataConfig/)."""
 
-AsyncInvokeOutputDataConfigOutputs3OutputDataConfig = TypedDict("AsyncInvokeOutputDataConfigOutputs3OutputDataConfig", {"s3_output_data_config": Required["AsyncInvokeS3OutputDataConfigOutput"]})
+AsyncInvokeOutputDataConfigOutputs3OutputDataConfig = TypedDict("AsyncInvokeOutputDataConfigOutputs3OutputDataConfig", {"s3_output_data_config": Required["AsyncInvokeS3OutputDataConfigOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeOutputDataConfigOutputs3OutputDataConfig/)."""
-AsyncInvokeOutputDataConfigOutputUnknown = TypedDict("AsyncInvokeOutputDataConfigOutputUnknown", {"unknown": Required[Literal[True]]})
+AsyncInvokeOutputDataConfigOutputUnknown = TypedDict("AsyncInvokeOutputDataConfigOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeOutputDataConfigOutputUnknown/)."""
 AsyncInvokeOutputDataConfigOutput: TypeAlias = AsyncInvokeOutputDataConfigOutputs3OutputDataConfig | AsyncInvokeOutputDataConfigOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AsyncInvokeOutputDataConfigOutput/)."""
@@ -398,18 +399,18 @@ AudioBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioBlockOutput/)."""
 
-AudioSourcebytes = TypedDict("AudioSourcebytes", {"bytes": Required["bytes"]})
+AudioSourcebytes = TypedDict("AudioSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSourcebytes/)."""
-AudioSources3Location = TypedDict("AudioSources3Location", {"s3_location": Required["S3Location"]})
+AudioSources3Location = TypedDict("AudioSources3Location", {"s3_location": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSources3Location/)."""
 AudioSource: TypeAlias = AudioSourcebytes | AudioSources3Location
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSource/)."""
 
-AudioSourceOutputbytes = TypedDict("AudioSourceOutputbytes", {"bytes": Required["bytes"]})
+AudioSourceOutputbytes = TypedDict("AudioSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSourceOutputbytes/)."""
-AudioSourceOutputs3Location = TypedDict("AudioSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]})
+AudioSourceOutputs3Location = TypedDict("AudioSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSourceOutputs3Location/)."""
-AudioSourceOutputUnknown = TypedDict("AudioSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+AudioSourceOutputUnknown = TypedDict("AudioSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSourceOutputUnknown/)."""
 AudioSourceOutput: TypeAlias = AudioSourceOutputbytes | AudioSourceOutputs3Location | AudioSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/AudioSourceOutput/)."""
@@ -486,54 +487,54 @@ CitationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationOutput/)."""
 
-CitationGeneratedContenttext = TypedDict("CitationGeneratedContenttext", {"text": Required["str"]})
+CitationGeneratedContenttext = TypedDict("CitationGeneratedContenttext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationGeneratedContenttext/)."""
 CitationGeneratedContent: TypeAlias = CitationGeneratedContenttext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationGeneratedContent/)."""
 
-CitationGeneratedContentOutputtext = TypedDict("CitationGeneratedContentOutputtext", {"text": Required["str"]})
+CitationGeneratedContentOutputtext = TypedDict("CitationGeneratedContentOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationGeneratedContentOutputtext/)."""
-CitationGeneratedContentOutputUnknown = TypedDict("CitationGeneratedContentOutputUnknown", {"unknown": Required[Literal[True]]})
+CitationGeneratedContentOutputUnknown = TypedDict("CitationGeneratedContentOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationGeneratedContentOutputUnknown/)."""
 CitationGeneratedContentOutput: TypeAlias = CitationGeneratedContentOutputtext | CitationGeneratedContentOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationGeneratedContentOutput/)."""
 
-CitationLocationweb = TypedDict("CitationLocationweb", {"web": Required["WebLocation"]})
+CitationLocationweb = TypedDict("CitationLocationweb", {"web": Required["WebLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationweb/)."""
-CitationLocationdocumentChar = TypedDict("CitationLocationdocumentChar", {"document_char": Required["DocumentCharLocation"]})
+CitationLocationdocumentChar = TypedDict("CitationLocationdocumentChar", {"document_char": Required["DocumentCharLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationdocumentChar/)."""
-CitationLocationdocumentPage = TypedDict("CitationLocationdocumentPage", {"document_page": Required["DocumentPageLocation"]})
+CitationLocationdocumentPage = TypedDict("CitationLocationdocumentPage", {"document_page": Required["DocumentPageLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationdocumentPage/)."""
-CitationLocationdocumentChunk = TypedDict("CitationLocationdocumentChunk", {"document_chunk": Required["DocumentChunkLocation"]})
+CitationLocationdocumentChunk = TypedDict("CitationLocationdocumentChunk", {"document_chunk": Required["DocumentChunkLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationdocumentChunk/)."""
-CitationLocationsearchResultLocation = TypedDict("CitationLocationsearchResultLocation", {"search_result_location": Required["SearchResultLocation"]})
+CitationLocationsearchResultLocation = TypedDict("CitationLocationsearchResultLocation", {"search_result_location": Required["SearchResultLocation"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationsearchResultLocation/)."""
 CitationLocation: TypeAlias = CitationLocationweb | CitationLocationdocumentChar | CitationLocationdocumentPage | CitationLocationdocumentChunk | CitationLocationsearchResultLocation
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocation/)."""
 
-CitationLocationOutputweb = TypedDict("CitationLocationOutputweb", {"web": Required["WebLocationOutput"]})
+CitationLocationOutputweb = TypedDict("CitationLocationOutputweb", {"web": Required["WebLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputweb/)."""
-CitationLocationOutputdocumentChar = TypedDict("CitationLocationOutputdocumentChar", {"document_char": Required["DocumentCharLocationOutput"]})
+CitationLocationOutputdocumentChar = TypedDict("CitationLocationOutputdocumentChar", {"document_char": Required["DocumentCharLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputdocumentChar/)."""
-CitationLocationOutputdocumentPage = TypedDict("CitationLocationOutputdocumentPage", {"document_page": Required["DocumentPageLocationOutput"]})
+CitationLocationOutputdocumentPage = TypedDict("CitationLocationOutputdocumentPage", {"document_page": Required["DocumentPageLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputdocumentPage/)."""
-CitationLocationOutputdocumentChunk = TypedDict("CitationLocationOutputdocumentChunk", {"document_chunk": Required["DocumentChunkLocationOutput"]})
+CitationLocationOutputdocumentChunk = TypedDict("CitationLocationOutputdocumentChunk", {"document_chunk": Required["DocumentChunkLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputdocumentChunk/)."""
-CitationLocationOutputsearchResultLocation = TypedDict("CitationLocationOutputsearchResultLocation", {"search_result_location": Required["SearchResultLocationOutput"]})
+CitationLocationOutputsearchResultLocation = TypedDict("CitationLocationOutputsearchResultLocation", {"search_result_location": Required["SearchResultLocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputsearchResultLocation/)."""
-CitationLocationOutputUnknown = TypedDict("CitationLocationOutputUnknown", {"unknown": Required[Literal[True]]})
+CitationLocationOutputUnknown = TypedDict("CitationLocationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutputUnknown/)."""
 CitationLocationOutput: TypeAlias = CitationLocationOutputweb | CitationLocationOutputdocumentChar | CitationLocationOutputdocumentPage | CitationLocationOutputdocumentChunk | CitationLocationOutputsearchResultLocation | CitationLocationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationLocationOutput/)."""
 
-CitationSourceContenttext = TypedDict("CitationSourceContenttext", {"text": Required["str"]})
+CitationSourceContenttext = TypedDict("CitationSourceContenttext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationSourceContenttext/)."""
 CitationSourceContent: TypeAlias = CitationSourceContenttext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationSourceContent/)."""
 
-CitationSourceContentOutputtext = TypedDict("CitationSourceContentOutputtext", {"text": Required["str"]})
+CitationSourceContentOutputtext = TypedDict("CitationSourceContentOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationSourceContentOutputtext/)."""
-CitationSourceContentOutputUnknown = TypedDict("CitationSourceContentOutputUnknown", {"unknown": Required[Literal[True]]})
+CitationSourceContentOutputUnknown = TypedDict("CitationSourceContentOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationSourceContentOutputUnknown/)."""
 CitationSourceContentOutput: TypeAlias = CitationSourceContentOutputtext | CitationSourceContentOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationSourceContentOutput/)."""
@@ -591,83 +592,83 @@ CitationsDelta = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CitationsDelta/)."""
 
-ContentBlocktext = TypedDict("ContentBlocktext", {"text": Required["str"]})
+ContentBlocktext = TypedDict("ContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocktext/)."""
-ContentBlockimage = TypedDict("ContentBlockimage", {"image": Required["ImageBlock"]})
+ContentBlockimage = TypedDict("ContentBlockimage", {"image": Required["ImageBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockimage/)."""
-ContentBlockdocument = TypedDict("ContentBlockdocument", {"document": Required["DocumentBlock"]})
+ContentBlockdocument = TypedDict("ContentBlockdocument", {"document": Required["DocumentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockdocument/)."""
-ContentBlockvideo = TypedDict("ContentBlockvideo", {"video": Required["VideoBlock"]})
+ContentBlockvideo = TypedDict("ContentBlockvideo", {"video": Required["VideoBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockvideo/)."""
-ContentBlockaudio = TypedDict("ContentBlockaudio", {"audio": Required["AudioBlock"]})
+ContentBlockaudio = TypedDict("ContentBlockaudio", {"audio": Required["AudioBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockaudio/)."""
-ContentBlocktoolUse = TypedDict("ContentBlocktoolUse", {"tool_use": Required["ToolUseBlock"]})
+ContentBlocktoolUse = TypedDict("ContentBlocktoolUse", {"tool_use": Required["ToolUseBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocktoolUse/)."""
-ContentBlocktoolResult = TypedDict("ContentBlocktoolResult", {"tool_result": Required["ToolResultBlock"]})
+ContentBlocktoolResult = TypedDict("ContentBlocktoolResult", {"tool_result": Required["ToolResultBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocktoolResult/)."""
-ContentBlockguardContent = TypedDict("ContentBlockguardContent", {"guard_content": Required["GuardrailConverseContentBlock"]})
+ContentBlockguardContent = TypedDict("ContentBlockguardContent", {"guard_content": Required["GuardrailConverseContentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockguardContent/)."""
-ContentBlockcachePoint = TypedDict("ContentBlockcachePoint", {"cache_point": Required["CachePointBlock"]})
+ContentBlockcachePoint = TypedDict("ContentBlockcachePoint", {"cache_point": Required["CachePointBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockcachePoint/)."""
-ContentBlockreasoningContent = TypedDict("ContentBlockreasoningContent", {"reasoning_content": Required["ReasoningContentBlock"]})
+ContentBlockreasoningContent = TypedDict("ContentBlockreasoningContent", {"reasoning_content": Required["ReasoningContentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockreasoningContent/)."""
-ContentBlockcitationsContent = TypedDict("ContentBlockcitationsContent", {"citations_content": Required["CitationsContentBlock"]})
+ContentBlockcitationsContent = TypedDict("ContentBlockcitationsContent", {"citations_content": Required["CitationsContentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockcitationsContent/)."""
-ContentBlocksearchResult = TypedDict("ContentBlocksearchResult", {"search_result": Required["SearchResultBlock"]})
+ContentBlocksearchResult = TypedDict("ContentBlocksearchResult", {"search_result": Required["SearchResultBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocksearchResult/)."""
-ContentBlocktoolAddition = TypedDict("ContentBlocktoolAddition", {"tool_addition": Required["ToolAdditionBlock"]})
+ContentBlocktoolAddition = TypedDict("ContentBlocktoolAddition", {"tool_addition": Required["ToolAdditionBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocktoolAddition/)."""
-ContentBlocktoolRemoval = TypedDict("ContentBlocktoolRemoval", {"tool_removal": Required["ToolRemovalBlock"]})
+ContentBlocktoolRemoval = TypedDict("ContentBlocktoolRemoval", {"tool_removal": Required["ToolRemovalBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlocktoolRemoval/)."""
 ContentBlock: TypeAlias = ContentBlocktext | ContentBlockimage | ContentBlockdocument | ContentBlockvideo | ContentBlockaudio | ContentBlocktoolUse | ContentBlocktoolResult | ContentBlockguardContent | ContentBlockcachePoint | ContentBlockreasoningContent | ContentBlockcitationsContent | ContentBlocksearchResult | ContentBlocktoolAddition | ContentBlocktoolRemoval
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlock/)."""
 
-ContentBlockOutputtext = TypedDict("ContentBlockOutputtext", {"text": Required["str"]})
+ContentBlockOutputtext = TypedDict("ContentBlockOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputtext/)."""
-ContentBlockOutputimage = TypedDict("ContentBlockOutputimage", {"image": Required["ImageBlockOutput"]})
+ContentBlockOutputimage = TypedDict("ContentBlockOutputimage", {"image": Required["ImageBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputimage/)."""
-ContentBlockOutputdocument = TypedDict("ContentBlockOutputdocument", {"document": Required["DocumentBlockOutput"]})
+ContentBlockOutputdocument = TypedDict("ContentBlockOutputdocument", {"document": Required["DocumentBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputdocument/)."""
-ContentBlockOutputvideo = TypedDict("ContentBlockOutputvideo", {"video": Required["VideoBlockOutput"]})
+ContentBlockOutputvideo = TypedDict("ContentBlockOutputvideo", {"video": Required["VideoBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputvideo/)."""
-ContentBlockOutputaudio = TypedDict("ContentBlockOutputaudio", {"audio": Required["AudioBlockOutput"]})
+ContentBlockOutputaudio = TypedDict("ContentBlockOutputaudio", {"audio": Required["AudioBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputaudio/)."""
-ContentBlockOutputtoolUse = TypedDict("ContentBlockOutputtoolUse", {"tool_use": Required["ToolUseBlockOutput"]})
+ContentBlockOutputtoolUse = TypedDict("ContentBlockOutputtoolUse", {"tool_use": Required["ToolUseBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputtoolUse/)."""
-ContentBlockOutputtoolResult = TypedDict("ContentBlockOutputtoolResult", {"tool_result": Required["ToolResultBlockOutput"]})
+ContentBlockOutputtoolResult = TypedDict("ContentBlockOutputtoolResult", {"tool_result": Required["ToolResultBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputtoolResult/)."""
-ContentBlockOutputguardContent = TypedDict("ContentBlockOutputguardContent", {"guard_content": Required["GuardrailConverseContentBlockOutput"]})
+ContentBlockOutputguardContent = TypedDict("ContentBlockOutputguardContent", {"guard_content": Required["GuardrailConverseContentBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputguardContent/)."""
-ContentBlockOutputcachePoint = TypedDict("ContentBlockOutputcachePoint", {"cache_point": Required["CachePointBlockOutput"]})
+ContentBlockOutputcachePoint = TypedDict("ContentBlockOutputcachePoint", {"cache_point": Required["CachePointBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputcachePoint/)."""
-ContentBlockOutputreasoningContent = TypedDict("ContentBlockOutputreasoningContent", {"reasoning_content": Required["ReasoningContentBlockOutput"]})
+ContentBlockOutputreasoningContent = TypedDict("ContentBlockOutputreasoningContent", {"reasoning_content": Required["ReasoningContentBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputreasoningContent/)."""
-ContentBlockOutputcitationsContent = TypedDict("ContentBlockOutputcitationsContent", {"citations_content": Required["CitationsContentBlockOutput"]})
+ContentBlockOutputcitationsContent = TypedDict("ContentBlockOutputcitationsContent", {"citations_content": Required["CitationsContentBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputcitationsContent/)."""
-ContentBlockOutputsearchResult = TypedDict("ContentBlockOutputsearchResult", {"search_result": Required["SearchResultBlockOutput"]})
+ContentBlockOutputsearchResult = TypedDict("ContentBlockOutputsearchResult", {"search_result": Required["SearchResultBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputsearchResult/)."""
-ContentBlockOutputtoolAddition = TypedDict("ContentBlockOutputtoolAddition", {"tool_addition": Required["ToolAdditionBlockOutput"]})
+ContentBlockOutputtoolAddition = TypedDict("ContentBlockOutputtoolAddition", {"tool_addition": Required["ToolAdditionBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputtoolAddition/)."""
-ContentBlockOutputtoolRemoval = TypedDict("ContentBlockOutputtoolRemoval", {"tool_removal": Required["ToolRemovalBlockOutput"]})
+ContentBlockOutputtoolRemoval = TypedDict("ContentBlockOutputtoolRemoval", {"tool_removal": Required["ToolRemovalBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputtoolRemoval/)."""
-ContentBlockOutputUnknown = TypedDict("ContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+ContentBlockOutputUnknown = TypedDict("ContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutputUnknown/)."""
 ContentBlockOutput: TypeAlias = ContentBlockOutputtext | ContentBlockOutputimage | ContentBlockOutputdocument | ContentBlockOutputvideo | ContentBlockOutputaudio | ContentBlockOutputtoolUse | ContentBlockOutputtoolResult | ContentBlockOutputguardContent | ContentBlockOutputcachePoint | ContentBlockOutputreasoningContent | ContentBlockOutputcitationsContent | ContentBlockOutputsearchResult | ContentBlockOutputtoolAddition | ContentBlockOutputtoolRemoval | ContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockOutput/)."""
 
-ContentBlockDeltatext = TypedDict("ContentBlockDeltatext", {"text": Required["str"]})
+ContentBlockDeltatext = TypedDict("ContentBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltatext/)."""
-ContentBlockDeltatoolUse = TypedDict("ContentBlockDeltatoolUse", {"tool_use": Required["ToolUseBlockDelta"]})
+ContentBlockDeltatoolUse = TypedDict("ContentBlockDeltatoolUse", {"tool_use": Required["ToolUseBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltatoolUse/)."""
-ContentBlockDeltatoolResult = TypedDict("ContentBlockDeltatoolResult", {"tool_result": Required["list[ToolResultBlockDelta]"]})
+ContentBlockDeltatoolResult = TypedDict("ContentBlockDeltatoolResult", {"tool_result": Required["list[ToolResultBlockDelta]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltatoolResult/)."""
-ContentBlockDeltareasoningContent = TypedDict("ContentBlockDeltareasoningContent", {"reasoning_content": Required["ReasoningContentBlockDelta"]})
+ContentBlockDeltareasoningContent = TypedDict("ContentBlockDeltareasoningContent", {"reasoning_content": Required["ReasoningContentBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltareasoningContent/)."""
-ContentBlockDeltacitation = TypedDict("ContentBlockDeltacitation", {"citation": Required["CitationsDelta"]})
+ContentBlockDeltacitation = TypedDict("ContentBlockDeltacitation", {"citation": Required["CitationsDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltacitation/)."""
-ContentBlockDeltaimage = TypedDict("ContentBlockDeltaimage", {"image": Required["ImageBlockDelta"]})
+ContentBlockDeltaimage = TypedDict("ContentBlockDeltaimage", {"image": Required["ImageBlockDelta"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltaimage/)."""
-ContentBlockDeltaUnknown = TypedDict("ContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+ContentBlockDeltaUnknown = TypedDict("ContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltaUnknown/)."""
 ContentBlockDelta: TypeAlias = ContentBlockDeltatext | ContentBlockDeltatoolUse | ContentBlockDeltatoolResult | ContentBlockDeltareasoningContent | ContentBlockDeltacitation | ContentBlockDeltaimage | ContentBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDelta/)."""
@@ -681,13 +682,13 @@ ContentBlockDeltaEvent = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockDeltaEvent/)."""
 
-ContentBlockStarttoolUse = TypedDict("ContentBlockStarttoolUse", {"tool_use": Required["ToolUseBlockStart"]})
+ContentBlockStarttoolUse = TypedDict("ContentBlockStarttoolUse", {"tool_use": Required["ToolUseBlockStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockStarttoolUse/)."""
-ContentBlockStarttoolResult = TypedDict("ContentBlockStarttoolResult", {"tool_result": Required["ToolResultBlockStart"]})
+ContentBlockStarttoolResult = TypedDict("ContentBlockStarttoolResult", {"tool_result": Required["ToolResultBlockStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockStarttoolResult/)."""
-ContentBlockStartimage = TypedDict("ContentBlockStartimage", {"image": Required["ImageBlockStart"]})
+ContentBlockStartimage = TypedDict("ContentBlockStartimage", {"image": Required["ImageBlockStart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockStartimage/)."""
-ContentBlockStartUnknown = TypedDict("ContentBlockStartUnknown", {"unknown": Required[Literal[True]]})
+ContentBlockStartUnknown = TypedDict("ContentBlockStartUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockStartUnknown/)."""
 ContentBlockStart: TypeAlias = ContentBlockStarttoolUse | ContentBlockStarttoolResult | ContentBlockStartimage | ContentBlockStartUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ContentBlockStart/)."""
@@ -717,9 +718,9 @@ ConverseMetrics = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseMetrics/)."""
 
-ConverseValueOutputmessage = TypedDict("ConverseValueOutputmessage", {"message": Required["MessageOutput"]})
+ConverseValueOutputmessage = TypedDict("ConverseValueOutputmessage", {"message": Required["MessageOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseValueOutputmessage/)."""
-ConverseValueOutputUnknown = TypedDict("ConverseValueOutputUnknown", {"unknown": Required[Literal[True]]})
+ConverseValueOutputUnknown = TypedDict("ConverseValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseValueOutputUnknown/)."""
 ConverseValueOutput: TypeAlias = ConverseValueOutputmessage | ConverseValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseValueOutput/)."""
@@ -764,19 +765,19 @@ ConverseStreamMetrics = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamMetrics/)."""
 
-ConverseStreamEventOutputmessageStart = TypedDict("ConverseStreamEventOutputmessageStart", {"message_start": Required["MessageStartEvent"]})
+ConverseStreamEventOutputmessageStart = TypedDict("ConverseStreamEventOutputmessageStart", {"message_start": Required["MessageStartEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputmessageStart/)."""
-ConverseStreamEventOutputcontentBlockStart = TypedDict("ConverseStreamEventOutputcontentBlockStart", {"content_block_start": Required["ContentBlockStartEvent"]})
+ConverseStreamEventOutputcontentBlockStart = TypedDict("ConverseStreamEventOutputcontentBlockStart", {"content_block_start": Required["ContentBlockStartEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputcontentBlockStart/)."""
-ConverseStreamEventOutputcontentBlockDelta = TypedDict("ConverseStreamEventOutputcontentBlockDelta", {"content_block_delta": Required["ContentBlockDeltaEvent"]})
+ConverseStreamEventOutputcontentBlockDelta = TypedDict("ConverseStreamEventOutputcontentBlockDelta", {"content_block_delta": Required["ContentBlockDeltaEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputcontentBlockDelta/)."""
-ConverseStreamEventOutputcontentBlockStop = TypedDict("ConverseStreamEventOutputcontentBlockStop", {"content_block_stop": Required["ContentBlockStopEvent"]})
+ConverseStreamEventOutputcontentBlockStop = TypedDict("ConverseStreamEventOutputcontentBlockStop", {"content_block_stop": Required["ContentBlockStopEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputcontentBlockStop/)."""
-ConverseStreamEventOutputmessageStop = TypedDict("ConverseStreamEventOutputmessageStop", {"message_stop": Required["MessageStopEvent"]})
+ConverseStreamEventOutputmessageStop = TypedDict("ConverseStreamEventOutputmessageStop", {"message_stop": Required["MessageStopEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputmessageStop/)."""
-ConverseStreamEventOutputmetadata = TypedDict("ConverseStreamEventOutputmetadata", {"metadata": Required["ConverseStreamMetadataEvent"]})
+ConverseStreamEventOutputmetadata = TypedDict("ConverseStreamEventOutputmetadata", {"metadata": Required["ConverseStreamMetadataEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputmetadata/)."""
-ConverseStreamEventOutputUnknown = TypedDict("ConverseStreamEventOutputUnknown", {"unknown": Required[Literal[True]]})
+ConverseStreamEventOutputUnknown = TypedDict("ConverseStreamEventOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutputUnknown/)."""
 ConverseStreamEventOutput: TypeAlias = ConverseStreamEventOutputmessageStart | ConverseStreamEventOutputcontentBlockStart | ConverseStreamEventOutputcontentBlockDelta | ConverseStreamEventOutputcontentBlockStop | ConverseStreamEventOutputmessageStop | ConverseStreamEventOutputmetadata | ConverseStreamEventOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseStreamEventOutput/)."""
@@ -838,9 +839,9 @@ ConverseTrace = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ConverseTrace/)."""
 
-CountTokensInputinvokeModel = TypedDict("CountTokensInputinvokeModel", {"invoke_model": Required["InvokeModelTokensRequest"]})
+CountTokensInputinvokeModel = TypedDict("CountTokensInputinvokeModel", {"invoke_model": Required["InvokeModelTokensRequest"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CountTokensInputinvokeModel/)."""
-CountTokensInputconverse = TypedDict("CountTokensInputconverse", {"converse": Required["ConverseTokensRequest"]})
+CountTokensInputconverse = TypedDict("CountTokensInputconverse", {"converse": Required["ConverseTokensRequest"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CountTokensInputconverse/)."""
 CountTokensInput: TypeAlias = CountTokensInputinvokeModel | CountTokensInputconverse
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/CountTokensInput/)."""
@@ -918,14 +919,14 @@ DocumentChunkLocationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentChunkLocationOutput/)."""
 
-DocumentContentBlocktext = TypedDict("DocumentContentBlocktext", {"text": Required["str"]})
+DocumentContentBlocktext = TypedDict("DocumentContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentContentBlocktext/)."""
 DocumentContentBlock: TypeAlias = DocumentContentBlocktext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentContentBlock/)."""
 
-DocumentContentBlockOutputtext = TypedDict("DocumentContentBlockOutputtext", {"text": Required["str"]})
+DocumentContentBlockOutputtext = TypedDict("DocumentContentBlockOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentContentBlockOutputtext/)."""
-DocumentContentBlockOutputUnknown = TypedDict("DocumentContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+DocumentContentBlockOutputUnknown = TypedDict("DocumentContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentContentBlockOutputUnknown/)."""
 DocumentContentBlockOutput: TypeAlias = DocumentContentBlockOutputtext | DocumentContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentContentBlockOutput/)."""
@@ -950,26 +951,26 @@ DocumentPageLocationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentPageLocationOutput/)."""
 
-DocumentSourcebytes = TypedDict("DocumentSourcebytes", {"bytes": Required["bytes"]})
+DocumentSourcebytes = TypedDict("DocumentSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourcebytes/)."""
-DocumentSources3Location = TypedDict("DocumentSources3Location", {"s3_location": Required["S3Location"]})
+DocumentSources3Location = TypedDict("DocumentSources3Location", {"s3_location": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSources3Location/)."""
-DocumentSourcetext = TypedDict("DocumentSourcetext", {"text": Required["str"]})
+DocumentSourcetext = TypedDict("DocumentSourcetext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourcetext/)."""
-DocumentSourcecontent = TypedDict("DocumentSourcecontent", {"content": Required["Sequence[DocumentContentBlock]"]})
+DocumentSourcecontent = TypedDict("DocumentSourcecontent", {"content": Required["Sequence[DocumentContentBlock]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourcecontent/)."""
 DocumentSource: TypeAlias = DocumentSourcebytes | DocumentSources3Location | DocumentSourcetext | DocumentSourcecontent
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSource/)."""
 
-DocumentSourceOutputbytes = TypedDict("DocumentSourceOutputbytes", {"bytes": Required["bytes"]})
+DocumentSourceOutputbytes = TypedDict("DocumentSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutputbytes/)."""
-DocumentSourceOutputs3Location = TypedDict("DocumentSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]})
+DocumentSourceOutputs3Location = TypedDict("DocumentSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutputs3Location/)."""
-DocumentSourceOutputtext = TypedDict("DocumentSourceOutputtext", {"text": Required["str"]})
+DocumentSourceOutputtext = TypedDict("DocumentSourceOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutputtext/)."""
-DocumentSourceOutputcontent = TypedDict("DocumentSourceOutputcontent", {"content": Required["list[DocumentContentBlockOutput]"]})
+DocumentSourceOutputcontent = TypedDict("DocumentSourceOutputcontent", {"content": Required["list[DocumentContentBlockOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutputcontent/)."""
-DocumentSourceOutputUnknown = TypedDict("DocumentSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+DocumentSourceOutputUnknown = TypedDict("DocumentSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutputUnknown/)."""
 DocumentSourceOutput: TypeAlias = DocumentSourceOutputbytes | DocumentSourceOutputs3Location | DocumentSourceOutputtext | DocumentSourceOutputcontent | DocumentSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/DocumentSourceOutput/)."""
@@ -1013,21 +1014,21 @@ GuardrailAssessment = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAssessment/)."""
 
-GuardrailAutomatedReasoningFindingvalid = TypedDict("GuardrailAutomatedReasoningFindingvalid", {"valid": Required["GuardrailAutomatedReasoningValidFinding"]})
+GuardrailAutomatedReasoningFindingvalid = TypedDict("GuardrailAutomatedReasoningFindingvalid", {"valid": Required["GuardrailAutomatedReasoningValidFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingvalid/)."""
-GuardrailAutomatedReasoningFindinginvalid = TypedDict("GuardrailAutomatedReasoningFindinginvalid", {"invalid": Required["GuardrailAutomatedReasoningInvalidFinding"]})
+GuardrailAutomatedReasoningFindinginvalid = TypedDict("GuardrailAutomatedReasoningFindinginvalid", {"invalid": Required["GuardrailAutomatedReasoningInvalidFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindinginvalid/)."""
-GuardrailAutomatedReasoningFindingsatisfiable = TypedDict("GuardrailAutomatedReasoningFindingsatisfiable", {"satisfiable": Required["GuardrailAutomatedReasoningSatisfiableFinding"]})
+GuardrailAutomatedReasoningFindingsatisfiable = TypedDict("GuardrailAutomatedReasoningFindingsatisfiable", {"satisfiable": Required["GuardrailAutomatedReasoningSatisfiableFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingsatisfiable/)."""
-GuardrailAutomatedReasoningFindingimpossible = TypedDict("GuardrailAutomatedReasoningFindingimpossible", {"impossible": Required["GuardrailAutomatedReasoningImpossibleFinding"]})
+GuardrailAutomatedReasoningFindingimpossible = TypedDict("GuardrailAutomatedReasoningFindingimpossible", {"impossible": Required["GuardrailAutomatedReasoningImpossibleFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingimpossible/)."""
-GuardrailAutomatedReasoningFindingtranslationAmbiguous = TypedDict("GuardrailAutomatedReasoningFindingtranslationAmbiguous", {"translation_ambiguous": Required["GuardrailAutomatedReasoningTranslationAmbiguousFinding"]})
+GuardrailAutomatedReasoningFindingtranslationAmbiguous = TypedDict("GuardrailAutomatedReasoningFindingtranslationAmbiguous", {"translation_ambiguous": Required["GuardrailAutomatedReasoningTranslationAmbiguousFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingtranslationAmbiguous/)."""
-GuardrailAutomatedReasoningFindingtooComplex = TypedDict("GuardrailAutomatedReasoningFindingtooComplex", {"too_complex": Required["GuardrailAutomatedReasoningTooComplexFinding"]})
+GuardrailAutomatedReasoningFindingtooComplex = TypedDict("GuardrailAutomatedReasoningFindingtooComplex", {"too_complex": Required["GuardrailAutomatedReasoningTooComplexFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingtooComplex/)."""
-GuardrailAutomatedReasoningFindingnoTranslations = TypedDict("GuardrailAutomatedReasoningFindingnoTranslations", {"no_translations": Required["GuardrailAutomatedReasoningNoTranslationsFinding"]})
+GuardrailAutomatedReasoningFindingnoTranslations = TypedDict("GuardrailAutomatedReasoningFindingnoTranslations", {"no_translations": Required["GuardrailAutomatedReasoningNoTranslationsFinding"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingnoTranslations/)."""
-GuardrailAutomatedReasoningFindingUnknown = TypedDict("GuardrailAutomatedReasoningFindingUnknown", {"unknown": Required[Literal[True]]})
+GuardrailAutomatedReasoningFindingUnknown = TypedDict("GuardrailAutomatedReasoningFindingUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFindingUnknown/)."""
 GuardrailAutomatedReasoningFinding: TypeAlias = GuardrailAutomatedReasoningFindingvalid | GuardrailAutomatedReasoningFindinginvalid | GuardrailAutomatedReasoningFindingsatisfiable | GuardrailAutomatedReasoningFindingimpossible | GuardrailAutomatedReasoningFindingtranslationAmbiguous | GuardrailAutomatedReasoningFindingtooComplex | GuardrailAutomatedReasoningFindingnoTranslations | GuardrailAutomatedReasoningFindingUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailAutomatedReasoningFinding/)."""
@@ -1179,7 +1180,7 @@ GuardrailChecksConfig = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksConfig/)."""
 
-GuardrailChecksContentBlocktext = TypedDict("GuardrailChecksContentBlocktext", {"text": Required["str"]})
+GuardrailChecksContentBlocktext = TypedDict("GuardrailChecksContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksContentBlocktext/)."""
 GuardrailChecksContentBlock: TypeAlias = GuardrailChecksContentBlocktext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailChecksContentBlock/)."""
@@ -1351,9 +1352,9 @@ GuardrailConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConfiguration/)."""
 
-GuardrailContentBlocktext = TypedDict("GuardrailContentBlocktext", {"text": Required["GuardrailTextBlock"]})
+GuardrailContentBlocktext = TypedDict("GuardrailContentBlocktext", {"text": Required["GuardrailTextBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContentBlocktext/)."""
-GuardrailContentBlockimage = TypedDict("GuardrailContentBlockimage", {"image": Required["GuardrailImageBlock"]})
+GuardrailContentBlockimage = TypedDict("GuardrailContentBlockimage", {"image": Required["GuardrailImageBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContentBlockimage/)."""
 GuardrailContentBlock: TypeAlias = GuardrailContentBlocktext | GuardrailContentBlockimage
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContentBlock/)."""
@@ -1398,18 +1399,18 @@ GuardrailContextualGroundingPolicyAssessment = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailContextualGroundingPolicyAssessment/)."""
 
-GuardrailConverseContentBlocktext = TypedDict("GuardrailConverseContentBlocktext", {"text": Required["GuardrailConverseTextBlock"]})
+GuardrailConverseContentBlocktext = TypedDict("GuardrailConverseContentBlocktext", {"text": Required["GuardrailConverseTextBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlocktext/)."""
-GuardrailConverseContentBlockimage = TypedDict("GuardrailConverseContentBlockimage", {"image": Required["GuardrailConverseImageBlock"]})
+GuardrailConverseContentBlockimage = TypedDict("GuardrailConverseContentBlockimage", {"image": Required["GuardrailConverseImageBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlockimage/)."""
 GuardrailConverseContentBlock: TypeAlias = GuardrailConverseContentBlocktext | GuardrailConverseContentBlockimage
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlock/)."""
 
-GuardrailConverseContentBlockOutputtext = TypedDict("GuardrailConverseContentBlockOutputtext", {"text": Required["GuardrailConverseTextBlockOutput"]})
+GuardrailConverseContentBlockOutputtext = TypedDict("GuardrailConverseContentBlockOutputtext", {"text": Required["GuardrailConverseTextBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlockOutputtext/)."""
-GuardrailConverseContentBlockOutputimage = TypedDict("GuardrailConverseContentBlockOutputimage", {"image": Required["GuardrailConverseImageBlockOutput"]})
+GuardrailConverseContentBlockOutputimage = TypedDict("GuardrailConverseContentBlockOutputimage", {"image": Required["GuardrailConverseImageBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlockOutputimage/)."""
-GuardrailConverseContentBlockOutputUnknown = TypedDict("GuardrailConverseContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+GuardrailConverseContentBlockOutputUnknown = TypedDict("GuardrailConverseContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlockOutputUnknown/)."""
 GuardrailConverseContentBlockOutput: TypeAlias = GuardrailConverseContentBlockOutputtext | GuardrailConverseContentBlockOutputimage | GuardrailConverseContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseContentBlockOutput/)."""
@@ -1432,14 +1433,14 @@ GuardrailConverseImageBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageBlockOutput/)."""
 
-GuardrailConverseImageSourcebytes = TypedDict("GuardrailConverseImageSourcebytes", {"bytes": Required["bytes"]})
+GuardrailConverseImageSourcebytes = TypedDict("GuardrailConverseImageSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageSourcebytes/)."""
 GuardrailConverseImageSource: TypeAlias = GuardrailConverseImageSourcebytes
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageSource/)."""
 
-GuardrailConverseImageSourceOutputbytes = TypedDict("GuardrailConverseImageSourceOutputbytes", {"bytes": Required["bytes"]})
+GuardrailConverseImageSourceOutputbytes = TypedDict("GuardrailConverseImageSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageSourceOutputbytes/)."""
-GuardrailConverseImageSourceOutputUnknown = TypedDict("GuardrailConverseImageSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+GuardrailConverseImageSourceOutputUnknown = TypedDict("GuardrailConverseImageSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageSourceOutputUnknown/)."""
 GuardrailConverseImageSourceOutput: TypeAlias = GuardrailConverseImageSourceOutputbytes | GuardrailConverseImageSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailConverseImageSourceOutput/)."""
@@ -1499,7 +1500,7 @@ GuardrailImageCoverage = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailImageCoverage/)."""
 
-GuardrailImageSourcebytes = TypedDict("GuardrailImageSourcebytes", {"bytes": Required["bytes"]})
+GuardrailImageSourcebytes = TypedDict("GuardrailImageSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailImageSourcebytes/)."""
 GuardrailImageSource: TypeAlias = GuardrailImageSourcebytes
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/GuardrailImageSource/)."""
@@ -1686,18 +1687,18 @@ ImageBlockStart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageBlockStart/)."""
 
-ImageSourcebytes = TypedDict("ImageSourcebytes", {"bytes": Required["bytes"]})
+ImageSourcebytes = TypedDict("ImageSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSourcebytes/)."""
-ImageSources3Location = TypedDict("ImageSources3Location", {"s3_location": Required["S3Location"]})
+ImageSources3Location = TypedDict("ImageSources3Location", {"s3_location": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSources3Location/)."""
 ImageSource: TypeAlias = ImageSourcebytes | ImageSources3Location
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSource/)."""
 
-ImageSourceOutputbytes = TypedDict("ImageSourceOutputbytes", {"bytes": Required["bytes"]})
+ImageSourceOutputbytes = TypedDict("ImageSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSourceOutputbytes/)."""
-ImageSourceOutputs3Location = TypedDict("ImageSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]})
+ImageSourceOutputs3Location = TypedDict("ImageSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSourceOutputs3Location/)."""
-ImageSourceOutputUnknown = TypedDict("ImageSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+ImageSourceOutputUnknown = TypedDict("ImageSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSourceOutputUnknown/)."""
 ImageSourceOutput: TypeAlias = ImageSourceOutputbytes | ImageSourceOutputs3Location | ImageSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ImageSourceOutput/)."""
@@ -1747,14 +1748,14 @@ InvokeModelTokensRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelTokensRequest/)."""
 
-InvokeModelWithBidirectionalStreamInputchunk = TypedDict("InvokeModelWithBidirectionalStreamInputchunk", {"chunk": Required["BidirectionalInputPayloadPart"]})
+InvokeModelWithBidirectionalStreamInputchunk = TypedDict("InvokeModelWithBidirectionalStreamInputchunk", {"chunk": Required["BidirectionalInputPayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamInputchunk/)."""
 InvokeModelWithBidirectionalStreamInput: TypeAlias = InvokeModelWithBidirectionalStreamInputchunk
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamInput/)."""
 
-InvokeModelWithBidirectionalStreamEventOutputchunk = TypedDict("InvokeModelWithBidirectionalStreamEventOutputchunk", {"chunk": Required["BidirectionalOutputPayloadPart"]})
+InvokeModelWithBidirectionalStreamEventOutputchunk = TypedDict("InvokeModelWithBidirectionalStreamEventOutputchunk", {"chunk": Required["BidirectionalOutputPayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamEventOutputchunk/)."""
-InvokeModelWithBidirectionalStreamEventOutputUnknown = TypedDict("InvokeModelWithBidirectionalStreamEventOutputUnknown", {"unknown": Required[Literal[True]]})
+InvokeModelWithBidirectionalStreamEventOutputUnknown = TypedDict("InvokeModelWithBidirectionalStreamEventOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamEventOutputUnknown/)."""
 InvokeModelWithBidirectionalStreamEventOutput: TypeAlias = InvokeModelWithBidirectionalStreamEventOutputchunk | InvokeModelWithBidirectionalStreamEventOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithBidirectionalStreamEventOutput/)."""
@@ -1895,7 +1896,7 @@ OutputFormat = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/OutputFormat/)."""
 
-OutputFormatStructurejsonSchema = TypedDict("OutputFormatStructurejsonSchema", {"json_schema": Required["JsonSchemaDefinition"]})
+OutputFormatStructurejsonSchema = TypedDict("OutputFormatStructurejsonSchema", {"json_schema": Required["JsonSchemaDefinition"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/OutputFormatStructurejsonSchema/)."""
 OutputFormatStructure: TypeAlias = OutputFormatStructurejsonSchema
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/OutputFormatStructure/)."""
@@ -1932,34 +1933,34 @@ PromptRouterTrace = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/PromptRouterTrace/)."""
 
-PromptVariableValuestext = TypedDict("PromptVariableValuestext", {"text": Required["str"]})
+PromptVariableValuestext = TypedDict("PromptVariableValuestext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/PromptVariableValuestext/)."""
 PromptVariableValues: TypeAlias = PromptVariableValuestext
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/PromptVariableValues/)."""
 
-ReasoningContentBlockreasoningText = TypedDict("ReasoningContentBlockreasoningText", {"reasoning_text": Required["ReasoningTextBlock"]})
+ReasoningContentBlockreasoningText = TypedDict("ReasoningContentBlockreasoningText", {"reasoning_text": Required["ReasoningTextBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockreasoningText/)."""
-ReasoningContentBlockredactedContent = TypedDict("ReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]})
+ReasoningContentBlockredactedContent = TypedDict("ReasoningContentBlockredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockredactedContent/)."""
 ReasoningContentBlock: TypeAlias = ReasoningContentBlockreasoningText | ReasoningContentBlockredactedContent
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlock/)."""
 
-ReasoningContentBlockOutputreasoningText = TypedDict("ReasoningContentBlockOutputreasoningText", {"reasoning_text": Required["ReasoningTextBlockOutput"]})
+ReasoningContentBlockOutputreasoningText = TypedDict("ReasoningContentBlockOutputreasoningText", {"reasoning_text": Required["ReasoningTextBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockOutputreasoningText/)."""
-ReasoningContentBlockOutputredactedContent = TypedDict("ReasoningContentBlockOutputredactedContent", {"redacted_content": Required["bytes"]})
+ReasoningContentBlockOutputredactedContent = TypedDict("ReasoningContentBlockOutputredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockOutputredactedContent/)."""
-ReasoningContentBlockOutputUnknown = TypedDict("ReasoningContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+ReasoningContentBlockOutputUnknown = TypedDict("ReasoningContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockOutputUnknown/)."""
 ReasoningContentBlockOutput: TypeAlias = ReasoningContentBlockOutputreasoningText | ReasoningContentBlockOutputredactedContent | ReasoningContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockOutput/)."""
 
-ReasoningContentBlockDeltatext = TypedDict("ReasoningContentBlockDeltatext", {"text": Required["str"]})
+ReasoningContentBlockDeltatext = TypedDict("ReasoningContentBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockDeltatext/)."""
-ReasoningContentBlockDeltaredactedContent = TypedDict("ReasoningContentBlockDeltaredactedContent", {"redacted_content": Required["bytes"]})
+ReasoningContentBlockDeltaredactedContent = TypedDict("ReasoningContentBlockDeltaredactedContent", {"redacted_content": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockDeltaredactedContent/)."""
-ReasoningContentBlockDeltasignature = TypedDict("ReasoningContentBlockDeltasignature", {"signature": Required["str"]})
+ReasoningContentBlockDeltasignature = TypedDict("ReasoningContentBlockDeltasignature", {"signature": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockDeltasignature/)."""
-ReasoningContentBlockDeltaUnknown = TypedDict("ReasoningContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+ReasoningContentBlockDeltaUnknown = TypedDict("ReasoningContentBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockDeltaUnknown/)."""
 ReasoningContentBlockDelta: TypeAlias = ReasoningContentBlockDeltatext | ReasoningContentBlockDeltaredactedContent | ReasoningContentBlockDeltasignature | ReasoningContentBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningContentBlockDelta/)."""
@@ -1982,9 +1983,9 @@ ReasoningTextBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ReasoningTextBlockOutput/)."""
 
-ResponseStreamchunk = TypedDict("ResponseStreamchunk", {"chunk": Required["PayloadPart"]})
+ResponseStreamchunk = TypedDict("ResponseStreamchunk", {"chunk": Required["PayloadPart"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ResponseStreamchunk/)."""
-ResponseStreamUnknown = TypedDict("ResponseStreamUnknown", {"unknown": Required[Literal[True]]})
+ResponseStreamUnknown = TypedDict("ResponseStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ResponseStreamUnknown/)."""
 ResponseStream: TypeAlias = ResponseStreamchunk | ResponseStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ResponseStream/)."""
@@ -2101,11 +2102,11 @@ StartAsyncInvokeRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/StartAsyncInvokeRequest/)."""
 
-SystemContentBlocktext = TypedDict("SystemContentBlocktext", {"text": Required["str"]})
+SystemContentBlocktext = TypedDict("SystemContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/SystemContentBlocktext/)."""
-SystemContentBlockguardContent = TypedDict("SystemContentBlockguardContent", {"guard_content": Required["GuardrailConverseContentBlock"]})
+SystemContentBlockguardContent = TypedDict("SystemContentBlockguardContent", {"guard_content": Required["GuardrailConverseContentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/SystemContentBlockguardContent/)."""
-SystemContentBlockcachePoint = TypedDict("SystemContentBlockcachePoint", {"cache_point": Required["CachePointBlock"]})
+SystemContentBlockcachePoint = TypedDict("SystemContentBlockcachePoint", {"cache_point": Required["CachePointBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/SystemContentBlockcachePoint/)."""
 SystemContentBlock: TypeAlias = SystemContentBlocktext | SystemContentBlockguardContent | SystemContentBlockcachePoint
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/SystemContentBlock/)."""
@@ -2140,11 +2141,11 @@ TokenUsage = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/TokenUsage/)."""
 
-TooltoolSpec = TypedDict("TooltoolSpec", {"tool_spec": Required["ToolSpecification"]})
+TooltoolSpec = TypedDict("TooltoolSpec", {"tool_spec": Required["ToolSpecification"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/TooltoolSpec/)."""
-ToolsystemTool = TypedDict("ToolsystemTool", {"system_tool": Required["SystemTool"]})
+ToolsystemTool = TypedDict("ToolsystemTool", {"system_tool": Required["SystemTool"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolsystemTool/)."""
-ToolcachePoint = TypedDict("ToolcachePoint", {"cache_point": Required["CachePointBlock"]})
+ToolcachePoint = TypedDict("ToolcachePoint", {"cache_point": Required["CachePointBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolcachePoint/)."""
 Tool: TypeAlias = TooltoolSpec | ToolsystemTool | ToolcachePoint
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/Tool/)."""
@@ -2165,11 +2166,11 @@ ToolAdditionBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolAdditionBlockOutput/)."""
 
-ToolChoiceauto = TypedDict("ToolChoiceauto", {"auto": Required["AutoToolChoice"]})
+ToolChoiceauto = TypedDict("ToolChoiceauto", {"auto": Required["AutoToolChoice"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolChoiceauto/)."""
-ToolChoiceany = TypedDict("ToolChoiceany", {"any": Required["AnyToolChoice"]})
+ToolChoiceany = TypedDict("ToolChoiceany", {"any": Required["AnyToolChoice"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolChoiceany/)."""
-ToolChoicetool = TypedDict("ToolChoicetool", {"tool": Required["SpecificToolChoice"]})
+ToolChoicetool = TypedDict("ToolChoicetool", {"tool": Required["SpecificToolChoice"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolChoicetool/)."""
 ToolChoice: TypeAlias = ToolChoiceauto | ToolChoiceany | ToolChoicetool
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolChoice/)."""
@@ -2183,7 +2184,7 @@ ToolConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolConfiguration/)."""
 
-ToolInputSchemajson = TypedDict("ToolInputSchemajson", {"json": Required["JSONValue"]})
+ToolInputSchemajson = TypedDict("ToolInputSchemajson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolInputSchemajson/)."""
 ToolInputSchema: TypeAlias = ToolInputSchemajson
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolInputSchema/)."""
@@ -2246,11 +2247,11 @@ ToolResultBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockOutput/)."""
 
-ToolResultBlockDeltatext = TypedDict("ToolResultBlockDeltatext", {"text": Required["str"]})
+ToolResultBlockDeltatext = TypedDict("ToolResultBlockDeltatext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockDeltatext/)."""
-ToolResultBlockDeltajson = TypedDict("ToolResultBlockDeltajson", {"json": Required["JSONValue"]})
+ToolResultBlockDeltajson = TypedDict("ToolResultBlockDeltajson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockDeltajson/)."""
-ToolResultBlockDeltaUnknown = TypedDict("ToolResultBlockDeltaUnknown", {"unknown": Required[Literal[True]]})
+ToolResultBlockDeltaUnknown = TypedDict("ToolResultBlockDeltaUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockDeltaUnknown/)."""
 ToolResultBlockDelta: TypeAlias = ToolResultBlockDeltatext | ToolResultBlockDeltajson | ToolResultBlockDeltaUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockDelta/)."""
@@ -2265,34 +2266,34 @@ ToolResultBlockStart = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultBlockStart/)."""
 
-ToolResultContentBlockjson = TypedDict("ToolResultContentBlockjson", {"json": Required["JSONValue"]})
+ToolResultContentBlockjson = TypedDict("ToolResultContentBlockjson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockjson/)."""
-ToolResultContentBlocktext = TypedDict("ToolResultContentBlocktext", {"text": Required["str"]})
+ToolResultContentBlocktext = TypedDict("ToolResultContentBlocktext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlocktext/)."""
-ToolResultContentBlockimage = TypedDict("ToolResultContentBlockimage", {"image": Required["ImageBlock"]})
+ToolResultContentBlockimage = TypedDict("ToolResultContentBlockimage", {"image": Required["ImageBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockimage/)."""
-ToolResultContentBlockdocument = TypedDict("ToolResultContentBlockdocument", {"document": Required["DocumentBlock"]})
+ToolResultContentBlockdocument = TypedDict("ToolResultContentBlockdocument", {"document": Required["DocumentBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockdocument/)."""
-ToolResultContentBlockvideo = TypedDict("ToolResultContentBlockvideo", {"video": Required["VideoBlock"]})
+ToolResultContentBlockvideo = TypedDict("ToolResultContentBlockvideo", {"video": Required["VideoBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockvideo/)."""
-ToolResultContentBlocksearchResult = TypedDict("ToolResultContentBlocksearchResult", {"search_result": Required["SearchResultBlock"]})
+ToolResultContentBlocksearchResult = TypedDict("ToolResultContentBlocksearchResult", {"search_result": Required["SearchResultBlock"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlocksearchResult/)."""
 ToolResultContentBlock: TypeAlias = ToolResultContentBlockjson | ToolResultContentBlocktext | ToolResultContentBlockimage | ToolResultContentBlockdocument | ToolResultContentBlockvideo | ToolResultContentBlocksearchResult
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlock/)."""
 
-ToolResultContentBlockOutputjson = TypedDict("ToolResultContentBlockOutputjson", {"json": Required["JSONValue"]})
+ToolResultContentBlockOutputjson = TypedDict("ToolResultContentBlockOutputjson", {"json": Required["JSONValue"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputjson/)."""
-ToolResultContentBlockOutputtext = TypedDict("ToolResultContentBlockOutputtext", {"text": Required["str"]})
+ToolResultContentBlockOutputtext = TypedDict("ToolResultContentBlockOutputtext", {"text": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputtext/)."""
-ToolResultContentBlockOutputimage = TypedDict("ToolResultContentBlockOutputimage", {"image": Required["ImageBlockOutput"]})
+ToolResultContentBlockOutputimage = TypedDict("ToolResultContentBlockOutputimage", {"image": Required["ImageBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputimage/)."""
-ToolResultContentBlockOutputdocument = TypedDict("ToolResultContentBlockOutputdocument", {"document": Required["DocumentBlockOutput"]})
+ToolResultContentBlockOutputdocument = TypedDict("ToolResultContentBlockOutputdocument", {"document": Required["DocumentBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputdocument/)."""
-ToolResultContentBlockOutputvideo = TypedDict("ToolResultContentBlockOutputvideo", {"video": Required["VideoBlockOutput"]})
+ToolResultContentBlockOutputvideo = TypedDict("ToolResultContentBlockOutputvideo", {"video": Required["VideoBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputvideo/)."""
-ToolResultContentBlockOutputsearchResult = TypedDict("ToolResultContentBlockOutputsearchResult", {"search_result": Required["SearchResultBlockOutput"]})
+ToolResultContentBlockOutputsearchResult = TypedDict("ToolResultContentBlockOutputsearchResult", {"search_result": Required["SearchResultBlockOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputsearchResult/)."""
-ToolResultContentBlockOutputUnknown = TypedDict("ToolResultContentBlockOutputUnknown", {"unknown": Required[Literal[True]]})
+ToolResultContentBlockOutputUnknown = TypedDict("ToolResultContentBlockOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutputUnknown/)."""
 ToolResultContentBlockOutput: TypeAlias = ToolResultContentBlockOutputjson | ToolResultContentBlockOutputtext | ToolResultContentBlockOutputimage | ToolResultContentBlockOutputdocument | ToolResultContentBlockOutputvideo | ToolResultContentBlockOutputsearchResult | ToolResultContentBlockOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/ToolResultContentBlockOutput/)."""
@@ -2366,18 +2367,18 @@ VideoBlockOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoBlockOutput/)."""
 
-VideoSourcebytes = TypedDict("VideoSourcebytes", {"bytes": Required["bytes"]})
+VideoSourcebytes = TypedDict("VideoSourcebytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSourcebytes/)."""
-VideoSources3Location = TypedDict("VideoSources3Location", {"s3_location": Required["S3Location"]})
+VideoSources3Location = TypedDict("VideoSources3Location", {"s3_location": Required["S3Location"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSources3Location/)."""
 VideoSource: TypeAlias = VideoSourcebytes | VideoSources3Location
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSource/)."""
 
-VideoSourceOutputbytes = TypedDict("VideoSourceOutputbytes", {"bytes": Required["bytes"]})
+VideoSourceOutputbytes = TypedDict("VideoSourceOutputbytes", {"bytes": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSourceOutputbytes/)."""
-VideoSourceOutputs3Location = TypedDict("VideoSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]})
+VideoSourceOutputs3Location = TypedDict("VideoSourceOutputs3Location", {"s3_location": Required["S3LocationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSourceOutputs3Location/)."""
-VideoSourceOutputUnknown = TypedDict("VideoSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+VideoSourceOutputUnknown = TypedDict("VideoSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSourceOutputUnknown/)."""
 VideoSourceOutput: TypeAlias = VideoSourceOutputbytes | VideoSourceOutputs3Location | VideoSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/VideoSourceOutput/)."""

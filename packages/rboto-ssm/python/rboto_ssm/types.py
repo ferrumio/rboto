@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -1450,14 +1451,14 @@ CancelMaintenanceWindowExecutionRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CancelMaintenanceWindowExecutionRequest/)."""
 
-CloudConnectorConfigurationAzureConfiguration = TypedDict("CloudConnectorConfigurationAzureConfiguration", {"azure_configuration": Required["AzureConfiguration"]})
+CloudConnectorConfigurationAzureConfiguration = TypedDict("CloudConnectorConfigurationAzureConfiguration", {"azure_configuration": Required["AzureConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationAzureConfiguration/)."""
 CloudConnectorConfiguration: TypeAlias = CloudConnectorConfigurationAzureConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfiguration/)."""
 
-CloudConnectorConfigurationOutputAzureConfiguration = TypedDict("CloudConnectorConfigurationOutputAzureConfiguration", {"azure_configuration": Required["AzureConfigurationOutput"]})
+CloudConnectorConfigurationOutputAzureConfiguration = TypedDict("CloudConnectorConfigurationOutputAzureConfiguration", {"azure_configuration": Required["AzureConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputAzureConfiguration/)."""
-CloudConnectorConfigurationOutputUnknown = TypedDict("CloudConnectorConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+CloudConnectorConfigurationOutputUnknown = TypedDict("CloudConnectorConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutputUnknown/)."""
 CloudConnectorConfigurationOutput: TypeAlias = CloudConnectorConfigurationOutputAzureConfiguration | CloudConnectorConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CloudConnectorConfigurationOutput/)."""
@@ -1644,14 +1645,14 @@ CompliantSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/CompliantSummary/)."""
 
-ConfigurationTargetsSubscriptions = TypedDict("ConfigurationTargetsSubscriptions", {"subscriptions": Required["Sequence[AzureSubscription]"]})
+ConfigurationTargetsSubscriptions = TypedDict("ConfigurationTargetsSubscriptions", {"subscriptions": Required["Sequence[AzureSubscription]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsSubscriptions/)."""
 ConfigurationTargets: TypeAlias = ConfigurationTargetsSubscriptions
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargets/)."""
 
-ConfigurationTargetsOutputSubscriptions = TypedDict("ConfigurationTargetsOutputSubscriptions", {"subscriptions": Required["list[AzureSubscriptionOutput]"]})
+ConfigurationTargetsOutputSubscriptions = TypedDict("ConfigurationTargetsOutputSubscriptions", {"subscriptions": Required["list[AzureSubscriptionOutput]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutputSubscriptions/)."""
-ConfigurationTargetsOutputUnknown = TypedDict("ConfigurationTargetsOutputUnknown", {"unknown": Required[Literal[True]]})
+ConfigurationTargetsOutputUnknown = TypedDict("ConfigurationTargetsOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutputUnknown/)."""
 ConfigurationTargetsOutput: TypeAlias = ConfigurationTargetsOutputSubscriptions | ConfigurationTargetsOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ConfigurationTargetsOutput/)."""
@@ -2564,14 +2565,14 @@ EffectivePatch = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/EffectivePatch/)."""
 
-ExecutionInputsAutomation = TypedDict("ExecutionInputsAutomation", {"automation": Required["AutomationExecutionInputs"]})
+ExecutionInputsAutomation = TypedDict("ExecutionInputsAutomation", {"automation": Required["AutomationExecutionInputs"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionInputsAutomation/)."""
 ExecutionInputs: TypeAlias = ExecutionInputsAutomation
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionInputs/)."""
 
-ExecutionPreviewAutomation = TypedDict("ExecutionPreviewAutomation", {"automation": Required["AutomationExecutionPreview"]})
+ExecutionPreviewAutomation = TypedDict("ExecutionPreviewAutomation", {"automation": Required["AutomationExecutionPreview"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewAutomation/)."""
-ExecutionPreviewUnknown = TypedDict("ExecutionPreviewUnknown", {"unknown": Required[Literal[True]]})
+ExecutionPreviewUnknown = TypedDict("ExecutionPreviewUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreviewUnknown/)."""
 ExecutionPreview: TypeAlias = ExecutionPreviewAutomation | ExecutionPreviewUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/ExecutionPreview/)."""
@@ -3701,9 +3702,9 @@ NodeOwnerInfo = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeOwnerInfo/)."""
 
-NodeTypeInstance = TypedDict("NodeTypeInstance", {"instance": Required["InstanceInfo"]})
+NodeTypeInstance = TypedDict("NodeTypeInstance", {"instance": Required["InstanceInfo"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeInstance/)."""
-NodeTypeUnknown = TypedDict("NodeTypeUnknown", {"unknown": Required[Literal[True]]})
+NodeTypeUnknown = TypedDict("NodeTypeUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeTypeUnknown/)."""
 NodeType: TypeAlias = NodeTypeInstance | NodeTypeUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/ssm/types/NodeType/)."""

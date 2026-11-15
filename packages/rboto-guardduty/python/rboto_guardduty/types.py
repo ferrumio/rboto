@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence as _Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 

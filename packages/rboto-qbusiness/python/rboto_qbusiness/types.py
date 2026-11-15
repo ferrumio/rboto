@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -581,18 +582,18 @@ WebExperienceStatus: TypeAlias = Literal['CREATING', 'ACTIVE', 'DELETING', 'FAIL
 WebExperienceStatusOutput: TypeAlias = WebExperienceStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceStatusOutput/)."""
 
-APISchemapayload = TypedDict("APISchemapayload", {"payload": Required["str"]})
+APISchemapayload = TypedDict("APISchemapayload", {"payload": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemapayload/)."""
-APISchemas3 = TypedDict("APISchemas3", {"s3": Required["S3"]})
+APISchemas3 = TypedDict("APISchemas3", {"s3": Required["S3"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemas3/)."""
 APISchema: TypeAlias = APISchemapayload | APISchemas3
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchema/)."""
 
-APISchemaOutputpayload = TypedDict("APISchemaOutputpayload", {"payload": Required["str"]})
+APISchemaOutputpayload = TypedDict("APISchemaOutputpayload", {"payload": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemaOutputpayload/)."""
-APISchemaOutputs3 = TypedDict("APISchemaOutputs3", {"s3": Required["S3Output"]})
+APISchemaOutputs3 = TypedDict("APISchemaOutputs3", {"s3": Required["S3Output"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemaOutputs3/)."""
-APISchemaOutputUnknown = TypedDict("APISchemaOutputUnknown", {"unknown": Required[Literal[True]]})
+APISchemaOutputUnknown = TypedDict("APISchemaOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemaOutputUnknown/)."""
 APISchemaOutput: TypeAlias = APISchemaOutputpayload | APISchemaOutputs3 | APISchemaOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/APISchemaOutput/)."""
@@ -1013,22 +1014,22 @@ ChatInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInput/)."""
 
-ChatInputStreamconfigurationEvent = TypedDict("ChatInputStreamconfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]})
+ChatInputStreamconfigurationEvent = TypedDict("ChatInputStreamconfigurationEvent", {"configuration_event": Required["ConfigurationEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamconfigurationEvent/)."""
-ChatInputStreamtextEvent = TypedDict("ChatInputStreamtextEvent", {"text_event": Required["TextInputEvent"]})
+ChatInputStreamtextEvent = TypedDict("ChatInputStreamtextEvent", {"text_event": Required["TextInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamtextEvent/)."""
-ChatInputStreamattachmentEvent = TypedDict("ChatInputStreamattachmentEvent", {"attachment_event": Required["AttachmentInputEvent"]})
+ChatInputStreamattachmentEvent = TypedDict("ChatInputStreamattachmentEvent", {"attachment_event": Required["AttachmentInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamattachmentEvent/)."""
-ChatInputStreamactionExecutionEvent = TypedDict("ChatInputStreamactionExecutionEvent", {"action_execution_event": Required["ActionExecutionEvent"]})
+ChatInputStreamactionExecutionEvent = TypedDict("ChatInputStreamactionExecutionEvent", {"action_execution_event": Required["ActionExecutionEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamactionExecutionEvent/)."""
-ChatInputStreamendOfInputEvent = TypedDict("ChatInputStreamendOfInputEvent", {"end_of_input_event": Required["EndOfInputEvent"]})
+ChatInputStreamendOfInputEvent = TypedDict("ChatInputStreamendOfInputEvent", {"end_of_input_event": Required["EndOfInputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamendOfInputEvent/)."""
-ChatInputStreamauthChallengeResponseEvent = TypedDict("ChatInputStreamauthChallengeResponseEvent", {"auth_challenge_response_event": Required["AuthChallengeResponseEvent"]})
+ChatInputStreamauthChallengeResponseEvent = TypedDict("ChatInputStreamauthChallengeResponseEvent", {"auth_challenge_response_event": Required["AuthChallengeResponseEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStreamauthChallengeResponseEvent/)."""
 ChatInputStream: TypeAlias = ChatInputStreamconfigurationEvent | ChatInputStreamtextEvent | ChatInputStreamattachmentEvent | ChatInputStreamactionExecutionEvent | ChatInputStreamendOfInputEvent | ChatInputStreamauthChallengeResponseEvent
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatInputStream/)."""
 
-ChatModeConfigurationpluginConfiguration = TypedDict("ChatModeConfigurationpluginConfiguration", {"plugin_configuration": Required["PluginConfiguration"]})
+ChatModeConfigurationpluginConfiguration = TypedDict("ChatModeConfigurationpluginConfiguration", {"plugin_configuration": Required["PluginConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatModeConfigurationpluginConfiguration/)."""
 ChatModeConfiguration: TypeAlias = ChatModeConfigurationpluginConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatModeConfiguration/)."""
@@ -1041,17 +1042,17 @@ ChatOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutput/)."""
 
-ChatOutputStreamtextEvent = TypedDict("ChatOutputStreamtextEvent", {"text_event": Required["TextOutputEvent"]})
+ChatOutputStreamtextEvent = TypedDict("ChatOutputStreamtextEvent", {"text_event": Required["TextOutputEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamtextEvent/)."""
-ChatOutputStreammetadataEvent = TypedDict("ChatOutputStreammetadataEvent", {"metadata_event": Required["MetadataEvent"]})
+ChatOutputStreammetadataEvent = TypedDict("ChatOutputStreammetadataEvent", {"metadata_event": Required["MetadataEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreammetadataEvent/)."""
-ChatOutputStreamactionReviewEvent = TypedDict("ChatOutputStreamactionReviewEvent", {"action_review_event": Required["ActionReviewEvent"]})
+ChatOutputStreamactionReviewEvent = TypedDict("ChatOutputStreamactionReviewEvent", {"action_review_event": Required["ActionReviewEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamactionReviewEvent/)."""
-ChatOutputStreamfailedAttachmentEvent = TypedDict("ChatOutputStreamfailedAttachmentEvent", {"failed_attachment_event": Required["FailedAttachmentEvent"]})
+ChatOutputStreamfailedAttachmentEvent = TypedDict("ChatOutputStreamfailedAttachmentEvent", {"failed_attachment_event": Required["FailedAttachmentEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamfailedAttachmentEvent/)."""
-ChatOutputStreamauthChallengeRequestEvent = TypedDict("ChatOutputStreamauthChallengeRequestEvent", {"auth_challenge_request_event": Required["AuthChallengeRequestEvent"]})
+ChatOutputStreamauthChallengeRequestEvent = TypedDict("ChatOutputStreamauthChallengeRequestEvent", {"auth_challenge_request_event": Required["AuthChallengeRequestEvent"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamauthChallengeRequestEvent/)."""
-ChatOutputStreamUnknown = TypedDict("ChatOutputStreamUnknown", {"unknown": Required[Literal[True]]})
+ChatOutputStreamUnknown = TypedDict("ChatOutputStreamUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStreamUnknown/)."""
 ChatOutputStream: TypeAlias = ChatOutputStreamtextEvent | ChatOutputStreammetadataEvent | ChatOutputStreamactionReviewEvent | ChatOutputStreamfailedAttachmentEvent | ChatOutputStreamauthChallengeRequestEvent | ChatOutputStreamUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ChatOutputStream/)."""
@@ -1163,7 +1164,7 @@ ContentRetrievalRuleOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ContentRetrievalRuleOutput/)."""
 
-ContentSourceretriever = TypedDict("ContentSourceretriever", {"retriever": Required["RetrieverContentSource"]})
+ContentSourceretriever = TypedDict("ContentSourceretriever", {"retriever": Required["RetrieverContentSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ContentSourceretriever/)."""
 ContentSource: TypeAlias = ContentSourceretriever
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ContentSource/)."""
@@ -1196,14 +1197,14 @@ ConversationSourceOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/ConversationSourceOutput/)."""
 
-CopyFromSourceconversation = TypedDict("CopyFromSourceconversation", {"conversation": Required["ConversationSource"]})
+CopyFromSourceconversation = TypedDict("CopyFromSourceconversation", {"conversation": Required["ConversationSource"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CopyFromSourceconversation/)."""
 CopyFromSource: TypeAlias = CopyFromSourceconversation
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CopyFromSource/)."""
 
-CopyFromSourceOutputconversation = TypedDict("CopyFromSourceOutputconversation", {"conversation": Required["ConversationSourceOutput"]})
+CopyFromSourceOutputconversation = TypedDict("CopyFromSourceOutputconversation", {"conversation": Required["ConversationSourceOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CopyFromSourceOutputconversation/)."""
-CopyFromSourceOutputUnknown = TypedDict("CopyFromSourceOutputUnknown", {"unknown": Required[Literal[True]]})
+CopyFromSourceOutputUnknown = TypedDict("CopyFromSourceOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CopyFromSourceOutputUnknown/)."""
 CopyFromSourceOutput: TypeAlias = CopyFromSourceOutputconversation | CopyFromSourceOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/CopyFromSourceOutput/)."""
@@ -1412,14 +1413,14 @@ DataAccessor = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessor/)."""
 
-DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration = TypedDict("DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration", {"idc_trusted_token_issuer_configuration": Required["DataAccessorIdcTrustedTokenIssuerConfiguration"]})
+DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration = TypedDict("DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration", {"idc_trusted_token_issuer_configuration": Required["DataAccessorIdcTrustedTokenIssuerConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration/)."""
 DataAccessorAuthenticationConfiguration: TypeAlias = DataAccessorAuthenticationConfigurationidcTrustedTokenIssuerConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationConfiguration/)."""
 
-DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration = TypedDict("DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration", {"idc_trusted_token_issuer_configuration": Required["DataAccessorIdcTrustedTokenIssuerConfigurationOutput"]})
+DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration = TypedDict("DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration", {"idc_trusted_token_issuer_configuration": Required["DataAccessorIdcTrustedTokenIssuerConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration/)."""
-DataAccessorAuthenticationConfigurationOutputUnknown = TypedDict("DataAccessorAuthenticationConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+DataAccessorAuthenticationConfigurationOutputUnknown = TypedDict("DataAccessorAuthenticationConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationConfigurationOutputUnknown/)."""
 DataAccessorAuthenticationConfigurationOutput: TypeAlias = DataAccessorAuthenticationConfigurationOutputidcTrustedTokenIssuerConfiguration | DataAccessorAuthenticationConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DataAccessorAuthenticationConfigurationOutput/)."""
@@ -1724,26 +1725,26 @@ DocumentAttribute = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttribute/)."""
 
-DocumentAttributeBoostingConfigurationnumberConfiguration = TypedDict("DocumentAttributeBoostingConfigurationnumberConfiguration", {"number_configuration": Required["NumberAttributeBoostingConfiguration"]})
+DocumentAttributeBoostingConfigurationnumberConfiguration = TypedDict("DocumentAttributeBoostingConfigurationnumberConfiguration", {"number_configuration": Required["NumberAttributeBoostingConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationnumberConfiguration/)."""
-DocumentAttributeBoostingConfigurationstringConfiguration = TypedDict("DocumentAttributeBoostingConfigurationstringConfiguration", {"string_configuration": Required["StringAttributeBoostingConfiguration"]})
+DocumentAttributeBoostingConfigurationstringConfiguration = TypedDict("DocumentAttributeBoostingConfigurationstringConfiguration", {"string_configuration": Required["StringAttributeBoostingConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationstringConfiguration/)."""
-DocumentAttributeBoostingConfigurationdateConfiguration = TypedDict("DocumentAttributeBoostingConfigurationdateConfiguration", {"date_configuration": Required["DateAttributeBoostingConfiguration"]})
+DocumentAttributeBoostingConfigurationdateConfiguration = TypedDict("DocumentAttributeBoostingConfigurationdateConfiguration", {"date_configuration": Required["DateAttributeBoostingConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationdateConfiguration/)."""
-DocumentAttributeBoostingConfigurationstringListConfiguration = TypedDict("DocumentAttributeBoostingConfigurationstringListConfiguration", {"string_list_configuration": Required["StringListAttributeBoostingConfiguration"]})
+DocumentAttributeBoostingConfigurationstringListConfiguration = TypedDict("DocumentAttributeBoostingConfigurationstringListConfiguration", {"string_list_configuration": Required["StringListAttributeBoostingConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationstringListConfiguration/)."""
 DocumentAttributeBoostingConfiguration: TypeAlias = DocumentAttributeBoostingConfigurationnumberConfiguration | DocumentAttributeBoostingConfigurationstringConfiguration | DocumentAttributeBoostingConfigurationdateConfiguration | DocumentAttributeBoostingConfigurationstringListConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfiguration/)."""
 
-DocumentAttributeBoostingConfigurationOutputnumberConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputnumberConfiguration", {"number_configuration": Required["NumberAttributeBoostingConfigurationOutput"]})
+DocumentAttributeBoostingConfigurationOutputnumberConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputnumberConfiguration", {"number_configuration": Required["NumberAttributeBoostingConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutputnumberConfiguration/)."""
-DocumentAttributeBoostingConfigurationOutputstringConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputstringConfiguration", {"string_configuration": Required["StringAttributeBoostingConfigurationOutput"]})
+DocumentAttributeBoostingConfigurationOutputstringConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputstringConfiguration", {"string_configuration": Required["StringAttributeBoostingConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutputstringConfiguration/)."""
-DocumentAttributeBoostingConfigurationOutputdateConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputdateConfiguration", {"date_configuration": Required["DateAttributeBoostingConfigurationOutput"]})
+DocumentAttributeBoostingConfigurationOutputdateConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputdateConfiguration", {"date_configuration": Required["DateAttributeBoostingConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutputdateConfiguration/)."""
-DocumentAttributeBoostingConfigurationOutputstringListConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputstringListConfiguration", {"string_list_configuration": Required["StringListAttributeBoostingConfigurationOutput"]})
+DocumentAttributeBoostingConfigurationOutputstringListConfiguration = TypedDict("DocumentAttributeBoostingConfigurationOutputstringListConfiguration", {"string_list_configuration": Required["StringListAttributeBoostingConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutputstringListConfiguration/)."""
-DocumentAttributeBoostingConfigurationOutputUnknown = TypedDict("DocumentAttributeBoostingConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+DocumentAttributeBoostingConfigurationOutputUnknown = TypedDict("DocumentAttributeBoostingConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutputUnknown/)."""
 DocumentAttributeBoostingConfigurationOutput: TypeAlias = DocumentAttributeBoostingConfigurationOutputnumberConfiguration | DocumentAttributeBoostingConfigurationOutputstringConfiguration | DocumentAttributeBoostingConfigurationOutputdateConfiguration | DocumentAttributeBoostingConfigurationOutputstringListConfiguration | DocumentAttributeBoostingConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeBoostingConfigurationOutput/)."""
@@ -1778,33 +1779,33 @@ DocumentAttributeTarget = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeTarget/)."""
 
-DocumentAttributeValuestringValue = TypedDict("DocumentAttributeValuestringValue", {"string_value": Required["str"]})
+DocumentAttributeValuestringValue = TypedDict("DocumentAttributeValuestringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValuestringValue/)."""
-DocumentAttributeValuestringListValue = TypedDict("DocumentAttributeValuestringListValue", {"string_list_value": Required["Sequence[str]"]})
+DocumentAttributeValuestringListValue = TypedDict("DocumentAttributeValuestringListValue", {"string_list_value": Required["Sequence[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValuestringListValue/)."""
-DocumentAttributeValuelongValue = TypedDict("DocumentAttributeValuelongValue", {"long_value": Required["int"]})
+DocumentAttributeValuelongValue = TypedDict("DocumentAttributeValuelongValue", {"long_value": Required["int"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValuelongValue/)."""
-DocumentAttributeValuedateValue = TypedDict("DocumentAttributeValuedateValue", {"date_value": Required["str"]})
+DocumentAttributeValuedateValue = TypedDict("DocumentAttributeValuedateValue", {"date_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValuedateValue/)."""
 DocumentAttributeValue: TypeAlias = DocumentAttributeValuestringValue | DocumentAttributeValuestringListValue | DocumentAttributeValuelongValue | DocumentAttributeValuedateValue
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValue/)."""
 
-DocumentAttributeValueOutputstringValue = TypedDict("DocumentAttributeValueOutputstringValue", {"string_value": Required["str"]})
+DocumentAttributeValueOutputstringValue = TypedDict("DocumentAttributeValueOutputstringValue", {"string_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutputstringValue/)."""
-DocumentAttributeValueOutputstringListValue = TypedDict("DocumentAttributeValueOutputstringListValue", {"string_list_value": Required["list[str]"]})
+DocumentAttributeValueOutputstringListValue = TypedDict("DocumentAttributeValueOutputstringListValue", {"string_list_value": Required["list[str]"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutputstringListValue/)."""
-DocumentAttributeValueOutputlongValue = TypedDict("DocumentAttributeValueOutputlongValue", {"long_value": Required["int"]})
+DocumentAttributeValueOutputlongValue = TypedDict("DocumentAttributeValueOutputlongValue", {"long_value": Required["int"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutputlongValue/)."""
-DocumentAttributeValueOutputdateValue = TypedDict("DocumentAttributeValueOutputdateValue", {"date_value": Required["str"]})
+DocumentAttributeValueOutputdateValue = TypedDict("DocumentAttributeValueOutputdateValue", {"date_value": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutputdateValue/)."""
-DocumentAttributeValueOutputUnknown = TypedDict("DocumentAttributeValueOutputUnknown", {"unknown": Required[Literal[True]]})
+DocumentAttributeValueOutputUnknown = TypedDict("DocumentAttributeValueOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutputUnknown/)."""
 DocumentAttributeValueOutput: TypeAlias = DocumentAttributeValueOutputstringValue | DocumentAttributeValueOutputstringListValue | DocumentAttributeValueOutputlongValue | DocumentAttributeValueOutputdateValue | DocumentAttributeValueOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentAttributeValueOutput/)."""
 
-DocumentContentblob = TypedDict("DocumentContentblob", {"blob": Required["bytes"]})
+DocumentContentblob = TypedDict("DocumentContentblob", {"blob": Required["bytes"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentContentblob/)."""
-DocumentContents3 = TypedDict("DocumentContents3", {"s3": Required["S3"]})
+DocumentContents3 = TypedDict("DocumentContents3", {"s3": Required["S3"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentContents3/)."""
 DocumentContent: TypeAlias = DocumentContentblob | DocumentContents3
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/DocumentContent/)."""
@@ -2092,18 +2093,18 @@ IdcAuthConfigurationOutput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdcAuthConfigurationOutput/)."""
 
-IdentityProviderConfigurationsamlConfiguration = TypedDict("IdentityProviderConfigurationsamlConfiguration", {"saml_configuration": Required["SamlProviderConfiguration"]})
+IdentityProviderConfigurationsamlConfiguration = TypedDict("IdentityProviderConfigurationsamlConfiguration", {"saml_configuration": Required["SamlProviderConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationsamlConfiguration/)."""
-IdentityProviderConfigurationopenIDConnectConfiguration = TypedDict("IdentityProviderConfigurationopenIDConnectConfiguration", {"open_id_connect_configuration": Required["OpenIDConnectProviderConfiguration"]})
+IdentityProviderConfigurationopenIDConnectConfiguration = TypedDict("IdentityProviderConfigurationopenIDConnectConfiguration", {"open_id_connect_configuration": Required["OpenIDConnectProviderConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationopenIDConnectConfiguration/)."""
 IdentityProviderConfiguration: TypeAlias = IdentityProviderConfigurationsamlConfiguration | IdentityProviderConfigurationopenIDConnectConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfiguration/)."""
 
-IdentityProviderConfigurationOutputsamlConfiguration = TypedDict("IdentityProviderConfigurationOutputsamlConfiguration", {"saml_configuration": Required["SamlProviderConfigurationOutput"]})
+IdentityProviderConfigurationOutputsamlConfiguration = TypedDict("IdentityProviderConfigurationOutputsamlConfiguration", {"saml_configuration": Required["SamlProviderConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationOutputsamlConfiguration/)."""
-IdentityProviderConfigurationOutputopenIDConnectConfiguration = TypedDict("IdentityProviderConfigurationOutputopenIDConnectConfiguration", {"open_id_connect_configuration": Required["OpenIDConnectProviderConfigurationOutput"]})
+IdentityProviderConfigurationOutputopenIDConnectConfiguration = TypedDict("IdentityProviderConfigurationOutputopenIDConnectConfiguration", {"open_id_connect_configuration": Required["OpenIDConnectProviderConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationOutputopenIDConnectConfiguration/)."""
-IdentityProviderConfigurationOutputUnknown = TypedDict("IdentityProviderConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+IdentityProviderConfigurationOutputUnknown = TypedDict("IdentityProviderConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationOutputUnknown/)."""
 IdentityProviderConfigurationOutput: TypeAlias = IdentityProviderConfigurationOutputsamlConfiguration | IdentityProviderConfigurationOutputopenIDConnectConfiguration | IdentityProviderConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/IdentityProviderConfigurationOutput/)."""
@@ -2596,26 +2597,26 @@ Plugin = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Plugin/)."""
 
-PluginAuthConfigurationbasicAuthConfiguration = TypedDict("PluginAuthConfigurationbasicAuthConfiguration", {"basic_auth_configuration": Required["BasicAuthConfiguration"]})
+PluginAuthConfigurationbasicAuthConfiguration = TypedDict("PluginAuthConfigurationbasicAuthConfiguration", {"basic_auth_configuration": Required["BasicAuthConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationbasicAuthConfiguration/)."""
-PluginAuthConfigurationoAuth2ClientCredentialConfiguration = TypedDict("PluginAuthConfigurationoAuth2ClientCredentialConfiguration", {"o_auth2_client_credential_configuration": Required["OAuth2ClientCredentialConfiguration"]})
+PluginAuthConfigurationoAuth2ClientCredentialConfiguration = TypedDict("PluginAuthConfigurationoAuth2ClientCredentialConfiguration", {"o_auth2_client_credential_configuration": Required["OAuth2ClientCredentialConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationoAuth2ClientCredentialConfiguration/)."""
-PluginAuthConfigurationnoAuthConfiguration = TypedDict("PluginAuthConfigurationnoAuthConfiguration", {"no_auth_configuration": Required["NoAuthConfiguration"]})
+PluginAuthConfigurationnoAuthConfiguration = TypedDict("PluginAuthConfigurationnoAuthConfiguration", {"no_auth_configuration": Required["NoAuthConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationnoAuthConfiguration/)."""
-PluginAuthConfigurationidcAuthConfiguration = TypedDict("PluginAuthConfigurationidcAuthConfiguration", {"idc_auth_configuration": Required["IdcAuthConfiguration"]})
+PluginAuthConfigurationidcAuthConfiguration = TypedDict("PluginAuthConfigurationidcAuthConfiguration", {"idc_auth_configuration": Required["IdcAuthConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationidcAuthConfiguration/)."""
 PluginAuthConfiguration: TypeAlias = PluginAuthConfigurationbasicAuthConfiguration | PluginAuthConfigurationoAuth2ClientCredentialConfiguration | PluginAuthConfigurationnoAuthConfiguration | PluginAuthConfigurationidcAuthConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfiguration/)."""
 
-PluginAuthConfigurationOutputbasicAuthConfiguration = TypedDict("PluginAuthConfigurationOutputbasicAuthConfiguration", {"basic_auth_configuration": Required["BasicAuthConfigurationOutput"]})
+PluginAuthConfigurationOutputbasicAuthConfiguration = TypedDict("PluginAuthConfigurationOutputbasicAuthConfiguration", {"basic_auth_configuration": Required["BasicAuthConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutputbasicAuthConfiguration/)."""
-PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration = TypedDict("PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration", {"o_auth2_client_credential_configuration": Required["OAuth2ClientCredentialConfigurationOutput"]})
+PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration = TypedDict("PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration", {"o_auth2_client_credential_configuration": Required["OAuth2ClientCredentialConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration/)."""
-PluginAuthConfigurationOutputnoAuthConfiguration = TypedDict("PluginAuthConfigurationOutputnoAuthConfiguration", {"no_auth_configuration": Required["NoAuthConfigurationOutput"]})
+PluginAuthConfigurationOutputnoAuthConfiguration = TypedDict("PluginAuthConfigurationOutputnoAuthConfiguration", {"no_auth_configuration": Required["NoAuthConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutputnoAuthConfiguration/)."""
-PluginAuthConfigurationOutputidcAuthConfiguration = TypedDict("PluginAuthConfigurationOutputidcAuthConfiguration", {"idc_auth_configuration": Required["IdcAuthConfigurationOutput"]})
+PluginAuthConfigurationOutputidcAuthConfiguration = TypedDict("PluginAuthConfigurationOutputidcAuthConfiguration", {"idc_auth_configuration": Required["IdcAuthConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutputidcAuthConfiguration/)."""
-PluginAuthConfigurationOutputUnknown = TypedDict("PluginAuthConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+PluginAuthConfigurationOutputUnknown = TypedDict("PluginAuthConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutputUnknown/)."""
 PluginAuthConfigurationOutput: TypeAlias = PluginAuthConfigurationOutputbasicAuthConfiguration | PluginAuthConfigurationOutputoAuth2ClientCredentialConfiguration | PluginAuthConfigurationOutputnoAuthConfiguration | PluginAuthConfigurationOutputidcAuthConfiguration | PluginAuthConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginAuthConfigurationOutput/)."""
@@ -2638,9 +2639,9 @@ PluginTypeMetadataSummary = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/PluginTypeMetadataSummary/)."""
 
-Principaluser = TypedDict("Principaluser", {"user": Required["PrincipalUser"]})
+Principaluser = TypedDict("Principaluser", {"user": Required["PrincipalUser"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Principaluser-b3cf0239a351/)."""
-Principalgroup = TypedDict("Principalgroup", {"group": Required["PrincipalGroup"]})
+Principalgroup = TypedDict("Principalgroup", {"group": Required["PrincipalGroup"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Principalgroup-0d7ee4b84be0/)."""
 Principal: TypeAlias = Principaluser | Principalgroup
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Principal/)."""
@@ -2748,18 +2749,18 @@ Retriever = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Retriever/)."""
 
-RetrieverConfigurationnativeIndexConfiguration = TypedDict("RetrieverConfigurationnativeIndexConfiguration", {"native_index_configuration": Required["NativeIndexConfiguration"]})
+RetrieverConfigurationnativeIndexConfiguration = TypedDict("RetrieverConfigurationnativeIndexConfiguration", {"native_index_configuration": Required["NativeIndexConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationnativeIndexConfiguration/)."""
-RetrieverConfigurationkendraIndexConfiguration = TypedDict("RetrieverConfigurationkendraIndexConfiguration", {"kendra_index_configuration": Required["KendraIndexConfiguration"]})
+RetrieverConfigurationkendraIndexConfiguration = TypedDict("RetrieverConfigurationkendraIndexConfiguration", {"kendra_index_configuration": Required["KendraIndexConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationkendraIndexConfiguration/)."""
 RetrieverConfiguration: TypeAlias = RetrieverConfigurationnativeIndexConfiguration | RetrieverConfigurationkendraIndexConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfiguration/)."""
 
-RetrieverConfigurationOutputnativeIndexConfiguration = TypedDict("RetrieverConfigurationOutputnativeIndexConfiguration", {"native_index_configuration": Required["NativeIndexConfigurationOutput"]})
+RetrieverConfigurationOutputnativeIndexConfiguration = TypedDict("RetrieverConfigurationOutputnativeIndexConfiguration", {"native_index_configuration": Required["NativeIndexConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationOutputnativeIndexConfiguration/)."""
-RetrieverConfigurationOutputkendraIndexConfiguration = TypedDict("RetrieverConfigurationOutputkendraIndexConfiguration", {"kendra_index_configuration": Required["KendraIndexConfigurationOutput"]})
+RetrieverConfigurationOutputkendraIndexConfiguration = TypedDict("RetrieverConfigurationOutputkendraIndexConfiguration", {"kendra_index_configuration": Required["KendraIndexConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationOutputkendraIndexConfiguration/)."""
-RetrieverConfigurationOutputUnknown = TypedDict("RetrieverConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+RetrieverConfigurationOutputUnknown = TypedDict("RetrieverConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationOutputUnknown/)."""
 RetrieverConfigurationOutput: TypeAlias = RetrieverConfigurationOutputnativeIndexConfiguration | RetrieverConfigurationOutputkendraIndexConfiguration | RetrieverConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RetrieverConfigurationOutput/)."""
@@ -2783,18 +2784,18 @@ Rule = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/Rule/)."""
 
-RuleConfigurationcontentBlockerRule = TypedDict("RuleConfigurationcontentBlockerRule", {"content_blocker_rule": Required["ContentBlockerRule"]})
+RuleConfigurationcontentBlockerRule = TypedDict("RuleConfigurationcontentBlockerRule", {"content_blocker_rule": Required["ContentBlockerRule"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationcontentBlockerRule/)."""
-RuleConfigurationcontentRetrievalRule = TypedDict("RuleConfigurationcontentRetrievalRule", {"content_retrieval_rule": Required["ContentRetrievalRule"]})
+RuleConfigurationcontentRetrievalRule = TypedDict("RuleConfigurationcontentRetrievalRule", {"content_retrieval_rule": Required["ContentRetrievalRule"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationcontentRetrievalRule/)."""
 RuleConfiguration: TypeAlias = RuleConfigurationcontentBlockerRule | RuleConfigurationcontentRetrievalRule
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfiguration/)."""
 
-RuleConfigurationOutputcontentBlockerRule = TypedDict("RuleConfigurationOutputcontentBlockerRule", {"content_blocker_rule": Required["ContentBlockerRuleOutput"]})
+RuleConfigurationOutputcontentBlockerRule = TypedDict("RuleConfigurationOutputcontentBlockerRule", {"content_blocker_rule": Required["ContentBlockerRuleOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationOutputcontentBlockerRule/)."""
-RuleConfigurationOutputcontentRetrievalRule = TypedDict("RuleConfigurationOutputcontentRetrievalRule", {"content_retrieval_rule": Required["ContentRetrievalRuleOutput"]})
+RuleConfigurationOutputcontentRetrievalRule = TypedDict("RuleConfigurationOutputcontentRetrievalRule", {"content_retrieval_rule": Required["ContentRetrievalRuleOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationOutputcontentRetrievalRule/)."""
-RuleConfigurationOutputUnknown = TypedDict("RuleConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+RuleConfigurationOutputUnknown = TypedDict("RuleConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationOutputUnknown/)."""
 RuleConfigurationOutput: TypeAlias = RuleConfigurationOutputcontentBlockerRule | RuleConfigurationOutputcontentRetrievalRule | RuleConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/RuleConfigurationOutput/)."""
@@ -2907,13 +2908,13 @@ SourceAttribution = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceAttribution/)."""
 
-SourceDetailsimageSourceDetails = TypedDict("SourceDetailsimageSourceDetails", {"image_source_details": Required["ImageSourceDetails"]})
+SourceDetailsimageSourceDetails = TypedDict("SourceDetailsimageSourceDetails", {"image_source_details": Required["ImageSourceDetails"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceDetailsimageSourceDetails/)."""
-SourceDetailsaudioSourceDetails = TypedDict("SourceDetailsaudioSourceDetails", {"audio_source_details": Required["AudioSourceDetails"]})
+SourceDetailsaudioSourceDetails = TypedDict("SourceDetailsaudioSourceDetails", {"audio_source_details": Required["AudioSourceDetails"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceDetailsaudioSourceDetails/)."""
-SourceDetailsvideoSourceDetails = TypedDict("SourceDetailsvideoSourceDetails", {"video_source_details": Required["VideoSourceDetails"]})
+SourceDetailsvideoSourceDetails = TypedDict("SourceDetailsvideoSourceDetails", {"video_source_details": Required["VideoSourceDetails"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceDetailsvideoSourceDetails/)."""
-SourceDetailsUnknown = TypedDict("SourceDetailsUnknown", {"unknown": Required[Literal[True]]})
+SourceDetailsUnknown = TypedDict("SourceDetailsUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceDetailsUnknown/)."""
 SourceDetails: TypeAlias = SourceDetailsimageSourceDetails | SourceDetailsaudioSourceDetails | SourceDetailsvideoSourceDetails | SourceDetailsUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SourceDetails/)."""
@@ -2992,18 +2993,18 @@ SubscriptionDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionDetails/)."""
 
-SubscriptionPrincipaluser = TypedDict("SubscriptionPrincipaluser", {"user": Required["str"]})
+SubscriptionPrincipaluser = TypedDict("SubscriptionPrincipaluser", {"user": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipaluser/)."""
-SubscriptionPrincipalgroup = TypedDict("SubscriptionPrincipalgroup", {"group": Required["str"]})
+SubscriptionPrincipalgroup = TypedDict("SubscriptionPrincipalgroup", {"group": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipalgroup/)."""
 SubscriptionPrincipal: TypeAlias = SubscriptionPrincipaluser | SubscriptionPrincipalgroup
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipal/)."""
 
-SubscriptionPrincipalOutputuser = TypedDict("SubscriptionPrincipalOutputuser", {"user": Required["str"]})
+SubscriptionPrincipalOutputuser = TypedDict("SubscriptionPrincipalOutputuser", {"user": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipalOutputuser/)."""
-SubscriptionPrincipalOutputgroup = TypedDict("SubscriptionPrincipalOutputgroup", {"group": Required["str"]})
+SubscriptionPrincipalOutputgroup = TypedDict("SubscriptionPrincipalOutputgroup", {"group": Required["str"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipalOutputgroup/)."""
-SubscriptionPrincipalOutputUnknown = TypedDict("SubscriptionPrincipalOutputUnknown", {"unknown": Required[Literal[True]]})
+SubscriptionPrincipalOutputUnknown = TypedDict("SubscriptionPrincipalOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipalOutputUnknown/)."""
 SubscriptionPrincipalOutput: TypeAlias = SubscriptionPrincipalOutputuser | SubscriptionPrincipalOutputgroup | SubscriptionPrincipalOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/SubscriptionPrincipalOutput/)."""
@@ -3308,14 +3309,14 @@ WebExperience = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperience/)."""
 
-WebExperienceAuthConfigurationsamlConfiguration = TypedDict("WebExperienceAuthConfigurationsamlConfiguration", {"saml_configuration": Required["SamlConfiguration"]})
+WebExperienceAuthConfigurationsamlConfiguration = TypedDict("WebExperienceAuthConfigurationsamlConfiguration", {"saml_configuration": Required["SamlConfiguration"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceAuthConfigurationsamlConfiguration/)."""
 WebExperienceAuthConfiguration: TypeAlias = WebExperienceAuthConfigurationsamlConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceAuthConfiguration/)."""
 
-WebExperienceAuthConfigurationOutputsamlConfiguration = TypedDict("WebExperienceAuthConfigurationOutputsamlConfiguration", {"saml_configuration": Required["SamlConfigurationOutput"]})
+WebExperienceAuthConfigurationOutputsamlConfiguration = TypedDict("WebExperienceAuthConfigurationOutputsamlConfiguration", {"saml_configuration": Required["SamlConfigurationOutput"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceAuthConfigurationOutputsamlConfiguration/)."""
-WebExperienceAuthConfigurationOutputUnknown = TypedDict("WebExperienceAuthConfigurationOutputUnknown", {"unknown": Required[Literal[True]]})
+WebExperienceAuthConfigurationOutputUnknown = TypedDict("WebExperienceAuthConfigurationOutputUnknown", {"unknown": Required[Literal[True]]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceAuthConfigurationOutputUnknown/)."""
 WebExperienceAuthConfigurationOutput: TypeAlias = WebExperienceAuthConfigurationOutputsamlConfiguration | WebExperienceAuthConfigurationOutputUnknown
 """See [reference](https://ferrumio.github.io/rboto/reference/qbusiness/types/WebExperienceAuthConfigurationOutput/)."""

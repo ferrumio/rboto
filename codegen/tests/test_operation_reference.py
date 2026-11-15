@@ -13,6 +13,7 @@ from rboto_codegen.reference import (
     model_excerpt,
     reachable,
     types_from_contract,
+    union_example,
     write_reference,
 )
 from rboto_codegen.reference_site import check_links
@@ -121,6 +122,27 @@ class Node:
     assert reachable({"Node"}, contract) == {"Node"}
     assert reachable({"NodeOutput"}, contract) == {"NodeOutput", "Event", "Node", "EventUnknown"}
     assert reachable({"JSONValue"}, contract) == {"JSONValue"}
+
+
+def test_closed_union_contracts_preserve_openness_and_generate_key_checks() -> None:
+    contract = types_from_contract("""
+Text = TypedDict("Text", {"text": Required[str]}, closed=True)
+class Unknown(TypedDict, closed=True):
+    unknown: Required[Literal[True]]
+Event: TypeAlias = Text | Unknown
+class Options(TypedDict):
+    metadata: NotRequired[dict[str, str]]
+""", "")
+    assert contract["Text"].closed and contract["Unknown"].closed
+    assert "closed=True" in contract["Text"].definition
+    assert "closed=True" in contract["Unknown"].definition
+    assert not contract["Options"].closed
+    example = union_example(contract["Event"], contract, "rboto_example")
+    assert "from rboto_example.types import Event" in example
+    assert "if 'text' in value:" in example
+    assert "print(value['text'])" in example
+    assert union_example(contract["Options"], contract, "rboto_example") == ""
+    ast.parse(example)
 
 
 def test_type_paths_are_distinct_on_case_insensitive_filesystems() -> None:

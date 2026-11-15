@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from collections.abc import AsyncIterator, Sequence
-from typing import Literal, NotRequired, Required, TypeAlias, TypedDict
+from typing import Literal, NotRequired, Required, TypeAlias
+from typing_extensions import TypedDict
 
 from rboto.types import UnknownEnumValue
 
@@ -230,7 +231,7 @@ VideoAssetProcessingConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoAssetProcessingConfiguration/)."""
 
-VideoSegmentConfigurationtimestampSegment = TypedDict("VideoSegmentConfigurationtimestampSegment", {"timestamp_segment": Required["TimestampSegment"]})
+VideoSegmentConfigurationtimestampSegment = TypedDict("VideoSegmentConfigurationtimestampSegment", {"timestamp_segment": Required["TimestampSegment"]}, closed=True)
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoSegmentConfigurationtimestampSegment/)."""
 VideoSegmentConfiguration: TypeAlias = VideoSegmentConfigurationtimestampSegment
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-data-automation-runtime/types/VideoSegmentConfiguration/)."""
