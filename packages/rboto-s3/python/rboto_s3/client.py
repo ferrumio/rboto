@@ -7,6 +7,7 @@ from typing import Self as _Self
 
 
 from rboto.config import ClientConfig
+from rboto.streaming import FileBody as _FileBody
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
@@ -3711,7 +3712,7 @@ class S3Client:
         bucket: str,
         key: str,
         acl: ObjectCannedACL | None = None,
-        body: bytes | AsyncIterator[bytes] | None = None,
+        body: bytes | _FileBody | AsyncIterator[bytes] | None = None,
         cache_control: str | None = None,
         content_disposition: str | None = None,
         content_encoding: str | None = None,
@@ -3942,7 +3943,7 @@ class S3Client:
         bucket: str,
         key: str,
         annotation_name: str,
-        annotation_payload: bytes | AsyncIterator[bytes],
+        annotation_payload: bytes | _FileBody | AsyncIterator[bytes],
         version_id: str | None = None,
         object_if_match: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
@@ -4541,7 +4542,7 @@ class S3Client:
         key: str,
         part_number: int,
         upload_id: str,
-        body: bytes | AsyncIterator[bytes] | None = None,
+        body: bytes | _FileBody | AsyncIterator[bytes] | None = None,
         content_length: int | None = None,
         content_md5: str | None = None,
         checksum_algorithm: ChecksumAlgorithm | None = None,
@@ -4702,7 +4703,7 @@ class S3Client:
         *,
         request_route: str,
         request_token: str,
-        body: bytes | AsyncIterator[bytes] | None = None,
+        body: bytes | _FileBody | AsyncIterator[bytes] | None = None,
         status_code: int | None = None,
         error_code: str | None = None,
         error_message: str | None = None,

@@ -1,3 +1,4 @@
+use std::path::PathBuf;
 use std::pin::Pin;
 use std::task::{Context, Poll};
 
@@ -8,10 +9,69 @@ use futures_util::{Stream, StreamExt};
 use http_body::{Body, Frame, SizeHint};
 use pyo3::exceptions::{PyTypeError, PyValueError};
 use pyo3::prelude::*;
+use pyo3::sync::PyOnceLock;
 use pyo3::types::{PyByteArray, PyBytes};
 
 use crate::async_iter::python_async_iterator;
 use crate::{InputPath, input_rule};
+
+static FILE_BODY: PyOnceLock<Py<PyAny>> = PyOnceLock::new();
+
+/// Defer file metadata and opening until the native future runs.
+pub enum RequestBody {
+    Ready(ByteStream),
+    File {
+        path: PathBuf,
+        buffer_size: usize,
+        declared_length: Option<u64>,
+    },
+}
+
+impl RequestBody {
+    pub async fn resolve(self) -> PyResult<ByteStream> {
+        match self {
+            Self::Ready(body) => Ok(body),
+            Self::File {
+                path,
+                buffer_size,
+                declared_length,
+            } => crate::file_stream::file_body(path, buffer_size, declared_length).await,
+        }
+    }
+}
+
+pub fn python_request_body(
+    value: &Bound<'_, PyAny>,
+    declared_length: Option<u64>,
+    length_required: bool,
+) -> PyResult<RequestBody> {
+    if !value.is_instance_of::<PyBytes>() && !value.is_instance_of::<PyByteArray>() {
+        let class = FILE_BODY.get_or_try_init(value.py(), || {
+            Ok::<_, PyErr>(
+                value
+                    .py()
+                    .import("rboto.streaming")?
+                    .getattr("FileBody")?
+                    .unbind(),
+            )
+        })?;
+        if value.is_instance(class.bind(value.py()))? {
+            let path = value.getattr("path")?.extract()?;
+            let buffer_size: usize = value.getattr("buffer_size")?.extract()?;
+            if buffer_size == 0 || buffer_size > 16 * 1024 * 1024 {
+                return Err(PyValueError::new_err(
+                    "buffer_size must be between 1 and 16 MiB",
+                ));
+            }
+            return Ok(RequestBody::File {
+                path,
+                buffer_size,
+                declared_length,
+            });
+        }
+    }
+    python_byte_stream(value, declared_length, length_required).map(RequestBody::Ready)
+}
 
 /// Build a request `ByteStream` from Python request body input.
 ///
@@ -66,10 +126,20 @@ pub fn python_byte_stream(
     Ok(ByteStream::new(SdkBody::from_body_1_x(body)))
 }
 
-struct StreamBody<S> {
+pub(crate) struct StreamBody<S> {
     chunks: Pin<Box<S>>,
     remaining: Option<u64>,
     finished: bool,
+}
+
+impl<S> StreamBody<S> {
+    pub(crate) fn new(chunks: S, remaining: Option<u64>) -> Self {
+        Self {
+            chunks: Box::pin(chunks),
+            remaining,
+            finished: false,
+        }
+    }
 }
 
 impl<S, E> Body for StreamBody<S>

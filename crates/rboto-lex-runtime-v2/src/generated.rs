@@ -6345,7 +6345,7 @@ impl LexRuntimeV2Client {
             };
         let input_stream_value = if let Some(value) = dict_value(params, "input_stream")? {
             let converted_409 = (|| -> PyResult<_> {
-                let converted_409 = rboto_core::python_byte_stream(&value, None, false)?;
+                let converted_409 = rboto_core::python_request_body(&value, None, false)?;
                 Ok(converted_409)
             })()
             .map_err(|error| {
@@ -6353,7 +6353,7 @@ impl LexRuntimeV2Client {
                     rboto_core::input_error(
                         error,
                         rboto_core::InputPath::Field("input_stream"),
-                        "bytes or async iterable of bytes",
+                        "bytes, FileBody or async iterable of bytes",
                     ),
                     "lex-runtime-v2",
                     "RecognizeUtterance",
@@ -6364,6 +6364,22 @@ impl LexRuntimeV2Client {
             None
         };
         rboto_core::client_future_into_py(py, lease, async move {
+            let input_stream_value = match input_stream_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("input_stream"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "lex-runtime-v2",
+                            "RecognizeUtterance",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .recognize_utterance()

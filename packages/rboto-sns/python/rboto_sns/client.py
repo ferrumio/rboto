@@ -7,6 +7,7 @@ from typing import Self as _Self
 
 
 from rboto.config import ClientConfig
+from rboto.streaming import FileBody as _FileBody
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors

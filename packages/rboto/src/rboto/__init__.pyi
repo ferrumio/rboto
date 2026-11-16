@@ -91,6 +91,7 @@ from .services import ssm as ssm
 from .services import sts as sts
 from .services import transcribe_streaming as transcribe_streaming
 from .session import Session as Session
+from .streaming import FileBody as FileBody
 from .types import UnknownEnumValue as UnknownEnumValue
 from .waiters import WaiterConfig as WaiterConfig
 

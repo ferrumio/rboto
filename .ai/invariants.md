@@ -9,7 +9,7 @@ Every change must preserve these rules unless a new ADR explicitly changes one.
 5. Every generated Python client method has exactly one same-named PyO3 method.
 6. Python methods are async and keyword-only.
 7. Inputs remain strictly typed mappings, literals, and tagged unions; streaming blob
-   inputs accept `bytes` or an async iterable of `bytes` (ADR-0030).
+   inputs accept `bytes`, `FileBody`, or an async iterable of `bytes` (ADR-0030/0037).
 8. Regular outputs remain frozen Rust-owned objects with lazy properties.
 9. `to_dict()` is an interoperability path, not the primary output API.
 10. Byte streams move once into Python ownership and are never fake-cloned.

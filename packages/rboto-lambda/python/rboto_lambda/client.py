@@ -7,6 +7,7 @@ from typing import Self as _Self
 
 
 from rboto.config import ClientConfig
+from rboto.streaming import FileBody as _FileBody
 from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
@@ -1622,7 +1623,7 @@ class LambdaClient:
         self,
         *,
         function_name: str,
-        invoke_args: bytes | AsyncIterator[bytes],
+        invoke_args: bytes | _FileBody | AsyncIterator[bytes],
     ) -> InvokeAsyncOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/invoke_async/)."""
         params: dict[str, object] = {

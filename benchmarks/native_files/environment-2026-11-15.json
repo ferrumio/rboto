@@ -1,0 +1,27 @@
+{
+  "measured_at_utc": "2026-11-15T23:50:36.006883+00:00",
+  "source_commit": "24f74798967fd6eea3926f68a00ee3c6c6b13352",
+  "base_commit": "7a8abb44d3690bd408b3e27af7a1f3e25f916ae4",
+  "platform": "Linux-6.18.48-109.150.amzn2023.aarch64-aarch64-with-glibc2.34",
+  "python": "3.12.15",
+  "cpu_count": 32,
+  "rustc": "rustc 1.98.1 (48a229cea 2026-09-01)",
+  "versions": {
+    "rboto": "0.3.0",
+    "rboto-s3": "0.3.0",
+    "anyio": "4.16.0",
+    "trio": "0.35.0",
+    "aiohttp": "3.14.5",
+    "psutil": "7.2.2"
+  },
+  "wheel": "rboto_s3-0.3.0-cp312-cp312-manylinux_2_34_aarch64.whl",
+  "wheel_sha256": "6a2dd039c464b1c71219aaaab1bf066f12918be03bac963eaeeb154849506c51",
+  "profile": {
+    "opt_level": 3,
+    "lto": true,
+    "codegen_units": 1
+  },
+  "network": "loopback HTTP; fake credentials; no AWS calls",
+  "file_io": "warm page cache; no fsync",
+  "hardware_cycles": "not measured; perf executable unavailable"
+}

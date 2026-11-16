@@ -41597,7 +41597,7 @@ impl LambdaClient {
         };
         let invoke_args_value = if let Some(value) = dict_value(params, "invoke_args")? {
             let converted_1390 = (|| -> PyResult<_> {
-                let converted_1390 = rboto_core::python_byte_stream(&value, None, false)?;
+                let converted_1390 = rboto_core::python_request_body(&value, None, false)?;
                 Ok(converted_1390)
             })()
             .map_err(|error| {
@@ -41605,7 +41605,7 @@ impl LambdaClient {
                     rboto_core::input_error(
                         error,
                         rboto_core::InputPath::Field("invoke_args"),
-                        "bytes or async iterable of bytes",
+                        "bytes, FileBody or async iterable of bytes",
                     ),
                     "lambda",
                     "InvokeAsync",
@@ -41616,6 +41616,22 @@ impl LambdaClient {
             None
         };
         rboto_core::client_future_into_py(py, lease, async move {
+            let invoke_args_value = match invoke_args_value {
+                Some(body) => Some(body.resolve().await.map_err(|error| {
+                    Python::attach(|py| {
+                        rboto_core::input_operation(
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::Field("invoke_args"),
+                                "valid FileBody source and content_length",
+                            ),
+                            "lambda",
+                            "InvokeAsync",
+                        )
+                    })
+                })?),
+                None => None,
+            };
             let client = state.client().await?;
             let request = client
                 .invoke_async()

@@ -2,10 +2,34 @@ import asyncio
 import os
 import uuid
 from collections.abc import AsyncIterator
+from pathlib import Path
 
 import pytest
-from rboto import ClientConfig, s3
+from rboto import ClientConfig, FileBody, s3
 from rboto_s3.exceptions import NoSuchKeyError
+
+
+@pytest.mark.asyncio
+async def test_native_file_round_trip_through_localstack(tmp_path: Path) -> None:
+    endpoint = os.environ.get("AWS_ENDPOINT_URL")
+    if endpoint is None:
+        pytest.skip("AWS_ENDPOINT_URL is required for integration tests")
+    source = tmp_path / "source"
+    data = bytes(range(256)) * 8192 + b"tail"
+    source.write_bytes(data)
+    bucket = f"rboto-file-{uuid.uuid4().hex[:12]}"
+    async with s3(region="us-east-1", endpoint_url=endpoint) as client:
+        await client.create_bucket(bucket=bucket)
+        try:
+            await client.put_object(bucket=bucket, key="file", body=FileBody(source))
+            response = await client.get_object(bucket=bucket, key="file")
+            target = tmp_path / "download"
+            assert await response.body.write_to(target) == len(data)
+            assert target.read_bytes() == data
+            assert source.read_bytes() == data
+        finally:
+            await client.delete_object(bucket=bucket, key="file")
+            await client.delete_bucket(bucket=bucket)
 
 
 @pytest.mark.asyncio
