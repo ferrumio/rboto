@@ -2351,21 +2351,84 @@ fn validation_exception_error_details(
     Ok(result.into_any().unbind())
 }
 
-impl ModeledErrorDetails for aws_sdk_polly::operation::delete_lexicon::DeleteLexiconError {}
-impl ModeledErrorDetails for aws_sdk_polly::operation::describe_voices::DescribeVoicesError {}
-impl ModeledErrorDetails for aws_sdk_polly::operation::get_lexicon::GetLexiconError {}
+impl ModeledErrorDetails for aws_sdk_polly::operation::delete_lexicon::DeleteLexiconError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::LexiconNotFoundException(_) => Some("LexiconNotFoundException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::describe_voices::DescribeVoicesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::get_lexicon::GetLexiconError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::LexiconNotFoundException(_) => Some("LexiconNotFoundException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::get_speech_synthesis_task::GetSpeechSynthesisTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidTaskIdException(_) => Some("InvalidTaskIdException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::SynthesisTaskNotFoundException(_) => Some("SynthesisTaskNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_polly::operation::list_lexicons::ListLexiconsError {}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::list_lexicons::ListLexiconsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::list_speech_synthesis_tasks::ListSpeechSynthesisTasksError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -2379,6 +2442,23 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_polly::operation::put_lexicon::PutLexiconError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidLexiconException(_) => Some("InvalidLexiconException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::LexiconSizeExceededException(_) => Some("LexiconSizeExceededException"),
+            Self::MaxLexemeLengthExceededException(_) => Some("MaxLexemeLengthExceededException"),
+            Self::MaxLexiconsNumberExceededException(_) => {
+                Some("MaxLexiconsNumberExceededException")
+            }
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::TooManyTagsException(_) => Some("TooManyTagsException"),
+            Self::UnsupportedPlsAlphabetException(_) => Some("UnsupportedPlsAlphabetException"),
+            Self::UnsupportedPlsLanguageException(_) => Some("UnsupportedPlsLanguageException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -2390,6 +2470,15 @@ impl ModeledErrorDetails for aws_sdk_polly::operation::put_lexicon::PutLexiconEr
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::start_speech_synthesis_stream::StartSpeechSynthesisStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceQuotaExceededException(value) => {
@@ -2405,9 +2494,62 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_polly::operation::start_speech_synthesis_task::StartSpeechSynthesisTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EngineNotSupportedException(_) => Some("EngineNotSupportedException"),
+            Self::InvalidS3BucketException(_) => Some("InvalidS3BucketException"),
+            Self::InvalidS3KeyException(_) => Some("InvalidS3KeyException"),
+            Self::InvalidSampleRateException(_) => Some("InvalidSampleRateException"),
+            Self::InvalidSnsTopicArnException(_) => Some("InvalidSnsTopicArnException"),
+            Self::InvalidSsmlException(_) => Some("InvalidSsmlException"),
+            Self::LanguageNotSupportedException(_) => Some("LanguageNotSupportedException"),
+            Self::LexiconNotFoundException(_) => Some("LexiconNotFoundException"),
+            Self::MarksNotSupportedForFormatException(_) => {
+                Some("MarksNotSupportedForFormatException")
+            }
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::SsmlMarksNotSupportedForTextTypeException(_) => {
+                Some("SsmlMarksNotSupportedForTextTypeException")
+            }
+            Self::TextLengthExceededException(_) => Some("TextLengthExceededException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechError {}
+
+impl ModeledErrorDetails for aws_sdk_polly::operation::synthesize_speech::SynthesizeSpeechError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EngineNotSupportedException(_) => Some("EngineNotSupportedException"),
+            Self::InvalidSampleRateException(_) => Some("InvalidSampleRateException"),
+            Self::InvalidSsmlException(_) => Some("InvalidSsmlException"),
+            Self::LanguageNotSupportedException(_) => Some("LanguageNotSupportedException"),
+            Self::LexiconNotFoundException(_) => Some("LexiconNotFoundException"),
+            Self::MarksNotSupportedForFormatException(_) => {
+                Some("MarksNotSupportedForFormatException")
+            }
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::SsmlMarksNotSupportedForTextTypeException(_) => {
+                Some("SsmlMarksNotSupportedForTextTypeException")
+            }
+            Self::TextLengthExceededException(_) => Some("TextLengthExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_polly::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TooManyTagsException(_) => Some("TooManyTagsException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -2421,6 +2563,16 @@ impl ModeledErrorDetails for aws_sdk_polly::operation::tag_resource::TagResource
 }
 
 impl ModeledErrorDetails for aws_sdk_polly::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -2440,6 +2592,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceFailureException(_) => Some("ServiceFailureException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -2517,34 +2678,33 @@ impl PyStartSpeechSynthesisStreamEventStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| start_speech_synthesis_stream_event_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ServiceFailureException(_)) => Some("ServiceFailureException"),
-                        Some(aws_sdk_polly::types::error::StartSpeechSynthesisStreamEventStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                start_speech_synthesis_stream_event_stream_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

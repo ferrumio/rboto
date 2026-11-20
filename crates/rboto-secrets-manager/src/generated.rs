@@ -4411,58 +4411,320 @@ impl PyOperationValidateResourcePolicyOutput {
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::batch_get_secret_value::BatchGetSecretValueError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DecryptionFailure(_) => Some("DecryptionFailure"),
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::cancel_rotate_secret::CancelRotateSecretError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::create_secret::CreateSecretError {}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::create_secret::CreateSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DecryptionFailure(_) => Some("DecryptionFailure"),
+            Self::EncryptionFailure(_) => Some("EncryptionFailure"),
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PreconditionNotMetException(_) => Some("PreconditionNotMetException"),
+            Self::ResourceExistsException(_) => Some("ResourceExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::delete_secret::DeleteSecretError {}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::delete_secret::DeleteSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::describe_secret::DescribeSecretError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::get_random_password::GetRandomPasswordError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::get_resource_policy::GetResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::get_secret_value::GetSecretValueError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DecryptionFailure(_) => Some("DecryptionFailure"),
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::list_secret_version_ids::ListSecretVersionIdsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::list_secrets::ListSecretsError {}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::list_secrets::ListSecretsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::put_resource_policy::PutResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PublicPolicyException(_) => Some("PublicPolicyException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::put_secret_value::PutSecretValueError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DecryptionFailure(_) => Some("DecryptionFailure"),
+            Self::EncryptionFailure(_) => Some("EncryptionFailure"),
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceExistsException(_) => Some("ResourceExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::remove_regions_from_replication::RemoveRegionsFromReplicationError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::replicate_secret_to_regions::ReplicateSecretToRegionsError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::restore_secret::RestoreSecretError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::rotate_secret::RotateSecretError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::stop_replication_to_replica::StopReplicationToReplicaError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::tag_resource::TagResourceError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::untag_resource::UntagResourceError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret::UpdateSecretError {}
-impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret_version_stage::UpdateSecretVersionStageError {}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::remove_regions_from_replication::RemoveRegionsFromReplicationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::replicate_secret_to_regions::ReplicateSecretToRegionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::restore_secret::RestoreSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::rotate_secret::RotateSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::stop_replication_to_replica::StopReplicationToReplicaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret::UpdateSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DecryptionFailure(_) => Some("DecryptionFailure"),
+            Self::EncryptionFailure(_) => Some("EncryptionFailure"),
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PreconditionNotMetException(_) => Some("PreconditionNotMetException"),
+            Self::ResourceExistsException(_) => Some("ResourceExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_secretsmanager::operation::update_secret_version_stage::UpdateSecretVersionStageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_secretsmanager::operation::validate_resource_policy::ValidateResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceError(_) => Some("InternalServiceError"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

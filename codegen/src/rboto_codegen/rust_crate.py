@@ -12,6 +12,7 @@ from .rust_source import (
     declarations,
     enum_values,
     enum_variants,
+    error_codes,
     parse_type,
     split_items,
     tokens,
@@ -57,6 +58,9 @@ class RustCrate:
         default_factory=lambda: dict[str, tuple[RustField, ...]](),
     )
     event_errors: dict[str, tuple[tuple[str, str], ...]] = field(
+        default_factory=lambda: dict[str, tuple[tuple[str, str], ...]](),
+    )
+    operation_error_codes: dict[str, tuple[tuple[str, str], ...]] = field(
         default_factory=lambda: dict[str, tuple[tuple[str, str], ...]](),
     )
 
@@ -216,9 +220,33 @@ def _type(path: Path) -> RustType | None:
 def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
     path = find_crate(descriptor)
     operations: dict[str, RustOperation] = {}
+    operation_error_codes: dict[str, tuple[tuple[str, str], ...]] = {}
     for candidate in sorted((path / "src/operation").iterdir()):
         if candidate.is_dir():
             operations[candidate.name] = _operation(candidate, candidate.name)
+            operation_path = candidate.with_suffix(".rs")
+            decoder_path = path / "src/protocol_serde" / f"shape_{candidate.name}.rs"
+            if not decoder_path.exists():
+                # Schema-based SDKs put the decoder in the operation module.
+                decoder_path = operation_path
+            try:
+                enums = parse_error_variants(operation_path.read_text())
+                if len(enums) != 1:
+                    raise RustParseError("expected one operation error enum")
+                enum_name, variants = next(iter(enums.items()))
+                decoder_source = decoder_path.read_text()
+                codes = (
+                    error_codes(tokens(decoder_source), candidate.name, enum_name)
+                    if variants else ()
+                )
+                modeled = dict(variants)
+                if {variant for _, variant in codes} != modeled.keys():
+                    raise RustParseError("incomplete or unmodeled error-code mapping")
+                operation_error_codes[candidate.name] = tuple(
+                    (code, modeled[variant]) for code, variant in codes
+                )
+            except (OSError, RustParseError) as error:
+                raise RustParseError(f"{decoder_path}: {error}") from error
 
     types: dict[str, RustType] = {}
     for type_path in sorted((path / "src/types").glob("*.rs")):
@@ -254,4 +282,5 @@ def parse_crate(descriptor: ServiceDescriptor) -> RustCrate:
         types=types,
         errors=errors,
         event_errors=event_errors,
+        operation_error_codes=operation_error_codes,
     )

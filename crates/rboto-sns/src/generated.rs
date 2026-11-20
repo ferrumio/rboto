@@ -2776,107 +2776,622 @@ fn verification_exception_error_details(
     Ok(result.into_any().unbind())
 }
 
-impl ModeledErrorDetails for aws_sdk_sns::operation::add_permission::AddPermissionError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::check_if_phone_number_is_opted_out::CheckIfPhoneNumberIsOptedOutError {}
+impl ModeledErrorDetails for aws_sdk_sns::operation::add_permission::AddPermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::check_if_phone_number_is_opted_out::CheckIfPhoneNumberIsOptedOutError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::confirm_subscription::ConfirmSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::FilterPolicyLimitExceededException(_) => {
+                Some("FilterPolicyLimitExceededException")
+            }
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ReplayLimitExceededException(_) => Some("ReplayLimitExceededException"),
+            Self::SubscriptionLimitExceededException(_) => {
+                Some("SubscriptionLimitExceededException")
+            }
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::create_platform_application::CreatePlatformApplicationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::create_platform_endpoint::CreatePlatformEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::create_sms_sandbox_phone_number::CreateSMSSandboxPhoneNumberError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OptedOutException(_) => Some("OptedOutException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::UserErrorException(_) => Some("UserErrorException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::create_topic::CreateTopicError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::delete_endpoint::DeleteEndpointError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::create_topic::CreateTopicError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::ConcurrentAccessException(_) => Some("ConcurrentAccessException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::StaleTagException(_) => Some("StaleTagException"),
+            Self::TagLimitExceededException(_) => Some("TagLimitExceededException"),
+            Self::TagPolicyException(_) => Some("TagPolicyException"),
+            Self::TopicLimitExceededException(_) => Some("TopicLimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::delete_endpoint::DeleteEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::delete_platform_application::DeletePlatformApplicationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::delete_sms_sandbox_phone_number::DeleteSMSSandboxPhoneNumberError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::UserErrorException(_) => Some("UserErrorException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::delete_topic::DeleteTopicError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::delete_topic::DeleteTopicError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::ConcurrentAccessException(_) => Some("ConcurrentAccessException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::StaleTagException(_) => Some("StaleTagException"),
+            Self::TagPolicyException(_) => Some("TagPolicyException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::get_data_protection_policy::GetDataProtectionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::get_endpoint_attributes::GetEndpointAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::get_platform_application_attributes::GetPlatformApplicationAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::get_sms_attributes::GetSMSAttributesError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_platform_application_attributes::GetPlatformApplicationAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_sms_attributes::GetSMSAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::get_sms_sandbox_account_status::GetSMSSandboxAccountStatusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::get_subscription_attributes::GetSubscriptionAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::get_topic_attributes::GetTopicAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::get_topic_attributes::GetTopicAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_endpoints_by_platform_application::ListEndpointsByPlatformApplicationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_origination_numbers::ListOriginationNumbersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_phone_numbers_opted_out::ListPhoneNumbersOptedOutError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_platform_applications::ListPlatformApplicationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_sms_sandbox_phone_numbers::ListSMSSandboxPhoneNumbersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_subscriptions::ListSubscriptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_subscriptions_by_topic::ListSubscriptionsByTopicError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::ConcurrentAccessException(_) => Some("ConcurrentAccessException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TagPolicyException(_) => Some("TagPolicyException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::list_topics::ListTopicsError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::opt_in_phone_number::OptInPhoneNumberError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::publish::PublishError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::publish_batch::PublishBatchError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::list_topics::ListTopicsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::opt_in_phone_number::OptInPhoneNumberError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::publish::PublishError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::EndpointDisabledException(_) => Some("EndpointDisabledException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::KmsOptInRequired(_) => Some("KMSOptInRequired"),
+            Self::KmsThrottlingException(_) => Some("KMSThrottlingException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::PlatformApplicationDisabledException(_) => {
+                Some("PlatformApplicationDisabledException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::publish_batch::PublishBatchError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::BatchEntryIdsNotDistinctException(_) => Some("BatchEntryIdsNotDistinctException"),
+            Self::BatchRequestTooLongException(_) => Some("BatchRequestTooLongException"),
+            Self::EmptyBatchRequestException(_) => Some("EmptyBatchRequestException"),
+            Self::EndpointDisabledException(_) => Some("EndpointDisabledException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidBatchEntryIdException(_) => Some("InvalidBatchEntryIdException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::KmsOptInRequired(_) => Some("KMSOptInRequired"),
+            Self::KmsThrottlingException(_) => Some("KMSThrottlingException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::PlatformApplicationDisabledException(_) => {
+                Some("PlatformApplicationDisabledException")
+            }
+            Self::TooManyEntriesInBatchRequestException(_) => {
+                Some("TooManyEntriesInBatchRequestException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::put_data_protection_policy::PutDataProtectionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::remove_permission::RemovePermissionError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::remove_permission::RemovePermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::set_endpoint_attributes::SetEndpointAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::set_platform_application_attributes::SetPlatformApplicationAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::set_sms_attributes::SetSMSAttributesError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_platform_application_attributes::SetPlatformApplicationAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_sms_attributes::SetSMSAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::set_subscription_attributes::SetSubscriptionAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::FilterPolicyLimitExceededException(_) => {
+                Some("FilterPolicyLimitExceededException")
+            }
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ReplayLimitExceededException(_) => Some("ReplayLimitExceededException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sns::operation::set_topic_attributes::SetTopicAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::subscribe::SubscribeError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::tag_resource::TagResourceError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::unsubscribe::UnsubscribeError {}
-impl ModeledErrorDetails for aws_sdk_sns::operation::untag_resource::UntagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::set_topic_attributes::SetTopicAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::subscribe::SubscribeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::FilterPolicyLimitExceededException(_) => {
+                Some("FilterPolicyLimitExceededException")
+            }
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ReplayLimitExceededException(_) => Some("ReplayLimitExceededException"),
+            Self::SubscriptionLimitExceededException(_) => {
+                Some("SubscriptionLimitExceededException")
+            }
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::ConcurrentAccessException(_) => Some("ConcurrentAccessException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::StaleTagException(_) => Some("StaleTagException"),
+            Self::TagLimitExceededException(_) => Some("TagLimitExceededException"),
+            Self::TagPolicyException(_) => Some("TagPolicyException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::unsubscribe::UnsubscribeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSecurityException(_) => Some("InvalidSecurityException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sns::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::ConcurrentAccessException(_) => Some("ConcurrentAccessException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::StaleTagException(_) => Some("StaleTagException"),
+            Self::TagLimitExceededException(_) => Some("TagLimitExceededException"),
+            Self::TagPolicyException(_) => Some("TagPolicyException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sns::operation::verify_sms_sandbox_phone_number::VerifySMSSandboxPhoneNumberError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AuthorizationErrorException(_) => Some("AuthorizationErrorException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::VerificationException(_) => Some("VerificationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::VerificationException(value) => verification_exception_error_details(py, value),

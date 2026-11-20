@@ -433,27 +433,20 @@ class ServiceGenerator:
                 event_name = _crate_type_name(arguments[0])
                 if event_name is None:
                     raise GenerationError(f"invalid event type: {arguments[0]}")
-                error_type = self._public_rust_type(arguments[1])
                 error_name = arguments[1].rsplit("::", 1)[-1]
-                error_source = (self.crate.path / "src/types/error.rs").read_text()
-                error_enum = parse_error_variants(error_source).get(error_name)
+                error_enum = self.crate.event_errors.get(error_name)
                 if error_enum is None:
                     raise GenerationError(f"missing event error enum: {error_name}")
-                error_arms: list[str] = []
-                for variant, error_shape_name in error_enum:
+                for _, error_shape_name in error_enum:
                     shape = self._shape_for_rust(error_shape_name)
                     if shape is None or not shape.error:
                         raise GenerationError(f"missing modeled event error: {error_shape_name}")
-                    error_arms.append(
-                        f'                        Some({error_type}::{variant}(_)) => Some("{shape.name}"),'
-                    )
                 streams[event_name] = {
                     "event_name": event_name,
                     "receiver_class": f"{event_name}Receiver",
                     "rust_class": f"Py{event_name}Receiver",
                     "rust_type": self._public_rust_type(field.rust_type),
                     "converter": f"{to_snake_case(event_name)}_to_py",
-                    "error_arms": "\n".join(error_arms),
                 }
         return [streams[name] for name in sorted(streams)]
 
@@ -1571,6 +1564,10 @@ class ServiceGenerator:
         return shape.name
 
     def _render_error_bindings(self) -> str:
+        error_shapes = {
+            shape.name.replace("_", "").lower(): shape
+            for shape in self.service.shapes.values() if shape.error
+        }
         lines: list[str] = []
         for name in sorted(self.crate.errors):
             if not self._error_fields(name):
@@ -1602,16 +1599,31 @@ class ServiceGenerator:
                 for _, error in variants:
                     if error not in self.crate.errors:
                         raise GenerationError(f"missing modeled error fields: {error}")
-                variants = tuple((variant, error) for variant, error in variants if self._error_fields(error))
                 if not variants:
                     lines.append(f"impl ModeledErrorDetails for {module}::{name} {{}}")
                     continue
                 lines.extend([
                     f"impl ModeledErrorDetails for {module}::{name} {{",
-                    "    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {",
+                    "    fn modeled_code(&self) -> Option<&'static str> {",
                     "        match self {",
                 ])
                 for variant, error in variants:
+                    shape = error_shapes.get(error.replace("_", "").lower())
+                    if shape is None:
+                        raise GenerationError(f"missing modeled error identity: {error}")
+                    lines.append(f'            Self::{variant}(_) => Some("{shape.name}"),')
+                lines.extend(["            _ => None,", "        }", "    }"])
+                detail_variants = tuple(
+                    (variant, error) for variant, error in variants if self._error_fields(error)
+                )
+                if not detail_variants:
+                    lines.extend(["}", ""])
+                    continue
+                lines.extend([
+                    "    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {",
+                    "        match self {",
+                ])
+                for variant, error in detail_variants:
                     lines.append(
                         f"            Self::{variant}(value) => {to_snake_case(error)}_error_details(py, value),"
                     )

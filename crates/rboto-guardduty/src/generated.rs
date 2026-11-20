@@ -58036,6 +58036,13 @@ fn resource_not_found_exception_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::accept_administrator_invitation::AcceptAdministratorInvitationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58048,6 +58055,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::accept_administrator_
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::accept_invitation::AcceptInvitationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58060,6 +58074,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::archive_findings::ArchiveFindingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58072,6 +58093,16 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::archive_findings::Arc
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detection_rule_association::CreateCustomDetectionRuleAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58085,6 +58116,16 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detection_rule_org_configuration::CreateCustomDetectionRuleOrgConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58098,6 +58139,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_detector::CreateDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58110,6 +58158,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_detector::Crea
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_filter::CreateFilterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58122,6 +58177,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_filter::Create
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_ip_set::CreateIPSetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58137,6 +58200,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_ip_set::Create
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::create_investigation::CreateInvestigationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58150,6 +58221,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_malware_protection_plan::CreateMalwareProtectionPlanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58162,6 +58242,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_malware_protec
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_members::CreateMembersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58174,6 +58261,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_members::Creat
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_publishing_destination::CreatePublishingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58186,6 +58280,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::create_publishing_des
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::create_sample_findings::CreateSampleFindingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58200,6 +58301,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::create_threat_entity_set::CreateThreatEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58214,6 +58322,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::create_threat_intel_set::CreateThreatIntelSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58229,6 +58345,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::create_trusted_entity_set::CreateTrustedEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58243,6 +58366,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::decline_invitations::DeclineInvitationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58255,6 +58385,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detection_rule_association::DeleteCustomDetectionRuleAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58267,6 +58406,16 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detection_rule_org_configuration::DeleteCustomDetectionRuleOrgConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58280,6 +58429,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_detector::DeleteDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58292,6 +58448,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_detector::Dele
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_filter::DeleteFilterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58304,6 +58467,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_filter::Delete
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_ip_set::DeleteIPSetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58318,6 +58488,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_ip_set::Delete
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::delete_invitations::DeleteInvitationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58330,6 +58507,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_malware_protection_plan::DeleteMalwareProtectionPlanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58342,6 +58528,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_malware_protec
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_members::DeleteMembersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58354,6 +58547,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_members::Delet
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_publishing_destination::DeletePublishingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58366,6 +58566,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::delete_publishing_des
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::delete_threat_entity_set::DeleteThreatEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58380,6 +58587,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::delete_threat_intel_set::DeleteThreatIntelSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58394,6 +58608,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::delete_trusted_entity_set::DeleteTrustedEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58408,6 +58629,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::describe_malware_scans::DescribeMalwareScansError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58420,6 +58648,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_organization_configuration::DescribeOrganizationConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58430,6 +58665,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_organization
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_publishing_destination::DescribePublishingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58440,6 +58682,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::describe_publishing_d
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::disable_organization_admin_account::DisableOrganizationAdminAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58450,6 +58699,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::disable_organization_
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_administrator_account::DisassociateFromAdministratorAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58460,6 +58716,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_adm
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_master_account::DisassociateFromMasterAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58472,6 +58735,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::disassociate_from_mas
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::disassociate_members::DisassociateMembersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58484,6 +58754,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::enable_organization_admin_account::EnableOrganizationAdminAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58496,6 +58773,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::enable_organization_a
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_administrator_account::GetAdministratorAccountError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58510,6 +58794,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_coverage_statistics::GetCoverageStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58524,6 +58815,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_custom_detection_rule::GetCustomDetectionRuleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58540,6 +58840,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_rule_association::GetCustomDetectionRuleAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58552,6 +58861,15 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_rule_org_configuration::GetCustomDetectionRuleOrgConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58564,6 +58882,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_custom_detection_
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_detector::GetDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58576,6 +58901,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_detector::GetDete
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_filter::GetFilterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58588,6 +58920,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_filter::GetFilter
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_findings::GetFindingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58602,6 +58941,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_findings::GetFind
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_findings_statistics::GetFindingsStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58614,6 +58960,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_ip_set::GetIPSetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58628,6 +58981,15 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_ip_set::GetIPSetE
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_investigation::GetInvestigationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58646,6 +59008,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_invitations_count::GetInvitationsCountError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58660,6 +59029,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_malware_protection_plan::GetMalwareProtectionPlanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58676,6 +59054,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_malware_scan::GetMalwareScanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58693,6 +59079,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_malware_scan::Get
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_malware_scan_settings::GetMalwareScanSettingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58707,6 +59100,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_master_account::GetMasterAccountError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58721,6 +59121,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_member_detectors::GetMemberDetectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58733,6 +59140,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_members::GetMembersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58747,6 +59161,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::get_members::GetMembe
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_organization_statistics::GetOrganizationStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58761,6 +59182,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_remaining_free_trial_days::GetRemainingFreeTrialDaysError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58775,6 +59203,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_threat_entity_set::GetThreatEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58789,6 +59224,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_threat_intel_set::GetThreatIntelSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58803,6 +59245,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_trusted_entity_set::GetTrustedEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58817,6 +59266,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::get_usage_statistics::GetUsageStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58829,6 +59285,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::invite_members::InviteMembersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58841,6 +59304,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::invite_members::Invit
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_coverage::ListCoverageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58853,6 +59323,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_coverage::ListCo
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection_rule_associations::ListCustomDetectionRuleAssociationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58864,6 +59342,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection_rule_org_configurations::ListCustomDetectionRuleOrgConfigurationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58877,6 +59363,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_custom_detection
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_custom_detection_rules::ListCustomDetectionRulesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58890,6 +59384,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_detectors::ListDetectorsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58902,6 +59403,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_detectors::ListD
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_filters::ListFiltersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58914,6 +59422,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_filters::ListFil
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_findings::ListFindingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58926,6 +59441,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_findings::ListFi
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_ip_sets::ListIPSetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58940,6 +59462,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_ip_sets::ListIPS
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_investigations::ListInvestigationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58953,6 +59483,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_invitations::ListInvitationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58967,6 +59504,14 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_invitations::Lis
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_malware_protection_plans::ListMalwareProtectionPlansError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -58982,6 +59527,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_malware_scans::ListMalwareScansError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -58994,6 +59546,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_members::ListMembersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59006,6 +59565,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_members::ListMem
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_organization_admin_accounts::ListOrganizationAdminAccountsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59018,6 +59584,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::list_organization_adm
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_publishing_destinations::ListPublishingDestinationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59032,6 +59605,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59047,6 +59628,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_threat_entity_sets::ListThreatEntitySetsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59061,6 +59649,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_threat_intel_sets::ListThreatIntelSetsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59075,6 +59670,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::list_trusted_entity_sets::ListTrustedEntitySetsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59089,6 +59691,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::send_object_malware_scan::SendObjectMalwareScanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59104,6 +59714,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::start_malware_scan::StartMalwareScanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59119,6 +59737,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::start_monitoring_members::StartMonitoringMembersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59133,6 +59758,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::stop_monitoring_members::StopMonitoringMembersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59145,6 +59777,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59160,6 +59800,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::tag_resource::TagReso
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::unarchive_findings::UnarchiveFindingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59172,6 +59819,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59185,6 +59840,16 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::untag_resource::Untag
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detection_rule_association::UpdateCustomDetectionRuleAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59198,6 +59863,16 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detection_rule_org_configuration::UpdateCustomDetectionRuleOrgConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59211,6 +59886,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_custom_detecti
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_detector::UpdateDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59223,6 +59905,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_detector::Upda
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_filter::UpdateFilterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59237,6 +59926,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_filter::Update
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_findings_feedback::UpdateFindingsFeedbackError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59249,6 +59945,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_ip_set::UpdateIPSetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59262,6 +59966,15 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_ip_set::Update
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_malware_protection_plan::UpdateMalwareProtectionPlanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59276,6 +59989,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_malware_protec
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_malware_scan_settings::UpdateMalwareScanSettingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59290,6 +60010,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_member_detectors::UpdateMemberDetectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59302,6 +60029,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_organization_configuration::UpdateOrganizationConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59312,6 +60046,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_organization_c
 }
 
 impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_publishing_destination::UpdatePublishingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59324,6 +60065,13 @@ impl ModeledErrorDetails for aws_sdk_guardduty::operation::update_publishing_des
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_threat_entity_set::UpdateThreatEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),
@@ -59338,6 +60086,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_threat_intel_set::UpdateThreatIntelSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -59353,6 +60109,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_guardduty::operation::update_trusted_entity_set::UpdateTrustedEntitySetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServerErrorException(_) => Some("InternalServerErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadRequestException(value) => bad_request_exception_error_details(py, value),

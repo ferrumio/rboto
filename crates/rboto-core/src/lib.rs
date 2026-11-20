@@ -41,12 +41,15 @@ pub fn raise_service_error(
     exception_module: &str,
     service_base: &str,
     error_code: &str,
+    modeled_code: Option<&str>,
     message: &str,
     operation_name: &str,
     request_id: Option<&str>,
     metadata: &ResponseMetadata,
 ) -> PyErr {
-    let class_name = normalize_error_class(error_code);
+    // A protocol's wire code can differ from its modeled error name.
+    // Keep the original code as metadata, but prefer the known Rust variant.
+    let class_name = normalize_error_class(modeled_code.unwrap_or(error_code));
     let exception_class = py
         .import(exception_module)
         .and_then(|module| {

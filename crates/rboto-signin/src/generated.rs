@@ -1945,6 +1945,15 @@ fn validation_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_signin::operation::create_o_auth2_token::CreateOAuth2TokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -1961,6 +1970,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_signin::operation::create_o_auth2_token_with_iam::CreateOAuth2TokenWithIAMError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -1975,6 +1993,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::create_o_auth2_token_with_token_exchange::CreateOAuth2TokenWithTokenExchangeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidGrantException(_) => Some("InvalidGrantException"),
+            Self::InvalidScopeException(_) => Some("InvalidScopeException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
@@ -1989,6 +2018,16 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::create_o_auth2_token_wit
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::delete_console_authorization_configuration::DeleteConsoleAuthorizationConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2002,6 +2041,16 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::delete_console_authoriza
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::delete_resource_permission_statement::DeleteResourcePermissionStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2015,6 +2064,16 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::delete_resource_permissi
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::get_console_authorization_configuration::GetConsoleAuthorizationConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2030,6 +2089,15 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::get_console_authorizatio
 impl ModeledErrorDetails
     for aws_sdk_signin::operation::get_resource_policy::GetResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2046,6 +2114,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIAMError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2058,6 +2135,16 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::introspect_o_auth2_token
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2071,6 +2158,17 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::list_resource_permission
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::put_console_authorization_configuration::PutConsoleAuthorizationConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2085,6 +2183,17 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::put_console_authorizatio
 }
 
 impl ModeledErrorDetails for aws_sdk_signin::operation::put_resource_permission_statement::PutResourcePermissionStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
@@ -2101,6 +2210,15 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::put_resource_permission_
 impl ModeledErrorDetails
     for aws_sdk_signin::operation::revoke_o_auth2_token_with_iam::RevokeOAuth2TokenWithIAMError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),

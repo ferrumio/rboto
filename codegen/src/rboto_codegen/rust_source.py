@@ -206,6 +206,63 @@ def enum_values(parts: tuple[str, ...], declaration: Declaration) -> tuple[str, 
     return tuple(values.values())
 
 
+def error_codes(
+    parts: tuple[str, ...], operation: str, enum_name: str,
+) -> tuple[tuple[str, str], ...]:
+    """Read literal wire-code to modeled-variant arms from a generated decoder."""
+    matches = [
+        index + 2 for index in range(len(parts) - 2)
+        if parts[index:index + 3] == ("match", "error_code", "{")
+    ]
+    if len(matches) != 1:
+        raise RustParseError(f"{operation}: expected one error_code match")
+    start = matches[0]
+    body = parts[start + 1:closing(parts, start)]
+    prefix = ("crate", "::", "operation", "::", operation, "::", enum_name, "::")
+    result: list[tuple[str, str]] = []
+    index = 0
+    while index < len(body):
+        pattern = body[index]
+        if body[index + 1:index + 2] != ("=>",):
+            raise RustParseError(f"{operation}: expected a literal error code or wildcard arm")
+        index += 2
+        wrapped = body[index:index + 1] == ("{",)
+        if wrapped:
+            end = closing(body, index)
+            expression = body[index + 1:end]
+        else:
+            try:
+                arguments = body.index("(", index)
+            except ValueError as error:
+                raise RustParseError(f"{operation}: unsupported error arm") from error
+            end = closing(body, arguments)
+            expression = body[index:end + 1]
+        if pattern != "_":
+            try:
+                code = json.loads(pattern)
+            except ValueError as error:
+                raise RustParseError(f"{operation}: error code must be a string literal") from error
+            if not isinstance(code, str) or not code:
+                raise RustParseError(f"{operation}: error code must be a nonempty string")
+            if (
+                expression[:len(prefix)] != prefix
+                or len(expression) < len(prefix) + 3
+                or not _IDENTIFIER.fullmatch(expression[len(prefix)])
+                or expression[len(prefix) + 1] != "("
+                or closing(expression, len(prefix) + 1) != len(expression) - 1
+            ):
+                raise RustParseError(f"{operation}: unsupported modeled error constructor")
+            if code in {wire for wire, _ in result}:
+                raise RustParseError(f"{operation}: duplicate error code {code}")
+            result.append((code, expression[len(prefix)]))
+        index = end + 1
+        if body[index:index + 1] == (",",):
+            index += 1
+        elif not wrapped and index < len(body):
+            raise RustParseError(f"{operation}: missing error arm separator")
+    return tuple(result)
+
+
 def builder(
     parts: tuple[str, ...],
     *,

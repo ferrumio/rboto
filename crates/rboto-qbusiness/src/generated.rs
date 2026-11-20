@@ -25489,6 +25489,18 @@ fn validation_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::associate_permission::AssociatePermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25507,6 +25519,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::batch_delete_document::BatchDeleteDocumentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25522,6 +25545,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::batch_put_document::BatchPutDocumentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25540,6 +25575,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::cancel_subscription::CancelSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -25552,6 +25597,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat::ChatError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ExternalResourceException(_) => Some("ExternalResourceException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25565,6 +25623,19 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat::ChatError {
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat_sync::ChatSyncError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ExternalResourceException(_) => Some("ExternalResourceException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25580,6 +25651,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::chat_sync::ChatSyncEr
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::check_document_access::CheckDocumentAccessError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -25592,6 +25673,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_anonymous_web_experience_url::CreateAnonymousWebExperienceUrlError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
@@ -25605,6 +25697,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_anonymous_web_
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::create_application::CreateApplicationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25621,6 +25725,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_chat_response_configuration::CreateChatResponseConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25635,6 +25751,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_chat_response_
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::create_data_accessor::CreateDataAccessorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25653,6 +25781,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::create_data_source::CreateDataSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25669,6 +25809,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_index::CreateIndexError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25685,6 +25837,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_index::CreateI
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_plugin::CreatePluginError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25701,6 +25865,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_plugin::Create
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_retriever::CreateRetrieverError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25719,6 +25895,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_retriever::Cre
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::create_subscription::CreateSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25732,6 +25919,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_user::CreateUserError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25750,6 +25949,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::create_user::CreateUs
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::create_web_experience::CreateWebExperienceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25768,6 +25979,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_application::DeleteApplicationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25783,6 +26005,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_attachment::DeleteAttachmentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -25795,6 +26028,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_controls_configuration::DeleteChatControlsConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
@@ -25805,6 +26048,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_controls_
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_response_configuration::DeleteChatResponseConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25818,6 +26072,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_chat_response_
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_conversation::DeleteConversationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25833,6 +26099,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_data_accessor::DeleteDataAccessorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25848,6 +26125,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_data_source::DeleteDataSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25861,6 +26149,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_group::DeleteGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25874,6 +26173,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_group::DeleteG
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_index::DeleteIndexError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25887,6 +26197,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_index::DeleteI
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_plugin::DeletePluginError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25900,6 +26221,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_plugin::Delete
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_retriever::DeleteRetrieverError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25913,6 +26245,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_retriever::Del
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_user::DeleteUserError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25928,6 +26271,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::delete_user::DeleteUs
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::delete_web_experience::DeleteWebExperienceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25943,6 +26297,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::disassociate_permission::DisassociatePermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -25956,6 +26321,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_application::GetApplicationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -25968,6 +26343,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_application::GetA
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_controls_configuration::GetChatControlsConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
@@ -25978,6 +26363,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_controls_con
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_response_configuration::GetChatResponseConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
@@ -25988,6 +26383,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_chat_response_con
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_accessor::GetDataAccessorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26000,6 +26405,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_accessor::Ge
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_source::GetDataSourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26014,6 +26429,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_data_source::GetD
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::get_document_content::GetDocumentContentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26026,6 +26451,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_group::GetGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26039,6 +26475,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_group::GetGroupEr
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_index::GetIndexError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26051,6 +26497,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_index::GetIndexEr
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_media::GetMediaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::MediaTooLargeException(_) => Some("MediaTooLargeException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26063,6 +26521,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_media::GetMediaEr
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_plugin::GetPluginError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26075,6 +26543,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_plugin::GetPlugin
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_policy::GetPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26087,6 +26565,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_policy::GetPolicy
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_retriever::GetRetrieverError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26099,6 +26587,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_retriever::GetRet
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_user::GetUserError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26114,6 +26613,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::get_user::GetUserErro
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::get_web_experience::GetWebExperienceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26128,6 +26637,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_applications::ListApplicationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -26137,6 +26655,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_attachments::ListAttachmentsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26149,6 +26678,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_attachments::Lis
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_chat_response_configurations::ListChatResponseConfigurationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
@@ -26161,6 +26700,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_chat_response_co
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_conversations::ListConversationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26175,6 +26725,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_data_accessors::ListDataAccessorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26189,6 +26749,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_data_source_sync_jobs::ListDataSourceSyncJobsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26202,6 +26773,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_data_sources::ListDataSourcesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26214,6 +26795,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_data_sources::Li
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_documents::ListDocumentsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26226,6 +26817,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_documents::ListD
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_groups::ListGroupsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26239,6 +26841,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_groups::ListGrou
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_indices::ListIndicesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26251,6 +26863,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_indices::ListInd
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_messages::ListMessagesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26265,6 +26888,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_messages::ListMe
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_plugin_actions::ListPluginActionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26279,6 +26912,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_plugin_type_actions::ListPluginTypeActionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -26290,6 +26932,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_plugin_type_metadata::ListPluginTypeMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -26299,6 +26950,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_plugins::ListPluginsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26311,6 +26972,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_plugins::ListPlu
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_retrievers::ListRetrieversError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26325,6 +26996,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::list_retrievers::List
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_subscriptions::ListSubscriptionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26340,6 +27022,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26354,6 +27046,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::list_web_experiences::ListWebExperiencesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26366,6 +27068,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_feedback::PutFeedbackError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26378,6 +27090,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_feedback::PutFeed
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_group::PutGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26396,6 +27120,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::put_group::PutGroupEr
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::search_relevant_content::SearchRelevantContentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::LicenseNotFoundException(_) => Some("LicenseNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26410,6 +27145,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::start_data_source_sync_job::StartDataSourceSyncJobError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26428,6 +27175,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::stop_data_source_sync_job::StopDataSourceSyncJobError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26441,6 +27199,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26454,6 +27223,16 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::tag_resource::TagReso
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFoundException(value) => {
@@ -26468,6 +27247,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::untag_resource::Untag
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::update_application::UpdateApplicationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26481,6 +27271,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_controls_configuration::UpdateChatControlsConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26493,6 +27295,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_controls_
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_response_configuration::UpdateChatResponseConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26506,6 +27319,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_chat_response_
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::update_data_accessor::UpdateDataAccessorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26521,6 +27345,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::update_data_source::UpdateDataSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26534,6 +27369,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_index::UpdateIndexError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26550,6 +27397,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_index::UpdateI
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_plugin::UpdatePluginError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26566,6 +27425,18 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_plugin::Update
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_retriever::UpdateRetrieverError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26584,6 +27455,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_retriever::Upd
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::update_subscription::UpdateSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26597,6 +27479,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_user::UpdateUserError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26615,6 +27509,17 @@ impl ModeledErrorDetails for aws_sdk_qbusiness::operation::update_user::UpdateUs
 impl ModeledErrorDetails
     for aws_sdk_qbusiness::operation::update_web_experience::UpdateWebExperienceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -26709,10 +27614,8 @@ impl PyChatOutputStreamReceiver {
                         }
                         Err(error) => {
                             stream.discard();
-                            let code = None;
-
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, &context, code)
+                                stream_sdk_error_to_py(py, &error, &context)
                             }))
                         }
                     }

@@ -13296,6 +13296,17 @@ fn validation_exception_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::create_pipe::CreatePipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -13311,6 +13322,16 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::create_pipe::CreatePipeEr
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::delete_pipe::DeletePipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -13323,6 +13344,15 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::delete_pipe::DeletePipeEr
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::describe_pipe::DescribePipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalException(value) => internal_exception_error_details(py, value),
@@ -13334,6 +13364,14 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::describe_pipe::DescribePi
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::list_pipes::ListPipesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalException(value) => internal_exception_error_details(py, value),
@@ -13347,6 +13385,14 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::list_pipes::ListPipesErro
 impl ModeledErrorDetails
     for aws_sdk_pipes::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalException(value) => internal_exception_error_details(py, value),
@@ -13357,6 +13403,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::start_pipe::StartPipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -13369,6 +13425,16 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::start_pipe::StartPipeErro
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::stop_pipe::StopPipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),
@@ -13381,6 +13447,14 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::stop_pipe::StopPipeError 
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalException(value) => internal_exception_error_details(py, value),
@@ -13391,6 +13465,14 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::tag_resource::TagResource
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalException(value) => internal_exception_error_details(py, value),
@@ -13401,6 +13483,16 @@ impl ModeledErrorDetails for aws_sdk_pipes::operation::untag_resource::UntagReso
 }
 
 impl ModeledErrorDetails for aws_sdk_pipes::operation::update_pipe::UpdatePipeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConflictException(value) => conflict_exception_error_details(py, value),

@@ -123,6 +123,11 @@ def crate_source(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
     operation.mkdir(parents=True)
     (operation / "_example_input.rs").write_text("pub struct ExampleInput {}")
     (operation / "_example_output.rs").write_text("pub struct ExampleOutput {}")
+    operation.with_suffix(".rs").write_text("""
+        pub enum ExampleError {
+            Unhandled(crate::error::Unhandled),
+        }
+    """)
     (root / "src/types").mkdir()
 
     def find_crate(_descriptor: ServiceDescriptor) -> Path:

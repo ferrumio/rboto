@@ -25948,6 +25948,17 @@ fn too_many_requests_exception_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_api_key::CreateApiKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -25964,6 +25975,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_api_key::Crea
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_authorizer::CreateAuthorizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -25980,6 +26002,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_base_path_mapping::CreateBasePathMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -25996,6 +26029,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_deployment::CreateDeploymentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26015,6 +26060,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_documentation_part::CreateDocumentationPartError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26031,6 +26087,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_documentation_version::CreateDocumentationVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26047,6 +26114,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_domain_name::CreateDomainNameError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26061,6 +26138,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_domain_name_access_association::CreateDomainNameAccessAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => limit_exceeded_exception_error_details(py, value),
@@ -26071,6 +26158,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_domain_name_a
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_model::CreateModelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26087,6 +26185,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_model::Create
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_request_validator::CreateRequestValidatorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26101,6 +26210,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_resource::CreateResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26115,6 +26235,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_resource::Cre
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_rest_api::CreateRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26129,6 +26259,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_rest_api::Cre
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_stage::CreateStageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26145,6 +26286,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_stage::Create
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_usage_plan::CreateUsagePlanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26161,6 +26313,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::create_usage_plan_key::CreateUsagePlanKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26175,6 +26338,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_vpc_link::CreateVpcLinkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26189,6 +26362,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::create_vpc_link::Cre
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_api_key::DeleteApiKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26202,6 +26385,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_api_key::Dele
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_authorizer::DeleteAuthorizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26215,6 +26408,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_base_path_mapping::DeleteBasePathMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26228,6 +26431,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_client_certificate::DeleteClientCertificateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26241,6 +26454,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_deployment::DeleteDeploymentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26257,6 +26481,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_documentation_part::DeleteDocumentationPartError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26270,6 +26504,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_documentation_version::DeleteDocumentationVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26283,6 +26527,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_domain_name::DeleteDomainNameError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26294,6 +26548,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_domain_name_access_association::DeleteDomainNameAccessAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
@@ -26305,6 +26569,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_domain_name_a
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_gateway_response::DeleteGatewayResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26318,6 +26592,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_integration::DeleteIntegrationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26331,6 +26615,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_integration_response::DeleteIntegrationResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26342,6 +26636,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_method::DeleteMethodError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26355,6 +26658,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_method::Delet
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_method_response::DeleteMethodResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26366,6 +26679,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_model::DeleteModelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26379,6 +26702,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_model::Delete
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_request_validator::DeleteRequestValidatorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26390,6 +26723,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_resource::DeleteResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26401,6 +26744,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_resource::Del
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_rest_api::DeleteRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26412,6 +26765,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_rest_api::Del
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_stage::DeleteStageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26428,6 +26792,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_stage::Delete
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_usage_plan::DeleteUsagePlanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26441,6 +26815,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::delete_usage_plan_key::DeleteUsagePlanKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26452,6 +26836,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_vpc_link::DeleteVpcLinkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26463,6 +26857,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::delete_vpc_link::Del
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::flush_stage_authorizers_cache::FlushStageAuthorizersCacheError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => limit_exceeded_exception_error_details(py, value),
@@ -26475,6 +26880,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::flush_stage_authoriz
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::flush_stage_cache::FlushStageCacheError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26491,6 +26907,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::generate_client_certificate::GenerateClientCertificateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26505,6 +26931,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_account::GetAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26516,6 +26951,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_account::GetAcco
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_key::GetApiKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26527,6 +26971,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_key::GetApiK
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_keys::GetApiKeysError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26538,6 +26991,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_api_keys::GetApi
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizer::GetAuthorizerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26549,6 +27011,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizer::GetA
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizers::GetAuthorizersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26562,6 +27033,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_authorizers::Get
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_base_path_mapping::GetBasePathMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26575,6 +27055,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_base_path_mappings::GetBasePathMappingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26588,6 +27077,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_client_certificate::GetClientCertificateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26601,6 +27099,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_client_certificates::GetClientCertificatesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26612,6 +27119,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployment::GetDeploymentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceUnavailableException(value) => {
@@ -26626,6 +27143,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployment::GetD
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployments::GetDeploymentsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceUnavailableException(value) => {
@@ -26642,6 +27169,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_deployments::Get
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_documentation_part::GetDocumentationPartError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26655,6 +27191,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_documentation_parts::GetDocumentationPartsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26668,6 +27213,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_documentation_version::GetDocumentationVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26681,6 +27234,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_documentation_versions::GetDocumentationVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26692,6 +27254,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name::GetDomainNameError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26703,6 +27274,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name::Get
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name_access_associations::GetDomainNameAccessAssociationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
@@ -26712,6 +27292,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_name_acce
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_names::GetDomainNamesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26723,6 +27312,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_domain_names::Ge
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_export::GetExportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26739,6 +27339,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_export::GetExpor
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_gateway_response::GetGatewayResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26752,6 +27361,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_gateway_responses::GetGatewayResponsesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26763,6 +27381,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_integration::GetIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26776,6 +27403,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_integration::Get
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_integration_response::GetIntegrationResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26787,6 +27423,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_method::GetMethodError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26800,6 +27444,14 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_method::GetMetho
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_method_response::GetMethodResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26811,6 +27463,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_model::GetModelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26824,6 +27485,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_model::GetModelE
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_model_template::GetModelTemplateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26835,6 +27505,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_models::GetModelsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26848,6 +27527,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_models::GetModel
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_request_validator::GetRequestValidatorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26861,6 +27549,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_request_validators::GetRequestValidatorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26872,6 +27569,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resource::GetResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26883,6 +27588,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resource::GetRes
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resources::GetResourcesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26894,6 +27608,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_resources::GetRe
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_api::GetRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26905,6 +27628,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_api::GetRes
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_apis::GetRestApisError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26916,6 +27648,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_rest_apis::GetRe
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk::GetSdkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26930,6 +27673,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk::GetSdkError
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_type::GetSdkTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26941,6 +27693,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_type::GetSdk
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_types::GetSdkTypesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26952,6 +27713,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_sdk_types::GetSd
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stage::GetStageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26966,6 +27738,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stage::GetStageE
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stages::GetStagesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -26980,6 +27763,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_stages::GetStage
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_tags::GetTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -26991,6 +27783,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_tags::GetTagsErr
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage::GetUsageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27002,6 +27803,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage::GetUsageE
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plan::GetUsagePlanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27015,6 +27825,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plan::GetU
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_usage_plan_key::GetUsagePlanKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27028,6 +27847,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::get_usage_plan_keys::GetUsagePlanKeysError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27039,6 +27867,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plans::GetUsagePlansError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27050,6 +27887,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_usage_plans::Get
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_link::GetVpcLinkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27061,6 +27907,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_link::GetVpc
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_links::GetVpcLinksError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27072,6 +27927,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::get_vpc_links::GetVp
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_api_keys::ImportApiKeysError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27088,6 +27954,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_api_keys::Imp
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::import_documentation_parts::ImportDocumentationPartsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27102,6 +27979,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_rest_api::ImportRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27118,6 +28006,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::import_rest_api::Imp
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::put_gateway_response::PutGatewayResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27132,6 +28031,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_integration::PutIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27148,6 +28058,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_integration::Put
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::put_integration_response::PutIntegrationResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27162,6 +28083,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_method::PutMethodError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27178,6 +28110,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_method::PutMetho
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::put_method_response::PutMethodResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27192,6 +28135,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_rest_api::PutRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27206,6 +28160,16 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::put_rest_api::PutRes
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::reject_domain_name_access_association::RejectDomainNameAccessAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => too_many_requests_exception_error_details(py, value),
@@ -27215,6 +28179,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::reject_domain_name_a
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27231,6 +28206,15 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::tag_resource::TagRes
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::test_invoke_authorizer::TestInvokeAuthorizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27244,6 +28228,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::test_invoke_method::TestInvokeMethodError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27255,6 +28248,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27269,6 +28273,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::untag_resource::Unta
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_account::UpdateAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27283,6 +28298,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_account::Upda
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_api_key::UpdateApiKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27299,6 +28325,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_api_key::Upda
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_authorizer::UpdateAuthorizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27315,6 +28352,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_base_path_mapping::UpdateBasePathMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27331,6 +28379,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_client_certificate::UpdateClientCertificateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27347,6 +28406,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_deployment::UpdateDeploymentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27366,6 +28437,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_documentation_part::UpdateDocumentationPartError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27382,6 +28464,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_documentation_version::UpdateDocumentationVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27398,6 +28491,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_domain_name::UpdateDomainNameError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27414,6 +28518,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_gateway_response::UpdateGatewayResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27430,6 +28545,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_integration::UpdateIntegrationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27446,6 +28572,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_integration_response::UpdateIntegrationResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27460,6 +28597,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_method::UpdateMethodError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27473,6 +28620,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_method::Updat
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_method_response::UpdateMethodResponseError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27487,6 +28645,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_model::UpdateModelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27503,6 +28672,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_model::Update
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_request_validator::UpdateRequestValidatorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27517,6 +28697,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_resource::UpdateResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyRequestsException(value) => {
@@ -27528,6 +28718,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_resource::Upd
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_rest_api::UpdateRestApiError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27542,6 +28743,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_rest_api::Upd
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_stage::UpdateStageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27556,6 +28768,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_stage::Update
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_usage::UpdateUsageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27572,6 +28795,17 @@ impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_usage::Update
 impl ModeledErrorDetails
     for aws_sdk_apigateway::operation::update_usage_plan::UpdateUsagePlanError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {
@@ -27586,6 +28820,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_apigateway::operation::update_vpc_link::UpdateVpcLinkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::LimitExceededException(value) => {

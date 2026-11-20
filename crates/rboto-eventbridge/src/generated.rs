@@ -15317,141 +15317,696 @@ impl PyOperationUpdateEventBusOutput {
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::activate_event_source::ActivateEventSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::cancel_replay::CancelReplayError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::cancel_replay::CancelReplayError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::IllegalStatusException(_) => Some("IllegalStatusException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::create_api_destination::CreateApiDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_archive::CreateArchiveError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_archive::CreateArchiveError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidEventPatternException(_) => Some("InvalidEventPatternException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::create_connection::CreateConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_endpoint::CreateEndpointError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_event_bus::CreateEventBusError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_endpoint::CreateEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::create_event_bus::CreateEventBusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::create_partner_event_source::CreatePartnerEventSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::deactivate_event_source::DeactivateEventSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::deauthorize_connection::DeauthorizeConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::delete_api_destination::DeleteApiDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_archive::DeleteArchiveError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_archive::DeleteArchiveError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::delete_connection::DeleteConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_endpoint::DeleteEndpointError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_event_bus::DeleteEventBusError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_endpoint::DeleteEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_event_bus::DeleteEventBusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::delete_partner_event_source::DeletePartnerEventSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_rule::DeleteRuleError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::delete_rule::DeleteRuleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_api_destination::DescribeApiDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_archive::DescribeArchiveError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_connection::DescribeConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_endpoint::DescribeEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_event_bus::DescribeEventBusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::describe_event_source::DescribeEventSourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_partner_event_source::DescribePartnerEventSourceError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_replay::DescribeReplayError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_rule::DescribeRuleError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::disable_rule::DisableRuleError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::enable_rule::EnableRuleError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_partner_event_source::DescribePartnerEventSourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_replay::DescribeReplayError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::describe_rule::DescribeRuleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::disable_rule::DisableRuleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::enable_rule::EnableRuleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_api_destinations::ListApiDestinationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_archives::ListArchivesError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_archives::ListArchivesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_connections::ListConnectionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_endpoints::ListEndpointsError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_event_buses::ListEventBusesError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_endpoints::ListEndpointsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_event_buses::ListEventBusesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_event_sources::ListEventSourcesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_partner_event_source_accounts::ListPartnerEventSourceAccountsError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_partner_event_source_accounts::ListPartnerEventSourceAccountsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_partner_event_sources::ListPartnerEventSourcesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_replays::ListReplaysError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_replays::ListReplaysError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_rule_names_by_target::ListRuleNamesByTargetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_rules::ListRulesError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::list_rules::ListRulesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::list_targets_by_rule::ListTargetsByRuleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_events::PutEventsError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_events::PutEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::put_partner_events::PutPartnerEventsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_permission::PutPermissionError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_rule::PutRuleError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_targets::PutTargetsError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_permission::PutPermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::PolicyLengthExceededException(_) => Some("PolicyLengthExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_rule::PutRuleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidEventPatternException(_) => Some("InvalidEventPatternException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::put_targets::PutTargetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::remove_permission::RemovePermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::remove_targets::RemoveTargetsError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::start_replay::StartReplayError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::tag_resource::TagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::remove_targets::RemoveTargetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::start_replay::StartReplayError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidEventPatternException(_) => Some("InvalidEventPatternException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::test_event_pattern::TestEventPatternError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidEventPatternException(_) => Some("InvalidEventPatternException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::untag_resource::UntagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ManagedRuleException(_) => Some("ManagedRuleException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::update_api_destination::UpdateApiDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_archive::UpdateArchiveError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_archive::UpdateArchiveError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::InvalidEventPatternException(_) => Some("InvalidEventPatternException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_eventbridge::operation::update_connection::UpdateConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_endpoint::UpdateEndpointError {}
-impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_event_bus::UpdateEventBusError {}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_endpoint::UpdateEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_eventbridge::operation::update_event_bus::UpdateEventBusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalException(_) => Some("InternalException"),
+            Self::OperationDisabledException(_) => Some("OperationDisabledException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyApiDestination>()?;

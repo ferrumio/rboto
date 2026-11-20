@@ -129569,6 +129569,17 @@ fn invalid_input_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::associate_glossary_terms::AssociateGlossaryTermsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129583,6 +129594,21 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_create_partition::BatchCreatePartitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129597,10 +129623,28 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_delete_connection::BatchDeleteConnectionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_delete_partition::BatchDeletePartitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129613,6 +129657,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_delete_table::BatchDeleteTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129627,6 +129683,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_delete_table::BatchD
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_delete_table_version::BatchDeleteTableVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129641,6 +129706,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_blueprints::BatchGetBlueprintsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129650,6 +129723,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_crawlers::BatchGetCrawlersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129661,6 +129741,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_crawlers::BatchG
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_custom_entity_types::BatchGetCustomEntityTypesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129672,6 +129760,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_data_quality_result::BatchGetDataQualityResultError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129683,6 +129779,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_data_quality_result_v2::BatchGetDataQualityResultV2Error
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129692,6 +129796,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_data_quality_ruleset_evaluation_run::BatchGetDataQualityRulesetEvaluationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129703,6 +129815,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_data_quality_rul
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_dev_endpoints::BatchGetDevEndpointsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129714,6 +129835,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_iterable_forms::BatchGetIterableFormsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129726,6 +129857,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_jobs::BatchGetJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129735,6 +129874,21 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_jobs::BatchGetJo
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_partition::BatchGetPartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129752,6 +129906,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_partition::Batch
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_get_table_optimizer::BatchGetTableOptimizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129764,6 +129928,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_triggers::BatchGetTriggersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129773,6 +129945,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_triggers::BatchG
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_workflows::BatchGetWorkflowsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129782,6 +129962,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_get_workflows::Batch
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_put_data_quality_statistic_annotation::BatchPutDataQualityStatisticAnnotationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNumberLimitExceededException(_) => Some("ResourceNumberLimitExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -129792,6 +129981,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_put_data_quality_sta
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::batch_stop_job_run::BatchStopJobRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129803,6 +130000,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::batch_stop_job_run::BatchS
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::batch_update_partition::BatchUpdatePartitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129815,6 +130023,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_data_quality_rule_recommendation_run::CancelDataQualityRuleRecommendationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -129825,6 +130042,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_data_quality_rule_r
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_data_quality_ruleset_evaluation_run::CancelDataQualityRulesetEvaluationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -129835,6 +130061,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_data_quality_rulese
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_ml_task_run::CancelMLTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129847,6 +130082,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_ml_task_run::Cancel
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_statement::CancelStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129861,6 +130107,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::cancel_statement::CancelSt
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::check_schema_version_validity::CheckSchemaVersionValidityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129870,6 +130124,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_blueprint::CreateBlueprintError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129879,6 +130145,26 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_blueprint::CreateBl
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_catalog::CreateCatalogError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederatedResourceAlreadyExistsException(_) => {
+                Some("FederatedResourceAlreadyExistsException")
+            }
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -129897,6 +130183,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_catalog::CreateCata
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_classifier::CreateClassifierError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129906,6 +130200,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_classifier::CreateC
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_column_statistics_task_settings::CreateColumnStatisticsTaskSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ColumnStatisticsTaskRunningException(_) => Some("ColumnStatisticsTaskRunningException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => Some("ResourceNumberLimitExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -129916,6 +130222,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_column_statistics_t
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_connection::CreateConnectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129925,6 +130243,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_connection::CreateC
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_crawler::CreateCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129936,6 +130265,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_crawler::CreateCraw
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_custom_entity_type::CreateCustomEntityTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129947,6 +130292,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_data_quality_ruleset::CreateDataQualityRulesetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129956,6 +130313,27 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_database::CreateDatabaseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::FederatedResourceAlreadyExistsException(_) => {
+                Some("FederatedResourceAlreadyExistsException")
+            }
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::FederatedResourceAlreadyExistsException(value) => {
@@ -129971,6 +130349,23 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_database::CreateDat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_dev_endpoint::CreateDevEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129980,6 +130375,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_dev_endpoint::Creat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_glossary::CreateGlossaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -129991,6 +130397,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_glossary::CreateGlo
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_glossary_term::CreateGlossaryTermError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130003,6 +130421,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_glue_identity_center_configuration::CreateGlueIdentityCenterConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130012,6 +130441,25 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_glue_identity_cente
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration::CreateIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IntegrationConflictOperationFault(_) => Some("IntegrationConflictOperationFault"),
+            Self::IntegrationQuotaExceededFault(_) => Some("IntegrationQuotaExceededFault"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::KmsKeyNotAccessibleFault(_) => Some("KMSKeyNotAccessibleFault"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130024,6 +130472,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration::Create
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration_resource_property::CreateIntegrationResourcePropertyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130034,6 +130495,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration_resourc
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration_table_properties::CreateIntegrationTablePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130044,6 +130517,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_integration_table_p
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_job::CreateJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130053,6 +130542,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_job::CreateJobError
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_ml_transform::CreateMLTransformError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130062,6 +130567,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_ml_transform::Creat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_partition::CreatePartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130076,6 +130595,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_partition::CreatePa
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_partition_index::CreatePartitionIndexError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130088,6 +130621,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_registry::CreateRegistryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130097,6 +130643,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_registry::CreateReg
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_schema::CreateSchemaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130109,6 +130669,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_schema::CreateSchem
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_script::CreateScriptError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130120,6 +130688,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_script::CreateScrip
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_security_configuration::CreateSecurityConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130129,6 +130709,24 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_session::CreateSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130138,6 +130736,26 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_session::CreateSess
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_table::CreateTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130155,6 +130773,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_table::CreateTableE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_table_optimizer::CreateTableOptimizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130167,6 +130797,23 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_trigger::CreateTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130181,6 +130828,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_trigger::CreateTrig
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_usage_profile::CreateUsageProfileError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130192,6 +130852,20 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::create_user_defined_function::CreateUserDefinedFunctionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130204,6 +130878,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::create_workflow::CreateWorkflowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130213,6 +130900,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::create_workflow::CreateWor
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_asset::DeleteAssetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130222,6 +130919,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_asset::DeleteAssetE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_asset_type::DeleteAssetTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130231,6 +130938,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_asset_type::DeleteA
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_attachment::DeleteAttachmentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130243,6 +130961,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_attachment::DeleteA
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_blueprint::DeleteBlueprintError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130252,6 +130978,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_blueprint::DeleteBl
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_catalog::DeleteCatalogError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130267,6 +131006,13 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_catalog::DeleteCata
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_classifier::DeleteClassifierError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130278,6 +131024,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_classifier::DeleteC
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_for_partition::DeleteColumnStatisticsForPartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130288,6 +131044,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_f
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_for_table::DeleteColumnStatisticsForTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130298,6 +131064,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_f
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_task_settings::DeleteColumnStatisticsTaskSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130308,6 +131082,13 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_column_statistics_t
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_connection::DeleteConnectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130321,6 +131102,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_connection::DeleteC
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_connection_type::DeleteConnectionTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130333,6 +131125,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_crawler::DeleteCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CrawlerRunningException(_) => Some("CrawlerRunningException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::SchedulerTransitioningException(_) => Some("SchedulerTransitioningException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130346,6 +131147,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_crawler::DeleteCraw
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_custom_entity_type::DeleteCustomEntityTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130360,6 +131171,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_data_quality_ruleset::DeleteDataQualityRulesetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130372,6 +131192,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_database::DeleteDatabaseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130387,6 +131221,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_database::DeleteDat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_dev_endpoint::DeleteDevEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130399,6 +131242,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_dev_endpoint::Delet
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_form_type::DeleteFormTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130408,6 +131262,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_form_type::DeleteFo
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_glossary::DeleteGlossaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130419,6 +131284,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_glossary::DeleteGlo
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_glossary_term::DeleteGlossaryTermError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130428,6 +131303,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_glue_identity_center_configuration::DeleteGlueIdentityCenterConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130438,6 +131324,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_glue_identity_cente
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration::DeleteIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IntegrationConflictOperationFault(_) => Some("IntegrationConflictOperationFault"),
+            Self::IntegrationNotFoundFault(_) => Some("IntegrationNotFoundFault"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::InvalidIntegrationStateFault(_) => Some("InvalidIntegrationStateFault"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130450,6 +131352,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration::Delete
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration_resource_property::DeleteIntegrationResourcePropertyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130460,6 +131374,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration_resourc
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration_table_properties::DeleteIntegrationTablePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130470,6 +131396,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_integration_table_p
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_job::DeleteJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130479,6 +131413,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_job::DeleteJobError
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_ml_transform::DeleteMLTransformError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130491,6 +131434,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_ml_transform::Delet
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_partition::DeletePartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130505,6 +131457,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_partition::DeletePa
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_partition_index::DeletePartitionIndexError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130517,6 +131480,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_registry::DeleteRegistryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130531,6 +131503,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_registry::DeleteReg
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionCheckFailureException(_) => Some("ConditionCheckFailureException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130543,6 +131525,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_schema::DeleteSchemaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130557,6 +131548,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_schema::DeleteSchem
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_schema_versions::DeleteSchemaVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130571,6 +131571,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_security_configuration::DeleteSecurityConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130583,6 +131592,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_session::DeleteSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130592,6 +131612,21 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_session::DeleteSess
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_table::DeleteTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130609,6 +131644,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_table::DeleteTableE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_table_optimizer::DeleteTableOptimizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130623,6 +131668,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_table_version::DeleteTableVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130635,6 +131689,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_trigger::DeleteTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130646,6 +131709,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_trigger::DeleteTrig
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_usage_profile::DeleteUsageProfileError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130657,6 +131729,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::delete_user_defined_function::DeleteUserDefinedFunctionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130669,6 +131750,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::delete_workflow::DeleteWorkflowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130680,6 +131770,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::delete_workflow::DeleteWor
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::describe_connection_type::DescribeConnectionTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130689,6 +131788,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::describe_entity::DescribeEntityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130706,6 +131817,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::describe_entity::DescribeE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::describe_inbound_integrations::DescribeInboundIntegrationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IntegrationNotFoundFault(_) => Some("IntegrationNotFoundFault"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::TargetResourceNotFound(_) => Some("TargetResourceNotFound"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130720,6 +131845,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::describe_integrations::DescribeIntegrationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IntegrationNotFoundFault(_) => Some("IntegrationNotFoundFault"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130734,6 +131871,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::disassociate_glossary_terms::DisassociateGlossaryTermsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130746,6 +131894,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_asset::GetAssetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130758,6 +131916,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_asset::GetAssetError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_asset_type::GetAssetTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130770,6 +131938,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_asset_type::GetAssetTy
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint::GetBlueprintError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130782,6 +131959,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint::GetBlueprin
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint_run::GetBlueprintRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130793,6 +131978,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint_run::GetBlue
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint_runs::GetBlueprintRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130805,6 +131999,21 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_blueprint_runs::GetBlu
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_catalog::GetCatalogError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130822,8 +132031,31 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_catalog::GetCatalogErr
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_catalog_import_status::GetCatalogImportStatusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_catalogs::GetCatalogsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130839,6 +132071,13 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_catalogs::GetCatalogsE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_classifier::GetClassifierError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130849,8 +132088,26 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_classifier::GetClassif
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_glue::operation::get_classifiers::GetClassifiersError {}
+impl ModeledErrorDetails for aws_sdk_glue::operation::get_classifiers::GetClassifiersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_column_statistics_for_partition::GetColumnStatisticsForPartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130863,6 +132120,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_column_statistics_for_
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_column_statistics_for_table::GetColumnStatisticsForTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130877,6 +132144,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_column_statistics_task_run::GetColumnStatisticsTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130891,8 +132166,23 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_column_statistics_task_runs::GetColumnStatisticsTaskRunsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_column_statistics_task_settings::GetColumnStatisticsTaskSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130903,6 +132193,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_column_statistics_task
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_connection::GetConnectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130915,6 +132214,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_connection::GetConnect
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_connections::GetConnectionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130927,6 +132235,13 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_connections::GetConnec
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawler::GetCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130937,11 +132252,37 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawler::GetCrawlerErr
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawler_metrics::GetCrawlerMetricsError {}
-impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawlers::GetCrawlersError {}
+impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawler_metrics::GetCrawlerMetricsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_glue::operation::get_crawlers::GetCrawlersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_custom_entity_type::GetCustomEntityTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130954,6 +132295,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_dashboard_url::GetDashboardUrlError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -130966,6 +132317,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_dashboard_url::GetDash
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_catalog_encryption_settings::GetDataCatalogEncryptionSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -130975,6 +132334,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_catalog_encryptio
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_catalog_export_configuration::GetDataCatalogExportConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -130987,6 +132355,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_catalog_export_co
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_data_quality_model::GetDataQualityModelError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131001,6 +132378,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_data_quality_model_result::GetDataQualityModelResultError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131015,6 +132401,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_data_quality_result::GetDataQualityResultError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131029,6 +132424,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_data_quality_result_v2::GetDataQualityResultV2Error
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131041,6 +132445,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_quality_rule_recommendation_run::GetDataQualityRuleRecommendationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131053,6 +132466,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_quality_rule_reco
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_data_quality_ruleset::GetDataQualityRulesetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131065,6 +132487,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_quality_ruleset_evaluation_run::GetDataQualityRulesetEvaluationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131075,6 +132506,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_data_quality_ruleset_e
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_database::GetDatabaseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131090,6 +132535,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_database::GetDatabaseE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_databases::GetDatabasesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131105,6 +132564,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_databases::GetDatabase
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_dataflow_graph::GetDataflowGraphError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131114,6 +132581,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_dataflow_graph::GetDat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_dev_endpoint::GetDevEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131126,6 +132602,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_dev_endpoint::GetDevEn
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_dev_endpoints::GetDevEndpointsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131138,6 +132623,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_dev_endpoints::GetDevE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_entity_records::GetEntityRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131153,6 +132650,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_entity_records::GetEnt
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_form_type::GetFormTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131165,6 +132672,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_form_type::GetFormType
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_glossary::GetGlossaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131176,6 +132692,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_glossary::GetGlossaryE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_glossary_term::GetGlossaryTermError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131187,6 +132712,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_glossary_term::GetGlos
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_glue_identity_center_configuration::GetGlueIdentityCenterConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131197,6 +132733,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_glue_identity_center_c
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_integration_resource_property::GetIntegrationResourcePropertyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131207,6 +132755,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_integration_resource_p
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_integration_table_properties::GetIntegrationTablePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131217,6 +132777,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_integration_table_prop
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_job::GetJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131229,6 +132798,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_job::GetJobError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_bookmark::GetJobBookmarkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131241,6 +132820,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_bookmark::GetJobBo
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_run::GetJobRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131253,6 +132841,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_run::GetJobRunErro
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_runs::GetJobRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131267,6 +132864,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_job_runs::GetJobRunsEr
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_job_upgrade_analysis::GetJobUpgradeAnalysisError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131279,6 +132886,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_jobs::GetJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131291,6 +132907,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_jobs::GetJobsError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_task_run::GetMLTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131303,6 +132928,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_task_run::GetMLTask
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_task_runs::GetMLTaskRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131315,6 +132949,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_task_runs::GetMLTas
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_transform::GetMLTransformError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131327,6 +132970,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_transform::GetMLTra
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_transforms::GetMLTransformsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131339,6 +132991,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_ml_transforms::GetMLTr
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_mapping::GetMappingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131351,6 +133012,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_mapping::GetMappingErr
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_materialized_view_refresh_task_run::GetMaterializedViewRefreshTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131361,6 +133031,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_materialized_view_refr
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_partition::GetPartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131378,6 +133062,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_partition::GetPartitio
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_partition_indexes::GetPartitionIndexesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131390,6 +133084,22 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_partitions::GetPartitionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131405,6 +133115,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_partitions::GetPartiti
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_plan::GetPlanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131414,6 +133132,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_plan::GetPlanError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_registry::GetRegistryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131428,6 +133155,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_registry::GetRegistryE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_resource_policies::GetResourcePoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131437,6 +133173,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_resource_policy::GetResourcePolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131449,6 +133194,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_resource_policy::GetRe
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_schema::GetSchemaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131463,6 +133217,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_schema::GetSchemaError
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_schema_by_definition::GetSchemaByDefinitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131475,6 +133238,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_schema_version::GetSchemaVersionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131489,6 +133261,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_schema_version::GetSch
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_schema_versions_diff::GetSchemaVersionsDiffError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131503,6 +133284,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_security_configuration::GetSecurityConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131517,6 +133307,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_security_configurations::GetSecurityConfigurationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131529,6 +133328,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_session::GetSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131543,6 +133352,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_session::GetSessionErr
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_session_endpoint::GetSessionEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131555,6 +133376,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_statement::GetStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131569,6 +133401,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_statement::GetStatemen
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_system_logs_for_job_run::GetSystemLogsForJobRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131583,6 +133425,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_system_logs_for_session::GetSystemLogsForSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131595,6 +133446,21 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_table::GetTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131610,6 +133476,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_table::GetTableError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_optimizer::GetTableOptimizerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131622,6 +133498,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_optimizer::GetTa
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_version::GetTableVersionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131634,6 +133520,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_version::GetTabl
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_versions::GetTableVersionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131646,6 +133542,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_table_versions::GetTab
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_tables::GetTablesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131661,6 +133571,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_tables::GetTablesError
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_tags::GetTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131673,6 +133592,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_tags::GetTagsError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_trigger::GetTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131685,6 +133613,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_trigger::GetTriggerErr
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_triggers::GetTriggersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131697,6 +133634,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_triggers::GetTriggersE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_unfiltered_partition_metadata::GetUnfilteredPartitionMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => Some("FederationSourceRetryableException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::PermissionTypeMismatchException(_) => Some("PermissionTypeMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131708,6 +133658,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_unfiltered_partition_m
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_unfiltered_partitions_metadata::GetUnfilteredPartitionsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => Some("FederationSourceRetryableException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::PermissionTypeMismatchException(_) => Some("PermissionTypeMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -131721,6 +133684,21 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_unfiltered_partitions_
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_unfiltered_table_metadata::GetUnfilteredTableMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::PermissionTypeMismatchException(_) => Some("PermissionTypeMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131736,6 +133714,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_usage_profile::GetUsageProfileError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131750,6 +133738,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_usage_profile::GetUsag
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_user_defined_function::GetUserDefinedFunctionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131764,6 +133762,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_user_defined_functions::GetUserDefinedFunctionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131776,6 +133784,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow::GetWorkflowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131788,6 +133805,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow::GetWorkflowE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow_run::GetWorkflowRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131802,6 +133828,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow_run::GetWorkf
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::get_workflow_run_properties::GetWorkflowRunPropertiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131814,6 +133849,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow_runs::GetWorkflowRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131828,8 +133872,25 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::get_workflow_runs::GetWork
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::import_catalog_to_glue::ImportCatalogToGlueError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_asset_types::ListAssetTypesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131839,6 +133900,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_asset_types::ListAsse
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_blueprints::ListBlueprintsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131850,13 +133919,44 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_blueprints::ListBluep
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_column_statistics_task_runs::ListColumnStatisticsTaskRunsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_connection_types::ListConnectionTypesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_glue::operation::list_crawlers::ListCrawlersError {}
+
+impl ModeledErrorDetails for aws_sdk_glue::operation::list_crawlers::ListCrawlersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_crawls::ListCrawlsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131871,6 +133971,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_crawls::ListCrawlsErr
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_custom_entity_types::ListCustomEntityTypesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131882,6 +133990,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_data_quality_results::ListDataQualityResultsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131893,6 +134009,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_data_quality_results_v2::ListDataQualityResultsV2Error
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131902,6 +134026,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_rule_recommendation_runs::ListDataQualityRuleRecommendationRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131911,6 +134043,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_rule_rec
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_ruleset_evaluation_runs::ListDataQualityRulesetEvaluationRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131922,6 +134062,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_ruleset_
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_data_quality_rulesets::ListDataQualityRulesetsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131934,6 +134083,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_statistic_annotations::ListDataQualityStatisticAnnotationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131945,6 +134101,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_data_quality_statisti
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_data_quality_statistics::ListDataQualityStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131957,6 +134121,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_dev_endpoints::ListDevEndpointsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131969,6 +134142,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_dev_endpoints::ListDe
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_entities::ListEntitiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -131984,6 +134169,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_entities::ListEntitie
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_form_types::ListFormTypesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -131993,6 +134187,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_form_types::ListFormT
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_glossaries::ListGlossariesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132002,6 +134205,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_glossaries::ListGloss
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_glossary_terms::ListGlossaryTermsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132011,6 +134223,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_glossary_terms::ListG
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_integration_resource_properties::ListIntegrationResourcePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132021,6 +134245,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_integration_resource_
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_integration_table_properties::ListIntegrationTablePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132031,6 +134267,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_integration_table_pro
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_iterable_forms::ListIterableFormsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132043,6 +134289,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_iterable_forms::ListI
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_jobs::ListJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132055,6 +134310,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_jobs::ListJobsError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_ml_transforms::ListMLTransformsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132067,6 +134331,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_ml_transforms::ListML
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_materialized_view_refresh_task_runs::ListMaterializedViewRefreshTaskRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132076,6 +134348,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_materialized_view_ref
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_registries::ListRegistriesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132087,6 +134367,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_registries::ListRegis
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_schema_versions::ListSchemaVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132099,6 +134388,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_schemas::ListSchemasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132111,6 +134409,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_schemas::ListSchemasE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_sessions::ListSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132120,6 +134427,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_sessions::ListSession
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_statements::ListStatementsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132134,6 +134452,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_statements::ListState
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::list_table_optimizer_runs::ListTableOptimizerRunsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132146,6 +134475,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_triggers::ListTriggersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132158,6 +134496,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_triggers::ListTrigger
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_usage_profiles::ListUsageProfilesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132167,6 +134514,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_usage_profiles::ListU
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::list_workflows::ListWorkflowsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132176,6 +134531,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::list_workflows::ListWorkfl
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::modify_integration::ModifyIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IntegrationConflictOperationFault(_) => Some("IntegrationConflictOperationFault"),
+            Self::IntegrationNotFoundFault(_) => Some("IntegrationNotFoundFault"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::InvalidIntegrationStateFault(_) => Some("InvalidIntegrationStateFault"),
+            Self::InvalidStateException(_) => Some("InvalidStateException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132190,6 +134561,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::modify_integration::Modify
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::publish_data_quality_result_v2::PublishDataQualityResultV2Error
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132199,6 +134584,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_asset::PutAssetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132211,6 +134607,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_asset::PutAssetError {
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_asset_type::PutAssetTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132223,6 +134630,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_asset_type::PutAssetTy
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_attachment::PutAttachmentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132235,6 +134653,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_attachment::PutAttachm
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_catalog_encryption_settings::PutDataCatalogEncryptionSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132244,6 +134670,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_catalog_encryptio
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_catalog_export_configuration::PutDataCatalogExportConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132253,6 +134689,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_catalog_export_co
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_quality_profile_annotation::PutDataQualityProfileAnnotationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132263,6 +134707,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_data_quality_profile_a
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_form_type::PutFormTypeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132272,6 +134726,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_form_type::PutFormType
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::put_resource_policy::PutResourcePolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionCheckFailureException(_) => Some("ConditionCheckFailureException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132286,6 +134750,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::put_resource_policy::PutRe
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::put_schema_version_metadata::PutSchemaVersionMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132300,6 +134776,20 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::put_workflow_run_properties::PutWorkflowRunPropertiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132314,6 +134804,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::query_schema_version_metadata::QuerySchemaVersionMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132328,6 +134826,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::register_connection_type::RegisterConnectionTypeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132339,6 +134850,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::register_schema_version::RegisterSchemaVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132353,6 +134877,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::remove_schema_version_metadata::RemoveSchemaVersionMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132365,6 +134897,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::reset_job_bookmark::ResetJobBookmarkError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132377,6 +134918,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::reset_job_bookmark::ResetJ
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::resume_workflow_run::ResumeWorkflowRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalWorkflowStateException(_) => Some("IllegalWorkflowStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132389,6 +134941,23 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::resume_workflow_run::Resum
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::run_statement::RunStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::SessionBusyException(_) => Some("SessionBusyException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132401,6 +134970,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::run_statement::RunStatemen
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::search_assets::SearchAssetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132410,6 +134988,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::search_assets::SearchAsset
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::search_tables::SearchTablesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132419,6 +135005,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::search_tables::SearchTable
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_blueprint_run::StartBlueprintRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalBlueprintStateException(_) => Some("IllegalBlueprintStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132433,6 +135032,21 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_blueprint_run::Start
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_column_statistics_task_run::StartColumnStatisticsTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ColumnStatisticsTaskRunningException(_) => {
+                Some("ColumnStatisticsTaskRunningException")
+            }
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132445,6 +135059,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_column_statistics_task_run_schedule::StartColumnStatisticsTaskRunScheduleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132455,6 +135078,14 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_column_statistics_ta
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_crawler::StartCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CrawlerRunningException(_) => Some("CrawlerRunningException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132468,6 +135099,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_crawler::StartCrawle
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_crawler_schedule::StartCrawlerScheduleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::NoScheduleException(_) => Some("NoScheduleException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::SchedulerRunningException(_) => Some("SchedulerRunningException"),
+            Self::SchedulerTransitioningException(_) => Some("SchedulerTransitioningException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132479,6 +135120,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_data_quality_rule_recommendation_run::StartDataQualityRuleRecommendationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132488,6 +135138,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_data_quality_rule_re
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_data_quality_ruleset_evaluation_run::StartDataQualityRulesetEvaluationRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132500,6 +135160,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_data_quality_ruleset
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_export_labels_task_run::StartExportLabelsTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132514,6 +135183,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_import_labels_task_run::StartImportLabelsTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132526,6 +135207,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_job_run::StartJobRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132540,6 +135234,20 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_job_run::StartJobRun
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_job_upgrade_analysis::StartJobUpgradeAnalysisError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132554,6 +135262,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::start_ml_evaluation_task_run::StartMLEvaluationTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::MlTransformNotReadyException(_) => Some("MLTransformNotReadyException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132566,6 +135285,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_ml_labeling_set_generation_task_run::StartMLLabelingSetGenerationTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132576,6 +135305,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_ml_labeling_set_gene
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_materialized_view_refresh_task_run::StartMaterializedViewRefreshTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::MaterializedViewRefreshTaskRunningException(_) => Some("MaterializedViewRefreshTaskRunningException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => Some("ResourceNumberLimitExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132586,6 +135326,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_materialized_view_re
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_trigger::StartTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132598,6 +135351,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_trigger::StartTrigge
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::start_workflow_run::StartWorkflowRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentRunsExceededException(_) => Some("ConcurrentRunsExceededException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132612,6 +135378,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::start_workflow_run::StartW
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::stop_column_statistics_task_run::StopColumnStatisticsTaskRunError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ColumnStatisticsTaskNotRunningException(_) => {
+                Some("ColumnStatisticsTaskNotRunningException")
+            }
+            Self::ColumnStatisticsTaskStoppingException(_) => {
+                Some("ColumnStatisticsTaskStoppingException")
+            }
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132623,6 +135402,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_column_statistics_task_run_schedule::StopColumnStatisticsTaskRunScheduleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132633,6 +135420,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_column_statistics_tas
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_crawler::StopCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CrawlerNotRunningException(_) => Some("CrawlerNotRunningException"),
+            Self::CrawlerStoppingException(_) => Some("CrawlerStoppingException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132646,6 +135442,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_crawler::StopCrawlerE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::stop_crawler_schedule::StopCrawlerScheduleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::SchedulerNotRunningException(_) => Some("SchedulerNotRunningException"),
+            Self::SchedulerTransitioningException(_) => Some("SchedulerTransitioningException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132659,6 +135464,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::stop_job_upgrade_analysis::StopJobUpgradeAnalysisError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132671,6 +135487,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_materialized_view_refresh_task_run::StopMaterializedViewRefreshTaskRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::MaterializedViewRefreshTaskNotRunningException(_) => Some("MaterializedViewRefreshTaskNotRunningException"),
+            Self::MaterializedViewRefreshTaskStoppingException(_) => Some("MaterializedViewRefreshTaskStoppingException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132680,6 +135506,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_materialized_view_ref
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_session::StopSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::IllegalSessionStateException(_) => Some("IllegalSessionStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidInputException(value) => invalid_input_exception_error_details(py, value),
@@ -132689,6 +135526,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_session::StopSessionE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_trigger::StopTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132701,6 +135548,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_trigger::StopTriggerE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::stop_workflow_run::StopWorkflowRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalWorkflowStateException(_) => Some("IllegalWorkflowStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132713,6 +135570,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::stop_workflow_run::StopWor
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132725,6 +135591,22 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::tag_resource::TagResourceE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::test_connection::TestConnectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132740,6 +135622,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::test_connection::TestConne
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132752,6 +135643,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::untag_resource::UntagResou
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_asset::UpdateAssetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132764,6 +135666,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_asset::UpdateAssetE
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_blueprint::UpdateBlueprintError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IllegalBlueprintStateException(_) => Some("IllegalBlueprintStateException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132776,6 +135689,19 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_blueprint::UpdateBl
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_catalog::UpdateCatalogError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132791,6 +135717,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_catalog::UpdateCata
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_classifier::UpdateClassifierError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::VersionMismatchException(_) => Some("VersionMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132803,6 +135738,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_classifier::UpdateC
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_for_partition::UpdateColumnStatisticsForPartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132813,6 +135758,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_f
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_for_table::UpdateColumnStatisticsForTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132823,6 +135778,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_f
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_task_settings::UpdateColumnStatisticsTaskSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::VersionMismatchException(_) => Some("VersionMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132833,6 +135798,15 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_column_statistics_t
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_connection::UpdateConnectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132845,6 +135819,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_connection::UpdateC
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_crawler::UpdateCrawlerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CrawlerRunningException(_) => Some("CrawlerRunningException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::VersionMismatchException(_) => Some("VersionMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132859,6 +135843,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_crawler::UpdateCraw
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_crawler_schedule::UpdateCrawlerScheduleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::SchedulerTransitioningException(_) => Some("SchedulerTransitioningException"),
+            Self::VersionMismatchException(_) => Some("VersionMismatchException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132873,6 +135867,22 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_data_quality_ruleset::UpdateDataQualityRulesetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132885,6 +135895,22 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_database::UpdateDatabaseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132900,6 +135926,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_database::UpdateDat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_dev_endpoint::UpdateDevEndpointError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132912,6 +135948,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_dev_endpoint::Updat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_glossary::UpdateGlossaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132926,6 +135974,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_glossary::UpdateGlo
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_glossary_term::UpdateGlossaryTermError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132938,6 +135998,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_glue_identity_center_configuration::UpdateGlueIdentityCenterConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132948,6 +136019,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_glue_identity_cente
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_integration_resource_property::UpdateIntegrationResourcePropertyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132958,6 +136041,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_integration_resourc
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_integration_table_properties::UpdateIntegrationTablePropertiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => entity_not_found_exception_error_details(py, value),
@@ -132968,6 +136063,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_integration_table_p
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_job::UpdateJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132982,6 +136087,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_job::UpdateJobError
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_job_from_source_control::UpdateJobFromSourceControlError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -132994,6 +136111,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_ml_transform::UpdateMLTransformError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133006,6 +136133,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_ml_transform::Updat
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_partition::UpdatePartitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133018,6 +136155,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_partition::UpdatePa
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_registry::UpdateRegistryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133030,6 +136177,16 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_registry::UpdateReg
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_schema::UpdateSchemaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133044,6 +136201,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_schema::UpdateSchem
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_source_control_from_job::UpdateSourceControlFromJobError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133056,6 +136225,26 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_table::UpdateTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::FederationSourceException(_) => Some("FederationSourceException"),
+            Self::FederationSourceRetryableException(_) => {
+                Some("FederationSourceRetryableException")
+            }
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            Self::ResourceNumberLimitExceededException(_) => {
+                Some("ResourceNumberLimitExceededException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133073,6 +136262,18 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_table::UpdateTableE
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_table_optimizer::UpdateTableOptimizerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133085,6 +136286,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_trigger::UpdateTriggerError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133099,6 +136310,17 @@ impl ModeledErrorDetails for aws_sdk_glue::operation::update_trigger::UpdateTrig
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_usage_profile::UpdateUsageProfileError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationNotSupportedException(_) => Some("OperationNotSupportedException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133113,6 +136335,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_glue::operation::update_user_defined_function::UpdateUserDefinedFunctionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::GlueEncryptionException(_) => Some("GlueEncryptionException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {
@@ -133125,6 +136357,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_glue::operation::update_workflow::UpdateWorkflowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EntityNotFoundException(_) => Some("EntityNotFoundException"),
+            Self::InternalServiceException(_) => Some("InternalServiceException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::OperationTimeoutException(_) => Some("OperationTimeoutException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::EntityNotFoundException(value) => {

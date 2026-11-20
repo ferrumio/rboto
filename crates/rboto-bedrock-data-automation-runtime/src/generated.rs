@@ -1206,17 +1206,87 @@ impl PyOperationUntagResourceOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusError {}
-impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationError {}
-impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation_async::InvokeDataAutomationAsyncError {}
-impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceError {}
+impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::get_data_automation_status::GetDataAutomationStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation::InvokeDataAutomationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::invoke_data_automation_async::InvokeDataAutomationAsyncError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_bedrockdataautomationruntime::operation::list_tags_for_resource::ListTagsForResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_bedrockdataautomationruntime::operation::tag_resource::TagResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_bedrockdataautomationruntime::operation::untag_resource::UntagResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

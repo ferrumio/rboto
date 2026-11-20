@@ -363,6 +363,17 @@ fn service_unavailable_error_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::operation::invoke_endpoint_with_bidirectional_stream::InvokeEndpointWithBidirectionalStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InputValidationError(_) => Some("InputValidationError"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InternalStreamFailure(_) => Some("InternalStreamFailure"),
+            Self::ModelError(_) => Some("ModelError"),
+            Self::ModelStreamError(_) => Some("ModelStreamError"),
+            Self::ServiceUnavailableError(_) => Some("ServiceUnavailableError"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InputValidationError(value) => input_validation_error_error_details(py, value),
@@ -377,6 +388,13 @@ impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::operation::invoke_en
 
 impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::types::error::RequestStreamEventError {}
 impl ModeledErrorDetails for aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ModelStreamError(_) => Some("ModelStreamError"),
+            Self::InternalStreamFailure(_) => Some("InternalStreamFailure"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelStreamError(value) => model_stream_error_error_details(py, value),
@@ -450,32 +468,31 @@ impl PyResponseStreamEventReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| response_stream_event_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError::ModelStreamError(_)) => Some("ModelStreamError"),
-                        Some(aws_sdk_sagemakerruntimehttp2::types::error::ResponseStreamEventError::InternalStreamFailure(_)) => Some("InternalStreamFailure"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| response_stream_event_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

@@ -17,6 +17,11 @@ normalizes AWS error codes, extracts the request ID and message when available, 
 operation name, and raises the most specific generated Python exception. Unknown service
 errors fall back to the service base exception.
 
+The known Rust error variant selects the modeled Python class for both operations and
+event streams. Protocol wire codes can be aliases and remain unchanged in `error_code`
+and compatibility metadata. When no modeled variant is available, code normalization
+and the service base exception remain the fallback.
+
 Compatibility metadata is available through the shared `ServiceError` API, but exception
 classes rather than response dictionaries are the primary control-flow mechanism.
 

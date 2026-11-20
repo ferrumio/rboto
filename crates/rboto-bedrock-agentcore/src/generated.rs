@@ -33044,6 +33044,17 @@ fn validation_exception_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_create_memory_records::BatchCreateMemoryRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33053,6 +33064,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_create_m
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_delete_memory_records::BatchDeleteMemoryRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33062,6 +33084,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_delete_m
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_update_memory_records::BatchUpdateMemoryRecordsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33071,6 +33104,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::batch_update_m
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::complete_resource_token_auth::CompleteResourceTokenAuthError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33082,6 +33126,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::complete_resou
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::create_ab_test::CreateABTestError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33091,6 +33147,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::create_event::CreateEventError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RetryableConflictException(_) => Some("RetryableConflictException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33102,6 +33171,19 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::create_event::
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::create_payment_instrument::CreatePaymentInstrumentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SubscriptionRequiredException(_) => Some("SubscriptionRequiredException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::SubscriptionRequiredException(value) => {
@@ -33116,6 +33198,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::create_payment_session::CreatePaymentSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SubscriptionRequiredException(_) => Some("SubscriptionRequiredException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::SubscriptionRequiredException(value) => {
@@ -33130,6 +33224,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_ab_test::DeleteABTestError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33141,6 +33247,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_batch_evaluation::DeleteBatchEvaluationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33150,6 +33268,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::delete_capacity_provider_session::DeleteCapacityProviderSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33159,6 +33287,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::delete_capacit
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::delete_event::DeleteEventError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33170,6 +33310,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::delete_event::
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_memory_record::DeleteMemoryRecordError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33181,6 +33333,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_payment_instrument::DeletePaymentInstrumentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33192,6 +33354,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_payment_session::DeletePaymentSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33203,6 +33375,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::delete_recommendation::DeleteRecommendationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33212,6 +33395,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::evaluate::EvaluateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DuplicateIdException(_) => Some("DuplicateIdException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33221,6 +33418,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::evaluate::Eval
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_ab_test::GetABTestError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33232,6 +33440,19 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_ab_test::G
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_agent_card::GetAgentCardError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RetryableConflictException(_) => Some("RetryableConflictException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33243,6 +33464,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_batch_evaluation::GetBatchEvaluationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33254,6 +33486,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_browser_session::GetBrowserSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33263,6 +33505,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_code_interpreter_session::GetCodeInterpreterSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33272,6 +33524,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_code_inter
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_event::GetEventError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33283,6 +33547,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_event::Get
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_memory_record::GetMemoryRecordError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33294,6 +33570,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_payment_instrument::GetPaymentInstrumentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33303,6 +33589,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_payment_instrument_balance::GetPaymentInstrumentBalanceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33314,6 +33610,16 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_payment_in
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_payment_session::GetPaymentSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33325,6 +33631,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_recommendation::GetRecommendationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33336,6 +33652,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_resource_api_key::GetResourceApiKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33347,6 +33674,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_resource_oauth2_token::GetResourceOauth2TokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33356,6 +33694,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_resource_payment_token::GetResourcePaymentTokenError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33367,6 +33716,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_resource_p
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::get_workload_access_token::GetWorkloadAccessTokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33376,6 +33736,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_workload_access_token_for_jwt::GetWorkloadAccessTokenForJWTError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33385,6 +33756,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_workload_a
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_workload_access_token_for_user_id::GetWorkloadAccessTokenForUserIdError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33394,6 +33776,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::get_workload_a
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::ingest_data::IngestDataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33405,6 +33798,19 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::ingest_data::I
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::invoke_agent_runtime::InvokeAgentRuntimeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RetryableConflictException(_) => Some("RetryableConflictException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33414,6 +33820,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::invoke_agent_runtime_command::InvokeAgentRuntimeCommandError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RetryableConflictException(_) => Some("RetryableConflictException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33425,6 +33844,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::invoke_agent_r
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::invoke_browser::InvokeBrowserError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33436,6 +33866,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::invoke_code_interpreter::InvokeCodeInterpreterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33447,6 +33889,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::invoke_harness::InvokeHarnessError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33456,6 +33910,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_ab_tests::ListABTestsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33465,6 +33929,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_ab_tests:
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_actors::ListActorsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33476,6 +33952,16 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_actors::L
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_batch_evaluations::ListBatchEvaluationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33487,6 +33973,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_browser_sessions::ListBrowserSessionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33496,6 +33992,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_code_interpreter_sessions::ListCodeInterpreterSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33505,6 +34011,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_code_inte
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_events::ListEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33514,6 +34032,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_events::L
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_memory_extraction_jobs::ListMemoryExtractionJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33525,6 +34054,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_memory_ex
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_memory_records::ListMemoryRecordsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33536,6 +34077,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_payment_instruments::ListPaymentInstrumentsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33547,6 +34097,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_payment_sessions::ListPaymentSessionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33558,6 +34117,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::list_recommendations::ListRecommendationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33567,6 +34135,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_sessions::ListSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33578,6 +34158,19 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::list_sessions:
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::process_payment::ProcessPaymentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SubscriptionRequiredException(_) => Some("SubscriptionRequiredException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::SubscriptionRequiredException(value) => {
@@ -33592,6 +34185,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::retrieve_memory_records::RetrieveMemoryRecordsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidInputException(_) => Some("InvalidInputException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33601,6 +34206,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::save_browser_session_profile::SaveBrowserSessionProfileError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33612,6 +34228,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::save_browser_s
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::search_registry_records::SearchRegistryRecordsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33623,6 +34250,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::start_batch_evaluation::StartBatchEvaluationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33634,6 +34273,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::start_browser_session::StartBrowserSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33643,6 +34294,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::start_code_interpreter_session::StartCodeInterpreterSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33652,6 +34315,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::start_code_int
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::start_memory_extraction_job::StartMemoryExtractionJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottledException(_) => Some("ThrottledException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33663,6 +34337,17 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::start_memory_e
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::start_recommendation::StartRecommendationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33674,6 +34359,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::stop_batch_evaluation::StopBatchEvaluationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33685,6 +34382,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::stop_browser_session::StopBrowserSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33694,6 +34403,18 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::stop_code_interpreter_session::StopCodeInterpreterSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33705,6 +34426,21 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentcore::operation::stop_code_inte
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::stop_runtime_session::StopRuntimeSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::RetryableConflictException(_) => Some("RetryableConflictException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33716,6 +34452,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::update_ab_test::UpdateABTestError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnauthorizedException(_) => Some("UnauthorizedException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33727,6 +34476,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::operation::update_browser_stream::UpdateBrowserStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33738,6 +34499,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33749,6 +34522,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33760,6 +34541,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::RuntimeClientError(_) => Some("RuntimeClientError"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -33833,37 +34626,31 @@ impl PyCodeInterpreterStreamOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| code_interpreter_stream_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::CodeInterpreterStreamOutputError::ValidationException(_)) => Some("ValidationException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| code_interpreter_stream_output_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -33933,37 +34720,33 @@ impl PyInvokeAgentRuntimeCommandStreamOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| invoke_agent_runtime_command_stream_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeAgentRuntimeCommandStreamOutputError::RuntimeClientError(_)) => Some("RuntimeClientError"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                invoke_agent_runtime_command_stream_output_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -34033,33 +34816,31 @@ impl PyInvokeHarnessStreamOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| invoke_harness_stream_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentcore::types::error::InvokeHarnessStreamOutputError::RuntimeClientError(_)) => Some("RuntimeClientError"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| invoke_harness_stream_output_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

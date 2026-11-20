@@ -5122,45 +5122,176 @@ impl PyOperationStartPatientInsightsJobOutput {
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::activate_subscription::ActivateSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_connecthealth::operation::create_domain::CreateDomainError {}
+
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::create_domain::CreateDomainError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::create_subscription::CreateSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::deactivate_subscription::DeactivateSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_domain::DeleteDomainError {}
-impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_domain::GetDomainError {}
-impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionError {}
+
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_domain::DeleteDomainError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_domain::GetDomainError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_medical_scribe_listening_session::GetMedicalScribeListeningSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::get_patient_insights_job::GetPatientInsightsJobError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::get_subscription::GetSubscriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::list_domains::ListDomainsError {}
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceError
 {
 }
-impl ModeledErrorDetails for aws_sdk_connecthealth::operation::start_medical_scribe_listening_session::StartMedicalScribeListeningSessionError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::start_medical_scribe_listening_session::StartMedicalScribeListeningSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::start_patient_insights_job::StartPatientInsightsJobError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::tag_resource::TagResourceError {}
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::untag_resource::UntagResourceError {}
 impl ModeledErrorDetails for aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError {}
-impl ModeledErrorDetails for aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError {}
+impl ModeledErrorDetails for aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
 
 #[pyclass(
     name = "MedicalScribeOutputStreamReceiver",
@@ -5227,32 +5358,31 @@ impl PyMedicalScribeOutputStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| medical_scribe_output_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_connecthealth::types::error::MedicalScribeOutputStreamError::ValidationException(_)) => Some("ValidationException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| medical_scribe_output_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

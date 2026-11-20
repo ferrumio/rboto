@@ -33726,6 +33726,18 @@ fn unsupported_media_type_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::add_layer_version_permission::AddLayerVersionPermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PolicyLengthExceededException(_) => Some("PolicyLengthExceededException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33753,6 +33765,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::add_permission::AddPermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PolicyLengthExceededException(_) => Some("PolicyLengthExceededException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::PublicPolicyException(_) => Some("PublicPolicyException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33783,6 +33808,18 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::add_permission::AddPermi
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::checkpoint_durable_execution::CheckpointDurableExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33806,6 +33843,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::create_alias::CreateAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AliasLimitExceededException(_) => Some("AliasLimitExceededException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::AliasLimitExceededException(value) => {
@@ -33832,6 +33880,18 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::create_alias::CreateAlia
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::create_capacity_provider::CreateCapacityProviderError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CapacityProviderLimitExceededException(_) => {
+                Some("CapacityProviderLimitExceededException")
+            }
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CapacityProviderLimitExceededException(value) => {
@@ -33855,6 +33915,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::create_code_signing_config::CreateCodeSigningConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33869,6 +33936,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::create_event_source_mapping::CreateEventSourceMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33890,6 +33967,25 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::create_function::CreateFunctionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => {
+                Some("CodeSigningConfigNotFoundException")
+            }
+            Self::CodeStorageExceededException(_) => Some("CodeStorageExceededException"),
+            Self::CodeVerificationFailedException(_) => Some("CodeVerificationFailedException"),
+            Self::FunctionVersionsPerCapacityProviderLimitExceededException(_) => {
+                Some("FunctionVersionsPerCapacityProviderLimitExceededException")
+            }
+            Self::InvalidCodeSignatureException(_) => Some("InvalidCodeSignatureException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => {
@@ -33930,6 +34026,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::create_function::CreateF
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::create_function_url_config::CreateFunctionUrlConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33951,6 +34057,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_alias::DeleteAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33974,6 +34090,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_alias::DeleteAlia
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_capacity_provider::DeleteCapacityProviderError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -33997,6 +34123,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_code_signing_config::DeleteCodeSigningConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34017,6 +34152,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_event_source_mapping::DeleteEventSourceMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34041,6 +34187,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function::DeleteFunctionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34062,6 +34218,17 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function::DeleteF
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_code_signing_config::DeleteFunctionCodeSigningConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => Some("CodeSigningConfigNotFoundException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
@@ -34078,6 +34245,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_code_sig
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_function_concurrency::DeleteFunctionConcurrencyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34099,6 +34276,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_event_invoke_config::DeleteFunctionEventInvokeConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -34114,6 +34301,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_function_event_in
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_function_url_config::DeleteFunctionUrlConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34137,6 +34334,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_layer_version::DeleteLayerVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34155,6 +34361,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_provisioned_concurrency_config::DeleteProvisionedConcurrencyConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -34170,6 +34386,17 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::delete_provisioned_concu
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34196,6 +34423,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_account_settings::GetAccountSettingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceException(value) => service_exception_error_details(py, value),
@@ -34208,6 +34442,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_alias::GetAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34228,6 +34471,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_alias::GetAliasError
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_capacity_provider::GetCapacityProviderError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34248,6 +34500,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_code_signing_config::GetCodeSigningConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34265,6 +34525,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_durable_execution::GetDurableExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34293,6 +34566,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_durable_execution_history::GetDurableExecutionHistoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34321,6 +34607,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_durable_execution_state::GetDurableExecutionStateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34346,6 +34644,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_event_source_mapping::GetEventSourceMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34364,6 +34671,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function::GetFunctionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34382,6 +34698,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function::GetFunctio
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_code_signing_config::GetFunctionCodeSigningConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => Some("CodeSigningConfigNotFoundException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
@@ -34397,6 +34723,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_code_signin
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_function_concurrency::GetFunctionConcurrencyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34417,6 +34752,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_function_configuration::GetFunctionConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34435,6 +34779,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_event_invoke_config::GetFunctionEventInvokeConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -34449,6 +34802,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_function_event_invok
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_function_recursion_config::GetFunctionRecursionConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34469,6 +34831,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_function_scaling_config::GetFunctionScalingConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34489,6 +34860,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_function_url_config::GetFunctionUrlConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34507,6 +34887,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_layer_version::GetLayerVersionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34527,6 +34916,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_layer_version::GetLa
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_layer_version_by_arn::GetLayerVersionByArnError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34547,6 +34945,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_layer_version_policy::GetLayerVersionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34565,6 +34972,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_policy::GetPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34583,6 +34999,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_policy::GetPolicyErr
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::get_provisioned_concurrency_config::GetProvisionedConcurrencyConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ProvisionedConcurrencyConfigNotFoundException(_) => Some("ProvisionedConcurrencyConfigNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -34598,6 +35024,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::get_provisioned_concurre
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_resource_policy::GetResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34618,6 +35053,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::get_runtime_management_config::GetRuntimeManagementConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34636,6 +35080,62 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke::InvokeError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeArtifactUserDeletedException(_) => Some("CodeArtifactUserDeletedException"),
+            Self::CodeArtifactUserFailedException(_) => Some("CodeArtifactUserFailedException"),
+            Self::CodeArtifactUserPendingException(_) => Some("CodeArtifactUserPendingException"),
+            Self::DurableExecutionAlreadyStartedException(_) => {
+                Some("DurableExecutionAlreadyStartedException")
+            }
+            Self::Ec2AccessDeniedException(_) => Some("EC2AccessDeniedException"),
+            Self::Ec2ThrottledException(_) => Some("EC2ThrottledException"),
+            Self::Ec2UnexpectedException(_) => Some("EC2UnexpectedException"),
+            Self::EfsioException(_) => Some("EFSIOException"),
+            Self::EfsMountConnectivityException(_) => Some("EFSMountConnectivityException"),
+            Self::EfsMountFailureException(_) => Some("EFSMountFailureException"),
+            Self::EfsMountTimeoutException(_) => Some("EFSMountTimeoutException"),
+            Self::EniLimitReachedException(_) => Some("ENILimitReachedException"),
+            Self::EniNotReadyException(_) => Some("ENINotReadyException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::InvalidRequestContentException(_) => Some("InvalidRequestContentException"),
+            Self::InvalidRuntimeException(_) => Some("InvalidRuntimeException"),
+            Self::InvalidSecurityGroupIdException(_) => Some("InvalidSecurityGroupIDException"),
+            Self::InvalidSubnetIdException(_) => Some("InvalidSubnetIDException"),
+            Self::InvalidZipFileException(_) => Some("InvalidZipFileException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ModeNotSupportedException(_) => Some("ModeNotSupportedException"),
+            Self::NoPublishedVersionException(_) => Some("NoPublishedVersionException"),
+            Self::RecursiveInvocationException(_) => Some("RecursiveInvocationException"),
+            Self::RequestTooLargeException(_) => Some("RequestTooLargeException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            Self::S3FilesMountConnectivityException(_) => Some("S3FilesMountConnectivityException"),
+            Self::S3FilesMountFailureException(_) => Some("S3FilesMountFailureException"),
+            Self::S3FilesMountTimeoutException(_) => Some("S3FilesMountTimeoutException"),
+            Self::SerializedRequestEntityTooLargeException(_) => {
+                Some("SerializedRequestEntityTooLargeException")
+            }
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SnapStartException(_) => Some("SnapStartException"),
+            Self::SnapStartNotReadyException(_) => Some("SnapStartNotReadyException"),
+            Self::SnapStartRegenerationFailureException(_) => {
+                Some("SnapStartRegenerationFailureException")
+            }
+            Self::SnapStartTimeoutException(_) => Some("SnapStartTimeoutException"),
+            Self::SubnetIpAddressLimitReachedException(_) => {
+                Some("SubnetIPAddressLimitReachedException")
+            }
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnsupportedMediaTypeException(_) => Some("UnsupportedMediaTypeException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeArtifactUserDeletedException(value) => {
@@ -34759,6 +35259,44 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke::InvokeError {
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke_async::InvokeAsyncError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::Ec2AccessDeniedException(_) => Some("EC2AccessDeniedException"),
+            Self::Ec2ThrottledException(_) => Some("EC2ThrottledException"),
+            Self::Ec2UnexpectedException(_) => Some("EC2UnexpectedException"),
+            Self::EfsioException(_) => Some("EFSIOException"),
+            Self::EfsMountConnectivityException(_) => Some("EFSMountConnectivityException"),
+            Self::EfsMountFailureException(_) => Some("EFSMountFailureException"),
+            Self::EfsMountTimeoutException(_) => Some("EFSMountTimeoutException"),
+            Self::EniLimitReachedException(_) => Some("ENILimitReachedException"),
+            Self::InvalidRequestContentException(_) => Some("InvalidRequestContentException"),
+            Self::InvalidRuntimeException(_) => Some("InvalidRuntimeException"),
+            Self::InvalidSecurityGroupIdException(_) => Some("InvalidSecurityGroupIDException"),
+            Self::InvalidSubnetIdException(_) => Some("InvalidSubnetIDException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ModeNotSupportedException(_) => Some("ModeNotSupportedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::S3FilesMountConnectivityException(_) => Some("S3FilesMountConnectivityException"),
+            Self::S3FilesMountFailureException(_) => Some("S3FilesMountFailureException"),
+            Self::S3FilesMountTimeoutException(_) => Some("S3FilesMountTimeoutException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SnapStartException(_) => Some("SnapStartException"),
+            Self::SnapStartNotReadyException(_) => Some("SnapStartNotReadyException"),
+            Self::SnapStartRegenerationFailureException(_) => {
+                Some("SnapStartRegenerationFailureException")
+            }
+            Self::SnapStartTimeoutException(_) => Some("SnapStartTimeoutException"),
+            Self::SubnetIpAddressLimitReachedException(_) => {
+                Some("SubnetIPAddressLimitReachedException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::Ec2AccessDeniedException(value) => {
@@ -34844,6 +35382,57 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::invoke_async::InvokeAsyn
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::invoke_with_response_stream::InvokeWithResponseStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeArtifactUserDeletedException(_) => Some("CodeArtifactUserDeletedException"),
+            Self::CodeArtifactUserFailedException(_) => Some("CodeArtifactUserFailedException"),
+            Self::CodeArtifactUserPendingException(_) => Some("CodeArtifactUserPendingException"),
+            Self::Ec2AccessDeniedException(_) => Some("EC2AccessDeniedException"),
+            Self::Ec2ThrottledException(_) => Some("EC2ThrottledException"),
+            Self::Ec2UnexpectedException(_) => Some("EC2UnexpectedException"),
+            Self::EfsioException(_) => Some("EFSIOException"),
+            Self::EfsMountConnectivityException(_) => Some("EFSMountConnectivityException"),
+            Self::EfsMountFailureException(_) => Some("EFSMountFailureException"),
+            Self::EfsMountTimeoutException(_) => Some("EFSMountTimeoutException"),
+            Self::EniLimitReachedException(_) => Some("ENILimitReachedException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::InvalidRequestContentException(_) => Some("InvalidRequestContentException"),
+            Self::InvalidRuntimeException(_) => Some("InvalidRuntimeException"),
+            Self::InvalidSecurityGroupIdException(_) => Some("InvalidSecurityGroupIDException"),
+            Self::InvalidSubnetIdException(_) => Some("InvalidSubnetIDException"),
+            Self::InvalidZipFileException(_) => Some("InvalidZipFileException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::NoPublishedVersionException(_) => Some("NoPublishedVersionException"),
+            Self::RecursiveInvocationException(_) => Some("RecursiveInvocationException"),
+            Self::RequestTooLargeException(_) => Some("RequestTooLargeException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceNotReadyException(_) => Some("ResourceNotReadyException"),
+            Self::S3FilesMountConnectivityException(_) => Some("S3FilesMountConnectivityException"),
+            Self::S3FilesMountFailureException(_) => Some("S3FilesMountFailureException"),
+            Self::S3FilesMountTimeoutException(_) => Some("S3FilesMountTimeoutException"),
+            Self::SerializedRequestEntityTooLargeException(_) => {
+                Some("SerializedRequestEntityTooLargeException")
+            }
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::SnapStartException(_) => Some("SnapStartException"),
+            Self::SnapStartNotReadyException(_) => Some("SnapStartNotReadyException"),
+            Self::SnapStartRegenerationFailureException(_) => {
+                Some("SnapStartRegenerationFailureException")
+            }
+            Self::SnapStartTimeoutException(_) => Some("SnapStartTimeoutException"),
+            Self::SubnetIpAddressLimitReachedException(_) => {
+                Some("SubnetIPAddressLimitReachedException")
+            }
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            Self::UnsupportedMediaTypeException(_) => Some("UnsupportedMediaTypeException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeArtifactUserDeletedException(value) => {
@@ -34960,6 +35549,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_aliases::ListAliasesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34980,6 +35578,14 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_aliases::ListAliase
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_capacity_providers::ListCapacityProvidersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -34997,6 +35603,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_code_signing_configs::ListCodeSigningConfigsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35009,6 +35622,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_durable_executions_by_function::ListDurableExecutionsByFunctionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35023,6 +35645,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_durable_executions_
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_event_source_mappings::ListEventSourceMappingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35041,6 +35672,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_event_invoke_configs::ListFunctionEventInvokeConfigsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35055,6 +35695,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_event_invo
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_function_url_configs::ListFunctionUrlConfigsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35073,6 +35722,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_versions_by_capacity_provider::ListFunctionVersionsByCapacityProviderError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35085,6 +35743,14 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_function_versions_b
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions::ListFunctionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35100,6 +35766,14 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions::ListFunc
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions_by_code_signing_config::ListFunctionsByCodeSigningConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35113,6 +35787,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_functions_by_code_s
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_layer_versions::ListLayerVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35131,6 +35814,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_layers::ListLayersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35146,6 +35837,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_layers::ListLayersE
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_provisioned_concurrency_configs::ListProvisionedConcurrencyConfigsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35158,6 +35858,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_provisioned_concurr
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::list_tags::ListTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35178,6 +35887,15 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::list_tags::ListTagsError
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::list_versions_by_function::ListVersionsByFunctionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35198,6 +35916,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::publish_layer_version::PublishLayerVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeStorageExceededException(_) => Some("CodeStorageExceededException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeStorageExceededException(value) => {
@@ -35219,6 +35947,21 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::publish_version::PublishVersionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeStorageExceededException(_) => Some("CodeStorageExceededException"),
+            Self::FunctionVersionsPerCapacityProviderLimitExceededException(_) => {
+                Some("FunctionVersionsPerCapacityProviderLimitExceededException")
+            }
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeStorageExceededException(value) => {
@@ -35251,6 +35994,17 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::publish_version::Publish
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_code_signing_config::PutFunctionCodeSigningConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => Some("CodeSigningConfigNotFoundException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => code_signing_config_not_found_exception_error_details(py, value),
@@ -35267,6 +36021,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_code_signin
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::put_function_concurrency::PutFunctionConcurrencyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35288,6 +36052,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_event_invoke_config::PutFunctionEventInvokeConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35303,6 +36077,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::put_function_event_invok
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::put_function_recursion_config::PutFunctionRecursionConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35326,6 +36110,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::put_function_scaling_config::PutFunctionScalingConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35347,6 +36141,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::put_provisioned_concurrency_config::PutProvisionedConcurrencyConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35362,6 +36166,19 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::put_provisioned_concurre
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::put_resource_policy::PutResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PolicyLengthExceededException(_) => Some("PolicyLengthExceededException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::PublicPolicyException(_) => Some("PublicPolicyException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35392,6 +36209,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::put_runtime_management_config::PutRuntimeManagementConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35413,6 +36240,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_layer_version_permission::RemoveLayerVersionPermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35426,6 +36263,17 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_layer_version_per
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_permission::RemovePermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::PublicPolicyException(_) => Some("PublicPolicyException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35448,6 +36296,20 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::remove_permission::Remov
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_failure::SendDurableExecutionCallbackFailureError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CallbackTimeoutException(_) => Some("CallbackTimeoutException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
@@ -35465,6 +36327,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_c
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_heartbeat::SendDurableExecutionCallbackHeartbeatError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CallbackTimeoutException(_) => Some("CallbackTimeoutException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
@@ -35478,6 +36350,20 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_c
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_callback_success::SendDurableExecutionCallbackSuccessError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CallbackTimeoutException(_) => Some("CallbackTimeoutException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CallbackTimeoutException(value) => callback_timeout_exception_error_details(py, value),
@@ -35497,6 +36383,19 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::send_durable_execution_c
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::stop_durable_execution::StopDurableExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::KmsAccessDeniedException(_) => Some("KMSAccessDeniedException"),
+            Self::KmsDisabledException(_) => Some("KMSDisabledException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::KmsNotFoundException(_) => Some("KMSNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35523,6 +36422,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35544,6 +36453,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::tag_resource::TagResourc
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35565,6 +36484,17 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::untag_resource::UntagRes
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::update_alias::UpdateAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35591,6 +36521,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::update_alias::UpdateAlia
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_capacity_provider::UpdateCapacityProviderError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35614,6 +36554,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_code_signing_config::UpdateCodeSigningConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35631,6 +36579,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_event_source_mapping::UpdateEventSourceMappingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35657,6 +36616,23 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_function_code::UpdateFunctionCodeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => {
+                Some("CodeSigningConfigNotFoundException")
+            }
+            Self::CodeStorageExceededException(_) => Some("CodeStorageExceededException"),
+            Self::CodeVerificationFailedException(_) => Some("CodeVerificationFailedException"),
+            Self::InvalidCodeSignatureException(_) => Some("InvalidCodeSignatureException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => {
@@ -35695,6 +36671,22 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_function_configuration::UpdateFunctionConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CodeSigningConfigNotFoundException(_) => {
+                Some("CodeSigningConfigNotFoundException")
+            }
+            Self::CodeVerificationFailedException(_) => Some("CodeVerificationFailedException"),
+            Self::InvalidCodeSignatureException(_) => Some("InvalidCodeSignatureException"),
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::PreconditionFailedException(_) => Some("PreconditionFailedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::CodeSigningConfigNotFoundException(value) => {
@@ -35728,6 +36720,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_lambda::operation::update_function_event_invoke_config::UpdateFunctionEventInvokeConfigError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => invalid_parameter_value_exception_error_details(py, value),
@@ -35743,6 +36745,16 @@ impl ModeledErrorDetails for aws_sdk_lambda::operation::update_function_event_in
 impl ModeledErrorDetails
     for aws_sdk_lambda::operation::update_function_url_config::UpdateFunctionUrlConfigError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterValueException(_) => Some("InvalidParameterValueException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceException(_) => Some("ServiceException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidParameterValueException(value) => {
@@ -35852,10 +36864,8 @@ impl PyInvokeWithResponseStreamResponseEventReceiver {
                         }
                         Err(error) => {
                             stream.discard();
-                            let code = None;
-
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, &context, code)
+                                stream_sdk_error_to_py(py, &error, &context)
                             }))
                         }
                     }
