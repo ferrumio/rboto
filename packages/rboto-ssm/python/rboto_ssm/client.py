@@ -26,6 +26,7 @@ from .types import (
     BaselineOverride,
     CloudConnectorConfiguration,
     CloudConnectorFilter,
+    CloudProvider,
     CloudWatchOutputConfig,
     CommandFilter,
     ComplianceExecutionSummary,
@@ -458,8 +459,8 @@ class SSMClient:
         display_name: str,
         role_arn: str,
         configuration: CloudConnectorConfiguration,
-        config_connector_arn: str,
         description: str | None = None,
+        config_connector_arn: str | None = None,
         tags: Sequence[Tag] | None = None,
     ) -> CreateCloudConnectorOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_cloud_connector/)."""
@@ -467,10 +468,11 @@ class SSMClient:
             "display_name": display_name,
             "role_arn": role_arn,
             "configuration": configuration,
-            "config_connector_arn": config_connector_arn,
         }
         if description is not None:
             params["description"] = description
+        if config_connector_arn is not None:
+            params["config_connector_arn"] = config_connector_arn
         if tags is not None:
             params["tags"] = tags
         _interceptors = operation_interceptors("ssm", self._interceptors)
@@ -480,8 +482,8 @@ class SSMClient:
                 self._native.create_cloud_connector, params, _interceptors,
                 "ssm", "CreateCloudConnector", self._region,
                 CreateCloudConnectorOutput,
-                ("display_name", "role_arn", "configuration", "config_connector_arn", "description", "tags", ),
-                ("display_name", "role_arn", "configuration", "config_connector_arn", ),
+                ("display_name", "role_arn", "configuration", "description", "config_connector_arn", "tags", ),
+                ("display_name", "role_arn", "configuration", ),
                 service_name='SSM',
             )
             return _response
@@ -502,6 +504,7 @@ class SSMClient:
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
         tags: Sequence[Tag] | None = None,
+        cloud_providers: Sequence[CloudProvider] | None = None,
     ) -> CreateDocumentOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/create_document/)."""
         params: dict[str, object] = {
@@ -524,6 +527,8 @@ class SSMClient:
             params["target_type"] = target_type
         if tags is not None:
             params["tags"] = tags
+        if cloud_providers is not None:
+            params["cloud_providers"] = cloud_providers
         _interceptors = operation_interceptors("ssm", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -531,7 +536,7 @@ class SSMClient:
                 self._native.create_document, params, _interceptors,
                 "ssm", "CreateDocument", self._region,
                 CreateDocumentOutput,
-                ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", ),
+                ("content", "name", "requires", "attachments", "display_name", "version_name", "document_type", "document_format", "target_type", "tags", "cloud_providers", ),
                 ("content", "name", ),
                 service_name='SSM',
             )
@@ -4958,6 +4963,7 @@ class SSMClient:
         document_version: str | None = None,
         document_format: DocumentFormat | None = None,
         target_type: str | None = None,
+        cloud_providers: Sequence[CloudProvider] | None = None,
     ) -> UpdateDocumentOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/ssm/operations/update_document/)."""
         params: dict[str, object] = {
@@ -4976,6 +4982,8 @@ class SSMClient:
             params["document_format"] = document_format
         if target_type is not None:
             params["target_type"] = target_type
+        if cloud_providers is not None:
+            params["cloud_providers"] = cloud_providers
         _interceptors = operation_interceptors("ssm", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -4983,7 +4991,7 @@ class SSMClient:
                 self._native.update_document, params, _interceptors,
                 "ssm", "UpdateDocument", self._region,
                 UpdateDocumentOutput,
-                ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", ),
+                ("content", "name", "attachments", "display_name", "version_name", "document_version", "document_format", "target_type", "cloud_providers", ),
                 ("content", "name", ),
                 service_name='SSM',
             )

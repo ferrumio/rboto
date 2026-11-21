@@ -39,6 +39,12 @@ arbitrary application strings as enum keys. Explicit future-key lookup uses
 `UnknownEnumValue("FutureAttribute")`. This is a static distinction, not an
 `isinstance`-checkable class.
 
+Integer enums use `Literal` aliases with integer values on input. The Rust SDK
+represents them as signed 32-bit integers rather than named enum types, so output
+properties and dictionaries expose `int`, preserving future values. Validate
+modeled values during code generation and keep the usual integer conversion at
+runtime; this does not add service-constraint validation.
+
 Use `Sequence` for input lists, including nested lists. Output collections
 remain lists. Map inputs remain dictionaries because native conversion requires
 `PyDict`; the annotation must not promise arbitrary Mapping support.

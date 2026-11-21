@@ -89,6 +89,129 @@ fn artifact_details_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn checklist_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::Checklist> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["checklist_id", "items"])?;
+    let mut builder = aws_sdk_connecthealth::types::Checklist::builder();
+    if let Some(value) = dict_value(values, "checklist_id")? {
+        let converted_8 = (|| -> PyResult<_> {
+            let converted_8: String = value.extract()?;
+            Ok(converted_8)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("checklist_id"), "str")
+        })?;
+        builder = builder.set_checklist_id(Some(converted_8));
+    }
+    if let Some(value) = dict_value(values, "items")? {
+        let converted_9 = (|| -> PyResult<_> {
+            let mut converted_9 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_13, item_result_10) in value.try_iter()?.enumerate() {
+                let item_11 = item_result_10.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_13),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_12 = (|| -> PyResult<_> {
+                    let converted_item_12 = checklist_item_from_py(&item_11)?;
+                    Ok(converted_item_12)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_13),
+                        "dict (ChecklistItem)",
+                    )
+                })?;
+                converted_9.push(converted_item_12);
+            }
+            Ok(converted_9)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("items"), "sequence")
+        })?;
+        builder = builder.set_items(Some(converted_9));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("checklist_id", "checklist_id"), ("items", "items")],
+        )
+    })
+}
+
+fn checklist_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::Checklist,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_14 = (&value.checklist_id).as_str().into_py_any(py)?;
+    result.set_item("checklist_id", converted_14)?;
+    let converted_15_list = PyList::empty(py);
+    for item_16 in &value.items {
+        let converted_item_17 = checklist_item_to_py(py, item_16)?;
+        converted_15_list.append(converted_item_17)?;
+    }
+    let converted_15 = converted_15_list.into_any().unbind();
+    result.set_item("items", converted_15)?;
+    Ok(result.into_any().unbind())
+}
+
+fn checklist_item_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::ChecklistItem> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["item_key", "status"])?;
+    let mut builder = aws_sdk_connecthealth::types::ChecklistItem::builder();
+    if let Some(value) = dict_value(values, "item_key")? {
+        let converted_18 = (|| -> PyResult<_> {
+            let converted_18: String = value.extract()?;
+            Ok(converted_18)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("item_key"), "str")
+        })?;
+        builder = builder.set_item_key(Some(converted_18));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        let converted_19 = (|| -> PyResult<_> {
+            let enum_value_20: String = value.extract()?;
+            let converted_19 =
+                aws_sdk_connecthealth::types::ChecklistItemStatus::from(enum_value_20.as_str());
+            Ok(converted_19)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (ChecklistItemStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_19));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("item_key", "item_key"), ("status", "status")])
+    })
+}
+
+fn checklist_item_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::ChecklistItem,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_21 = (&value.item_key).as_str().into_py_any(py)?;
+    result.set_item("item_key", converted_21)?;
+    let converted_22 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_22)?;
+    Ok(result.into_any().unbind())
+}
+
 fn clinical_note_generation_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::ClinicalNoteGenerationResult> {
@@ -103,9 +226,9 @@ fn clinical_note_generation_result_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::ClinicalNoteGenerationResult::builder();
     if let Some(value) = dict_value(values, "note_result")? {
-        let converted_8 = (|| -> PyResult<_> {
-            let converted_8 = artifact_details_from_py(&value)?;
-            Ok(converted_8)
+        let converted_23 = (|| -> PyResult<_> {
+            let converted_23 = artifact_details_from_py(&value)?;
+            Ok(converted_23)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -114,12 +237,12 @@ fn clinical_note_generation_result_from_py(
                 "dict (ArtifactDetails)",
             )
         })?;
-        builder = builder.set_note_result(Some(converted_8));
+        builder = builder.set_note_result(Some(converted_23));
     }
     if let Some(value) = dict_value(values, "transcript_result")? {
-        let converted_9 = (|| -> PyResult<_> {
-            let converted_9 = artifact_details_from_py(&value)?;
-            Ok(converted_9)
+        let converted_24 = (|| -> PyResult<_> {
+            let converted_24 = artifact_details_from_py(&value)?;
+            Ok(converted_24)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -128,12 +251,12 @@ fn clinical_note_generation_result_from_py(
                 "dict (ArtifactDetails)",
             )
         })?;
-        builder = builder.set_transcript_result(Some(converted_9));
+        builder = builder.set_transcript_result(Some(converted_24));
     }
     if let Some(value) = dict_value(values, "after_visit_summary_result")? {
-        let converted_10 = (|| -> PyResult<_> {
-            let converted_10 = artifact_details_from_py(&value)?;
-            Ok(converted_10)
+        let converted_25 = (|| -> PyResult<_> {
+            let converted_25 = artifact_details_from_py(&value)?;
+            Ok(converted_25)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -142,7 +265,7 @@ fn clinical_note_generation_result_from_py(
                 "dict (ArtifactDetails)",
             )
         })?;
-        builder = builder.set_after_visit_summary_result(Some(converted_10));
+        builder = builder.set_after_visit_summary_result(Some(converted_25));
     }
     Ok(builder.build())
 }
@@ -153,20 +276,20 @@ fn clinical_note_generation_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.note_result {
-        let converted_11 = artifact_details_to_py(py, value)?;
-        result.set_item("note_result", converted_11)?;
+        let converted_26 = artifact_details_to_py(py, value)?;
+        result.set_item("note_result", converted_26)?;
     } else {
         result.set_item("note_result", py.None())?;
     }
     if let Some(value) = &value.transcript_result {
-        let converted_12 = artifact_details_to_py(py, value)?;
-        result.set_item("transcript_result", converted_12)?;
+        let converted_27 = artifact_details_to_py(py, value)?;
+        result.set_item("transcript_result", converted_27)?;
     } else {
         result.set_item("transcript_result", py.None())?;
     }
     if let Some(value) = &value.after_visit_summary_result {
-        let converted_13 = artifact_details_to_py(py, value)?;
-        result.set_item("after_visit_summary_result", converted_13)?;
+        let converted_28 = artifact_details_to_py(py, value)?;
+        result.set_item("after_visit_summary_result", converted_28)?;
     } else {
         result.set_item("after_visit_summary_result", py.None())?;
     }
@@ -180,9 +303,9 @@ fn clinical_note_generation_settings_from_py(
     rboto_core::validate_input_fields(values, &["note_template_settings"])?;
     let mut builder = aws_sdk_connecthealth::types::ClinicalNoteGenerationSettings::builder();
     if let Some(value) = dict_value(values, "note_template_settings")? {
-        let converted_14 = (|| -> PyResult<_> {
-            let converted_14 = note_template_settings_from_py(&value)?;
-            Ok(converted_14)
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29 = note_template_settings_from_py(&value)?;
+            Ok(converted_29)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -191,7 +314,7 @@ fn clinical_note_generation_settings_from_py(
                 "exactly one known union variant",
             )
         })?;
-        builder = builder.set_note_template_settings(Some(converted_14));
+        builder = builder.set_note_template_settings(Some(converted_29));
     }
     Ok(builder.build())
 }
@@ -202,8 +325,8 @@ fn clinical_note_generation_settings_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.note_template_settings {
-        let converted_15 = note_template_settings_to_py(py, value)?;
-        result.set_item("note_template_settings", converted_15)?;
+        let converted_30 = note_template_settings_to_py(py, value)?;
+        result.set_item("note_template_settings", converted_30)?;
     } else {
         result.set_item("note_template_settings", py.None())?;
     }
@@ -218,9 +341,9 @@ fn clinical_note_generation_settings_response_from_py(
     let mut builder =
         aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse::builder();
     if let Some(value) = dict_value(values, "note_template_settings")? {
-        let converted_16 = (|| -> PyResult<_> {
-            let converted_16 = note_template_settings_response_from_py(&value)?;
-            Ok(converted_16)
+        let converted_31 = (|| -> PyResult<_> {
+            let converted_31 = note_template_settings_response_from_py(&value)?;
+            Ok(converted_31)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -229,7 +352,7 @@ fn clinical_note_generation_settings_response_from_py(
                 "exactly one known union variant",
             )
         })?;
-        builder = builder.set_note_template_settings(Some(converted_16));
+        builder = builder.set_note_template_settings(Some(converted_31));
     }
     Ok(builder.build())
 }
@@ -240,8 +363,8 @@ fn clinical_note_generation_settings_response_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.note_template_settings {
-        let converted_17 = note_template_settings_response_to_py(py, value)?;
-        result.set_item("note_template_settings", converted_17)?;
+        let converted_32 = note_template_settings_response_to_py(py, value)?;
+        result.set_item("note_template_settings", converted_32)?;
     } else {
         result.set_item("note_template_settings", py.None())?;
     }
@@ -255,19 +378,19 @@ fn create_web_app_configuration_from_py(
     rboto_core::validate_input_fields(values, &["ehr_role", "idc_instance_id", "idc_region"])?;
     let mut builder = aws_sdk_connecthealth::types::CreateWebAppConfiguration::builder();
     if let Some(value) = dict_value(values, "ehr_role")? {
-        let converted_18 = (|| -> PyResult<_> {
-            let converted_18: String = value.extract()?;
-            Ok(converted_18)
+        let converted_33 = (|| -> PyResult<_> {
+            let converted_33: String = value.extract()?;
+            Ok(converted_33)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("ehr_role"), "str")
         })?;
-        builder = builder.set_ehr_role(Some(converted_18));
+        builder = builder.set_ehr_role(Some(converted_33));
     }
     if let Some(value) = dict_value(values, "idc_instance_id")? {
-        let converted_19 = (|| -> PyResult<_> {
-            let converted_19: String = value.extract()?;
-            Ok(converted_19)
+        let converted_34 = (|| -> PyResult<_> {
+            let converted_34: String = value.extract()?;
+            Ok(converted_34)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -276,17 +399,17 @@ fn create_web_app_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_idc_instance_id(Some(converted_19));
+        builder = builder.set_idc_instance_id(Some(converted_34));
     }
     if let Some(value) = dict_value(values, "idc_region")? {
-        let converted_20 = (|| -> PyResult<_> {
-            let converted_20: String = value.extract()?;
-            Ok(converted_20)
+        let converted_35 = (|| -> PyResult<_> {
+            let converted_35: String = value.extract()?;
+            Ok(converted_35)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("idc_region"), "str")
         })?;
-        builder = builder.set_idc_region(Some(converted_20));
+        builder = builder.set_idc_region(Some(converted_35));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -305,12 +428,12 @@ fn create_web_app_configuration_to_py(
     value: &aws_sdk_connecthealth::types::CreateWebAppConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_21 = (&value.ehr_role).as_str().into_py_any(py)?;
-    result.set_item("ehr_role", converted_21)?;
-    let converted_22 = (&value.idc_instance_id).as_str().into_py_any(py)?;
-    result.set_item("idc_instance_id", converted_22)?;
-    let converted_23 = (&value.idc_region).as_str().into_py_any(py)?;
-    result.set_item("idc_region", converted_23)?;
+    let converted_36 = (&value.ehr_role).as_str().into_py_any(py)?;
+    result.set_item("ehr_role", converted_36)?;
+    let converted_37 = (&value.idc_instance_id).as_str().into_py_any(py)?;
+    result.set_item("idc_instance_id", converted_37)?;
+    let converted_38 = (&value.idc_region).as_str().into_py_any(py)?;
+    result.set_item("idc_region", converted_38)?;
     Ok(result.into_any().unbind())
 }
 
@@ -321,11 +444,11 @@ fn custom_template_from_py(
     rboto_core::validate_input_fields(values, &["template_instructions", "template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::CustomTemplate::builder();
     if let Some(value) = dict_value(values, "template_type")? {
-        let converted_24 = (|| -> PyResult<_> {
-            let enum_value_25: String = value.extract()?;
-            let converted_24 =
-                aws_sdk_connecthealth::types::CustomTemplateBase::from(enum_value_25.as_str());
-            Ok(converted_24)
+        let converted_39 = (|| -> PyResult<_> {
+            let enum_value_40: String = value.extract()?;
+            let converted_39 =
+                aws_sdk_connecthealth::types::CustomTemplateBase::from(enum_value_40.as_str());
+            Ok(converted_39)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -334,35 +457,35 @@ fn custom_template_from_py(
                 "str (CustomTemplateBase)",
             )
         })?;
-        builder = builder.set_template_type(Some(converted_24));
+        builder = builder.set_template_type(Some(converted_39));
     }
     if let Some(value) = dict_value(values, "template_instructions")? {
-        let converted_26 = (|| -> PyResult<_> {
-            let mut converted_26 =
+        let converted_41 = (|| -> PyResult<_> {
+            let mut converted_41 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_30, item_result_27) in value.try_iter()?.enumerate() {
-                let item_28 = item_result_27.map_err(|error| {
+            for (index_45, item_result_42) in value.try_iter()?.enumerate() {
+                let item_43 = item_result_42.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_30),
+                        rboto_core::InputPath::Index(index_45),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_29 = (|| -> PyResult<_> {
-                    let converted_item_29 = template_section_instruction_from_py(&item_28)?;
-                    Ok(converted_item_29)
+                let converted_item_44 = (|| -> PyResult<_> {
+                    let converted_item_44 = template_section_instruction_from_py(&item_43)?;
+                    Ok(converted_item_44)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_30),
+                        rboto_core::InputPath::Index(index_45),
                         "dict (TemplateSectionInstruction)",
                     )
                 })?;
-                converted_26.push(converted_item_29);
+                converted_41.push(converted_item_44);
             }
-            Ok(converted_26)
+            Ok(converted_41)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -371,7 +494,7 @@ fn custom_template_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_template_instructions(Some(converted_26));
+        builder = builder.set_template_instructions(Some(converted_41));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -389,15 +512,15 @@ fn custom_template_to_py(
     value: &aws_sdk_connecthealth::types::CustomTemplate,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_31 = (&value.template_type).as_str().into_py_any(py)?;
-    result.set_item("template_type", converted_31)?;
-    let converted_32_list = PyList::empty(py);
-    for item_33 in &value.template_instructions {
-        let converted_item_34 = template_section_instruction_to_py(py, item_33)?;
-        converted_32_list.append(converted_item_34)?;
+    let converted_46 = (&value.template_type).as_str().into_py_any(py)?;
+    result.set_item("template_type", converted_46)?;
+    let converted_47_list = PyList::empty(py);
+    for item_48 in &value.template_instructions {
+        let converted_item_49 = template_section_instruction_to_py(py, item_48)?;
+        converted_47_list.append(converted_item_49)?;
     }
-    let converted_32 = converted_32_list.into_any().unbind();
-    result.set_item("template_instructions", converted_32)?;
+    let converted_47 = converted_47_list.into_any().unbind();
+    result.set_item("template_instructions", converted_47)?;
     Ok(result.into_any().unbind())
 }
 
@@ -408,11 +531,11 @@ fn custom_template_response_from_py(
     rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::CustomTemplateResponse::builder();
     if let Some(value) = dict_value(values, "template_type")? {
-        let converted_35 = (|| -> PyResult<_> {
-            let enum_value_36: String = value.extract()?;
-            let converted_35 =
-                aws_sdk_connecthealth::types::CustomTemplateBase::from(enum_value_36.as_str());
-            Ok(converted_35)
+        let converted_50 = (|| -> PyResult<_> {
+            let enum_value_51: String = value.extract()?;
+            let converted_50 =
+                aws_sdk_connecthealth::types::CustomTemplateBase::from(enum_value_51.as_str());
+            Ok(converted_50)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -421,7 +544,7 @@ fn custom_template_response_from_py(
                 "str (CustomTemplateBase)",
             )
         })?;
-        builder = builder.set_template_type(Some(converted_35));
+        builder = builder.set_template_type(Some(converted_50));
     }
     Ok(builder.build())
 }
@@ -432,11 +555,287 @@ fn custom_template_response_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.template_type {
-        let converted_37 = (value).as_str().into_py_any(py)?;
-        result.set_item("template_type", converted_37)?;
+        let converted_52 = (value).as_str().into_py_any(py)?;
+        result.set_item("template_type", converted_52)?;
     } else {
         result.set_item("template_type", py.None())?;
     }
+    Ok(result.into_any().unbind())
+}
+
+fn dataset_artifacts_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::DatasetArtifacts> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
+    }
+    if let Some(value) = dict_value(values, "medical_coding")? {
+        let converted_53 = (|| -> PyResult<_> {
+            let converted_53 = medical_coding_dataset_artifacts_from_py(&value)?;
+            Ok(converted_53)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_coding"),
+                "dict (MedicalCodingDatasetArtifacts)",
+            )
+        })?;
+        return Ok(aws_sdk_connecthealth::types::DatasetArtifacts::MedicalCoding(converted_53));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("DatasetArtifacts requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
+    ))
+}
+
+fn dataset_artifacts_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::DatasetArtifacts,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    match value {
+        aws_sdk_connecthealth::types::DatasetArtifacts::MedicalCoding(value) => {
+            let converted_54 = medical_coding_dataset_artifacts_to_py(py, value)?;
+            result.set_item("medical_coding", converted_54)?;
+        }
+        _ => {
+            result.set_item("unknown", true)?;
+        }
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn dataset_config_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::DatasetConfig> {
+    let values = value.cast::<PyDict>()?;
+    if values.len() != 1 {
+        return Err(rboto_core::input_rule(
+            PyValueError::new_err("union requires exactly one variant"),
+            rboto_core::InputPath::Root,
+            "exactly one known union variant",
+            Some("union"),
+        ));
+    }
+    if let Some(value) = dict_value(values, "medical_coding")? {
+        let converted_55 = (|| -> PyResult<_> {
+            let converted_55 = medical_coding_dataset_config_from_py(&value)?;
+            Ok(converted_55)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_coding"),
+                "dict (MedicalCodingDatasetConfig)",
+            )
+        })?;
+        return Ok(aws_sdk_connecthealth::types::DatasetConfig::MedicalCoding(
+            converted_55,
+        ));
+    }
+    Err(rboto_core::input_rule(
+        PyValueError::new_err("DatasetConfig requires exactly one known variant"),
+        rboto_core::InputPath::Root,
+        "exactly one known union variant",
+        Some("union"),
+    ))
+}
+
+fn dataset_config_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::DatasetConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    match value {
+        aws_sdk_connecthealth::types::DatasetConfig::MedicalCoding(value) => {
+            let converted_56 = medical_coding_dataset_config_to_py(py, value)?;
+            result.set_item("medical_coding", converted_56)?;
+        }
+        _ => {
+            result.set_item("unknown", true)?;
+        }
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn dataset_summary_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::DatasetSummary> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "arn",
+            "created_at",
+            "dataset_id",
+            "name",
+            "status",
+            "status_details",
+            "type",
+            "updated_at",
+        ],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::DatasetSummary::builder();
+    if let Some(value) = dict_value(values, "arn")? {
+        let converted_57 = (|| -> PyResult<_> {
+            let converted_57: String = value.extract()?;
+            Ok(converted_57)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
+        })?;
+        builder = builder.set_arn(Some(converted_57));
+    }
+    if let Some(value) = dict_value(values, "dataset_id")? {
+        let converted_58 = (|| -> PyResult<_> {
+            let converted_58: String = value.extract()?;
+            Ok(converted_58)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("dataset_id"), "str")
+        })?;
+        builder = builder.set_dataset_id(Some(converted_58));
+    }
+    if let Some(value) = dict_value(values, "name")? {
+        let converted_59 = (|| -> PyResult<_> {
+            let converted_59: String = value.extract()?;
+            Ok(converted_59)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
+        })?;
+        builder = builder.set_name(Some(converted_59));
+    }
+    if let Some(value) = dict_value(values, "type")? {
+        let converted_60 = (|| -> PyResult<_> {
+            let enum_value_61: String = value.extract()?;
+            let converted_60 =
+                aws_sdk_connecthealth::types::DatasetType::from(enum_value_61.as_str());
+            Ok(converted_60)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("type"),
+                "str (DatasetType)",
+            )
+        })?;
+        builder = builder.set_type(Some(converted_60));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        let converted_62 = (|| -> PyResult<_> {
+            let enum_value_63: String = value.extract()?;
+            let converted_62 =
+                aws_sdk_connecthealth::types::DatasetStatus::from(enum_value_63.as_str());
+            Ok(converted_62)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (DatasetStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_62));
+    }
+    if let Some(value) = dict_value(values, "status_details")? {
+        let converted_64 = (|| -> PyResult<_> {
+            let converted_64: String = value.extract()?;
+            Ok(converted_64)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("status_details"), "str")
+        })?;
+        builder = builder.set_status_details(Some(converted_64));
+    }
+    if let Some(value) = dict_value(values, "created_at")? {
+        let converted_65 = (|| -> PyResult<_> {
+            let timestamp_66: String = value.extract()?;
+            let converted_65 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_66,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_65)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("created_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_created_at(Some(converted_65));
+    }
+    if let Some(value) = dict_value(values, "updated_at")? {
+        let converted_67 = (|| -> PyResult<_> {
+            let timestamp_68: String = value.extract()?;
+            let converted_67 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_68,
+                ::aws_smithy_types::date_time::Format::DateTime,
+            )
+            .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
+            Ok(converted_67)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("updated_at"),
+                "ISO 8601 timestamp string",
+            )
+        })?;
+        builder = builder.set_updated_at(Some(converted_67));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("arn", "arn"),
+                ("dataset_id", "dataset_id"),
+                ("name", "name"),
+                ("type", "type"),
+                ("status", "status"),
+                ("created_at", "created_at"),
+                ("updated_at", "updated_at"),
+            ],
+        )
+    })
+}
+
+fn dataset_summary_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::DatasetSummary,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_69 = (&value.arn).as_str().into_py_any(py)?;
+    result.set_item("arn", converted_69)?;
+    let converted_70 = (&value.dataset_id).as_str().into_py_any(py)?;
+    result.set_item("dataset_id", converted_70)?;
+    let converted_71 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_71)?;
+    let converted_72 = (&value.r#type).as_str().into_py_any(py)?;
+    result.set_item("type", converted_72)?;
+    let converted_73 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_73)?;
+    if let Some(value) = &value.status_details {
+        let converted_74 = (value).as_str().into_py_any(py)?;
+        result.set_item("status_details", converted_74)?;
+    } else {
+        result.set_item("status_details", py.None())?;
+    }
+    let converted_75 = (&value.created_at).to_string().into_py_any(py)?;
+    result.set_item("created_at", converted_75)?;
+    let converted_76 = (&value.updated_at).to_string().into_py_any(py)?;
+    result.set_item("updated_at", converted_76)?;
     Ok(result.into_any().unbind())
 }
 
@@ -450,41 +849,41 @@ fn domain_summary_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::DomainSummary::builder();
     if let Some(value) = dict_value(values, "domain_id")? {
-        let converted_38 = (|| -> PyResult<_> {
-            let converted_38: String = value.extract()?;
-            Ok(converted_38)
+        let converted_77 = (|| -> PyResult<_> {
+            let converted_77: String = value.extract()?;
+            Ok(converted_77)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("domain_id"), "str")
         })?;
-        builder = builder.set_domain_id(Some(converted_38));
+        builder = builder.set_domain_id(Some(converted_77));
     }
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_39 = (|| -> PyResult<_> {
-            let converted_39: String = value.extract()?;
-            Ok(converted_39)
+        let converted_78 = (|| -> PyResult<_> {
+            let converted_78: String = value.extract()?;
+            Ok(converted_78)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
         })?;
-        builder = builder.set_arn(Some(converted_39));
+        builder = builder.set_arn(Some(converted_78));
     }
     if let Some(value) = dict_value(values, "name")? {
-        let converted_40 = (|| -> PyResult<_> {
-            let converted_40: String = value.extract()?;
-            Ok(converted_40)
+        let converted_79 = (|| -> PyResult<_> {
+            let converted_79: String = value.extract()?;
+            Ok(converted_79)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str")
         })?;
-        builder = builder.set_name(Some(converted_40));
+        builder = builder.set_name(Some(converted_79));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let converted_41 = (|| -> PyResult<_> {
-            let enum_value_42: String = value.extract()?;
-            let converted_41 =
-                aws_sdk_connecthealth::types::DomainStatus::from(enum_value_42.as_str());
-            Ok(converted_41)
+        let converted_80 = (|| -> PyResult<_> {
+            let enum_value_81: String = value.extract()?;
+            let converted_80 =
+                aws_sdk_connecthealth::types::DomainStatus::from(enum_value_81.as_str());
+            Ok(converted_80)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -493,17 +892,17 @@ fn domain_summary_from_py(
                 "str (DomainStatus)",
             )
         })?;
-        builder = builder.set_status(Some(converted_41));
+        builder = builder.set_status(Some(converted_80));
     }
     if let Some(value) = dict_value(values, "created_at")? {
-        let converted_43 = (|| -> PyResult<_> {
-            let timestamp_44: String = value.extract()?;
-            let converted_43 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_44,
+        let converted_82 = (|| -> PyResult<_> {
+            let timestamp_83: String = value.extract()?;
+            let converted_82 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_83,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_43)
+            Ok(converted_82)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -512,7 +911,7 @@ fn domain_summary_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_created_at(Some(converted_43));
+        builder = builder.set_created_at(Some(converted_82));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -533,16 +932,16 @@ fn domain_summary_to_py(
     value: &aws_sdk_connecthealth::types::DomainSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_45 = (&value.domain_id).as_str().into_py_any(py)?;
-    result.set_item("domain_id", converted_45)?;
-    let converted_46 = (&value.arn).as_str().into_py_any(py)?;
-    result.set_item("arn", converted_46)?;
-    let converted_47 = (&value.name).as_str().into_py_any(py)?;
-    result.set_item("name", converted_47)?;
-    let converted_48 = (&value.status).as_str().into_py_any(py)?;
-    result.set_item("status", converted_48)?;
-    let converted_49 = (&value.created_at).to_string().into_py_any(py)?;
-    result.set_item("created_at", converted_49)?;
+    let converted_84 = (&value.domain_id).as_str().into_py_any(py)?;
+    result.set_item("domain_id", converted_84)?;
+    let converted_85 = (&value.arn).as_str().into_py_any(py)?;
+    result.set_item("arn", converted_85)?;
+    let converted_86 = (&value.name).as_str().into_py_any(py)?;
+    result.set_item("name", converted_86)?;
+    let converted_87 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_87)?;
+    let converted_88 = (&value.created_at).to_string().into_py_any(py)?;
+    result.set_item("created_at", converted_88)?;
     Ok(result.into_any().unbind())
 }
 
@@ -550,12 +949,12 @@ fn encounter_context_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::EncounterContext> {
     let values = value.cast::<PyDict>()?;
-    rboto_core::validate_input_fields(values, &["unstructured_context"])?;
+    rboto_core::validate_input_fields(values, &["medical_coding_context", "unstructured_context"])?;
     let mut builder = aws_sdk_connecthealth::types::EncounterContext::builder();
     if let Some(value) = dict_value(values, "unstructured_context")? {
-        let converted_50 = (|| -> PyResult<_> {
-            let converted_50: String = value.extract()?;
-            Ok(converted_50)
+        let converted_89 = (|| -> PyResult<_> {
+            let converted_89: String = value.extract()?;
+            Ok(converted_89)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -564,7 +963,21 @@ fn encounter_context_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_unstructured_context(Some(converted_50));
+        builder = builder.set_unstructured_context(Some(converted_89));
+    }
+    if let Some(value) = dict_value(values, "medical_coding_context")? {
+        let converted_90 = (|| -> PyResult<_> {
+            let converted_90 = medical_coding_context_from_py(&value)?;
+            Ok(converted_90)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_coding_context"),
+                "dict (MedicalCodingContext)",
+            )
+        })?;
+        builder = builder.set_medical_coding_context(Some(converted_90));
     }
     Ok(builder.build())
 }
@@ -575,10 +988,16 @@ fn encounter_context_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.unstructured_context {
-        let converted_51 = (value).as_str().into_py_any(py)?;
-        result.set_item("unstructured_context", converted_51)?;
+        let converted_91 = (value).as_str().into_py_any(py)?;
+        result.set_item("unstructured_context", converted_91)?;
     } else {
         result.set_item("unstructured_context", py.None())?;
+    }
+    if let Some(value) = &value.medical_coding_context {
+        let converted_92 = medical_coding_context_to_py(py, value)?;
+        result.set_item("medical_coding_context", converted_92)?;
+    } else {
+        result.set_item("medical_coding_context", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -590,11 +1009,11 @@ fn encryption_context_from_py(
     rboto_core::validate_input_fields(values, &["encryption_type", "kms_key_arn"])?;
     let mut builder = aws_sdk_connecthealth::types::EncryptionContext::builder();
     if let Some(value) = dict_value(values, "encryption_type")? {
-        let converted_52 = (|| -> PyResult<_> {
-            let enum_value_53: String = value.extract()?;
-            let converted_52 =
-                aws_sdk_connecthealth::types::EncryptionType::from(enum_value_53.as_str());
-            Ok(converted_52)
+        let converted_93 = (|| -> PyResult<_> {
+            let enum_value_94: String = value.extract()?;
+            let converted_93 =
+                aws_sdk_connecthealth::types::EncryptionType::from(enum_value_94.as_str());
+            Ok(converted_93)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -603,17 +1022,17 @@ fn encryption_context_from_py(
                 "str (EncryptionType)",
             )
         })?;
-        builder = builder.set_encryption_type(Some(converted_52));
+        builder = builder.set_encryption_type(Some(converted_93));
     }
     if let Some(value) = dict_value(values, "kms_key_arn")? {
-        let converted_54 = (|| -> PyResult<_> {
-            let converted_54: String = value.extract()?;
-            Ok(converted_54)
+        let converted_95 = (|| -> PyResult<_> {
+            let converted_95: String = value.extract()?;
+            Ok(converted_95)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("kms_key_arn"), "str")
         })?;
-        builder = builder.set_kms_key_arn(Some(converted_54));
+        builder = builder.set_kms_key_arn(Some(converted_95));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("encryption_type", "encryption_type")])
@@ -625,11 +1044,11 @@ fn encryption_context_to_py(
     value: &aws_sdk_connecthealth::types::EncryptionContext,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_55 = (&value.encryption_type).as_str().into_py_any(py)?;
-    result.set_item("encryption_type", converted_55)?;
+    let converted_96 = (&value.encryption_type).as_str().into_py_any(py)?;
+    result.set_item("encryption_type", converted_96)?;
     if let Some(value) = &value.kms_key_arn {
-        let converted_56 = (value).as_str().into_py_any(py)?;
-        result.set_item("kms_key_arn", converted_56)?;
+        let converted_97 = (value).as_str().into_py_any(py)?;
+        result.set_item("kms_key_arn", converted_97)?;
     } else {
         result.set_item("kms_key_arn", py.None())?;
     }
@@ -643,24 +1062,24 @@ fn fhir_server_from_py(
     rboto_core::validate_input_fields(values, &["fhir_endpoint", "oauth_token"])?;
     let mut builder = aws_sdk_connecthealth::types::FhirServer::builder();
     if let Some(value) = dict_value(values, "fhir_endpoint")? {
-        let converted_57 = (|| -> PyResult<_> {
-            let converted_57: String = value.extract()?;
-            Ok(converted_57)
+        let converted_98 = (|| -> PyResult<_> {
+            let converted_98: String = value.extract()?;
+            Ok(converted_98)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("fhir_endpoint"), "str")
         })?;
-        builder = builder.set_fhir_endpoint(Some(converted_57));
+        builder = builder.set_fhir_endpoint(Some(converted_98));
     }
     if let Some(value) = dict_value(values, "oauth_token")? {
-        let converted_58 = (|| -> PyResult<_> {
-            let converted_58: String = value.extract()?;
-            Ok(converted_58)
+        let converted_99 = (|| -> PyResult<_> {
+            let converted_99: String = value.extract()?;
+            Ok(converted_99)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("oauth_token"), "str")
         })?;
-        builder = builder.set_oauth_token(Some(converted_58));
+        builder = builder.set_oauth_token(Some(converted_99));
     }
     builder
         .build()
@@ -672,11 +1091,11 @@ fn fhir_server_to_py(
     value: &aws_sdk_connecthealth::types::FhirServer,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_59 = (&value.fhir_endpoint).as_str().into_py_any(py)?;
-    result.set_item("fhir_endpoint", converted_59)?;
+    let converted_100 = (&value.fhir_endpoint).as_str().into_py_any(py)?;
+    result.set_item("fhir_endpoint", converted_100)?;
     if let Some(value) = &value.oauth_token {
-        let converted_60 = (value).as_str().into_py_any(py)?;
-        result.set_item("oauth_token", converted_60)?;
+        let converted_101 = (value).as_str().into_py_any(py)?;
+        result.set_item("oauth_token", converted_101)?;
     } else {
         result.set_item("oauth_token", py.None())?;
     }
@@ -690,9 +1109,9 @@ fn input_data_config_from_py(
     rboto_core::validate_input_fields(values, &["fhir_server", "s3_sources"])?;
     let mut builder = aws_sdk_connecthealth::types::InputDataConfig::builder();
     if let Some(value) = dict_value(values, "fhir_server")? {
-        let converted_61 = (|| -> PyResult<_> {
-            let converted_61 = fhir_server_from_py(&value)?;
-            Ok(converted_61)
+        let converted_102 = (|| -> PyResult<_> {
+            let converted_102 = fhir_server_from_py(&value)?;
+            Ok(converted_102)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -701,35 +1120,35 @@ fn input_data_config_from_py(
                 "dict (FhirServer)",
             )
         })?;
-        builder = builder.set_fhir_server(Some(converted_61));
+        builder = builder.set_fhir_server(Some(converted_102));
     }
     if let Some(value) = dict_value(values, "s3_sources")? {
-        let converted_62 = (|| -> PyResult<_> {
-            let mut converted_62 =
+        let converted_103 = (|| -> PyResult<_> {
+            let mut converted_103 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_66, item_result_63) in value.try_iter()?.enumerate() {
-                let item_64 = item_result_63.map_err(|error| {
+            for (index_107, item_result_104) in value.try_iter()?.enumerate() {
+                let item_105 = item_result_104.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_66),
+                        rboto_core::InputPath::Index(index_107),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_65 = (|| -> PyResult<_> {
-                    let converted_item_65 = s3_source_from_py(&item_64)?;
-                    Ok(converted_item_65)
+                let converted_item_106 = (|| -> PyResult<_> {
+                    let converted_item_106 = s3_source_from_py(&item_105)?;
+                    Ok(converted_item_106)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_66),
+                        rboto_core::InputPath::Index(index_107),
                         "dict (S3Source)",
                     )
                 })?;
-                converted_62.push(converted_item_65);
+                converted_103.push(converted_item_106);
             }
-            Ok(converted_62)
+            Ok(converted_103)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -738,7 +1157,7 @@ fn input_data_config_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_s3_sources(Some(converted_62));
+        builder = builder.set_s3_sources(Some(converted_103));
     }
     Ok(builder.build())
 }
@@ -749,19 +1168,19 @@ fn input_data_config_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.fhir_server {
-        let converted_67 = fhir_server_to_py(py, value)?;
-        result.set_item("fhir_server", converted_67)?;
+        let converted_108 = fhir_server_to_py(py, value)?;
+        result.set_item("fhir_server", converted_108)?;
     } else {
         result.set_item("fhir_server", py.None())?;
     }
     if let Some(value) = &value.s3_sources {
-        let converted_68_list = PyList::empty(py);
-        for item_69 in value {
-            let converted_item_70 = s3_source_to_py(py, item_69)?;
-            converted_68_list.append(converted_item_70)?;
+        let converted_109_list = PyList::empty(py);
+        for item_110 in value {
+            let converted_item_111 = s3_source_to_py(py, item_110)?;
+            converted_109_list.append(converted_item_111)?;
         }
-        let converted_68 = converted_68_list.into_any().unbind();
-        result.set_item("s3_sources", converted_68)?;
+        let converted_109 = converted_109_list.into_any().unbind();
+        result.set_item("s3_sources", converted_109)?;
     } else {
         result.set_item("s3_sources", py.None())?;
     }
@@ -775,11 +1194,11 @@ fn insights_context_from_py(
     rboto_core::validate_input_fields(values, &["insights_type"])?;
     let mut builder = aws_sdk_connecthealth::types::InsightsContext::builder();
     if let Some(value) = dict_value(values, "insights_type")? {
-        let converted_71 = (|| -> PyResult<_> {
-            let enum_value_72: String = value.extract()?;
-            let converted_71 =
-                aws_sdk_connecthealth::types::InsightsType::from(enum_value_72.as_str());
-            Ok(converted_71)
+        let converted_112 = (|| -> PyResult<_> {
+            let enum_value_113: String = value.extract()?;
+            let converted_112 =
+                aws_sdk_connecthealth::types::InsightsType::from(enum_value_113.as_str());
+            Ok(converted_112)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -788,7 +1207,7 @@ fn insights_context_from_py(
                 "str (InsightsType)",
             )
         })?;
-        builder = builder.set_insights_type(Some(converted_71));
+        builder = builder.set_insights_type(Some(converted_112));
     }
     builder
         .build()
@@ -800,8 +1219,8 @@ fn insights_context_to_py(
     value: &aws_sdk_connecthealth::types::InsightsContext,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_73 = (&value.insights_type).as_str().into_py_any(py)?;
-    result.set_item("insights_type", converted_73)?;
+    let converted_114 = (&value.insights_type).as_str().into_py_any(py)?;
+    result.set_item("insights_type", converted_114)?;
     Ok(result.into_any().unbind())
 }
 
@@ -812,14 +1231,14 @@ fn insights_output_from_py(
     rboto_core::validate_input_fields(values, &["uri"])?;
     let mut builder = aws_sdk_connecthealth::types::InsightsOutput::builder();
     if let Some(value) = dict_value(values, "uri")? {
-        let converted_74 = (|| -> PyResult<_> {
-            let converted_74: String = value.extract()?;
-            Ok(converted_74)
+        let converted_115 = (|| -> PyResult<_> {
+            let converted_115: String = value.extract()?;
+            Ok(converted_115)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("uri"), "str")
         })?;
-        builder = builder.set_uri(Some(converted_74));
+        builder = builder.set_uri(Some(converted_115));
     }
     builder
         .build()
@@ -831,8 +1250,8 @@ fn insights_output_to_py(
     value: &aws_sdk_connecthealth::types::InsightsOutput,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_75 = (&value.uri).as_str().into_py_any(py)?;
-    result.set_item("uri", converted_75)?;
+    let converted_116 = (&value.uri).as_str().into_py_any(py)?;
+    result.set_item("uri", converted_116)?;
     Ok(result.into_any().unbind())
 }
 
@@ -843,11 +1262,11 @@ fn managed_template_from_py(
     rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::ManagedTemplate::builder();
     if let Some(value) = dict_value(values, "template_type")? {
-        let converted_76 = (|| -> PyResult<_> {
-            let enum_value_77: String = value.extract()?;
-            let converted_76 =
-                aws_sdk_connecthealth::types::ManagedNoteTemplate::from(enum_value_77.as_str());
-            Ok(converted_76)
+        let converted_117 = (|| -> PyResult<_> {
+            let enum_value_118: String = value.extract()?;
+            let converted_117 =
+                aws_sdk_connecthealth::types::ManagedNoteTemplate::from(enum_value_118.as_str());
+            Ok(converted_117)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -856,7 +1275,7 @@ fn managed_template_from_py(
                 "str (ManagedNoteTemplate)",
             )
         })?;
-        builder = builder.set_template_type(Some(converted_76));
+        builder = builder.set_template_type(Some(converted_117));
     }
     builder
         .build()
@@ -868,8 +1287,8 @@ fn managed_template_to_py(
     value: &aws_sdk_connecthealth::types::ManagedTemplate,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_78 = (&value.template_type).as_str().into_py_any(py)?;
-    result.set_item("template_type", converted_78)?;
+    let converted_119 = (&value.template_type).as_str().into_py_any(py)?;
+    result.set_item("template_type", converted_119)?;
     Ok(result.into_any().unbind())
 }
 
@@ -880,11 +1299,11 @@ fn managed_template_response_from_py(
     rboto_core::validate_input_fields(values, &["template_type"])?;
     let mut builder = aws_sdk_connecthealth::types::ManagedTemplateResponse::builder();
     if let Some(value) = dict_value(values, "template_type")? {
-        let converted_79 = (|| -> PyResult<_> {
-            let enum_value_80: String = value.extract()?;
-            let converted_79 =
-                aws_sdk_connecthealth::types::ManagedNoteTemplate::from(enum_value_80.as_str());
-            Ok(converted_79)
+        let converted_120 = (|| -> PyResult<_> {
+            let enum_value_121: String = value.extract()?;
+            let converted_120 =
+                aws_sdk_connecthealth::types::ManagedNoteTemplate::from(enum_value_121.as_str());
+            Ok(converted_120)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -893,7 +1312,7 @@ fn managed_template_response_from_py(
                 "str (ManagedNoteTemplate)",
             )
         })?;
-        builder = builder.set_template_type(Some(converted_79));
+        builder = builder.set_template_type(Some(converted_120));
     }
     Ok(builder.build())
 }
@@ -904,11 +1323,642 @@ fn managed_template_response_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.template_type {
-        let converted_81 = (value).as_str().into_py_any(py)?;
-        result.set_item("template_type", converted_81)?;
+        let converted_122 = (value).as_str().into_py_any(py)?;
+        result.set_item("template_type", converted_122)?;
     } else {
         result.set_item("template_type", py.None())?;
     }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_code_generation_result_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodeGenerationResult> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["job_id", "medical_codes_result"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodeGenerationResult::builder();
+    if let Some(value) = dict_value(values, "medical_codes_result")? {
+        let converted_123 = (|| -> PyResult<_> {
+            let converted_123 = artifact_details_from_py(&value)?;
+            Ok(converted_123)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_codes_result"),
+                "dict (ArtifactDetails)",
+            )
+        })?;
+        builder = builder.set_medical_codes_result(Some(converted_123));
+    }
+    if let Some(value) = dict_value(values, "job_id")? {
+        let converted_124 = (|| -> PyResult<_> {
+            let converted_124: String = value.extract()?;
+            Ok(converted_124)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("job_id"), "str")
+        })?;
+        builder = builder.set_job_id(Some(converted_124));
+    }
+    Ok(builder.build())
+}
+
+fn medical_code_generation_result_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodeGenerationResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.medical_codes_result {
+        let converted_125 = artifact_details_to_py(py, value)?;
+        result.set_item("medical_codes_result", converted_125)?;
+    } else {
+        result.set_item("medical_codes_result", py.None())?;
+    }
+    if let Some(value) = &value.job_id {
+        let converted_126 = (value).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_126)?;
+    } else {
+        result.set_item("job_id", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_code_generation_settings_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodeGenerationSettings> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodeGenerationSettings::builder();
+    if let Some(value) = dict_value(values, "enabled")? {
+        let converted_127 = (|| -> PyResult<_> {
+            let converted_127: bool = value.extract()?;
+            Ok(converted_127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
+        })?;
+        builder = builder.set_enabled(Some(converted_127));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("enabled", "enabled")]))
+}
+
+fn medical_code_generation_settings_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodeGenerationSettings,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_128 = (&value.enabled).to_owned().into_py_any(py)?;
+    result.set_item("enabled", converted_128)?;
+    Ok(result.into_any().unbind())
+}
+
+fn medical_code_generation_settings_response_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodeGenerationSettingsResponse> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["enabled"])?;
+    let mut builder =
+        aws_sdk_connecthealth::types::MedicalCodeGenerationSettingsResponse::builder();
+    if let Some(value) = dict_value(values, "enabled")? {
+        let converted_129 = (|| -> PyResult<_> {
+            let converted_129: bool = value.extract()?;
+            Ok(converted_129)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("enabled"), "bool")
+        })?;
+        builder = builder.set_enabled(Some(converted_129));
+    }
+    Ok(builder.build())
+}
+
+fn medical_code_generation_settings_response_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodeGenerationSettingsResponse,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.enabled {
+        let converted_130 = (value).to_owned().into_py_any(py)?;
+        result.set_item("enabled", converted_130)?;
+    } else {
+        result.set_item("enabled", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_codes_encounter_context_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodesEncounterContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "after_hours",
+            "encounter_date",
+            "encounter_duration_minutes",
+            "encounter_reason",
+            "encounter_type",
+        ],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodesEncounterContext::builder();
+    if let Some(value) = dict_value(values, "encounter_type")? {
+        let converted_131 = (|| -> PyResult<_> {
+            let enum_value_132: String = value.extract()?;
+            let converted_131 =
+                aws_sdk_connecthealth::types::EncounterType::from(enum_value_132.as_str());
+            Ok(converted_131)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encounter_type"),
+                "str (EncounterType)",
+            )
+        })?;
+        builder = builder.set_encounter_type(Some(converted_131));
+    }
+    if let Some(value) = dict_value(values, "encounter_reason")? {
+        let converted_133 = (|| -> PyResult<_> {
+            let converted_133: String = value.extract()?;
+            Ok(converted_133)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encounter_reason"),
+                "str",
+            )
+        })?;
+        builder = builder.set_encounter_reason(Some(converted_133));
+    }
+    if let Some(value) = dict_value(values, "after_hours")? {
+        let converted_134 = (|| -> PyResult<_> {
+            let converted_134: bool = value.extract()?;
+            Ok(converted_134)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("after_hours"), "bool")
+        })?;
+        builder = builder.set_after_hours(Some(converted_134));
+    }
+    if let Some(value) = dict_value(values, "encounter_date")? {
+        let converted_135 = (|| -> PyResult<_> {
+            let converted_135: String = value.extract()?;
+            Ok(converted_135)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("encounter_date"), "str")
+        })?;
+        builder = builder.set_encounter_date(Some(converted_135));
+    }
+    if let Some(value) = dict_value(values, "encounter_duration_minutes")? {
+        let converted_136 = (|| -> PyResult<_> {
+            let converted_136: i32 = value.extract()?;
+            Ok(converted_136)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encounter_duration_minutes"),
+                "int",
+            )
+        })?;
+        builder = builder.set_encounter_duration_minutes(Some(converted_136));
+    }
+    Ok(builder.build())
+}
+
+fn medical_codes_encounter_context_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodesEncounterContext,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.encounter_type {
+        let converted_137 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_type", converted_137)?;
+    } else {
+        result.set_item("encounter_type", py.None())?;
+    }
+    if let Some(value) = &value.encounter_reason {
+        let converted_138 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_reason", converted_138)?;
+    } else {
+        result.set_item("encounter_reason", py.None())?;
+    }
+    if let Some(value) = &value.after_hours {
+        let converted_139 = (value).to_owned().into_py_any(py)?;
+        result.set_item("after_hours", converted_139)?;
+    } else {
+        result.set_item("after_hours", py.None())?;
+    }
+    if let Some(value) = &value.encounter_date {
+        let converted_140 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_date", converted_140)?;
+    } else {
+        result.set_item("encounter_date", py.None())?;
+    }
+    if let Some(value) = &value.encounter_duration_minutes {
+        let converted_141 = (value).to_owned().into_py_any(py)?;
+        result.set_item("encounter_duration_minutes", converted_141)?;
+    } else {
+        result.set_item("encounter_duration_minutes", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_codes_patient_context_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodesPatientContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["date_of_birth", "insurance", "sex", "status"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodesPatientContext::builder();
+    if let Some(value) = dict_value(values, "sex")? {
+        let converted_142 = (|| -> PyResult<_> {
+            let enum_value_143: String = value.extract()?;
+            let converted_142 = aws_sdk_connecthealth::types::Sex::from(enum_value_143.as_str());
+            Ok(converted_142)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sex"), "str (Sex)")
+        })?;
+        builder = builder.set_sex(Some(converted_142));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        let converted_144 = (|| -> PyResult<_> {
+            let enum_value_145: String = value.extract()?;
+            let converted_144 =
+                aws_sdk_connecthealth::types::PatientStatus::from(enum_value_145.as_str());
+            Ok(converted_144)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (PatientStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_144));
+    }
+    if let Some(value) = dict_value(values, "date_of_birth")? {
+        let converted_146 = (|| -> PyResult<_> {
+            let converted_146: String = value.extract()?;
+            Ok(converted_146)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("date_of_birth"), "str")
+        })?;
+        builder = builder.set_date_of_birth(Some(converted_146));
+    }
+    if let Some(value) = dict_value(values, "insurance")? {
+        let converted_147 = (|| -> PyResult<_> {
+            let converted_147: String = value.extract()?;
+            Ok(converted_147)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("insurance"), "str")
+        })?;
+        builder = builder.set_insurance(Some(converted_147));
+    }
+    Ok(builder.build())
+}
+
+fn medical_codes_patient_context_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodesPatientContext,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.sex {
+        let converted_148 = (value).as_str().into_py_any(py)?;
+        result.set_item("sex", converted_148)?;
+    } else {
+        result.set_item("sex", py.None())?;
+    }
+    if let Some(value) = &value.status {
+        let converted_149 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_149)?;
+    } else {
+        result.set_item("status", py.None())?;
+    }
+    if let Some(value) = &value.date_of_birth {
+        let converted_150 = (value).as_str().into_py_any(py)?;
+        result.set_item("date_of_birth", converted_150)?;
+    } else {
+        result.set_item("date_of_birth", py.None())?;
+    }
+    if let Some(value) = &value.insurance {
+        let converted_151 = (value).as_str().into_py_any(py)?;
+        result.set_item("insurance", converted_151)?;
+    } else {
+        result.set_item("insurance", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_coding_context_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodingContext> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "after_hours",
+            "date_of_birth",
+            "encounter_date",
+            "encounter_reason",
+            "encounter_type",
+            "sex",
+            "status",
+        ],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodingContext::builder();
+    if let Some(value) = dict_value(values, "sex")? {
+        let converted_152 = (|| -> PyResult<_> {
+            let enum_value_153: String = value.extract()?;
+            let converted_152 = aws_sdk_connecthealth::types::Sex::from(enum_value_153.as_str());
+            Ok(converted_152)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sex"), "str (Sex)")
+        })?;
+        builder = builder.set_sex(Some(converted_152));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        let converted_154 = (|| -> PyResult<_> {
+            let enum_value_155: String = value.extract()?;
+            let converted_154 =
+                aws_sdk_connecthealth::types::PatientStatus::from(enum_value_155.as_str());
+            Ok(converted_154)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (PatientStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_154));
+    }
+    if let Some(value) = dict_value(values, "date_of_birth")? {
+        let converted_156 = (|| -> PyResult<_> {
+            let converted_156: String = value.extract()?;
+            Ok(converted_156)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("date_of_birth"), "str")
+        })?;
+        builder = builder.set_date_of_birth(Some(converted_156));
+    }
+    if let Some(value) = dict_value(values, "encounter_type")? {
+        let converted_157 = (|| -> PyResult<_> {
+            let enum_value_158: String = value.extract()?;
+            let converted_157 =
+                aws_sdk_connecthealth::types::EncounterType::from(enum_value_158.as_str());
+            Ok(converted_157)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encounter_type"),
+                "str (EncounterType)",
+            )
+        })?;
+        builder = builder.set_encounter_type(Some(converted_157));
+    }
+    if let Some(value) = dict_value(values, "encounter_reason")? {
+        let converted_159 = (|| -> PyResult<_> {
+            let converted_159: String = value.extract()?;
+            Ok(converted_159)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("encounter_reason"),
+                "str",
+            )
+        })?;
+        builder = builder.set_encounter_reason(Some(converted_159));
+    }
+    if let Some(value) = dict_value(values, "after_hours")? {
+        let converted_160 = (|| -> PyResult<_> {
+            let converted_160: bool = value.extract()?;
+            Ok(converted_160)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("after_hours"), "bool")
+        })?;
+        builder = builder.set_after_hours(Some(converted_160));
+    }
+    if let Some(value) = dict_value(values, "encounter_date")? {
+        let converted_161 = (|| -> PyResult<_> {
+            let converted_161: String = value.extract()?;
+            Ok(converted_161)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("encounter_date"), "str")
+        })?;
+        builder = builder.set_encounter_date(Some(converted_161));
+    }
+    Ok(builder.build())
+}
+
+fn medical_coding_context_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodingContext,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.sex {
+        let converted_162 = (value).as_str().into_py_any(py)?;
+        result.set_item("sex", converted_162)?;
+    } else {
+        result.set_item("sex", py.None())?;
+    }
+    if let Some(value) = &value.status {
+        let converted_163 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_163)?;
+    } else {
+        result.set_item("status", py.None())?;
+    }
+    if let Some(value) = &value.date_of_birth {
+        let converted_164 = (value).as_str().into_py_any(py)?;
+        result.set_item("date_of_birth", converted_164)?;
+    } else {
+        result.set_item("date_of_birth", py.None())?;
+    }
+    if let Some(value) = &value.encounter_type {
+        let converted_165 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_type", converted_165)?;
+    } else {
+        result.set_item("encounter_type", py.None())?;
+    }
+    if let Some(value) = &value.encounter_reason {
+        let converted_166 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_reason", converted_166)?;
+    } else {
+        result.set_item("encounter_reason", py.None())?;
+    }
+    if let Some(value) = &value.after_hours {
+        let converted_167 = (value).to_owned().into_py_any(py)?;
+        result.set_item("after_hours", converted_167)?;
+    } else {
+        result.set_item("after_hours", py.None())?;
+    }
+    if let Some(value) = &value.encounter_date {
+        let converted_168 = (value).as_str().into_py_any(py)?;
+        result.set_item("encounter_date", converted_168)?;
+    } else {
+        result.set_item("encounter_date", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_coding_dataset_artifacts_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodingDatasetArtifacts> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["evaluation_s3_uri"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodingDatasetArtifacts::builder();
+    if let Some(value) = dict_value(values, "evaluation_s3_uri")? {
+        let converted_169 = (|| -> PyResult<_> {
+            let converted_169: String = value.extract()?;
+            Ok(converted_169)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("evaluation_s3_uri"),
+                "str",
+            )
+        })?;
+        builder = builder.set_evaluation_s3_uri(Some(converted_169));
+    }
+    Ok(builder.build())
+}
+
+fn medical_coding_dataset_artifacts_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodingDatasetArtifacts,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.evaluation_s3_uri {
+        let converted_170 = (value).as_str().into_py_any(py)?;
+        result.set_item("evaluation_s3_uri", converted_170)?;
+    } else {
+        result.set_item("evaluation_s3_uri", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_coding_dataset_config_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodingDatasetConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_input_path", "s3_output_path"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodingDatasetConfig::builder();
+    if let Some(value) = dict_value(values, "s3_input_path")? {
+        let converted_171 = (|| -> PyResult<_> {
+            let converted_171: String = value.extract()?;
+            Ok(converted_171)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_input_path"), "str")
+        })?;
+        builder = builder.set_s3_input_path(Some(converted_171));
+    }
+    if let Some(value) = dict_value(values, "s3_output_path")? {
+        let converted_172 = (|| -> PyResult<_> {
+            let converted_172: String = value.extract()?;
+            Ok(converted_172)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_output_path"), "str")
+        })?;
+        builder = builder.set_s3_output_path(Some(converted_172));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("s3_input_path", "s3_input_path"),
+                ("s3_output_path", "s3_output_path"),
+            ],
+        )
+    })
+}
+
+fn medical_coding_dataset_config_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodingDatasetConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_173 = (&value.s3_input_path).as_str().into_py_any(py)?;
+    result.set_item("s3_input_path", converted_173)?;
+    let converted_174 = (&value.s3_output_path).as_str().into_py_any(py)?;
+    result.set_item("s3_output_path", converted_174)?;
+    Ok(result.into_any().unbind())
+}
+
+fn medical_coding_output_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodingOutput> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["uri"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodingOutput::builder();
+    if let Some(value) = dict_value(values, "uri")? {
+        let converted_175 = (|| -> PyResult<_> {
+            let converted_175: String = value.extract()?;
+            Ok(converted_175)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("uri"), "str")
+        })?;
+        builder = builder.set_uri(Some(converted_175));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("uri", "uri")]))
+}
+
+fn medical_coding_output_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodingOutput,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_176 = (&value.uri).as_str().into_py_any(py)?;
+    result.set_item("uri", converted_176)?;
+    Ok(result.into_any().unbind())
+}
+
+fn medical_coding_output_data_config_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalCodingOutputDataConfig> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["s3_output_path"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalCodingOutputDataConfig::builder();
+    if let Some(value) = dict_value(values, "s3_output_path")? {
+        let converted_177 = (|| -> PyResult<_> {
+            let converted_177: String = value.extract()?;
+            Ok(converted_177)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("s3_output_path"), "str")
+        })?;
+        builder = builder.set_s3_output_path(Some(converted_177));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(values, &[("s3_output_path", "s3_output_path")])
+    })
+}
+
+fn medical_coding_output_data_config_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalCodingOutputDataConfig,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_178 = (&value.s3_output_path).as_str().into_py_any(py)?;
+    result.set_item("s3_output_path", converted_178)?;
     Ok(result.into_any().unbind())
 }
 
@@ -919,15 +1969,15 @@ fn medical_scribe_audio_event_from_py(
     rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
-        let converted_82 = (|| -> PyResult<_> {
-            let bytes_83: Vec<u8> = value.extract()?;
-            let converted_82 = ::aws_smithy_types::Blob::new(bytes_83);
-            Ok(converted_82)
+        let converted_179 = (|| -> PyResult<_> {
+            let bytes_180: Vec<u8> = value.extract()?;
+            let converted_179 = ::aws_smithy_types::Blob::new(bytes_180);
+            Ok(converted_179)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("audio_chunk"), "bytes")
         })?;
-        builder = builder.set_audio_chunk(Some(converted_82));
+        builder = builder.set_audio_chunk(Some(converted_179));
     }
     builder
         .build()
@@ -939,10 +1989,10 @@ fn medical_scribe_audio_event_to_py(
     value: &aws_sdk_connecthealth::types::MedicalScribeAudioEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_84 = PyBytes::new(py, (&value.audio_chunk).as_ref())
+    let converted_181 = PyBytes::new(py, (&value.audio_chunk).as_ref())
         .into_any()
         .unbind();
-    result.set_item("audio_chunk", converted_84)?;
+    result.set_item("audio_chunk", converted_181)?;
     Ok(result.into_any().unbind())
 }
 
@@ -953,15 +2003,15 @@ fn medical_scribe_binary_audio_event_from_py(
     rboto_core::validate_input_fields(values, &["audio_chunk"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeBinaryAudioEvent::builder();
     if let Some(value) = dict_value(values, "audio_chunk")? {
-        let converted_85 = (|| -> PyResult<_> {
-            let bytes_86: Vec<u8> = value.extract()?;
-            let converted_85 = ::aws_smithy_types::Blob::new(bytes_86);
-            Ok(converted_85)
+        let converted_182 = (|| -> PyResult<_> {
+            let bytes_183: Vec<u8> = value.extract()?;
+            let converted_182 = ::aws_smithy_types::Blob::new(bytes_183);
+            Ok(converted_182)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("audio_chunk"), "bytes")
         })?;
-        builder = builder.set_audio_chunk(Some(converted_85));
+        builder = builder.set_audio_chunk(Some(converted_182));
     }
     builder
         .build()
@@ -973,10 +2023,10 @@ fn medical_scribe_binary_audio_event_to_py(
     value: &aws_sdk_connecthealth::types::MedicalScribeBinaryAudioEvent,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_87 = PyBytes::new(py, (&value.audio_chunk).as_ref())
+    let converted_184 = PyBytes::new(py, (&value.audio_chunk).as_ref())
         .into_any()
         .unbind();
-    result.set_item("audio_chunk", converted_87)?;
+    result.set_item("audio_chunk", converted_184)?;
     Ok(result.into_any().unbind())
 }
 
@@ -987,22 +2037,22 @@ fn medical_scribe_channel_definition_from_py(
     rboto_core::validate_input_fields(values, &["channel_id", "participant_role"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeChannelDefinition::builder();
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_88 = (|| -> PyResult<_> {
-            let converted_88: i32 = value.extract()?;
-            Ok(converted_88)
+        let converted_185 = (|| -> PyResult<_> {
+            let converted_185: i32 = value.extract()?;
+            Ok(converted_185)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "int")
         })?;
-        builder = builder.set_channel_id(Some(converted_88));
+        builder = builder.set_channel_id(Some(converted_185));
     }
     if let Some(value) = dict_value(values, "participant_role")? {
-        let converted_89 = (|| -> PyResult<_> {
-            let enum_value_90: String = value.extract()?;
-            let converted_89 = aws_sdk_connecthealth::types::MedicalScribeParticipantRole::from(
-                enum_value_90.as_str(),
+        let converted_186 = (|| -> PyResult<_> {
+            let enum_value_187: String = value.extract()?;
+            let converted_186 = aws_sdk_connecthealth::types::MedicalScribeParticipantRole::from(
+                enum_value_187.as_str(),
             );
-            Ok(converted_89)
+            Ok(converted_186)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1011,7 +2061,7 @@ fn medical_scribe_channel_definition_from_py(
                 "str (MedicalScribeParticipantRole)",
             )
         })?;
-        builder = builder.set_participant_role(Some(converted_89));
+        builder = builder.set_participant_role(Some(converted_186));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -1029,10 +2079,95 @@ fn medical_scribe_channel_definition_to_py(
     value: &aws_sdk_connecthealth::types::MedicalScribeChannelDefinition,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_91 = (&value.channel_id).to_owned().into_py_any(py)?;
-    result.set_item("channel_id", converted_91)?;
-    let converted_92 = (&value.participant_role).as_str().into_py_any(py)?;
-    result.set_item("participant_role", converted_92)?;
+    let converted_188 = (&value.channel_id).to_owned().into_py_any(py)?;
+    result.set_item("channel_id", converted_188)?;
+    let converted_189 = (&value.participant_role).as_str().into_py_any(py)?;
+    result.set_item("participant_role", converted_189)?;
+    Ok(result.into_any().unbind())
+}
+
+fn medical_scribe_checklist_event_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribeChecklistEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["checklists", "snapshot_version"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalScribeChecklistEvent::builder();
+    if let Some(value) = dict_value(values, "snapshot_version")? {
+        let converted_190 = (|| -> PyResult<_> {
+            let converted_190: i64 = value.extract()?;
+            Ok(converted_190)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("snapshot_version"),
+                "int",
+            )
+        })?;
+        builder = builder.set_snapshot_version(Some(converted_190));
+    }
+    if let Some(value) = dict_value(values, "checklists")? {
+        let converted_191 = (|| -> PyResult<_> {
+            let mut converted_191 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_195, item_result_192) in value.try_iter()?.enumerate() {
+                let item_193 = item_result_192.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_195),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_194 = (|| -> PyResult<_> {
+                    let converted_item_194 = checklist_from_py(&item_193)?;
+                    Ok(converted_item_194)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_195),
+                        "dict (Checklist)",
+                    )
+                })?;
+                converted_191.push(converted_item_194);
+            }
+            Ok(converted_191)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("checklists"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_checklists(Some(converted_191));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("snapshot_version", "snapshot_version"),
+                ("checklists", "checklists"),
+            ],
+        )
+    })
+}
+
+fn medical_scribe_checklist_event_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalScribeChecklistEvent,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_196 = (&value.snapshot_version).to_owned().into_py_any(py)?;
+    result.set_item("snapshot_version", converted_196)?;
+    let converted_197_list = PyList::empty(py);
+    for item_198 in &value.checklists {
+        let converted_item_199 = checklist_to_py(py, item_198)?;
+        converted_197_list.append(converted_item_199)?;
+    }
+    let converted_197 = converted_197_list.into_any().unbind();
+    result.set_item("checklists", converted_197)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1050,9 +2185,9 @@ fn medical_scribe_configuration_event_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeConfigurationEvent::builder();
     if let Some(value) = dict_value(values, "post_stream_action_settings")? {
-        let converted_93 = (|| -> PyResult<_> {
-            let converted_93 = medical_scribe_post_stream_action_settings_from_py(&value)?;
-            Ok(converted_93)
+        let converted_200 = (|| -> PyResult<_> {
+            let converted_200 = medical_scribe_post_stream_action_settings_from_py(&value)?;
+            Ok(converted_200)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1061,35 +2196,35 @@ fn medical_scribe_configuration_event_from_py(
                 "dict (MedicalScribePostStreamActionSettings)",
             )
         })?;
-        builder = builder.set_post_stream_action_settings(Some(converted_93));
+        builder = builder.set_post_stream_action_settings(Some(converted_200));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let converted_94 = (|| -> PyResult<_> {
-            let mut converted_94 =
+        let converted_201 = (|| -> PyResult<_> {
+            let mut converted_201 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_98, item_result_95) in value.try_iter()?.enumerate() {
-                let item_96 = item_result_95.map_err(|error| {
+            for (index_205, item_result_202) in value.try_iter()?.enumerate() {
+                let item_203 = item_result_202.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_98),
+                        rboto_core::InputPath::Index(index_205),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_97 = (|| -> PyResult<_> {
-                    let converted_item_97 = medical_scribe_channel_definition_from_py(&item_96)?;
-                    Ok(converted_item_97)
+                let converted_item_204 = (|| -> PyResult<_> {
+                    let converted_item_204 = medical_scribe_channel_definition_from_py(&item_203)?;
+                    Ok(converted_item_204)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_98),
+                        rboto_core::InputPath::Index(index_205),
                         "dict (MedicalScribeChannelDefinition)",
                     )
                 })?;
-                converted_94.push(converted_item_97);
+                converted_201.push(converted_item_204);
             }
-            Ok(converted_94)
+            Ok(converted_201)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1098,12 +2233,12 @@ fn medical_scribe_configuration_event_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_channel_definitions(Some(converted_94));
+        builder = builder.set_channel_definitions(Some(converted_201));
     }
     if let Some(value) = dict_value(values, "encounter_context")? {
-        let converted_99 = (|| -> PyResult<_> {
-            let converted_99 = encounter_context_from_py(&value)?;
-            Ok(converted_99)
+        let converted_206 = (|| -> PyResult<_> {
+            let converted_206 = encounter_context_from_py(&value)?;
+            Ok(converted_206)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1112,7 +2247,7 @@ fn medical_scribe_configuration_event_from_py(
                 "dict (EncounterContext)",
             )
         })?;
-        builder = builder.set_encounter_context(Some(converted_99));
+        builder = builder.set_encounter_context(Some(converted_206));
     }
     Ok(builder.build())
 }
@@ -1123,25 +2258,25 @@ fn medical_scribe_configuration_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.post_stream_action_settings {
-        let converted_100 = medical_scribe_post_stream_action_settings_to_py(py, value)?;
-        result.set_item("post_stream_action_settings", converted_100)?;
+        let converted_207 = medical_scribe_post_stream_action_settings_to_py(py, value)?;
+        result.set_item("post_stream_action_settings", converted_207)?;
     } else {
         result.set_item("post_stream_action_settings", py.None())?;
     }
     if let Some(value) = &value.channel_definitions {
-        let converted_101_list = PyList::empty(py);
-        for item_102 in value {
-            let converted_item_103 = medical_scribe_channel_definition_to_py(py, item_102)?;
-            converted_101_list.append(converted_item_103)?;
+        let converted_208_list = PyList::empty(py);
+        for item_209 in value {
+            let converted_item_210 = medical_scribe_channel_definition_to_py(py, item_209)?;
+            converted_208_list.append(converted_item_210)?;
         }
-        let converted_101 = converted_101_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_101)?;
+        let converted_208 = converted_208_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_208)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.encounter_context {
-        let converted_104 = encounter_context_to_py(py, value)?;
-        result.set_item("encounter_context", converted_104)?;
+        let converted_211 = encounter_context_to_py(py, value)?;
+        result.set_item("encounter_context", converted_211)?;
     } else {
         result.set_item("encounter_context", py.None())?;
     }
@@ -1161,9 +2296,9 @@ fn medical_scribe_input_stream_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "audio_event")? {
-        let converted_105 = (|| -> PyResult<_> {
-            let converted_105 = medical_scribe_audio_event_from_py(&value)?;
-            Ok(converted_105)
+        let converted_212 = (|| -> PyResult<_> {
+            let converted_212 = medical_scribe_audio_event_from_py(&value)?;
+            Ok(converted_212)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1173,13 +2308,13 @@ fn medical_scribe_input_stream_from_py(
             )
         })?;
         return Ok(
-            aws_sdk_connecthealth::types::MedicalScribeInputStream::AudioEvent(converted_105),
+            aws_sdk_connecthealth::types::MedicalScribeInputStream::AudioEvent(converted_212),
         );
     }
     if let Some(value) = dict_value(values, "binary_audio_event")? {
-        let converted_106 = (|| -> PyResult<_> {
-            let converted_106 = medical_scribe_binary_audio_event_from_py(&value)?;
-            Ok(converted_106)
+        let converted_213 = (|| -> PyResult<_> {
+            let converted_213 = medical_scribe_binary_audio_event_from_py(&value)?;
+            Ok(converted_213)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1189,13 +2324,13 @@ fn medical_scribe_input_stream_from_py(
             )
         })?;
         return Ok(
-            aws_sdk_connecthealth::types::MedicalScribeInputStream::BinaryAudioEvent(converted_106),
+            aws_sdk_connecthealth::types::MedicalScribeInputStream::BinaryAudioEvent(converted_213),
         );
     }
     if let Some(value) = dict_value(values, "session_control_event")? {
-        let converted_107 = (|| -> PyResult<_> {
-            let converted_107 = medical_scribe_session_control_event_from_py(&value)?;
-            Ok(converted_107)
+        let converted_214 = (|| -> PyResult<_> {
+            let converted_214 = medical_scribe_session_control_event_from_py(&value)?;
+            Ok(converted_214)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1206,14 +2341,14 @@ fn medical_scribe_input_stream_from_py(
         })?;
         return Ok(
             aws_sdk_connecthealth::types::MedicalScribeInputStream::SessionControlEvent(
-                converted_107,
+                converted_214,
             ),
         );
     }
     if let Some(value) = dict_value(values, "configuration_event")? {
-        let converted_108 = (|| -> PyResult<_> {
-            let converted_108 = medical_scribe_configuration_event_from_py(&value)?;
-            Ok(converted_108)
+        let converted_215 = (|| -> PyResult<_> {
+            let converted_215 = medical_scribe_configuration_event_from_py(&value)?;
+            Ok(converted_215)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1224,7 +2359,7 @@ fn medical_scribe_input_stream_from_py(
         })?;
         return Ok(
             aws_sdk_connecthealth::types::MedicalScribeInputStream::ConfigurationEvent(
-                converted_108,
+                converted_215,
             ),
         );
     }
@@ -1243,20 +2378,20 @@ fn medical_scribe_input_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_connecthealth::types::MedicalScribeInputStream::AudioEvent(value) => {
-            let converted_109 = medical_scribe_audio_event_to_py(py, value)?;
-            result.set_item("audio_event", converted_109)?;
+            let converted_216 = medical_scribe_audio_event_to_py(py, value)?;
+            result.set_item("audio_event", converted_216)?;
         }
         aws_sdk_connecthealth::types::MedicalScribeInputStream::BinaryAudioEvent(value) => {
-            let converted_110 = medical_scribe_binary_audio_event_to_py(py, value)?;
-            result.set_item("binary_audio_event", converted_110)?;
+            let converted_217 = medical_scribe_binary_audio_event_to_py(py, value)?;
+            result.set_item("binary_audio_event", converted_217)?;
         }
         aws_sdk_connecthealth::types::MedicalScribeInputStream::SessionControlEvent(value) => {
-            let converted_111 = medical_scribe_session_control_event_to_py(py, value)?;
-            result.set_item("session_control_event", converted_111)?;
+            let converted_218 = medical_scribe_session_control_event_to_py(py, value)?;
+            result.set_item("session_control_event", converted_218)?;
         }
         aws_sdk_connecthealth::types::MedicalScribeInputStream::ConfigurationEvent(value) => {
-            let converted_112 = medical_scribe_configuration_event_to_py(py, value)?;
-            result.set_item("configuration_event", converted_112)?;
+            let converted_219 = medical_scribe_configuration_event_to_py(py, value)?;
+            result.set_item("configuration_event", converted_219)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -1278,6 +2413,7 @@ fn medical_scribe_listening_session_details_from_py(
             "language_code",
             "media_encoding",
             "media_sample_rate_hertz",
+            "medical_coding_context_provided",
             "post_stream_action_result",
             "post_stream_action_settings",
             "session_id",
@@ -1289,29 +2425,29 @@ fn medical_scribe_listening_session_details_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails::builder();
     if let Some(value) = dict_value(values, "session_id")? {
-        let converted_113 = (|| -> PyResult<_> {
-            let converted_113: String = value.extract()?;
-            Ok(converted_113)
+        let converted_220 = (|| -> PyResult<_> {
+            let converted_220: String = value.extract()?;
+            Ok(converted_220)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("session_id"), "str")
         })?;
-        builder = builder.set_session_id(Some(converted_113));
+        builder = builder.set_session_id(Some(converted_220));
     }
     if let Some(value) = dict_value(values, "domain_id")? {
-        let converted_114 = (|| -> PyResult<_> {
-            let converted_114: String = value.extract()?;
-            Ok(converted_114)
+        let converted_221 = (|| -> PyResult<_> {
+            let converted_221: String = value.extract()?;
+            Ok(converted_221)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("domain_id"), "str")
         })?;
-        builder = builder.set_domain_id(Some(converted_114));
+        builder = builder.set_domain_id(Some(converted_221));
     }
     if let Some(value) = dict_value(values, "subscription_id")? {
-        let converted_115 = (|| -> PyResult<_> {
-            let converted_115: String = value.extract()?;
-            Ok(converted_115)
+        let converted_222 = (|| -> PyResult<_> {
+            let converted_222: String = value.extract()?;
+            Ok(converted_222)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1320,15 +2456,15 @@ fn medical_scribe_listening_session_details_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_subscription_id(Some(converted_115));
+        builder = builder.set_subscription_id(Some(converted_222));
     }
     if let Some(value) = dict_value(values, "language_code")? {
-        let converted_116 = (|| -> PyResult<_> {
-            let enum_value_117: String = value.extract()?;
-            let converted_116 = aws_sdk_connecthealth::types::MedicalScribeLanguageCode::from(
-                enum_value_117.as_str(),
+        let converted_223 = (|| -> PyResult<_> {
+            let enum_value_224: String = value.extract()?;
+            let converted_223 = aws_sdk_connecthealth::types::MedicalScribeLanguageCode::from(
+                enum_value_224.as_str(),
             );
-            Ok(converted_116)
+            Ok(converted_223)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1337,12 +2473,12 @@ fn medical_scribe_listening_session_details_from_py(
                 "str (MedicalScribeLanguageCode)",
             )
         })?;
-        builder = builder.set_language_code(Some(converted_116));
+        builder = builder.set_language_code(Some(converted_223));
     }
     if let Some(value) = dict_value(values, "media_sample_rate_hertz")? {
-        let converted_118 = (|| -> PyResult<_> {
-            let converted_118: i32 = value.extract()?;
-            Ok(converted_118)
+        let converted_225 = (|| -> PyResult<_> {
+            let converted_225: i32 = value.extract()?;
+            Ok(converted_225)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1351,15 +2487,15 @@ fn medical_scribe_listening_session_details_from_py(
                 "int",
             )
         })?;
-        builder = builder.set_media_sample_rate_hertz(Some(converted_118));
+        builder = builder.set_media_sample_rate_hertz(Some(converted_225));
     }
     if let Some(value) = dict_value(values, "media_encoding")? {
-        let converted_119 = (|| -> PyResult<_> {
-            let enum_value_120: String = value.extract()?;
-            let converted_119 = aws_sdk_connecthealth::types::MedicalScribeMediaEncoding::from(
-                enum_value_120.as_str(),
+        let converted_226 = (|| -> PyResult<_> {
+            let enum_value_227: String = value.extract()?;
+            let converted_226 = aws_sdk_connecthealth::types::MedicalScribeMediaEncoding::from(
+                enum_value_227.as_str(),
             );
-            Ok(converted_119)
+            Ok(converted_226)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1368,35 +2504,35 @@ fn medical_scribe_listening_session_details_from_py(
                 "str (MedicalScribeMediaEncoding)",
             )
         })?;
-        builder = builder.set_media_encoding(Some(converted_119));
+        builder = builder.set_media_encoding(Some(converted_226));
     }
     if let Some(value) = dict_value(values, "channel_definitions")? {
-        let converted_121 = (|| -> PyResult<_> {
-            let mut converted_121 =
+        let converted_228 = (|| -> PyResult<_> {
+            let mut converted_228 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_125, item_result_122) in value.try_iter()?.enumerate() {
-                let item_123 = item_result_122.map_err(|error| {
+            for (index_232, item_result_229) in value.try_iter()?.enumerate() {
+                let item_230 = item_result_229.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_125),
+                        rboto_core::InputPath::Index(index_232),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_124 = (|| -> PyResult<_> {
-                    let converted_item_124 = medical_scribe_channel_definition_from_py(&item_123)?;
-                    Ok(converted_item_124)
+                let converted_item_231 = (|| -> PyResult<_> {
+                    let converted_item_231 = medical_scribe_channel_definition_from_py(&item_230)?;
+                    Ok(converted_item_231)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_125),
+                        rboto_core::InputPath::Index(index_232),
                         "dict (MedicalScribeChannelDefinition)",
                     )
                 })?;
-                converted_121.push(converted_item_124);
+                converted_228.push(converted_item_231);
             }
-            Ok(converted_121)
+            Ok(converted_228)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1405,13 +2541,13 @@ fn medical_scribe_listening_session_details_from_py(
                 "sequence",
             )
         })?;
-        builder = builder.set_channel_definitions(Some(converted_121));
+        builder = builder.set_channel_definitions(Some(converted_228));
     }
     if let Some(value) = dict_value(values, "post_stream_action_settings")? {
-        let converted_126 = (|| -> PyResult<_> {
-            let converted_126 =
+        let converted_233 = (|| -> PyResult<_> {
+            let converted_233 =
                 medical_scribe_post_stream_action_settings_response_from_py(&value)?;
-            Ok(converted_126)
+            Ok(converted_233)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1420,12 +2556,12 @@ fn medical_scribe_listening_session_details_from_py(
                 "dict (MedicalScribePostStreamActionSettingsResponse)",
             )
         })?;
-        builder = builder.set_post_stream_action_settings(Some(converted_126));
+        builder = builder.set_post_stream_action_settings(Some(converted_233));
     }
     if let Some(value) = dict_value(values, "post_stream_action_result")? {
-        let converted_127 = (|| -> PyResult<_> {
-            let converted_127 = medical_scribe_post_stream_actions_result_from_py(&value)?;
-            Ok(converted_127)
+        let converted_234 = (|| -> PyResult<_> {
+            let converted_234 = medical_scribe_post_stream_actions_result_from_py(&value)?;
+            Ok(converted_234)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1434,12 +2570,12 @@ fn medical_scribe_listening_session_details_from_py(
                 "dict (MedicalScribePostStreamActionsResult)",
             )
         })?;
-        builder = builder.set_post_stream_action_result(Some(converted_127));
+        builder = builder.set_post_stream_action_result(Some(converted_234));
     }
     if let Some(value) = dict_value(values, "encounter_context_provided")? {
-        let converted_128 = (|| -> PyResult<_> {
-            let converted_128: bool = value.extract()?;
-            Ok(converted_128)
+        let converted_235 = (|| -> PyResult<_> {
+            let converted_235: bool = value.extract()?;
+            Ok(converted_235)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1448,15 +2584,29 @@ fn medical_scribe_listening_session_details_from_py(
                 "bool",
             )
         })?;
-        builder = builder.set_encounter_context_provided(Some(converted_128));
+        builder = builder.set_encounter_context_provided(Some(converted_235));
+    }
+    if let Some(value) = dict_value(values, "medical_coding_context_provided")? {
+        let converted_236 = (|| -> PyResult<_> {
+            let converted_236: bool = value.extract()?;
+            Ok(converted_236)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_coding_context_provided"),
+                "bool",
+            )
+        })?;
+        builder = builder.set_medical_coding_context_provided(Some(converted_236));
     }
     if let Some(value) = dict_value(values, "stream_status")? {
-        let converted_129 = (|| -> PyResult<_> {
-            let enum_value_130: String = value.extract()?;
-            let converted_129 = aws_sdk_connecthealth::types::MedicalScribeStreamStatus::from(
-                enum_value_130.as_str(),
+        let converted_237 = (|| -> PyResult<_> {
+            let enum_value_238: String = value.extract()?;
+            let converted_237 = aws_sdk_connecthealth::types::MedicalScribeStreamStatus::from(
+                enum_value_238.as_str(),
             );
-            Ok(converted_129)
+            Ok(converted_237)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1465,17 +2615,17 @@ fn medical_scribe_listening_session_details_from_py(
                 "str (MedicalScribeStreamStatus)",
             )
         })?;
-        builder = builder.set_stream_status(Some(converted_129));
+        builder = builder.set_stream_status(Some(converted_237));
     }
     if let Some(value) = dict_value(values, "stream_creation_time")? {
-        let converted_131 = (|| -> PyResult<_> {
-            let timestamp_132: String = value.extract()?;
-            let converted_131 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_132,
+        let converted_239 = (|| -> PyResult<_> {
+            let timestamp_240: String = value.extract()?;
+            let converted_239 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_240,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_131)
+            Ok(converted_239)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1484,17 +2634,17 @@ fn medical_scribe_listening_session_details_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_creation_time(Some(converted_131));
+        builder = builder.set_stream_creation_time(Some(converted_239));
     }
     if let Some(value) = dict_value(values, "stream_end_time")? {
-        let converted_133 = (|| -> PyResult<_> {
-            let timestamp_134: String = value.extract()?;
-            let converted_133 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_134,
+        let converted_241 = (|| -> PyResult<_> {
+            let timestamp_242: String = value.extract()?;
+            let converted_241 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_242,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_133)
+            Ok(converted_241)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1503,7 +2653,7 @@ fn medical_scribe_listening_session_details_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_stream_end_time(Some(converted_133));
+        builder = builder.set_stream_end_time(Some(converted_241));
     }
     Ok(builder.build())
 }
@@ -1514,85 +2664,91 @@ fn medical_scribe_listening_session_details_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.session_id {
-        let converted_135 = (value).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_135)?;
+        let converted_243 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_243)?;
     } else {
         result.set_item("session_id", py.None())?;
     }
     if let Some(value) = &value.domain_id {
-        let converted_136 = (value).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_136)?;
+        let converted_244 = (value).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_244)?;
     } else {
         result.set_item("domain_id", py.None())?;
     }
     if let Some(value) = &value.subscription_id {
-        let converted_137 = (value).as_str().into_py_any(py)?;
-        result.set_item("subscription_id", converted_137)?;
+        let converted_245 = (value).as_str().into_py_any(py)?;
+        result.set_item("subscription_id", converted_245)?;
     } else {
         result.set_item("subscription_id", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_138 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_138)?;
+        let converted_246 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_246)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.media_sample_rate_hertz {
-        let converted_139 = (value).to_owned().into_py_any(py)?;
-        result.set_item("media_sample_rate_hertz", converted_139)?;
+        let converted_247 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_247)?;
     } else {
         result.set_item("media_sample_rate_hertz", py.None())?;
     }
     if let Some(value) = &value.media_encoding {
-        let converted_140 = (value).as_str().into_py_any(py)?;
-        result.set_item("media_encoding", converted_140)?;
+        let converted_248 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_248)?;
     } else {
         result.set_item("media_encoding", py.None())?;
     }
     if let Some(value) = &value.channel_definitions {
-        let converted_141_list = PyList::empty(py);
-        for item_142 in value {
-            let converted_item_143 = medical_scribe_channel_definition_to_py(py, item_142)?;
-            converted_141_list.append(converted_item_143)?;
+        let converted_249_list = PyList::empty(py);
+        for item_250 in value {
+            let converted_item_251 = medical_scribe_channel_definition_to_py(py, item_250)?;
+            converted_249_list.append(converted_item_251)?;
         }
-        let converted_141 = converted_141_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_141)?;
+        let converted_249 = converted_249_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_249)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.post_stream_action_settings {
-        let converted_144 = medical_scribe_post_stream_action_settings_response_to_py(py, value)?;
-        result.set_item("post_stream_action_settings", converted_144)?;
+        let converted_252 = medical_scribe_post_stream_action_settings_response_to_py(py, value)?;
+        result.set_item("post_stream_action_settings", converted_252)?;
     } else {
         result.set_item("post_stream_action_settings", py.None())?;
     }
     if let Some(value) = &value.post_stream_action_result {
-        let converted_145 = medical_scribe_post_stream_actions_result_to_py(py, value)?;
-        result.set_item("post_stream_action_result", converted_145)?;
+        let converted_253 = medical_scribe_post_stream_actions_result_to_py(py, value)?;
+        result.set_item("post_stream_action_result", converted_253)?;
     } else {
         result.set_item("post_stream_action_result", py.None())?;
     }
     if let Some(value) = &value.encounter_context_provided {
-        let converted_146 = (value).to_owned().into_py_any(py)?;
-        result.set_item("encounter_context_provided", converted_146)?;
+        let converted_254 = (value).to_owned().into_py_any(py)?;
+        result.set_item("encounter_context_provided", converted_254)?;
     } else {
         result.set_item("encounter_context_provided", py.None())?;
     }
+    if let Some(value) = &value.medical_coding_context_provided {
+        let converted_255 = (value).to_owned().into_py_any(py)?;
+        result.set_item("medical_coding_context_provided", converted_255)?;
+    } else {
+        result.set_item("medical_coding_context_provided", py.None())?;
+    }
     if let Some(value) = &value.stream_status {
-        let converted_147 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_status", converted_147)?;
+        let converted_256 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_256)?;
     } else {
         result.set_item("stream_status", py.None())?;
     }
     if let Some(value) = &value.stream_creation_time {
-        let converted_148 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_creation_time", converted_148)?;
+        let converted_257 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_time", converted_257)?;
     } else {
         result.set_item("stream_creation_time", py.None())?;
     }
     if let Some(value) = &value.stream_end_time {
-        let converted_149 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_end_time", converted_149)?;
+        let converted_258 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_end_time", converted_258)?;
     } else {
         result.set_item("stream_end_time", py.None())?;
     }
@@ -1612,9 +2768,9 @@ fn medical_scribe_output_stream_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "transcript_event")? {
-        let converted_150 = (|| -> PyResult<_> {
-            let converted_150 = medical_scribe_transcript_event_from_py(&value)?;
-            Ok(converted_150)
+        let converted_259 = (|| -> PyResult<_> {
+            let converted_259 = medical_scribe_transcript_event_from_py(&value)?;
+            Ok(converted_259)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1624,7 +2780,41 @@ fn medical_scribe_output_stream_from_py(
             )
         })?;
         return Ok(
-            aws_sdk_connecthealth::types::MedicalScribeOutputStream::TranscriptEvent(converted_150),
+            aws_sdk_connecthealth::types::MedicalScribeOutputStream::TranscriptEvent(converted_259),
+        );
+    }
+    if let Some(value) = dict_value(values, "periodontal_chart_event")? {
+        let converted_260 = (|| -> PyResult<_> {
+            let converted_260 = medical_scribe_periodontal_chart_event_from_py(&value)?;
+            Ok(converted_260)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("periodontal_chart_event"),
+                "dict (MedicalScribePeriodontalChartEvent)",
+            )
+        })?;
+        return Ok(
+            aws_sdk_connecthealth::types::MedicalScribeOutputStream::PeriodontalChartEvent(
+                converted_260,
+            ),
+        );
+    }
+    if let Some(value) = dict_value(values, "checklist_event")? {
+        let converted_261 = (|| -> PyResult<_> {
+            let converted_261 = medical_scribe_checklist_event_from_py(&value)?;
+            Ok(converted_261)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("checklist_event"),
+                "dict (MedicalScribeChecklistEvent)",
+            )
+        })?;
+        return Ok(
+            aws_sdk_connecthealth::types::MedicalScribeOutputStream::ChecklistEvent(converted_261),
         );
     }
     Err(rboto_core::input_rule(
@@ -1642,12 +2832,146 @@ fn medical_scribe_output_stream_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_connecthealth::types::MedicalScribeOutputStream::TranscriptEvent(value) => {
-            let converted_151 = medical_scribe_transcript_event_to_py(py, value)?;
-            result.set_item("transcript_event", converted_151)?;
+            let converted_262 = medical_scribe_transcript_event_to_py(py, value)?;
+            result.set_item("transcript_event", converted_262)?;
+        }
+        aws_sdk_connecthealth::types::MedicalScribeOutputStream::PeriodontalChartEvent(value) => {
+            let converted_263 = medical_scribe_periodontal_chart_event_to_py(py, value)?;
+            result.set_item("periodontal_chart_event", converted_263)?;
+        }
+        aws_sdk_connecthealth::types::MedicalScribeOutputStream::ChecklistEvent(value) => {
+            let converted_264 = medical_scribe_checklist_event_to_py(py, value)?;
+            result.set_item("checklist_event", converted_264)?;
         }
         _ => {
             result.set_item("unknown", true)?;
         }
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn medical_scribe_periodontal_chart_event_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePeriodontalChartEvent> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["review_items", "snapshot_version", "teeth"])?;
+    let mut builder = aws_sdk_connecthealth::types::MedicalScribePeriodontalChartEvent::builder();
+    if let Some(value) = dict_value(values, "snapshot_version")? {
+        let converted_265 = (|| -> PyResult<_> {
+            let converted_265: i64 = value.extract()?;
+            Ok(converted_265)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("snapshot_version"),
+                "int",
+            )
+        })?;
+        builder = builder.set_snapshot_version(Some(converted_265));
+    }
+    if let Some(value) = dict_value(values, "teeth")? {
+        let converted_266 = (|| -> PyResult<_> {
+            let mut converted_266 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_270, item_result_267) in value.try_iter()?.enumerate() {
+                let item_268 = item_result_267.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_270),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_269 = (|| -> PyResult<_> {
+                    let converted_item_269 = periodontal_tooth_from_py(&item_268)?;
+                    Ok(converted_item_269)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_270),
+                        "dict (PeriodontalTooth)",
+                    )
+                })?;
+                converted_266.push(converted_item_269);
+            }
+            Ok(converted_266)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("teeth"), "sequence")
+        })?;
+        builder = builder.set_teeth(Some(converted_266));
+    }
+    if let Some(value) = dict_value(values, "review_items")? {
+        let converted_271 = (|| -> PyResult<_> {
+            let mut converted_271 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_275, item_result_272) in value.try_iter()?.enumerate() {
+                let item_273 = item_result_272.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_275),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_274 = (|| -> PyResult<_> {
+                    let converted_item_274 = periodontal_review_from_py(&item_273)?;
+                    Ok(converted_item_274)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_275),
+                        "dict (PeriodontalReview)",
+                    )
+                })?;
+                converted_271.push(converted_item_274);
+            }
+            Ok(converted_271)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("review_items"),
+                "sequence",
+            )
+        })?;
+        builder = builder.set_review_items(Some(converted_271));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("snapshot_version", "snapshot_version"), ("teeth", "teeth")],
+        )
+    })
+}
+
+fn medical_scribe_periodontal_chart_event_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::MedicalScribePeriodontalChartEvent,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_276 = (&value.snapshot_version).to_owned().into_py_any(py)?;
+    result.set_item("snapshot_version", converted_276)?;
+    let converted_277_list = PyList::empty(py);
+    for item_278 in &value.teeth {
+        let converted_item_279 = periodontal_tooth_to_py(py, item_278)?;
+        converted_277_list.append(converted_item_279)?;
+    }
+    let converted_277 = converted_277_list.into_any().unbind();
+    result.set_item("teeth", converted_277)?;
+    if let Some(value) = &value.review_items {
+        let converted_280_list = PyList::empty(py);
+        for item_281 in value {
+            let converted_item_282 = periodontal_review_to_py(py, item_281)?;
+            converted_280_list.append(converted_item_282)?;
+        }
+        let converted_280 = converted_280_list.into_any().unbind();
+        result.set_item("review_items", converted_280)?;
+    } else {
+        result.set_item("review_items", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -1658,24 +2982,28 @@ fn medical_scribe_post_stream_action_settings_from_py(
     let values = value.cast::<PyDict>()?;
     rboto_core::validate_input_fields(
         values,
-        &["clinical_note_generation_settings", "output_s3_uri"],
+        &[
+            "clinical_note_generation_settings",
+            "medical_code_generation_settings",
+            "output_s3_uri",
+        ],
     )?;
     let mut builder =
         aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettings::builder();
     if let Some(value) = dict_value(values, "output_s3_uri")? {
-        let converted_152 = (|| -> PyResult<_> {
-            let converted_152: String = value.extract()?;
-            Ok(converted_152)
+        let converted_283 = (|| -> PyResult<_> {
+            let converted_283: String = value.extract()?;
+            Ok(converted_283)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("output_s3_uri"), "str")
         })?;
-        builder = builder.set_output_s3_uri(Some(converted_152));
+        builder = builder.set_output_s3_uri(Some(converted_283));
     }
     if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
-        let converted_153 = (|| -> PyResult<_> {
-            let converted_153 = clinical_note_generation_settings_from_py(&value)?;
-            Ok(converted_153)
+        let converted_284 = (|| -> PyResult<_> {
+            let converted_284 = clinical_note_generation_settings_from_py(&value)?;
+            Ok(converted_284)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1684,7 +3012,21 @@ fn medical_scribe_post_stream_action_settings_from_py(
                 "dict (ClinicalNoteGenerationSettings)",
             )
         })?;
-        builder = builder.set_clinical_note_generation_settings(Some(converted_153));
+        builder = builder.set_clinical_note_generation_settings(Some(converted_284));
+    }
+    if let Some(value) = dict_value(values, "medical_code_generation_settings")? {
+        let converted_285 = (|| -> PyResult<_> {
+            let converted_285 = medical_code_generation_settings_from_py(&value)?;
+            Ok(converted_285)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_code_generation_settings"),
+                "dict (MedicalCodeGenerationSettings)",
+            )
+        })?;
+        builder = builder.set_medical_code_generation_settings(Some(converted_285));
     }
     builder
         .build()
@@ -1696,13 +3038,19 @@ fn medical_scribe_post_stream_action_settings_to_py(
     value: &aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettings,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_154 = (&value.output_s3_uri).as_str().into_py_any(py)?;
-    result.set_item("output_s3_uri", converted_154)?;
+    let converted_286 = (&value.output_s3_uri).as_str().into_py_any(py)?;
+    result.set_item("output_s3_uri", converted_286)?;
     if let Some(value) = &value.clinical_note_generation_settings {
-        let converted_155 = clinical_note_generation_settings_to_py(py, value)?;
-        result.set_item("clinical_note_generation_settings", converted_155)?;
+        let converted_287 = clinical_note_generation_settings_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_287)?;
     } else {
         result.set_item("clinical_note_generation_settings", py.None())?;
+    }
+    if let Some(value) = &value.medical_code_generation_settings {
+        let converted_288 = medical_code_generation_settings_to_py(py, value)?;
+        result.set_item("medical_code_generation_settings", converted_288)?;
+    } else {
+        result.set_item("medical_code_generation_settings", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -1713,24 +3061,28 @@ fn medical_scribe_post_stream_action_settings_response_from_py(
     let values = value.cast::<PyDict>()?;
     rboto_core::validate_input_fields(
         values,
-        &["clinical_note_generation_settings", "output_s3_uri"],
+        &[
+            "clinical_note_generation_settings",
+            "medical_code_generation_settings",
+            "output_s3_uri",
+        ],
     )?;
     let mut builder =
         aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse::builder();
     if let Some(value) = dict_value(values, "output_s3_uri")? {
-        let converted_156 = (|| -> PyResult<_> {
-            let converted_156: String = value.extract()?;
-            Ok(converted_156)
+        let converted_289 = (|| -> PyResult<_> {
+            let converted_289: String = value.extract()?;
+            Ok(converted_289)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("output_s3_uri"), "str")
         })?;
-        builder = builder.set_output_s3_uri(Some(converted_156));
+        builder = builder.set_output_s3_uri(Some(converted_289));
     }
     if let Some(value) = dict_value(values, "clinical_note_generation_settings")? {
-        let converted_157 = (|| -> PyResult<_> {
-            let converted_157 = clinical_note_generation_settings_response_from_py(&value)?;
-            Ok(converted_157)
+        let converted_290 = (|| -> PyResult<_> {
+            let converted_290 = clinical_note_generation_settings_response_from_py(&value)?;
+            Ok(converted_290)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1739,7 +3091,21 @@ fn medical_scribe_post_stream_action_settings_response_from_py(
                 "dict (ClinicalNoteGenerationSettingsResponse)",
             )
         })?;
-        builder = builder.set_clinical_note_generation_settings(Some(converted_157));
+        builder = builder.set_clinical_note_generation_settings(Some(converted_290));
+    }
+    if let Some(value) = dict_value(values, "medical_code_generation_settings")? {
+        let converted_291 = (|| -> PyResult<_> {
+            let converted_291 = medical_code_generation_settings_response_from_py(&value)?;
+            Ok(converted_291)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_code_generation_settings"),
+                "dict (MedicalCodeGenerationSettingsResponse)",
+            )
+        })?;
+        builder = builder.set_medical_code_generation_settings(Some(converted_291));
     }
     builder
         .build()
@@ -1751,13 +3117,19 @@ fn medical_scribe_post_stream_action_settings_response_to_py(
     value: &aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsResponse,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_158 = (&value.output_s3_uri).as_str().into_py_any(py)?;
-    result.set_item("output_s3_uri", converted_158)?;
+    let converted_292 = (&value.output_s3_uri).as_str().into_py_any(py)?;
+    result.set_item("output_s3_uri", converted_292)?;
     if let Some(value) = &value.clinical_note_generation_settings {
-        let converted_159 = clinical_note_generation_settings_response_to_py(py, value)?;
-        result.set_item("clinical_note_generation_settings", converted_159)?;
+        let converted_293 = clinical_note_generation_settings_response_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_293)?;
     } else {
         result.set_item("clinical_note_generation_settings", py.None())?;
+    }
+    if let Some(value) = &value.medical_code_generation_settings {
+        let converted_294 = medical_code_generation_settings_response_to_py(py, value)?;
+        result.set_item("medical_code_generation_settings", converted_294)?;
+    } else {
+        result.set_item("medical_code_generation_settings", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -1766,12 +3138,18 @@ fn medical_scribe_post_stream_actions_result_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult> {
     let values = value.cast::<PyDict>()?;
-    rboto_core::validate_input_fields(values, &["clinical_note_generation_result"])?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "clinical_note_generation_result",
+            "medical_code_generation_result",
+        ],
+    )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult::builder();
     if let Some(value) = dict_value(values, "clinical_note_generation_result")? {
-        let converted_160 = (|| -> PyResult<_> {
-            let converted_160 = clinical_note_generation_result_from_py(&value)?;
-            Ok(converted_160)
+        let converted_295 = (|| -> PyResult<_> {
+            let converted_295 = clinical_note_generation_result_from_py(&value)?;
+            Ok(converted_295)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1780,7 +3158,21 @@ fn medical_scribe_post_stream_actions_result_from_py(
                 "dict (ClinicalNoteGenerationResult)",
             )
         })?;
-        builder = builder.set_clinical_note_generation_result(Some(converted_160));
+        builder = builder.set_clinical_note_generation_result(Some(converted_295));
+    }
+    if let Some(value) = dict_value(values, "medical_code_generation_result")? {
+        let converted_296 = (|| -> PyResult<_> {
+            let converted_296 = medical_code_generation_result_from_py(&value)?;
+            Ok(converted_296)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("medical_code_generation_result"),
+                "dict (MedicalCodeGenerationResult)",
+            )
+        })?;
+        builder = builder.set_medical_code_generation_result(Some(converted_296));
     }
     Ok(builder.build())
 }
@@ -1791,10 +3183,16 @@ fn medical_scribe_post_stream_actions_result_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_result {
-        let converted_161 = clinical_note_generation_result_to_py(py, value)?;
-        result.set_item("clinical_note_generation_result", converted_161)?;
+        let converted_297 = clinical_note_generation_result_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_297)?;
     } else {
         result.set_item("clinical_note_generation_result", py.None())?;
+    }
+    if let Some(value) = &value.medical_code_generation_result {
+        let converted_298 = medical_code_generation_result_to_py(py, value)?;
+        result.set_item("medical_code_generation_result", converted_298)?;
+    } else {
+        result.set_item("medical_code_generation_result", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -1806,13 +3204,13 @@ fn medical_scribe_session_control_event_from_py(
     rboto_core::validate_input_fields(values, &["type"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeSessionControlEvent::builder();
     if let Some(value) = dict_value(values, "type")? {
-        let converted_162 = (|| -> PyResult<_> {
-            let enum_value_163: String = value.extract()?;
-            let converted_162 =
+        let converted_299 = (|| -> PyResult<_> {
+            let enum_value_300: String = value.extract()?;
+            let converted_299 =
                 aws_sdk_connecthealth::types::MedicalScribeSessionControlEventType::from(
-                    enum_value_163.as_str(),
+                    enum_value_300.as_str(),
                 );
-            Ok(converted_162)
+            Ok(converted_299)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1821,7 +3219,7 @@ fn medical_scribe_session_control_event_from_py(
                 "str (MedicalScribeSessionControlEventType)",
             )
         })?;
-        builder = builder.set_type(Some(converted_162));
+        builder = builder.set_type(Some(converted_299));
     }
     Ok(builder.build())
 }
@@ -1832,8 +3230,8 @@ fn medical_scribe_session_control_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.r#type {
-        let converted_164 = (value).as_str().into_py_any(py)?;
-        result.set_item("type", converted_164)?;
+        let converted_301 = (value).as_str().into_py_any(py)?;
+        result.set_item("type", converted_301)?;
     } else {
         result.set_item("type", py.None())?;
     }
@@ -1847,9 +3245,9 @@ fn medical_scribe_transcript_event_from_py(
     rboto_core::validate_input_fields(values, &["transcript_segment"])?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeTranscriptEvent::builder();
     if let Some(value) = dict_value(values, "transcript_segment")? {
-        let converted_165 = (|| -> PyResult<_> {
-            let converted_165 = medical_scribe_transcript_segment_from_py(&value)?;
-            Ok(converted_165)
+        let converted_302 = (|| -> PyResult<_> {
+            let converted_302 = medical_scribe_transcript_segment_from_py(&value)?;
+            Ok(converted_302)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1858,7 +3256,7 @@ fn medical_scribe_transcript_event_from_py(
                 "dict (MedicalScribeTranscriptSegment)",
             )
         })?;
-        builder = builder.set_transcript_segment(Some(converted_165));
+        builder = builder.set_transcript_segment(Some(converted_302));
     }
     Ok(builder.build())
 }
@@ -1869,8 +3267,8 @@ fn medical_scribe_transcript_event_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.transcript_segment {
-        let converted_166 = medical_scribe_transcript_segment_to_py(py, value)?;
-        result.set_item("transcript_segment", converted_166)?;
+        let converted_303 = medical_scribe_transcript_segment_to_py(py, value)?;
+        result.set_item("transcript_segment", converted_303)?;
     } else {
         result.set_item("transcript_segment", py.None())?;
     }
@@ -1894,19 +3292,19 @@ fn medical_scribe_transcript_segment_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::MedicalScribeTranscriptSegment::builder();
     if let Some(value) = dict_value(values, "segment_id")? {
-        let converted_167 = (|| -> PyResult<_> {
-            let converted_167: String = value.extract()?;
-            Ok(converted_167)
+        let converted_304 = (|| -> PyResult<_> {
+            let converted_304: String = value.extract()?;
+            Ok(converted_304)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("segment_id"), "str")
         })?;
-        builder = builder.set_segment_id(Some(converted_167));
+        builder = builder.set_segment_id(Some(converted_304));
     }
     if let Some(value) = dict_value(values, "audio_begin_offset")? {
-        let converted_168 = (|| -> PyResult<_> {
-            let converted_168: f64 = value.extract()?;
-            Ok(converted_168)
+        let converted_305 = (|| -> PyResult<_> {
+            let converted_305: f64 = value.extract()?;
+            Ok(converted_305)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1915,12 +3313,12 @@ fn medical_scribe_transcript_segment_from_py(
                 "float",
             )
         })?;
-        builder = builder.set_audio_begin_offset(Some(converted_168));
+        builder = builder.set_audio_begin_offset(Some(converted_305));
     }
     if let Some(value) = dict_value(values, "audio_end_offset")? {
-        let converted_169 = (|| -> PyResult<_> {
-            let converted_169: f64 = value.extract()?;
-            Ok(converted_169)
+        let converted_306 = (|| -> PyResult<_> {
+            let converted_306: f64 = value.extract()?;
+            Ok(converted_306)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -1929,37 +3327,37 @@ fn medical_scribe_transcript_segment_from_py(
                 "float",
             )
         })?;
-        builder = builder.set_audio_end_offset(Some(converted_169));
+        builder = builder.set_audio_end_offset(Some(converted_306));
     }
     if let Some(value) = dict_value(values, "is_partial")? {
-        let converted_170 = (|| -> PyResult<_> {
-            let converted_170: bool = value.extract()?;
-            Ok(converted_170)
+        let converted_307 = (|| -> PyResult<_> {
+            let converted_307: bool = value.extract()?;
+            Ok(converted_307)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("is_partial"), "bool")
         })?;
-        builder = builder.set_is_partial(Some(converted_170));
+        builder = builder.set_is_partial(Some(converted_307));
     }
     if let Some(value) = dict_value(values, "channel_id")? {
-        let converted_171 = (|| -> PyResult<_> {
-            let converted_171: String = value.extract()?;
-            Ok(converted_171)
+        let converted_308 = (|| -> PyResult<_> {
+            let converted_308: String = value.extract()?;
+            Ok(converted_308)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("channel_id"), "str")
         })?;
-        builder = builder.set_channel_id(Some(converted_171));
+        builder = builder.set_channel_id(Some(converted_308));
     }
     if let Some(value) = dict_value(values, "content")? {
-        let converted_172 = (|| -> PyResult<_> {
-            let converted_172: String = value.extract()?;
-            Ok(converted_172)
+        let converted_309 = (|| -> PyResult<_> {
+            let converted_309: String = value.extract()?;
+            Ok(converted_309)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("content"), "str")
         })?;
-        builder = builder.set_content(Some(converted_172));
+        builder = builder.set_content(Some(converted_309));
     }
     Ok(builder.build())
 }
@@ -1970,38 +3368,38 @@ fn medical_scribe_transcript_segment_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.segment_id {
-        let converted_173 = (value).as_str().into_py_any(py)?;
-        result.set_item("segment_id", converted_173)?;
+        let converted_310 = (value).as_str().into_py_any(py)?;
+        result.set_item("segment_id", converted_310)?;
     } else {
         result.set_item("segment_id", py.None())?;
     }
     if let Some(value) = &value.audio_begin_offset {
-        let converted_174 = (value).to_owned().into_py_any(py)?;
-        result.set_item("audio_begin_offset", converted_174)?;
+        let converted_311 = (value).to_owned().into_py_any(py)?;
+        result.set_item("audio_begin_offset", converted_311)?;
     } else {
         result.set_item("audio_begin_offset", py.None())?;
     }
     if let Some(value) = &value.audio_end_offset {
-        let converted_175 = (value).to_owned().into_py_any(py)?;
-        result.set_item("audio_end_offset", converted_175)?;
+        let converted_312 = (value).to_owned().into_py_any(py)?;
+        result.set_item("audio_end_offset", converted_312)?;
     } else {
         result.set_item("audio_end_offset", py.None())?;
     }
     if let Some(value) = &value.is_partial {
-        let converted_176 = (value).to_owned().into_py_any(py)?;
-        result.set_item("is_partial", converted_176)?;
+        let converted_313 = (value).to_owned().into_py_any(py)?;
+        result.set_item("is_partial", converted_313)?;
     } else {
         result.set_item("is_partial", py.None())?;
     }
     if let Some(value) = &value.channel_id {
-        let converted_177 = (value).as_str().into_py_any(py)?;
-        result.set_item("channel_id", converted_177)?;
+        let converted_314 = (value).as_str().into_py_any(py)?;
+        result.set_item("channel_id", converted_314)?;
     } else {
         result.set_item("channel_id", py.None())?;
     }
     if let Some(value) = &value.content {
-        let converted_178 = (value).as_str().into_py_any(py)?;
-        result.set_item("content", converted_178)?;
+        let converted_315 = (value).as_str().into_py_any(py)?;
+        result.set_item("content", converted_315)?;
     } else {
         result.set_item("content", py.None())?;
     }
@@ -2021,9 +3419,9 @@ fn note_template_settings_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "managed_template")? {
-        let converted_179 = (|| -> PyResult<_> {
-            let converted_179 = managed_template_from_py(&value)?;
-            Ok(converted_179)
+        let converted_316 = (|| -> PyResult<_> {
+            let converted_316 = managed_template_from_py(&value)?;
+            Ok(converted_316)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2033,13 +3431,13 @@ fn note_template_settings_from_py(
             )
         })?;
         return Ok(
-            aws_sdk_connecthealth::types::NoteTemplateSettings::ManagedTemplate(converted_179),
+            aws_sdk_connecthealth::types::NoteTemplateSettings::ManagedTemplate(converted_316),
         );
     }
     if let Some(value) = dict_value(values, "custom_template")? {
-        let converted_180 = (|| -> PyResult<_> {
-            let converted_180 = custom_template_from_py(&value)?;
-            Ok(converted_180)
+        let converted_317 = (|| -> PyResult<_> {
+            let converted_317 = custom_template_from_py(&value)?;
+            Ok(converted_317)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2049,7 +3447,7 @@ fn note_template_settings_from_py(
             )
         })?;
         return Ok(
-            aws_sdk_connecthealth::types::NoteTemplateSettings::CustomTemplate(converted_180),
+            aws_sdk_connecthealth::types::NoteTemplateSettings::CustomTemplate(converted_317),
         );
     }
     Err(rboto_core::input_rule(
@@ -2067,12 +3465,12 @@ fn note_template_settings_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_connecthealth::types::NoteTemplateSettings::ManagedTemplate(value) => {
-            let converted_181 = managed_template_to_py(py, value)?;
-            result.set_item("managed_template", converted_181)?;
+            let converted_318 = managed_template_to_py(py, value)?;
+            result.set_item("managed_template", converted_318)?;
         }
         aws_sdk_connecthealth::types::NoteTemplateSettings::CustomTemplate(value) => {
-            let converted_182 = custom_template_to_py(py, value)?;
-            result.set_item("custom_template", converted_182)?;
+            let converted_319 = custom_template_to_py(py, value)?;
+            result.set_item("custom_template", converted_319)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2094,9 +3492,9 @@ fn note_template_settings_response_from_py(
         ));
     }
     if let Some(value) = dict_value(values, "managed_template")? {
-        let converted_183 = (|| -> PyResult<_> {
-            let converted_183 = managed_template_response_from_py(&value)?;
-            Ok(converted_183)
+        let converted_320 = (|| -> PyResult<_> {
+            let converted_320 = managed_template_response_from_py(&value)?;
+            Ok(converted_320)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2107,14 +3505,14 @@ fn note_template_settings_response_from_py(
         })?;
         return Ok(
             aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::ManagedTemplate(
-                converted_183,
+                converted_320,
             ),
         );
     }
     if let Some(value) = dict_value(values, "custom_template")? {
-        let converted_184 = (|| -> PyResult<_> {
-            let converted_184 = custom_template_response_from_py(&value)?;
-            Ok(converted_184)
+        let converted_321 = (|| -> PyResult<_> {
+            let converted_321 = custom_template_response_from_py(&value)?;
+            Ok(converted_321)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2125,7 +3523,7 @@ fn note_template_settings_response_from_py(
         })?;
         return Ok(
             aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::CustomTemplate(
-                converted_184,
+                converted_321,
             ),
         );
     }
@@ -2144,12 +3542,12 @@ fn note_template_settings_response_to_py(
     let result = PyDict::new(py);
     match value {
         aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::ManagedTemplate(value) => {
-            let converted_185 = managed_template_response_to_py(py, value)?;
-            result.set_item("managed_template", converted_185)?;
+            let converted_322 = managed_template_response_to_py(py, value)?;
+            result.set_item("managed_template", converted_322)?;
         }
         aws_sdk_connecthealth::types::NoteTemplateSettingsResponse::CustomTemplate(value) => {
-            let converted_186 = custom_template_response_to_py(py, value)?;
-            result.set_item("custom_template", converted_186)?;
+            let converted_323 = custom_template_response_to_py(py, value)?;
+            result.set_item("custom_template", converted_323)?;
         }
         _ => {
             result.set_item("unknown", true)?;
@@ -2165,14 +3563,14 @@ fn output_data_config_from_py(
     rboto_core::validate_input_fields(values, &["s3_output_path"])?;
     let mut builder = aws_sdk_connecthealth::types::OutputDataConfig::builder();
     if let Some(value) = dict_value(values, "s3_output_path")? {
-        let converted_187 = (|| -> PyResult<_> {
-            let converted_187: String = value.extract()?;
-            Ok(converted_187)
+        let converted_324 = (|| -> PyResult<_> {
+            let converted_324: String = value.extract()?;
+            Ok(converted_324)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("s3_output_path"), "str")
         })?;
-        builder = builder.set_s3_output_path(Some(converted_187));
+        builder = builder.set_s3_output_path(Some(converted_324));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("s3_output_path", "s3_output_path")])
@@ -2184,8 +3582,8 @@ fn output_data_config_to_py(
     value: &aws_sdk_connecthealth::types::OutputDataConfig,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_188 = (&value.s3_output_path).as_str().into_py_any(py)?;
-    result.set_item("s3_output_path", converted_188)?;
+    let converted_325 = (&value.s3_output_path).as_str().into_py_any(py)?;
+    result.set_item("s3_output_path", converted_325)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2196,9 +3594,9 @@ fn patient_insights_encounter_context_from_py(
     rboto_core::validate_input_fields(values, &["encounter_reason"])?;
     let mut builder = aws_sdk_connecthealth::types::PatientInsightsEncounterContext::builder();
     if let Some(value) = dict_value(values, "encounter_reason")? {
-        let converted_189 = (|| -> PyResult<_> {
-            let converted_189: String = value.extract()?;
-            Ok(converted_189)
+        let converted_326 = (|| -> PyResult<_> {
+            let converted_326: String = value.extract()?;
+            Ok(converted_326)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2207,7 +3605,7 @@ fn patient_insights_encounter_context_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_encounter_reason(Some(converted_189));
+        builder = builder.set_encounter_reason(Some(converted_326));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("encounter_reason", "encounter_reason")])
@@ -2219,8 +3617,8 @@ fn patient_insights_encounter_context_to_py(
     value: &aws_sdk_connecthealth::types::PatientInsightsEncounterContext,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_190 = (&value.encounter_reason).as_str().into_py_any(py)?;
-    result.set_item("encounter_reason", converted_190)?;
+    let converted_327 = (&value.encounter_reason).as_str().into_py_any(py)?;
+    result.set_item("encounter_reason", converted_327)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2231,31 +3629,31 @@ fn patient_insights_patient_context_from_py(
     rboto_core::validate_input_fields(values, &["date_of_birth", "patient_id", "pronouns"])?;
     let mut builder = aws_sdk_connecthealth::types::PatientInsightsPatientContext::builder();
     if let Some(value) = dict_value(values, "patient_id")? {
-        let converted_191 = (|| -> PyResult<_> {
-            let converted_191: String = value.extract()?;
-            Ok(converted_191)
+        let converted_328 = (|| -> PyResult<_> {
+            let converted_328: String = value.extract()?;
+            Ok(converted_328)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("patient_id"), "str")
         })?;
-        builder = builder.set_patient_id(Some(converted_191));
+        builder = builder.set_patient_id(Some(converted_328));
     }
     if let Some(value) = dict_value(values, "date_of_birth")? {
-        let converted_192 = (|| -> PyResult<_> {
-            let converted_192: String = value.extract()?;
-            Ok(converted_192)
+        let converted_329 = (|| -> PyResult<_> {
+            let converted_329: String = value.extract()?;
+            Ok(converted_329)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("date_of_birth"), "str")
         })?;
-        builder = builder.set_date_of_birth(Some(converted_192));
+        builder = builder.set_date_of_birth(Some(converted_329));
     }
     if let Some(value) = dict_value(values, "pronouns")? {
-        let converted_193 = (|| -> PyResult<_> {
-            let enum_value_194: String = value.extract()?;
-            let converted_193 =
-                aws_sdk_connecthealth::types::Pronouns::from(enum_value_194.as_str());
-            Ok(converted_193)
+        let converted_330 = (|| -> PyResult<_> {
+            let enum_value_331: String = value.extract()?;
+            let converted_330 =
+                aws_sdk_connecthealth::types::Pronouns::from(enum_value_331.as_str());
+            Ok(converted_330)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2264,7 +3662,7 @@ fn patient_insights_patient_context_from_py(
                 "str (Pronouns)",
             )
         })?;
-        builder = builder.set_pronouns(Some(converted_193));
+        builder = builder.set_pronouns(Some(converted_330));
     }
     builder
         .build()
@@ -2276,19 +3674,356 @@ fn patient_insights_patient_context_to_py(
     value: &aws_sdk_connecthealth::types::PatientInsightsPatientContext,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_195 = (&value.patient_id).as_str().into_py_any(py)?;
-    result.set_item("patient_id", converted_195)?;
+    let converted_332 = (&value.patient_id).as_str().into_py_any(py)?;
+    result.set_item("patient_id", converted_332)?;
     if let Some(value) = &value.date_of_birth {
-        let converted_196 = (value).as_str().into_py_any(py)?;
-        result.set_item("date_of_birth", converted_196)?;
+        let converted_333 = (value).as_str().into_py_any(py)?;
+        result.set_item("date_of_birth", converted_333)?;
     } else {
         result.set_item("date_of_birth", py.None())?;
     }
     if let Some(value) = &value.pronouns {
-        let converted_197 = (value).as_str().into_py_any(py)?;
-        result.set_item("pronouns", converted_197)?;
+        let converted_334 = (value).as_str().into_py_any(py)?;
+        result.set_item("pronouns", converted_334)?;
     } else {
         result.set_item("pronouns", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn periodontal_review_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::PeriodontalReview> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["reason", "sites", "tooth_number"])?;
+    let mut builder = aws_sdk_connecthealth::types::PeriodontalReview::builder();
+    if let Some(value) = dict_value(values, "reason")? {
+        let converted_335 = (|| -> PyResult<_> {
+            let enum_value_336: String = value.extract()?;
+            let converted_335 = aws_sdk_connecthealth::types::PeriodontalReviewReason::from(
+                enum_value_336.as_str(),
+            );
+            Ok(converted_335)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("reason"),
+                "str (PeriodontalReviewReason)",
+            )
+        })?;
+        builder = builder.set_reason(Some(converted_335));
+    }
+    if let Some(value) = dict_value(values, "tooth_number")? {
+        let converted_337 = (|| -> PyResult<_> {
+            let converted_337: i32 = value.extract()?;
+            Ok(converted_337)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tooth_number"), "int")
+        })?;
+        builder = builder.set_tooth_number(Some(converted_337));
+    }
+    if let Some(value) = dict_value(values, "sites")? {
+        let converted_338 = (|| -> PyResult<_> {
+            let mut converted_338 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_342, item_result_339) in value.try_iter()?.enumerate() {
+                let item_340 = item_result_339.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_342),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_341 = (|| -> PyResult<_> {
+                    let enum_value_343: String = item_340.extract()?;
+                    let converted_item_341 =
+                        aws_sdk_connecthealth::types::PeriodontalSiteName::from(
+                            enum_value_343.as_str(),
+                        );
+                    Ok(converted_item_341)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_342),
+                        "str (PeriodontalSiteName)",
+                    )
+                })?;
+                converted_338.push(converted_item_341);
+            }
+            Ok(converted_338)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sites"), "sequence")
+        })?;
+        builder = builder.set_sites(Some(converted_338));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("reason", "reason")]))
+}
+
+fn periodontal_review_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::PeriodontalReview,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_344 = (&value.reason).as_str().into_py_any(py)?;
+    result.set_item("reason", converted_344)?;
+    if let Some(value) = &value.tooth_number {
+        let converted_345 = (value).to_owned().into_py_any(py)?;
+        result.set_item("tooth_number", converted_345)?;
+    } else {
+        result.set_item("tooth_number", py.None())?;
+    }
+    if let Some(value) = &value.sites {
+        let converted_346_list = PyList::empty(py);
+        for item_347 in value {
+            let converted_item_348 = (item_347).as_str().into_py_any(py)?;
+            converted_346_list.append(converted_item_348)?;
+        }
+        let converted_346 = converted_346_list.into_any().unbind();
+        result.set_item("sites", converted_346)?;
+    } else {
+        result.set_item("sites", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn periodontal_site_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::PeriodontalSite> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "bleeding",
+            "probing_depth",
+            "recession",
+            "site",
+            "suppuration",
+        ],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::PeriodontalSite::builder();
+    if let Some(value) = dict_value(values, "site")? {
+        let converted_349 = (|| -> PyResult<_> {
+            let enum_value_350: String = value.extract()?;
+            let converted_349 =
+                aws_sdk_connecthealth::types::PeriodontalSiteName::from(enum_value_350.as_str());
+            Ok(converted_349)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("site"),
+                "str (PeriodontalSiteName)",
+            )
+        })?;
+        builder = builder.set_site(Some(converted_349));
+    }
+    if let Some(value) = dict_value(values, "probing_depth")? {
+        let converted_351 = (|| -> PyResult<_> {
+            let converted_351: i32 = value.extract()?;
+            Ok(converted_351)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("probing_depth"), "int")
+        })?;
+        builder = builder.set_probing_depth(Some(converted_351));
+    }
+    if let Some(value) = dict_value(values, "recession")? {
+        let converted_352 = (|| -> PyResult<_> {
+            let converted_352: i32 = value.extract()?;
+            Ok(converted_352)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("recession"), "int")
+        })?;
+        builder = builder.set_recession(Some(converted_352));
+    }
+    if let Some(value) = dict_value(values, "bleeding")? {
+        let converted_353 = (|| -> PyResult<_> {
+            let converted_353: bool = value.extract()?;
+            Ok(converted_353)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("bleeding"), "bool")
+        })?;
+        builder = builder.set_bleeding(Some(converted_353));
+    }
+    if let Some(value) = dict_value(values, "suppuration")? {
+        let converted_354 = (|| -> PyResult<_> {
+            let converted_354: bool = value.extract()?;
+            Ok(converted_354)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("suppuration"), "bool")
+        })?;
+        builder = builder.set_suppuration(Some(converted_354));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("site", "site")]))
+}
+
+fn periodontal_site_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::PeriodontalSite,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_355 = (&value.site).as_str().into_py_any(py)?;
+    result.set_item("site", converted_355)?;
+    if let Some(value) = &value.probing_depth {
+        let converted_356 = (value).to_owned().into_py_any(py)?;
+        result.set_item("probing_depth", converted_356)?;
+    } else {
+        result.set_item("probing_depth", py.None())?;
+    }
+    if let Some(value) = &value.recession {
+        let converted_357 = (value).to_owned().into_py_any(py)?;
+        result.set_item("recession", converted_357)?;
+    } else {
+        result.set_item("recession", py.None())?;
+    }
+    if let Some(value) = &value.bleeding {
+        let converted_358 = (value).to_owned().into_py_any(py)?;
+        result.set_item("bleeding", converted_358)?;
+    } else {
+        result.set_item("bleeding", py.None())?;
+    }
+    if let Some(value) = &value.suppuration {
+        let converted_359 = (value).to_owned().into_py_any(py)?;
+        result.set_item("suppuration", converted_359)?;
+    } else {
+        result.set_item("suppuration", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn periodontal_tooth_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_connecthealth::types::PeriodontalTooth> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &["furcation", "missing", "mobility", "sites", "tooth_number"],
+    )?;
+    let mut builder = aws_sdk_connecthealth::types::PeriodontalTooth::builder();
+    if let Some(value) = dict_value(values, "tooth_number")? {
+        let converted_360 = (|| -> PyResult<_> {
+            let converted_360: i32 = value.extract()?;
+            Ok(converted_360)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("tooth_number"), "int")
+        })?;
+        builder = builder.set_tooth_number(Some(converted_360));
+    }
+    if let Some(value) = dict_value(values, "missing")? {
+        let converted_361 = (|| -> PyResult<_> {
+            let converted_361: bool = value.extract()?;
+            Ok(converted_361)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("missing"), "bool")
+        })?;
+        builder = builder.set_missing(Some(converted_361));
+    }
+    if let Some(value) = dict_value(values, "mobility")? {
+        let converted_362 = (|| -> PyResult<_> {
+            let converted_362: i32 = value.extract()?;
+            Ok(converted_362)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("mobility"), "int")
+        })?;
+        builder = builder.set_mobility(Some(converted_362));
+    }
+    if let Some(value) = dict_value(values, "furcation")? {
+        let converted_363 = (|| -> PyResult<_> {
+            let converted_363: i32 = value.extract()?;
+            Ok(converted_363)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("furcation"), "int")
+        })?;
+        builder = builder.set_furcation(Some(converted_363));
+    }
+    if let Some(value) = dict_value(values, "sites")? {
+        let converted_364 = (|| -> PyResult<_> {
+            let mut converted_364 =
+                Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+            for (index_368, item_result_365) in value.try_iter()?.enumerate() {
+                let item_366 = item_result_365.map_err(|error| {
+                    rboto_core::input_rule(
+                        error,
+                        rboto_core::InputPath::Index(index_368),
+                        "next sequence item",
+                        Some("iteration"),
+                    )
+                })?;
+                let converted_item_367 = (|| -> PyResult<_> {
+                    let converted_item_367 = periodontal_site_from_py(&item_366)?;
+                    Ok(converted_item_367)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Index(index_368),
+                        "dict (PeriodontalSite)",
+                    )
+                })?;
+                converted_364.push(converted_item_367);
+            }
+            Ok(converted_364)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("sites"), "sequence")
+        })?;
+        builder = builder.set_sites(Some(converted_364));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[("tooth_number", "tooth_number"), ("missing", "missing")],
+        )
+    })
+}
+
+fn periodontal_tooth_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_connecthealth::types::PeriodontalTooth,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_369 = (&value.tooth_number).to_owned().into_py_any(py)?;
+    result.set_item("tooth_number", converted_369)?;
+    let converted_370 = (&value.missing).to_owned().into_py_any(py)?;
+    result.set_item("missing", converted_370)?;
+    if let Some(value) = &value.mobility {
+        let converted_371 = (value).to_owned().into_py_any(py)?;
+        result.set_item("mobility", converted_371)?;
+    } else {
+        result.set_item("mobility", py.None())?;
+    }
+    if let Some(value) = &value.furcation {
+        let converted_372 = (value).to_owned().into_py_any(py)?;
+        result.set_item("furcation", converted_372)?;
+    } else {
+        result.set_item("furcation", py.None())?;
+    }
+    if let Some(value) = &value.sites {
+        let converted_373_list = PyList::empty(py);
+        for item_374 in value {
+            let converted_item_375 = periodontal_site_to_py(py, item_374)?;
+            converted_373_list.append(converted_item_375)?;
+        }
+        let converted_373 = converted_373_list.into_any().unbind();
+        result.set_item("sites", converted_373)?;
+    } else {
+        result.set_item("sites", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -2298,14 +4033,14 @@ fn s3_source_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_connecthealth
     rboto_core::validate_input_fields(values, &["uri"])?;
     let mut builder = aws_sdk_connecthealth::types::S3Source::builder();
     if let Some(value) = dict_value(values, "uri")? {
-        let converted_198 = (|| -> PyResult<_> {
-            let converted_198: String = value.extract()?;
-            Ok(converted_198)
+        let converted_376 = (|| -> PyResult<_> {
+            let converted_376: String = value.extract()?;
+            Ok(converted_376)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("uri"), "str")
         })?;
-        builder = builder.set_uri(Some(converted_198));
+        builder = builder.set_uri(Some(converted_376));
     }
     builder
         .build()
@@ -2317,8 +4052,8 @@ fn s3_source_to_py(
     value: &aws_sdk_connecthealth::types::S3Source,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_199 = (&value.uri).as_str().into_py_any(py)?;
-    result.set_item("uri", converted_199)?;
+    let converted_377 = (&value.uri).as_str().into_py_any(py)?;
+    result.set_item("uri", converted_377)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2341,19 +4076,19 @@ fn subscription_description_from_py(
     )?;
     let mut builder = aws_sdk_connecthealth::types::SubscriptionDescription::builder();
     if let Some(value) = dict_value(values, "domain_id")? {
-        let converted_200 = (|| -> PyResult<_> {
-            let converted_200: String = value.extract()?;
-            Ok(converted_200)
+        let converted_378 = (|| -> PyResult<_> {
+            let converted_378: String = value.extract()?;
+            Ok(converted_378)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("domain_id"), "str")
         })?;
-        builder = builder.set_domain_id(Some(converted_200));
+        builder = builder.set_domain_id(Some(converted_378));
     }
     if let Some(value) = dict_value(values, "subscription_id")? {
-        let converted_201 = (|| -> PyResult<_> {
-            let converted_201: String = value.extract()?;
-            Ok(converted_201)
+        let converted_379 = (|| -> PyResult<_> {
+            let converted_379: String = value.extract()?;
+            Ok(converted_379)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2362,24 +4097,24 @@ fn subscription_description_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_subscription_id(Some(converted_201));
+        builder = builder.set_subscription_id(Some(converted_379));
     }
     if let Some(value) = dict_value(values, "arn")? {
-        let converted_202 = (|| -> PyResult<_> {
-            let converted_202: String = value.extract()?;
-            Ok(converted_202)
+        let converted_380 = (|| -> PyResult<_> {
+            let converted_380: String = value.extract()?;
+            Ok(converted_380)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("arn"), "str")
         })?;
-        builder = builder.set_arn(Some(converted_202));
+        builder = builder.set_arn(Some(converted_380));
     }
     if let Some(value) = dict_value(values, "status")? {
-        let converted_203 = (|| -> PyResult<_> {
-            let enum_value_204: String = value.extract()?;
-            let converted_203 =
-                aws_sdk_connecthealth::types::SubscriptionStatus::from(enum_value_204.as_str());
-            Ok(converted_203)
+        let converted_381 = (|| -> PyResult<_> {
+            let enum_value_382: String = value.extract()?;
+            let converted_381 =
+                aws_sdk_connecthealth::types::SubscriptionStatus::from(enum_value_382.as_str());
+            Ok(converted_381)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2388,17 +4123,17 @@ fn subscription_description_from_py(
                 "str (SubscriptionStatus)",
             )
         })?;
-        builder = builder.set_status(Some(converted_203));
+        builder = builder.set_status(Some(converted_381));
     }
     if let Some(value) = dict_value(values, "created_at")? {
-        let converted_205 = (|| -> PyResult<_> {
-            let timestamp_206: String = value.extract()?;
-            let converted_205 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_206,
+        let converted_383 = (|| -> PyResult<_> {
+            let timestamp_384: String = value.extract()?;
+            let converted_383 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_384,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_205)
+            Ok(converted_383)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2407,17 +4142,17 @@ fn subscription_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_created_at(Some(converted_205));
+        builder = builder.set_created_at(Some(converted_383));
     }
     if let Some(value) = dict_value(values, "last_updated_at")? {
-        let converted_207 = (|| -> PyResult<_> {
-            let timestamp_208: String = value.extract()?;
-            let converted_207 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_208,
+        let converted_385 = (|| -> PyResult<_> {
+            let timestamp_386: String = value.extract()?;
+            let converted_385 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_386,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_207)
+            Ok(converted_385)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2426,17 +4161,17 @@ fn subscription_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_last_updated_at(Some(converted_207));
+        builder = builder.set_last_updated_at(Some(converted_385));
     }
     if let Some(value) = dict_value(values, "activated_at")? {
-        let converted_209 = (|| -> PyResult<_> {
-            let timestamp_210: String = value.extract()?;
-            let converted_209 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_210,
+        let converted_387 = (|| -> PyResult<_> {
+            let timestamp_388: String = value.extract()?;
+            let converted_387 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_388,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_209)
+            Ok(converted_387)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2445,17 +4180,17 @@ fn subscription_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_activated_at(Some(converted_209));
+        builder = builder.set_activated_at(Some(converted_387));
     }
     if let Some(value) = dict_value(values, "deactivated_at")? {
-        let converted_211 = (|| -> PyResult<_> {
-            let timestamp_212: String = value.extract()?;
-            let converted_211 = ::aws_smithy_types::DateTime::from_str(
-                &timestamp_212,
+        let converted_389 = (|| -> PyResult<_> {
+            let timestamp_390: String = value.extract()?;
+            let converted_389 = ::aws_smithy_types::DateTime::from_str(
+                &timestamp_390,
                 ::aws_smithy_types::date_time::Format::DateTime,
             )
             .map_err(|_| PyValueError::new_err("invalid timestamp"))?;
-            Ok(converted_211)
+            Ok(converted_389)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2464,7 +4199,7 @@ fn subscription_description_from_py(
                 "ISO 8601 timestamp string",
             )
         })?;
-        builder = builder.set_deactivated_at(Some(converted_211));
+        builder = builder.set_deactivated_at(Some(converted_389));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2486,27 +4221,27 @@ fn subscription_description_to_py(
     value: &aws_sdk_connecthealth::types::SubscriptionDescription,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_213 = (&value.domain_id).as_str().into_py_any(py)?;
-    result.set_item("domain_id", converted_213)?;
-    let converted_214 = (&value.subscription_id).as_str().into_py_any(py)?;
-    result.set_item("subscription_id", converted_214)?;
-    let converted_215 = (&value.arn).as_str().into_py_any(py)?;
-    result.set_item("arn", converted_215)?;
-    let converted_216 = (&value.status).as_str().into_py_any(py)?;
-    result.set_item("status", converted_216)?;
-    let converted_217 = (&value.created_at).to_string().into_py_any(py)?;
-    result.set_item("created_at", converted_217)?;
-    let converted_218 = (&value.last_updated_at).to_string().into_py_any(py)?;
-    result.set_item("last_updated_at", converted_218)?;
+    let converted_391 = (&value.domain_id).as_str().into_py_any(py)?;
+    result.set_item("domain_id", converted_391)?;
+    let converted_392 = (&value.subscription_id).as_str().into_py_any(py)?;
+    result.set_item("subscription_id", converted_392)?;
+    let converted_393 = (&value.arn).as_str().into_py_any(py)?;
+    result.set_item("arn", converted_393)?;
+    let converted_394 = (&value.status).as_str().into_py_any(py)?;
+    result.set_item("status", converted_394)?;
+    let converted_395 = (&value.created_at).to_string().into_py_any(py)?;
+    result.set_item("created_at", converted_395)?;
+    let converted_396 = (&value.last_updated_at).to_string().into_py_any(py)?;
+    result.set_item("last_updated_at", converted_396)?;
     if let Some(value) = &value.activated_at {
-        let converted_219 = (value).to_string().into_py_any(py)?;
-        result.set_item("activated_at", converted_219)?;
+        let converted_397 = (value).to_string().into_py_any(py)?;
+        result.set_item("activated_at", converted_397)?;
     } else {
         result.set_item("activated_at", py.None())?;
     }
     if let Some(value) = &value.deactivated_at {
-        let converted_220 = (value).to_string().into_py_any(py)?;
-        result.set_item("deactivated_at", converted_220)?;
+        let converted_398 = (value).to_string().into_py_any(py)?;
+        result.set_item("deactivated_at", converted_398)?;
     } else {
         result.set_item("deactivated_at", py.None())?;
     }
@@ -2520,19 +4255,19 @@ fn template_section_instruction_from_py(
     rboto_core::validate_input_fields(values, &["section_header", "section_instruction"])?;
     let mut builder = aws_sdk_connecthealth::types::TemplateSectionInstruction::builder();
     if let Some(value) = dict_value(values, "section_header")? {
-        let converted_221 = (|| -> PyResult<_> {
-            let converted_221: String = value.extract()?;
-            Ok(converted_221)
+        let converted_399 = (|| -> PyResult<_> {
+            let converted_399: String = value.extract()?;
+            Ok(converted_399)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("section_header"), "str")
         })?;
-        builder = builder.set_section_header(Some(converted_221));
+        builder = builder.set_section_header(Some(converted_399));
     }
     if let Some(value) = dict_value(values, "section_instruction")? {
-        let converted_222 = (|| -> PyResult<_> {
-            let converted_222: String = value.extract()?;
-            Ok(converted_222)
+        let converted_400 = (|| -> PyResult<_> {
+            let converted_400: String = value.extract()?;
+            Ok(converted_400)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2541,7 +4276,7 @@ fn template_section_instruction_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_section_instruction(Some(converted_222));
+        builder = builder.set_section_instruction(Some(converted_400));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2559,10 +4294,10 @@ fn template_section_instruction_to_py(
     value: &aws_sdk_connecthealth::types::TemplateSectionInstruction,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_223 = (&value.section_header).as_str().into_py_any(py)?;
-    result.set_item("section_header", converted_223)?;
-    let converted_224 = (&value.section_instruction).as_str().into_py_any(py)?;
-    result.set_item("section_instruction", converted_224)?;
+    let converted_401 = (&value.section_header).as_str().into_py_any(py)?;
+    result.set_item("section_header", converted_401)?;
+    let converted_402 = (&value.section_instruction).as_str().into_py_any(py)?;
+    result.set_item("section_instruction", converted_402)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2573,11 +4308,11 @@ fn user_context_from_py(
     rboto_core::validate_input_fields(values, &["role", "specialty", "user_id"])?;
     let mut builder = aws_sdk_connecthealth::types::UserContext::builder();
     if let Some(value) = dict_value(values, "role")? {
-        let converted_225 = (|| -> PyResult<_> {
-            let enum_value_226: String = value.extract()?;
-            let converted_225 =
-                aws_sdk_connecthealth::types::ProviderRole::from(enum_value_226.as_str());
-            Ok(converted_225)
+        let converted_403 = (|| -> PyResult<_> {
+            let enum_value_404: String = value.extract()?;
+            let converted_403 =
+                aws_sdk_connecthealth::types::ProviderRole::from(enum_value_404.as_str());
+            Ok(converted_403)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2586,24 +4321,24 @@ fn user_context_from_py(
                 "str (ProviderRole)",
             )
         })?;
-        builder = builder.set_role(Some(converted_225));
+        builder = builder.set_role(Some(converted_403));
     }
     if let Some(value) = dict_value(values, "user_id")? {
-        let converted_227 = (|| -> PyResult<_> {
-            let converted_227: String = value.extract()?;
-            Ok(converted_227)
+        let converted_405 = (|| -> PyResult<_> {
+            let converted_405: String = value.extract()?;
+            Ok(converted_405)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("user_id"), "str")
         })?;
-        builder = builder.set_user_id(Some(converted_227));
+        builder = builder.set_user_id(Some(converted_405));
     }
     if let Some(value) = dict_value(values, "specialty")? {
-        let converted_228 = (|| -> PyResult<_> {
-            let enum_value_229: String = value.extract()?;
-            let converted_228 =
-                aws_sdk_connecthealth::types::Specialty::from(enum_value_229.as_str());
-            Ok(converted_228)
+        let converted_406 = (|| -> PyResult<_> {
+            let enum_value_407: String = value.extract()?;
+            let converted_406 =
+                aws_sdk_connecthealth::types::Specialty::from(enum_value_407.as_str());
+            Ok(converted_406)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2612,7 +4347,7 @@ fn user_context_from_py(
                 "str (Specialty)",
             )
         })?;
-        builder = builder.set_specialty(Some(converted_228));
+        builder = builder.set_specialty(Some(converted_406));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(values, &[("role", "role"), ("user_id", "user_id")])
@@ -2624,13 +4359,13 @@ fn user_context_to_py(
     value: &aws_sdk_connecthealth::types::UserContext,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_230 = (&value.role).as_str().into_py_any(py)?;
-    result.set_item("role", converted_230)?;
-    let converted_231 = (&value.user_id).as_str().into_py_any(py)?;
-    result.set_item("user_id", converted_231)?;
+    let converted_408 = (&value.role).as_str().into_py_any(py)?;
+    result.set_item("role", converted_408)?;
+    let converted_409 = (&value.user_id).as_str().into_py_any(py)?;
+    result.set_item("user_id", converted_409)?;
     if let Some(value) = &value.specialty {
-        let converted_232 = (value).as_str().into_py_any(py)?;
-        result.set_item("specialty", converted_232)?;
+        let converted_410 = (value).as_str().into_py_any(py)?;
+        result.set_item("specialty", converted_410)?;
     } else {
         result.set_item("specialty", py.None())?;
     }
@@ -2644,19 +4379,19 @@ fn web_app_configuration_from_py(
     rboto_core::validate_input_fields(values, &["ehr_role", "idc_application_id", "idc_region"])?;
     let mut builder = aws_sdk_connecthealth::types::WebAppConfiguration::builder();
     if let Some(value) = dict_value(values, "ehr_role")? {
-        let converted_233 = (|| -> PyResult<_> {
-            let converted_233: String = value.extract()?;
-            Ok(converted_233)
+        let converted_411 = (|| -> PyResult<_> {
+            let converted_411: String = value.extract()?;
+            Ok(converted_411)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("ehr_role"), "str")
         })?;
-        builder = builder.set_ehr_role(Some(converted_233));
+        builder = builder.set_ehr_role(Some(converted_411));
     }
     if let Some(value) = dict_value(values, "idc_application_id")? {
-        let converted_234 = (|| -> PyResult<_> {
-            let converted_234: String = value.extract()?;
-            Ok(converted_234)
+        let converted_412 = (|| -> PyResult<_> {
+            let converted_412: String = value.extract()?;
+            Ok(converted_412)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -2665,17 +4400,17 @@ fn web_app_configuration_from_py(
                 "str",
             )
         })?;
-        builder = builder.set_idc_application_id(Some(converted_234));
+        builder = builder.set_idc_application_id(Some(converted_412));
     }
     if let Some(value) = dict_value(values, "idc_region")? {
-        let converted_235 = (|| -> PyResult<_> {
-            let converted_235: String = value.extract()?;
-            Ok(converted_235)
+        let converted_413 = (|| -> PyResult<_> {
+            let converted_413: String = value.extract()?;
+            Ok(converted_413)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("idc_region"), "str")
         })?;
-        builder = builder.set_idc_region(Some(converted_235));
+        builder = builder.set_idc_region(Some(converted_413));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -2694,12 +4429,12 @@ fn web_app_configuration_to_py(
     value: &aws_sdk_connecthealth::types::WebAppConfiguration,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_236 = (&value.ehr_role).as_str().into_py_any(py)?;
-    result.set_item("ehr_role", converted_236)?;
-    let converted_237 = (&value.idc_application_id).as_str().into_py_any(py)?;
-    result.set_item("idc_application_id", converted_237)?;
-    let converted_238 = (&value.idc_region).as_str().into_py_any(py)?;
-    result.set_item("idc_region", converted_238)?;
+    let converted_414 = (&value.ehr_role).as_str().into_py_any(py)?;
+    result.set_item("ehr_role", converted_414)?;
+    let converted_415 = (&value.idc_application_id).as_str().into_py_any(py)?;
+    result.set_item("idc_application_id", converted_415)?;
+    let converted_416 = (&value.idc_region).as_str().into_py_any(py)?;
+    result.set_item("idc_region", converted_416)?;
     Ok(result.into_any().unbind())
 }
 
@@ -2717,8 +4452,8 @@ impl PyArtifactDetails {
     #[getter]
     fn output_location(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_location {
-            let converted_309 = (value).as_str().into_py_any(py)?;
-            Ok(converted_309)
+            let converted_518 = (value).as_str().into_py_any(py)?;
+            Ok(converted_518)
         } else {
             Ok(py.None())
         }
@@ -2727,8 +4462,8 @@ impl PyArtifactDetails {
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status {
-            let converted_310 = (value).as_str().into_py_any(py)?;
-            Ok(converted_310)
+            let converted_519 = (value).as_str().into_py_any(py)?;
+            Ok(converted_519)
         } else {
             Ok(py.None())
         }
@@ -2737,8 +4472,8 @@ impl PyArtifactDetails {
     #[getter]
     fn failure_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.failure_reason {
-            let converted_311 = (value).as_str().into_py_any(py)?;
-            Ok(converted_311)
+            let converted_520 = (value).as_str().into_py_any(py)?;
+            Ok(converted_520)
         } else {
             Ok(py.None())
         }
@@ -2775,20 +4510,20 @@ fn clinical_note_generation_result_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.note_result {
-        let converted_315 = artifact_details_to_py(py, value)?;
-        result.set_item("note_result", converted_315)?;
+        let converted_524 = artifact_details_to_py(py, value)?;
+        result.set_item("note_result", converted_524)?;
     } else {
         result.set_item("note_result", py.None())?;
     }
     if let Some(value) = &value.transcript_result {
-        let converted_316 = artifact_details_to_py(py, value)?;
-        result.set_item("transcript_result", converted_316)?;
+        let converted_525 = artifact_details_to_py(py, value)?;
+        result.set_item("transcript_result", converted_525)?;
     } else {
         result.set_item("transcript_result", py.None())?;
     }
     if let Some(value) = &value.after_visit_summary_result {
-        let converted_317 = artifact_details_to_py(py, value)?;
-        result.set_item("after_visit_summary_result", converted_317)?;
+        let converted_526 = artifact_details_to_py(py, value)?;
+        result.set_item("after_visit_summary_result", converted_526)?;
     } else {
         result.set_item("after_visit_summary_result", py.None())?;
     }
@@ -2809,14 +4544,14 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn note_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.note_result {
-            let converted_312 = Py::new(
+            let converted_521 = Py::new(
                 py,
                 PyArtifactDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_312)
+            Ok(converted_521)
         } else {
             Ok(py.None())
         }
@@ -2825,14 +4560,14 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn transcript_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.transcript_result {
-            let converted_313 = Py::new(
+            let converted_522 = Py::new(
                 py,
                 PyArtifactDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_313)
+            Ok(converted_522)
         } else {
             Ok(py.None())
         }
@@ -2841,14 +4576,14 @@ impl PyClinicalNoteGenerationResult {
     #[getter]
     fn after_visit_summary_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.after_visit_summary_result {
-            let converted_314 = Py::new(
+            let converted_523 = Py::new(
                 py,
                 PyArtifactDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_314)
+            Ok(converted_523)
         } else {
             Ok(py.None())
         }
@@ -2873,8 +4608,8 @@ impl PyClinicalNoteGenerationSettingsResponse {
     #[getter]
     fn note_template_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.note_template_settings {
-            let converted_318 = note_template_settings_response_to_py(py, value)?;
-            Ok(converted_318)
+            let converted_527 = note_template_settings_response_to_py(py, value)?;
+            Ok(converted_527)
         } else {
             Ok(py.None())
         }
@@ -2882,6 +4617,74 @@ impl PyClinicalNoteGenerationSettingsResponse {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         clinical_note_generation_settings_response_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "DatasetSummary",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyDatasetSummary {
+    inner: Arc<aws_sdk_connecthealth::types::DatasetSummary>,
+}
+
+#[pymethods]
+impl PyDatasetSummary {
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_528 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_528)
+    }
+
+    #[getter]
+    fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_529 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        Ok(converted_529)
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_530 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_530)
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_531 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_531)
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_532 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_532)
+    }
+
+    #[getter]
+    fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status_details {
+            let converted_533 = (value).as_str().into_py_any(py)?;
+            Ok(converted_533)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_534 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_534)
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_535 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_535)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        dataset_summary_to_py(py, &self.inner)
     }
 }
 
@@ -2894,32 +4697,32 @@ struct PyDomainSummary {
 impl PyDomainSummary {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_319 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_319)
+        let converted_536 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_536)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_320 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_320)
+        let converted_537 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_537)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_321 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_321)
+        let converted_538 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_538)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_322 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_322)
+        let converted_539 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_539)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_323 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_323)
+        let converted_540 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_540)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -2940,15 +4743,15 @@ struct PyEncryptionContext {
 impl PyEncryptionContext {
     #[getter]
     fn encryption_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_324 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
-        Ok(converted_324)
+        let converted_541 = (&self.inner.encryption_type).as_str().into_py_any(py)?;
+        Ok(converted_541)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_325 = (value).as_str().into_py_any(py)?;
-            Ok(converted_325)
+            let converted_542 = (value).as_str().into_py_any(py)?;
+            Ok(converted_542)
         } else {
             Ok(py.None())
         }
@@ -2968,15 +4771,15 @@ struct PyFhirServer {
 impl PyFhirServer {
     #[getter]
     fn fhir_endpoint(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_326 = (&self.inner.fhir_endpoint).as_str().into_py_any(py)?;
-        Ok(converted_326)
+        let converted_543 = (&self.inner.fhir_endpoint).as_str().into_py_any(py)?;
+        Ok(converted_543)
     }
 
     #[getter]
     fn oauth_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.oauth_token {
-            let converted_327 = (value).as_str().into_py_any(py)?;
-            Ok(converted_327)
+            let converted_544 = (value).as_str().into_py_any(py)?;
+            Ok(converted_544)
         } else {
             Ok(py.None())
         }
@@ -3001,7 +4804,7 @@ impl From<aws_sdk_connecthealth::types::InputDataConfig> for SharedInputDataConf
             s3_sources: value.s3_sources.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_332| Arc::new(owned_332))
+                    .map(|owned_549| Arc::new(owned_549))
                     .collect()
             }),
         }
@@ -3014,19 +4817,19 @@ fn input_data_config_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.fhir_server {
-        let converted_333 = fhir_server_to_py(py, value)?;
-        result.set_item("fhir_server", converted_333)?;
+        let converted_550 = fhir_server_to_py(py, value)?;
+        result.set_item("fhir_server", converted_550)?;
     } else {
         result.set_item("fhir_server", py.None())?;
     }
     if let Some(value) = &value.s3_sources {
-        let converted_334_list = PyList::empty(py);
-        for item_335 in value {
-            let converted_item_336 = s3_source_to_py(py, item_335)?;
-            converted_334_list.append(converted_item_336)?;
+        let converted_551_list = PyList::empty(py);
+        for item_552 in value {
+            let converted_item_553 = s3_source_to_py(py, item_552)?;
+            converted_551_list.append(converted_item_553)?;
         }
-        let converted_334 = converted_334_list.into_any().unbind();
-        result.set_item("s3_sources", converted_334)?;
+        let converted_551 = converted_551_list.into_any().unbind();
+        result.set_item("s3_sources", converted_551)?;
     } else {
         result.set_item("s3_sources", py.None())?;
     }
@@ -3047,14 +4850,14 @@ impl PyInputDataConfig {
     #[getter]
     fn fhir_server(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.fhir_server {
-            let converted_328 = Py::new(
+            let converted_545 = Py::new(
                 py,
                 PyFhirServer {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_328)
+            Ok(converted_545)
         } else {
             Ok(py.None())
         }
@@ -3063,19 +4866,19 @@ impl PyInputDataConfig {
     #[getter]
     fn s3_sources(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.s3_sources {
-            let converted_329_list = PyList::empty(py);
-            for item_330 in value {
-                let converted_item_331 = Py::new(
+            let converted_546_list = PyList::empty(py);
+            for item_547 in value {
+                let converted_item_548 = Py::new(
                     py,
                     PyS3Source {
-                        inner: Arc::clone(item_330),
+                        inner: Arc::clone(item_547),
                     },
                 )?
                 .into_any();
-                converted_329_list.append(converted_item_331)?;
+                converted_546_list.append(converted_item_548)?;
             }
-            let converted_329 = converted_329_list.into_any().unbind();
-            Ok(converted_329)
+            let converted_546 = converted_546_list.into_any().unbind();
+            Ok(converted_546)
         } else {
             Ok(py.None())
         }
@@ -3099,8 +4902,8 @@ struct PyInsightsContext {
 impl PyInsightsContext {
     #[getter]
     fn insights_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_337 = (&self.inner.insights_type).as_str().into_py_any(py)?;
-        Ok(converted_337)
+        let converted_554 = (&self.inner.insights_type).as_str().into_py_any(py)?;
+        Ok(converted_554)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3121,12 +4924,284 @@ struct PyInsightsOutput {
 impl PyInsightsOutput {
     #[getter]
     fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_338 = (&self.inner.uri).as_str().into_py_any(py)?;
-        Ok(converted_338)
+        let converted_555 = (&self.inner.uri).as_str().into_py_any(py)?;
+        Ok(converted_555)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         insights_output_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedMedicalCodeGenerationResult {
+    medical_codes_result: Option<Arc<aws_sdk_connecthealth::types::ArtifactDetails>>,
+    job_id: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::types::MedicalCodeGenerationResult>
+    for SharedMedicalCodeGenerationResult
+{
+    fn from(value: aws_sdk_connecthealth::types::MedicalCodeGenerationResult) -> Self {
+        Self {
+            medical_codes_result: value.medical_codes_result.map(|item| Arc::new(item)),
+            job_id: value.job_id,
+        }
+    }
+}
+
+fn medical_code_generation_result_shared_to_py(
+    py: Python<'_>,
+    value: &SharedMedicalCodeGenerationResult,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    if let Some(value) = &value.medical_codes_result {
+        let converted_558 = artifact_details_to_py(py, value)?;
+        result.set_item("medical_codes_result", converted_558)?;
+    } else {
+        result.set_item("medical_codes_result", py.None())?;
+    }
+    if let Some(value) = &value.job_id {
+        let converted_559 = (value).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_559)?;
+    } else {
+        result.set_item("job_id", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+#[pyclass(
+    name = "MedicalCodeGenerationResult",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodeGenerationResult {
+    inner: Arc<SharedMedicalCodeGenerationResult>,
+}
+
+#[pymethods]
+impl PyMedicalCodeGenerationResult {
+    #[getter]
+    fn medical_codes_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_codes_result {
+            let converted_556 = Py::new(
+                py,
+                PyArtifactDetails {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_556)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.job_id {
+            let converted_557 = (value).as_str().into_py_any(py)?;
+            Ok(converted_557)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_code_generation_result_shared_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MedicalCodeGenerationSettingsResponse",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodeGenerationSettingsResponse {
+    inner: Arc<aws_sdk_connecthealth::types::MedicalCodeGenerationSettingsResponse>,
+}
+
+#[pymethods]
+impl PyMedicalCodeGenerationSettingsResponse {
+    #[getter]
+    fn enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.enabled {
+            let converted_560 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_560)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_code_generation_settings_response_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MedicalCodesEncounterContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodesEncounterContext {
+    inner: Arc<aws_sdk_connecthealth::types::MedicalCodesEncounterContext>,
+}
+
+#[pymethods]
+impl PyMedicalCodesEncounterContext {
+    #[getter]
+    fn encounter_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_type {
+            let converted_561 = (value).as_str().into_py_any(py)?;
+            Ok(converted_561)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encounter_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_reason {
+            let converted_562 = (value).as_str().into_py_any(py)?;
+            Ok(converted_562)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn after_hours(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.after_hours {
+            let converted_563 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_563)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encounter_date(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_date {
+            let converted_564 = (value).as_str().into_py_any(py)?;
+            Ok(converted_564)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encounter_duration_minutes(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_duration_minutes {
+            let converted_565 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_565)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_codes_encounter_context_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MedicalCodesPatientContext",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodesPatientContext {
+    inner: Arc<aws_sdk_connecthealth::types::MedicalCodesPatientContext>,
+}
+
+#[pymethods]
+impl PyMedicalCodesPatientContext {
+    #[getter]
+    fn sex(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.sex {
+            let converted_566 = (value).as_str().into_py_any(py)?;
+            Ok(converted_566)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_567 = (value).as_str().into_py_any(py)?;
+            Ok(converted_567)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn date_of_birth(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.date_of_birth {
+            let converted_568 = (value).as_str().into_py_any(py)?;
+            Ok(converted_568)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn insurance(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.insurance {
+            let converted_569 = (value).as_str().into_py_any(py)?;
+            Ok(converted_569)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_codes_patient_context_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MedicalCodingOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodingOutput {
+    inner: Arc<aws_sdk_connecthealth::types::MedicalCodingOutput>,
+}
+
+#[pymethods]
+impl PyMedicalCodingOutput {
+    #[getter]
+    fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_570 = (&self.inner.uri).as_str().into_py_any(py)?;
+        Ok(converted_570)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_coding_output_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "MedicalCodingOutputDataConfig",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyMedicalCodingOutputDataConfig {
+    inner: Arc<aws_sdk_connecthealth::types::MedicalCodingOutputDataConfig>,
+}
+
+#[pymethods]
+impl PyMedicalCodingOutputDataConfig {
+    #[getter]
+    fn s3_output_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_571 = (&self.inner.s3_output_path).as_str().into_py_any(py)?;
+        Ok(converted_571)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        medical_coding_output_data_config_to_py(py, &self.inner)
     }
 }
 
@@ -3143,14 +5218,14 @@ struct PyMedicalScribeChannelDefinition {
 impl PyMedicalScribeChannelDefinition {
     #[getter]
     fn channel_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_339 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
-        Ok(converted_339)
+        let converted_572 = (&self.inner.channel_id).to_owned().into_py_any(py)?;
+        Ok(converted_572)
     }
 
     #[getter]
     fn participant_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_340 = (&self.inner.participant_role).as_str().into_py_any(py)?;
-        Ok(converted_340)
+        let converted_573 = (&self.inner.participant_role).as_str().into_py_any(py)?;
+        Ok(converted_573)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3171,6 +5246,7 @@ struct SharedMedicalScribeListeningSessionDetails {
     post_stream_action_settings: Option<Arc<SharedMedicalScribePostStreamActionSettingsResponse>>,
     post_stream_action_result: Option<Arc<SharedMedicalScribePostStreamActionsResult>>,
     encounter_context_provided: Option<bool>,
+    medical_coding_context_provided: Option<bool>,
     stream_status: Option<aws_sdk_connecthealth::types::MedicalScribeStreamStatus>,
     stream_creation_time: Option<::aws_smithy_types::DateTime>,
     stream_end_time: Option<::aws_smithy_types::DateTime>,
@@ -3191,7 +5267,7 @@ impl From<aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails>
             channel_definitions: value.channel_definitions.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_356| Arc::new(owned_356))
+                    .map(|owned_590| Arc::new(owned_590))
                     .collect()
             }),
             post_stream_action_settings: value.post_stream_action_settings.map(|item| {
@@ -3203,6 +5279,7 @@ impl From<aws_sdk_connecthealth::types::MedicalScribeListeningSessionDetails>
                 .post_stream_action_result
                 .map(|item| Arc::new(SharedMedicalScribePostStreamActionsResult::from(item))),
             encounter_context_provided: value.encounter_context_provided,
+            medical_coding_context_provided: value.medical_coding_context_provided,
             stream_status: value.stream_status,
             stream_creation_time: value.stream_creation_time,
             stream_end_time: value.stream_end_time,
@@ -3216,86 +5293,92 @@ fn medical_scribe_listening_session_details_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.session_id {
-        let converted_357 = (value).as_str().into_py_any(py)?;
-        result.set_item("session_id", converted_357)?;
+        let converted_591 = (value).as_str().into_py_any(py)?;
+        result.set_item("session_id", converted_591)?;
     } else {
         result.set_item("session_id", py.None())?;
     }
     if let Some(value) = &value.domain_id {
-        let converted_358 = (value).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_358)?;
+        let converted_592 = (value).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_592)?;
     } else {
         result.set_item("domain_id", py.None())?;
     }
     if let Some(value) = &value.subscription_id {
-        let converted_359 = (value).as_str().into_py_any(py)?;
-        result.set_item("subscription_id", converted_359)?;
+        let converted_593 = (value).as_str().into_py_any(py)?;
+        result.set_item("subscription_id", converted_593)?;
     } else {
         result.set_item("subscription_id", py.None())?;
     }
     if let Some(value) = &value.language_code {
-        let converted_360 = (value).as_str().into_py_any(py)?;
-        result.set_item("language_code", converted_360)?;
+        let converted_594 = (value).as_str().into_py_any(py)?;
+        result.set_item("language_code", converted_594)?;
     } else {
         result.set_item("language_code", py.None())?;
     }
     if let Some(value) = &value.media_sample_rate_hertz {
-        let converted_361 = (value).to_owned().into_py_any(py)?;
-        result.set_item("media_sample_rate_hertz", converted_361)?;
+        let converted_595 = (value).to_owned().into_py_any(py)?;
+        result.set_item("media_sample_rate_hertz", converted_595)?;
     } else {
         result.set_item("media_sample_rate_hertz", py.None())?;
     }
     if let Some(value) = &value.media_encoding {
-        let converted_362 = (value).as_str().into_py_any(py)?;
-        result.set_item("media_encoding", converted_362)?;
+        let converted_596 = (value).as_str().into_py_any(py)?;
+        result.set_item("media_encoding", converted_596)?;
     } else {
         result.set_item("media_encoding", py.None())?;
     }
     if let Some(value) = &value.channel_definitions {
-        let converted_363_list = PyList::empty(py);
-        for item_364 in value {
-            let converted_item_365 = medical_scribe_channel_definition_to_py(py, item_364)?;
-            converted_363_list.append(converted_item_365)?;
+        let converted_597_list = PyList::empty(py);
+        for item_598 in value {
+            let converted_item_599 = medical_scribe_channel_definition_to_py(py, item_598)?;
+            converted_597_list.append(converted_item_599)?;
         }
-        let converted_363 = converted_363_list.into_any().unbind();
-        result.set_item("channel_definitions", converted_363)?;
+        let converted_597 = converted_597_list.into_any().unbind();
+        result.set_item("channel_definitions", converted_597)?;
     } else {
         result.set_item("channel_definitions", py.None())?;
     }
     if let Some(value) = &value.post_stream_action_settings {
-        let converted_366 =
+        let converted_600 =
             medical_scribe_post_stream_action_settings_response_shared_to_py(py, value)?;
-        result.set_item("post_stream_action_settings", converted_366)?;
+        result.set_item("post_stream_action_settings", converted_600)?;
     } else {
         result.set_item("post_stream_action_settings", py.None())?;
     }
     if let Some(value) = &value.post_stream_action_result {
-        let converted_367 = medical_scribe_post_stream_actions_result_shared_to_py(py, value)?;
-        result.set_item("post_stream_action_result", converted_367)?;
+        let converted_601 = medical_scribe_post_stream_actions_result_shared_to_py(py, value)?;
+        result.set_item("post_stream_action_result", converted_601)?;
     } else {
         result.set_item("post_stream_action_result", py.None())?;
     }
     if let Some(value) = &value.encounter_context_provided {
-        let converted_368 = (value).to_owned().into_py_any(py)?;
-        result.set_item("encounter_context_provided", converted_368)?;
+        let converted_602 = (value).to_owned().into_py_any(py)?;
+        result.set_item("encounter_context_provided", converted_602)?;
     } else {
         result.set_item("encounter_context_provided", py.None())?;
     }
+    if let Some(value) = &value.medical_coding_context_provided {
+        let converted_603 = (value).to_owned().into_py_any(py)?;
+        result.set_item("medical_coding_context_provided", converted_603)?;
+    } else {
+        result.set_item("medical_coding_context_provided", py.None())?;
+    }
     if let Some(value) = &value.stream_status {
-        let converted_369 = (value).as_str().into_py_any(py)?;
-        result.set_item("stream_status", converted_369)?;
+        let converted_604 = (value).as_str().into_py_any(py)?;
+        result.set_item("stream_status", converted_604)?;
     } else {
         result.set_item("stream_status", py.None())?;
     }
     if let Some(value) = &value.stream_creation_time {
-        let converted_370 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_creation_time", converted_370)?;
+        let converted_605 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_creation_time", converted_605)?;
     } else {
         result.set_item("stream_creation_time", py.None())?;
     }
     if let Some(value) = &value.stream_end_time {
-        let converted_371 = (value).to_string().into_py_any(py)?;
-        result.set_item("stream_end_time", converted_371)?;
+        let converted_606 = (value).to_string().into_py_any(py)?;
+        result.set_item("stream_end_time", converted_606)?;
     } else {
         result.set_item("stream_end_time", py.None())?;
     }
@@ -3316,8 +5399,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn session_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.session_id {
-            let converted_341 = (value).as_str().into_py_any(py)?;
-            Ok(converted_341)
+            let converted_574 = (value).as_str().into_py_any(py)?;
+            Ok(converted_574)
         } else {
             Ok(py.None())
         }
@@ -3326,8 +5409,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.domain_id {
-            let converted_342 = (value).as_str().into_py_any(py)?;
-            Ok(converted_342)
+            let converted_575 = (value).as_str().into_py_any(py)?;
+            Ok(converted_575)
         } else {
             Ok(py.None())
         }
@@ -3336,8 +5419,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription_id {
-            let converted_343 = (value).as_str().into_py_any(py)?;
-            Ok(converted_343)
+            let converted_576 = (value).as_str().into_py_any(py)?;
+            Ok(converted_576)
         } else {
             Ok(py.None())
         }
@@ -3346,8 +5429,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn language_code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.language_code {
-            let converted_344 = (value).as_str().into_py_any(py)?;
-            Ok(converted_344)
+            let converted_577 = (value).as_str().into_py_any(py)?;
+            Ok(converted_577)
         } else {
             Ok(py.None())
         }
@@ -3356,8 +5439,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn media_sample_rate_hertz(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_sample_rate_hertz {
-            let converted_345 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_345)
+            let converted_578 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_578)
         } else {
             Ok(py.None())
         }
@@ -3366,8 +5449,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn media_encoding(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.media_encoding {
-            let converted_346 = (value).as_str().into_py_any(py)?;
-            Ok(converted_346)
+            let converted_579 = (value).as_str().into_py_any(py)?;
+            Ok(converted_579)
         } else {
             Ok(py.None())
         }
@@ -3376,19 +5459,19 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn channel_definitions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.channel_definitions {
-            let converted_347_list = PyList::empty(py);
-            for item_348 in value {
-                let converted_item_349 = Py::new(
+            let converted_580_list = PyList::empty(py);
+            for item_581 in value {
+                let converted_item_582 = Py::new(
                     py,
                     PyMedicalScribeChannelDefinition {
-                        inner: Arc::clone(item_348),
+                        inner: Arc::clone(item_581),
                     },
                 )?
                 .into_any();
-                converted_347_list.append(converted_item_349)?;
+                converted_580_list.append(converted_item_582)?;
             }
-            let converted_347 = converted_347_list.into_any().unbind();
-            Ok(converted_347)
+            let converted_580 = converted_580_list.into_any().unbind();
+            Ok(converted_580)
         } else {
             Ok(py.None())
         }
@@ -3397,14 +5480,14 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn post_stream_action_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.post_stream_action_settings {
-            let converted_350 = Py::new(
+            let converted_583 = Py::new(
                 py,
                 PyMedicalScribePostStreamActionSettingsResponse {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_350)
+            Ok(converted_583)
         } else {
             Ok(py.None())
         }
@@ -3413,14 +5496,14 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn post_stream_action_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.post_stream_action_result {
-            let converted_351 = Py::new(
+            let converted_584 = Py::new(
                 py,
                 PyMedicalScribePostStreamActionsResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_351)
+            Ok(converted_584)
         } else {
             Ok(py.None())
         }
@@ -3429,8 +5512,18 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn encounter_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encounter_context_provided {
-            let converted_352 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_352)
+            let converted_585 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_585)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn medical_coding_context_provided(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_coding_context_provided {
+            let converted_586 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_586)
         } else {
             Ok(py.None())
         }
@@ -3439,8 +5532,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn stream_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_status {
-            let converted_353 = (value).as_str().into_py_any(py)?;
-            Ok(converted_353)
+            let converted_587 = (value).as_str().into_py_any(py)?;
+            Ok(converted_587)
         } else {
             Ok(py.None())
         }
@@ -3449,8 +5542,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn stream_creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_creation_time {
-            let converted_354 = (value).to_string().into_py_any(py)?;
-            Ok(converted_354)
+            let converted_588 = (value).to_string().into_py_any(py)?;
+            Ok(converted_588)
         } else {
             Ok(py.None())
         }
@@ -3459,8 +5552,8 @@ impl PyMedicalScribeListeningSessionDetails {
     #[getter]
     fn stream_end_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.stream_end_time {
-            let converted_355 = (value).to_string().into_py_any(py)?;
-            Ok(converted_355)
+            let converted_589 = (value).to_string().into_py_any(py)?;
+            Ok(converted_589)
         } else {
             Ok(py.None())
         }
@@ -3476,6 +5569,8 @@ struct SharedMedicalScribePostStreamActionSettingsResponse {
     output_s3_uri: ::std::string::String,
     clinical_note_generation_settings:
         Option<Arc<aws_sdk_connecthealth::types::ClinicalNoteGenerationSettingsResponse>>,
+    medical_code_generation_settings:
+        Option<Arc<aws_sdk_connecthealth::types::MedicalCodeGenerationSettingsResponse>>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -3490,6 +5585,9 @@ impl From<aws_sdk_connecthealth::types::MedicalScribePostStreamActionSettingsRes
             clinical_note_generation_settings: value
                 .clinical_note_generation_settings
                 .map(|item| Arc::new(item)),
+            medical_code_generation_settings: value
+                .medical_code_generation_settings
+                .map(|item| Arc::new(item)),
         }
     }
 }
@@ -3499,13 +5597,19 @@ fn medical_scribe_post_stream_action_settings_response_shared_to_py(
     value: &SharedMedicalScribePostStreamActionSettingsResponse,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_374 = (&value.output_s3_uri).as_str().into_py_any(py)?;
-    result.set_item("output_s3_uri", converted_374)?;
+    let converted_610 = (&value.output_s3_uri).as_str().into_py_any(py)?;
+    result.set_item("output_s3_uri", converted_610)?;
     if let Some(value) = &value.clinical_note_generation_settings {
-        let converted_375 = clinical_note_generation_settings_response_to_py(py, value)?;
-        result.set_item("clinical_note_generation_settings", converted_375)?;
+        let converted_611 = clinical_note_generation_settings_response_to_py(py, value)?;
+        result.set_item("clinical_note_generation_settings", converted_611)?;
     } else {
         result.set_item("clinical_note_generation_settings", py.None())?;
+    }
+    if let Some(value) = &value.medical_code_generation_settings {
+        let converted_612 = medical_code_generation_settings_response_to_py(py, value)?;
+        result.set_item("medical_code_generation_settings", converted_612)?;
+    } else {
+        result.set_item("medical_code_generation_settings", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -3523,21 +5627,37 @@ struct PyMedicalScribePostStreamActionSettingsResponse {
 impl PyMedicalScribePostStreamActionSettingsResponse {
     #[getter]
     fn output_s3_uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_372 = (&self.inner.output_s3_uri).as_str().into_py_any(py)?;
-        Ok(converted_372)
+        let converted_607 = (&self.inner.output_s3_uri).as_str().into_py_any(py)?;
+        Ok(converted_607)
     }
 
     #[getter]
     fn clinical_note_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_generation_settings {
-            let converted_373 = Py::new(
+            let converted_608 = Py::new(
                 py,
                 PyClinicalNoteGenerationSettingsResponse {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_373)
+            Ok(converted_608)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn medical_code_generation_settings(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_code_generation_settings {
+            let converted_609 = Py::new(
+                py,
+                PyMedicalCodeGenerationSettingsResponse {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_609)
         } else {
             Ok(py.None())
         }
@@ -3551,6 +5671,7 @@ impl PyMedicalScribePostStreamActionSettingsResponse {
 #[allow(clippy::type_complexity)]
 struct SharedMedicalScribePostStreamActionsResult {
     clinical_note_generation_result: Option<Arc<SharedClinicalNoteGenerationResult>>,
+    medical_code_generation_result: Option<Arc<SharedMedicalCodeGenerationResult>>,
 }
 
 #[allow(clippy::redundant_closure)]
@@ -3562,6 +5683,9 @@ impl From<aws_sdk_connecthealth::types::MedicalScribePostStreamActionsResult>
             clinical_note_generation_result: value
                 .clinical_note_generation_result
                 .map(|item| Arc::new(SharedClinicalNoteGenerationResult::from(item))),
+            medical_code_generation_result: value
+                .medical_code_generation_result
+                .map(|item| Arc::new(SharedMedicalCodeGenerationResult::from(item))),
         }
     }
 }
@@ -3572,10 +5696,16 @@ fn medical_scribe_post_stream_actions_result_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.clinical_note_generation_result {
-        let converted_377 = clinical_note_generation_result_shared_to_py(py, value)?;
-        result.set_item("clinical_note_generation_result", converted_377)?;
+        let converted_615 = clinical_note_generation_result_shared_to_py(py, value)?;
+        result.set_item("clinical_note_generation_result", converted_615)?;
     } else {
         result.set_item("clinical_note_generation_result", py.None())?;
+    }
+    if let Some(value) = &value.medical_code_generation_result {
+        let converted_616 = medical_code_generation_result_shared_to_py(py, value)?;
+        result.set_item("medical_code_generation_result", converted_616)?;
+    } else {
+        result.set_item("medical_code_generation_result", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -3594,14 +5724,30 @@ impl PyMedicalScribePostStreamActionsResult {
     #[getter]
     fn clinical_note_generation_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.clinical_note_generation_result {
-            let converted_376 = Py::new(
+            let converted_613 = Py::new(
                 py,
                 PyClinicalNoteGenerationResult {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_376)
+            Ok(converted_613)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn medical_code_generation_result(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_code_generation_result {
+            let converted_614 = Py::new(
+                py,
+                PyMedicalCodeGenerationResult {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_614)
         } else {
             Ok(py.None())
         }
@@ -3625,8 +5771,8 @@ struct PyOutputDataConfig {
 impl PyOutputDataConfig {
     #[getter]
     fn s3_output_path(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_378 = (&self.inner.s3_output_path).as_str().into_py_any(py)?;
-        Ok(converted_378)
+        let converted_617 = (&self.inner.s3_output_path).as_str().into_py_any(py)?;
+        Ok(converted_617)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3647,8 +5793,8 @@ struct PyPatientInsightsEncounterContext {
 impl PyPatientInsightsEncounterContext {
     #[getter]
     fn encounter_reason(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_379 = (&self.inner.encounter_reason).as_str().into_py_any(py)?;
-        Ok(converted_379)
+        let converted_618 = (&self.inner.encounter_reason).as_str().into_py_any(py)?;
+        Ok(converted_618)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3669,15 +5815,15 @@ struct PyPatientInsightsPatientContext {
 impl PyPatientInsightsPatientContext {
     #[getter]
     fn patient_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_380 = (&self.inner.patient_id).as_str().into_py_any(py)?;
-        Ok(converted_380)
+        let converted_619 = (&self.inner.patient_id).as_str().into_py_any(py)?;
+        Ok(converted_619)
     }
 
     #[getter]
     fn date_of_birth(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.date_of_birth {
-            let converted_381 = (value).as_str().into_py_any(py)?;
-            Ok(converted_381)
+            let converted_620 = (value).as_str().into_py_any(py)?;
+            Ok(converted_620)
         } else {
             Ok(py.None())
         }
@@ -3686,8 +5832,8 @@ impl PyPatientInsightsPatientContext {
     #[getter]
     fn pronouns(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.pronouns {
-            let converted_382 = (value).as_str().into_py_any(py)?;
-            Ok(converted_382)
+            let converted_621 = (value).as_str().into_py_any(py)?;
+            Ok(converted_621)
         } else {
             Ok(py.None())
         }
@@ -3707,8 +5853,8 @@ struct PyS3Source {
 impl PyS3Source {
     #[getter]
     fn uri(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_383 = (&self.inner.uri).as_str().into_py_any(py)?;
-        Ok(converted_383)
+        let converted_622 = (&self.inner.uri).as_str().into_py_any(py)?;
+        Ok(converted_622)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3729,45 +5875,45 @@ struct PySubscriptionDescription {
 impl PySubscriptionDescription {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_384 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_384)
+        let converted_623 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_623)
     }
 
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_385 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        Ok(converted_385)
+        let converted_624 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        Ok(converted_624)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_386 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_386)
+        let converted_625 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_625)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_387 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_387)
+        let converted_626 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_626)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_388 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_388)
+        let converted_627 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_627)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_389 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_389)
+        let converted_628 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_628)
     }
 
     #[getter]
     fn activated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activated_at {
-            let converted_390 = (value).to_string().into_py_any(py)?;
-            Ok(converted_390)
+            let converted_629 = (value).to_string().into_py_any(py)?;
+            Ok(converted_629)
         } else {
             Ok(py.None())
         }
@@ -3776,8 +5922,8 @@ impl PySubscriptionDescription {
     #[getter]
     fn deactivated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_391 = (value).to_string().into_py_any(py)?;
-            Ok(converted_391)
+            let converted_630 = (value).to_string().into_py_any(py)?;
+            Ok(converted_630)
         } else {
             Ok(py.None())
         }
@@ -3797,21 +5943,21 @@ struct PyUserContext {
 impl PyUserContext {
     #[getter]
     fn role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_392 = (&self.inner.role).as_str().into_py_any(py)?;
-        Ok(converted_392)
+        let converted_631 = (&self.inner.role).as_str().into_py_any(py)?;
+        Ok(converted_631)
     }
 
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_393 = (&self.inner.user_id).as_str().into_py_any(py)?;
-        Ok(converted_393)
+        let converted_632 = (&self.inner.user_id).as_str().into_py_any(py)?;
+        Ok(converted_632)
     }
 
     #[getter]
     fn specialty(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.specialty {
-            let converted_394 = (value).as_str().into_py_any(py)?;
-            Ok(converted_394)
+            let converted_633 = (value).as_str().into_py_any(py)?;
+            Ok(converted_633)
         } else {
             Ok(py.None())
         }
@@ -3835,20 +5981,20 @@ struct PyWebAppConfiguration {
 impl PyWebAppConfiguration {
     #[getter]
     fn ehr_role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_395 = (&self.inner.ehr_role).as_str().into_py_any(py)?;
-        Ok(converted_395)
+        let converted_634 = (&self.inner.ehr_role).as_str().into_py_any(py)?;
+        Ok(converted_634)
     }
 
     #[getter]
     fn idc_application_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_396 = (&self.inner.idc_application_id).as_str().into_py_any(py)?;
-        Ok(converted_396)
+        let converted_635 = (&self.inner.idc_application_id).as_str().into_py_any(py)?;
+        Ok(converted_635)
     }
 
     #[getter]
     fn idc_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_397 = (&self.inner.idc_region).as_str().into_py_any(py)?;
-        Ok(converted_397)
+        let converted_636 = (&self.inner.idc_region).as_str().into_py_any(py)?;
+        Ok(converted_636)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
@@ -3888,14 +6034,14 @@ impl PyOperationActivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_398 = Py::new(
+            let converted_637 = Py::new(
                 py,
                 PySubscriptionDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_398)
+            Ok(converted_637)
         } else {
             Ok(py.None())
         }
@@ -3904,11 +6050,68 @@ impl PyOperationActivateSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_399 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_399)?;
+            let converted_638 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_638)?;
         } else {
             result.set_item("subscription", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "CreateDatasetOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationCreateDatasetOutput {
+    inner: aws_sdk_connecthealth::operation::create_dataset::CreateDatasetOutput,
+}
+
+#[pymethods]
+impl PyOperationCreateDatasetOutput {
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_639 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_639)
+    }
+
+    #[getter]
+    fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_640 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        Ok(converted_640)
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_641 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_641)
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_642 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_642)
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_643 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_643)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_644 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_644)?;
+        let converted_645 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        result.set_item("dataset_id", converted_645)?;
+        let converted_646 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_646)?;
+        let converted_647 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_647)?;
+        let converted_648 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_648)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -3958,27 +6161,27 @@ struct PyOperationCreateDomainOutput {
 impl PyOperationCreateDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_400 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_400)
+        let converted_649 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_649)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_401 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_401)
+        let converted_650 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_650)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_402 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_402)
+        let converted_651 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_651)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_403 = (value).as_str().into_py_any(py)?;
-            Ok(converted_403)
+            let converted_652 = (value).as_str().into_py_any(py)?;
+            Ok(converted_652)
         } else {
             Ok(py.None())
         }
@@ -3987,14 +6190,14 @@ impl PyOperationCreateDomainOutput {
     #[getter]
     fn encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context {
-            let converted_404 = Py::new(
+            let converted_653 = Py::new(
                 py,
                 PyEncryptionContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_404)
+            Ok(converted_653)
         } else {
             Ok(py.None())
         }
@@ -4002,15 +6205,15 @@ impl PyOperationCreateDomainOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_405 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_405)
+        let converted_654 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_654)
     }
 
     #[getter]
     fn web_app_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_url {
-            let converted_406 = (value).as_str().into_py_any(py)?;
-            Ok(converted_406)
+            let converted_655 = (value).as_str().into_py_any(py)?;
+            Ok(converted_655)
         } else {
             Ok(py.None())
         }
@@ -4019,14 +6222,14 @@ impl PyOperationCreateDomainOutput {
     #[getter]
     fn web_app_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_407 = Py::new(
+            let converted_656 = Py::new(
                 py,
                 PyWebAppConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_407)
+            Ok(converted_656)
         } else {
             Ok(py.None())
         }
@@ -4034,46 +6237,46 @@ impl PyOperationCreateDomainOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_408 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_408)
+        let converted_657 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_657)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_409 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_409)?;
-        let converted_410 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_410)?;
-        let converted_411 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_411)?;
+        let converted_658 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_658)?;
+        let converted_659 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_659)?;
+        let converted_660 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_660)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_412 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_412)?;
+            let converted_661 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_661)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_context {
-            let converted_413 = encryption_context_to_py(py, value)?;
-            result.set_item("encryption_context", converted_413)?;
+            let converted_662 = encryption_context_to_py(py, value)?;
+            result.set_item("encryption_context", converted_662)?;
         } else {
             result.set_item("encryption_context", py.None())?;
         }
-        let converted_414 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_414)?;
+        let converted_663 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_663)?;
         if let Some(value) = &self.inner.web_app_url {
-            let converted_415 = (value).as_str().into_py_any(py)?;
-            result.set_item("web_app_url", converted_415)?;
+            let converted_664 = (value).as_str().into_py_any(py)?;
+            result.set_item("web_app_url", converted_664)?;
         } else {
             result.set_item("web_app_url", py.None())?;
         }
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_416 = web_app_configuration_to_py(py, value)?;
-            result.set_item("web_app_configuration", converted_416)?;
+            let converted_665 = web_app_configuration_to_py(py, value)?;
+            result.set_item("web_app_configuration", converted_665)?;
         } else {
             result.set_item("web_app_configuration", py.None())?;
         }
-        let converted_417 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_417)?;
+        let converted_666 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_666)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4091,45 +6294,45 @@ struct PyOperationCreateSubscriptionOutput {
 impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_418 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_418)
+        let converted_667 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_667)
     }
 
     #[getter]
     fn subscription_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_419 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        Ok(converted_419)
+        let converted_668 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        Ok(converted_668)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_420 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_420)
+        let converted_669 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_669)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_421 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_421)
+        let converted_670 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_670)
     }
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_422 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_422)
+        let converted_671 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_671)
     }
 
     #[getter]
     fn last_updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_423 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        Ok(converted_423)
+        let converted_672 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        Ok(converted_672)
     }
 
     #[getter]
     fn activated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.activated_at {
-            let converted_424 = (value).to_string().into_py_any(py)?;
-            Ok(converted_424)
+            let converted_673 = (value).to_string().into_py_any(py)?;
+            Ok(converted_673)
         } else {
             Ok(py.None())
         }
@@ -4138,8 +6341,8 @@ impl PyOperationCreateSubscriptionOutput {
     #[getter]
     fn deactivated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_425 = (value).to_string().into_py_any(py)?;
-            Ok(converted_425)
+            let converted_674 = (value).to_string().into_py_any(py)?;
+            Ok(converted_674)
         } else {
             Ok(py.None())
         }
@@ -4147,27 +6350,27 @@ impl PyOperationCreateSubscriptionOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_426 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_426)?;
-        let converted_427 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
-        result.set_item("subscription_id", converted_427)?;
-        let converted_428 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_428)?;
-        let converted_429 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_429)?;
-        let converted_430 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_430)?;
-        let converted_431 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
-        result.set_item("last_updated_at", converted_431)?;
+        let converted_675 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_675)?;
+        let converted_676 = (&self.inner.subscription_id).as_str().into_py_any(py)?;
+        result.set_item("subscription_id", converted_676)?;
+        let converted_677 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_677)?;
+        let converted_678 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_678)?;
+        let converted_679 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_679)?;
+        let converted_680 = (&self.inner.last_updated_at).to_string().into_py_any(py)?;
+        result.set_item("last_updated_at", converted_680)?;
         if let Some(value) = &self.inner.activated_at {
-            let converted_432 = (value).to_string().into_py_any(py)?;
-            result.set_item("activated_at", converted_432)?;
+            let converted_681 = (value).to_string().into_py_any(py)?;
+            result.set_item("activated_at", converted_681)?;
         } else {
             result.set_item("activated_at", py.None())?;
         }
         if let Some(value) = &self.inner.deactivated_at {
-            let converted_433 = (value).to_string().into_py_any(py)?;
-            result.set_item("deactivated_at", converted_433)?;
+            let converted_682 = (value).to_string().into_py_any(py)?;
+            result.set_item("deactivated_at", converted_682)?;
         } else {
             result.set_item("deactivated_at", py.None())?;
         }
@@ -4207,14 +6410,14 @@ impl PyOperationDeactivateSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_434 = Py::new(
+            let converted_683 = Py::new(
                 py,
                 PySubscriptionDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_434)
+            Ok(converted_683)
         } else {
             Ok(py.None())
         }
@@ -4223,11 +6426,52 @@ impl PyOperationDeactivateSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_435 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_435)?;
+            let converted_684 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_684)?;
         } else {
             result.set_item("subscription", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "DeleteDatasetOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationDeleteDatasetOutput {
+    inner: aws_sdk_connecthealth::operation::delete_dataset::DeleteDatasetOutput,
+}
+
+#[pymethods]
+impl PyOperationDeleteDatasetOutput {
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_685 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_685)
+    }
+
+    #[getter]
+    fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_686 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        Ok(converted_686)
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_687 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_687)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_688 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_688)?;
+        let converted_689 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        result.set_item("dataset_id", converted_689)?;
+        let converted_690 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_690)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4245,30 +6489,151 @@ struct PyOperationDeleteDomainOutput {
 impl PyOperationDeleteDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_436 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_436)
+        let converted_691 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_691)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_437 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_437)
+        let converted_692 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_692)
     }
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_438 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_438)
+        let converted_693 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_693)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_439 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_439)?;
-        let converted_440 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_440)?;
-        let converted_441 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_441)?;
+        let converted_694 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_694)?;
+        let converted_695 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_695)?;
+        let converted_696 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_696)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "GetDatasetOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationGetDatasetOutput {
+    inner: aws_sdk_connecthealth::operation::get_dataset::GetDatasetOutput,
+}
+
+#[pymethods]
+impl PyOperationGetDatasetOutput {
+    #[getter]
+    fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_697 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_697)
+    }
+
+    #[getter]
+    fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_698 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        Ok(converted_698)
+    }
+
+    #[getter]
+    fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_699 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_699)
+    }
+
+    #[getter]
+    fn r#type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_700 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        Ok(converted_700)
+    }
+
+    #[getter]
+    fn config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.config {
+            let converted_701 = dataset_config_to_py(py, value)?;
+            Ok(converted_701)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_702 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_702)
+    }
+
+    #[getter]
+    fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status_details {
+            let converted_703 = (value).as_str().into_py_any(py)?;
+            Ok(converted_703)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn artifacts(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.artifacts {
+            let converted_704 = dataset_artifacts_to_py(py, value)?;
+            Ok(converted_704)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_705 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_705)
+    }
+
+    #[getter]
+    fn updated_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_706 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        Ok(converted_706)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_707 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_707)?;
+        let converted_708 = (&self.inner.dataset_id).as_str().into_py_any(py)?;
+        result.set_item("dataset_id", converted_708)?;
+        let converted_709 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_709)?;
+        let converted_710 = (&self.inner.r#type).as_str().into_py_any(py)?;
+        result.set_item("type", converted_710)?;
+        if let Some(value) = &self.inner.config {
+            let converted_711 = dataset_config_to_py(py, value)?;
+            result.set_item("config", converted_711)?;
+        } else {
+            result.set_item("config", py.None())?;
+        }
+        let converted_712 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_712)?;
+        if let Some(value) = &self.inner.status_details {
+            let converted_713 = (value).as_str().into_py_any(py)?;
+            result.set_item("status_details", converted_713)?;
+        } else {
+            result.set_item("status_details", py.None())?;
+        }
+        if let Some(value) = &self.inner.artifacts {
+            let converted_714 = dataset_artifacts_to_py(py, value)?;
+            result.set_item("artifacts", converted_714)?;
+        } else {
+            result.set_item("artifacts", py.None())?;
+        }
+        let converted_715 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_715)?;
+        let converted_716 = (&self.inner.updated_at).to_string().into_py_any(py)?;
+        result.set_item("updated_at", converted_716)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -4320,27 +6685,27 @@ struct PyOperationGetDomainOutput {
 impl PyOperationGetDomainOutput {
     #[getter]
     fn domain_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_442 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        Ok(converted_442)
+        let converted_717 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        Ok(converted_717)
     }
 
     #[getter]
     fn arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_443 = (&self.inner.arn).as_str().into_py_any(py)?;
-        Ok(converted_443)
+        let converted_718 = (&self.inner.arn).as_str().into_py_any(py)?;
+        Ok(converted_718)
     }
 
     #[getter]
     fn name(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_444 = (&self.inner.name).as_str().into_py_any(py)?;
-        Ok(converted_444)
+        let converted_719 = (&self.inner.name).as_str().into_py_any(py)?;
+        Ok(converted_719)
     }
 
     #[getter]
     fn kms_key_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_445 = (value).as_str().into_py_any(py)?;
-            Ok(converted_445)
+            let converted_720 = (value).as_str().into_py_any(py)?;
+            Ok(converted_720)
         } else {
             Ok(py.None())
         }
@@ -4349,14 +6714,14 @@ impl PyOperationGetDomainOutput {
     #[getter]
     fn encryption_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encryption_context {
-            let converted_446 = Py::new(
+            let converted_721 = Py::new(
                 py,
                 PyEncryptionContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_446)
+            Ok(converted_721)
         } else {
             Ok(py.None())
         }
@@ -4364,15 +6729,15 @@ impl PyOperationGetDomainOutput {
 
     #[getter]
     fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_447 = (&self.inner.status).as_str().into_py_any(py)?;
-        Ok(converted_447)
+        let converted_722 = (&self.inner.status).as_str().into_py_any(py)?;
+        Ok(converted_722)
     }
 
     #[getter]
     fn web_app_url(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_url {
-            let converted_448 = (value).as_str().into_py_any(py)?;
-            Ok(converted_448)
+            let converted_723 = (value).as_str().into_py_any(py)?;
+            Ok(converted_723)
         } else {
             Ok(py.None())
         }
@@ -4381,14 +6746,14 @@ impl PyOperationGetDomainOutput {
     #[getter]
     fn web_app_configuration(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_449 = Py::new(
+            let converted_724 = Py::new(
                 py,
                 PyWebAppConfiguration {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_449)
+            Ok(converted_724)
         } else {
             Ok(py.None())
         }
@@ -4396,21 +6761,21 @@ impl PyOperationGetDomainOutput {
 
     #[getter]
     fn created_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_450 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        Ok(converted_450)
+        let converted_725 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        Ok(converted_725)
     }
 
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_451_dict = PyDict::new(py);
-            for (key_452, value_453) in value {
-                let converted_key_454 = (key_452).as_str().into_py_any(py)?;
-                let converted_value_455 = (value_453).as_str().into_py_any(py)?;
-                converted_451_dict.set_item(converted_key_454, converted_value_455)?;
+            let converted_726_dict = PyDict::new(py);
+            for (key_727, value_728) in value {
+                let converted_key_729 = (key_727).as_str().into_py_any(py)?;
+                let converted_value_730 = (value_728).as_str().into_py_any(py)?;
+                converted_726_dict.set_item(converted_key_729, converted_value_730)?;
             }
-            let converted_451 = converted_451_dict.into_any().unbind();
-            Ok(converted_451)
+            let converted_726 = converted_726_dict.into_any().unbind();
+            Ok(converted_726)
         } else {
             Ok(py.None())
         }
@@ -4418,51 +6783,292 @@ impl PyOperationGetDomainOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_456 = (&self.inner.domain_id).as_str().into_py_any(py)?;
-        result.set_item("domain_id", converted_456)?;
-        let converted_457 = (&self.inner.arn).as_str().into_py_any(py)?;
-        result.set_item("arn", converted_457)?;
-        let converted_458 = (&self.inner.name).as_str().into_py_any(py)?;
-        result.set_item("name", converted_458)?;
+        let converted_731 = (&self.inner.domain_id).as_str().into_py_any(py)?;
+        result.set_item("domain_id", converted_731)?;
+        let converted_732 = (&self.inner.arn).as_str().into_py_any(py)?;
+        result.set_item("arn", converted_732)?;
+        let converted_733 = (&self.inner.name).as_str().into_py_any(py)?;
+        result.set_item("name", converted_733)?;
         if let Some(value) = &self.inner.kms_key_arn {
-            let converted_459 = (value).as_str().into_py_any(py)?;
-            result.set_item("kms_key_arn", converted_459)?;
+            let converted_734 = (value).as_str().into_py_any(py)?;
+            result.set_item("kms_key_arn", converted_734)?;
         } else {
             result.set_item("kms_key_arn", py.None())?;
         }
         if let Some(value) = &self.inner.encryption_context {
-            let converted_460 = encryption_context_to_py(py, value)?;
-            result.set_item("encryption_context", converted_460)?;
+            let converted_735 = encryption_context_to_py(py, value)?;
+            result.set_item("encryption_context", converted_735)?;
         } else {
             result.set_item("encryption_context", py.None())?;
         }
-        let converted_461 = (&self.inner.status).as_str().into_py_any(py)?;
-        result.set_item("status", converted_461)?;
+        let converted_736 = (&self.inner.status).as_str().into_py_any(py)?;
+        result.set_item("status", converted_736)?;
         if let Some(value) = &self.inner.web_app_url {
-            let converted_462 = (value).as_str().into_py_any(py)?;
-            result.set_item("web_app_url", converted_462)?;
+            let converted_737 = (value).as_str().into_py_any(py)?;
+            result.set_item("web_app_url", converted_737)?;
         } else {
             result.set_item("web_app_url", py.None())?;
         }
         if let Some(value) = &self.inner.web_app_configuration {
-            let converted_463 = web_app_configuration_to_py(py, value)?;
-            result.set_item("web_app_configuration", converted_463)?;
+            let converted_738 = web_app_configuration_to_py(py, value)?;
+            result.set_item("web_app_configuration", converted_738)?;
         } else {
             result.set_item("web_app_configuration", py.None())?;
         }
-        let converted_464 = (&self.inner.created_at).to_string().into_py_any(py)?;
-        result.set_item("created_at", converted_464)?;
+        let converted_739 = (&self.inner.created_at).to_string().into_py_any(py)?;
+        result.set_item("created_at", converted_739)?;
         if let Some(value) = &self.inner.tags {
-            let converted_465_dict = PyDict::new(py);
-            for (key_466, value_467) in value {
-                let converted_key_468 = (key_466).as_str().into_py_any(py)?;
-                let converted_value_469 = (value_467).as_str().into_py_any(py)?;
-                converted_465_dict.set_item(converted_key_468, converted_value_469)?;
+            let converted_740_dict = PyDict::new(py);
+            for (key_741, value_742) in value {
+                let converted_key_743 = (key_741).as_str().into_py_any(py)?;
+                let converted_value_744 = (value_742).as_str().into_py_any(py)?;
+                converted_740_dict.set_item(converted_key_743, converted_value_744)?;
             }
-            let converted_465 = converted_465_dict.into_any().unbind();
-            result.set_item("tags", converted_465)?;
+            let converted_740 = converted_740_dict.into_any().unbind();
+            result.set_item("tags", converted_740)?;
         } else {
             result.set_item("tags", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationGetMedicalCodingJobOutput {
+    job_id: ::std::string::String,
+    job_arn: ::std::string::String,
+    job_status: aws_sdk_connecthealth::types::JobStatus,
+    creation_time: Option<::aws_smithy_types::DateTime>,
+    updated_time: Option<::aws_smithy_types::DateTime>,
+    text: ::std::string::String,
+    patient_context: Option<Arc<aws_sdk_connecthealth::types::MedicalCodesPatientContext>>,
+    encounter_context: Option<Arc<aws_sdk_connecthealth::types::MedicalCodesEncounterContext>>,
+    output_data_config: Option<Arc<aws_sdk_connecthealth::types::MedicalCodingOutputDataConfig>>,
+    dataset_id: Option<::std::string::String>,
+    medical_coding_output: Option<Arc<aws_sdk_connecthealth::types::MedicalCodingOutput>>,
+    status_details: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::get_medical_coding_job::GetMedicalCodingJobOutput>
+    for SharedPyOperationGetMedicalCodingJobOutput
+{
+    fn from(
+        value: aws_sdk_connecthealth::operation::get_medical_coding_job::GetMedicalCodingJobOutput,
+    ) -> Self {
+        Self {
+            job_id: value.job_id,
+            job_arn: value.job_arn,
+            job_status: value.job_status,
+            creation_time: value.creation_time,
+            updated_time: value.updated_time,
+            text: value.text,
+            patient_context: value.patient_context.map(|item| Arc::new(item)),
+            encounter_context: value.encounter_context.map(|item| Arc::new(item)),
+            output_data_config: value.output_data_config.map(|item| Arc::new(item)),
+            dataset_id: value.dataset_id,
+            medical_coding_output: value.medical_coding_output.map(|item| Arc::new(item)),
+            status_details: value.status_details,
+        }
+    }
+}
+
+#[pyclass(
+    name = "GetMedicalCodingJobOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationGetMedicalCodingJobOutput {
+    inner: SharedPyOperationGetMedicalCodingJobOutput,
+}
+
+#[pymethods]
+impl PyOperationGetMedicalCodingJobOutput {
+    #[getter]
+    fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_745 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_745)
+    }
+
+    #[getter]
+    fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_746 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_746)
+    }
+
+    #[getter]
+    fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_747 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_747)
+    }
+
+    #[getter]
+    fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.creation_time {
+            let converted_748 = (value).to_string().into_py_any(py)?;
+            Ok(converted_748)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn updated_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.updated_time {
+            let converted_749 = (value).to_string().into_py_any(py)?;
+            Ok(converted_749)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn text(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_750 = (&self.inner.text).as_str().into_py_any(py)?;
+        Ok(converted_750)
+    }
+
+    #[getter]
+    fn patient_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.patient_context {
+            let converted_751 = Py::new(
+                py,
+                PyMedicalCodesPatientContext {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_751)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn encounter_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.encounter_context {
+            let converted_752 = Py::new(
+                py,
+                PyMedicalCodesEncounterContext {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_752)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.output_data_config {
+            let converted_753 = Py::new(
+                py,
+                PyMedicalCodingOutputDataConfig {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_753)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn dataset_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.dataset_id {
+            let converted_754 = (value).as_str().into_py_any(py)?;
+            Ok(converted_754)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn medical_coding_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.medical_coding_output {
+            let converted_755 = Py::new(
+                py,
+                PyMedicalCodingOutput {
+                    inner: Arc::clone(value),
+                },
+            )?
+            .into_any();
+            Ok(converted_755)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status_details {
+            let converted_756 = (value).as_str().into_py_any(py)?;
+            Ok(converted_756)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_757 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_757)?;
+        let converted_758 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_758)?;
+        let converted_759 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        result.set_item("job_status", converted_759)?;
+        if let Some(value) = &self.inner.creation_time {
+            let converted_760 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_760)?;
+        } else {
+            result.set_item("creation_time", py.None())?;
+        }
+        if let Some(value) = &self.inner.updated_time {
+            let converted_761 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_time", converted_761)?;
+        } else {
+            result.set_item("updated_time", py.None())?;
+        }
+        let converted_762 = (&self.inner.text).as_str().into_py_any(py)?;
+        result.set_item("text", converted_762)?;
+        if let Some(value) = &self.inner.patient_context {
+            let converted_763 = medical_codes_patient_context_to_py(py, value)?;
+            result.set_item("patient_context", converted_763)?;
+        } else {
+            result.set_item("patient_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.encounter_context {
+            let converted_764 = medical_codes_encounter_context_to_py(py, value)?;
+            result.set_item("encounter_context", converted_764)?;
+        } else {
+            result.set_item("encounter_context", py.None())?;
+        }
+        if let Some(value) = &self.inner.output_data_config {
+            let converted_765 = medical_coding_output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_765)?;
+        } else {
+            result.set_item("output_data_config", py.None())?;
+        }
+        if let Some(value) = &self.inner.dataset_id {
+            let converted_766 = (value).as_str().into_py_any(py)?;
+            result.set_item("dataset_id", converted_766)?;
+        } else {
+            result.set_item("dataset_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.medical_coding_output {
+            let converted_767 = medical_coding_output_to_py(py, value)?;
+            result.set_item("medical_coding_output", converted_767)?;
+        } else {
+            result.set_item("medical_coding_output", py.None())?;
+        }
+        if let Some(value) = &self.inner.status_details {
+            let converted_768 = (value).as_str().into_py_any(py)?;
+            result.set_item("status_details", converted_768)?;
+        } else {
+            result.set_item("status_details", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -4497,14 +7103,14 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     #[getter]
     fn medical_scribe_listening_session_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.medical_scribe_listening_session_details {
-            let converted_470 = Py::new(
+            let converted_769 = Py::new(
                 py,
                 PyMedicalScribeListeningSessionDetails {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_470)
+            Ok(converted_769)
         } else {
             Ok(py.None())
         }
@@ -4513,8 +7119,8 @@ impl PyOperationGetMedicalScribeListeningSessionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.medical_scribe_listening_session_details {
-            let converted_471 = medical_scribe_listening_session_details_shared_to_py(py, value)?;
-            result.set_item("medical_scribe_listening_session_details", converted_471)?;
+            let converted_770 = medical_scribe_listening_session_details_shared_to_py(py, value)?;
+            result.set_item("medical_scribe_listening_session_details", converted_770)?;
         } else {
             result.set_item("medical_scribe_listening_session_details", py.None())?;
         }
@@ -4579,27 +7185,27 @@ struct PyOperationGetPatientInsightsJobOutput {
 impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_472 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        Ok(converted_472)
+        let converted_771 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_771)
     }
 
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_473 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_473)
+        let converted_772 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_772)
     }
 
     #[getter]
     fn job_status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_474 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        Ok(converted_474)
+        let converted_773 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        Ok(converted_773)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_475 = (value).to_string().into_py_any(py)?;
-            Ok(converted_475)
+            let converted_774 = (value).to_string().into_py_any(py)?;
+            Ok(converted_774)
         } else {
             Ok(py.None())
         }
@@ -4608,8 +7214,8 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn updated_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.updated_time {
-            let converted_476 = (value).to_string().into_py_any(py)?;
-            Ok(converted_476)
+            let converted_775 = (value).to_string().into_py_any(py)?;
+            Ok(converted_775)
         } else {
             Ok(py.None())
         }
@@ -4618,14 +7224,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn insights_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_output {
-            let converted_477 = Py::new(
+            let converted_776 = Py::new(
                 py,
                 PyInsightsOutput {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_477)
+            Ok(converted_776)
         } else {
             Ok(py.None())
         }
@@ -4634,8 +7240,8 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn status_details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.status_details {
-            let converted_478 = (value).as_str().into_py_any(py)?;
-            Ok(converted_478)
+            let converted_777 = (value).as_str().into_py_any(py)?;
+            Ok(converted_777)
         } else {
             Ok(py.None())
         }
@@ -4644,14 +7250,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn patient_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.patient_context {
-            let converted_479 = Py::new(
+            let converted_778 = Py::new(
                 py,
                 PyPatientInsightsPatientContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_479)
+            Ok(converted_778)
         } else {
             Ok(py.None())
         }
@@ -4660,14 +7266,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn insights_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.insights_context {
-            let converted_480 = Py::new(
+            let converted_779 = Py::new(
                 py,
                 PyInsightsContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_480)
+            Ok(converted_779)
         } else {
             Ok(py.None())
         }
@@ -4676,14 +7282,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn encounter_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.encounter_context {
-            let converted_481 = Py::new(
+            let converted_780 = Py::new(
                 py,
                 PyPatientInsightsEncounterContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_481)
+            Ok(converted_780)
         } else {
             Ok(py.None())
         }
@@ -4692,14 +7298,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn user_context(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_context {
-            let converted_482 = Py::new(
+            let converted_781 = Py::new(
                 py,
                 PyUserContext {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_482)
+            Ok(converted_781)
         } else {
             Ok(py.None())
         }
@@ -4708,14 +7314,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn input_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.input_data_config {
-            let converted_483 = Py::new(
+            let converted_782 = Py::new(
                 py,
                 PyInputDataConfig {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_483)
+            Ok(converted_782)
         } else {
             Ok(py.None())
         }
@@ -4724,14 +7330,14 @@ impl PyOperationGetPatientInsightsJobOutput {
     #[getter]
     fn output_data_config(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.output_data_config {
-            let converted_484 = Py::new(
+            let converted_783 = Py::new(
                 py,
                 PyOutputDataConfig {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_484)
+            Ok(converted_783)
         } else {
             Ok(py.None())
         }
@@ -4739,69 +7345,69 @@ impl PyOperationGetPatientInsightsJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_485 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        result.set_item("job_id", converted_485)?;
-        let converted_486 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_486)?;
-        let converted_487 = (&self.inner.job_status).as_str().into_py_any(py)?;
-        result.set_item("job_status", converted_487)?;
+        let converted_784 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_784)?;
+        let converted_785 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_785)?;
+        let converted_786 = (&self.inner.job_status).as_str().into_py_any(py)?;
+        result.set_item("job_status", converted_786)?;
         if let Some(value) = &self.inner.creation_time {
-            let converted_488 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_488)?;
+            let converted_787 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_787)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
         if let Some(value) = &self.inner.updated_time {
-            let converted_489 = (value).to_string().into_py_any(py)?;
-            result.set_item("updated_time", converted_489)?;
+            let converted_788 = (value).to_string().into_py_any(py)?;
+            result.set_item("updated_time", converted_788)?;
         } else {
             result.set_item("updated_time", py.None())?;
         }
         if let Some(value) = &self.inner.insights_output {
-            let converted_490 = insights_output_to_py(py, value)?;
-            result.set_item("insights_output", converted_490)?;
+            let converted_789 = insights_output_to_py(py, value)?;
+            result.set_item("insights_output", converted_789)?;
         } else {
             result.set_item("insights_output", py.None())?;
         }
         if let Some(value) = &self.inner.status_details {
-            let converted_491 = (value).as_str().into_py_any(py)?;
-            result.set_item("status_details", converted_491)?;
+            let converted_790 = (value).as_str().into_py_any(py)?;
+            result.set_item("status_details", converted_790)?;
         } else {
             result.set_item("status_details", py.None())?;
         }
         if let Some(value) = &self.inner.patient_context {
-            let converted_492 = patient_insights_patient_context_to_py(py, value)?;
-            result.set_item("patient_context", converted_492)?;
+            let converted_791 = patient_insights_patient_context_to_py(py, value)?;
+            result.set_item("patient_context", converted_791)?;
         } else {
             result.set_item("patient_context", py.None())?;
         }
         if let Some(value) = &self.inner.insights_context {
-            let converted_493 = insights_context_to_py(py, value)?;
-            result.set_item("insights_context", converted_493)?;
+            let converted_792 = insights_context_to_py(py, value)?;
+            result.set_item("insights_context", converted_792)?;
         } else {
             result.set_item("insights_context", py.None())?;
         }
         if let Some(value) = &self.inner.encounter_context {
-            let converted_494 = patient_insights_encounter_context_to_py(py, value)?;
-            result.set_item("encounter_context", converted_494)?;
+            let converted_793 = patient_insights_encounter_context_to_py(py, value)?;
+            result.set_item("encounter_context", converted_793)?;
         } else {
             result.set_item("encounter_context", py.None())?;
         }
         if let Some(value) = &self.inner.user_context {
-            let converted_495 = user_context_to_py(py, value)?;
-            result.set_item("user_context", converted_495)?;
+            let converted_794 = user_context_to_py(py, value)?;
+            result.set_item("user_context", converted_794)?;
         } else {
             result.set_item("user_context", py.None())?;
         }
         if let Some(value) = &self.inner.input_data_config {
-            let converted_496 = input_data_config_shared_to_py(py, value)?;
-            result.set_item("input_data_config", converted_496)?;
+            let converted_795 = input_data_config_shared_to_py(py, value)?;
+            result.set_item("input_data_config", converted_795)?;
         } else {
             result.set_item("input_data_config", py.None())?;
         }
         if let Some(value) = &self.inner.output_data_config {
-            let converted_497 = output_data_config_to_py(py, value)?;
-            result.set_item("output_data_config", converted_497)?;
+            let converted_796 = output_data_config_to_py(py, value)?;
+            result.set_item("output_data_config", converted_796)?;
         } else {
             result.set_item("output_data_config", py.None())?;
         }
@@ -4841,14 +7447,14 @@ impl PyOperationGetSubscriptionOutput {
     #[getter]
     fn subscription(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.subscription {
-            let converted_498 = Py::new(
+            let converted_797 = Py::new(
                 py,
                 PySubscriptionDescription {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_498)
+            Ok(converted_797)
         } else {
             Ok(py.None())
         }
@@ -4857,10 +7463,88 @@ impl PyOperationGetSubscriptionOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.subscription {
-            let converted_499 = subscription_description_to_py(py, value)?;
-            result.set_item("subscription", converted_499)?;
+            let converted_798 = subscription_description_to_py(py, value)?;
+            result.set_item("subscription", converted_798)?;
         } else {
             result.set_item("subscription", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationListDatasetsOutput {
+    items: ::std::vec::Vec<Arc<aws_sdk_connecthealth::types::DatasetSummary>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_connecthealth::operation::list_datasets::ListDatasetsOutput>
+    for SharedPyOperationListDatasetsOutput
+{
+    fn from(value: aws_sdk_connecthealth::operation::list_datasets::ListDatasetsOutput) -> Self {
+        Self {
+            items: (value.items)
+                .into_iter()
+                .map(|owned_803| Arc::new(owned_803))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(
+    name = "ListDatasetsOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationListDatasetsOutput {
+    inner: SharedPyOperationListDatasetsOutput,
+}
+
+#[pymethods]
+impl PyOperationListDatasetsOutput {
+    #[getter]
+    fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_799_list = PyList::empty(py);
+        for item_800 in &self.inner.items {
+            let converted_item_801 = Py::new(
+                py,
+                PyDatasetSummary {
+                    inner: Arc::clone(item_800),
+                },
+            )?
+            .into_any();
+            converted_799_list.append(converted_item_801)?;
+        }
+        let converted_799 = converted_799_list.into_any().unbind();
+        Ok(converted_799)
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_802 = (value).as_str().into_py_any(py)?;
+            Ok(converted_802)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_804_list = PyList::empty(py);
+        for item_805 in &self.inner.items {
+            let converted_item_806 = dataset_summary_to_py(py, item_805)?;
+            converted_804_list.append(converted_item_806)?;
+        }
+        let converted_804 = converted_804_list.into_any().unbind();
+        result.set_item("items", converted_804)?;
+        if let Some(value) = &self.inner.next_token {
+            let converted_807 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_807)?;
+        } else {
+            result.set_item("next_token", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -4880,7 +7564,7 @@ impl From<aws_sdk_connecthealth::operation::list_domains::ListDomainsOutput>
         Self {
             domains: (value.domains)
                 .into_iter()
-                .map(|owned_504| Arc::new(owned_504))
+                .map(|owned_812| Arc::new(owned_812))
                 .collect(),
             next_token: value.next_token,
         }
@@ -4900,26 +7584,26 @@ struct PyOperationListDomainsOutput {
 impl PyOperationListDomainsOutput {
     #[getter]
     fn domains(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_500_list = PyList::empty(py);
-        for item_501 in &self.inner.domains {
-            let converted_item_502 = Py::new(
+        let converted_808_list = PyList::empty(py);
+        for item_809 in &self.inner.domains {
+            let converted_item_810 = Py::new(
                 py,
                 PyDomainSummary {
-                    inner: Arc::clone(item_501),
+                    inner: Arc::clone(item_809),
                 },
             )?
             .into_any();
-            converted_500_list.append(converted_item_502)?;
+            converted_808_list.append(converted_item_810)?;
         }
-        let converted_500 = converted_500_list.into_any().unbind();
-        Ok(converted_500)
+        let converted_808 = converted_808_list.into_any().unbind();
+        Ok(converted_808)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_503 = (value).as_str().into_py_any(py)?;
-            Ok(converted_503)
+            let converted_811 = (value).as_str().into_py_any(py)?;
+            Ok(converted_811)
         } else {
             Ok(py.None())
         }
@@ -4927,16 +7611,16 @@ impl PyOperationListDomainsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_505_list = PyList::empty(py);
-        for item_506 in &self.inner.domains {
-            let converted_item_507 = domain_summary_to_py(py, item_506)?;
-            converted_505_list.append(converted_item_507)?;
+        let converted_813_list = PyList::empty(py);
+        for item_814 in &self.inner.domains {
+            let converted_item_815 = domain_summary_to_py(py, item_814)?;
+            converted_813_list.append(converted_item_815)?;
         }
-        let converted_505 = converted_505_list.into_any().unbind();
-        result.set_item("domains", converted_505)?;
+        let converted_813 = converted_813_list.into_any().unbind();
+        result.set_item("domains", converted_813)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_508 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_508)?;
+            let converted_816 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_816)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -4960,7 +7644,7 @@ impl From<aws_sdk_connecthealth::operation::list_subscriptions::ListSubscription
         Self {
             subscriptions: (value.subscriptions)
                 .into_iter()
-                .map(|owned_513| Arc::new(owned_513))
+                .map(|owned_821| Arc::new(owned_821))
                 .collect(),
             next_token: value.next_token,
         }
@@ -4980,26 +7664,26 @@ struct PyOperationListSubscriptionsOutput {
 impl PyOperationListSubscriptionsOutput {
     #[getter]
     fn subscriptions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_509_list = PyList::empty(py);
-        for item_510 in &self.inner.subscriptions {
-            let converted_item_511 = Py::new(
+        let converted_817_list = PyList::empty(py);
+        for item_818 in &self.inner.subscriptions {
+            let converted_item_819 = Py::new(
                 py,
                 PySubscriptionDescription {
-                    inner: Arc::clone(item_510),
+                    inner: Arc::clone(item_818),
                 },
             )?
             .into_any();
-            converted_509_list.append(converted_item_511)?;
+            converted_817_list.append(converted_item_819)?;
         }
-        let converted_509 = converted_509_list.into_any().unbind();
-        Ok(converted_509)
+        let converted_817 = converted_817_list.into_any().unbind();
+        Ok(converted_817)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_512 = (value).as_str().into_py_any(py)?;
-            Ok(converted_512)
+            let converted_820 = (value).as_str().into_py_any(py)?;
+            Ok(converted_820)
         } else {
             Ok(py.None())
         }
@@ -5007,16 +7691,16 @@ impl PyOperationListSubscriptionsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_514_list = PyList::empty(py);
-        for item_515 in &self.inner.subscriptions {
-            let converted_item_516 = subscription_description_to_py(py, item_515)?;
-            converted_514_list.append(converted_item_516)?;
+        let converted_822_list = PyList::empty(py);
+        for item_823 in &self.inner.subscriptions {
+            let converted_item_824 = subscription_description_to_py(py, item_823)?;
+            converted_822_list.append(converted_item_824)?;
         }
-        let converted_514 = converted_514_list.into_any().unbind();
-        result.set_item("subscriptions", converted_514)?;
+        let converted_822 = converted_822_list.into_any().unbind();
+        result.set_item("subscriptions", converted_822)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_517 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_517)?;
+            let converted_825 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_825)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -5038,14 +7722,14 @@ impl PyOperationListTagsForResourceOutput {
     #[getter]
     fn tags(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.tags {
-            let converted_518_dict = PyDict::new(py);
-            for (key_519, value_520) in value {
-                let converted_key_521 = (key_519).as_str().into_py_any(py)?;
-                let converted_value_522 = (value_520).as_str().into_py_any(py)?;
-                converted_518_dict.set_item(converted_key_521, converted_value_522)?;
+            let converted_826_dict = PyDict::new(py);
+            for (key_827, value_828) in value {
+                let converted_key_829 = (key_827).as_str().into_py_any(py)?;
+                let converted_value_830 = (value_828).as_str().into_py_any(py)?;
+                converted_826_dict.set_item(converted_key_829, converted_value_830)?;
             }
-            let converted_518 = converted_518_dict.into_any().unbind();
-            Ok(converted_518)
+            let converted_826 = converted_826_dict.into_any().unbind();
+            Ok(converted_826)
         } else {
             Ok(py.None())
         }
@@ -5054,16 +7738,65 @@ impl PyOperationListTagsForResourceOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.tags {
-            let converted_523_dict = PyDict::new(py);
-            for (key_524, value_525) in value {
-                let converted_key_526 = (key_524).as_str().into_py_any(py)?;
-                let converted_value_527 = (value_525).as_str().into_py_any(py)?;
-                converted_523_dict.set_item(converted_key_526, converted_value_527)?;
+            let converted_831_dict = PyDict::new(py);
+            for (key_832, value_833) in value {
+                let converted_key_834 = (key_832).as_str().into_py_any(py)?;
+                let converted_value_835 = (value_833).as_str().into_py_any(py)?;
+                converted_831_dict.set_item(converted_key_834, converted_value_835)?;
             }
-            let converted_523 = converted_523_dict.into_any().unbind();
-            result.set_item("tags", converted_523)?;
+            let converted_831 = converted_831_dict.into_any().unbind();
+            result.set_item("tags", converted_831)?;
         } else {
             result.set_item("tags", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "StartMedicalCodingJobOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationStartMedicalCodingJobOutput {
+    inner: aws_sdk_connecthealth::operation::start_medical_coding_job::StartMedicalCodingJobOutput,
+}
+
+#[pymethods]
+impl PyOperationStartMedicalCodingJobOutput {
+    #[getter]
+    fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_836 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_836)
+    }
+
+    #[getter]
+    fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_837 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_837)
+    }
+
+    #[getter]
+    fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.creation_time {
+            let converted_838 = (value).to_string().into_py_any(py)?;
+            Ok(converted_838)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_839 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_839)?;
+        let converted_840 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_840)?;
+        if let Some(value) = &self.inner.creation_time {
+            let converted_841 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_841)?;
+        } else {
+            result.set_item("creation_time", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -5083,21 +7816,21 @@ struct PyOperationStartPatientInsightsJobOutput {
 impl PyOperationStartPatientInsightsJobOutput {
     #[getter]
     fn job_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_528 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        Ok(converted_528)
+        let converted_842 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        Ok(converted_842)
     }
 
     #[getter]
     fn job_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_529 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        Ok(converted_529)
+        let converted_843 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        Ok(converted_843)
     }
 
     #[getter]
     fn creation_time(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.creation_time {
-            let converted_530 = (value).to_string().into_py_any(py)?;
-            Ok(converted_530)
+            let converted_844 = (value).to_string().into_py_any(py)?;
+            Ok(converted_844)
         } else {
             Ok(py.None())
         }
@@ -5105,16 +7838,33 @@ impl PyOperationStartPatientInsightsJobOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_531 = (&self.inner.job_arn).as_str().into_py_any(py)?;
-        result.set_item("job_arn", converted_531)?;
-        let converted_532 = (&self.inner.job_id).as_str().into_py_any(py)?;
-        result.set_item("job_id", converted_532)?;
+        let converted_845 = (&self.inner.job_arn).as_str().into_py_any(py)?;
+        result.set_item("job_arn", converted_845)?;
+        let converted_846 = (&self.inner.job_id).as_str().into_py_any(py)?;
+        result.set_item("job_id", converted_846)?;
         if let Some(value) = &self.inner.creation_time {
-            let converted_533 = (value).to_string().into_py_any(py)?;
-            result.set_item("creation_time", converted_533)?;
+            let converted_847 = (value).to_string().into_py_any(py)?;
+            result.set_item("creation_time", converted_847)?;
         } else {
             result.set_item("creation_time", py.None())?;
         }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "SubmitFeedbackOutput",
+    module = "rboto_connecthealth._native",
+    frozen
+)]
+struct PyOperationSubmitFeedbackOutput {
+    inner: aws_sdk_connecthealth::operation::submit_feedback::SubmitFeedbackOutput,
+}
+
+#[pymethods]
+impl PyOperationSubmitFeedbackOutput {
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
         Ok(result.into_any().unbind())
     }
 }
@@ -5127,6 +7877,21 @@ impl ModeledErrorDetails
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
             Self::InternalServerException(_) => Some("InternalServerException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::create_dataset::CreateDatasetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
             Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
@@ -5171,6 +7936,20 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_dataset::DeleteDatasetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_domain::DeleteDomainError {
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
@@ -5180,10 +7959,38 @@ impl ModeledErrorDetails for aws_sdk_connecthealth::operation::delete_domain::De
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_dataset::GetDatasetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::get_domain::GetDomainError {
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::get_medical_coding_job::GetMedicalCodingJobError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
             _ => None,
         }
     }
@@ -5231,6 +8038,19 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_connecthealth::operation::list_datasets::ListDatasetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::list_domains::ListDomainsError {}
 impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::list_subscriptions::ListSubscriptionsError
@@ -5250,6 +8070,22 @@ impl ModeledErrorDetails
     for aws_sdk_connecthealth::operation::list_tags_for_resource::ListTagsForResourceError
 {
 }
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::start_medical_coding_job::StartMedicalCodingJobError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_connecthealth::operation::start_medical_scribe_listening_session::StartMedicalScribeListeningSessionError {
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
@@ -5271,6 +8107,21 @@ impl ModeledErrorDetails
         match self {
             Self::AccessDeniedException(_) => Some("AccessDeniedException"),
             Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_connecthealth::operation::submit_feedback::SubmitFeedbackError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
             Self::InternalServerException(_) => Some("InternalServerException"),
             Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
             Self::ThrottlingException(_) => Some("ThrottlingException"),
@@ -5391,12 +8242,19 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyArtifactDetails>()?;
     module.add_class::<PyClinicalNoteGenerationResult>()?;
     module.add_class::<PyClinicalNoteGenerationSettingsResponse>()?;
+    module.add_class::<PyDatasetSummary>()?;
     module.add_class::<PyDomainSummary>()?;
     module.add_class::<PyEncryptionContext>()?;
     module.add_class::<PyFhirServer>()?;
     module.add_class::<PyInputDataConfig>()?;
     module.add_class::<PyInsightsContext>()?;
     module.add_class::<PyInsightsOutput>()?;
+    module.add_class::<PyMedicalCodeGenerationResult>()?;
+    module.add_class::<PyMedicalCodeGenerationSettingsResponse>()?;
+    module.add_class::<PyMedicalCodesEncounterContext>()?;
+    module.add_class::<PyMedicalCodesPatientContext>()?;
+    module.add_class::<PyMedicalCodingOutput>()?;
+    module.add_class::<PyMedicalCodingOutputDataConfig>()?;
     module.add_class::<PyMedicalScribeChannelDefinition>()?;
     module.add_class::<PyMedicalScribeListeningSessionDetails>()?;
     module.add_class::<PyMedicalScribePostStreamActionSettingsResponse>()?;
@@ -5409,18 +8267,25 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyUserContext>()?;
     module.add_class::<PyWebAppConfiguration>()?;
     module.add_class::<PyOperationActivateSubscriptionOutput>()?;
+    module.add_class::<PyOperationCreateDatasetOutput>()?;
     module.add_class::<PyOperationCreateDomainOutput>()?;
     module.add_class::<PyOperationCreateSubscriptionOutput>()?;
     module.add_class::<PyOperationDeactivateSubscriptionOutput>()?;
+    module.add_class::<PyOperationDeleteDatasetOutput>()?;
     module.add_class::<PyOperationDeleteDomainOutput>()?;
+    module.add_class::<PyOperationGetDatasetOutput>()?;
     module.add_class::<PyOperationGetDomainOutput>()?;
+    module.add_class::<PyOperationGetMedicalCodingJobOutput>()?;
     module.add_class::<PyOperationGetMedicalScribeListeningSessionOutput>()?;
     module.add_class::<PyOperationGetPatientInsightsJobOutput>()?;
     module.add_class::<PyOperationGetSubscriptionOutput>()?;
+    module.add_class::<PyOperationListDatasetsOutput>()?;
     module.add_class::<PyOperationListDomainsOutput>()?;
     module.add_class::<PyOperationListSubscriptionsOutput>()?;
     module.add_class::<PyOperationListTagsForResourceOutput>()?;
+    module.add_class::<PyOperationStartMedicalCodingJobOutput>()?;
     module.add_class::<PyOperationStartPatientInsightsJobOutput>()?;
+    module.add_class::<PyOperationSubmitFeedbackOutput>()?;
 
     module.add_class::<PyMedicalScribeOutputStreamReceiver>()?;
     Ok(())
@@ -5489,9 +8354,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_239 = (|| -> PyResult<_> {
-                let converted_239: String = value.extract()?;
-                Ok(converted_239)
+            let converted_417 = (|| -> PyResult<_> {
+                let converted_417: String = value.extract()?;
+                Ok(converted_417)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5504,14 +8369,14 @@ impl ConnectHealthClient {
                     "ActivateSubscription",
                 )
             })?;
-            Some(converted_239)
+            Some(converted_417)
         } else {
             None
         };
         let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
-            let converted_240 = (|| -> PyResult<_> {
-                let converted_240: String = value.extract()?;
-                Ok(converted_240)
+            let converted_418 = (|| -> PyResult<_> {
+                let converted_418: String = value.extract()?;
+                Ok(converted_418)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5524,7 +8389,7 @@ impl ConnectHealthClient {
                     "ActivateSubscription",
                 )
             })?;
-            Some(converted_240)
+            Some(converted_418)
         } else {
             None
         };
@@ -5560,6 +8425,116 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn create_dataset<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_419 = (|| -> PyResult<_> {
+                let converted_419: String = value.extract()?;
+                Ok(converted_419)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "CreateDataset",
+                )
+            })?;
+            Some(converted_419)
+        } else {
+            None
+        };
+        let name_value = if let Some(value) = dict_value(params, "name")? {
+            let converted_420 = (|| -> PyResult<_> {
+                let converted_420: String = value.extract()?;
+                Ok(converted_420)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("name"), "str"),
+                    "connecthealth",
+                    "CreateDataset",
+                )
+            })?;
+            Some(converted_420)
+        } else {
+            None
+        };
+        let config_value = if let Some(value) = dict_value(params, "config")? {
+            let converted_421 = (|| -> PyResult<_> {
+                let converted_421 = dataset_config_from_py(&value)?;
+                Ok(converted_421)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("config"),
+                        "exactly one known union variant",
+                    ),
+                    "connecthealth",
+                    "CreateDataset",
+                )
+            })?;
+            Some(converted_421)
+        } else {
+            None
+        };
+        let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
+            let converted_422 = (|| -> PyResult<_> {
+                let converted_422: String = value.extract()?;
+                Ok(converted_422)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_token"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "CreateDataset",
+                )
+            })?;
+            Some(converted_422)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .create_dataset()
+                .set_domain_id(domain_id_value)
+                .set_name(name_value)
+                .set_config(config_value)
+                .set_client_token(client_token_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "CreateDataset", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationCreateDatasetOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn create_domain<'py>(
         &self,
         py: Python<'py>,
@@ -5568,9 +8543,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let name_value = if let Some(value) = dict_value(params, "name")? {
-            let converted_241 = (|| -> PyResult<_> {
-                let converted_241: String = value.extract()?;
-                Ok(converted_241)
+            let converted_423 = (|| -> PyResult<_> {
+                let converted_423: String = value.extract()?;
+                Ok(converted_423)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5579,14 +8554,14 @@ impl ConnectHealthClient {
                     "CreateDomain",
                 )
             })?;
-            Some(converted_241)
+            Some(converted_423)
         } else {
             None
         };
         let kms_key_arn_value = if let Some(value) = dict_value(params, "kms_key_arn")? {
-            let converted_242 = (|| -> PyResult<_> {
-                let converted_242: String = value.extract()?;
-                Ok(converted_242)
+            let converted_424 = (|| -> PyResult<_> {
+                let converted_424: String = value.extract()?;
+                Ok(converted_424)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5599,15 +8574,15 @@ impl ConnectHealthClient {
                     "CreateDomain",
                 )
             })?;
-            Some(converted_242)
+            Some(converted_424)
         } else {
             None
         };
         let web_app_setup_configuration_value =
             if let Some(value) = dict_value(params, "web_app_setup_configuration")? {
-                let converted_243 = (|| -> PyResult<_> {
-                    let converted_243 = create_web_app_configuration_from_py(&value)?;
-                    Ok(converted_243)
+                let converted_425 = (|| -> PyResult<_> {
+                    let converted_425 = create_web_app_configuration_from_py(&value)?;
+                    Ok(converted_425)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -5620,40 +8595,40 @@ impl ConnectHealthClient {
                         "CreateDomain",
                     )
                 })?;
-                Some(converted_243)
+                Some(converted_425)
             } else {
                 None
             };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_244 = (|| -> PyResult<_> {
-                let mapping_245 = value.cast::<PyDict>()?;
-                let mut converted_244 = HashMap::with_capacity(mapping_245.len());
-                for (index_250, (key_246, value_247)) in mapping_245.iter().enumerate() {
-                    let converted_key_248 = (|| -> PyResult<_> {
-                        let converted_key_248: String = key_246.extract()?;
-                        Ok(converted_key_248)
+            let converted_426 = (|| -> PyResult<_> {
+                let mapping_427 = value.cast::<PyDict>()?;
+                let mut converted_426 = HashMap::with_capacity(mapping_427.len());
+                for (index_432, (key_428, value_429)) in mapping_427.iter().enumerate() {
+                    let converted_key_430 = (|| -> PyResult<_> {
+                        let converted_key_430: String = key_428.extract()?;
+                        Ok(converted_key_430)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_250),
+                            rboto_core::InputPath::MapKey(index_432),
                             "str",
                         )
                     })?;
-                    let converted_value_249 = (|| -> PyResult<_> {
-                        let converted_value_249: String = value_247.extract()?;
-                        Ok(converted_value_249)
+                    let converted_value_431 = (|| -> PyResult<_> {
+                        let converted_value_431: String = value_429.extract()?;
+                        Ok(converted_value_431)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_250),
+                            rboto_core::InputPath::MapValue(index_432),
                             "str",
                         )
                     })?;
-                    converted_244.insert(converted_key_248, converted_value_249);
+                    converted_426.insert(converted_key_430, converted_value_431);
                 }
-                Ok(converted_244)
+                Ok(converted_426)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5662,7 +8637,7 @@ impl ConnectHealthClient {
                     "CreateDomain",
                 )
             })?;
-            Some(converted_244)
+            Some(converted_426)
         } else {
             None
         };
@@ -5703,9 +8678,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_251 = (|| -> PyResult<_> {
-                let converted_251: String = value.extract()?;
-                Ok(converted_251)
+            let converted_433 = (|| -> PyResult<_> {
+                let converted_433: String = value.extract()?;
+                Ok(converted_433)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5718,7 +8693,7 @@ impl ConnectHealthClient {
                     "CreateSubscription",
                 )
             })?;
-            Some(converted_251)
+            Some(converted_433)
         } else {
             None
         };
@@ -5757,9 +8732,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_252 = (|| -> PyResult<_> {
-                let converted_252: String = value.extract()?;
-                Ok(converted_252)
+            let converted_434 = (|| -> PyResult<_> {
+                let converted_434: String = value.extract()?;
+                Ok(converted_434)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5772,14 +8747,14 @@ impl ConnectHealthClient {
                     "DeactivateSubscription",
                 )
             })?;
-            Some(converted_252)
+            Some(converted_434)
         } else {
             None
         };
         let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
-            let converted_253 = (|| -> PyResult<_> {
-                let converted_253: String = value.extract()?;
-                Ok(converted_253)
+            let converted_435 = (|| -> PyResult<_> {
+                let converted_435: String = value.extract()?;
+                Ok(converted_435)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5792,7 +8767,7 @@ impl ConnectHealthClient {
                     "DeactivateSubscription",
                 )
             })?;
-            Some(converted_253)
+            Some(converted_435)
         } else {
             None
         };
@@ -5828,6 +8803,78 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn delete_dataset<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_436 = (|| -> PyResult<_> {
+                let converted_436: String = value.extract()?;
+                Ok(converted_436)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "DeleteDataset",
+                )
+            })?;
+            Some(converted_436)
+        } else {
+            None
+        };
+        let dataset_id_value = if let Some(value) = dict_value(params, "dataset_id")? {
+            let converted_437 = (|| -> PyResult<_> {
+                let converted_437: String = value.extract()?;
+                Ok(converted_437)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dataset_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "DeleteDataset",
+                )
+            })?;
+            Some(converted_437)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .delete_dataset()
+                .set_domain_id(domain_id_value)
+                .set_dataset_id(dataset_id_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "DeleteDataset", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationDeleteDatasetOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn delete_domain<'py>(
         &self,
         py: Python<'py>,
@@ -5836,9 +8883,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_254 = (|| -> PyResult<_> {
-                let converted_254: String = value.extract()?;
-                Ok(converted_254)
+            let converted_438 = (|| -> PyResult<_> {
+                let converted_438: String = value.extract()?;
+                Ok(converted_438)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5851,7 +8898,7 @@ impl ConnectHealthClient {
                     "DeleteDomain",
                 )
             })?;
-            Some(converted_254)
+            Some(converted_438)
         } else {
             None
         };
@@ -5877,6 +8924,78 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn get_dataset<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_439 = (|| -> PyResult<_> {
+                let converted_439: String = value.extract()?;
+                Ok(converted_439)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "GetDataset",
+                )
+            })?;
+            Some(converted_439)
+        } else {
+            None
+        };
+        let dataset_id_value = if let Some(value) = dict_value(params, "dataset_id")? {
+            let converted_440 = (|| -> PyResult<_> {
+                let converted_440: String = value.extract()?;
+                Ok(converted_440)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dataset_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "GetDataset",
+                )
+            })?;
+            Some(converted_440)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .get_dataset()
+                .set_domain_id(domain_id_value)
+                .set_dataset_id(dataset_id_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetDataset", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationGetDatasetOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn get_domain<'py>(
         &self,
         py: Python<'py>,
@@ -5885,9 +9004,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_255 = (|| -> PyResult<_> {
-                let converted_255: String = value.extract()?;
-                Ok(converted_255)
+            let converted_441 = (|| -> PyResult<_> {
+                let converted_441: String = value.extract()?;
+                Ok(converted_441)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5900,7 +9019,7 @@ impl ConnectHealthClient {
                     "GetDomain",
                 )
             })?;
-            Some(converted_255)
+            Some(converted_441)
         } else {
             None
         };
@@ -5928,6 +9047,81 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn get_medical_coding_job<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_442 = (|| -> PyResult<_> {
+                let converted_442: String = value.extract()?;
+                Ok(converted_442)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "GetMedicalCodingJob",
+                )
+            })?;
+            Some(converted_442)
+        } else {
+            None
+        };
+        let job_id_value = if let Some(value) = dict_value(params, "job_id")? {
+            let converted_443 = (|| -> PyResult<_> {
+                let converted_443: String = value.extract()?;
+                Ok(converted_443)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("job_id"), "str"),
+                    "connecthealth",
+                    "GetMedicalCodingJob",
+                )
+            })?;
+            Some(converted_443)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .get_medical_coding_job()
+                .set_domain_id(domain_id_value)
+                .set_job_id(job_id_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "GetMedicalCodingJob",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationGetMedicalCodingJobOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn get_medical_scribe_listening_session<'py>(
         &self,
         py: Python<'py>,
@@ -5936,9 +9130,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_256 = (|| -> PyResult<_> {
-                let converted_256: String = value.extract()?;
-                Ok(converted_256)
+            let converted_444 = (|| -> PyResult<_> {
+                let converted_444: String = value.extract()?;
+                Ok(converted_444)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5951,14 +9145,14 @@ impl ConnectHealthClient {
                     "GetMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_256)
+            Some(converted_444)
         } else {
             None
         };
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_257 = (|| -> PyResult<_> {
-                let converted_257: String = value.extract()?;
-                Ok(converted_257)
+            let converted_445 = (|| -> PyResult<_> {
+                let converted_445: String = value.extract()?;
+                Ok(converted_445)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5971,14 +9165,14 @@ impl ConnectHealthClient {
                     "GetMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_257)
+            Some(converted_445)
         } else {
             None
         };
         let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
-            let converted_258 = (|| -> PyResult<_> {
-                let converted_258: String = value.extract()?;
-                Ok(converted_258)
+            let converted_446 = (|| -> PyResult<_> {
+                let converted_446: String = value.extract()?;
+                Ok(converted_446)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -5991,7 +9185,7 @@ impl ConnectHealthClient {
                     "GetMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_258)
+            Some(converted_446)
         } else {
             None
         };
@@ -6036,9 +9230,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_259 = (|| -> PyResult<_> {
-                let converted_259: String = value.extract()?;
-                Ok(converted_259)
+            let converted_447 = (|| -> PyResult<_> {
+                let converted_447: String = value.extract()?;
+                Ok(converted_447)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6051,14 +9245,14 @@ impl ConnectHealthClient {
                     "GetPatientInsightsJob",
                 )
             })?;
-            Some(converted_259)
+            Some(converted_447)
         } else {
             None
         };
         let job_id_value = if let Some(value) = dict_value(params, "job_id")? {
-            let converted_260 = (|| -> PyResult<_> {
-                let converted_260: String = value.extract()?;
-                Ok(converted_260)
+            let converted_448 = (|| -> PyResult<_> {
+                let converted_448: String = value.extract()?;
+                Ok(converted_448)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6067,7 +9261,7 @@ impl ConnectHealthClient {
                     "GetPatientInsightsJob",
                 )
             })?;
-            Some(converted_260)
+            Some(converted_448)
         } else {
             None
         };
@@ -6111,9 +9305,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_261 = (|| -> PyResult<_> {
-                let converted_261: String = value.extract()?;
-                Ok(converted_261)
+            let converted_449 = (|| -> PyResult<_> {
+                let converted_449: String = value.extract()?;
+                Ok(converted_449)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6126,14 +9320,14 @@ impl ConnectHealthClient {
                     "GetSubscription",
                 )
             })?;
-            Some(converted_261)
+            Some(converted_449)
         } else {
             None
         };
         let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
-            let converted_262 = (|| -> PyResult<_> {
-                let converted_262: String = value.extract()?;
-                Ok(converted_262)
+            let converted_450 = (|| -> PyResult<_> {
+                let converted_450: String = value.extract()?;
+                Ok(converted_450)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6146,7 +9340,7 @@ impl ConnectHealthClient {
                     "GetSubscription",
                 )
             })?;
-            Some(converted_262)
+            Some(converted_450)
         } else {
             None
         };
@@ -6177,6 +9371,124 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_datasets<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_451 = (|| -> PyResult<_> {
+                let converted_451: String = value.extract()?;
+                Ok(converted_451)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "ListDatasets",
+                )
+            })?;
+            Some(converted_451)
+        } else {
+            None
+        };
+        let type_value = if let Some(value) = dict_value(params, "type")? {
+            let converted_452 = (|| -> PyResult<_> {
+                let enum_value_453: String = value.extract()?;
+                let converted_452 =
+                    aws_sdk_connecthealth::types::DatasetType::from(enum_value_453.as_str());
+                Ok(converted_452)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("type"),
+                        "str (DatasetType)",
+                    ),
+                    "connecthealth",
+                    "ListDatasets",
+                )
+            })?;
+            Some(converted_452)
+        } else {
+            None
+        };
+        let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
+            let converted_454 = (|| -> PyResult<_> {
+                let converted_454: String = value.extract()?;
+                Ok(converted_454)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "ListDatasets",
+                )
+            })?;
+            Some(converted_454)
+        } else {
+            None
+        };
+        let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
+            let converted_455 = (|| -> PyResult<_> {
+                let converted_455: i32 = value.extract()?;
+                Ok(converted_455)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "connecthealth",
+                    "ListDatasets",
+                )
+            })?;
+            Some(converted_455)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_datasets()
+                .set_domain_id(domain_id_value)
+                .set_type(type_value)
+                .set_next_token(next_token_value)
+                .set_max_results(max_results_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListDatasets", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationListDatasetsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn list_domains<'py>(
         &self,
         py: Python<'py>,
@@ -6185,11 +9497,11 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let status_value = if let Some(value) = dict_value(params, "status")? {
-            let converted_263 = (|| -> PyResult<_> {
-                let enum_value_264: String = value.extract()?;
-                let converted_263 =
-                    aws_sdk_connecthealth::types::DomainStatus::from(enum_value_264.as_str());
-                Ok(converted_263)
+            let converted_456 = (|| -> PyResult<_> {
+                let enum_value_457: String = value.extract()?;
+                let converted_456 =
+                    aws_sdk_connecthealth::types::DomainStatus::from(enum_value_457.as_str());
+                Ok(converted_456)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6202,14 +9514,14 @@ impl ConnectHealthClient {
                     "ListDomains",
                 )
             })?;
-            Some(converted_263)
+            Some(converted_456)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_265 = (|| -> PyResult<_> {
-                let converted_265: i32 = value.extract()?;
-                Ok(converted_265)
+            let converted_458 = (|| -> PyResult<_> {
+                let converted_458: i32 = value.extract()?;
+                Ok(converted_458)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6222,14 +9534,14 @@ impl ConnectHealthClient {
                     "ListDomains",
                 )
             })?;
-            Some(converted_265)
+            Some(converted_458)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_266 = (|| -> PyResult<_> {
-                let converted_266: String = value.extract()?;
-                Ok(converted_266)
+            let converted_459 = (|| -> PyResult<_> {
+                let converted_459: String = value.extract()?;
+                Ok(converted_459)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6242,7 +9554,7 @@ impl ConnectHealthClient {
                     "ListDomains",
                 )
             })?;
-            Some(converted_266)
+            Some(converted_459)
         } else {
             None
         };
@@ -6282,9 +9594,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_267 = (|| -> PyResult<_> {
-                let converted_267: String = value.extract()?;
-                Ok(converted_267)
+            let converted_460 = (|| -> PyResult<_> {
+                let converted_460: String = value.extract()?;
+                Ok(converted_460)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6297,14 +9609,14 @@ impl ConnectHealthClient {
                     "ListSubscriptions",
                 )
             })?;
-            Some(converted_267)
+            Some(converted_460)
         } else {
             None
         };
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_268 = (|| -> PyResult<_> {
-                let converted_268: i32 = value.extract()?;
-                Ok(converted_268)
+            let converted_461 = (|| -> PyResult<_> {
+                let converted_461: i32 = value.extract()?;
+                Ok(converted_461)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6317,14 +9629,14 @@ impl ConnectHealthClient {
                     "ListSubscriptions",
                 )
             })?;
-            Some(converted_268)
+            Some(converted_461)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_269 = (|| -> PyResult<_> {
-                let converted_269: String = value.extract()?;
-                Ok(converted_269)
+            let converted_462 = (|| -> PyResult<_> {
+                let converted_462: String = value.extract()?;
+                Ok(converted_462)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6337,7 +9649,7 @@ impl ConnectHealthClient {
                     "ListSubscriptions",
                 )
             })?;
-            Some(converted_269)
+            Some(converted_462)
         } else {
             None
         };
@@ -6382,9 +9694,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_270 = (|| -> PyResult<_> {
-                let converted_270: String = value.extract()?;
-                Ok(converted_270)
+            let converted_463 = (|| -> PyResult<_> {
+                let converted_463: String = value.extract()?;
+                Ok(converted_463)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6397,7 +9709,7 @@ impl ConnectHealthClient {
                     "ListTagsForResource",
                 )
             })?;
-            Some(converted_270)
+            Some(converted_463)
         } else {
             None
         };
@@ -6430,6 +9742,186 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn start_medical_coding_job<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_464 = (|| -> PyResult<_> {
+                let converted_464: String = value.extract()?;
+                Ok(converted_464)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_464)
+        } else {
+            None
+        };
+        let text_value = if let Some(value) = dict_value(params, "text")? {
+            let converted_465 = (|| -> PyResult<_> {
+                let converted_465: String = value.extract()?;
+                Ok(converted_465)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("text"), "str"),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_465)
+        } else {
+            None
+        };
+        let patient_context_value = if let Some(value) = dict_value(params, "patient_context")? {
+            let converted_466 = (|| -> PyResult<_> {
+                let converted_466 = medical_codes_patient_context_from_py(&value)?;
+                Ok(converted_466)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("patient_context"),
+                        "dict (MedicalCodesPatientContext)",
+                    ),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_466)
+        } else {
+            None
+        };
+        let encounter_context_value = if let Some(value) = dict_value(params, "encounter_context")?
+        {
+            let converted_467 = (|| -> PyResult<_> {
+                let converted_467 = medical_codes_encounter_context_from_py(&value)?;
+                Ok(converted_467)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("encounter_context"),
+                        "dict (MedicalCodesEncounterContext)",
+                    ),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_467)
+        } else {
+            None
+        };
+        let output_data_config_value =
+            if let Some(value) = dict_value(params, "output_data_config")? {
+                let converted_468 = (|| -> PyResult<_> {
+                    let converted_468 = medical_coding_output_data_config_from_py(&value)?;
+                    Ok(converted_468)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("output_data_config"),
+                            "dict (MedicalCodingOutputDataConfig)",
+                        ),
+                        "connecthealth",
+                        "StartMedicalCodingJob",
+                    )
+                })?;
+                Some(converted_468)
+            } else {
+                None
+            };
+        let dataset_id_value = if let Some(value) = dict_value(params, "dataset_id")? {
+            let converted_469 = (|| -> PyResult<_> {
+                let converted_469: String = value.extract()?;
+                Ok(converted_469)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("dataset_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_469)
+        } else {
+            None
+        };
+        let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
+            let converted_470 = (|| -> PyResult<_> {
+                let converted_470: String = value.extract()?;
+                Ok(converted_470)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_token"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "StartMedicalCodingJob",
+                )
+            })?;
+            Some(converted_470)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .start_medical_coding_job()
+                .set_domain_id(domain_id_value)
+                .set_text(text_value)
+                .set_patient_context(patient_context_value)
+                .set_encounter_context(encounter_context_value)
+                .set_output_data_config(output_data_config_value)
+                .set_dataset_id(dataset_id_value)
+                .set_client_token(client_token_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "StartMedicalCodingJob",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationStartMedicalCodingJobOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn start_medical_scribe_listening_session<'py>(
         &self,
         py: Python<'py>,
@@ -6438,9 +9930,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let session_id_value = if let Some(value) = dict_value(params, "session_id")? {
-            let converted_271 = (|| -> PyResult<_> {
-                let converted_271: String = value.extract()?;
-                Ok(converted_271)
+            let converted_471 = (|| -> PyResult<_> {
+                let converted_471: String = value.extract()?;
+                Ok(converted_471)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6453,14 +9945,14 @@ impl ConnectHealthClient {
                     "StartMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_271)
+            Some(converted_471)
         } else {
             None
         };
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_272 = (|| -> PyResult<_> {
-                let converted_272: String = value.extract()?;
-                Ok(converted_272)
+            let converted_472 = (|| -> PyResult<_> {
+                let converted_472: String = value.extract()?;
+                Ok(converted_472)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6473,14 +9965,14 @@ impl ConnectHealthClient {
                     "StartMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_272)
+            Some(converted_472)
         } else {
             None
         };
         let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
-            let converted_273 = (|| -> PyResult<_> {
-                let converted_273: String = value.extract()?;
-                Ok(converted_273)
+            let converted_473 = (|| -> PyResult<_> {
+                let converted_473: String = value.extract()?;
+                Ok(converted_473)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6493,17 +9985,17 @@ impl ConnectHealthClient {
                     "StartMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_273)
+            Some(converted_473)
         } else {
             None
         };
         let language_code_value = if let Some(value) = dict_value(params, "language_code")? {
-            let converted_274 = (|| -> PyResult<_> {
-                let enum_value_275: String = value.extract()?;
-                let converted_274 = aws_sdk_connecthealth::types::MedicalScribeLanguageCode::from(
-                    enum_value_275.as_str(),
+            let converted_474 = (|| -> PyResult<_> {
+                let enum_value_475: String = value.extract()?;
+                let converted_474 = aws_sdk_connecthealth::types::MedicalScribeLanguageCode::from(
+                    enum_value_475.as_str(),
                 );
-                Ok(converted_274)
+                Ok(converted_474)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6516,15 +10008,15 @@ impl ConnectHealthClient {
                     "StartMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_274)
+            Some(converted_474)
         } else {
             None
         };
         let media_sample_rate_hertz_value =
             if let Some(value) = dict_value(params, "media_sample_rate_hertz")? {
-                let converted_276 = (|| -> PyResult<_> {
-                    let converted_276: i32 = value.extract()?;
-                    Ok(converted_276)
+                let converted_476 = (|| -> PyResult<_> {
+                    let converted_476: i32 = value.extract()?;
+                    Ok(converted_476)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -6537,17 +10029,17 @@ impl ConnectHealthClient {
                         "StartMedicalScribeListeningSession",
                     )
                 })?;
-                Some(converted_276)
+                Some(converted_476)
             } else {
                 None
             };
         let media_encoding_value = if let Some(value) = dict_value(params, "media_encoding")? {
-            let converted_277 = (|| -> PyResult<_> {
-                let enum_value_278: String = value.extract()?;
-                let converted_277 = aws_sdk_connecthealth::types::MedicalScribeMediaEncoding::from(
-                    enum_value_278.as_str(),
+            let converted_477 = (|| -> PyResult<_> {
+                let enum_value_478: String = value.extract()?;
+                let converted_477 = aws_sdk_connecthealth::types::MedicalScribeMediaEncoding::from(
+                    enum_value_478.as_str(),
                 );
-                Ok(converted_277)
+                Ok(converted_477)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6560,19 +10052,19 @@ impl ConnectHealthClient {
                     "StartMedicalScribeListeningSession",
                 )
             })?;
-            Some(converted_277)
+            Some(converted_477)
         } else {
             None
         };
         let input_stream_value = if let Some(value) = dict_value(params, "input_stream")? {
-            let converted_279 = (|| -> PyResult<_> {
-                let converted_279: aws_sdk_connecthealth::primitives::event_stream::EventStreamSender<aws_sdk_connecthealth::types::MedicalScribeInputStream, aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError> = rboto_core::python_event_stream(
+            let converted_479 = (|| -> PyResult<_> {
+                let converted_479: aws_sdk_connecthealth::primitives::event_stream::EventStreamSender<aws_sdk_connecthealth::types::MedicalScribeInputStream, aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError> = rboto_core::python_event_stream(
                     &value, medical_scribe_input_stream_from_py,
                     aws_sdk_connecthealth::types::error::MedicalScribeInputStreamError::unhandled,
                 )?.into();
-                Ok(converted_279)
+                Ok(converted_479)
             })().map_err(|error| rboto_core::input_operation(rboto_core::input_error(error, rboto_core::InputPath::Field("input_stream"), "async iterator"), "connecthealth", "StartMedicalScribeListeningSession"))?;
-            Some(converted_279)
+            Some(converted_479)
         } else {
             None
         };
@@ -6613,44 +10105,44 @@ impl ConnectHealthClient {
             Python::attach(|py| {
                 let result = PyDict::new(py);
                 if let Some(value) = &output.session_id {
-                    let converted_280 = (value).as_str().into_py_any(py)?;
-                    result.set_item("session_id", converted_280)?;
+                    let converted_480 = (value).as_str().into_py_any(py)?;
+                    result.set_item("session_id", converted_480)?;
                 } else {
                     result.set_item("session_id", py.None())?;
                 }
                 if let Some(value) = &output.domain_id {
-                    let converted_281 = (value).as_str().into_py_any(py)?;
-                    result.set_item("domain_id", converted_281)?;
+                    let converted_481 = (value).as_str().into_py_any(py)?;
+                    result.set_item("domain_id", converted_481)?;
                 } else {
                     result.set_item("domain_id", py.None())?;
                 }
                 if let Some(value) = &output.subscription_id {
-                    let converted_282 = (value).as_str().into_py_any(py)?;
-                    result.set_item("subscription_id", converted_282)?;
+                    let converted_482 = (value).as_str().into_py_any(py)?;
+                    result.set_item("subscription_id", converted_482)?;
                 } else {
                     result.set_item("subscription_id", py.None())?;
                 }
                 if let Some(value) = &output.request_id {
-                    let converted_283 = (value).as_str().into_py_any(py)?;
-                    result.set_item("request_id", converted_283)?;
+                    let converted_483 = (value).as_str().into_py_any(py)?;
+                    result.set_item("request_id", converted_483)?;
                 } else {
                     result.set_item("request_id", py.None())?;
                 }
                 if let Some(value) = &output.language_code {
-                    let converted_284 = (value).as_str().into_py_any(py)?;
-                    result.set_item("language_code", converted_284)?;
+                    let converted_484 = (value).as_str().into_py_any(py)?;
+                    result.set_item("language_code", converted_484)?;
                 } else {
                     result.set_item("language_code", py.None())?;
                 }
                 if let Some(value) = &output.media_sample_rate_hertz {
-                    let converted_285 = (value).to_owned().into_py_any(py)?;
-                    result.set_item("media_sample_rate_hertz", converted_285)?;
+                    let converted_485 = (value).to_owned().into_py_any(py)?;
+                    result.set_item("media_sample_rate_hertz", converted_485)?;
                 } else {
                     result.set_item("media_sample_rate_hertz", py.None())?;
                 }
                 if let Some(value) = &output.media_encoding {
-                    let converted_286 = (value).as_str().into_py_any(py)?;
-                    result.set_item("media_encoding", converted_286)?;
+                    let converted_486 = (value).as_str().into_py_any(py)?;
+                    result.set_item("media_encoding", converted_486)?;
                 } else {
                     result.set_item("media_encoding", py.None())?;
                 }
@@ -6676,9 +10168,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
-            let converted_287 = (|| -> PyResult<_> {
-                let converted_287: String = value.extract()?;
-                Ok(converted_287)
+            let converted_487 = (|| -> PyResult<_> {
+                let converted_487: String = value.extract()?;
+                Ok(converted_487)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6691,14 +10183,14 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_287)
+            Some(converted_487)
         } else {
             None
         };
         let patient_context_value = if let Some(value) = dict_value(params, "patient_context")? {
-            let converted_288 = (|| -> PyResult<_> {
-                let converted_288 = patient_insights_patient_context_from_py(&value)?;
-                Ok(converted_288)
+            let converted_488 = (|| -> PyResult<_> {
+                let converted_488 = patient_insights_patient_context_from_py(&value)?;
+                Ok(converted_488)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6711,14 +10203,14 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_288)
+            Some(converted_488)
         } else {
             None
         };
         let insights_context_value = if let Some(value) = dict_value(params, "insights_context")? {
-            let converted_289 = (|| -> PyResult<_> {
-                let converted_289 = insights_context_from_py(&value)?;
-                Ok(converted_289)
+            let converted_489 = (|| -> PyResult<_> {
+                let converted_489 = insights_context_from_py(&value)?;
+                Ok(converted_489)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6731,15 +10223,15 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_289)
+            Some(converted_489)
         } else {
             None
         };
         let encounter_context_value = if let Some(value) = dict_value(params, "encounter_context")?
         {
-            let converted_290 = (|| -> PyResult<_> {
-                let converted_290 = patient_insights_encounter_context_from_py(&value)?;
-                Ok(converted_290)
+            let converted_490 = (|| -> PyResult<_> {
+                let converted_490 = patient_insights_encounter_context_from_py(&value)?;
+                Ok(converted_490)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6752,14 +10244,14 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_290)
+            Some(converted_490)
         } else {
             None
         };
         let user_context_value = if let Some(value) = dict_value(params, "user_context")? {
-            let converted_291 = (|| -> PyResult<_> {
-                let converted_291 = user_context_from_py(&value)?;
-                Ok(converted_291)
+            let converted_491 = (|| -> PyResult<_> {
+                let converted_491 = user_context_from_py(&value)?;
+                Ok(converted_491)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6772,15 +10264,15 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_291)
+            Some(converted_491)
         } else {
             None
         };
         let input_data_config_value = if let Some(value) = dict_value(params, "input_data_config")?
         {
-            let converted_292 = (|| -> PyResult<_> {
-                let converted_292 = input_data_config_from_py(&value)?;
-                Ok(converted_292)
+            let converted_492 = (|| -> PyResult<_> {
+                let converted_492 = input_data_config_from_py(&value)?;
+                Ok(converted_492)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6793,15 +10285,15 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_292)
+            Some(converted_492)
         } else {
             None
         };
         let output_data_config_value =
             if let Some(value) = dict_value(params, "output_data_config")? {
-                let converted_293 = (|| -> PyResult<_> {
-                    let converted_293 = output_data_config_from_py(&value)?;
-                    Ok(converted_293)
+                let converted_493 = (|| -> PyResult<_> {
+                    let converted_493 = output_data_config_from_py(&value)?;
+                    Ok(converted_493)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -6814,14 +10306,14 @@ impl ConnectHealthClient {
                         "StartPatientInsightsJob",
                     )
                 })?;
-                Some(converted_293)
+                Some(converted_493)
             } else {
                 None
             };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_294 = (|| -> PyResult<_> {
-                let converted_294: String = value.extract()?;
-                Ok(converted_294)
+            let converted_494 = (|| -> PyResult<_> {
+                let converted_494: String = value.extract()?;
+                Ok(converted_494)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6834,7 +10326,7 @@ impl ConnectHealthClient {
                     "StartPatientInsightsJob",
                 )
             })?;
-            Some(converted_294)
+            Some(converted_494)
         } else {
             None
         };
@@ -6874,6 +10366,206 @@ impl ConnectHealthClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn submit_feedback<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let domain_id_value = if let Some(value) = dict_value(params, "domain_id")? {
+            let converted_495 = (|| -> PyResult<_> {
+                let converted_495: String = value.extract()?;
+                Ok(converted_495)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("domain_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "SubmitFeedback",
+                )
+            })?;
+            Some(converted_495)
+        } else {
+            None
+        };
+        let artifact_source_id_value =
+            if let Some(value) = dict_value(params, "artifact_source_id")? {
+                let converted_496 = (|| -> PyResult<_> {
+                    let converted_496: String = value.extract()?;
+                    Ok(converted_496)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("artifact_source_id"),
+                            "str",
+                        ),
+                        "connecthealth",
+                        "SubmitFeedback",
+                    )
+                })?;
+                Some(converted_496)
+            } else {
+                None
+            };
+        let subscription_id_value = if let Some(value) = dict_value(params, "subscription_id")? {
+            let converted_497 = (|| -> PyResult<_> {
+                let converted_497: String = value.extract()?;
+                Ok(converted_497)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("subscription_id"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "SubmitFeedback",
+                )
+            })?;
+            Some(converted_497)
+        } else {
+            None
+        };
+        let artifact_type_value = if let Some(value) = dict_value(params, "artifact_type")? {
+            let converted_498 = (|| -> PyResult<_> {
+                let enum_value_499: String = value.extract()?;
+                let converted_498 = aws_sdk_connecthealth::types::FeedbackArtifactType::from(
+                    enum_value_499.as_str(),
+                );
+                Ok(converted_498)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("artifact_type"),
+                        "str (FeedbackArtifactType)",
+                    ),
+                    "connecthealth",
+                    "SubmitFeedback",
+                )
+            })?;
+            Some(converted_498)
+        } else {
+            None
+        };
+        let signed_artifact_s3_uri_value =
+            if let Some(value) = dict_value(params, "signed_artifact_s3_uri")? {
+                let converted_500 = (|| -> PyResult<_> {
+                    let converted_500: String = value.extract()?;
+                    Ok(converted_500)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("signed_artifact_s3_uri"),
+                            "str",
+                        ),
+                        "connecthealth",
+                        "SubmitFeedback",
+                    )
+                })?;
+                Some(converted_500)
+            } else {
+                None
+            };
+        let generated_artifact_s3_uri_value =
+            if let Some(value) = dict_value(params, "generated_artifact_s3_uri")? {
+                let converted_501 = (|| -> PyResult<_> {
+                    let converted_501: String = value.extract()?;
+                    Ok(converted_501)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_operation(
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Field("generated_artifact_s3_uri"),
+                            "str",
+                        ),
+                        "connecthealth",
+                        "SubmitFeedback",
+                    )
+                })?;
+                Some(converted_501)
+            } else {
+                None
+            };
+        let comments_value = if let Some(value) = dict_value(params, "comments")? {
+            let converted_502 = (|| -> PyResult<_> {
+                let converted_502: String = value.extract()?;
+                Ok(converted_502)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("comments"), "str"),
+                    "connecthealth",
+                    "SubmitFeedback",
+                )
+            })?;
+            Some(converted_502)
+        } else {
+            None
+        };
+        let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
+            let converted_503 = (|| -> PyResult<_> {
+                let converted_503: String = value.extract()?;
+                Ok(converted_503)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_token"),
+                        "str",
+                    ),
+                    "connecthealth",
+                    "SubmitFeedback",
+                )
+            })?;
+            Some(converted_503)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .submit_feedback()
+                .set_domain_id(domain_id_value)
+                .set_artifact_source_id(artifact_source_id_value)
+                .set_subscription_id(subscription_id_value)
+                .set_artifact_type(artifact_type_value)
+                .set_signed_artifact_s3_uri(signed_artifact_s3_uri_value)
+                .set_generated_artifact_s3_uri(generated_artifact_s3_uri_value)
+                .set_comments(comments_value)
+                .set_client_token(client_token_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "SubmitFeedback", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationSubmitFeedbackOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn tag_resource<'py>(
         &self,
         py: Python<'py>,
@@ -6882,9 +10574,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_295 = (|| -> PyResult<_> {
-                let converted_295: String = value.extract()?;
-                Ok(converted_295)
+            let converted_504 = (|| -> PyResult<_> {
+                let converted_504: String = value.extract()?;
+                Ok(converted_504)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6897,40 +10589,40 @@ impl ConnectHealthClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_295)
+            Some(converted_504)
         } else {
             None
         };
         let tags_value = if let Some(value) = dict_value(params, "tags")? {
-            let converted_296 = (|| -> PyResult<_> {
-                let mapping_297 = value.cast::<PyDict>()?;
-                let mut converted_296 = HashMap::with_capacity(mapping_297.len());
-                for (index_302, (key_298, value_299)) in mapping_297.iter().enumerate() {
-                    let converted_key_300 = (|| -> PyResult<_> {
-                        let converted_key_300: String = key_298.extract()?;
-                        Ok(converted_key_300)
+            let converted_505 = (|| -> PyResult<_> {
+                let mapping_506 = value.cast::<PyDict>()?;
+                let mut converted_505 = HashMap::with_capacity(mapping_506.len());
+                for (index_511, (key_507, value_508)) in mapping_506.iter().enumerate() {
+                    let converted_key_509 = (|| -> PyResult<_> {
+                        let converted_key_509: String = key_507.extract()?;
+                        Ok(converted_key_509)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapKey(index_302),
+                            rboto_core::InputPath::MapKey(index_511),
                             "str",
                         )
                     })?;
-                    let converted_value_301 = (|| -> PyResult<_> {
-                        let converted_value_301: String = value_299.extract()?;
-                        Ok(converted_value_301)
+                    let converted_value_510 = (|| -> PyResult<_> {
+                        let converted_value_510: String = value_508.extract()?;
+                        Ok(converted_value_510)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::MapValue(index_302),
+                            rboto_core::InputPath::MapValue(index_511),
                             "str",
                         )
                     })?;
-                    converted_296.insert(converted_key_300, converted_value_301);
+                    converted_505.insert(converted_key_509, converted_value_510);
                 }
-                Ok(converted_296)
+                Ok(converted_505)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6939,7 +10631,7 @@ impl ConnectHealthClient {
                     "TagResource",
                 )
             })?;
-            Some(converted_296)
+            Some(converted_505)
         } else {
             None
         };
@@ -6980,9 +10672,9 @@ impl ConnectHealthClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let resource_arn_value = if let Some(value) = dict_value(params, "resource_arn")? {
-            let converted_303 = (|| -> PyResult<_> {
-                let converted_303: String = value.extract()?;
-                Ok(converted_303)
+            let converted_512 = (|| -> PyResult<_> {
+                let converted_512: String = value.extract()?;
+                Ok(converted_512)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -6995,37 +10687,37 @@ impl ConnectHealthClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_303)
+            Some(converted_512)
         } else {
             None
         };
         let tag_keys_value = if let Some(value) = dict_value(params, "tag_keys")? {
-            let converted_304 = (|| -> PyResult<_> {
-                let mut converted_304 =
+            let converted_513 = (|| -> PyResult<_> {
+                let mut converted_513 =
                     Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-                for (index_308, item_result_305) in value.try_iter()?.enumerate() {
-                    let item_306 = item_result_305.map_err(|error| {
+                for (index_517, item_result_514) in value.try_iter()?.enumerate() {
+                    let item_515 = item_result_514.map_err(|error| {
                         rboto_core::input_rule(
                             error,
-                            rboto_core::InputPath::Index(index_308),
+                            rboto_core::InputPath::Index(index_517),
                             "next sequence item",
                             Some("iteration"),
                         )
                     })?;
-                    let converted_item_307 = (|| -> PyResult<_> {
-                        let converted_item_307: String = item_306.extract()?;
-                        Ok(converted_item_307)
+                    let converted_item_516 = (|| -> PyResult<_> {
+                        let converted_item_516: String = item_515.extract()?;
+                        Ok(converted_item_516)
                     })()
                     .map_err(|error| {
                         rboto_core::input_error(
                             error,
-                            rboto_core::InputPath::Index(index_308),
+                            rboto_core::InputPath::Index(index_517),
                             "str",
                         )
                     })?;
-                    converted_304.push(converted_item_307);
+                    converted_513.push(converted_item_516);
                 }
-                Ok(converted_304)
+                Ok(converted_513)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -7038,7 +10730,7 @@ impl ConnectHealthClient {
                     "UntagResource",
                 )
             })?;
-            Some(converted_304)
+            Some(converted_513)
         } else {
             None
         };

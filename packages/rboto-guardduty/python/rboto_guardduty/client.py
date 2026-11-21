@@ -12,7 +12,7 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationOutput, AcceptInvitationOutput, ArchiveFindingsOutput, CreateCustomDetectionRuleAssociationOutput, CreateCustomDetectionRuleOrgConfigurationOutput, CreateDetectorOutput, CreateFilterOutput, CreateIPSetOutput, CreateInvestigationOutput, CreateMalwareProtectionPlanOutput, CreateMembersOutput, CreatePublishingDestinationOutput, CreateSampleFindingsOutput, CreateThreatEntitySetOutput, CreateThreatIntelSetOutput, CreateTrustedEntitySetOutput, DeclineInvitationsOutput, DeleteCustomDetectionRuleAssociationOutput, DeleteCustomDetectionRuleOrgConfigurationOutput, DeleteDetectorOutput, DeleteFilterOutput, DeleteIPSetOutput, DeleteInvitationsOutput, DeleteMembersOutput, DeletePublishingDestinationOutput, DeleteThreatEntitySetOutput, DeleteThreatIntelSetOutput, DeleteTrustedEntitySetOutput, DescribeMalwareScansOutput, DescribeOrganizationConfigurationOutput, DescribePublishingDestinationOutput, DisableOrganizationAdminAccountOutput, DisassociateFromAdministratorAccountOutput, DisassociateFromMasterAccountOutput, DisassociateMembersOutput, EnableOrganizationAdminAccountOutput, GetAdministratorAccountOutput, GetCoverageStatisticsOutput, GetCustomDetectionRuleAssociationOutput, GetCustomDetectionRuleOrgConfigurationOutput, GetCustomDetectionRuleOutput, GetDetectorOutput, GetFilterOutput, GetFindingsOutput, GetFindingsStatisticsOutput, GetIPSetOutput, GetInvestigationOutput, GetInvitationsCountOutput, GetMalwareProtectionPlanOutput, GetMalwareScanOutput, GetMalwareScanSettingsOutput, GetMasterAccountOutput, GetMemberDetectorsOutput, GetMembersOutput, GetOrganizationStatisticsOutput, GetRemainingFreeTrialDaysOutput, GetThreatEntitySetOutput, GetThreatIntelSetOutput, GetTrustedEntitySetOutput, GetUsageStatisticsOutput, InviteMembersOutput, ListCoverageOutput, ListCustomDetectionRuleAssociationsOutput, ListCustomDetectionRuleOrgConfigurationsOutput, ListCustomDetectionRulesOutput, ListDetectorsOutput, ListFiltersOutput, ListFindingsOutput, ListIPSetsOutput, ListInvestigationsOutput, ListInvitationsOutput, ListMalwareProtectionPlansOutput, ListMalwareScansOutput, ListMembersOutput, ListOrganizationAdminAccountsOutput, ListPublishingDestinationsOutput, ListTagsForResourceOutput, ListThreatEntitySetsOutput, ListThreatIntelSetsOutput, ListTrustedEntitySetsOutput, SendObjectMalwareScanOutput, StartMalwareScanOutput, StartMonitoringMembersOutput, StopMonitoringMembersOutput, TagResourceOutput, UnarchiveFindingsOutput, UntagResourceOutput, UpdateCustomDetectionRuleAssociationOutput, UpdateCustomDetectionRuleOrgConfigurationOutput, UpdateDetectorOutput, UpdateFilterOutput, UpdateFindingsFeedbackOutput, UpdateIPSetOutput, UpdateMalwareScanSettingsOutput, UpdateMemberDetectorsOutput, UpdateOrganizationConfigurationOutput, UpdatePublishingDestinationOutput, UpdateThreatEntitySetOutput, UpdateThreatIntelSetOutput, UpdateTrustedEntitySetOutput
+from ._native import GuardDutyClient as NativeClient, AcceptAdministratorInvitationOutput, AcceptInvitationOutput, ArchiveFindingsOutput, CreateCustomDetectionRuleAssociationOutput, CreateCustomDetectionRuleOrgConfigurationOutput, CreateDetectorOutput, CreateFilterOutput, CreateIPSetOutput, CreateInvestigationOutput, CreateMalwareProtectionPlanOutput, CreateMembersOutput, CreatePublishingDestinationOutput, CreateSampleFindingsOutput, CreateThreatEntitySetOutput, CreateThreatIntelSetOutput, CreateTrustedEntitySetOutput, DeclineInvitationsOutput, DeleteCustomDetectionRuleAssociationOutput, DeleteCustomDetectionRuleOrgConfigurationOutput, DeleteDetectorOutput, DeleteFilterOutput, DeleteIPSetOutput, DeleteInvitationsOutput, DeleteMembersOutput, DeletePublishingDestinationOutput, DeleteThreatEntitySetOutput, DeleteThreatIntelSetOutput, DeleteTrustedEntitySetOutput, DescribeMalwareScansOutput, DescribeOrganizationConfigurationOutput, DescribePublishingDestinationOutput, DisableOrganizationAdminAccountOutput, DisassociateFromAdministratorAccountOutput, DisassociateFromMasterAccountOutput, DisassociateMembersOutput, EnableOrganizationAdminAccountOutput, GetAdministratorAccountOutput, GetCoverageStatisticsOutput, GetCustomDetectionRuleAssociationOutput, GetCustomDetectionRuleOrgConfigurationOutput, GetCustomDetectionRuleOutput, GetDetectorOutput, GetFilterOutput, GetFindingsOutput, GetFindingsStatisticsOutput, GetIPSetOutput, GetInvestigationOutput, GetInvitationsCountOutput, GetMalwareProtectionPlanOutput, GetMalwareScanOutput, GetMalwareScanSettingsOutput, GetMasterAccountOutput, GetMemberDetectorsOutput, GetMembersOutput, GetOrganizationStatisticsOutput, GetRemainingFreeTrialDaysOutput, GetThreatEntitySetOutput, GetThreatIntelSetOutput, GetTrustedEntitySetOutput, GetUsageStatisticsOutput, InviteMembersOutput, ListCoverageOutput, ListCustomDetectionRuleAssociationsOutput, ListCustomDetectionRuleOrgConfigurationsOutput, ListCustomDetectionRulesOutput, ListDetectorsOutput, ListFiltersOutput, ListFindingsOutput, ListIPSetsOutput, ListInvestigationRecordsOutput, ListInvestigationsOutput, ListInvitationsOutput, ListMalwareProtectionPlansOutput, ListMalwareScansOutput, ListMembersOutput, ListOrganizationAdminAccountsOutput, ListPublishingDestinationsOutput, ListTagsForResourceOutput, ListThreatEntitySetsOutput, ListThreatIntelSetsOutput, ListTrustedEntitySetsOutput, SendObjectMalwareScanOutput, StartMalwareScanOutput, StartMonitoringMembersOutput, StopMonitoringMembersOutput, TagResourceOutput, UnarchiveFindingsOutput, UntagResourceOutput, UpdateCustomDetectionRuleAssociationOutput, UpdateCustomDetectionRuleOrgConfigurationOutput, UpdateDetectorOutput, UpdateFilterOutput, UpdateFindingsFeedbackOutput, UpdateIPSetOutput, UpdateMalwareScanSettingsOutput, UpdateMemberDetectorsOutput, UpdateOrganizationConfigurationOutput, UpdatePublishingDestinationOutput, UpdateThreatEntitySetOutput, UpdateThreatIntelSetOutput, UpdateTrustedEntitySetOutput
 from .types import (
     AccountDetail,
     AssociationMode,
@@ -35,6 +35,7 @@ from .types import (
     FindingPublishingFrequency,
     FindingStatisticType,
     GroupByType,
+    InvestigationFilterCriteria,
     InvestigationSortCriteria,
     IpSetFormat,
     ListMalwareScansFilterCriteria,
@@ -43,10 +44,12 @@ from .types import (
     OrderBy,
     OrganizationDataSourceConfigurations,
     OrganizationFeatureConfiguration,
+    RecordType,
     S3ObjectForSendObjectMalwareScan,
     ScanResourceCriteria,
     SortCriteria,
     StartMalwareScanConfiguration,
+    SummaryFormat,
     ThreatEntitySetFormat,
     ThreatIntelSetFormat,
     TrustedEntitySetFormat,
@@ -1530,12 +1533,15 @@ class GuardDutyClient:
         *,
         detector_id: str,
         investigation_id: str,
+        summary_format: SummaryFormat | None = None,
     ) -> GetInvestigationOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/get_investigation/)."""
         params: dict[str, object] = {
             "detector_id": detector_id,
             "investigation_id": investigation_id,
         }
+        if summary_format is not None:
+            params["summary_format"] = summary_format
         _interceptors = operation_interceptors("guardduty", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -1543,7 +1549,7 @@ class GuardDutyClient:
                 self._native.get_investigation, params, _interceptors,
                 "guardduty", "GetInvestigation", self._region,
                 GetInvestigationOutput,
-                ("detector_id", "investigation_id", ),
+                ("detector_id", "investigation_id", "summary_format", ),
                 ("detector_id", "investigation_id", ),
                 service_name='GuardDuty',
             )
@@ -2193,10 +2199,47 @@ class GuardDutyClient:
         return _response
 
 
+    async def list_investigation_records(
+        self,
+        *,
+        detector_id: str,
+        investigation_id: str,
+        record_types: _Sequence[RecordType] | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListInvestigationRecordsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_investigation_records/)."""
+        params: dict[str, object] = {
+            "detector_id": detector_id,
+            "investigation_id": investigation_id,
+        }
+        if record_types is not None:
+            params["record_types"] = record_types
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("guardduty", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_investigation_records, params, _interceptors,
+                "guardduty", "ListInvestigationRecords", self._region,
+                ListInvestigationRecordsOutput,
+                ("detector_id", "investigation_id", "record_types", "max_results", "next_token", ),
+                ("detector_id", "investigation_id", ),
+                service_name='GuardDuty',
+            )
+            return _response
+        _response = await self._native.list_investigation_records(params)
+        return _response
+
+
     async def list_investigations(
         self,
         *,
         detector_id: str,
+        filter_criteria: InvestigationFilterCriteria | None = None,
         sort_criteria: InvestigationSortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
@@ -2205,6 +2248,8 @@ class GuardDutyClient:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
+        if filter_criteria is not None:
+            params["filter_criteria"] = filter_criteria
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
         if max_results is not None:
@@ -2218,7 +2263,7 @@ class GuardDutyClient:
                 self._native.list_investigations, params, _interceptors,
                 "guardduty", "ListInvestigations", self._region,
                 ListInvestigationsOutput,
-                ("detector_id", "sort_criteria", "max_results", "next_token", ),
+                ("detector_id", "filter_criteria", "sort_criteria", "max_results", "next_token", ),
                 ("detector_id", ),
                 service_name='GuardDuty',
             )

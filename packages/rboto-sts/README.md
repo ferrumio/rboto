@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS STS**,
 powered by Rust. This package contains `STSClient` and
-**11 operations**.
+**12 operations**.
 
 ## Installation
 
@@ -99,6 +99,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_caller_identity`](#get_caller_identity) | None | <code>GetCallerIdentityOutput</code> |
 | [`get_delegated_access_token`](#get_delegated_access_token) | <code>trade_in_token: str</code> | <code>GetDelegatedAccessTokenOutput</code> |
 | [`get_federation_token`](#get_federation_token) | <code>name: str</code> | <code>GetFederationTokenOutput</code> |
+| [`get_scoped_credentials`](#get_scoped_credentials) | None | <code>GetScopedCredentialsOutput</code> |
 | [`get_session_token`](#get_session_token) | None | <code>GetSessionTokenOutput</code> |
 | [`get_web_identity_token`](#get_web_identity_token) | <code>audience: Sequence[str]</code>, <code>signing_algorithm: str</code> | <code>GetWebIdentityTokenOutput</code> |
 
@@ -224,6 +225,19 @@ async def get_federation_token(
 ```
 
 
+### get_scoped_credentials
+
+```python
+async def get_scoped_credentials(
+    *,
+    policy: str | None = None,
+    duration_seconds: int | None = None,
+    minimum_session_token_size: int | None = None,
+    scoped_session_description: str | None = None,
+) -> GetScopedCredentialsOutput: ...
+```
+
+
 ### get_session_token
 
 ```python
@@ -245,6 +259,8 @@ async def get_web_identity_token(
     audience: Sequence[str],
     signing_algorithm: str,
     duration_seconds: int | None = None,
+    scope: str | None = None,
+    subject_mode: webIdentityTokenSubjectModeType | None = None,
     tags: Sequence[Tag] | None = None,
 ) -> GetWebIdentityTokenOutput: ...
 ```

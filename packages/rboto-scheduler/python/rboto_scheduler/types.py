@@ -30,6 +30,10 @@ EcsParametersOutput: TypeAlias = _native.EcsParameters
 """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EcsParametersOutput/)."""
 EventBridgeParametersOutput: TypeAlias = _native.EventBridgeParameters
 """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgeParametersOutput/)."""
+EventBridgePutEventsV2ParametersOutput: TypeAlias = _native.EventBridgePutEventsV2Parameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgePutEventsV2ParametersOutput/)."""
+EventBridgePutRawEventsParametersOutput: TypeAlias = _native.EventBridgePutRawEventsParameters
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgePutRawEventsParametersOutput/)."""
 FlexibleTimeWindowOutput: TypeAlias = _native.FlexibleTimeWindow
 """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/FlexibleTimeWindowOutput/)."""
 GetScheduleGroupOutput: TypeAlias = _native.GetScheduleGroupOutput
@@ -222,6 +226,23 @@ EventBridgeParameters = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgeParameters/)."""
 
+EventBridgePutEventsV2Parameters = TypedDict(
+    "EventBridgePutEventsV2Parameters",
+    {
+    "detail_type": Required["str"],
+    "source": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgePutEventsV2Parameters/)."""
+
+EventBridgePutRawEventsParameters = TypedDict(
+    "EventBridgePutRawEventsParameters",
+    {
+    "metadata": NotRequired["dict[str, str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/scheduler/types/EventBridgePutRawEventsParameters/)."""
+
 FlexibleTimeWindow = TypedDict(
     "FlexibleTimeWindow",
     {
@@ -400,6 +421,8 @@ Target = TypedDict(
     "input": NotRequired["str"],
     "ecs_parameters": NotRequired["EcsParameters"],
     "event_bridge_parameters": NotRequired["EventBridgeParameters"],
+    "event_bridge_put_events_v2_parameters": NotRequired["EventBridgePutEventsV2Parameters"],
+    "event_bridge_put_raw_events_parameters": NotRequired["EventBridgePutRawEventsParameters"],
     "kinesis_parameters": NotRequired["KinesisParameters"],
     "sage_maker_pipeline_parameters": NotRequired["SageMakerPipelineParameters"],
     "sqs_parameters": NotRequired["SqsParameters"],

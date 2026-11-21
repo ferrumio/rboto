@@ -12,8 +12,10 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import PollyClient as NativeClient, DeleteLexiconOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, ListTagsForResourceOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput, TagResourceOutput, UntagResourceOutput
+from ._native import PollyClient as NativeClient, CreateVoiceOutput, DeleteLexiconOutput, DeleteVoiceOutput, DescribeVoicesOutput, GetLexiconOutput, GetSpeechSynthesisTaskOutput, GetVoiceOutput, ListLexiconsOutput, ListSpeechSynthesisTasksOutput, ListTagsForResourceOutput, PutLexiconOutput, StartSpeechSynthesisTaskOutput, SynthesizeSpeechOutput, TagResourceOutput, UntagResourceOutput
 from .types import (
+    CustomVoiceLanguageCode,
+    CustomerManagedEncryption,
     Engine,
     LanguageCode,
     OutputFormat,
@@ -22,9 +24,12 @@ from .types import (
     StartSpeechSynthesisStreamOutput,
     TaskStatus,
     TextType,
+    VoiceCreationData,
     VoiceId,
 )
 from .paginators import PollyClientPaginators as _Paginators
+
+from .waiters import PollyClientWaiters as _Waiters
 
 
 
@@ -56,6 +61,7 @@ class PollyClient:
             endpoint_url=endpoint_url,
             config=config,
         )
+        self._waiters: _Waiters | None = None
         self._paginators: _Paginators | None = None
 
 
@@ -85,6 +91,54 @@ class PollyClient:
         return self._paginators
 
 
+    @property
+    def waiters(self) -> _Waiters:
+        """Typed async waiters. See [guide](https://ferrumio.github.io/rboto/guides/waiters/)."""
+        if self._waiters is None:
+            self._waiters = _Waiters(self)
+        return self._waiters
+
+
+    async def create_voice(
+        self,
+        *,
+        name: str,
+        language_code: CustomVoiceLanguageCode,
+        terms_accepted: bool,
+        voice_creation_data: VoiceCreationData,
+        customer_managed_encryption: CustomerManagedEncryption | None = None,
+        tags: dict[str, str] | None = None,
+        client_token: str | None = None,
+    ) -> CreateVoiceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/create_voice/)."""
+        params: dict[str, object] = {
+            "name": name,
+            "language_code": language_code,
+            "terms_accepted": terms_accepted,
+            "voice_creation_data": voice_creation_data,
+        }
+        if customer_managed_encryption is not None:
+            params["customer_managed_encryption"] = customer_managed_encryption
+        if tags is not None:
+            params["tags"] = tags
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_voice, params, _interceptors,
+                "polly", "CreateVoice", self._region,
+                CreateVoiceOutput,
+                ("name", "language_code", "terms_accepted", "voice_creation_data", "customer_managed_encryption", "tags", "client_token", ),
+                ("name", "language_code", "terms_accepted", "voice_creation_data", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.create_voice(params)
+        return _response
+
+
     async def delete_lexicon(
         self,
         *,
@@ -107,6 +161,31 @@ class PollyClient:
             )
             return _response
         _response = await self._native.delete_lexicon(params)
+        return _response
+
+
+    async def delete_voice(
+        self,
+        *,
+        voice_id: str,
+    ) -> DeleteVoiceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/delete_voice/)."""
+        params: dict[str, object] = {
+            "voice_id": voice_id,
+        }
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_voice, params, _interceptors,
+                "polly", "DeleteVoice", self._region,
+                DeleteVoiceOutput,
+                ("voice_id", ),
+                ("voice_id", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.delete_voice(params)
         return _response
 
 
@@ -192,6 +271,31 @@ class PollyClient:
             )
             return _response
         _response = await self._native.get_speech_synthesis_task(params)
+        return _response
+
+
+    async def get_voice(
+        self,
+        *,
+        voice_id: str,
+    ) -> GetVoiceOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/polly/operations/get_voice/)."""
+        params: dict[str, object] = {
+            "voice_id": voice_id,
+        }
+        _interceptors = operation_interceptors("polly", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_voice, params, _interceptors,
+                "polly", "GetVoice", self._region,
+                GetVoiceOutput,
+                ("voice_id", ),
+                ("voice_id", ),
+                service_name='Polly',
+            )
+            return _response
+        _response = await self._native.get_voice(params)
         return _response
 
 

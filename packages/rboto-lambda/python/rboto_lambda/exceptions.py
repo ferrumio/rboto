@@ -354,6 +354,22 @@ class ResourceNotReadyError(LambdaError):
         return cast(_types.ResourceNotReadyErrorDetails, self._details)
 
 
+class RuntimeAliasDeletedError(LambdaError):
+    """Modeled lambda error: RuntimeAliasDeletedException."""
+
+    @property
+    def details(self) -> _types.RuntimeAliasDeletedErrorDetails:
+        return cast(_types.RuntimeAliasDeletedErrorDetails, self._details)
+
+
+class RuntimeVersionDeletedError(LambdaError):
+    """Modeled lambda error: RuntimeVersionDeletedException."""
+
+    @property
+    def details(self) -> _types.RuntimeVersionDeletedErrorDetails:
+        return cast(_types.RuntimeVersionDeletedErrorDetails, self._details)
+
+
 class S3FilesMountConnectivityError(LambdaError):
     """Modeled lambda error: S3FilesMountConnectivityException."""
 

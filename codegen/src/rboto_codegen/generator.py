@@ -967,8 +967,8 @@ class ServiceGenerator:
             property_name = field.rust_name
         # PyO3 otherwise strips a leading get_ from getter method names.
         getter = (
-            f"    #[getter({property_name})]"
-            if field.name.startswith("get_")
+            f"    #[getter({_safe_parameter(field.name)})]"
+            if field.name.startswith("get_") or property_name.removeprefix("r#") != field.name
             else "    #[getter]"
         )
         if self._kind(field.rust_type) == "byte_stream":
@@ -1221,7 +1221,7 @@ class ServiceGenerator:
             return DATETIME
         if shape.kind == "boolean":
             return "bool"
-        if shape.kind in {"byte", "short", "integer"}:
+        if shape.kind in {"byte", "short", "integer", "intEnum"}:
             return "i32"
         if shape.kind == "long":
             return "i64"
@@ -1698,6 +1698,8 @@ class ServiceGenerator:
             if shape.enum_values:
                 return self._output_type_name(shape) if output else self._input_type_name(shape)
             return "str"
+        if shape.kind == "intEnum":
+            return "int" if output else self._input_type_name(shape)
         if shape.kind in {"structure", "union"}:
             return self._output_type_name(shape) if output else self._input_type_name(shape)
         if shape.kind == "document":
@@ -1790,7 +1792,7 @@ class ServiceGenerator:
                     "name": self._native_struct_names[rust.name],
                     "fields": [
                         {
-                            "name": _safe_parameter(field.rust_name.removeprefix("r#")),
+                            "name": _safe_parameter(field.name),
                             "annotation": self._rust_output_annotation(
                                 field.rust_type, field.optional
                             ),
@@ -1806,7 +1808,7 @@ class ServiceGenerator:
                     "name": metadata["class_name"],
                     "fields": [
                         {
-                            "name": _safe_parameter(field.rust_name.removeprefix("r#")),
+                            "name": _safe_parameter(field.name),
                             "annotation": self._rust_output_annotation(
                                 field.rust_type, field.optional
                             ),
@@ -1850,6 +1852,11 @@ class ServiceGenerator:
             and operation.output_target not in self._input_targets
         }
         for shape in shapes:
+            if shape.kind == "intEnum":
+                name = self._input_type_name(shape)
+                values = ", ".join(repr(value) for value in shape.int_enum_values)
+                lines.append(f"{name}: TypeAlias = Literal[{values}]")
+                reserved.add(name)
             if shape.kind in {"string", "enum"} and shape.enum_values:
                 name = self._input_type_name(shape)
                 values = ", ".join(repr(value) for value in shape.enum_values)

@@ -110,6 +110,8 @@ DeleteTenantResourceAssociationOutput: TypeAlias = _native.DeleteTenantResourceA
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeleteTenantResourceAssociationOutput/)."""
 DeliverabilityTestReportOutput: TypeAlias = _native.DeliverabilityTestReport
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestReportOutput/)."""
+DeliveryAttributesOutput: TypeAlias = _native.DeliveryAttributes
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryAttributesOutput/)."""
 DeliveryOptionsOutput: TypeAlias = _native.DeliveryOptions
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryOptionsOutput/)."""
 DisassociateEmailIdentityCertificateOutput: TypeAlias = _native.DisassociateEmailIdentityCertificateOutput
@@ -292,6 +294,8 @@ PricingAttributesOutput: TypeAlias = _native.PricingAttributes
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PricingAttributesOutput/)."""
 PutAccountDedicatedIpWarmupAttributesOutput: TypeAlias = _native.PutAccountDedicatedIpWarmupAttributesOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesOutput/)."""
+PutAccountDeliveryAttributesOutput: TypeAlias = _native.PutAccountDeliveryAttributesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDeliveryAttributesOutput/)."""
 PutAccountDetailsOutput: TypeAlias = _native.PutAccountDetailsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDetailsOutput/)."""
 PutAccountPricingAttributesOutput: TypeAlias = _native.PutAccountPricingAttributesOutput
@@ -438,6 +442,10 @@ VolumeStatisticsOutput: TypeAlias = _native.VolumeStatistics
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/JSONValue/)."""
 
+AccountSharedPoolDeliveryMode: TypeAlias = Literal['GLOBAL', 'REGIONAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AccountSharedPoolDeliveryMode/)."""
+AccountSharedPoolDeliveryModeOutput: TypeAlias = AccountSharedPoolDeliveryMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AccountSharedPoolDeliveryModeOutput/)."""
 AttachmentContentDisposition: TypeAlias = Literal['ATTACHMENT', 'INLINE']
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/AttachmentContentDisposition/)."""
 AttachmentContentDispositionOutput: TypeAlias = AttachmentContentDisposition | UnknownEnumValue
@@ -626,6 +634,10 @@ SendingStatus: TypeAlias = Literal['ENABLED', 'REINSTATED', 'DISABLED']
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingStatus/)."""
 SendingStatusOutput: TypeAlias = SendingStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SendingStatusOutput/)."""
+SharedPoolDeliveryMode: TypeAlias = Literal['GLOBAL', 'REGIONAL', 'ACCOUNT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SharedPoolDeliveryMode/)."""
+SharedPoolDeliveryModeOutput: TypeAlias = SharedPoolDeliveryMode | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SharedPoolDeliveryModeOutput/)."""
 SignatureFormat: TypeAlias = Literal['DETACHED']
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/SignatureFormat/)."""
 SignatureFormatOutput: TypeAlias = SignatureFormat | UnknownEnumValue
@@ -1234,12 +1246,21 @@ DeliverabilityTestReport = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliverabilityTestReport/)."""
 
+DeliveryAttributes = TypedDict(
+    "DeliveryAttributes",
+    {
+    "shared_pool_delivery_mode": NotRequired["AccountSharedPoolDeliveryMode"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryAttributes/)."""
+
 DeliveryOptions = TypedDict(
     "DeliveryOptions",
     {
     "tls_policy": NotRequired["TlsPolicy"],
     "sending_pool_name": NotRequired["str"],
     "max_delivery_seconds": NotRequired["int"],
+    "shared_pool_delivery_mode": NotRequired["SharedPoolDeliveryMode"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/DeliveryOptions/)."""
@@ -2206,6 +2227,14 @@ PutAccountDedicatedIpWarmupAttributesRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDedicatedIpWarmupAttributesRequest/)."""
 
+PutAccountDeliveryAttributesRequest = TypedDict(
+    "PutAccountDeliveryAttributesRequest",
+    {
+    "shared_pool_delivery_mode": Required["AccountSharedPoolDeliveryMode"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutAccountDeliveryAttributesRequest/)."""
+
 PutAccountDetailsRequest = TypedDict(
     "PutAccountDetailsRequest",
     {
@@ -2268,6 +2297,7 @@ PutConfigurationSetDeliveryOptionsRequest = TypedDict(
     "tls_policy": NotRequired["TlsPolicy"],
     "sending_pool_name": NotRequired["str"],
     "max_delivery_seconds": NotRequired["int"],
+    "shared_pool_delivery_mode": NotRequired["SharedPoolDeliveryMode"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sesv2/types/PutConfigurationSetDeliveryOptionsRequest/)."""

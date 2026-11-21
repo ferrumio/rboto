@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Secrets Manager**,
 powered by Rust. This package contains `SecretsManagerClient` and
-**23 operations**.
+**26 operations**.
 
 ## Installation
 
@@ -96,15 +96,18 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
+| [`associate_cross_account_replica`](#associate_cross_account_replica) | <code>secret_id: str</code>, <code>cross_account_replica_arn: str</code> | <code>AssociateCrossAccountReplicaOutput</code> |
 | [`batch_get_secret_value`](#batch_get_secret_value) | None | <code>BatchGetSecretValueOutput</code> |
 | [`cancel_rotate_secret`](#cancel_rotate_secret) | <code>secret_id: str</code> | <code>CancelRotateSecretOutput</code> |
 | [`create_secret`](#create_secret) | <code>name: str</code> | <code>CreateSecretOutput</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>secret_id: str</code> | <code>DeleteResourcePolicyOutput</code> |
 | [`delete_secret`](#delete_secret) | <code>secret_id: str</code> | <code>DeleteSecretOutput</code> |
 | [`describe_secret`](#describe_secret) | <code>secret_id: str</code> | <code>DescribeSecretOutput</code> |
+| [`disassociate_cross_account_replica`](#disassociate_cross_account_replica) | <code>secret_id: str</code>, <code>cross_account_replica_arn: str</code> | <code>DisassociateCrossAccountReplicaOutput</code> |
 | [`get_random_password`](#get_random_password) | None | <code>GetRandomPasswordOutput</code> |
 | [`get_resource_policy`](#get_resource_policy) | <code>secret_id: str</code> | <code>GetResourcePolicyOutput</code> |
 | [`get_secret_value`](#get_secret_value) | <code>secret_id: str</code> | <code>GetSecretValueOutput</code> |
+| [`list_resource_policies`](#list_resource_policies) | <code>secret_id: str</code> | <code>ListResourcePoliciesOutput</code> |
 | [`list_secret_version_ids`](#list_secret_version_ids) | <code>secret_id: str</code> | <code>ListSecretVersionIdsOutput</code> |
 | [`list_secrets`](#list_secrets) | None | <code>ListSecretsOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>secret_id: str</code>, <code>resource_policy: str</code> | <code>PutResourcePolicyOutput</code> |
@@ -121,6 +124,19 @@ native response definitions are in the package's `_native.pyi`.
 | [`validate_resource_policy`](#validate_resource_policy) | <code>resource_policy: str</code> | <code>ValidateResourcePolicyOutput</code> |
 
 ## Complete signatures
+
+### associate_cross_account_replica
+
+```python
+async def associate_cross_account_replica(
+    *,
+    secret_id: str,
+    cross_account_replica_arn: str,
+    replica_restriction: ReplicaRestrictionType | None = None,
+    replication_role_arn: str | None = None,
+) -> AssociateCrossAccountReplicaOutput: ...
+```
+
 
 ### batch_get_secret_value
 
@@ -163,6 +179,7 @@ async def create_secret(
     add_replica_regions: Sequence[ReplicaRegionType] | None = None,
     force_overwrite_replica_secret: bool | None = None,
     type: str | None = None,
+    cross_account_primary_arn: str | None = None,
 ) -> CreateSecretOutput: ...
 ```
 
@@ -173,6 +190,7 @@ async def create_secret(
 async def delete_resource_policy(
     *,
     secret_id: str,
+    policy_name: str | None = None,
 ) -> DeleteResourcePolicyOutput: ...
 ```
 
@@ -199,6 +217,17 @@ async def describe_secret(
 ```
 
 
+### disassociate_cross_account_replica
+
+```python
+async def disassociate_cross_account_replica(
+    *,
+    secret_id: str,
+    cross_account_replica_arn: str,
+) -> DisassociateCrossAccountReplicaOutput: ...
+```
+
+
 ### get_random_password
 
 ```python
@@ -222,6 +251,7 @@ async def get_random_password(
 async def get_resource_policy(
     *,
     secret_id: str,
+    policy_name: str | None = None,
 ) -> GetResourcePolicyOutput: ...
 ```
 
@@ -236,6 +266,21 @@ async def get_secret_value(
     version_stage: str | None = None,
 ) -> GetSecretValueOutput: ...
 ```
+
+
+### list_resource_policies
+
+```python
+async def list_resource_policies(
+    *,
+    secret_id: str,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListResourcePoliciesOutput: ...
+```
+
+Also available as `client.paginators.list_resource_policies(...)`, returning an
+async iterator of the response type above.
 
 
 ### list_secret_version_ids
@@ -279,6 +324,7 @@ async def put_resource_policy(
     *,
     secret_id: str,
     resource_policy: str,
+    policy_name: str | None = None,
     block_public_policy: bool | None = None,
 ) -> PutResourcePolicyOutput: ...
 ```

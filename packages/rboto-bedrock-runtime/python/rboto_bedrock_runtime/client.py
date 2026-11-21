@@ -148,6 +148,7 @@ class BedrockRuntimeClient:
         inference_config: InferenceConfiguration | None = None,
         tool_config: ToolConfiguration | None = None,
         guardrail_config: GuardrailConfiguration | None = None,
+        project_identifier: str | None = None,
         additional_model_request_fields: JSONValue | None = None,
         prompt_variables: dict[str, PromptVariableValues] | None = None,
         additional_model_response_field_paths: Sequence[str] | None = None,
@@ -170,6 +171,8 @@ class BedrockRuntimeClient:
             params["tool_config"] = tool_config
         if guardrail_config is not None:
             params["guardrail_config"] = guardrail_config
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         if additional_model_request_fields is not None:
             params["additional_model_request_fields"] = additional_model_request_fields
         if prompt_variables is not None:
@@ -191,7 +194,7 @@ class BedrockRuntimeClient:
                 self._native.converse, params, _interceptors,
                 "bedrock-runtime", "Converse", self._region,
                 ConverseOutput,
-                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
+                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "project_identifier", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
                 ("model_id", ),
                 service_name='Bedrock Runtime',
             )
@@ -209,6 +212,7 @@ class BedrockRuntimeClient:
         inference_config: InferenceConfiguration | None = None,
         tool_config: ToolConfiguration | None = None,
         guardrail_config: GuardrailStreamConfiguration | None = None,
+        project_identifier: str | None = None,
         additional_model_request_fields: JSONValue | None = None,
         prompt_variables: dict[str, PromptVariableValues] | None = None,
         additional_model_response_field_paths: Sequence[str] | None = None,
@@ -231,6 +235,8 @@ class BedrockRuntimeClient:
             params["tool_config"] = tool_config
         if guardrail_config is not None:
             params["guardrail_config"] = guardrail_config
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         if additional_model_request_fields is not None:
             params["additional_model_request_fields"] = additional_model_request_fields
         if prompt_variables is not None:
@@ -252,7 +258,7 @@ class BedrockRuntimeClient:
                 self._native.converse_stream, params, _interceptors,
                 "bedrock-runtime", "ConverseStream", self._region,
                 dict,
-                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
+                ("model_id", "messages", "system", "inference_config", "tool_config", "guardrail_config", "project_identifier", "additional_model_request_fields", "prompt_variables", "additional_model_response_field_paths", "request_metadata", "performance_config", "service_tier", "output_config", ),
                 ("model_id", ),
                 service_name='Bedrock Runtime',
             )
@@ -353,6 +359,7 @@ class BedrockRuntimeClient:
         performance_config_latency: PerformanceConfigLatency | None = None,
         service_tier: ServiceTierType | None = None,
         request_metadata: str | None = None,
+        project_identifier: str | None = None,
     ) -> InvokeModelOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_model/)."""
         params: dict[str, object] = {
@@ -376,6 +383,8 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if request_metadata is not None:
             params["request_metadata"] = request_metadata
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -383,7 +392,7 @@ class BedrockRuntimeClient:
                 self._native.invoke_model, params, _interceptors,
                 "bedrock-runtime", "InvokeModel", self._region,
                 InvokeModelOutput,
-                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
+                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", "project_identifier", ),
                 ("model_id", ),
                 service_name='Bedrock Runtime',
             )
@@ -432,6 +441,7 @@ class BedrockRuntimeClient:
         performance_config_latency: PerformanceConfigLatency | None = None,
         service_tier: ServiceTierType | None = None,
         request_metadata: str | None = None,
+        project_identifier: str | None = None,
     ) -> InvokeModelWithResponseStreamOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/operations/invoke_model_with_response_stream/)."""
         params: dict[str, object] = {
@@ -455,6 +465,8 @@ class BedrockRuntimeClient:
             params["service_tier"] = service_tier
         if request_metadata is not None:
             params["request_metadata"] = request_metadata
+        if project_identifier is not None:
+            params["project_identifier"] = project_identifier
         _interceptors = operation_interceptors("bedrock-runtime", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -462,7 +474,7 @@ class BedrockRuntimeClient:
                 self._native.invoke_model_with_response_stream, params, _interceptors,
                 "bedrock-runtime", "InvokeModelWithResponseStream", self._region,
                 dict,
-                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", ),
+                ("model_id", "body", "content_type", "accept", "trace", "guardrail_identifier", "guardrail_version", "performance_config_latency", "service_tier", "request_metadata", "project_identifier", ),
                 ("model_id", ),
                 service_name='Bedrock Runtime',
             )

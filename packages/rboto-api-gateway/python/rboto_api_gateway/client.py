@@ -30,6 +30,7 @@ from .types import (
     EndpointConfiguration,
     GatewayResponseType,
     IntegrationType,
+    JwtConfigurationInput,
     LocationStatusType,
     MutualTlsAuthenticationInput,
     PatchOperation,
@@ -164,6 +165,7 @@ class APIGatewayClient:
         identity_source: str | None = None,
         identity_validation_expression: str | None = None,
         authorizer_result_ttl_in_seconds: int | None = None,
+        jwt_configuration: JwtConfigurationInput | None = None,
     ) -> CreateAuthorizerOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/api-gateway/operations/create_authorizer/)."""
         params: dict[str, object] = {
@@ -185,6 +187,8 @@ class APIGatewayClient:
             params["identity_validation_expression"] = identity_validation_expression
         if authorizer_result_ttl_in_seconds is not None:
             params["authorizer_result_ttl_in_seconds"] = authorizer_result_ttl_in_seconds
+        if jwt_configuration is not None:
+            params["jwt_configuration"] = jwt_configuration
         _interceptors = operation_interceptors("api-gateway", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -192,7 +196,7 @@ class APIGatewayClient:
                 self._native.create_authorizer, params, _interceptors,
                 "api-gateway", "CreateAuthorizer", self._region,
                 CreateAuthorizerOutput,
-                ("rest_api_id", "name", "type", "provider_arns", "auth_type", "authorizer_uri", "authorizer_credentials", "identity_source", "identity_validation_expression", "authorizer_result_ttl_in_seconds", ),
+                ("rest_api_id", "name", "type", "provider_arns", "auth_type", "authorizer_uri", "authorizer_credentials", "identity_source", "identity_validation_expression", "authorizer_result_ttl_in_seconds", "jwt_configuration", ),
                 ("rest_api_id", "name", "type", ),
                 service_name='API Gateway',
             )

@@ -19,6 +19,7 @@ from ._native import (
     ListFiltersOutput,
     ListFindingsOutput,
     ListIPSetsOutput,
+    ListInvestigationRecordsOutput,
     ListInvestigationsOutput,
     ListInvitationsOutput,
     ListMalwareScansOutput,
@@ -38,8 +39,10 @@ from .types import (
     DetectionRuleFilter,
     FilterCriteria,
     FindingCriteria,
+    InvestigationFilterCriteria,
     InvestigationSortCriteria,
     ListMalwareScansFilterCriteria,
+    RecordType,
     SortCriteria,
     UsageCriteria,
     UsageStatisticType,
@@ -358,10 +361,41 @@ class GuardDutyClientPaginators:
         )
 
 
+    def list_investigation_records(
+        self,
+        *,
+        detector_id: str,
+        investigation_id: str,
+        record_types: _Sequence[RecordType] | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListInvestigationRecordsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/guardduty/operations/list_investigation_records/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "detector_id": detector_id,
+            "investigation_id": investigation_id,
+        }
+        if record_types is not None:
+            params["record_types"] = record_types
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_investigation_records, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
     def list_investigations(
         self,
         *,
         detector_id: str,
+        filter_criteria: InvestigationFilterCriteria | None = None,
         sort_criteria: InvestigationSortCriteria | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
@@ -370,6 +404,8 @@ class GuardDutyClientPaginators:
         params: dict[str, object] = {
             "detector_id": detector_id,
         }
+        if filter_criteria is not None:
+            params["filter_criteria"] = filter_criteria
         if sort_criteria is not None:
             params["sort_criteria"] = sort_criteria
         if max_results is not None:

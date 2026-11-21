@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Lambda**,
 powered by Rust. This package contains `LambdaClient` and
-**88 operations**.
+**91 operations**.
 
 ## Installation
 
@@ -122,6 +122,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_alias`](#delete_alias) | <code>function_name: str</code>, <code>name: str</code> | <code>None</code> |
 | [`delete_capacity_provider`](#delete_capacity_provider) | <code>capacity_provider_name: str</code> | <code>DeleteCapacityProviderOutput</code> |
 | [`delete_code_signing_config`](#delete_code_signing_config) | <code>code_signing_config_arn: str</code> | <code>DeleteCodeSigningConfigOutput</code> |
+| [`delete_durable_execution`](#delete_durable_execution) | <code>durable_execution_arn: str</code> | <code>DeleteDurableExecutionOutput</code> |
 | [`delete_event_source_mapping`](#delete_event_source_mapping) | <code>uuid: str</code> | <code>DeleteEventSourceMappingOutput</code> |
 | [`delete_function`](#delete_function) | <code>function_name: str</code> | <code>DeleteFunctionOutput</code> |
 | [`delete_function_code_signing_config`](#delete_function_code_signing_config) | <code>function_name: str</code> | <code>None</code> |
@@ -172,6 +173,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_provisioned_concurrency_configs`](#list_provisioned_concurrency_configs) | <code>function_name: str</code> | <code>ListProvisionedConcurrencyConfigsOutput</code> |
 | [`list_tags`](#list_tags) | <code>resource: str</code> | <code>ListTagsOutput</code> |
 | [`list_versions_by_function`](#list_versions_by_function) | <code>function_name: str</code> | <code>ListVersionsByFunctionOutput</code> |
+| [`pause_durable_execution`](#pause_durable_execution) | <code>durable_execution_arn: str</code> | <code>PauseDurableExecutionOutput</code> |
 | [`publish_layer_version`](#publish_layer_version) | <code>layer_name: str</code>, <code>content: LayerVersionContentInput</code> | <code>PublishLayerVersionOutput</code> |
 | [`publish_version`](#publish_version) | <code>function_name: str</code> | <code>PublishVersionOutput</code> |
 | [`put_function_code_signing_config`](#put_function_code_signing_config) | <code>code_signing_config_arn: str</code>, <code>function_name: str</code> | <code>PutFunctionCodeSigningConfigOutput</code> |
@@ -184,6 +186,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_runtime_management_config`](#put_runtime_management_config) | <code>function_name: str</code>, <code>update_runtime_on: UpdateRuntimeOn</code> | <code>PutRuntimeManagementConfigOutput</code> |
 | [`remove_layer_version_permission`](#remove_layer_version_permission) | <code>layer_name: str</code>, <code>version_number: int</code>, <code>statement_id: str</code> | <code>None</code> |
 | [`remove_permission`](#remove_permission) | <code>function_name: str</code>, <code>statement_id: str</code> | <code>None</code> |
+| [`resume_durable_execution`](#resume_durable_execution) | <code>durable_execution_arn: str</code> | <code>ResumeDurableExecutionOutput</code> |
 | [`send_durable_execution_callback_failure`](#send_durable_execution_callback_failure) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackFailureOutput</code> |
 | [`send_durable_execution_callback_heartbeat`](#send_durable_execution_callback_heartbeat) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackHeartbeatOutput</code> |
 | [`send_durable_execution_callback_success`](#send_durable_execution_callback_success) | <code>callback_id: str</code> | <code>SendDurableExecutionCallbackSuccessOutput</code> |
@@ -366,6 +369,8 @@ async def create_function(
     tenancy_config: TenancyConfig | None = None,
     capacity_provider_config: CapacityProviderConfig | None = None,
     durable_config: DurableConfig | None = None,
+    runtime_config: FunctionRuntimeConfig | None = None,
+    accelerator_config: AcceleratorConfig | None = None,
 ) -> CreateFunctionOutput: ...
 ```
 
@@ -412,6 +417,16 @@ async def delete_code_signing_config(
     *,
     code_signing_config_arn: str,
 ) -> DeleteCodeSigningConfigOutput: ...
+```
+
+
+### delete_durable_execution
+
+```python
+async def delete_durable_execution(
+    *,
+    durable_execution_arn: str,
+) -> DeleteDurableExecutionOutput: ...
 ```
 
 
@@ -1038,6 +1053,19 @@ Also available as `client.paginators.list_versions_by_function(...)`, returning 
 async iterator of the response type above.
 
 
+### pause_durable_execution
+
+```python
+async def pause_durable_execution(
+    *,
+    durable_execution_arn: str,
+    client_token: str | None = None,
+    reason: str | None = None,
+    execution_timeout_paused: bool | None = None,
+) -> PauseDurableExecutionOutput: ...
+```
+
+
 ### publish_layer_version
 
 ```python
@@ -1186,6 +1214,18 @@ async def remove_permission(
     qualifier: str | None = None,
     revision_id: str | None = None,
 ) -> None: ...
+```
+
+
+### resume_durable_execution
+
+```python
+async def resume_durable_execution(
+    *,
+    durable_execution_arn: str,
+    client_token: str | None = None,
+    reason: str | None = None,
+) -> ResumeDurableExecutionOutput: ...
 ```
 
 
@@ -1374,6 +1414,8 @@ async def update_function_configuration(
     logging_config: LoggingConfig | None = None,
     capacity_provider_config: CapacityProviderConfig | None = None,
     durable_config: DurableConfig | None = None,
+    runtime_config: FunctionRuntimeConfig | None = None,
+    accelerator_config: AcceleratorConfig | None = None,
 ) -> UpdateFunctionConfigurationOutput: ...
 ```
 

@@ -12,8 +12,9 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionOutput, AddPermissionOutput, CheckpointDurableExecutionOutput, CreateAliasOutput, CreateCapacityProviderOutput, CreateCodeSigningConfigOutput, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigOutput, DeleteCapacityProviderOutput, DeleteCodeSigningConfigOutput, DeleteEventSourceMappingOutput, DeleteFunctionOutput, GetAccountSettingsOutput, GetAliasOutput, GetCapacityProviderOutput, GetCodeSigningConfigOutput, GetDurableExecutionHistoryOutput, GetDurableExecutionOutput, GetDurableExecutionStateOutput, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigOutput, GetFunctionConcurrencyOutput, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionOutput, GetFunctionRecursionConfigOutput, GetFunctionScalingConfigOutput, GetFunctionUrlConfigOutput, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyOutput, GetPolicyOutput, GetProvisionedConcurrencyConfigOutput, GetResourcePolicyOutput, GetRuntimeManagementConfigOutput, InvokeAsyncOutput, InvokeOutput, ListAliasesOutput, ListCapacityProvidersOutput, ListCodeSigningConfigsOutput, ListDurableExecutionsByFunctionOutput, ListEventSourceMappingsOutput, ListFunctionEventInvokeConfigsOutput, ListFunctionUrlConfigsOutput, ListFunctionVersionsByCapacityProviderOutput, ListFunctionsByCodeSigningConfigOutput, ListFunctionsOutput, ListLayerVersionsOutput, ListLayersOutput, ListProvisionedConcurrencyConfigsOutput, ListTagsOutput, ListVersionsByFunctionOutput, PublishLayerVersionOutput, PublishVersionOutput, PutFunctionCodeSigningConfigOutput, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigOutput, PutFunctionScalingConfigOutput, PutProvisionedConcurrencyConfigOutput, PutResourcePolicyOutput, PutRuntimeManagementConfigOutput, SendDurableExecutionCallbackFailureOutput, SendDurableExecutionCallbackHeartbeatOutput, SendDurableExecutionCallbackSuccessOutput, StopDurableExecutionOutput, UpdateAliasOutput, UpdateCapacityProviderOutput, UpdateCodeSigningConfigOutput, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigOutput
+from ._native import LambdaClient as NativeClient, AddLayerVersionPermissionOutput, AddPermissionOutput, CheckpointDurableExecutionOutput, CreateAliasOutput, CreateCapacityProviderOutput, CreateCodeSigningConfigOutput, CreateEventSourceMappingOutput, CreateFunctionOutput, CreateFunctionUrlConfigOutput, DeleteCapacityProviderOutput, DeleteCodeSigningConfigOutput, DeleteDurableExecutionOutput, DeleteEventSourceMappingOutput, DeleteFunctionOutput, GetAccountSettingsOutput, GetAliasOutput, GetCapacityProviderOutput, GetCodeSigningConfigOutput, GetDurableExecutionHistoryOutput, GetDurableExecutionOutput, GetDurableExecutionStateOutput, GetEventSourceMappingOutput, GetFunctionCodeSigningConfigOutput, GetFunctionConcurrencyOutput, GetFunctionConfigurationOutput, GetFunctionEventInvokeConfigOutput, GetFunctionOutput, GetFunctionRecursionConfigOutput, GetFunctionScalingConfigOutput, GetFunctionUrlConfigOutput, GetLayerVersionByArnOutput, GetLayerVersionOutput, GetLayerVersionPolicyOutput, GetPolicyOutput, GetProvisionedConcurrencyConfigOutput, GetResourcePolicyOutput, GetRuntimeManagementConfigOutput, InvokeAsyncOutput, InvokeOutput, ListAliasesOutput, ListCapacityProvidersOutput, ListCodeSigningConfigsOutput, ListDurableExecutionsByFunctionOutput, ListEventSourceMappingsOutput, ListFunctionEventInvokeConfigsOutput, ListFunctionUrlConfigsOutput, ListFunctionVersionsByCapacityProviderOutput, ListFunctionsByCodeSigningConfigOutput, ListFunctionsOutput, ListLayerVersionsOutput, ListLayersOutput, ListProvisionedConcurrencyConfigsOutput, ListTagsOutput, ListVersionsByFunctionOutput, PauseDurableExecutionOutput, PublishLayerVersionOutput, PublishVersionOutput, PutFunctionCodeSigningConfigOutput, PutFunctionConcurrencyOutput, PutFunctionEventInvokeConfigOutput, PutFunctionRecursionConfigOutput, PutFunctionScalingConfigOutput, PutProvisionedConcurrencyConfigOutput, PutResourcePolicyOutput, PutRuntimeManagementConfigOutput, ResumeDurableExecutionOutput, SendDurableExecutionCallbackFailureOutput, SendDurableExecutionCallbackHeartbeatOutput, SendDurableExecutionCallbackSuccessOutput, StopDurableExecutionOutput, UpdateAliasOutput, UpdateCapacityProviderOutput, UpdateCodeSigningConfigOutput, UpdateEventSourceMappingOutput, UpdateFunctionCodeOutput, UpdateFunctionConfigurationOutput, UpdateFunctionEventInvokeConfigOutput, UpdateFunctionUrlConfigOutput
 from .types import (
+    AcceleratorConfig,
     AliasRoutingConfiguration,
     AllowedPublishers,
     AmazonManagedKafkaEventSourceConfig,
@@ -41,6 +42,7 @@ from .types import (
     FilterCriteria,
     FunctionCode,
     FunctionResponseType,
+    FunctionRuntimeConfig,
     FunctionScalingConfig,
     FunctionUrlAuthType,
     FunctionVersion,
@@ -523,6 +525,8 @@ class LambdaClient:
         tenancy_config: TenancyConfig | None = None,
         capacity_provider_config: CapacityProviderConfig | None = None,
         durable_config: DurableConfig | None = None,
+        runtime_config: FunctionRuntimeConfig | None = None,
+        accelerator_config: AcceleratorConfig | None = None,
     ) -> CreateFunctionOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/create_function/)."""
         params: dict[str, object] = {
@@ -580,6 +584,10 @@ class LambdaClient:
             params["capacity_provider_config"] = capacity_provider_config
         if durable_config is not None:
             params["durable_config"] = durable_config
+        if runtime_config is not None:
+            params["runtime_config"] = runtime_config
+        if accelerator_config is not None:
+            params["accelerator_config"] = accelerator_config
         _interceptors = operation_interceptors("lambda", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -587,7 +595,7 @@ class LambdaClient:
                 self._native.create_function, params, _interceptors,
                 "lambda", "CreateFunction", self._region,
                 CreateFunctionOutput,
-                ("function_name", "role", "code", "runtime", "handler", "description", "timeout", "memory_size", "publish", "publish_to", "vpc_config", "package_type", "dead_letter_config", "environment", "kms_key_arn", "tracing_config", "tags", "layers", "file_system_configs", "code_signing_config_arn", "image_config", "architectures", "ephemeral_storage", "snap_start", "logging_config", "tenancy_config", "capacity_provider_config", "durable_config", ),
+                ("function_name", "role", "code", "runtime", "handler", "description", "timeout", "memory_size", "publish", "publish_to", "vpc_config", "package_type", "dead_letter_config", "environment", "kms_key_arn", "tracing_config", "tags", "layers", "file_system_configs", "code_signing_config_arn", "image_config", "architectures", "ephemeral_storage", "snap_start", "logging_config", "tenancy_config", "capacity_provider_config", "durable_config", "runtime_config", "accelerator_config", ),
                 ("function_name", "role", "code", ),
                 service_name='Lambda',
             )
@@ -706,6 +714,31 @@ class LambdaClient:
             )
             return _response
         _response = await self._native.delete_code_signing_config(params)
+        return _response
+
+
+    async def delete_durable_execution(
+        self,
+        *,
+        durable_execution_arn: str,
+    ) -> DeleteDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/delete_durable_execution/)."""
+        params: dict[str, object] = {
+            "durable_execution_arn": durable_execution_arn,
+        }
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_durable_execution, params, _interceptors,
+                "lambda", "DeleteDurableExecution", self._region,
+                DeleteDurableExecutionOutput,
+                ("durable_execution_arn", ),
+                ("durable_execution_arn", ),
+                service_name='Lambda',
+            )
+            return _response
+        _response = await self._native.delete_durable_execution(params)
         return _response
 
 
@@ -2186,6 +2219,40 @@ class LambdaClient:
         return _response
 
 
+    async def pause_durable_execution(
+        self,
+        *,
+        durable_execution_arn: str,
+        client_token: str | None = None,
+        reason: str | None = None,
+        execution_timeout_paused: bool | None = None,
+    ) -> PauseDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/pause_durable_execution/)."""
+        params: dict[str, object] = {
+            "durable_execution_arn": durable_execution_arn,
+        }
+        if client_token is not None:
+            params["client_token"] = client_token
+        if reason is not None:
+            params["reason"] = reason
+        if execution_timeout_paused is not None:
+            params["execution_timeout_paused"] = execution_timeout_paused
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.pause_durable_execution, params, _interceptors,
+                "lambda", "PauseDurableExecution", self._region,
+                PauseDurableExecutionOutput,
+                ("durable_execution_arn", "client_token", "reason", "execution_timeout_paused", ),
+                ("durable_execution_arn", ),
+                service_name='Lambda',
+            )
+            return _response
+        _response = await self._native.pause_durable_execution(params)
+        return _response
+
+
     async def publish_layer_version(
         self,
         *,
@@ -2565,6 +2632,37 @@ class LambdaClient:
             return None
         await self._native.remove_permission(params)
         return None
+
+
+    async def resume_durable_execution(
+        self,
+        *,
+        durable_execution_arn: str,
+        client_token: str | None = None,
+        reason: str | None = None,
+    ) -> ResumeDurableExecutionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/resume_durable_execution/)."""
+        params: dict[str, object] = {
+            "durable_execution_arn": durable_execution_arn,
+        }
+        if client_token is not None:
+            params["client_token"] = client_token
+        if reason is not None:
+            params["reason"] = reason
+        _interceptors = operation_interceptors("lambda", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.resume_durable_execution, params, _interceptors,
+                "lambda", "ResumeDurableExecution", self._region,
+                ResumeDurableExecutionOutput,
+                ("durable_execution_arn", "client_token", "reason", ),
+                ("durable_execution_arn", ),
+                service_name='Lambda',
+            )
+            return _response
+        _response = await self._native.resume_durable_execution(params)
+        return _response
 
 
     async def send_durable_execution_callback_failure(
@@ -3010,6 +3108,8 @@ class LambdaClient:
         logging_config: LoggingConfig | None = None,
         capacity_provider_config: CapacityProviderConfig | None = None,
         durable_config: DurableConfig | None = None,
+        runtime_config: FunctionRuntimeConfig | None = None,
+        accelerator_config: AcceleratorConfig | None = None,
     ) -> UpdateFunctionConfigurationOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/lambda/operations/update_function_configuration/)."""
         params: dict[str, object] = {
@@ -3055,6 +3155,10 @@ class LambdaClient:
             params["capacity_provider_config"] = capacity_provider_config
         if durable_config is not None:
             params["durable_config"] = durable_config
+        if runtime_config is not None:
+            params["runtime_config"] = runtime_config
+        if accelerator_config is not None:
+            params["accelerator_config"] = accelerator_config
         _interceptors = operation_interceptors("lambda", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -3062,7 +3166,7 @@ class LambdaClient:
                 self._native.update_function_configuration, params, _interceptors,
                 "lambda", "UpdateFunctionConfiguration", self._region,
                 UpdateFunctionConfigurationOutput,
-                ("function_name", "role", "handler", "description", "timeout", "memory_size", "vpc_config", "environment", "runtime", "dead_letter_config", "kms_key_arn", "tracing_config", "revision_id", "layers", "file_system_configs", "image_config", "ephemeral_storage", "snap_start", "logging_config", "capacity_provider_config", "durable_config", ),
+                ("function_name", "role", "handler", "description", "timeout", "memory_size", "vpc_config", "environment", "runtime", "dead_letter_config", "kms_key_arn", "tracing_config", "revision_id", "layers", "file_system_configs", "image_config", "ephemeral_storage", "snap_start", "logging_config", "capacity_provider_config", "durable_config", "runtime_config", "accelerator_config", ),
                 ("function_name", ),
                 service_name='Lambda',
             )

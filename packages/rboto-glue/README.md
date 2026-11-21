@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Glue**,
 powered by Rust. This package contains `GlueClient` and
-**309 operations**.
+**312 operations**.
 
 ## Installation
 
@@ -127,6 +127,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_connection`](#create_connection) | <code>connection_input: ConnectionInput</code> | <code>CreateConnectionOutput</code> |
 | [`create_crawler`](#create_crawler) | <code>name: str</code>, <code>role: str</code>, <code>targets: CrawlerTargets</code> | <code>CreateCrawlerOutput</code> |
 | [`create_custom_entity_type`](#create_custom_entity_type) | <code>name: str</code>, <code>regex_string: str</code> | <code>CreateCustomEntityTypeOutput</code> |
+| [`create_data_quality_evaluation_config`](#create_data_quality_evaluation_config) | <code>name: str</code>, <code>level: DataQualityEvaluationConfigLevel</code>, <code>data_source: DataQualityEvaluationConfigDataSource</code>, <code>role: str</code> | <code>CreateDataQualityEvaluationConfigOutput</code> |
 | [`create_data_quality_ruleset`](#create_data_quality_ruleset) | <code>name: str</code>, <code>ruleset: str</code> | <code>CreateDataQualityRulesetOutput</code> |
 | [`create_database`](#create_database) | <code>database_input: DatabaseInput</code> | <code>CreateDatabaseOutput</code> |
 | [`create_dev_endpoint`](#create_dev_endpoint) | <code>endpoint_name: str</code>, <code>role_arn: str</code> | <code>CreateDevEndpointOutput</code> |
@@ -152,7 +153,6 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_user_defined_function`](#create_user_defined_function) | <code>database_name: str</code>, <code>function_input: UserDefinedFunctionInput</code> | <code>CreateUserDefinedFunctionOutput</code> |
 | [`create_workflow`](#create_workflow) | <code>name: str</code> | <code>CreateWorkflowOutput</code> |
 | [`delete_asset`](#delete_asset) | <code>identifier: str</code> | <code>DeleteAssetOutput</code> |
-| [`delete_asset_type`](#delete_asset_type) | <code>identifier: str</code> | <code>DeleteAssetTypeOutput</code> |
 | [`delete_attachment`](#delete_attachment) | <code>asset_identifier: str</code>, <code>attachment_name: str</code> | <code>DeleteAttachmentOutput</code> |
 | [`delete_blueprint`](#delete_blueprint) | <code>name: str</code> | <code>DeleteBlueprintOutput</code> |
 | [`delete_catalog`](#delete_catalog) | <code>catalog_id: str</code> | <code>DeleteCatalogOutput</code> |
@@ -164,6 +164,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_connection_type`](#delete_connection_type) | <code>connection_type: str</code> | <code>DeleteConnectionTypeOutput</code> |
 | [`delete_crawler`](#delete_crawler) | <code>name: str</code> | <code>DeleteCrawlerOutput</code> |
 | [`delete_custom_entity_type`](#delete_custom_entity_type) | <code>name: str</code> | <code>DeleteCustomEntityTypeOutput</code> |
+| [`delete_data_quality_evaluation_config`](#delete_data_quality_evaluation_config) | <code>name: str</code> | <code>DeleteDataQualityEvaluationConfigOutput</code> |
 | [`delete_data_quality_ruleset`](#delete_data_quality_ruleset) | <code>name: str</code> | <code>DeleteDataQualityRulesetOutput</code> |
 | [`delete_database`](#delete_database) | <code>name: str</code> | <code>DeleteDatabaseOutput</code> |
 | [`delete_dev_endpoint`](#delete_dev_endpoint) | <code>endpoint_name: str</code> | <code>DeleteDevEndpointOutput</code> |
@@ -220,6 +221,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_dashboard_url`](#get_dashboard_url) | <code>resource_id: str</code>, <code>resource_type: GlueResourceType</code> | <code>GetDashboardUrlOutput</code> |
 | [`get_data_catalog_encryption_settings`](#get_data_catalog_encryption_settings) | None | <code>GetDataCatalogEncryptionSettingsOutput</code> |
 | [`get_data_catalog_export_configuration`](#get_data_catalog_export_configuration) | None | <code>GetDataCatalogExportConfigurationOutput</code> |
+| [`get_data_quality_evaluation_config`](#get_data_quality_evaluation_config) | <code>name: str</code> | <code>GetDataQualityEvaluationConfigOutput</code> |
 | [`get_data_quality_model`](#get_data_quality_model) | <code>profile_id: str</code> | <code>GetDataQualityModelOutput</code> |
 | [`get_data_quality_model_result`](#get_data_quality_model_result) | <code>statistic_id: str</code>, <code>profile_id: str</code> | <code>GetDataQualityModelResultOutput</code> |
 | [`get_data_quality_result`](#get_data_quality_result) | <code>result_id: str</code> | <code>GetDataQualityResultOutput</code> |
@@ -295,6 +297,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_crawlers`](#list_crawlers) | None | <code>ListCrawlersOutput</code> |
 | [`list_crawls`](#list_crawls) | <code>crawler_name: str</code> | <code>ListCrawlsOutput</code> |
 | [`list_custom_entity_types`](#list_custom_entity_types) | None | <code>ListCustomEntityTypesOutput</code> |
+| [`list_data_quality_evaluation_configs`](#list_data_quality_evaluation_configs) | None | <code>ListDataQualityEvaluationConfigsOutput</code> |
 | [`list_data_quality_results`](#list_data_quality_results) | None | <code>ListDataQualityResultsOutput</code> |
 | [`list_data_quality_results_v2`](#list_data_quality_results_v2) | None | <code>ListDataQualityResultsV2Output</code> |
 | [`list_data_quality_rule_recommendation_runs`](#list_data_quality_rule_recommendation_runs) | None | <code>ListDataQualityRuleRecommendationRunsOutput</code> |
@@ -324,11 +327,10 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_workflows`](#list_workflows) | None | <code>ListWorkflowsOutput</code> |
 | [`modify_integration`](#modify_integration) | <code>integration_identifier: str</code> | <code>ModifyIntegrationOutput</code> |
 | [`publish_data_quality_result_v2`](#publish_data_quality_result_v2) | <code>dimensions: dict[str, str]</code>, <code>score: float</code>, <code>rule_results: Sequence[DataQualityRuleResult]</code>, <code>evaluation_context: str</code> | <code>PublishDataQualityResultV2Output</code> |
-| [`put_asset`](#put_asset) | <code>asset_type_id: str</code>, <code>identifier: str</code>, <code>name: str</code>, <code>forms: dict[str, AssetFormEntry]</code> | <code>PutAssetOutput</code> |
-| [`put_asset_type`](#put_asset_type) | <code>name: str</code>, <code>forms: dict[str, AssetTypeFormReference]</code> | <code>PutAssetTypeOutput</code> |
-| [`put_attachment`](#put_attachment) | <code>asset_identifier: str</code>, <code>attachment_name: str</code>, <code>content: str</code>, <code>form_type_id: str</code> | <code>PutAttachmentOutput</code> |
+| [`put_asset`](#put_asset) | <code>identifier: str</code>, <code>name: str</code>, <code>forms: dict[str, AssetFormInput]</code> | <code>PutAssetOutput</code> |
+| [`put_attachment`](#put_attachment) | <code>asset_identifier: str</code>, <code>attachment_name: str</code>, <code>content: str</code> | <code>PutAttachmentOutput</code> |
 | [`put_data_catalog_encryption_settings`](#put_data_catalog_encryption_settings) | <code>data_catalog_encryption_settings: DataCatalogEncryptionSettings</code> | <code>PutDataCatalogEncryptionSettingsOutput</code> |
-| [`put_data_catalog_export_configuration`](#put_data_catalog_export_configuration) | <code>export_setting: ExportSetting</code> | <code>PutDataCatalogExportConfigurationOutput</code> |
+| [`put_data_catalog_export_configuration`](#put_data_catalog_export_configuration) | None | <code>PutDataCatalogExportConfigurationOutput</code> |
 | [`put_data_quality_profile_annotation`](#put_data_quality_profile_annotation) | <code>profile_id: str</code>, <code>inclusion_annotation: InclusionAnnotationValue</code> | <code>PutDataQualityProfileAnnotationOutput</code> |
 | [`put_form_type`](#put_form_type) | <code>name: str</code>, <code>schema: str</code> | <code>PutFormTypeOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>policy_in_json: str</code> | <code>PutResourcePolicyOutput</code> |
@@ -381,6 +383,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`update_connection`](#update_connection) | <code>name: str</code>, <code>connection_input: ConnectionInput</code> | <code>UpdateConnectionOutput</code> |
 | [`update_crawler`](#update_crawler) | <code>name: str</code> | <code>UpdateCrawlerOutput</code> |
 | [`update_crawler_schedule`](#update_crawler_schedule) | <code>crawler_name: str</code> | <code>UpdateCrawlerScheduleOutput</code> |
+| [`update_data_quality_evaluation_config`](#update_data_quality_evaluation_config) | <code>name: str</code> | <code>UpdateDataQualityEvaluationConfigOutput</code> |
 | [`update_data_quality_ruleset`](#update_data_quality_ruleset) | <code>name: str</code> | <code>UpdateDataQualityRulesetOutput</code> |
 | [`update_database`](#update_database) | <code>name: str</code>, <code>database_input: DatabaseInput</code> | <code>UpdateDatabaseOutput</code> |
 | [`update_dev_endpoint`](#update_dev_endpoint) | <code>endpoint_name: str</code> | <code>UpdateDevEndpointOutput</code> |
@@ -817,6 +820,31 @@ async def create_custom_entity_type(
 ```
 
 
+### create_data_quality_evaluation_config
+
+```python
+async def create_data_quality_evaluation_config(
+    *,
+    name: str,
+    level: DataQualityEvaluationConfigLevel,
+    data_source: DataQualityEvaluationConfigDataSource,
+    role: str,
+    ruleset_name: str | None = None,
+    managed_ruleset_name: DataQualityEvaluationConfigManagedRuleset | None = None,
+    triggers: Sequence[DataQualityEvaluationConfigTrigger] | None = None,
+    schedule_expression: str | None = None,
+    start_at: str | None = None,
+    end_at: str | None = None,
+    number_of_workers: int | None = None,
+    timeout: int | None = None,
+    additional_run_options: DataQualityEvaluationConfigAdditionalRunOptions | None = None,
+    additional_data_sources: dict[str, DataSource] | None = None,
+    tags: dict[str, str] | None = None,
+    client_token: str | None = None,
+) -> CreateDataQualityEvaluationConfigOutput: ...
+```
+
+
 ### create_data_quality_ruleset
 
 ```python
@@ -1207,16 +1235,6 @@ async def delete_asset(
 ```
 
 
-### delete_asset_type
-
-```python
-async def delete_asset_type(
-    *,
-    identifier: str,
-) -> DeleteAssetTypeOutput: ...
-```
-
-
 ### delete_attachment
 
 ```python
@@ -1337,6 +1355,16 @@ async def delete_custom_entity_type(
     *,
     name: str,
 ) -> DeleteCustomEntityTypeOutput: ...
+```
+
+
+### delete_data_quality_evaluation_config
+
+```python
+async def delete_data_quality_evaluation_config(
+    *,
+    name: str,
+) -> DeleteDataQualityEvaluationConfigOutput: ...
 ```
 
 
@@ -1993,6 +2021,16 @@ async def get_data_catalog_encryption_settings(
 
 ```python
 async def get_data_catalog_export_configuration() -> GetDataCatalogExportConfigurationOutput: ...
+```
+
+
+### get_data_quality_evaluation_config
+
+```python
+async def get_data_quality_evaluation_config(
+    *,
+    name: str,
+) -> GetDataQualityEvaluationConfigOutput: ...
 ```
 
 
@@ -2969,6 +3007,21 @@ Also available as `client.paginators.list_custom_entity_types(...)`, returning a
 async iterator of the response type above.
 
 
+### list_data_quality_evaluation_configs
+
+```python
+async def list_data_quality_evaluation_configs(
+    *,
+    level: DataQualityEvaluationConfigLevel | None = None,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListDataQualityEvaluationConfigsOutput: ...
+```
+
+Also available as `client.paginators.list_data_quality_evaluation_configs(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_data_quality_results
 
 ```python
@@ -3432,25 +3485,13 @@ async def publish_data_quality_result_v2(
 ```python
 async def put_asset(
     *,
-    asset_type_id: str,
     identifier: str,
     name: str,
-    forms: dict[str, AssetFormEntry],
+    forms: dict[str, AssetFormInput],
+    asset_type_identifier: str | None = None,
     description: str | None = None,
     client_token: str | None = None,
 ) -> PutAssetOutput: ...
-```
-
-
-### put_asset_type
-
-```python
-async def put_asset_type(
-    *,
-    name: str,
-    forms: dict[str, AssetTypeFormReference],
-    client_token: str | None = None,
-) -> PutAssetTypeOutput: ...
 ```
 
 
@@ -3462,9 +3503,9 @@ async def put_attachment(
     asset_identifier: str,
     attachment_name: str,
     content: str,
-    form_type_id: str,
     iterable_form_name: str | None = None,
     item_identifier: str | None = None,
+    form_type_identifier: str | None = None,
     client_token: str | None = None,
 ) -> PutAttachmentOutput: ...
 ```
@@ -3486,9 +3527,9 @@ async def put_data_catalog_encryption_settings(
 ```python
 async def put_data_catalog_export_configuration(
     *,
-    export_setting: ExportSetting,
-    encryption_configuration: ExportEncryptionConfiguration | None = None,
     client_token: str | None = None,
+    s3_tables_configuration: S3TablesConfiguration | None = None,
+    assets: AssetsExport | None = None,
 ) -> PutDataCatalogExportConfigurationOutput: ...
 ```
 
@@ -4162,6 +4203,29 @@ async def update_crawler_schedule(
     crawler_name: str,
     schedule: str | None = None,
 ) -> UpdateCrawlerScheduleOutput: ...
+```
+
+
+### update_data_quality_evaluation_config
+
+```python
+async def update_data_quality_evaluation_config(
+    *,
+    name: str,
+    data_source: DataQualityEvaluationConfigDataSource | None = None,
+    ruleset_name: str | None = None,
+    managed_ruleset_name: DataQualityEvaluationConfigManagedRuleset | None = None,
+    triggers: Sequence[DataQualityEvaluationConfigTrigger] | None = None,
+    schedule_expression: str | None = None,
+    start_at: str | None = None,
+    end_at: str | None = None,
+    pause_runs: bool | None = None,
+    role: str | None = None,
+    number_of_workers: int | None = None,
+    timeout: int | None = None,
+    additional_run_options: DataQualityEvaluationConfigAdditionalRunOptions | None = None,
+    additional_data_sources: dict[str, DataSource] | None = None,
+) -> UpdateDataQualityEvaluationConfigOutput: ...
 ```
 
 

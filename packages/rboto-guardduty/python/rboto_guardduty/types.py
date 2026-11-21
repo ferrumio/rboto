@@ -22,12 +22,18 @@ AccessKeyDetailsOutput: TypeAlias = _native.AccessKeyDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccessKeyDetailsOutput/)."""
 AccountOutput: TypeAlias = _native.Account
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountOutput/)."""
+AccountAffectedResourceOutput: TypeAlias = _native.AccountAffectedResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountAffectedResourceOutput/)."""
+AccountAnalysisOutput: TypeAlias = _native.AccountAnalysis
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountAnalysisOutput/)."""
 AccountFreeTrialInfoOutput: TypeAlias = _native.AccountFreeTrialInfo
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountFreeTrialInfoOutput/)."""
 AccountLevelPermissionsOutput: TypeAlias = _native.AccountLevelPermissions
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountLevelPermissionsOutput/)."""
 AccountStatisticsOutput: TypeAlias = _native.AccountStatistics
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountStatisticsOutput/)."""
+AccountSummaryOutput: TypeAlias = _native.AccountSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountSummaryOutput/)."""
 ActionOutput: TypeAlias = _native.Action
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActionOutput/)."""
 ActivityOutput: TypeAlias = _native.Activity
@@ -44,6 +50,8 @@ AdminAccountOutput: TypeAlias = _native.AdminAccount
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminAccountOutput/)."""
 AdministratorOutput: TypeAlias = _native.Administrator
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdministratorOutput/)."""
+AffectedResourceOutput: TypeAlias = _native.AffectedResource
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AffectedResourceOutput/)."""
 AgentDetailsOutput: TypeAlias = _native.AgentDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AgentDetailsOutput/)."""
 AnomalyOutput: TypeAlias = _native.Anomaly
@@ -60,6 +68,10 @@ AssociationDetailOutput: TypeAlias = _native.AssociationDetail
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationDetailOutput/)."""
 AssociationSummaryOutput: TypeAlias = _native.AssociationSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationSummaryOutput/)."""
+AttackOutput: TypeAlias = _native.Attack
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AttackOutput/)."""
+AttackPhaseOutput: TypeAlias = _native.AttackPhase
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AttackPhaseOutput/)."""
 AutonomousSystemOutput: TypeAlias = _native.AutonomousSystem
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutonomousSystemOutput/)."""
 AutoscalingAutoScalingGroupOutput: TypeAlias = _native.AutoscalingAutoScalingGroup
@@ -98,6 +110,10 @@ ContainerInstanceDetailsOutput: TypeAlias = _native.ContainerInstanceDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContainerInstanceDetailsOutput/)."""
 ContentPolicyFilterOutput: TypeAlias = _native.ContentPolicyFilter
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterOutput/)."""
+CountermeasureOutput: TypeAlias = _native.Countermeasure
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountermeasureOutput/)."""
+CountermeasureActionOutput: TypeAlias = _native.CountermeasureAction
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountermeasureActionOutput/)."""
 CountryOutput: TypeAlias = _native.Country
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountryOutput/)."""
 CoverageEc2InstanceDetailsOutput: TypeAlias = _native.CoverageEc2InstanceDetails
@@ -264,10 +280,16 @@ FindingOutput: TypeAlias = _native.Finding
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingOutput/)."""
 FindingCriteriaOutput: TypeAlias = _native.FindingCriteria
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingCriteriaOutput/)."""
+FindingReferenceOutput: TypeAlias = _native.FindingReference
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingReferenceOutput/)."""
 FindingStatisticsOutput: TypeAlias = _native.FindingStatistics
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatisticsOutput/)."""
+FindingTypeCountOutput: TypeAlias = _native.FindingTypeCount
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeCountOutput/)."""
 FindingTypeStatisticsOutput: TypeAlias = _native.FindingTypeStatistics
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeStatisticsOutput/)."""
+FindingsSummaryOutput: TypeAlias = _native.FindingsSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingsSummaryOutput/)."""
 FlowLogsConfigurationResultOutput: TypeAlias = _native.FlowLogsConfigurationResult
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FlowLogsConfigurationResultOutput/)."""
 FreeTrialFeatureConfigurationResultOutput: TypeAlias = _native.FreeTrialFeatureConfigurationResult
@@ -344,8 +366,14 @@ InvestigationOutput: TypeAlias = _native.Investigation
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationOutput/)."""
 InvestigationMetadataOutput: TypeAlias = _native.InvestigationMetadata
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMetadataOutput/)."""
+InvestigationRecordOutput: TypeAlias = _native.InvestigationRecord
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationRecordOutput/)."""
+InvestigationScopeOutput: TypeAlias = _native.InvestigationScope
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationScopeOutput/)."""
 InvestigationSummaryOutput: TypeAlias = _native.InvestigationSummary
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummaryOutput/)."""
+InvestigationSummaryDataOutput: TypeAlias = _native.InvestigationSummaryData
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummaryDataOutput/)."""
 InvitationOutput: TypeAlias = _native.Invitation
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvitationOutput/)."""
 InviteMembersOutput: TypeAlias = _native.InviteMembersOutput
@@ -354,6 +382,8 @@ ItemDetailsOutput: TypeAlias = _native.ItemDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemDetailsOutput/)."""
 ItemPathOutput: TypeAlias = _native.ItemPath
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemPathOutput/)."""
+KeyObservationsOutput: TypeAlias = _native.KeyObservations
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KeyObservationsOutput/)."""
 KubernetesApiCallActionOutput: TypeAlias = _native.KubernetesApiCallAction
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesApiCallActionOutput/)."""
 KubernetesAuditLogsConfigurationResultOutput: TypeAlias = _native.KubernetesAuditLogsConfigurationResult
@@ -396,6 +426,8 @@ ListFindingsOutput: TypeAlias = _native.ListFindingsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListFindingsOutput/)."""
 ListIPSetsOutput: TypeAlias = _native.ListIPSetsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsOutput/)."""
+ListInvestigationRecordsOutput: TypeAlias = _native.ListInvestigationRecordsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationRecordsOutput/)."""
 ListInvestigationsOutput: TypeAlias = _native.ListInvestigationsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationsOutput/)."""
 ListInvitationsOutput: TypeAlias = _native.ListInvitationsOutput
@@ -470,6 +502,8 @@ OrganizationOutput: TypeAlias = _native.Organization
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationOutput/)."""
 OrganizationAdditionalConfigurationResultOutput: TypeAlias = _native.OrganizationAdditionalConfigurationResult
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfigurationResultOutput/)."""
+OrganizationAnalysisOutput: TypeAlias = _native.OrganizationAnalysis
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAnalysisOutput/)."""
 OrganizationDataSourceConfigurationsResultOutput: TypeAlias = _native.OrganizationDataSourceConfigurationsResult
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationDataSourceConfigurationsResultOutput/)."""
 OrganizationDetailsOutput: TypeAlias = _native.OrganizationDetails
@@ -482,6 +516,8 @@ OrganizationFeatureStatisticsOutput: TypeAlias = _native.OrganizationFeatureStat
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsOutput/)."""
 OrganizationFeatureStatisticsAdditionalConfigurationOutput: TypeAlias = _native.OrganizationFeatureStatisticsAdditionalConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsAdditionalConfigurationOutput/)."""
+OrganizationFindingsSummaryOutput: TypeAlias = _native.OrganizationFindingsSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFindingsSummaryOutput/)."""
 OrganizationKubernetesAuditLogsConfigurationResultOutput: TypeAlias = _native.OrganizationKubernetesAuditLogsConfigurationResult
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationKubernetesAuditLogsConfigurationResultOutput/)."""
 OrganizationKubernetesConfigurationResultOutput: TypeAlias = _native.OrganizationKubernetesConfigurationResult
@@ -514,6 +550,8 @@ PublicAccessOutput: TypeAlias = _native.PublicAccess
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessOutput/)."""
 PublicAccessConfigurationOutput: TypeAlias = _native.PublicAccessConfiguration
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessConfigurationOutput/)."""
+QueryTimeWindowOutput: TypeAlias = _native.QueryTimeWindow
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/QueryTimeWindowOutput/)."""
 RdsDbInstanceDetailsOutput: TypeAlias = _native.RdsDbInstanceDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstanceDetailsOutput/)."""
 RdsDbUserDetailsOutput: TypeAlias = _native.RdsDbUserDetails
@@ -522,6 +560,8 @@ RdsLimitlessDbDetailsOutput: TypeAlias = _native.RdsLimitlessDbDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLimitlessDbDetailsOutput/)."""
 RdsLoginAttemptActionOutput: TypeAlias = _native.RdsLoginAttemptAction
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginAttemptActionOutput/)."""
+RecommendationOutput: TypeAlias = _native.Recommendation
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecommendationOutput/)."""
 RecoveryPointDetailsOutput: TypeAlias = _native.RecoveryPointDetails
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPointDetailsOutput/)."""
 RemoteAccountDetailsOutput: TypeAlias = _native.RemoteAccountDetails
@@ -606,6 +646,8 @@ ServiceAdditionalInfoOutput: TypeAlias = _native.ServiceAdditionalInfo
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ServiceAdditionalInfoOutput/)."""
 SessionOutput: TypeAlias = _native.Session
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SessionOutput/)."""
+SeverityBreakdownOutput: TypeAlias = _native.SeverityBreakdown
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityBreakdownOutput/)."""
 SeverityStatisticsOutput: TypeAlias = _native.SeverityStatistics
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityStatisticsOutput/)."""
 SignalOutput: TypeAlias = _native.Signal
@@ -616,18 +658,28 @@ StartMonitoringMembersOutput: TypeAlias = _native.StartMonitoringMembersOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StartMonitoringMembersOutput/)."""
 StopMonitoringMembersOutput: TypeAlias = _native.StopMonitoringMembersOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersOutput/)."""
+TacticCoverageOutput: TypeAlias = _native.TacticCoverage
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TacticCoverageOutput/)."""
 TagOutput: TypeAlias = _native.Tag
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagOutput/)."""
 TagResourceOutput: TypeAlias = _native.TagResourceOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceOutput/)."""
+TechniqueCoverageOutput: TypeAlias = _native.TechniqueCoverage
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TechniqueCoverageOutput/)."""
 ThreatOutput: TypeAlias = _native.Threat
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatOutput/)."""
+ThreatAssessmentOutput: TypeAlias = _native.ThreatAssessment
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatAssessmentOutput/)."""
 ThreatDetectedByNameOutput: TypeAlias = _native.ThreatDetectedByName
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatDetectedByNameOutput/)."""
 ThreatIntelligenceDetailOutput: TypeAlias = _native.ThreatIntelligenceDetail
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelligenceDetailOutput/)."""
+ThreatReferenceOutput: TypeAlias = _native.ThreatReference
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatReferenceOutput/)."""
 ThreatsDetectedItemCountOutput: TypeAlias = _native.ThreatsDetectedItemCount
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatsDetectedItemCountOutput/)."""
+TimeWindowGroupOutput: TypeAlias = _native.TimeWindowGroup
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TimeWindowGroupOutput/)."""
 TotalOutput: TypeAlias = _native.Total
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TotalOutput/)."""
 TriggerDetailsOutput: TypeAlias = _native.TriggerDetails
@@ -694,6 +746,10 @@ VpcConfigOutput: TypeAlias = _native.VpcConfig
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/JSONValue/)."""
 
+ActionPriority: TypeAlias = Literal['IMMEDIATE', 'SHORT_TERM', 'STRATEGIC']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActionPriority/)."""
+ActionPriorityOutput: TypeAlias = ActionPriority | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActionPriorityOutput/)."""
 ActivityType: TypeAlias = Literal['API_CALL']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityType/)."""
 ActivityTypeOutput: TypeAlias = ActivityType | UnknownEnumValue
@@ -702,10 +758,18 @@ AdminStatus: TypeAlias = Literal['ENABLED', 'DISABLE_IN_PROGRESS']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminStatus/)."""
 AdminStatusOutput: TypeAlias = AdminStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AdminStatusOutput/)."""
+AnalysisType: TypeAlias = Literal['REPUTATION', 'THREAT_ASSESSMENT', 'RDS_THREAT_ASSESSMENT', 'KUBERNETES_POLICY_VIOLATION', 'S3_EXPOSURE', 'S3_ACTOR_CONTEXT', 'S3_PEN_TEST', 'PROCESS_LINEAGE', 'TREND', 'BASELINE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnalysisType/)."""
+AnalysisTypeOutput: TypeAlias = AnalysisType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnalysisTypeOutput/)."""
 AssociationMode: TypeAlias = Literal['LIVE', 'DRY_RUN']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationMode/)."""
 AssociationModeOutput: TypeAlias = AssociationMode | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationModeOutput/)."""
+AttackPhaseName: TypeAlias = Literal['Reconnaissance', 'Resource Development', 'Initial Access', 'Execution', 'Persistence', 'Privilege Escalation', 'Defense Evasion', 'Credential Access', 'Discovery', 'Lateral Movement', 'Collection', 'Command and Control', 'Exfiltration', 'Impact']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AttackPhaseName/)."""
+AttackPhaseNameOutput: TypeAlias = AttackPhaseName | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AttackPhaseNameOutput/)."""
 AutoEnableMembers: TypeAlias = Literal['NEW', 'ALL', 'NONE']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AutoEnableMembers/)."""
 AutoEnableMembersOutput: TypeAlias = AutoEnableMembers | UnknownEnumValue
@@ -734,6 +798,10 @@ ContentPolicyFilterType: TypeAlias = Literal['PROMPT_ATTACK', 'JAILBREAK', 'HATE
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterType/)."""
 ContentPolicyFilterTypeOutput: TypeAlias = ContentPolicyFilterType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContentPolicyFilterTypeOutput/)."""
+CorrelationReason: TypeAlias = Literal['HIGH_SEVERITY', 'SAME_RESOURCE', 'SAME_BEHAVIOR']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CorrelationReason/)."""
+CorrelationReasonOutput: TypeAlias = CorrelationReason | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CorrelationReasonOutput/)."""
 CoverageFilterCriterionKey: TypeAlias = Literal['ACCOUNT_ID', 'RESOURCE_TYPE', 'COVERAGE_STATUS', 'ADDON_VERSION', 'CLUSTER_NAME', 'ECS_CLUSTER_NAME', 'MANAGEMENT_TYPE', 'EKS_CLUSTER_NAME', 'AGENT_VERSION', 'INSTANCE_ID', 'CLUSTER_ARN']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CoverageFilterCriterionKey/)."""
 CoverageFilterCriterionKeyOutput: TypeAlias = CoverageFilterCriterionKey | UnknownEnumValue
@@ -762,6 +830,10 @@ DataSourceStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceStatus/)."""
 DataSourceStatusOutput: TypeAlias = DataSourceStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DataSourceStatusOutput/)."""
+DefenseTactic: TypeAlias = Literal['Isolate', 'Evict', 'Restore', 'Harden', 'Detect']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DefenseTactic/)."""
+DefenseTacticOutput: TypeAlias = DefenseTactic | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DefenseTacticOutput/)."""
 DestinationType: TypeAlias = Literal['S3']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DestinationType/)."""
 DestinationTypeOutput: TypeAlias = DestinationType | UnknownEnumValue
@@ -798,6 +870,14 @@ DetectorStatus: TypeAlias = Literal['ENABLED', 'DISABLED']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorStatus/)."""
 DetectorStatusOutput: TypeAlias = DetectorStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectorStatusOutput/)."""
+Disposition: TypeAlias = Literal['Isolated', 'Blocked', 'Deleted', 'Access Revoked', 'Logged']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Disposition/)."""
+DispositionOutput: TypeAlias = Disposition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DispositionOutput/)."""
+DistributionDimension: TypeAlias = Literal['SEVERITY', 'TYPE', 'RESOURCE', 'ATTACK_VECTOR', 'ARCHIVE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DistributionDimension/)."""
+DistributionDimensionOutput: TypeAlias = DistributionDimension | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DistributionDimensionOutput/)."""
 EbsSnapshotPreservation: TypeAlias = Literal['NO_RETENTION', 'RETENTION_WITH_FINDING']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EbsSnapshotPreservation/)."""
 EbsSnapshotPreservationOutput: TypeAlias = EbsSnapshotPreservation | UnknownEnumValue
@@ -822,6 +902,18 @@ Feedback: TypeAlias = Literal['USEFUL', 'NOT_USEFUL']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Feedback/)."""
 FeedbackOutput: TypeAlias = Feedback | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FeedbackOutput/)."""
+FetchCriterionCondition: TypeAlias = Literal['EQUALS', 'NOT_EQUALS', 'GREATER_THAN', 'GREATER_THAN_OR_EQUAL', 'LESS_THAN', 'LESS_THAN_OR_EQUAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchCriterionCondition/)."""
+FetchCriterionConditionOutput: TypeAlias = FetchCriterionCondition | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchCriterionConditionOutput/)."""
+FetchType: TypeAlias = Literal['FINDINGS', 'DETECTOR', 'REPUTATION', 'FINDING_TYPE_DOCUMENTATION', 'CLOUD_TRAIL_RAW_EVENTS', 'RUNTIME_SIGNALS', 'MEMBER_ACCOUNTS']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchType/)."""
+FetchTypeOutput: TypeAlias = FetchType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchTypeOutput/)."""
+FetchVerdict: TypeAlias = Literal['THREAT', 'BENIGN', 'NEUTRAL']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchVerdict/)."""
+FetchVerdictOutput: TypeAlias = FetchVerdict | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchVerdictOutput/)."""
 FilterAction: TypeAlias = Literal['NOOP', 'ARCHIVE']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FilterAction/)."""
 FilterActionOutput: TypeAlias = FilterAction | UnknownEnumValue
@@ -862,6 +954,22 @@ IndicatorType: TypeAlias = Literal['SUSPICIOUS_USER_AGENT', 'SUSPICIOUS_NETWORK'
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorType/)."""
 IndicatorTypeOutput: TypeAlias = IndicatorType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IndicatorTypeOutput/)."""
+InvestigationDetectorFeature: TypeAlias = Literal['CLOUD_TRAIL', 'DNS_LOGS', 'FLOW_LOGS', 'S3_DATA_EVENTS', 'EKS_AUDIT_LOGS', 'EBS_MALWARE_PROTECTION', 'RDS_LOGIN_EVENTS', 'EKS_RUNTIME_MONITORING', 'EKS_ADDON_MANAGEMENT', 'LAMBDA_NETWORK_LOGS', 'RUNTIME_MONITORING', 'ECS_FARGATE_AGENT_MANAGEMENT', 'EC2_AGENT_MANAGEMENT']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationDetectorFeature/)."""
+InvestigationDetectorFeatureOutput: TypeAlias = InvestigationDetectorFeature | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationDetectorFeatureOutput/)."""
+InvestigationFilterCriterionKey: TypeAlias = Literal['STATUS', 'RISK_LEVEL', 'CONFIDENCE', 'FINDING_ID', 'INVESTIGATION_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationFilterCriterionKey/)."""
+InvestigationFilterCriterionKeyOutput: TypeAlias = InvestigationFilterCriterionKey | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationFilterCriterionKeyOutput/)."""
+InvestigationIndicatorType: TypeAlias = Literal['IP', 'DOMAIN', 'FILE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationIndicatorType/)."""
+InvestigationIndicatorTypeOutput: TypeAlias = InvestigationIndicatorType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationIndicatorTypeOutput/)."""
+InvestigationResourceType: TypeAlias = Literal['EC2_INSTANCE', 'EBS_VOLUME', 'S3_BUCKET', 'IAM_ROLE', 'IAM_USER', 'IAM_ACCESS_KEY', 'LAMBDA_FUNCTION', 'EKS_CLUSTER', 'ECS_CLUSTER', 'KUBERNETES_WORKLOAD', 'RDS_INSTANCE', 'RDS_DB_USER', 'EC2_SECURITY_GROUP']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationResourceType/)."""
+InvestigationResourceTypeOutput: TypeAlias = InvestigationResourceType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationResourceTypeOutput/)."""
 InvestigationSortField: TypeAlias = Literal['START_TIME', 'END_TIME', 'STATUS', 'RISK_LEVEL', 'CONFIDENCE']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSortField/)."""
 InvestigationSortFieldOutput: TypeAlias = InvestigationSortField | UnknownEnumValue
@@ -870,6 +978,10 @@ InvestigationStatus: TypeAlias = Literal['RUNNING', 'COMPLETED', 'FAILED']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationStatus/)."""
 InvestigationStatusOutput: TypeAlias = InvestigationStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationStatusOutput/)."""
+InvestigationType: TypeAlias = Literal['FINDING', 'ACCOUNT', 'ORGANIZATION']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationType/)."""
+InvestigationTypeOutput: TypeAlias = InvestigationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationTypeOutput/)."""
 IpSetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/IpSetFormat/)."""
 IpSetFormatOutput: TypeAlias = IpSetFormat | UnknownEnumValue
@@ -922,6 +1034,10 @@ NetworkDirection: TypeAlias = Literal['INBOUND', 'OUTBOUND']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkDirection/)."""
 NetworkDirectionOutput: TypeAlias = NetworkDirection | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkDirectionOutput/)."""
+ObservationType: TypeAlias = Literal['FINDING_DETAIL', 'RESOURCE', 'NETWORK_ACTIVITY', 'RDS_LOGIN_ACTIVITY', 'S3_ACTIVITY', 'KUBERNETES_ACTIVITY', 'MALWARE_SCAN', 'RELATED_FINDINGS', 'DETECTION_COVERAGE', 'ACCOUNT_OVERVIEW', 'RECOMMENDATION', 'RUNTIME_SIGNALS', 'DISTRIBUTION', 'REPRESENTATIVE_RESOURCE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservationType/)."""
+ObservationTypeOutput: TypeAlias = ObservationType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservationTypeOutput/)."""
 OrderBy: TypeAlias = Literal['ASC', 'DESC']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrderBy/)."""
 OrderByOutput: TypeAlias = OrderBy | UnknownEnumValue
@@ -962,6 +1078,14 @@ PublishingStatus: TypeAlias = Literal['PENDING_VERIFICATION', 'PUBLISHING', 'UNA
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublishingStatus/)."""
 PublishingStatusOutput: TypeAlias = PublishingStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublishingStatusOutput/)."""
+RecommendationCategory: TypeAlias = Literal['ENABLE_PROTECTION', 'FURTHER_INVESTIGATION', 'SUPPRESSION_RULE', 'HARDENING', 'MONITORING']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecommendationCategory/)."""
+RecommendationCategoryOutput: TypeAlias = RecommendationCategory | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecommendationCategoryOutput/)."""
+RecordType: TypeAlias = Literal['OBSERVATION', 'ANALYSIS', 'UPDATE', 'FETCH', 'METADATA']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecordType/)."""
+RecordTypeOutput: TypeAlias = RecordType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecordTypeOutput/)."""
 ResourceType: TypeAlias = Literal['EKS', 'ECS', 'EC2']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceType/)."""
 ResourceTypeOutput: TypeAlias = ResourceType | UnknownEnumValue
@@ -1010,6 +1134,14 @@ SignalType: TypeAlias = Literal['FINDING', 'CLOUD_TRAIL', 'S3_DATA_EVENTS', 'EKS
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalType/)."""
 SignalTypeOutput: TypeAlias = SignalType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalTypeOutput/)."""
+SummaryFormat: TypeAlias = Literal['STRING', 'STRUCTURED']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SummaryFormat/)."""
+SummaryFormatOutput: TypeAlias = SummaryFormat | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SummaryFormatOutput/)."""
+ThreatConfidence: TypeAlias = Literal['VERY_HIGH', 'HIGH', 'MEDIUM', 'LOW']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatConfidence/)."""
+ThreatConfidenceOutput: TypeAlias = ThreatConfidence | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatConfidenceOutput/)."""
 ThreatEntitySetFormat: TypeAlias = Literal['TXT', 'STIX', 'OTX_CSV', 'ALIEN_VAULT', 'PROOF_POINT', 'FIRE_EYE']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatEntitySetFormat/)."""
 ThreatEntitySetFormatOutput: TypeAlias = ThreatEntitySetFormat | UnknownEnumValue
@@ -1026,6 +1158,10 @@ ThreatIntelSetStatus: TypeAlias = Literal['INACTIVE', 'ACTIVATING', 'ACTIVE', 'D
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetStatus/)."""
 ThreatIntelSetStatusOutput: TypeAlias = ThreatIntelSetStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelSetStatusOutput/)."""
+TimeGranularity: TypeAlias = Literal['DAY', 'WEEK', 'MONTH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TimeGranularity/)."""
+TimeGranularityOutput: TypeAlias = TimeGranularity | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TimeGranularityOutput/)."""
 TriggerType: TypeAlias = Literal['BACKUP', 'GUARDDUTY']
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerType/)."""
 TriggerTypeOutput: TypeAlias = TriggerType | UnknownEnumValue
@@ -1112,6 +1248,26 @@ Account = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Account/)."""
 
+AccountAffectedResource = TypedDict(
+    "AccountAffectedResource",
+    {
+    "identifier": NotRequired["str"],
+    "type": NotRequired["InvestigationResourceType"],
+    "finding_count": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountAffectedResource/)."""
+
+AccountAnalysis = TypedDict(
+    "AccountAnalysis",
+    {
+    "findings_summary": NotRequired["FindingsSummary"],
+    "tactic_coverage": NotRequired["_Sequence[TacticCoverage]"],
+    "affected_resources": NotRequired["_Sequence[AccountAffectedResource]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountAnalysis/)."""
+
 AccountDetail = TypedDict(
     "AccountDetail",
     {
@@ -1139,6 +1295,22 @@ AccountLevelPermissions = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountLevelPermissions/)."""
 
+AccountOverview = TypedDict(
+    "AccountOverview",
+    {
+    "account_id": Required["str | None"],
+    "account_status": Required["str | None"],
+    "detector_id": Required["str | None"],
+    "region": Required["str | None"],
+    "delegated_admin_account_id": Required["str | None"],
+    "total_member_accounts": Required["int | None"],
+    "total_findings": Required["int | None"],
+    "affected_account_count": Required["int | None"],
+    "account_rankings": Required["list[MemberAccountRanking] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountOverview/)."""
+
 AccountStatistics = TypedDict(
     "AccountStatistics",
     {
@@ -1148,6 +1320,15 @@ AccountStatistics = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountStatistics/)."""
+
+AccountSummary = TypedDict(
+    "AccountSummary",
+    {
+    "account_id": NotRequired["str"],
+    "finding_count": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AccountSummary/)."""
 
 Action = TypedDict(
     "Action",
@@ -1174,6 +1355,15 @@ Activity = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Activity/)."""
+
+ActivityWindow = TypedDict(
+    "ActivityWindow",
+    {
+    "first_seen_at": Required["str | None"],
+    "last_seen_at": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ActivityWindow/)."""
 
 Actor = TypedDict(
     "Actor",
@@ -1234,6 +1424,16 @@ Administrator = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Administrator/)."""
 
+AffectedResource = TypedDict(
+    "AffectedResource",
+    {
+    "identifier": NotRequired["str"],
+    "type": NotRequired["InvestigationResourceType"],
+    "arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AffectedResource/)."""
+
 AgentDetails = TypedDict(
     "AgentDetails",
     {
@@ -1241,6 +1441,20 @@ AgentDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AgentDetails/)."""
+
+AnalysisRecord = TypedDict(
+    "AnalysisRecord",
+    {
+    "analysis_type": Required["AnalysisTypeOutput | None"],
+    "threat_assessment": Required["InvestigationThreatAssessment | None"],
+    "kubernetes_policy_violation": Required["KubernetesPolicyViolation | None"],
+    "s3_analysis": Required["S3Analysis | None"],
+    "processes": Required["list[Process] | None"],
+    "account_analysis": Required["InvestigationAccountAnalysis | None"],
+    "indicators": Required["list[InvestigationIndicator] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AnalysisRecord/)."""
 
 Anomaly = TypedDict(
     "Anomaly",
@@ -1280,6 +1494,17 @@ ApiCall = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ApiCall/)."""
 
+ArchiveDistribution = TypedDict(
+    "ArchiveDistribution",
+    {
+    "archived_count": Required["int | None"],
+    "unarchived_count": Required["int | None"],
+    "archived_percentage": Required["float | None"],
+    "unarchived_percentage": Required["float | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ArchiveDistribution/)."""
+
 ArchiveFindingsRequest = TypedDict(
     "ArchiveFindingsRequest",
     {
@@ -1317,6 +1542,27 @@ AssociationSummary = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AssociationSummary/)."""
+
+Attack = TypedDict(
+    "Attack",
+    {
+    "tactic": NotRequired["ThreatReference"],
+    "technique": NotRequired["ThreatReference"],
+    "findings": NotRequired["_Sequence[FindingReference]"],
+    "version": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Attack/)."""
+
+AttackPhase = TypedDict(
+    "AttackPhase",
+    {
+    "phase": NotRequired["AttackPhaseName"],
+    "description": NotRequired["str"],
+    "attacks": NotRequired["_Sequence[Attack]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/AttackPhase/)."""
 
 AutonomousSystem = TypedDict(
     "AutonomousSystem",
@@ -1356,6 +1602,16 @@ class BadRequestErrorDetails(TypedDict, total=False):
     """Decoded fields of BadRequestError; values may contain application data."""
     type: str
 
+
+Baseline = TypedDict(
+    "Baseline",
+    {
+    "total_findings": Required["int | None"],
+    "baseline_findings": Required["list[FindingTypeClassification] | None"],
+    "anomalous_findings": Required["list[FindingTypeClassification] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Baseline/)."""
 
 BedrockGuardrail = TypedDict(
     "BedrockGuardrail",
@@ -1530,6 +1786,46 @@ ContinuousScanDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ContinuousScanDetails/)."""
+
+CorrelatedFinding = TypedDict(
+    "CorrelatedFinding",
+    {
+    "finding_type": Required["str | None"],
+    "count": Required["int | None"],
+    "severity_max": Required["float | None"],
+    "correlation_reasons": Required["list[CorrelationReasonOutput] | None"],
+    "finding_ids": Required["list[str] | None"],
+    "shared_resources": Required["list[SharedResource] | None"],
+    "shared_behaviors": Required["list[SharedBehavior] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CorrelatedFinding/)."""
+
+Countermeasure = TypedDict(
+    "Countermeasure",
+    {
+    "defense_tactic": NotRequired["DefenseTactic"],
+    "actions": NotRequired["_Sequence[CountermeasureAction]"],
+    "description": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Countermeasure/)."""
+
+CountermeasureAction = TypedDict(
+    "CountermeasureAction",
+    {
+    "title": NotRequired["str"],
+    "description": NotRequired["str"],
+    "priority": NotRequired["ActionPriority"],
+    "defense_technique": NotRequired["str"],
+    "mitigates": NotRequired["_Sequence[str]"],
+    "cli_commands": NotRequired["_Sequence[str]"],
+    "disposition_id": NotRequired["int"],
+    "disposition": NotRequired["Disposition"],
+    "affected_resources": NotRequired["_Sequence[AffectedResource]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/CountermeasureAction/)."""
 
 Country = TypedDict(
     "Country",
@@ -2068,6 +2364,17 @@ Detection = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Detection/)."""
 
+DetectionCoverage = TypedDict(
+    "DetectionCoverage",
+    {
+    "protection_plans": Required["list[ProtectionPlan] | None"],
+    "foundational_data_sources": Required["list[InvestigationDetectorFeatureOutput] | None"],
+    "coverage_gaps": Required["str | None"],
+    "key_observation": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DetectionCoverage/)."""
+
 DetectionRuleEc2Requirements = TypedDict(
     "DetectionRuleEc2Requirements",
     {
@@ -2224,6 +2531,31 @@ DisassociateMembersRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DisassociateMembersRequest/)."""
+
+Distribution = TypedDict(
+    "Distribution",
+    {
+    "dimension": Required["DistributionDimensionOutput | None"],
+    "total_findings": Required["int | None"],
+    "severity_breakdown": Required["SeverityBreakdown | None"],
+    "finding_types": Required["list[TypeDistribution] | None"],
+    "top_finding_types": Required["list[FindingTypeCount] | None"],
+    "resources": Required["list[ResourceDistribution] | None"],
+    "attack_vectors": Required["list[TacticCoverage] | None"],
+    "archive": Required["ArchiveDistribution | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Distribution/)."""
+
+DnsContext = TypedDict(
+    "DnsContext",
+    {
+    "domain_suffix": Required["str | None"],
+    "other_domains": Required["str | None"],
+    "resolver_history": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/DnsContext/)."""
 
 DnsRequestAction = TypedDict(
     "DnsRequestAction",
@@ -2441,6 +2773,17 @@ EnableOrganizationAdminAccountRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/EnableOrganizationAdminAccountRequest/)."""
 
+Enrichment = TypedDict(
+    "Enrichment",
+    {
+    "country_name": Required["str | None"],
+    "asn_org": Required["str | None"],
+    "threat_list_name": Required["str | None"],
+    "threat_name": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Enrichment/)."""
+
 Evidence = TypedDict(
     "Evidence",
     {
@@ -2457,6 +2800,62 @@ FargateDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FargateDetails/)."""
+
+FetchCriterion = TypedDict(
+    "FetchCriterion",
+    {
+    "field": Required["str | None"],
+    "condition": Required["FetchCriterionConditionOutput | None"],
+    "values": Required["list[str] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchCriterion/)."""
+
+FetchQuery = TypedDict(
+    "FetchQuery",
+    {
+    "criteria": Required["list[FetchCriterion] | None"],
+    "time_window": Required["FetchTimeWindow | None"],
+    "row_limit": Required["int | None"],
+    "account_id": Required["str | None"],
+    "indicator": Required["str | None"],
+    "indicator_type": Required["InvestigationIndicatorTypeOutput | None"],
+    "finding_type": Required["str | None"],
+    "finding_id": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchQuery/)."""
+
+FetchRecord = TypedDict(
+    "FetchRecord",
+    {
+    "fetch_type": Required["FetchTypeOutput | None"],
+    "query": Required["FetchQuery | None"],
+    "result": Required["FetchResult | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchRecord/)."""
+
+FetchResult = TypedDict(
+    "FetchResult",
+    {
+    "item_ids": Required["list[str] | None"],
+    "total_count": Required["int | None"],
+    "features": Required["list[InvestigationDetectorFeatureConfiguration] | None"],
+    "verdict": Required["FetchVerdictOutput | None"],
+    "documentation": Required["FindingTypeDocumentation | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchResult/)."""
+
+FetchTimeWindow = TypedDict(
+    "FetchTimeWindow",
+    {
+    "started_at": Required["str | None"],
+    "duration_in_minutes": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FetchTimeWindow/)."""
 
 FilterCondition = TypedDict(
     "FilterCondition",
@@ -2517,6 +2916,28 @@ FindingCriteria = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingCriteria/)."""
 
+FindingDetail = TypedDict(
+    "FindingDetail",
+    {
+    "finding_id": Required["str | None"],
+    "finding_type": Required["str | None"],
+    "severity": Required["str | None"],
+    "account_id": Required["str | None"],
+    "region": Required["str | None"],
+    "activity_window": Required["ActivityWindow | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingDetail/)."""
+
+FindingReference = TypedDict(
+    "FindingReference",
+    {
+    "finding_type": Required["str | None"],
+    "uid": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingReference/)."""
+
 FindingStatistics = TypedDict(
     "FindingStatistics",
     {
@@ -2530,6 +2951,40 @@ FindingStatistics = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingStatistics/)."""
 
+FindingTypeClassification = TypedDict(
+    "FindingTypeClassification",
+    {
+    "finding_type": Required["str | None"],
+    "classification": Required["str | None"],
+    "count": Required["int | None"],
+    "percentage": Required["float | None"],
+    "description": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeClassification/)."""
+
+FindingTypeCount = TypedDict(
+    "FindingTypeCount",
+    {
+    "finding_type": Required["str | None"],
+    "count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeCount/)."""
+
+FindingTypeDocumentation = TypedDict(
+    "FindingTypeDocumentation",
+    {
+    "description": Required["str | None"],
+    "severity": Required["str | None"],
+    "feature": Required["str | None"],
+    "full_description": Required["str | None"],
+    "remediation": Required["str | None"],
+    "learn_more_links": Required["list[str] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeDocumentation/)."""
+
 FindingTypeStatistics = TypedDict(
     "FindingTypeStatistics",
     {
@@ -2539,6 +2994,17 @@ FindingTypeStatistics = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingTypeStatistics/)."""
+
+FindingsSummary = TypedDict(
+    "FindingsSummary",
+    {
+    "total_findings": NotRequired["int"],
+    "severity_breakdown": NotRequired["SeverityBreakdown"],
+    "top_finding_types": NotRequired["_Sequence[FindingTypeCount]"],
+    "by_time_window": NotRequired["_Sequence[TimeWindowGroup]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/FindingsSummary/)."""
 
 FlowLogsConfigurationResult = TypedDict(
     "FlowLogsConfigurationResult",
@@ -2664,6 +3130,7 @@ GetInvestigationRequest = TypedDict(
     {
     "detector_id": Required["str"],
     "investigation_id": Required["str"],
+    "summary_format": NotRequired["SummaryFormat"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/GetInvestigationRequest/)."""
@@ -2890,12 +3357,146 @@ Investigation = TypedDict(
     "risk": NotRequired["str"],
     "confidence": NotRequired["Confidence"],
     "summary": NotRequired["str"],
+    "summary_data": NotRequired["InvestigationSummaryData"],
+    "scope": NotRequired["InvestigationScope"],
     "start_time": NotRequired["str"],
     "end_time": NotRequired["str"],
     "error": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Investigation/)."""
+
+InvestigationAccountAnalysis = TypedDict(
+    "InvestigationAccountAnalysis",
+    {
+    "trend": Required["Trend | None"],
+    "baseline": Required["Baseline | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationAccountAnalysis/)."""
+
+InvestigationActor = TypedDict(
+    "InvestigationActor",
+    {
+    "access_key_id": Required["str | None"],
+    "principal_id": Required["str | None"],
+    "user_name": Required["str | None"],
+    "user_type": Required["str | None"],
+    "user_agent": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationActor/)."""
+
+InvestigationDetectorFeatureConfiguration = TypedDict(
+    "InvestigationDetectorFeatureConfiguration",
+    {
+    "name": Required["InvestigationDetectorFeatureOutput | None"],
+    "status": Required["FeatureStatusOutput | None"],
+    "updated_at": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationDetectorFeatureConfiguration/)."""
+
+InvestigationEc2Instance = TypedDict(
+    "InvestigationEc2Instance",
+    {
+    "instance_id": Required["str | None"],
+    "instance_type": Required["str | None"],
+    "instance_state": Required["str | None"],
+    "availability_zone": Required["str | None"],
+    "private_ip_address": Required["str | None"],
+    "public_ip": Required["str | None"],
+    "vpc_id": Required["str | None"],
+    "subnet_id": Required["str | None"],
+    "image_id": Required["str | None"],
+    "launched_at": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationEc2Instance/)."""
+
+InvestigationEcsCluster = TypedDict(
+    "InvestigationEcsCluster",
+    {
+    "name": Required["str | None"],
+    "arn": Required["str | None"],
+    "status": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationEcsCluster/)."""
+
+InvestigationEksCluster = TypedDict(
+    "InvestigationEksCluster",
+    {
+    "name": Required["str | None"],
+    "arn": Required["str | None"],
+    "status": Required["str | None"],
+    "vpc_id": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationEksCluster/)."""
+
+InvestigationFilterCondition = TypedDict(
+    "InvestigationFilterCondition",
+    {
+    "equals": NotRequired["_Sequence[str]"],
+    "not_equals": NotRequired["_Sequence[str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationFilterCondition/)."""
+
+InvestigationFilterCriteria = TypedDict(
+    "InvestigationFilterCriteria",
+    {
+    "criterion": NotRequired["dict[InvestigationFilterCriterionKey, InvestigationFilterCondition]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationFilterCriteria/)."""
+
+InvestigationIndicator = TypedDict(
+    "InvestigationIndicator",
+    {
+    "value": Required["str | None"],
+    "type": Required["InvestigationIndicatorTypeOutput | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationIndicator/)."""
+
+InvestigationKubernetesWorkload = TypedDict(
+    "InvestigationKubernetesWorkload",
+    {
+    "workload_type": Required["str | None"],
+    "workload_name": Required["str | None"],
+    "containers": Required["str | None"],
+    "volumes": Required["str | None"],
+    "security_context": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationKubernetesWorkload/)."""
+
+InvestigationMalwareScan = TypedDict(
+    "InvestigationMalwareScan",
+    {
+    "scan_id": Required["str | None"],
+    "scan_type": Required["MalwareProtectionScanTypeOutput | None"],
+    "scan_category": Required["ScanCategoryOutput | None"],
+    "trigger_finding_id": Required["str | None"],
+    "engine_sources": Required["str | None"],
+    "scan_started_at": Required["str | None"],
+    "scan_completed_at": Required["str | None"],
+    "files_scanned": Required["int | None"],
+    "gigabytes_scanned": Required["float | None"],
+    "volumes_scanned": Required["int | None"],
+    "infected_file_count": Required["int | None"],
+    "resource_type": Required["str | None"],
+    "resource_identifier": Required["str | None"],
+    "highest_severity": Required["str | None"],
+    "highest_severity_threat_name": Required["str | None"],
+    "unique_threat_count": Required["int | None"],
+    "total_infected_items": Required["int | None"],
+    "threats": Required["list[MalwareThreat] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMalwareScan/)."""
 
 InvestigationMetadata = TypedDict(
     "InvestigationMetadata",
@@ -2905,6 +3506,55 @@ InvestigationMetadata = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationMetadata/)."""
+
+InvestigationRecord = TypedDict(
+    "InvestigationRecord",
+    {
+    "record_id": Required["str"],
+    "type": Required["RecordType"],
+    "title": Required["str"],
+    "narrative": NotRequired["str"],
+    "created_at": Required["str"],
+    "supporting_data": NotRequired["SupportingData"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationRecord/)."""
+
+InvestigationResource = TypedDict(
+    "InvestigationResource",
+    {
+    "uid": Required["str | None"],
+    "name": Required["str | None"],
+    "resource_type": Required["InvestigationResourceTypeOutput | None"],
+    "data": Required["InvestigationResourceData | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationResource/)."""
+
+InvestigationResourceData = TypedDict(
+    "InvestigationResourceData",
+    {
+    "ec2_instance": Required["InvestigationEc2Instance | None"],
+    "lambda_function": Required["LambdaFunction | None"],
+    "rds_db_instance": Required["RdsDbInstance | None"],
+    "rds_db_user": Required["RdsDbUser | None"],
+    "eks_cluster": Required["InvestigationEksCluster | None"],
+    "ecs_cluster": Required["InvestigationEcsCluster | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationResourceData/)."""
+
+InvestigationScope = TypedDict(
+    "InvestigationScope",
+    {
+    "investigation_type": NotRequired["InvestigationType"],
+    "finding_id": NotRequired["str"],
+    "account_id": NotRequired["str"],
+    "admin_account_id": NotRequired["str"],
+    "query_time_window": NotRequired["QueryTimeWindow"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationScope/)."""
 
 InvestigationSortCriteria = TypedDict(
     "InvestigationSortCriteria",
@@ -2924,12 +3574,44 @@ InvestigationSummary = TypedDict(
     "risk_level": NotRequired["RiskLevel"],
     "confidence": NotRequired["Confidence"],
     "title": NotRequired["str"],
+    "investigation_type": NotRequired["InvestigationType"],
+    "finding_id": NotRequired["str"],
     "account_id": NotRequired["str"],
+    "admin_account_id": NotRequired["str"],
     "start_time": NotRequired["str"],
     "end_time": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummary/)."""
+
+InvestigationSummaryData = TypedDict(
+    "InvestigationSummaryData",
+    {
+    "finding_type": NotRequired["str"],
+    "threat_assessment": NotRequired["ThreatAssessment"],
+    "countermeasures": NotRequired["_Sequence[Countermeasure]"],
+    "account_analysis": NotRequired["AccountAnalysis"],
+    "organization_analysis": NotRequired["OrganizationAnalysis"],
+    "key_observations": NotRequired["KeyObservations"],
+    "recommendations": NotRequired["_Sequence[Recommendation]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationSummaryData/)."""
+
+InvestigationThreatAssessment = TypedDict(
+    "InvestigationThreatAssessment",
+    {
+    "reputation": Required["Reputation | None"],
+    "threat_confidence": Required["ThreatConfidenceOutput | None"],
+    "classification": Required["str | None"],
+    "assessment": Required["str | None"],
+    "authentication_context": Required["str | None"],
+    "rds_control_plane_activity": Required["str | None"],
+    "ip_account_activity": Required["str | None"],
+    "credential_compromise": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/InvestigationThreatAssessment/)."""
 
 Invitation = TypedDict(
     "Invitation",
@@ -2972,6 +3654,58 @@ ItemPath = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ItemPath/)."""
+
+KeyObservations = TypedDict(
+    "KeyObservations",
+    {
+    "title": NotRequired["str"],
+    "narrative": NotRequired["str"],
+    "observations": NotRequired["_Sequence[str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KeyObservations/)."""
+
+KubernetesActivity = TypedDict(
+    "KubernetesActivity",
+    {
+    "api_call": Required["KubernetesApiCall | None"],
+    "anomaly": Required["KubernetesAnomaly | None"],
+    "workload": Required["InvestigationKubernetesWorkload | None"],
+    "enrichment": Required["Enrichment | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesActivity/)."""
+
+KubernetesAnomaly = TypedDict(
+    "KubernetesAnomaly",
+    {
+    "unusual_behavior": Required["str | None"],
+    "baseline_context": Required["str | None"],
+    "anomaly_score": Required["str | None"],
+    "training_period": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesAnomaly/)."""
+
+KubernetesApiCall = TypedDict(
+    "KubernetesApiCall",
+    {
+    "cluster_name": Required["str | None"],
+    "username": Required["str | None"],
+    "user_groups": Required["str | None"],
+    "user_id": Required["str | None"],
+    "verb": Required["str | None"],
+    "resource_type": Required["str | None"],
+    "resource_name": Required["str | None"],
+    "namespace": Required["str | None"],
+    "request_uri": Required["str | None"],
+    "status_code": Required["int | None"],
+    "source_ips": Required["str | None"],
+    "user_agent": Required["str | None"],
+    "event_count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesApiCall/)."""
 
 KubernetesApiCallAction = TypedDict(
     "KubernetesApiCallAction",
@@ -3051,6 +3785,19 @@ KubernetesPermissionCheckedDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesPermissionCheckedDetails/)."""
 
+KubernetesPolicyViolation = TypedDict(
+    "KubernetesPolicyViolation",
+    {
+    "violation_type": Required["str | None"],
+    "affected_resource": Required["str | None"],
+    "subject": Required["str | None"],
+    "granted_access": Required["str | None"],
+    "exposure_vector": Required["str | None"],
+    "misconfiguration_impact": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/KubernetesPolicyViolation/)."""
+
 KubernetesRoleBindingDetails = TypedDict(
     "KubernetesRoleBindingDetails",
     {
@@ -3127,6 +3874,21 @@ LambdaDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LambdaDetails/)."""
+
+LambdaFunction = TypedDict(
+    "LambdaFunction",
+    {
+    "function_name": Required["str | None"],
+    "function_arn": Required["str | None"],
+    "function_version": Required["str | None"],
+    "role": Required["str | None"],
+    "description": Required["str | None"],
+    "revision_id": Required["str | None"],
+    "updated_at": Required["str | None"],
+    "vpc_configuration_summary": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/LambdaFunction/)."""
 
 LineageObject = TypedDict(
     "LineageObject",
@@ -3228,10 +3990,23 @@ ListIPSetsRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListIPSetsRequest/)."""
 
+ListInvestigationRecordsRequest = TypedDict(
+    "ListInvestigationRecordsRequest",
+    {
+    "detector_id": Required["str"],
+    "investigation_id": Required["str"],
+    "record_types": NotRequired["_Sequence[RecordType]"],
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ListInvestigationRecordsRequest/)."""
+
 ListInvestigationsRequest = TypedDict(
     "ListInvestigationsRequest",
     {
     "detector_id": Required["str"],
+    "filter_criteria": NotRequired["InvestigationFilterCriteria"],
     "sort_criteria": NotRequired["InvestigationSortCriteria"],
     "max_results": NotRequired["int"],
     "next_token": NotRequired["str"],
@@ -3476,6 +4251,17 @@ MalwareScanDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareScanDetails/)."""
 
+MalwareThreat = TypedDict(
+    "MalwareThreat",
+    {
+    "name": Required["str | None"],
+    "severity": Required["str | None"],
+    "infected_file_count": Required["int | None"],
+    "sample_files": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MalwareThreat/)."""
+
 Master = TypedDict(
     "Master",
     {
@@ -3501,6 +4287,18 @@ Member = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Member/)."""
+
+MemberAccountRanking = TypedDict(
+    "MemberAccountRanking",
+    {
+    "rank": Required["int | None"],
+    "account_id": Required["str | None"],
+    "finding_count": Required["int | None"],
+    "risk_level": Required["RiskLevelOutput | None"],
+    "risk_rationale": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberAccountRanking/)."""
 
 MemberAdditionalConfiguration = TypedDict(
     "MemberAdditionalConfiguration",
@@ -3554,6 +4352,14 @@ MemberFeaturesConfigurationResult = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MemberFeaturesConfigurationResult/)."""
 
+MetadataRecord = TypedDict(
+    "MetadataRecord",
+    {
+    "total_time_milliseconds": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/MetadataRecord/)."""
+
 ModelDetail = TypedDict(
     "ModelDetail",
     {
@@ -3561,6 +4367,39 @@ ModelDetail = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ModelDetail/)."""
+
+NetworkActivity = TypedDict(
+    "NetworkActivity",
+    {
+    "protocol": Required["str | None"],
+    "direction": Required["str | None"],
+    "method": Required["str | None"],
+    "blocked": Required["str | None"],
+    "platform": Required["str | None"],
+    "ports": Required["NetworkPorts | None"],
+    "traffic": Required["NetworkTraffic | None"],
+    "anomaly": Required["NetworkAnomaly | None"],
+    "dns": Required["DnsContext | None"],
+    "counts": Required["NetworkCounts | None"],
+    "enrichment": Required["Enrichment | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkActivity/)."""
+
+NetworkAnomaly = TypedDict(
+    "NetworkAnomaly",
+    {
+    "baseline_bytes": Required["str | None"],
+    "deviation": Required["str | None"],
+    "profile_age_days": Required["int | None"],
+    "remote_service": Required["str | None"],
+    "remote_region": Required["str | None"],
+    "duration": Required["str | None"],
+    "reset_ratio": Required["str | None"],
+    "target_host_count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkAnomaly/)."""
 
 NetworkConnection = TypedDict(
     "NetworkConnection",
@@ -3584,6 +4423,17 @@ NetworkConnectionAction = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkConnectionAction/)."""
+
+NetworkCounts = TypedDict(
+    "NetworkCounts",
+    {
+    "request_count": Required["int | None"],
+    "total_attempts": Required["int | None"],
+    "suspicious_attempts": Required["int | None"],
+    "reset_attempts": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkCounts/)."""
 
 NetworkEndpoint = TypedDict(
     "NetworkEndpoint",
@@ -3627,6 +4477,51 @@ NetworkInterface = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkInterface/)."""
 
+NetworkPorts = TypedDict(
+    "NetworkPorts",
+    {
+    "target_port": Required["str | None"],
+    "remote_port": Required["str | None"],
+    "resolver_port": Required["str | None"],
+    "ports": Required["str | None"],
+    "ports_used": Required["str | None"],
+    "port_count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkPorts/)."""
+
+NetworkTraffic = TypedDict(
+    "NetworkTraffic",
+    {
+    "bytes_sent": Required["int | None"],
+    "bytes_received": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/NetworkTraffic/)."""
+
+ObservationRecord = TypedDict(
+    "ObservationRecord",
+    {
+    "observation_type": Required["ObservationTypeOutput | None"],
+    "finding_detail": Required["FindingDetail | None"],
+    "resource": Required["InvestigationResource | None"],
+    "network_activity": Required["NetworkActivity | None"],
+    "rds_login_activity": Required["RdsLoginActivity | None"],
+    "s3_activity": Required["S3Activity | None"],
+    "kubernetes_activity": Required["KubernetesActivity | None"],
+    "malware_scan": Required["InvestigationMalwareScan | None"],
+    "related_findings": Required["RelatedFindings | None"],
+    "detection_coverage": Required["DetectionCoverage | None"],
+    "account_overview": Required["AccountOverview | None"],
+    "recommendations": Required["list[Recommendation] | None"],
+    "runtime_signals": Required["RuntimeSignals | None"],
+    "distribution": Required["Distribution | None"],
+    "representative_resources": Required["list[RepresentativeFinding] | None"],
+    "indicators": Required["list[InvestigationIndicator] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservationRecord/)."""
+
 Observations = TypedDict(
     "Observations",
     {
@@ -3635,6 +4530,17 @@ Observations = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Observations/)."""
+
+ObservedFindingType = TypedDict(
+    "ObservedFindingType",
+    {
+    "finding_type": Required["str | None"],
+    "count": Required["int | None"],
+    "severity_max": Required["float | None"],
+    "shared_resources": Required["list[SharedResource] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ObservedFindingType/)."""
 
 Organization = TypedDict(
     "Organization",
@@ -3664,6 +4570,15 @@ OrganizationAdditionalConfigurationResult = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAdditionalConfigurationResult/)."""
+
+OrganizationAnalysis = TypedDict(
+    "OrganizationAnalysis",
+    {
+    "findings_summary": NotRequired["OrganizationFindingsSummary"],
+    "account_breakdown": NotRequired["_Sequence[AccountSummary]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationAnalysis/)."""
 
 OrganizationDataSourceConfigurations = TypedDict(
     "OrganizationDataSourceConfigurations",
@@ -3748,6 +4663,19 @@ OrganizationFeatureStatisticsAdditionalConfiguration = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFeatureStatisticsAdditionalConfiguration/)."""
+
+OrganizationFindingsSummary = TypedDict(
+    "OrganizationFindingsSummary",
+    {
+    "total_findings": NotRequired["int"],
+    "severity_breakdown": NotRequired["SeverityBreakdown"],
+    "top_finding_types": NotRequired["_Sequence[FindingTypeCount]"],
+    "by_time_window": NotRequired["_Sequence[TimeWindowGroup]"],
+    "total_account_count": NotRequired["int"],
+    "affected_account_count": NotRequired["int"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/OrganizationFindingsSummary/)."""
 
 OrganizationKubernetesAuditLogsConfiguration = TypedDict(
     "OrganizationKubernetesAuditLogsConfiguration",
@@ -3886,6 +4814,18 @@ PrivateIpAddressDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PrivateIpAddressDetails/)."""
 
+Process = TypedDict(
+    "Process",
+    {
+    "uuid": Required["str | None"],
+    "name": Required["str | None"],
+    "path": Required["str | None"],
+    "parent_uuid": Required["str | None"],
+    "findings": Required["list[FindingReference] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Process/)."""
+
 ProcessDetails = TypedDict(
     "ProcessDetails",
     {
@@ -3924,6 +4864,15 @@ ProductCode = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProductCode/)."""
 
+ProtectionPlan = TypedDict(
+    "ProtectionPlan",
+    {
+    "name": Required["InvestigationDetectorFeatureOutput | None"],
+    "status": Required["FeatureStatusOutput | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ProtectionPlan/)."""
+
 PublicAccess = TypedDict(
     "PublicAccess",
     {
@@ -3944,6 +4893,28 @@ PublicAccessConfiguration = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/PublicAccessConfiguration/)."""
 
+QueryTimeWindow = TypedDict(
+    "QueryTimeWindow",
+    {
+    "start_time": NotRequired["str"],
+    "end_time": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/QueryTimeWindow/)."""
+
+RdsDbInstance = TypedDict(
+    "RdsDbInstance",
+    {
+    "db_instance_identifier": Required["str | None"],
+    "db_cluster_identifier": Required["str | None"],
+    "db_instance_arn": Required["str | None"],
+    "dbi_resource_id": Required["str | None"],
+    "engine": Required["str | None"],
+    "engine_version": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstance/)."""
+
 RdsDbInstanceDetails = TypedDict(
     "RdsDbInstanceDetails",
     {
@@ -3957,6 +4928,18 @@ RdsDbInstanceDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbInstanceDetails/)."""
+
+RdsDbUser = TypedDict(
+    "RdsDbUser",
+    {
+    "user": Required["str | None"],
+    "application": Required["str | None"],
+    "database": Required["str | None"],
+    "auth_method": Required["str | None"],
+    "ssl": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsDbUser/)."""
 
 RdsDbUserDetails = TypedDict(
     "RdsDbUserDetails",
@@ -3984,6 +4967,19 @@ RdsLimitlessDbDetails = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLimitlessDbDetails/)."""
 
+RdsLoginActivity = TypedDict(
+    "RdsLoginActivity",
+    {
+    "outcome": Required["str | None"],
+    "rate": Required["str | None"],
+    "anomaly_context": Required["str | None"],
+    "login_count": Required["int | None"],
+    "activity_window": Required["ActivityWindow | None"],
+    "enrichment": Required["Enrichment | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginActivity/)."""
+
 RdsLoginAttemptAction = TypedDict(
     "RdsLoginAttemptAction",
     {
@@ -3992,6 +4988,18 @@ RdsLoginAttemptAction = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RdsLoginAttemptAction/)."""
+
+Recommendation = TypedDict(
+    "Recommendation",
+    {
+    "title": Required["str | None"],
+    "rationale": Required["str | None"],
+    "category": Required["RecommendationCategoryOutput | None"],
+    "priority": Required["ActionPriorityOutput | None"],
+    "cli_commands": Required["list[str] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Recommendation/)."""
 
 RecoveryPoint = TypedDict(
     "RecoveryPoint",
@@ -4011,6 +5019,15 @@ RecoveryPointDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RecoveryPointDetails/)."""
+
+RelatedFindings = TypedDict(
+    "RelatedFindings",
+    {
+    "correlated": Required["list[CorrelatedFinding] | None"],
+    "observed": Required["list[ObservedFindingType] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RelatedFindings/)."""
 
 RemoteAccountDetails = TypedDict(
     "RemoteAccountDetails",
@@ -4043,6 +5060,29 @@ RemotePortDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RemotePortDetails/)."""
+
+RepresentativeFinding = TypedDict(
+    "RepresentativeFinding",
+    {
+    "resource_type": Required["str | None"],
+    "identifier": Required["str | None"],
+    "finding_id": Required["str | None"],
+    "finding_count": Required["int | None"],
+    "risk_level": Required["RiskLevelOutput | None"],
+    "risk_rationale": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RepresentativeFinding/)."""
+
+Reputation = TypedDict(
+    "Reputation",
+    {
+    "finding_time_disposition": Required["str | None"],
+    "current_disposition": Required["str | None"],
+    "reputation_comparison": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Reputation/)."""
 
 Resource = TypedDict(
     "Resource",
@@ -4100,6 +5140,16 @@ ResourceDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDetails/)."""
+
+ResourceDistribution = TypedDict(
+    "ResourceDistribution",
+    {
+    "resource_type": Required["str | None"],
+    "identifier": Required["str | None"],
+    "count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceDistribution/)."""
 
 class ResourceNotFoundErrorDetails(TypedDict, total=False):
     """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ResourceNotFoundErrorDetails/)."""
@@ -4228,6 +5278,51 @@ RuntimeDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeDetails/)."""
+
+RuntimeSignals = TypedDict(
+    "RuntimeSignals",
+    {
+    "signal_groups": Required["list[SignalGroup] | None"],
+    "key_observation": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/RuntimeSignals/)."""
+
+S3Activity = TypedDict(
+    "S3Activity",
+    {
+    "api": Required["str | None"],
+    "affected_bucket": Required["str | None"],
+    "other_s3_activity": Required["str | None"],
+    "non_s3_activity": Required["str | None"],
+    "session_assessment": Required["str | None"],
+    "event_count": Required["int | None"],
+    "actor": Required["InvestigationActor | None"],
+    "source_ip": Required["str | None"],
+    "enrichment": Required["Enrichment | None"],
+    "activity_window": Required["ActivityWindow | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3Activity/)."""
+
+S3Analysis = TypedDict(
+    "S3Analysis",
+    {
+    "finding_subtype": Required["str | None"],
+    "effective_permission": Required["str | None"],
+    "block_public_access_settings": Required["str | None"],
+    "exposure": Required["str | None"],
+    "user_agent": Required["str | None"],
+    "user_agent_classification": Required["str | None"],
+    "source_ip": Required["str | None"],
+    "ip_reputation": Required["str | None"],
+    "actor_assessment": Required["str | None"],
+    "s3_api_activity": Required["str | None"],
+    "source_context": Required["str | None"],
+    "authorization_assessment": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/S3Analysis/)."""
 
 S3Bucket = TypedDict(
     "S3Bucket",
@@ -4571,6 +5666,18 @@ Session = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Session/)."""
 
+SeverityBreakdown = TypedDict(
+    "SeverityBreakdown",
+    {
+    "critical": Required["int | None"],
+    "high": Required["int | None"],
+    "medium": Required["int | None"],
+    "low": Required["int | None"],
+    "info": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityBreakdown/)."""
+
 SeverityStatistics = TypedDict(
     "SeverityStatistics",
     {
@@ -4580,6 +5687,24 @@ SeverityStatistics = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SeverityStatistics/)."""
+
+SharedBehavior = TypedDict(
+    "SharedBehavior",
+    {
+    "path": Required["str | None"],
+    "value": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SharedBehavior/)."""
+
+SharedResource = TypedDict(
+    "SharedResource",
+    {
+    "resource_type": Required["str | None"],
+    "identifier": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SharedResource/)."""
 
 Signal = TypedDict(
     "Signal",
@@ -4602,6 +5727,16 @@ Signal = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Signal/)."""
+
+SignalGroup = TypedDict(
+    "SignalGroup",
+    {
+    "finding_type": Required["str | None"],
+    "severity": Required["float | None"],
+    "count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SignalGroup/)."""
 
 SortCriteria = TypedDict(
     "SortCriteria",
@@ -4650,6 +5785,30 @@ StopMonitoringMembersRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/StopMonitoringMembersRequest/)."""
 
+SupportingDataFetch = TypedDict("SupportingDataFetch", {"fetch": Required["FetchRecord"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingDataFetch/)."""
+SupportingDataAnalysis = TypedDict("SupportingDataAnalysis", {"analysis": Required["AnalysisRecord"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingDataAnalysis/)."""
+SupportingDataObservation = TypedDict("SupportingDataObservation", {"observation": Required["ObservationRecord"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingDataObservation/)."""
+SupportingDataMetadata = TypedDict("SupportingDataMetadata", {"metadata": Required["MetadataRecord"]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingDataMetadata/)."""
+SupportingDataUnknown = TypedDict("SupportingDataUnknown", {"unknown": Required[Literal[True]]}, closed=True)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingDataUnknown/)."""
+SupportingData: TypeAlias = SupportingDataFetch | SupportingDataAnalysis | SupportingDataObservation | SupportingDataMetadata | SupportingDataUnknown
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/SupportingData/)."""
+
+TacticCoverage = TypedDict(
+    "TacticCoverage",
+    {
+    "phase": Required["AttackPhaseNameOutput | None"],
+    "finding_count": Required["int | None"],
+    "finding_types": Required["list[str] | None"],
+    "techniques": Required["list[TechniqueCoverage] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TacticCoverage/)."""
+
 Tag = TypedDict(
     "Tag",
     {
@@ -4668,6 +5827,16 @@ TagResourceRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TagResourceRequest/)."""
 
+TechniqueCoverage = TypedDict(
+    "TechniqueCoverage",
+    {
+    "technique": Required["ThreatReference | None"],
+    "finding_count": Required["int | None"],
+    "finding_types": Required["list[str] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TechniqueCoverage/)."""
+
 Threat = TypedDict(
     "Threat",
     {
@@ -4680,6 +5849,15 @@ Threat = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Threat/)."""
+
+ThreatAssessment = TypedDict(
+    "ThreatAssessment",
+    {
+    "attack_progression": NotRequired["_Sequence[AttackPhase]"],
+    "threat_actor_profile": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatAssessment/)."""
 
 ThreatDetectedByName = TypedDict(
     "ThreatDetectedByName",
@@ -4702,6 +5880,15 @@ ThreatIntelligenceDetail = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatIntelligenceDetail/)."""
 
+ThreatReference = TypedDict(
+    "ThreatReference",
+    {
+    "name": Required["str | None"],
+    "uid": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatReference/)."""
+
 ThreatsDetectedItemCount = TypedDict(
     "ThreatsDetectedItemCount",
     {
@@ -4709,6 +5896,16 @@ ThreatsDetectedItemCount = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/ThreatsDetectedItemCount/)."""
+
+TimeWindowGroup = TypedDict(
+    "TimeWindowGroup",
+    {
+    "start_time": Required["str | None"],
+    "end_time": Required["str | None"],
+    "finding_count": Required["int | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TimeWindowGroup/)."""
 
 Total = TypedDict(
     "Total",
@@ -4719,6 +5916,18 @@ Total = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Total/)."""
 
+Trend = TypedDict(
+    "Trend",
+    {
+    "granularity": Required["TimeGranularityOutput | None"],
+    "started_at": Required["str | None"],
+    "ended_at": Required["str | None"],
+    "total_findings": Required["int | None"],
+    "by_time_window": Required["list[TimeWindowGroup] | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/Trend/)."""
+
 TriggerDetails = TypedDict(
     "TriggerDetails",
     {
@@ -4728,6 +5937,17 @@ TriggerDetails = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TriggerDetails/)."""
+
+TypeDistribution = TypedDict(
+    "TypeDistribution",
+    {
+    "finding_type": Required["str | None"],
+    "count": Required["int | None"],
+    "percentage": Required["float | None"],
+    "dominant_severity": Required["str | None"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/guardduty/types/TypeDistribution/)."""
 
 UnarchiveFindingsRequest = TypedDict(
     "UnarchiveFindingsRequest",

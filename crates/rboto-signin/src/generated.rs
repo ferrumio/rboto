@@ -77,6 +77,68 @@ fn access_token_to_py(
     Ok(result.into_any().unbind())
 }
 
+fn batch_revoke_session_error_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::BatchRevokeSessionError> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["code", "message", "session_arn"])?;
+    let mut builder = aws_sdk_signin::types::BatchRevokeSessionError::builder();
+    if let Some(value) = dict_value(values, "session_arn")? {
+        let converted_7 = (|| -> PyResult<_> {
+            let converted_7: String = value.extract()?;
+            Ok(converted_7)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("session_arn"), "str")
+        })?;
+        builder = builder.set_session_arn(Some(converted_7));
+    }
+    if let Some(value) = dict_value(values, "code")? {
+        let converted_8 = (|| -> PyResult<_> {
+            let converted_8: String = value.extract()?;
+            Ok(converted_8)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("code"), "str")
+        })?;
+        builder = builder.set_code(Some(converted_8));
+    }
+    if let Some(value) = dict_value(values, "message")? {
+        let converted_9 = (|| -> PyResult<_> {
+            let converted_9: String = value.extract()?;
+            Ok(converted_9)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("message"), "str")
+        })?;
+        builder = builder.set_message(Some(converted_9));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("session_arn", "session_arn"),
+                ("code", "code"),
+                ("message", "message"),
+            ],
+        )
+    })
+}
+
+fn batch_revoke_session_error_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::BatchRevokeSessionError,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_10 = (&value.session_arn).as_str().into_py_any(py)?;
+    result.set_item("session_arn", converted_10)?;
+    let converted_11 = (&value.code).as_str().into_py_any(py)?;
+    result.set_item("code", converted_11)?;
+    let converted_12 = (&value.message).as_str().into_py_any(py)?;
+    result.set_item("message", converted_12)?;
+    Ok(result.into_any().unbind())
+}
+
 fn create_o_auth2_token_request_body_from_py(
     value: &Bound<'_, PyAny>,
 ) -> PyResult<aws_sdk_signin::types::CreateOAuth2TokenRequestBody> {
@@ -94,64 +156,64 @@ fn create_o_auth2_token_request_body_from_py(
     )?;
     let mut builder = aws_sdk_signin::types::CreateOAuth2TokenRequestBody::builder();
     if let Some(value) = dict_value(values, "client_id")? {
-        let converted_7 = (|| -> PyResult<_> {
-            let converted_7: String = value.extract()?;
-            Ok(converted_7)
+        let converted_13 = (|| -> PyResult<_> {
+            let converted_13: String = value.extract()?;
+            Ok(converted_13)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("client_id"), "str")
         })?;
-        builder = builder.set_client_id(Some(converted_7));
+        builder = builder.set_client_id(Some(converted_13));
     }
     if let Some(value) = dict_value(values, "grant_type")? {
-        let converted_8 = (|| -> PyResult<_> {
-            let converted_8: String = value.extract()?;
-            Ok(converted_8)
+        let converted_14 = (|| -> PyResult<_> {
+            let converted_14: String = value.extract()?;
+            Ok(converted_14)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("grant_type"), "str")
         })?;
-        builder = builder.set_grant_type(Some(converted_8));
+        builder = builder.set_grant_type(Some(converted_14));
     }
     if let Some(value) = dict_value(values, "code")? {
-        let converted_9 = (|| -> PyResult<_> {
-            let converted_9: String = value.extract()?;
-            Ok(converted_9)
+        let converted_15 = (|| -> PyResult<_> {
+            let converted_15: String = value.extract()?;
+            Ok(converted_15)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("code"), "str")
         })?;
-        builder = builder.set_code(Some(converted_9));
+        builder = builder.set_code(Some(converted_15));
     }
     if let Some(value) = dict_value(values, "redirect_uri")? {
-        let converted_10 = (|| -> PyResult<_> {
-            let converted_10: String = value.extract()?;
-            Ok(converted_10)
+        let converted_16 = (|| -> PyResult<_> {
+            let converted_16: String = value.extract()?;
+            Ok(converted_16)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("redirect_uri"), "str")
         })?;
-        builder = builder.set_redirect_uri(Some(converted_10));
+        builder = builder.set_redirect_uri(Some(converted_16));
     }
     if let Some(value) = dict_value(values, "code_verifier")? {
-        let converted_11 = (|| -> PyResult<_> {
-            let converted_11: String = value.extract()?;
-            Ok(converted_11)
+        let converted_17 = (|| -> PyResult<_> {
+            let converted_17: String = value.extract()?;
+            Ok(converted_17)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("code_verifier"), "str")
         })?;
-        builder = builder.set_code_verifier(Some(converted_11));
+        builder = builder.set_code_verifier(Some(converted_17));
     }
     if let Some(value) = dict_value(values, "refresh_token")? {
-        let converted_12 = (|| -> PyResult<_> {
-            let converted_12: String = value.extract()?;
-            Ok(converted_12)
+        let converted_18 = (|| -> PyResult<_> {
+            let converted_18: String = value.extract()?;
+            Ok(converted_18)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("refresh_token"), "str")
         })?;
-        builder = builder.set_refresh_token(Some(converted_12));
+        builder = builder.set_refresh_token(Some(converted_18));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -166,31 +228,31 @@ fn create_o_auth2_token_request_body_to_py(
     value: &aws_sdk_signin::types::CreateOAuth2TokenRequestBody,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_13 = (&value.client_id).as_str().into_py_any(py)?;
-    result.set_item("client_id", converted_13)?;
-    let converted_14 = (&value.grant_type).as_str().into_py_any(py)?;
-    result.set_item("grant_type", converted_14)?;
+    let converted_19 = (&value.client_id).as_str().into_py_any(py)?;
+    result.set_item("client_id", converted_19)?;
+    let converted_20 = (&value.grant_type).as_str().into_py_any(py)?;
+    result.set_item("grant_type", converted_20)?;
     if let Some(value) = &value.code {
-        let converted_15 = (value).as_str().into_py_any(py)?;
-        result.set_item("code", converted_15)?;
+        let converted_21 = (value).as_str().into_py_any(py)?;
+        result.set_item("code", converted_21)?;
     } else {
         result.set_item("code", py.None())?;
     }
     if let Some(value) = &value.redirect_uri {
-        let converted_16 = (value).as_str().into_py_any(py)?;
-        result.set_item("redirect_uri", converted_16)?;
+        let converted_22 = (value).as_str().into_py_any(py)?;
+        result.set_item("redirect_uri", converted_22)?;
     } else {
         result.set_item("redirect_uri", py.None())?;
     }
     if let Some(value) = &value.code_verifier {
-        let converted_17 = (value).as_str().into_py_any(py)?;
-        result.set_item("code_verifier", converted_17)?;
+        let converted_23 = (value).as_str().into_py_any(py)?;
+        result.set_item("code_verifier", converted_23)?;
     } else {
         result.set_item("code_verifier", py.None())?;
     }
     if let Some(value) = &value.refresh_token {
-        let converted_18 = (value).as_str().into_py_any(py)?;
-        result.set_item("refresh_token", converted_18)?;
+        let converted_24 = (value).as_str().into_py_any(py)?;
+        result.set_item("refresh_token", converted_24)?;
     } else {
         result.set_item("refresh_token", py.None())?;
     }
@@ -213,9 +275,9 @@ fn create_o_auth2_token_response_body_from_py(
     )?;
     let mut builder = aws_sdk_signin::types::CreateOAuth2TokenResponseBody::builder();
     if let Some(value) = dict_value(values, "access_token")? {
-        let converted_19 = (|| -> PyResult<_> {
-            let converted_19 = access_token_from_py(&value)?;
-            Ok(converted_19)
+        let converted_25 = (|| -> PyResult<_> {
+            let converted_25 = access_token_from_py(&value)?;
+            Ok(converted_25)
         })()
         .map_err(|error| {
             rboto_core::input_error(
@@ -224,47 +286,47 @@ fn create_o_auth2_token_response_body_from_py(
                 "dict (AccessToken)",
             )
         })?;
-        builder = builder.set_access_token(Some(converted_19));
+        builder = builder.set_access_token(Some(converted_25));
     }
     if let Some(value) = dict_value(values, "token_type")? {
-        let converted_20 = (|| -> PyResult<_> {
-            let converted_20: String = value.extract()?;
-            Ok(converted_20)
+        let converted_26 = (|| -> PyResult<_> {
+            let converted_26: String = value.extract()?;
+            Ok(converted_26)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("token_type"), "str")
         })?;
-        builder = builder.set_token_type(Some(converted_20));
+        builder = builder.set_token_type(Some(converted_26));
     }
     if let Some(value) = dict_value(values, "expires_in")? {
-        let converted_21 = (|| -> PyResult<_> {
-            let converted_21: i32 = value.extract()?;
-            Ok(converted_21)
+        let converted_27 = (|| -> PyResult<_> {
+            let converted_27: i32 = value.extract()?;
+            Ok(converted_27)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("expires_in"), "int")
         })?;
-        builder = builder.set_expires_in(Some(converted_21));
+        builder = builder.set_expires_in(Some(converted_27));
     }
     if let Some(value) = dict_value(values, "refresh_token")? {
-        let converted_22 = (|| -> PyResult<_> {
-            let converted_22: String = value.extract()?;
-            Ok(converted_22)
+        let converted_28 = (|| -> PyResult<_> {
+            let converted_28: String = value.extract()?;
+            Ok(converted_28)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("refresh_token"), "str")
         })?;
-        builder = builder.set_refresh_token(Some(converted_22));
+        builder = builder.set_refresh_token(Some(converted_28));
     }
     if let Some(value) = dict_value(values, "id_token")? {
-        let converted_23 = (|| -> PyResult<_> {
-            let converted_23: String = value.extract()?;
-            Ok(converted_23)
+        let converted_29 = (|| -> PyResult<_> {
+            let converted_29: String = value.extract()?;
+            Ok(converted_29)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("id_token"), "str")
         })?;
-        builder = builder.set_id_token(Some(converted_23));
+        builder = builder.set_id_token(Some(converted_29));
     }
     builder.build().map_err(|_| {
         rboto_core::input_builder_error(
@@ -284,20 +346,20 @@ fn create_o_auth2_token_response_body_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.access_token {
-        let converted_24 = access_token_to_py(py, value)?;
-        result.set_item("access_token", converted_24)?;
+        let converted_30 = access_token_to_py(py, value)?;
+        result.set_item("access_token", converted_30)?;
     } else {
         result.set_item("access_token", py.None())?;
     }
-    let converted_25 = (&value.token_type).as_str().into_py_any(py)?;
-    result.set_item("token_type", converted_25)?;
-    let converted_26 = (&value.expires_in).to_owned().into_py_any(py)?;
-    result.set_item("expires_in", converted_26)?;
-    let converted_27 = (&value.refresh_token).as_str().into_py_any(py)?;
-    result.set_item("refresh_token", converted_27)?;
+    let converted_31 = (&value.token_type).as_str().into_py_any(py)?;
+    result.set_item("token_type", converted_31)?;
+    let converted_32 = (&value.expires_in).to_owned().into_py_any(py)?;
+    result.set_item("expires_in", converted_32)?;
+    let converted_33 = (&value.refresh_token).as_str().into_py_any(py)?;
+    result.set_item("refresh_token", converted_33)?;
     if let Some(value) = &value.id_token {
-        let converted_28 = (value).as_str().into_py_any(py)?;
-        result.set_item("id_token", converted_28)?;
+        let converted_34 = (value).as_str().into_py_any(py)?;
+        result.set_item("id_token", converted_34)?;
     } else {
         result.set_item("id_token", py.None())?;
     }
@@ -311,96 +373,96 @@ fn permission_statement_summary_from_py(
     rboto_core::validate_input_fields(values, &["condition", "sid"])?;
     let mut builder = aws_sdk_signin::types::PermissionStatementSummary::builder();
     if let Some(value) = dict_value(values, "sid")? {
-        let converted_29 = (|| -> PyResult<_> {
-            let converted_29: String = value.extract()?;
-            Ok(converted_29)
+        let converted_35 = (|| -> PyResult<_> {
+            let converted_35: String = value.extract()?;
+            Ok(converted_35)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("sid"), "str")
         })?;
-        builder = builder.set_sid(Some(converted_29));
+        builder = builder.set_sid(Some(converted_35));
     }
     if let Some(value) = dict_value(values, "condition")? {
-        let converted_30 = (|| -> PyResult<_> {
-            let mapping_31 = value.cast::<PyDict>()?;
-            let mut converted_30 = HashMap::with_capacity(mapping_31.len());
-            for (index_36, (key_32, value_33)) in mapping_31.iter().enumerate() {
-                let converted_key_34 = (|| -> PyResult<_> {
-                    let converted_key_34: String = key_32.extract()?;
-                    Ok(converted_key_34)
+        let converted_36 = (|| -> PyResult<_> {
+            let mapping_37 = value.cast::<PyDict>()?;
+            let mut converted_36 = HashMap::with_capacity(mapping_37.len());
+            for (index_42, (key_38, value_39)) in mapping_37.iter().enumerate() {
+                let converted_key_40 = (|| -> PyResult<_> {
+                    let converted_key_40: String = key_38.extract()?;
+                    Ok(converted_key_40)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_36), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_42), "str")
                 })?;
-                let converted_value_35 = (|| -> PyResult<_> {
-                    let mapping_37 = value_33.cast::<PyDict>()?;
-                    let mut converted_value_35 = HashMap::with_capacity(mapping_37.len());
-                    for (index_42, (key_38, value_39)) in mapping_37.iter().enumerate() {
-                        let converted_key_40 = (|| -> PyResult<_> {
-                            let converted_key_40: String = key_38.extract()?;
-                            Ok(converted_key_40)
+                let converted_value_41 = (|| -> PyResult<_> {
+                    let mapping_43 = value_39.cast::<PyDict>()?;
+                    let mut converted_value_41 = HashMap::with_capacity(mapping_43.len());
+                    for (index_48, (key_44, value_45)) in mapping_43.iter().enumerate() {
+                        let converted_key_46 = (|| -> PyResult<_> {
+                            let converted_key_46: String = key_44.extract()?;
+                            Ok(converted_key_46)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::MapKey(index_42),
+                                rboto_core::InputPath::MapKey(index_48),
                                 "str",
                             )
                         })?;
-                        let converted_value_41 = (|| -> PyResult<_> {
-                            let mut converted_value_41 = Vec::with_capacity(
-                                value_39.cast::<PyList>().map_or(0, |items| items.len()),
+                        let converted_value_47 = (|| -> PyResult<_> {
+                            let mut converted_value_47 = Vec::with_capacity(
+                                value_45.cast::<PyList>().map_or(0, |items| items.len()),
                             );
-                            for (index_46, item_result_43) in value_39.try_iter()?.enumerate() {
-                                let item_44 = item_result_43.map_err(|error| {
+                            for (index_52, item_result_49) in value_45.try_iter()?.enumerate() {
+                                let item_50 = item_result_49.map_err(|error| {
                                     rboto_core::input_rule(
                                         error,
-                                        rboto_core::InputPath::Index(index_46),
+                                        rboto_core::InputPath::Index(index_52),
                                         "next sequence item",
                                         Some("iteration"),
                                     )
                                 })?;
-                                let converted_item_45 = (|| -> PyResult<_> {
-                                    let converted_item_45: String = item_44.extract()?;
-                                    Ok(converted_item_45)
+                                let converted_item_51 = (|| -> PyResult<_> {
+                                    let converted_item_51: String = item_50.extract()?;
+                                    Ok(converted_item_51)
                                 })()
                                 .map_err(|error| {
                                     rboto_core::input_error(
                                         error,
-                                        rboto_core::InputPath::Index(index_46),
+                                        rboto_core::InputPath::Index(index_52),
                                         "str",
                                     )
                                 })?;
-                                converted_value_41.push(converted_item_45);
+                                converted_value_47.push(converted_item_51);
                             }
-                            Ok(converted_value_41)
+                            Ok(converted_value_47)
                         })()
                         .map_err(|error| {
                             rboto_core::input_error(
                                 error,
-                                rboto_core::InputPath::MapValue(index_42),
+                                rboto_core::InputPath::MapValue(index_48),
                                 "sequence",
                             )
                         })?;
-                        converted_value_35.insert(converted_key_40, converted_value_41);
+                        converted_value_41.insert(converted_key_46, converted_value_47);
                     }
-                    Ok(converted_value_35)
+                    Ok(converted_value_41)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::MapValue(index_36),
+                        rboto_core::InputPath::MapValue(index_42),
                         "dict",
                     )
                 })?;
-                converted_30.insert(converted_key_34, converted_value_35);
+                converted_36.insert(converted_key_40, converted_value_41);
             }
-            Ok(converted_30)
+            Ok(converted_36)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("condition"), "dict")
         })?;
-        builder = builder.set_condition(Some(converted_30));
+        builder = builder.set_condition(Some(converted_36));
     }
     builder
         .build()
@@ -412,28 +474,28 @@ fn permission_statement_summary_to_py(
     value: &aws_sdk_signin::types::PermissionStatementSummary,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let converted_47 = (&value.sid).as_str().into_py_any(py)?;
-    result.set_item("sid", converted_47)?;
+    let converted_53 = (&value.sid).as_str().into_py_any(py)?;
+    result.set_item("sid", converted_53)?;
     if let Some(value) = &value.condition {
-        let converted_48_dict = PyDict::new(py);
-        for (key_49, value_50) in value {
-            let converted_key_51 = (key_49).as_str().into_py_any(py)?;
-            let converted_value_52_dict = PyDict::new(py);
-            for (key_53, value_54) in value_50 {
-                let converted_key_55 = (key_53).as_str().into_py_any(py)?;
-                let converted_value_56_list = PyList::empty(py);
-                for item_57 in value_54 {
-                    let converted_item_58 = (item_57).as_str().into_py_any(py)?;
-                    converted_value_56_list.append(converted_item_58)?;
+        let converted_54_dict = PyDict::new(py);
+        for (key_55, value_56) in value {
+            let converted_key_57 = (key_55).as_str().into_py_any(py)?;
+            let converted_value_58_dict = PyDict::new(py);
+            for (key_59, value_60) in value_56 {
+                let converted_key_61 = (key_59).as_str().into_py_any(py)?;
+                let converted_value_62_list = PyList::empty(py);
+                for item_63 in value_60 {
+                    let converted_item_64 = (item_63).as_str().into_py_any(py)?;
+                    converted_value_62_list.append(converted_item_64)?;
                 }
-                let converted_value_56 = converted_value_56_list.into_any().unbind();
-                converted_value_52_dict.set_item(converted_key_55, converted_value_56)?;
+                let converted_value_62 = converted_value_62_list.into_any().unbind();
+                converted_value_58_dict.set_item(converted_key_61, converted_value_62)?;
             }
-            let converted_value_52 = converted_value_52_dict.into_any().unbind();
-            converted_48_dict.set_item(converted_key_51, converted_value_52)?;
+            let converted_value_58 = converted_value_58_dict.into_any().unbind();
+            converted_54_dict.set_item(converted_key_57, converted_value_58)?;
         }
-        let converted_48 = converted_48_dict.into_any().unbind();
-        result.set_item("condition", converted_48)?;
+        let converted_54 = converted_54_dict.into_any().unbind();
+        result.set_item("condition", converted_54)?;
     } else {
         result.set_item("condition", py.None())?;
     }
@@ -450,163 +512,163 @@ fn policy_statement_from_py(
     )?;
     let mut builder = aws_sdk_signin::types::PolicyStatement::builder();
     if let Some(value) = dict_value(values, "effect")? {
-        let converted_59 = (|| -> PyResult<_> {
-            let converted_59: String = value.extract()?;
-            Ok(converted_59)
+        let converted_65 = (|| -> PyResult<_> {
+            let converted_65: String = value.extract()?;
+            Ok(converted_65)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("effect"), "str")
         })?;
-        builder = builder.set_effect(Some(converted_59));
+        builder = builder.set_effect(Some(converted_65));
     }
     if let Some(value) = dict_value(values, "principal")? {
-        let converted_60 = (|| -> PyResult<_> {
-            let mapping_61 = value.cast::<PyDict>()?;
-            let mut converted_60 = HashMap::with_capacity(mapping_61.len());
-            for (index_66, (key_62, value_63)) in mapping_61.iter().enumerate() {
-                let converted_key_64 = (|| -> PyResult<_> {
-                    let converted_key_64: String = key_62.extract()?;
-                    Ok(converted_key_64)
+        let converted_66 = (|| -> PyResult<_> {
+            let mapping_67 = value.cast::<PyDict>()?;
+            let mut converted_66 = HashMap::with_capacity(mapping_67.len());
+            for (index_72, (key_68, value_69)) in mapping_67.iter().enumerate() {
+                let converted_key_70 = (|| -> PyResult<_> {
+                    let converted_key_70: String = key_68.extract()?;
+                    Ok(converted_key_70)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_66), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_72), "str")
                 })?;
-                let converted_value_65 = (|| -> PyResult<_> {
-                    let converted_value_65: String = value_63.extract()?;
-                    Ok(converted_value_65)
+                let converted_value_71 = (|| -> PyResult<_> {
+                    let converted_value_71: String = value_69.extract()?;
+                    Ok(converted_value_71)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_66), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::MapValue(index_72), "str")
                 })?;
-                converted_60.insert(converted_key_64, converted_value_65);
+                converted_66.insert(converted_key_70, converted_value_71);
             }
-            Ok(converted_60)
+            Ok(converted_66)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("principal"), "dict")
         })?;
-        builder = builder.set_principal(Some(converted_60));
+        builder = builder.set_principal(Some(converted_66));
     }
     if let Some(value) = dict_value(values, "action")? {
-        let converted_67 = (|| -> PyResult<_> {
-            let mut converted_67 =
+        let converted_73 = (|| -> PyResult<_> {
+            let mut converted_73 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_71, item_result_68) in value.try_iter()?.enumerate() {
-                let item_69 = item_result_68.map_err(|error| {
+            for (index_77, item_result_74) in value.try_iter()?.enumerate() {
+                let item_75 = item_result_74.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_71),
+                        rboto_core::InputPath::Index(index_77),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_70 = (|| -> PyResult<_> {
-                    let converted_item_70: String = item_69.extract()?;
-                    Ok(converted_item_70)
+                let converted_item_76 = (|| -> PyResult<_> {
+                    let converted_item_76: String = item_75.extract()?;
+                    Ok(converted_item_76)
                 })()
                 .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_71), "str")
+                    rboto_core::input_error(error, rboto_core::InputPath::Index(index_77), "str")
                 })?;
-                converted_67.push(converted_item_70);
-            }
-            Ok(converted_67)
-        })()
-        .map_err(|error| {
-            rboto_core::input_error(error, rboto_core::InputPath::Field("action"), "sequence")
-        })?;
-        builder = builder.set_action(Some(converted_67));
-    }
-    if let Some(value) = dict_value(values, "resource")? {
-        let converted_72 = (|| -> PyResult<_> {
-            let converted_72: String = value.extract()?;
-            Ok(converted_72)
-        })()
-        .map_err(|error| {
-            rboto_core::input_error(error, rboto_core::InputPath::Field("resource"), "str")
-        })?;
-        builder = builder.set_resource(Some(converted_72));
-    }
-    if let Some(value) = dict_value(values, "condition")? {
-        let converted_73 = (|| -> PyResult<_> {
-            let mapping_74 = value.cast::<PyDict>()?;
-            let mut converted_73 = HashMap::with_capacity(mapping_74.len());
-            for (index_79, (key_75, value_76)) in mapping_74.iter().enumerate() {
-                let converted_key_77 = (|| -> PyResult<_> {
-                    let converted_key_77: String = key_75.extract()?;
-                    Ok(converted_key_77)
-                })()
-                .map_err(|error| {
-                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_79), "str")
-                })?;
-                let converted_value_78 = (|| -> PyResult<_> {
-                    let mapping_80 = value_76.cast::<PyDict>()?;
-                    let mut converted_value_78 = HashMap::with_capacity(mapping_80.len());
-                    for (index_85, (key_81, value_82)) in mapping_80.iter().enumerate() {
-                        let converted_key_83 = (|| -> PyResult<_> {
-                            let converted_key_83: String = key_81.extract()?;
-                            Ok(converted_key_83)
-                        })()
-                        .map_err(|error| {
-                            rboto_core::input_error(
-                                error,
-                                rboto_core::InputPath::MapKey(index_85),
-                                "str",
-                            )
-                        })?;
-                        let converted_value_84 = (|| -> PyResult<_> {
-                            let mut converted_value_84 = Vec::with_capacity(
-                                value_82.cast::<PyList>().map_or(0, |items| items.len()),
-                            );
-                            for (index_89, item_result_86) in value_82.try_iter()?.enumerate() {
-                                let item_87 = item_result_86.map_err(|error| {
-                                    rboto_core::input_rule(
-                                        error,
-                                        rboto_core::InputPath::Index(index_89),
-                                        "next sequence item",
-                                        Some("iteration"),
-                                    )
-                                })?;
-                                let converted_item_88 = (|| -> PyResult<_> {
-                                    let converted_item_88: String = item_87.extract()?;
-                                    Ok(converted_item_88)
-                                })()
-                                .map_err(|error| {
-                                    rboto_core::input_error(
-                                        error,
-                                        rboto_core::InputPath::Index(index_89),
-                                        "str",
-                                    )
-                                })?;
-                                converted_value_84.push(converted_item_88);
-                            }
-                            Ok(converted_value_84)
-                        })()
-                        .map_err(|error| {
-                            rboto_core::input_error(
-                                error,
-                                rboto_core::InputPath::MapValue(index_85),
-                                "sequence",
-                            )
-                        })?;
-                        converted_value_78.insert(converted_key_83, converted_value_84);
-                    }
-                    Ok(converted_value_78)
-                })()
-                .map_err(|error| {
-                    rboto_core::input_error(
-                        error,
-                        rboto_core::InputPath::MapValue(index_79),
-                        "dict",
-                    )
-                })?;
-                converted_73.insert(converted_key_77, converted_value_78);
+                converted_73.push(converted_item_76);
             }
             Ok(converted_73)
         })()
         .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("action"), "sequence")
+        })?;
+        builder = builder.set_action(Some(converted_73));
+    }
+    if let Some(value) = dict_value(values, "resource")? {
+        let converted_78 = (|| -> PyResult<_> {
+            let converted_78: String = value.extract()?;
+            Ok(converted_78)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resource"), "str")
+        })?;
+        builder = builder.set_resource(Some(converted_78));
+    }
+    if let Some(value) = dict_value(values, "condition")? {
+        let converted_79 = (|| -> PyResult<_> {
+            let mapping_80 = value.cast::<PyDict>()?;
+            let mut converted_79 = HashMap::with_capacity(mapping_80.len());
+            for (index_85, (key_81, value_82)) in mapping_80.iter().enumerate() {
+                let converted_key_83 = (|| -> PyResult<_> {
+                    let converted_key_83: String = key_81.extract()?;
+                    Ok(converted_key_83)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(error, rboto_core::InputPath::MapKey(index_85), "str")
+                })?;
+                let converted_value_84 = (|| -> PyResult<_> {
+                    let mapping_86 = value_82.cast::<PyDict>()?;
+                    let mut converted_value_84 = HashMap::with_capacity(mapping_86.len());
+                    for (index_91, (key_87, value_88)) in mapping_86.iter().enumerate() {
+                        let converted_key_89 = (|| -> PyResult<_> {
+                            let converted_key_89: String = key_87.extract()?;
+                            Ok(converted_key_89)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapKey(index_91),
+                                "str",
+                            )
+                        })?;
+                        let converted_value_90 = (|| -> PyResult<_> {
+                            let mut converted_value_90 = Vec::with_capacity(
+                                value_88.cast::<PyList>().map_or(0, |items| items.len()),
+                            );
+                            for (index_95, item_result_92) in value_88.try_iter()?.enumerate() {
+                                let item_93 = item_result_92.map_err(|error| {
+                                    rboto_core::input_rule(
+                                        error,
+                                        rboto_core::InputPath::Index(index_95),
+                                        "next sequence item",
+                                        Some("iteration"),
+                                    )
+                                })?;
+                                let converted_item_94 = (|| -> PyResult<_> {
+                                    let converted_item_94: String = item_93.extract()?;
+                                    Ok(converted_item_94)
+                                })()
+                                .map_err(|error| {
+                                    rboto_core::input_error(
+                                        error,
+                                        rboto_core::InputPath::Index(index_95),
+                                        "str",
+                                    )
+                                })?;
+                                converted_value_90.push(converted_item_94);
+                            }
+                            Ok(converted_value_90)
+                        })()
+                        .map_err(|error| {
+                            rboto_core::input_error(
+                                error,
+                                rboto_core::InputPath::MapValue(index_91),
+                                "sequence",
+                            )
+                        })?;
+                        converted_value_84.insert(converted_key_89, converted_value_90);
+                    }
+                    Ok(converted_value_84)
+                })()
+                .map_err(|error| {
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::MapValue(index_85),
+                        "dict",
+                    )
+                })?;
+                converted_79.insert(converted_key_83, converted_value_84);
+            }
+            Ok(converted_79)
+        })()
+        .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("condition"), "dict")
         })?;
-        builder = builder.set_condition(Some(converted_73));
+        builder = builder.set_condition(Some(converted_79));
     }
     Ok(builder.build())
 }
@@ -617,62 +679,266 @@ fn policy_statement_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.effect {
-        let converted_90 = (value).as_str().into_py_any(py)?;
-        result.set_item("effect", converted_90)?;
+        let converted_96 = (value).as_str().into_py_any(py)?;
+        result.set_item("effect", converted_96)?;
     } else {
         result.set_item("effect", py.None())?;
     }
     if let Some(value) = &value.principal {
-        let converted_91_dict = PyDict::new(py);
-        for (key_92, value_93) in value {
-            let converted_key_94 = (key_92).as_str().into_py_any(py)?;
-            let converted_value_95 = (value_93).as_str().into_py_any(py)?;
-            converted_91_dict.set_item(converted_key_94, converted_value_95)?;
+        let converted_97_dict = PyDict::new(py);
+        for (key_98, value_99) in value {
+            let converted_key_100 = (key_98).as_str().into_py_any(py)?;
+            let converted_value_101 = (value_99).as_str().into_py_any(py)?;
+            converted_97_dict.set_item(converted_key_100, converted_value_101)?;
         }
-        let converted_91 = converted_91_dict.into_any().unbind();
-        result.set_item("principal", converted_91)?;
+        let converted_97 = converted_97_dict.into_any().unbind();
+        result.set_item("principal", converted_97)?;
     } else {
         result.set_item("principal", py.None())?;
     }
     if let Some(value) = &value.action {
-        let converted_96_list = PyList::empty(py);
-        for item_97 in value {
-            let converted_item_98 = (item_97).as_str().into_py_any(py)?;
-            converted_96_list.append(converted_item_98)?;
+        let converted_102_list = PyList::empty(py);
+        for item_103 in value {
+            let converted_item_104 = (item_103).as_str().into_py_any(py)?;
+            converted_102_list.append(converted_item_104)?;
         }
-        let converted_96 = converted_96_list.into_any().unbind();
-        result.set_item("action", converted_96)?;
+        let converted_102 = converted_102_list.into_any().unbind();
+        result.set_item("action", converted_102)?;
     } else {
         result.set_item("action", py.None())?;
     }
     if let Some(value) = &value.resource {
-        let converted_99 = (value).as_str().into_py_any(py)?;
-        result.set_item("resource", converted_99)?;
+        let converted_105 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource", converted_105)?;
     } else {
         result.set_item("resource", py.None())?;
     }
     if let Some(value) = &value.condition {
-        let converted_100_dict = PyDict::new(py);
-        for (key_101, value_102) in value {
-            let converted_key_103 = (key_101).as_str().into_py_any(py)?;
-            let converted_value_104_dict = PyDict::new(py);
-            for (key_105, value_106) in value_102 {
-                let converted_key_107 = (key_105).as_str().into_py_any(py)?;
-                let converted_value_108_list = PyList::empty(py);
-                for item_109 in value_106 {
-                    let converted_item_110 = (item_109).as_str().into_py_any(py)?;
-                    converted_value_108_list.append(converted_item_110)?;
+        let converted_106_dict = PyDict::new(py);
+        for (key_107, value_108) in value {
+            let converted_key_109 = (key_107).as_str().into_py_any(py)?;
+            let converted_value_110_dict = PyDict::new(py);
+            for (key_111, value_112) in value_108 {
+                let converted_key_113 = (key_111).as_str().into_py_any(py)?;
+                let converted_value_114_list = PyList::empty(py);
+                for item_115 in value_112 {
+                    let converted_item_116 = (item_115).as_str().into_py_any(py)?;
+                    converted_value_114_list.append(converted_item_116)?;
                 }
-                let converted_value_108 = converted_value_108_list.into_any().unbind();
-                converted_value_104_dict.set_item(converted_key_107, converted_value_108)?;
+                let converted_value_114 = converted_value_114_list.into_any().unbind();
+                converted_value_110_dict.set_item(converted_key_113, converted_value_114)?;
             }
-            let converted_value_104 = converted_value_104_dict.into_any().unbind();
-            converted_100_dict.set_item(converted_key_103, converted_value_104)?;
+            let converted_value_110 = converted_value_110_dict.into_any().unbind();
+            converted_106_dict.set_item(converted_key_109, converted_value_110)?;
         }
-        let converted_100 = converted_100_dict.into_any().unbind();
-        result.set_item("condition", converted_100)?;
+        let converted_106 = converted_106_dict.into_any().unbind();
+        result.set_item("condition", converted_106)?;
     } else {
         result.set_item("condition", py.None())?;
+    }
+    Ok(result.into_any().unbind())
+}
+
+fn revoked_session_from_py(
+    value: &Bound<'_, PyAny>,
+) -> PyResult<aws_sdk_signin::types::RevokedSession> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(values, &["session_arn"])?;
+    let mut builder = aws_sdk_signin::types::RevokedSession::builder();
+    if let Some(value) = dict_value(values, "session_arn")? {
+        let converted_117 = (|| -> PyResult<_> {
+            let converted_117: String = value.extract()?;
+            Ok(converted_117)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("session_arn"), "str")
+        })?;
+        builder = builder.set_session_arn(Some(converted_117));
+    }
+    builder
+        .build()
+        .map_err(|_| rboto_core::input_builder_error(values, &[("session_arn", "session_arn")]))
+}
+
+fn revoked_session_to_py(
+    py: Python<'_>,
+    value: &aws_sdk_signin::types::RevokedSession,
+) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_118 = (&value.session_arn).as_str().into_py_any(py)?;
+    result.set_item("session_arn", converted_118)?;
+    Ok(result.into_any().unbind())
+}
+
+fn session_from_py(value: &Bound<'_, PyAny>) -> PyResult<aws_sdk_signin::types::Session> {
+    let values = value.cast::<PyDict>()?;
+    rboto_core::validate_input_fields(
+        values,
+        &[
+            "client_id",
+            "client_type",
+            "expires_at",
+            "issued_at",
+            "principal_arn",
+            "resource",
+            "role",
+            "session_arn",
+            "status",
+        ],
+    )?;
+    let mut builder = aws_sdk_signin::types::Session::builder();
+    if let Some(value) = dict_value(values, "session_arn")? {
+        let converted_119 = (|| -> PyResult<_> {
+            let converted_119: String = value.extract()?;
+            Ok(converted_119)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("session_arn"), "str")
+        })?;
+        builder = builder.set_session_arn(Some(converted_119));
+    }
+    if let Some(value) = dict_value(values, "principal_arn")? {
+        let converted_120 = (|| -> PyResult<_> {
+            let converted_120: String = value.extract()?;
+            Ok(converted_120)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("principal_arn"), "str")
+        })?;
+        builder = builder.set_principal_arn(Some(converted_120));
+    }
+    if let Some(value) = dict_value(values, "role")? {
+        let converted_121 = (|| -> PyResult<_> {
+            let converted_121: String = value.extract()?;
+            Ok(converted_121)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("role"), "str")
+        })?;
+        builder = builder.set_role(Some(converted_121));
+    }
+    if let Some(value) = dict_value(values, "status")? {
+        let converted_122 = (|| -> PyResult<_> {
+            let enum_value_123: String = value.extract()?;
+            let converted_122 = aws_sdk_signin::types::SessionStatus::from(enum_value_123.as_str());
+            Ok(converted_122)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("status"),
+                "str (SessionStatus)",
+            )
+        })?;
+        builder = builder.set_status(Some(converted_122));
+    }
+    if let Some(value) = dict_value(values, "issued_at")? {
+        let converted_124 = (|| -> PyResult<_> {
+            let converted_124: i64 = value.extract()?;
+            Ok(converted_124)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("issued_at"), "int")
+        })?;
+        builder = builder.set_issued_at(Some(converted_124));
+    }
+    if let Some(value) = dict_value(values, "expires_at")? {
+        let converted_125 = (|| -> PyResult<_> {
+            let converted_125: i64 = value.extract()?;
+            Ok(converted_125)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("expires_at"), "int")
+        })?;
+        builder = builder.set_expires_at(Some(converted_125));
+    }
+    if let Some(value) = dict_value(values, "client_id")? {
+        let converted_126 = (|| -> PyResult<_> {
+            let converted_126: String = value.extract()?;
+            Ok(converted_126)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("client_id"), "str")
+        })?;
+        builder = builder.set_client_id(Some(converted_126));
+    }
+    if let Some(value) = dict_value(values, "client_type")? {
+        let converted_127 = (|| -> PyResult<_> {
+            let enum_value_128: String = value.extract()?;
+            let converted_127 = aws_sdk_signin::types::ClientType::from(enum_value_128.as_str());
+            Ok(converted_127)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(
+                error,
+                rboto_core::InputPath::Field("client_type"),
+                "str (ClientType)",
+            )
+        })?;
+        builder = builder.set_client_type(Some(converted_127));
+    }
+    if let Some(value) = dict_value(values, "resource")? {
+        let converted_129 = (|| -> PyResult<_> {
+            let converted_129: String = value.extract()?;
+            Ok(converted_129)
+        })()
+        .map_err(|error| {
+            rboto_core::input_error(error, rboto_core::InputPath::Field("resource"), "str")
+        })?;
+        builder = builder.set_resource(Some(converted_129));
+    }
+    builder.build().map_err(|_| {
+        rboto_core::input_builder_error(
+            values,
+            &[
+                ("session_arn", "session_arn"),
+                ("principal_arn", "principal_arn"),
+                ("issued_at", "issued_at"),
+                ("expires_at", "expires_at"),
+            ],
+        )
+    })
+}
+
+fn session_to_py(py: Python<'_>, value: &aws_sdk_signin::types::Session) -> PyResult<Py<PyAny>> {
+    let result = PyDict::new(py);
+    let converted_130 = (&value.session_arn).as_str().into_py_any(py)?;
+    result.set_item("session_arn", converted_130)?;
+    let converted_131 = (&value.principal_arn).as_str().into_py_any(py)?;
+    result.set_item("principal_arn", converted_131)?;
+    if let Some(value) = &value.role {
+        let converted_132 = (value).as_str().into_py_any(py)?;
+        result.set_item("role", converted_132)?;
+    } else {
+        result.set_item("role", py.None())?;
+    }
+    if let Some(value) = &value.status {
+        let converted_133 = (value).as_str().into_py_any(py)?;
+        result.set_item("status", converted_133)?;
+    } else {
+        result.set_item("status", py.None())?;
+    }
+    let converted_134 = (&value.issued_at).to_owned().into_py_any(py)?;
+    result.set_item("issued_at", converted_134)?;
+    let converted_135 = (&value.expires_at).to_owned().into_py_any(py)?;
+    result.set_item("expires_at", converted_135)?;
+    if let Some(value) = &value.client_id {
+        let converted_136 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_id", converted_136)?;
+    } else {
+        result.set_item("client_id", py.None())?;
+    }
+    if let Some(value) = &value.client_type {
+        let converted_137 = (value).as_str().into_py_any(py)?;
+        result.set_item("client_type", converted_137)?;
+    } else {
+        result.set_item("client_type", py.None())?;
+    }
+    if let Some(value) = &value.resource {
+        let converted_138 = (value).as_str().into_py_any(py)?;
+        result.set_item("resource", converted_138)?;
+    } else {
+        result.set_item("resource", py.None())?;
     }
     Ok(result.into_any().unbind())
 }
@@ -684,47 +950,47 @@ fn signin_resource_based_policy_from_py(
     rboto_core::validate_input_fields(values, &["statement", "version"])?;
     let mut builder = aws_sdk_signin::types::SigninResourceBasedPolicy::builder();
     if let Some(value) = dict_value(values, "version")? {
-        let converted_111 = (|| -> PyResult<_> {
-            let converted_111: String = value.extract()?;
-            Ok(converted_111)
+        let converted_139 = (|| -> PyResult<_> {
+            let converted_139: String = value.extract()?;
+            Ok(converted_139)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("version"), "str")
         })?;
-        builder = builder.set_version(Some(converted_111));
+        builder = builder.set_version(Some(converted_139));
     }
     if let Some(value) = dict_value(values, "statement")? {
-        let converted_112 = (|| -> PyResult<_> {
-            let mut converted_112 =
+        let converted_140 = (|| -> PyResult<_> {
+            let mut converted_140 =
                 Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
-            for (index_116, item_result_113) in value.try_iter()?.enumerate() {
-                let item_114 = item_result_113.map_err(|error| {
+            for (index_144, item_result_141) in value.try_iter()?.enumerate() {
+                let item_142 = item_result_141.map_err(|error| {
                     rboto_core::input_rule(
                         error,
-                        rboto_core::InputPath::Index(index_116),
+                        rboto_core::InputPath::Index(index_144),
                         "next sequence item",
                         Some("iteration"),
                     )
                 })?;
-                let converted_item_115 = (|| -> PyResult<_> {
-                    let converted_item_115 = policy_statement_from_py(&item_114)?;
-                    Ok(converted_item_115)
+                let converted_item_143 = (|| -> PyResult<_> {
+                    let converted_item_143 = policy_statement_from_py(&item_142)?;
+                    Ok(converted_item_143)
                 })()
                 .map_err(|error| {
                     rboto_core::input_error(
                         error,
-                        rboto_core::InputPath::Index(index_116),
+                        rboto_core::InputPath::Index(index_144),
                         "dict (PolicyStatement)",
                     )
                 })?;
-                converted_112.push(converted_item_115);
+                converted_140.push(converted_item_143);
             }
-            Ok(converted_112)
+            Ok(converted_140)
         })()
         .map_err(|error| {
             rboto_core::input_error(error, rboto_core::InputPath::Field("statement"), "sequence")
         })?;
-        builder = builder.set_statement(Some(converted_112));
+        builder = builder.set_statement(Some(converted_140));
     }
     Ok(builder.build())
 }
@@ -735,19 +1001,19 @@ fn signin_resource_based_policy_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.version {
-        let converted_117 = (value).as_str().into_py_any(py)?;
-        result.set_item("version", converted_117)?;
+        let converted_145 = (value).as_str().into_py_any(py)?;
+        result.set_item("version", converted_145)?;
     } else {
         result.set_item("version", py.None())?;
     }
     if let Some(value) = &value.statement {
-        let converted_118_list = PyList::empty(py);
-        for item_119 in value {
-            let converted_item_120 = policy_statement_to_py(py, item_119)?;
-            converted_118_list.append(converted_item_120)?;
+        let converted_146_list = PyList::empty(py);
+        for item_147 in value {
+            let converted_item_148 = policy_statement_to_py(py, item_147)?;
+            converted_146_list.append(converted_item_148)?;
         }
-        let converted_118 = converted_118_list.into_any().unbind();
-        result.set_item("statement", converted_118)?;
+        let converted_146 = converted_146_list.into_any().unbind();
+        result.set_item("statement", converted_146)?;
     } else {
         result.set_item("statement", py.None())?;
     }
@@ -763,24 +1029,58 @@ struct PyAccessToken {
 impl PyAccessToken {
     #[getter]
     fn access_key_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_147 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
-        Ok(converted_147)
+        let converted_197 = (&self.inner.access_key_id).as_str().into_py_any(py)?;
+        Ok(converted_197)
     }
 
     #[getter]
     fn secret_access_key(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_148 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
-        Ok(converted_148)
+        let converted_198 = (&self.inner.secret_access_key).as_str().into_py_any(py)?;
+        Ok(converted_198)
     }
 
     #[getter]
     fn session_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_149 = (&self.inner.session_token).as_str().into_py_any(py)?;
-        Ok(converted_149)
+        let converted_199 = (&self.inner.session_token).as_str().into_py_any(py)?;
+        Ok(converted_199)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         access_token_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(
+    name = "BatchRevokeSessionError",
+    module = "rboto_signin._native",
+    frozen
+)]
+struct PyBatchRevokeSessionError {
+    inner: Arc<aws_sdk_signin::types::BatchRevokeSessionError>,
+}
+
+#[pymethods]
+impl PyBatchRevokeSessionError {
+    #[getter]
+    fn session_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_200 = (&self.inner.session_arn).as_str().into_py_any(py)?;
+        Ok(converted_200)
+    }
+
+    #[getter]
+    fn code(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_201 = (&self.inner.code).as_str().into_py_any(py)?;
+        Ok(converted_201)
+    }
+
+    #[getter]
+    fn message(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_202 = (&self.inner.message).as_str().into_py_any(py)?;
+        Ok(converted_202)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        batch_revoke_session_error_to_py(py, &self.inner)
     }
 }
 
@@ -814,20 +1114,20 @@ fn create_o_auth2_token_response_body_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.access_token {
-        let converted_155 = access_token_to_py(py, value)?;
-        result.set_item("access_token", converted_155)?;
+        let converted_208 = access_token_to_py(py, value)?;
+        result.set_item("access_token", converted_208)?;
     } else {
         result.set_item("access_token", py.None())?;
     }
-    let converted_156 = (&value.token_type).as_str().into_py_any(py)?;
-    result.set_item("token_type", converted_156)?;
-    let converted_157 = (&value.expires_in).to_owned().into_py_any(py)?;
-    result.set_item("expires_in", converted_157)?;
-    let converted_158 = (&value.refresh_token).as_str().into_py_any(py)?;
-    result.set_item("refresh_token", converted_158)?;
+    let converted_209 = (&value.token_type).as_str().into_py_any(py)?;
+    result.set_item("token_type", converted_209)?;
+    let converted_210 = (&value.expires_in).to_owned().into_py_any(py)?;
+    result.set_item("expires_in", converted_210)?;
+    let converted_211 = (&value.refresh_token).as_str().into_py_any(py)?;
+    result.set_item("refresh_token", converted_211)?;
     if let Some(value) = &value.id_token {
-        let converted_159 = (value).as_str().into_py_any(py)?;
-        result.set_item("id_token", converted_159)?;
+        let converted_212 = (value).as_str().into_py_any(py)?;
+        result.set_item("id_token", converted_212)?;
     } else {
         result.set_item("id_token", py.None())?;
     }
@@ -848,14 +1148,14 @@ impl PyCreateOAuth2TokenResponseBody {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.access_token {
-            let converted_150 = Py::new(
+            let converted_203 = Py::new(
                 py,
                 PyAccessToken {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_150)
+            Ok(converted_203)
         } else {
             Ok(py.None())
         }
@@ -863,27 +1163,27 @@ impl PyCreateOAuth2TokenResponseBody {
 
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_151 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        Ok(converted_151)
+        let converted_204 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_204)
     }
 
     #[getter]
     fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_152 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        Ok(converted_152)
+        let converted_205 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_205)
     }
 
     #[getter]
     fn refresh_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_153 = (&self.inner.refresh_token).as_str().into_py_any(py)?;
-        Ok(converted_153)
+        let converted_206 = (&self.inner.refresh_token).as_str().into_py_any(py)?;
+        Ok(converted_206)
     }
 
     #[getter]
     fn id_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.id_token {
-            let converted_154 = (value).as_str().into_py_any(py)?;
-            Ok(converted_154)
+            let converted_207 = (value).as_str().into_py_any(py)?;
+            Ok(converted_207)
         } else {
             Ok(py.None())
         }
@@ -907,32 +1207,32 @@ struct PyPermissionStatementSummary {
 impl PyPermissionStatementSummary {
     #[getter]
     fn sid(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_160 = (&self.inner.sid).as_str().into_py_any(py)?;
-        Ok(converted_160)
+        let converted_213 = (&self.inner.sid).as_str().into_py_any(py)?;
+        Ok(converted_213)
     }
 
     #[getter]
     fn condition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.condition {
-            let converted_161_dict = PyDict::new(py);
-            for (key_162, value_163) in value {
-                let converted_key_164 = (key_162).as_str().into_py_any(py)?;
-                let converted_value_165_dict = PyDict::new(py);
-                for (key_166, value_167) in value_163 {
-                    let converted_key_168 = (key_166).as_str().into_py_any(py)?;
-                    let converted_value_169_list = PyList::empty(py);
-                    for item_170 in value_167 {
-                        let converted_item_171 = (item_170).as_str().into_py_any(py)?;
-                        converted_value_169_list.append(converted_item_171)?;
+            let converted_214_dict = PyDict::new(py);
+            for (key_215, value_216) in value {
+                let converted_key_217 = (key_215).as_str().into_py_any(py)?;
+                let converted_value_218_dict = PyDict::new(py);
+                for (key_219, value_220) in value_216 {
+                    let converted_key_221 = (key_219).as_str().into_py_any(py)?;
+                    let converted_value_222_list = PyList::empty(py);
+                    for item_223 in value_220 {
+                        let converted_item_224 = (item_223).as_str().into_py_any(py)?;
+                        converted_value_222_list.append(converted_item_224)?;
                     }
-                    let converted_value_169 = converted_value_169_list.into_any().unbind();
-                    converted_value_165_dict.set_item(converted_key_168, converted_value_169)?;
+                    let converted_value_222 = converted_value_222_list.into_any().unbind();
+                    converted_value_218_dict.set_item(converted_key_221, converted_value_222)?;
                 }
-                let converted_value_165 = converted_value_165_dict.into_any().unbind();
-                converted_161_dict.set_item(converted_key_164, converted_value_165)?;
+                let converted_value_218 = converted_value_218_dict.into_any().unbind();
+                converted_214_dict.set_item(converted_key_217, converted_value_218)?;
             }
-            let converted_161 = converted_161_dict.into_any().unbind();
-            Ok(converted_161)
+            let converted_214 = converted_214_dict.into_any().unbind();
+            Ok(converted_214)
         } else {
             Ok(py.None())
         }
@@ -953,8 +1253,8 @@ impl PyPolicyStatement {
     #[getter]
     fn effect(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.effect {
-            let converted_172 = (value).as_str().into_py_any(py)?;
-            Ok(converted_172)
+            let converted_225 = (value).as_str().into_py_any(py)?;
+            Ok(converted_225)
         } else {
             Ok(py.None())
         }
@@ -963,14 +1263,14 @@ impl PyPolicyStatement {
     #[getter]
     fn principal(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.principal {
-            let converted_173_dict = PyDict::new(py);
-            for (key_174, value_175) in value {
-                let converted_key_176 = (key_174).as_str().into_py_any(py)?;
-                let converted_value_177 = (value_175).as_str().into_py_any(py)?;
-                converted_173_dict.set_item(converted_key_176, converted_value_177)?;
+            let converted_226_dict = PyDict::new(py);
+            for (key_227, value_228) in value {
+                let converted_key_229 = (key_227).as_str().into_py_any(py)?;
+                let converted_value_230 = (value_228).as_str().into_py_any(py)?;
+                converted_226_dict.set_item(converted_key_229, converted_value_230)?;
             }
-            let converted_173 = converted_173_dict.into_any().unbind();
-            Ok(converted_173)
+            let converted_226 = converted_226_dict.into_any().unbind();
+            Ok(converted_226)
         } else {
             Ok(py.None())
         }
@@ -979,13 +1279,13 @@ impl PyPolicyStatement {
     #[getter]
     fn action(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.action {
-            let converted_178_list = PyList::empty(py);
-            for item_179 in value {
-                let converted_item_180 = (item_179).as_str().into_py_any(py)?;
-                converted_178_list.append(converted_item_180)?;
+            let converted_231_list = PyList::empty(py);
+            for item_232 in value {
+                let converted_item_233 = (item_232).as_str().into_py_any(py)?;
+                converted_231_list.append(converted_item_233)?;
             }
-            let converted_178 = converted_178_list.into_any().unbind();
-            Ok(converted_178)
+            let converted_231 = converted_231_list.into_any().unbind();
+            Ok(converted_231)
         } else {
             Ok(py.None())
         }
@@ -994,8 +1294,8 @@ impl PyPolicyStatement {
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource {
-            let converted_181 = (value).as_str().into_py_any(py)?;
-            Ok(converted_181)
+            let converted_234 = (value).as_str().into_py_any(py)?;
+            Ok(converted_234)
         } else {
             Ok(py.None())
         }
@@ -1004,25 +1304,25 @@ impl PyPolicyStatement {
     #[getter]
     fn condition(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.condition {
-            let converted_182_dict = PyDict::new(py);
-            for (key_183, value_184) in value {
-                let converted_key_185 = (key_183).as_str().into_py_any(py)?;
-                let converted_value_186_dict = PyDict::new(py);
-                for (key_187, value_188) in value_184 {
-                    let converted_key_189 = (key_187).as_str().into_py_any(py)?;
-                    let converted_value_190_list = PyList::empty(py);
-                    for item_191 in value_188 {
-                        let converted_item_192 = (item_191).as_str().into_py_any(py)?;
-                        converted_value_190_list.append(converted_item_192)?;
+            let converted_235_dict = PyDict::new(py);
+            for (key_236, value_237) in value {
+                let converted_key_238 = (key_236).as_str().into_py_any(py)?;
+                let converted_value_239_dict = PyDict::new(py);
+                for (key_240, value_241) in value_237 {
+                    let converted_key_242 = (key_240).as_str().into_py_any(py)?;
+                    let converted_value_243_list = PyList::empty(py);
+                    for item_244 in value_241 {
+                        let converted_item_245 = (item_244).as_str().into_py_any(py)?;
+                        converted_value_243_list.append(converted_item_245)?;
                     }
-                    let converted_value_190 = converted_value_190_list.into_any().unbind();
-                    converted_value_186_dict.set_item(converted_key_189, converted_value_190)?;
+                    let converted_value_243 = converted_value_243_list.into_any().unbind();
+                    converted_value_239_dict.set_item(converted_key_242, converted_value_243)?;
                 }
-                let converted_value_186 = converted_value_186_dict.into_any().unbind();
-                converted_182_dict.set_item(converted_key_185, converted_value_186)?;
+                let converted_value_239 = converted_value_239_dict.into_any().unbind();
+                converted_235_dict.set_item(converted_key_238, converted_value_239)?;
             }
-            let converted_182 = converted_182_dict.into_any().unbind();
-            Ok(converted_182)
+            let converted_235 = converted_235_dict.into_any().unbind();
+            Ok(converted_235)
         } else {
             Ok(py.None())
         }
@@ -1030,6 +1330,110 @@ impl PyPolicyStatement {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         policy_statement_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "RevokedSession", module = "rboto_signin._native", frozen)]
+struct PyRevokedSession {
+    inner: Arc<aws_sdk_signin::types::RevokedSession>,
+}
+
+#[pymethods]
+impl PyRevokedSession {
+    #[getter]
+    fn session_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_246 = (&self.inner.session_arn).as_str().into_py_any(py)?;
+        Ok(converted_246)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        revoked_session_to_py(py, &self.inner)
+    }
+}
+
+#[pyclass(name = "Session", module = "rboto_signin._native", frozen)]
+struct PySession {
+    inner: Arc<aws_sdk_signin::types::Session>,
+}
+
+#[pymethods]
+impl PySession {
+    #[getter]
+    fn session_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_247 = (&self.inner.session_arn).as_str().into_py_any(py)?;
+        Ok(converted_247)
+    }
+
+    #[getter]
+    fn principal_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_248 = (&self.inner.principal_arn).as_str().into_py_any(py)?;
+        Ok(converted_248)
+    }
+
+    #[getter]
+    fn role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.role {
+            let converted_249 = (value).as_str().into_py_any(py)?;
+            Ok(converted_249)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_250 = (value).as_str().into_py_any(py)?;
+            Ok(converted_250)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn issued_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_251 = (&self.inner.issued_at).to_owned().into_py_any(py)?;
+        Ok(converted_251)
+    }
+
+    #[getter]
+    fn expires_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_252 = (&self.inner.expires_at).to_owned().into_py_any(py)?;
+        Ok(converted_252)
+    }
+
+    #[getter]
+    fn client_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.client_id {
+            let converted_253 = (value).as_str().into_py_any(py)?;
+            Ok(converted_253)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn client_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.client_type {
+            let converted_254 = (value).as_str().into_py_any(py)?;
+            Ok(converted_254)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.resource {
+            let converted_255 = (value).as_str().into_py_any(py)?;
+            Ok(converted_255)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        session_to_py(py, &self.inner)
     }
 }
 
@@ -1047,7 +1451,7 @@ impl From<aws_sdk_signin::types::SigninResourceBasedPolicy> for SharedSigninReso
             statement: value.statement.map(|item| {
                 (item)
                     .into_iter()
-                    .map(|owned_197| Arc::new(owned_197))
+                    .map(|owned_260| Arc::new(owned_260))
                     .collect()
             }),
         }
@@ -1060,19 +1464,19 @@ fn signin_resource_based_policy_shared_to_py(
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
     if let Some(value) = &value.version {
-        let converted_198 = (value).as_str().into_py_any(py)?;
-        result.set_item("version", converted_198)?;
+        let converted_261 = (value).as_str().into_py_any(py)?;
+        result.set_item("version", converted_261)?;
     } else {
         result.set_item("version", py.None())?;
     }
     if let Some(value) = &value.statement {
-        let converted_199_list = PyList::empty(py);
-        for item_200 in value {
-            let converted_item_201 = policy_statement_to_py(py, item_200)?;
-            converted_199_list.append(converted_item_201)?;
+        let converted_262_list = PyList::empty(py);
+        for item_263 in value {
+            let converted_item_264 = policy_statement_to_py(py, item_263)?;
+            converted_262_list.append(converted_item_264)?;
         }
-        let converted_199 = converted_199_list.into_any().unbind();
-        result.set_item("statement", converted_199)?;
+        let converted_262 = converted_262_list.into_any().unbind();
+        result.set_item("statement", converted_262)?;
     } else {
         result.set_item("statement", py.None())?;
     }
@@ -1093,8 +1497,8 @@ impl PySigninResourceBasedPolicy {
     #[getter]
     fn version(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.version {
-            let converted_193 = (value).as_str().into_py_any(py)?;
-            Ok(converted_193)
+            let converted_256 = (value).as_str().into_py_any(py)?;
+            Ok(converted_256)
         } else {
             Ok(py.None())
         }
@@ -1103,19 +1507,19 @@ impl PySigninResourceBasedPolicy {
     #[getter]
     fn statement(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.statement {
-            let converted_194_list = PyList::empty(py);
-            for item_195 in value {
-                let converted_item_196 = Py::new(
+            let converted_257_list = PyList::empty(py);
+            for item_258 in value {
+                let converted_item_259 = Py::new(
                     py,
                     PyPolicyStatement {
-                        inner: Arc::clone(item_195),
+                        inner: Arc::clone(item_258),
                     },
                 )?
                 .into_any();
-                converted_194_list.append(converted_item_196)?;
+                converted_257_list.append(converted_item_259)?;
             }
-            let converted_194 = converted_194_list.into_any().unbind();
-            Ok(converted_194)
+            let converted_257 = converted_257_list.into_any().unbind();
+            Ok(converted_257)
         } else {
             Ok(py.None())
         }
@@ -1123,6 +1527,138 @@ impl PySigninResourceBasedPolicy {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         signin_resource_based_policy_shared_to_py(py, &self.inner)
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationBatchRevokeSessionsOutput {
+    revoked_sessions: ::std::vec::Vec<Arc<aws_sdk_signin::types::RevokedSession>>,
+    errors: ::std::vec::Vec<Arc<aws_sdk_signin::types::BatchRevokeSessionError>>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_signin::operation::batch_revoke_sessions::BatchRevokeSessionsOutput>
+    for SharedPyOperationBatchRevokeSessionsOutput
+{
+    fn from(
+        value: aws_sdk_signin::operation::batch_revoke_sessions::BatchRevokeSessionsOutput,
+    ) -> Self {
+        Self {
+            revoked_sessions: (value.revoked_sessions)
+                .into_iter()
+                .map(|owned_271| Arc::new(owned_271))
+                .collect(),
+            errors: (value.errors)
+                .into_iter()
+                .map(|owned_272| Arc::new(owned_272))
+                .collect(),
+        }
+    }
+}
+
+#[pyclass(
+    name = "BatchRevokeSessionsOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
+struct PyOperationBatchRevokeSessionsOutput {
+    inner: SharedPyOperationBatchRevokeSessionsOutput,
+}
+
+#[pymethods]
+impl PyOperationBatchRevokeSessionsOutput {
+    #[getter]
+    fn revoked_sessions(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_265_list = PyList::empty(py);
+        for item_266 in &self.inner.revoked_sessions {
+            let converted_item_267 = Py::new(
+                py,
+                PyRevokedSession {
+                    inner: Arc::clone(item_266),
+                },
+            )?
+            .into_any();
+            converted_265_list.append(converted_item_267)?;
+        }
+        let converted_265 = converted_265_list.into_any().unbind();
+        Ok(converted_265)
+    }
+
+    #[getter]
+    fn errors(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_268_list = PyList::empty(py);
+        for item_269 in &self.inner.errors {
+            let converted_item_270 = Py::new(
+                py,
+                PyBatchRevokeSessionError {
+                    inner: Arc::clone(item_269),
+                },
+            )?
+            .into_any();
+            converted_268_list.append(converted_item_270)?;
+        }
+        let converted_268 = converted_268_list.into_any().unbind();
+        Ok(converted_268)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_273_list = PyList::empty(py);
+        for item_274 in &self.inner.revoked_sessions {
+            let converted_item_275 = revoked_session_to_py(py, item_274)?;
+            converted_273_list.append(converted_item_275)?;
+        }
+        let converted_273 = converted_273_list.into_any().unbind();
+        result.set_item("revoked_sessions", converted_273)?;
+        let converted_276_list = PyList::empty(py);
+        for item_277 in &self.inner.errors {
+            let converted_item_278 = batch_revoke_session_error_to_py(py, item_277)?;
+            converted_276_list.append(converted_item_278)?;
+        }
+        let converted_276 = converted_276_list.into_any().unbind();
+        result.set_item("errors", converted_276)?;
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(
+    name = "CreateBearerTokenOutput",
+    module = "rboto_signin._native",
+    frozen
+)]
+struct PyOperationCreateBearerTokenOutput {
+    inner: aws_sdk_signin::operation::create_bearer_token::CreateBearerTokenOutput,
+}
+
+#[pymethods]
+impl PyOperationCreateBearerTokenOutput {
+    #[getter]
+    fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_279 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        Ok(converted_279)
+    }
+
+    #[getter]
+    fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_280 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_280)
+    }
+
+    #[getter]
+    fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_281 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_281)
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_282 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        result.set_item("access_token", converted_282)?;
+        let converted_283 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        result.set_item("token_type", converted_283)?;
+        let converted_284 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        result.set_item("expires_in", converted_284)?;
+        Ok(result.into_any().unbind())
     }
 }
 
@@ -1160,14 +1696,14 @@ impl PyOperationCreateOAuth2TokenOutput {
     #[getter]
     fn token_output(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token_output {
-            let converted_202 = Py::new(
+            let converted_285 = Py::new(
                 py,
                 PyCreateOAuth2TokenResponseBody {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_202)
+            Ok(converted_285)
         } else {
             Ok(py.None())
         }
@@ -1176,8 +1712,8 @@ impl PyOperationCreateOAuth2TokenOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.token_output {
-            let converted_203 = create_o_auth2_token_response_body_shared_to_py(py, value)?;
-            result.set_item("token_output", converted_203)?;
+            let converted_286 = create_o_auth2_token_response_body_shared_to_py(py, value)?;
+            result.set_item("token_output", converted_286)?;
         } else {
             result.set_item("token_output", py.None())?;
         }
@@ -1198,30 +1734,30 @@ struct PyOperationCreateOAuth2TokenWithIAMOutput {
 impl PyOperationCreateOAuth2TokenWithIAMOutput {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_204 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        Ok(converted_204)
+        let converted_287 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        Ok(converted_287)
     }
 
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_205 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        Ok(converted_205)
+        let converted_288 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_288)
     }
 
     #[getter]
     fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_206 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        Ok(converted_206)
+        let converted_289 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_289)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_207 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        result.set_item("access_token", converted_207)?;
-        let converted_208 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        result.set_item("token_type", converted_208)?;
-        let converted_209 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        result.set_item("expires_in", converted_209)?;
+        let converted_290 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        result.set_item("access_token", converted_290)?;
+        let converted_291 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        result.set_item("token_type", converted_291)?;
+        let converted_292 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        result.set_item("expires_in", converted_292)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1239,15 +1775,15 @@ struct PyOperationCreateOAuth2TokenWithTokenExchangeOutput {
 impl PyOperationCreateOAuth2TokenWithTokenExchangeOutput {
     #[getter]
     fn access_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_210 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        Ok(converted_210)
+        let converted_293 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        Ok(converted_293)
     }
 
     #[getter]
     fn issued_token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.issued_token_type {
-            let converted_211 = (value).as_str().into_py_any(py)?;
-            Ok(converted_211)
+            let converted_294 = (value).as_str().into_py_any(py)?;
+            Ok(converted_294)
         } else {
             Ok(py.None())
         }
@@ -1255,30 +1791,62 @@ impl PyOperationCreateOAuth2TokenWithTokenExchangeOutput {
 
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_212 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        Ok(converted_212)
+        let converted_295 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        Ok(converted_295)
     }
 
     #[getter]
     fn expires_in(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_213 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        Ok(converted_213)
+        let converted_296 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        Ok(converted_296)
+    }
+
+    #[getter]
+    fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.resource {
+            let converted_297 = (value).as_str().into_py_any(py)?;
+            Ok(converted_297)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.scope {
+            let converted_298 = (value).as_str().into_py_any(py)?;
+            Ok(converted_298)
+        } else {
+            Ok(py.None())
+        }
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_214 = (&self.inner.access_token).as_str().into_py_any(py)?;
-        result.set_item("access_token", converted_214)?;
+        let converted_299 = (&self.inner.access_token).as_str().into_py_any(py)?;
+        result.set_item("access_token", converted_299)?;
         if let Some(value) = &self.inner.issued_token_type {
-            let converted_215 = (value).as_str().into_py_any(py)?;
-            result.set_item("issued_token_type", converted_215)?;
+            let converted_300 = (value).as_str().into_py_any(py)?;
+            result.set_item("issued_token_type", converted_300)?;
         } else {
             result.set_item("issued_token_type", py.None())?;
         }
-        let converted_216 = (&self.inner.token_type).as_str().into_py_any(py)?;
-        result.set_item("token_type", converted_216)?;
-        let converted_217 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
-        result.set_item("expires_in", converted_217)?;
+        let converted_301 = (&self.inner.token_type).as_str().into_py_any(py)?;
+        result.set_item("token_type", converted_301)?;
+        let converted_302 = (&self.inner.expires_in).to_owned().into_py_any(py)?;
+        result.set_item("expires_in", converted_302)?;
+        if let Some(value) = &self.inner.resource {
+            let converted_303 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource", converted_303)?;
+        } else {
+            result.set_item("resource", py.None())?;
+        }
+        if let Some(value) = &self.inner.scope {
+            let converted_304 = (value).as_str().into_py_any(py)?;
+            result.set_item("scope", converted_304)?;
+        } else {
+            result.set_item("scope", py.None())?;
+        }
         Ok(result.into_any().unbind())
     }
 }
@@ -1296,34 +1864,34 @@ struct PyOperationDeleteConsoleAuthorizationConfigurationOutput {
 impl PyOperationDeleteConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_218 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_218)
+        let converted_305 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_305)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_219 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_219)
+        let converted_306 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_306)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_220 = (&self.inner.console_authorization_enabled)
+        let converted_307 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_220)
+        Ok(converted_307)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_221 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_221)?;
-        let converted_222 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_222)?;
-        let converted_223 = (&self.inner.console_authorization_enabled)
+        let converted_308 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_308)?;
+        let converted_309 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_309)?;
+        let converted_310 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_223)?;
+        result.set_item("console_authorization_enabled", converted_310)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1358,34 +1926,34 @@ struct PyOperationGetConsoleAuthorizationConfigurationOutput {
 impl PyOperationGetConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_224 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_224)
+        let converted_311 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_311)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_225 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_225)
+        let converted_312 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_312)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_226 = (&self.inner.console_authorization_enabled)
+        let converted_313 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_226)
+        Ok(converted_313)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_227 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_227)?;
-        let converted_228 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_228)?;
-        let converted_229 = (&self.inner.console_authorization_enabled)
+        let converted_314 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_314)?;
+        let converted_315 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_315)?;
+        let converted_316 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_229)?;
+        result.set_item("console_authorization_enabled", converted_316)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1424,14 +1992,14 @@ impl PyOperationGetResourcePolicyOutput {
     #[getter]
     fn signin_resource_based_policy(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signin_resource_based_policy {
-            let converted_230 = Py::new(
+            let converted_317 = Py::new(
                 py,
                 PySigninResourceBasedPolicy {
                     inner: Arc::clone(value),
                 },
             )?
             .into_any();
-            Ok(converted_230)
+            Ok(converted_317)
         } else {
             Ok(py.None())
         }
@@ -1440,10 +2008,199 @@ impl PyOperationGetResourcePolicyOutput {
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
         if let Some(value) = &self.inner.signin_resource_based_policy {
-            let converted_231 = signin_resource_based_policy_shared_to_py(py, value)?;
-            result.set_item("signin_resource_based_policy", converted_231)?;
+            let converted_318 = signin_resource_based_policy_shared_to_py(py, value)?;
+            result.set_item("signin_resource_based_policy", converted_318)?;
         } else {
             result.set_item("signin_resource_based_policy", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[pyclass(name = "GetSessionOutput", module = "rboto_signin._native", frozen)]
+struct PyOperationGetSessionOutput {
+    inner: aws_sdk_signin::operation::get_session::GetSessionOutput,
+}
+
+#[pymethods]
+impl PyOperationGetSessionOutput {
+    #[getter]
+    fn session_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_319 = (&self.inner.session_arn).as_str().into_py_any(py)?;
+        Ok(converted_319)
+    }
+
+    #[getter]
+    fn principal_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_320 = (&self.inner.principal_arn).as_str().into_py_any(py)?;
+        Ok(converted_320)
+    }
+
+    #[getter]
+    fn role(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.role {
+            let converted_321 = (value).as_str().into_py_any(py)?;
+            Ok(converted_321)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn status(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.status {
+            let converted_322 = (value).as_str().into_py_any(py)?;
+            Ok(converted_322)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn client_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.client_id {
+            let converted_323 = (value).as_str().into_py_any(py)?;
+            Ok(converted_323)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn client_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.client_type {
+            let converted_324 = (value).as_str().into_py_any(py)?;
+            Ok(converted_324)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.resource {
+            let converted_325 = (value).as_str().into_py_any(py)?;
+            Ok(converted_325)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn issued_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_326 = (&self.inner.issued_at).to_owned().into_py_any(py)?;
+        Ok(converted_326)
+    }
+
+    #[getter]
+    fn expires_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_327 = (&self.inner.expires_at).to_owned().into_py_any(py)?;
+        Ok(converted_327)
+    }
+
+    #[getter]
+    fn last_used_at(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.last_used_at {
+            let converted_328 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_328)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn issued_in_region(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.issued_in_region {
+            let converted_329 = (value).as_str().into_py_any(py)?;
+            Ok(converted_329)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn origin_session_arn(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.origin_session_arn {
+            let converted_330 = (value).as_str().into_py_any(py)?;
+            Ok(converted_330)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    #[getter]
+    fn user_agent(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.user_agent {
+            let converted_331 = (value).as_str().into_py_any(py)?;
+            Ok(converted_331)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_332 = (&self.inner.session_arn).as_str().into_py_any(py)?;
+        result.set_item("session_arn", converted_332)?;
+        let converted_333 = (&self.inner.principal_arn).as_str().into_py_any(py)?;
+        result.set_item("principal_arn", converted_333)?;
+        if let Some(value) = &self.inner.role {
+            let converted_334 = (value).as_str().into_py_any(py)?;
+            result.set_item("role", converted_334)?;
+        } else {
+            result.set_item("role", py.None())?;
+        }
+        if let Some(value) = &self.inner.status {
+            let converted_335 = (value).as_str().into_py_any(py)?;
+            result.set_item("status", converted_335)?;
+        } else {
+            result.set_item("status", py.None())?;
+        }
+        if let Some(value) = &self.inner.client_id {
+            let converted_336 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_id", converted_336)?;
+        } else {
+            result.set_item("client_id", py.None())?;
+        }
+        if let Some(value) = &self.inner.client_type {
+            let converted_337 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_type", converted_337)?;
+        } else {
+            result.set_item("client_type", py.None())?;
+        }
+        if let Some(value) = &self.inner.resource {
+            let converted_338 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource", converted_338)?;
+        } else {
+            result.set_item("resource", py.None())?;
+        }
+        let converted_339 = (&self.inner.issued_at).to_owned().into_py_any(py)?;
+        result.set_item("issued_at", converted_339)?;
+        let converted_340 = (&self.inner.expires_at).to_owned().into_py_any(py)?;
+        result.set_item("expires_at", converted_340)?;
+        if let Some(value) = &self.inner.last_used_at {
+            let converted_341 = (value).to_owned().into_py_any(py)?;
+            result.set_item("last_used_at", converted_341)?;
+        } else {
+            result.set_item("last_used_at", py.None())?;
+        }
+        if let Some(value) = &self.inner.issued_in_region {
+            let converted_342 = (value).as_str().into_py_any(py)?;
+            result.set_item("issued_in_region", converted_342)?;
+        } else {
+            result.set_item("issued_in_region", py.None())?;
+        }
+        if let Some(value) = &self.inner.origin_session_arn {
+            let converted_343 = (value).as_str().into_py_any(py)?;
+            result.set_item("origin_session_arn", converted_343)?;
+        } else {
+            result.set_item("origin_session_arn", py.None())?;
+        }
+        if let Some(value) = &self.inner.user_agent {
+            let converted_344 = (value).as_str().into_py_any(py)?;
+            result.set_item("user_agent", converted_344)?;
+        } else {
+            result.set_item("user_agent", py.None())?;
         }
         Ok(result.into_any().unbind())
     }
@@ -1462,15 +2219,15 @@ struct PyOperationIntrospectOAuth2TokenWithIAMOutput {
 impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn active(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_232 = (&self.inner.active).to_owned().into_py_any(py)?;
-        Ok(converted_232)
+        let converted_345 = (&self.inner.active).to_owned().into_py_any(py)?;
+        Ok(converted_345)
     }
 
     #[getter]
     fn client_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.client_id {
-            let converted_233 = (value).as_str().into_py_any(py)?;
-            Ok(converted_233)
+            let converted_346 = (value).as_str().into_py_any(py)?;
+            Ok(converted_346)
         } else {
             Ok(py.None())
         }
@@ -1479,8 +2236,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn user_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.user_id {
-            let converted_234 = (value).as_str().into_py_any(py)?;
-            Ok(converted_234)
+            let converted_347 = (value).as_str().into_py_any(py)?;
+            Ok(converted_347)
         } else {
             Ok(py.None())
         }
@@ -1489,8 +2246,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn token_type(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.token_type {
-            let converted_235 = (value).as_str().into_py_any(py)?;
-            Ok(converted_235)
+            let converted_348 = (value).as_str().into_py_any(py)?;
+            Ok(converted_348)
         } else {
             Ok(py.None())
         }
@@ -1499,8 +2256,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn exp(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.exp {
-            let converted_236 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_236)
+            let converted_349 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_349)
         } else {
             Ok(py.None())
         }
@@ -1509,8 +2266,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn iat(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.iat {
-            let converted_237 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_237)
+            let converted_350 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_350)
         } else {
             Ok(py.None())
         }
@@ -1519,8 +2276,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn nbf(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.nbf {
-            let converted_238 = (value).to_owned().into_py_any(py)?;
-            Ok(converted_238)
+            let converted_351 = (value).to_owned().into_py_any(py)?;
+            Ok(converted_351)
         } else {
             Ok(py.None())
         }
@@ -1529,8 +2286,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn sub(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.sub {
-            let converted_239 = (value).as_str().into_py_any(py)?;
-            Ok(converted_239)
+            let converted_352 = (value).as_str().into_py_any(py)?;
+            Ok(converted_352)
         } else {
             Ok(py.None())
         }
@@ -1539,8 +2296,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn aud(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.aud {
-            let converted_240 = (value).as_str().into_py_any(py)?;
-            Ok(converted_240)
+            let converted_353 = (value).as_str().into_py_any(py)?;
+            Ok(converted_353)
         } else {
             Ok(py.None())
         }
@@ -1549,8 +2306,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn iss(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.iss {
-            let converted_241 = (value).as_str().into_py_any(py)?;
-            Ok(converted_241)
+            let converted_354 = (value).as_str().into_py_any(py)?;
+            Ok(converted_354)
         } else {
             Ok(py.None())
         }
@@ -1559,8 +2316,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn jti(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.jti {
-            let converted_242 = (value).as_str().into_py_any(py)?;
-            Ok(converted_242)
+            let converted_355 = (value).as_str().into_py_any(py)?;
+            Ok(converted_355)
         } else {
             Ok(py.None())
         }
@@ -1569,8 +2326,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn account_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.account_id {
-            let converted_243 = (value).as_str().into_py_any(py)?;
-            Ok(converted_243)
+            let converted_356 = (value).as_str().into_py_any(py)?;
+            Ok(converted_356)
         } else {
             Ok(py.None())
         }
@@ -1579,8 +2336,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn signin_session(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.signin_session {
-            let converted_244 = (value).as_str().into_py_any(py)?;
-            Ok(converted_244)
+            let converted_357 = (value).as_str().into_py_any(py)?;
+            Ok(converted_357)
         } else {
             Ok(py.None())
         }
@@ -1589,8 +2346,8 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
     #[getter]
     fn resource(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.resource {
-            let converted_245 = (value).as_str().into_py_any(py)?;
-            Ok(converted_245)
+            let converted_358 = (value).as_str().into_py_any(py)?;
+            Ok(converted_358)
         } else {
             Ok(py.None())
         }
@@ -1598,83 +2355,83 @@ impl PyOperationIntrospectOAuth2TokenWithIAMOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_246 = (&self.inner.active).to_owned().into_py_any(py)?;
-        result.set_item("active", converted_246)?;
+        let converted_359 = (&self.inner.active).to_owned().into_py_any(py)?;
+        result.set_item("active", converted_359)?;
         if let Some(value) = &self.inner.client_id {
-            let converted_247 = (value).as_str().into_py_any(py)?;
-            result.set_item("client_id", converted_247)?;
+            let converted_360 = (value).as_str().into_py_any(py)?;
+            result.set_item("client_id", converted_360)?;
         } else {
             result.set_item("client_id", py.None())?;
         }
         if let Some(value) = &self.inner.user_id {
-            let converted_248 = (value).as_str().into_py_any(py)?;
-            result.set_item("user_id", converted_248)?;
+            let converted_361 = (value).as_str().into_py_any(py)?;
+            result.set_item("user_id", converted_361)?;
         } else {
             result.set_item("user_id", py.None())?;
         }
         if let Some(value) = &self.inner.token_type {
-            let converted_249 = (value).as_str().into_py_any(py)?;
-            result.set_item("token_type", converted_249)?;
+            let converted_362 = (value).as_str().into_py_any(py)?;
+            result.set_item("token_type", converted_362)?;
         } else {
             result.set_item("token_type", py.None())?;
         }
         if let Some(value) = &self.inner.exp {
-            let converted_250 = (value).to_owned().into_py_any(py)?;
-            result.set_item("exp", converted_250)?;
+            let converted_363 = (value).to_owned().into_py_any(py)?;
+            result.set_item("exp", converted_363)?;
         } else {
             result.set_item("exp", py.None())?;
         }
         if let Some(value) = &self.inner.iat {
-            let converted_251 = (value).to_owned().into_py_any(py)?;
-            result.set_item("iat", converted_251)?;
+            let converted_364 = (value).to_owned().into_py_any(py)?;
+            result.set_item("iat", converted_364)?;
         } else {
             result.set_item("iat", py.None())?;
         }
         if let Some(value) = &self.inner.nbf {
-            let converted_252 = (value).to_owned().into_py_any(py)?;
-            result.set_item("nbf", converted_252)?;
+            let converted_365 = (value).to_owned().into_py_any(py)?;
+            result.set_item("nbf", converted_365)?;
         } else {
             result.set_item("nbf", py.None())?;
         }
         if let Some(value) = &self.inner.sub {
-            let converted_253 = (value).as_str().into_py_any(py)?;
-            result.set_item("sub", converted_253)?;
+            let converted_366 = (value).as_str().into_py_any(py)?;
+            result.set_item("sub", converted_366)?;
         } else {
             result.set_item("sub", py.None())?;
         }
         if let Some(value) = &self.inner.aud {
-            let converted_254 = (value).as_str().into_py_any(py)?;
-            result.set_item("aud", converted_254)?;
+            let converted_367 = (value).as_str().into_py_any(py)?;
+            result.set_item("aud", converted_367)?;
         } else {
             result.set_item("aud", py.None())?;
         }
         if let Some(value) = &self.inner.iss {
-            let converted_255 = (value).as_str().into_py_any(py)?;
-            result.set_item("iss", converted_255)?;
+            let converted_368 = (value).as_str().into_py_any(py)?;
+            result.set_item("iss", converted_368)?;
         } else {
             result.set_item("iss", py.None())?;
         }
         if let Some(value) = &self.inner.jti {
-            let converted_256 = (value).as_str().into_py_any(py)?;
-            result.set_item("jti", converted_256)?;
+            let converted_369 = (value).as_str().into_py_any(py)?;
+            result.set_item("jti", converted_369)?;
         } else {
             result.set_item("jti", py.None())?;
         }
         if let Some(value) = &self.inner.account_id {
-            let converted_257 = (value).as_str().into_py_any(py)?;
-            result.set_item("account_id", converted_257)?;
+            let converted_370 = (value).as_str().into_py_any(py)?;
+            result.set_item("account_id", converted_370)?;
         } else {
             result.set_item("account_id", py.None())?;
         }
         if let Some(value) = &self.inner.signin_session {
-            let converted_258 = (value).as_str().into_py_any(py)?;
-            result.set_item("signin_session", converted_258)?;
+            let converted_371 = (value).as_str().into_py_any(py)?;
+            result.set_item("signin_session", converted_371)?;
         } else {
             result.set_item("signin_session", py.None())?;
         }
         if let Some(value) = &self.inner.resource {
-            let converted_259 = (value).as_str().into_py_any(py)?;
-            result.set_item("resource", converted_259)?;
+            let converted_372 = (value).as_str().into_py_any(py)?;
+            result.set_item("resource", converted_372)?;
         } else {
             result.set_item("resource", py.None())?;
         }
@@ -1692,7 +2449,7 @@ struct SharedPyOperationListResourcePermissionStatementsOutput {
 impl From<aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput> for SharedPyOperationListResourcePermissionStatementsOutput {
     fn from(value: aws_sdk_signin::operation::list_resource_permission_statements::ListResourcePermissionStatementsOutput) -> Self {
         Self {
-            permission_statements: (value.permission_statements).into_iter().map(|owned_264| Arc::new(owned_264)).collect(),
+            permission_statements: (value.permission_statements).into_iter().map(|owned_377| Arc::new(owned_377)).collect(),
             next_token: value.next_token,
         }
     }
@@ -1711,26 +2468,26 @@ struct PyOperationListResourcePermissionStatementsOutput {
 impl PyOperationListResourcePermissionStatementsOutput {
     #[getter]
     fn permission_statements(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_260_list = PyList::empty(py);
-        for item_261 in &self.inner.permission_statements {
-            let converted_item_262 = Py::new(
+        let converted_373_list = PyList::empty(py);
+        for item_374 in &self.inner.permission_statements {
+            let converted_item_375 = Py::new(
                 py,
                 PyPermissionStatementSummary {
-                    inner: Arc::clone(item_261),
+                    inner: Arc::clone(item_374),
                 },
             )?
             .into_any();
-            converted_260_list.append(converted_item_262)?;
+            converted_373_list.append(converted_item_375)?;
         }
-        let converted_260 = converted_260_list.into_any().unbind();
-        Ok(converted_260)
+        let converted_373 = converted_373_list.into_any().unbind();
+        Ok(converted_373)
     }
 
     #[getter]
     fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         if let Some(value) = &self.inner.next_token {
-            let converted_263 = (value).as_str().into_py_any(py)?;
-            Ok(converted_263)
+            let converted_376 = (value).as_str().into_py_any(py)?;
+            Ok(converted_376)
         } else {
             Ok(py.None())
         }
@@ -1738,16 +2495,90 @@ impl PyOperationListResourcePermissionStatementsOutput {
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_265_list = PyList::empty(py);
-        for item_266 in &self.inner.permission_statements {
-            let converted_item_267 = permission_statement_summary_to_py(py, item_266)?;
-            converted_265_list.append(converted_item_267)?;
+        let converted_378_list = PyList::empty(py);
+        for item_379 in &self.inner.permission_statements {
+            let converted_item_380 = permission_statement_summary_to_py(py, item_379)?;
+            converted_378_list.append(converted_item_380)?;
         }
-        let converted_265 = converted_265_list.into_any().unbind();
-        result.set_item("permission_statements", converted_265)?;
+        let converted_378 = converted_378_list.into_any().unbind();
+        result.set_item("permission_statements", converted_378)?;
         if let Some(value) = &self.inner.next_token {
-            let converted_268 = (value).as_str().into_py_any(py)?;
-            result.set_item("next_token", converted_268)?;
+            let converted_381 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_381)?;
+        } else {
+            result.set_item("next_token", py.None())?;
+        }
+        Ok(result.into_any().unbind())
+    }
+}
+
+#[allow(clippy::type_complexity)]
+struct SharedPyOperationListSessionsOutput {
+    items: ::std::vec::Vec<Arc<aws_sdk_signin::types::Session>>,
+    next_token: Option<::std::string::String>,
+}
+
+#[allow(clippy::redundant_closure)]
+impl From<aws_sdk_signin::operation::list_sessions::ListSessionsOutput>
+    for SharedPyOperationListSessionsOutput
+{
+    fn from(value: aws_sdk_signin::operation::list_sessions::ListSessionsOutput) -> Self {
+        Self {
+            items: (value.items)
+                .into_iter()
+                .map(|owned_386| Arc::new(owned_386))
+                .collect(),
+            next_token: value.next_token,
+        }
+    }
+}
+
+#[pyclass(name = "ListSessionsOutput", module = "rboto_signin._native", frozen)]
+struct PyOperationListSessionsOutput {
+    inner: SharedPyOperationListSessionsOutput,
+}
+
+#[pymethods]
+impl PyOperationListSessionsOutput {
+    #[getter]
+    fn items(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let converted_382_list = PyList::empty(py);
+        for item_383 in &self.inner.items {
+            let converted_item_384 = Py::new(
+                py,
+                PySession {
+                    inner: Arc::clone(item_383),
+                },
+            )?
+            .into_any();
+            converted_382_list.append(converted_item_384)?;
+        }
+        let converted_382 = converted_382_list.into_any().unbind();
+        Ok(converted_382)
+    }
+
+    #[getter]
+    fn next_token(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        if let Some(value) = &self.inner.next_token {
+            let converted_385 = (value).as_str().into_py_any(py)?;
+            Ok(converted_385)
+        } else {
+            Ok(py.None())
+        }
+    }
+
+    fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        let result = PyDict::new(py);
+        let converted_387_list = PyList::empty(py);
+        for item_388 in &self.inner.items {
+            let converted_item_389 = session_to_py(py, item_388)?;
+            converted_387_list.append(converted_item_389)?;
+        }
+        let converted_387 = converted_387_list.into_any().unbind();
+        result.set_item("items", converted_387)?;
+        if let Some(value) = &self.inner.next_token {
+            let converted_390 = (value).as_str().into_py_any(py)?;
+            result.set_item("next_token", converted_390)?;
         } else {
             result.set_item("next_token", py.None())?;
         }
@@ -1768,34 +2599,34 @@ struct PyOperationPutConsoleAuthorizationConfigurationOutput {
 impl PyOperationPutConsoleAuthorizationConfigurationOutput {
     #[getter]
     fn target_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_269 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        Ok(converted_269)
+        let converted_391 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        Ok(converted_391)
     }
 
     #[getter]
     fn scope(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_270 = (&self.inner.scope).as_str().into_py_any(py)?;
-        Ok(converted_270)
+        let converted_392 = (&self.inner.scope).as_str().into_py_any(py)?;
+        Ok(converted_392)
     }
 
     #[getter]
     fn console_authorization_enabled(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_271 = (&self.inner.console_authorization_enabled)
+        let converted_393 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        Ok(converted_271)
+        Ok(converted_393)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_272 = (&self.inner.target_id).as_str().into_py_any(py)?;
-        result.set_item("target_id", converted_272)?;
-        let converted_273 = (&self.inner.scope).as_str().into_py_any(py)?;
-        result.set_item("scope", converted_273)?;
-        let converted_274 = (&self.inner.console_authorization_enabled)
+        let converted_394 = (&self.inner.target_id).as_str().into_py_any(py)?;
+        result.set_item("target_id", converted_394)?;
+        let converted_395 = (&self.inner.scope).as_str().into_py_any(py)?;
+        result.set_item("scope", converted_395)?;
+        let converted_396 = (&self.inner.console_authorization_enabled)
             .to_owned()
             .into_py_any(py)?;
-        result.set_item("console_authorization_enabled", converted_274)?;
+        result.set_item("console_authorization_enabled", converted_396)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1813,14 +2644,14 @@ struct PyOperationPutResourcePermissionStatementOutput {
 impl PyOperationPutResourcePermissionStatementOutput {
     #[getter]
     fn statement_id(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
-        let converted_275 = (&self.inner.statement_id).as_str().into_py_any(py)?;
-        Ok(converted_275)
+        let converted_397 = (&self.inner.statement_id).as_str().into_py_any(py)?;
+        Ok(converted_397)
     }
 
     fn to_dict(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         let result = PyDict::new(py);
-        let converted_276 = (&self.inner.statement_id).as_str().into_py_any(py)?;
-        result.set_item("statement_id", converted_276)?;
+        let converted_398 = (&self.inner.statement_id).as_str().into_py_any(py)?;
+        result.set_item("statement_id", converted_398)?;
         Ok(result.into_any().unbind())
     }
 }
@@ -1847,8 +2678,8 @@ fn access_denied_exception_error_details(
     value: &aws_sdk_signin::types::error::AccessDeniedException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_277 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_277)?;
+    let detail_399 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_399)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1857,8 +2688,8 @@ fn conflict_exception_error_details(
     value: &aws_sdk_signin::types::error::ConflictException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_278 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_278)?;
+    let detail_400 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_400)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1867,8 +2698,8 @@ fn internal_server_exception_error_details(
     value: &aws_sdk_signin::types::error::InternalServerException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_279 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_279)?;
+    let detail_401 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_401)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1877,8 +2708,8 @@ fn invalid_grant_exception_error_details(
     value: &aws_sdk_signin::types::error::InvalidGrantException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_280 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_280)?;
+    let detail_402 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_402)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1887,8 +2718,8 @@ fn invalid_scope_exception_error_details(
     value: &aws_sdk_signin::types::error::InvalidScopeException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_281 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_281)?;
+    let detail_403 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_403)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1897,8 +2728,8 @@ fn resource_not_found_exception_error_details(
     value: &aws_sdk_signin::types::error::ResourceNotFoundException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_282 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_282)?;
+    let detail_404 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_404)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1907,8 +2738,8 @@ fn service_quota_exceeded_exception_error_details(
     value: &aws_sdk_signin::types::error::ServiceQuotaExceededException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_283 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_283)?;
+    let detail_405 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_405)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1917,8 +2748,8 @@ fn service_unavailable_exception_error_details(
     value: &aws_sdk_signin::types::error::ServiceUnavailableException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_284 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_284)?;
+    let detail_406 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_406)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1927,8 +2758,8 @@ fn too_many_requests_error_error_details(
     value: &aws_sdk_signin::types::error::TooManyRequestsError,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_285 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_285)?;
+    let detail_407 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_407)?;
     Ok(result.into_any().unbind())
 }
 
@@ -1937,9 +2768,63 @@ fn validation_exception_error_details(
     value: &aws_sdk_signin::types::error::ValidationException,
 ) -> PyResult<Py<PyAny>> {
     let result = PyDict::new(py);
-    let detail_286 = (&value.error).as_str().into_py_any(py)?;
-    result.set_item("error", detail_286)?;
+    let detail_408 = (&value.error).as_str().into_py_any(py)?;
+    result.set_item("error", detail_408)?;
     Ok(result.into_any().unbind())
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::batch_revoke_sessions::BatchRevokeSessionsError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails
+    for aws_sdk_signin::operation::create_bearer_token::CreateBearerTokenError
+{
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
 }
 
 impl ModeledErrorDetails
@@ -2113,6 +2998,33 @@ impl ModeledErrorDetails
     }
 }
 
+impl ModeledErrorDetails for aws_sdk_signin::operation::get_session::GetSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
+            Self::ResourceNotFoundException(value) => {
+                resource_not_found_exception_error_details(py, value)
+            }
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_signin::operation::introspect_o_auth2_token_with_iam::IntrospectOAuth2TokenWithIAMError {
     fn modeled_code(&self) -> Option<&'static str> {
         match self {
@@ -2150,6 +3062,29 @@ impl ModeledErrorDetails for aws_sdk_signin::operation::list_resource_permission
             Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
             Self::ResourceNotFoundException(value) => resource_not_found_exception_error_details(py, value),
+            Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
+            Self::ValidationException(value) => validation_exception_error_details(py, value),
+            _ => Ok(PyDict::new(py).into_any().unbind()),
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_signin::operation::list_sessions::ListSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::TooManyRequestsError(_) => Some("TooManyRequestsError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+    fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
+        match self {
+            Self::AccessDeniedException(value) => access_denied_exception_error_details(py, value),
+            Self::InternalServerException(value) => {
+                internal_server_exception_error_details(py, value)
+            }
             Self::TooManyRequestsError(value) => too_many_requests_error_error_details(py, value),
             Self::ValidationException(value) => validation_exception_error_details(py, value),
             _ => Ok(PyDict::new(py).into_any().unbind()),
@@ -2234,10 +3169,15 @@ impl ModeledErrorDetails
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAccessToken>()?;
+    module.add_class::<PyBatchRevokeSessionError>()?;
     module.add_class::<PyCreateOAuth2TokenResponseBody>()?;
     module.add_class::<PyPermissionStatementSummary>()?;
     module.add_class::<PyPolicyStatement>()?;
+    module.add_class::<PyRevokedSession>()?;
+    module.add_class::<PySession>()?;
     module.add_class::<PySigninResourceBasedPolicy>()?;
+    module.add_class::<PyOperationBatchRevokeSessionsOutput>()?;
+    module.add_class::<PyOperationCreateBearerTokenOutput>()?;
     module.add_class::<PyOperationCreateOAuth2TokenOutput>()?;
     module.add_class::<PyOperationCreateOAuth2TokenWithIAMOutput>()?;
     module.add_class::<PyOperationCreateOAuth2TokenWithTokenExchangeOutput>()?;
@@ -2245,8 +3185,10 @@ pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()
     module.add_class::<PyOperationDeleteResourcePermissionStatementOutput>()?;
     module.add_class::<PyOperationGetConsoleAuthorizationConfigurationOutput>()?;
     module.add_class::<PyOperationGetResourcePolicyOutput>()?;
+    module.add_class::<PyOperationGetSessionOutput>()?;
     module.add_class::<PyOperationIntrospectOAuth2TokenWithIAMOutput>()?;
     module.add_class::<PyOperationListResourcePermissionStatementsOutput>()?;
+    module.add_class::<PyOperationListSessionsOutput>()?;
     module.add_class::<PyOperationPutConsoleAuthorizationConfigurationOutput>()?;
     module.add_class::<PyOperationPutResourcePermissionStatementOutput>()?;
     module.add_class::<PyOperationRevokeOAuth2TokenWithIAMOutput>()?;
@@ -2309,6 +3251,219 @@ impl SignInClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn batch_revoke_sessions<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let principal_arn_value = if let Some(value) = dict_value(params, "principal_arn")? {
+            let converted_149 = (|| -> PyResult<_> {
+                let converted_149: String = value.extract()?;
+                Ok(converted_149)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("principal_arn"),
+                        "str",
+                    ),
+                    "signin",
+                    "BatchRevokeSessions",
+                )
+            })?;
+            Some(converted_149)
+        } else {
+            None
+        };
+        let session_arns_value = if let Some(value) = dict_value(params, "session_arns")? {
+            let converted_150 = (|| -> PyResult<_> {
+                let mut converted_150 =
+                    Vec::with_capacity(value.cast::<PyList>().map_or(0, |items| items.len()));
+                for (index_154, item_result_151) in value.try_iter()?.enumerate() {
+                    let item_152 = item_result_151.map_err(|error| {
+                        rboto_core::input_rule(
+                            error,
+                            rboto_core::InputPath::Index(index_154),
+                            "next sequence item",
+                            Some("iteration"),
+                        )
+                    })?;
+                    let converted_item_153 = (|| -> PyResult<_> {
+                        let converted_item_153: String = item_152.extract()?;
+                        Ok(converted_item_153)
+                    })()
+                    .map_err(|error| {
+                        rboto_core::input_error(
+                            error,
+                            rboto_core::InputPath::Index(index_154),
+                            "str",
+                        )
+                    })?;
+                    converted_150.push(converted_item_153);
+                }
+                Ok(converted_150)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_arns"),
+                        "sequence",
+                    ),
+                    "signin",
+                    "BatchRevokeSessions",
+                )
+            })?;
+            Some(converted_150)
+        } else {
+            None
+        };
+        let reason_value = if let Some(value) = dict_value(params, "reason")? {
+            let converted_155 = (|| -> PyResult<_> {
+                let converted_155: String = value.extract()?;
+                Ok(converted_155)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("reason"), "str"),
+                    "signin",
+                    "BatchRevokeSessions",
+                )
+            })?;
+            Some(converted_155)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .batch_revoke_sessions()
+                .set_principal_arn(principal_arn_value)
+                .set_session_arns(session_arns_value)
+                .set_reason(reason_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "BatchRevokeSessions",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationBatchRevokeSessionsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
+    fn create_bearer_token<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
+            let converted_156 = (|| -> PyResult<_> {
+                let converted_156: String = value.extract()?;
+                Ok(converted_156)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("grant_type"),
+                        "str",
+                    ),
+                    "signin",
+                    "CreateBearerToken",
+                )
+            })?;
+            Some(converted_156)
+        } else {
+            None
+        };
+        let resource_value = if let Some(value) = dict_value(params, "resource")? {
+            let converted_157 = (|| -> PyResult<_> {
+                let converted_157: String = value.extract()?;
+                Ok(converted_157)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(error, rboto_core::InputPath::Field("resource"), "str"),
+                    "signin",
+                    "CreateBearerToken",
+                )
+            })?;
+            Some(converted_157)
+        } else {
+            None
+        };
+        let duration_seconds_value = if let Some(value) = dict_value(params, "duration_seconds")? {
+            let converted_158 = (|| -> PyResult<_> {
+                let converted_158: i32 = value.extract()?;
+                Ok(converted_158)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("duration_seconds"),
+                        "int",
+                    ),
+                    "signin",
+                    "CreateBearerToken",
+                )
+            })?;
+            Some(converted_158)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .create_bearer_token()
+                .set_grant_type(grant_type_value)
+                .set_resource(resource_value)
+                .set_duration_seconds(duration_seconds_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(
+                        py,
+                        &error,
+                        "CreateBearerToken",
+                        &observer.response_metadata(),
+                    )
+                })
+            })?;
+            Ok(PyOperationCreateBearerTokenOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn create_o_auth2_token<'py>(
         &self,
         py: Python<'py>,
@@ -2317,9 +3472,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_input_value = if let Some(value) = dict_value(params, "token_input")? {
-            let converted_121 = (|| -> PyResult<_> {
-                let converted_121 = create_o_auth2_token_request_body_from_py(&value)?;
-                Ok(converted_121)
+            let converted_159 = (|| -> PyResult<_> {
+                let converted_159 = create_o_auth2_token_request_body_from_py(&value)?;
+                Ok(converted_159)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2332,7 +3487,7 @@ impl SignInClient {
                     "CreateOAuth2Token",
                 )
             })?;
-            Some(converted_121)
+            Some(converted_159)
         } else {
             None
         };
@@ -2375,9 +3530,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
-            let converted_122 = (|| -> PyResult<_> {
-                let converted_122: String = value.extract()?;
-                Ok(converted_122)
+            let converted_160 = (|| -> PyResult<_> {
+                let converted_160: String = value.extract()?;
+                Ok(converted_160)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2390,14 +3545,14 @@ impl SignInClient {
                     "CreateOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_122)
+            Some(converted_160)
         } else {
             None
         };
         let resource_value = if let Some(value) = dict_value(params, "resource")? {
-            let converted_123 = (|| -> PyResult<_> {
-                let converted_123: String = value.extract()?;
-                Ok(converted_123)
+            let converted_161 = (|| -> PyResult<_> {
+                let converted_161: String = value.extract()?;
+                Ok(converted_161)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2406,7 +3561,7 @@ impl SignInClient {
                     "CreateOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_123)
+            Some(converted_161)
         } else {
             None
         };
@@ -2448,9 +3603,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let grant_type_value = if let Some(value) = dict_value(params, "grant_type")? {
-            let converted_124 = (|| -> PyResult<_> {
-                let converted_124: String = value.extract()?;
-                Ok(converted_124)
+            let converted_162 = (|| -> PyResult<_> {
+                let converted_162: String = value.extract()?;
+                Ok(converted_162)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2463,14 +3618,14 @@ impl SignInClient {
                     "CreateOAuth2TokenWithTokenExchange",
                 )
             })?;
-            Some(converted_124)
+            Some(converted_162)
         } else {
             None
         };
         let subject_token_value = if let Some(value) = dict_value(params, "subject_token")? {
-            let converted_125 = (|| -> PyResult<_> {
-                let converted_125: String = value.extract()?;
-                Ok(converted_125)
+            let converted_163 = (|| -> PyResult<_> {
+                let converted_163: String = value.extract()?;
+                Ok(converted_163)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2483,15 +3638,15 @@ impl SignInClient {
                     "CreateOAuth2TokenWithTokenExchange",
                 )
             })?;
-            Some(converted_125)
+            Some(converted_163)
         } else {
             None
         };
         let subject_token_type_value =
             if let Some(value) = dict_value(params, "subject_token_type")? {
-                let converted_126 = (|| -> PyResult<_> {
-                    let converted_126: String = value.extract()?;
-                    Ok(converted_126)
+                let converted_164 = (|| -> PyResult<_> {
+                    let converted_164: String = value.extract()?;
+                    Ok(converted_164)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -2504,14 +3659,54 @@ impl SignInClient {
                         "CreateOAuth2TokenWithTokenExchange",
                     )
                 })?;
-                Some(converted_126)
+                Some(converted_164)
             } else {
                 None
             };
+        let assertion_value = if let Some(value) = dict_value(params, "assertion")? {
+            let converted_165 = (|| -> PyResult<_> {
+                let converted_165: String = value.extract()?;
+                Ok(converted_165)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("assertion"),
+                        "str",
+                    ),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_165)
+        } else {
+            None
+        };
+        let client_id_value = if let Some(value) = dict_value(params, "client_id")? {
+            let converted_166 = (|| -> PyResult<_> {
+                let converted_166: String = value.extract()?;
+                Ok(converted_166)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_id"),
+                        "str",
+                    ),
+                    "signin",
+                    "CreateOAuth2TokenWithTokenExchange",
+                )
+            })?;
+            Some(converted_166)
+        } else {
+            None
+        };
         let resource_value = if let Some(value) = dict_value(params, "resource")? {
-            let converted_127 = (|| -> PyResult<_> {
-                let converted_127: String = value.extract()?;
-                Ok(converted_127)
+            let converted_167 = (|| -> PyResult<_> {
+                let converted_167: String = value.extract()?;
+                Ok(converted_167)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2520,14 +3715,14 @@ impl SignInClient {
                     "CreateOAuth2TokenWithTokenExchange",
                 )
             })?;
-            Some(converted_127)
+            Some(converted_167)
         } else {
             None
         };
         let scope_value = if let Some(value) = dict_value(params, "scope")? {
-            let converted_128 = (|| -> PyResult<_> {
-                let converted_128: String = value.extract()?;
-                Ok(converted_128)
+            let converted_168 = (|| -> PyResult<_> {
+                let converted_168: String = value.extract()?;
+                Ok(converted_168)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2536,7 +3731,7 @@ impl SignInClient {
                     "CreateOAuth2TokenWithTokenExchange",
                 )
             })?;
-            Some(converted_128)
+            Some(converted_168)
         } else {
             None
         };
@@ -2547,6 +3742,8 @@ impl SignInClient {
                 .set_grant_type(grant_type_value)
                 .set_subject_token(subject_token_value)
                 .set_subject_token_type(subject_token_type_value)
+                .set_assertion(assertion_value)
+                .set_client_id(client_id_value)
                 .set_resource(resource_value)
                 .set_scope(scope_value);
             let observer = rboto_core::OperationObservation::new(observation.is_some());
@@ -2581,9 +3778,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_129 = (|| -> PyResult<_> {
-                let converted_129: String = value.extract()?;
-                Ok(converted_129)
+            let converted_169 = (|| -> PyResult<_> {
+                let converted_169: String = value.extract()?;
+                Ok(converted_169)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2596,7 +3793,7 @@ impl SignInClient {
                     "DeleteConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_129)
+            Some(converted_169)
         } else {
             None
         };
@@ -2637,9 +3834,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let statement_id_value = if let Some(value) = dict_value(params, "statement_id")? {
-            let converted_130 = (|| -> PyResult<_> {
-                let converted_130: String = value.extract()?;
-                Ok(converted_130)
+            let converted_170 = (|| -> PyResult<_> {
+                let converted_170: String = value.extract()?;
+                Ok(converted_170)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2652,14 +3849,14 @@ impl SignInClient {
                     "DeleteResourcePermissionStatement",
                 )
             })?;
-            Some(converted_130)
+            Some(converted_170)
         } else {
             None
         };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_131 = (|| -> PyResult<_> {
-                let converted_131: String = value.extract()?;
-                Ok(converted_131)
+            let converted_171 = (|| -> PyResult<_> {
+                let converted_171: String = value.extract()?;
+                Ok(converted_171)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2672,7 +3869,7 @@ impl SignInClient {
                     "DeleteResourcePermissionStatement",
                 )
             })?;
-            Some(converted_131)
+            Some(converted_171)
         } else {
             None
         };
@@ -2714,9 +3911,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_132 = (|| -> PyResult<_> {
-                let converted_132: String = value.extract()?;
-                Ok(converted_132)
+            let converted_172 = (|| -> PyResult<_> {
+                let converted_172: String = value.extract()?;
+                Ok(converted_172)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2729,7 +3926,7 @@ impl SignInClient {
                     "GetConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_132)
+            Some(converted_172)
         } else {
             None
         };
@@ -2798,6 +3995,78 @@ impl SignInClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn get_session<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let session_arn_value = if let Some(value) = dict_value(params, "session_arn")? {
+            let converted_173 = (|| -> PyResult<_> {
+                let converted_173: String = value.extract()?;
+                Ok(converted_173)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("session_arn"),
+                        "str",
+                    ),
+                    "signin",
+                    "GetSession",
+                )
+            })?;
+            Some(converted_173)
+        } else {
+            None
+        };
+        let principal_arn_value = if let Some(value) = dict_value(params, "principal_arn")? {
+            let converted_174 = (|| -> PyResult<_> {
+                let converted_174: String = value.extract()?;
+                Ok(converted_174)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("principal_arn"),
+                        "str",
+                    ),
+                    "signin",
+                    "GetSession",
+                )
+            })?;
+            Some(converted_174)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .get_session()
+                .set_session_arn(session_arn_value)
+                .set_principal_arn(principal_arn_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "GetSession", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationGetSessionOutput { inner: output })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn introspect_o_auth2_token_with_iam<'py>(
         &self,
         py: Python<'py>,
@@ -2806,9 +4075,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_133 = (|| -> PyResult<_> {
-                let converted_133: String = value.extract()?;
-                Ok(converted_133)
+            let converted_175 = (|| -> PyResult<_> {
+                let converted_175: String = value.extract()?;
+                Ok(converted_175)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2817,14 +4086,14 @@ impl SignInClient {
                     "IntrospectOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_133)
+            Some(converted_175)
         } else {
             None
         };
         let token_type_hint_value = if let Some(value) = dict_value(params, "token_type_hint")? {
-            let converted_134 = (|| -> PyResult<_> {
-                let converted_134: String = value.extract()?;
-                Ok(converted_134)
+            let converted_176 = (|| -> PyResult<_> {
+                let converted_176: String = value.extract()?;
+                Ok(converted_176)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2837,7 +4106,7 @@ impl SignInClient {
                     "IntrospectOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_134)
+            Some(converted_176)
         } else {
             None
         };
@@ -2879,9 +4148,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
-            let converted_135 = (|| -> PyResult<_> {
-                let converted_135: i32 = value.extract()?;
-                Ok(converted_135)
+            let converted_177 = (|| -> PyResult<_> {
+                let converted_177: i32 = value.extract()?;
+                Ok(converted_177)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2894,14 +4163,14 @@ impl SignInClient {
                     "ListResourcePermissionStatements",
                 )
             })?;
-            Some(converted_135)
+            Some(converted_177)
         } else {
             None
         };
         let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
-            let converted_136 = (|| -> PyResult<_> {
-                let converted_136: String = value.extract()?;
-                Ok(converted_136)
+            let converted_178 = (|| -> PyResult<_> {
+                let converted_178: String = value.extract()?;
+                Ok(converted_178)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2914,7 +4183,7 @@ impl SignInClient {
                     "ListResourcePermissionStatements",
                 )
             })?;
-            Some(converted_136)
+            Some(converted_178)
         } else {
             None
         };
@@ -2950,6 +4219,187 @@ impl SignInClient {
     }
 
     #[pyo3(signature = (params, observation=None))]
+    fn list_sessions<'py>(
+        &self,
+        py: Python<'py>,
+        params: &Bound<'py, PyDict>,
+        observation: Option<Py<PyDict>>,
+    ) -> PyResult<Bound<'py, PyAny>> {
+        let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
+        let principal_arn_value = if let Some(value) = dict_value(params, "principal_arn")? {
+            let converted_179 = (|| -> PyResult<_> {
+                let converted_179: String = value.extract()?;
+                Ok(converted_179)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("principal_arn"),
+                        "str",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_179)
+        } else {
+            None
+        };
+        let max_results_value = if let Some(value) = dict_value(params, "max_results")? {
+            let converted_180 = (|| -> PyResult<_> {
+                let converted_180: i32 = value.extract()?;
+                Ok(converted_180)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("max_results"),
+                        "int",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_180)
+        } else {
+            None
+        };
+        let next_token_value = if let Some(value) = dict_value(params, "next_token")? {
+            let converted_181 = (|| -> PyResult<_> {
+                let converted_181: String = value.extract()?;
+                Ok(converted_181)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("next_token"),
+                        "str",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_181)
+        } else {
+            None
+        };
+        let status_value = if let Some(value) = dict_value(params, "status")? {
+            let converted_182 = (|| -> PyResult<_> {
+                let enum_value_183: String = value.extract()?;
+                let converted_182 =
+                    aws_sdk_signin::types::SessionStatus::from(enum_value_183.as_str());
+                Ok(converted_182)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("status"),
+                        "str (SessionStatus)",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_182)
+        } else {
+            None
+        };
+        let client_id_value = if let Some(value) = dict_value(params, "client_id")? {
+            let converted_184 = (|| -> PyResult<_> {
+                let converted_184: String = value.extract()?;
+                Ok(converted_184)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("client_id"),
+                        "str",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_184)
+        } else {
+            None
+        };
+        let issued_after_value = if let Some(value) = dict_value(params, "issued_after")? {
+            let converted_185 = (|| -> PyResult<_> {
+                let converted_185: i64 = value.extract()?;
+                Ok(converted_185)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("issued_after"),
+                        "int",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_185)
+        } else {
+            None
+        };
+        let issued_before_value = if let Some(value) = dict_value(params, "issued_before")? {
+            let converted_186 = (|| -> PyResult<_> {
+                let converted_186: i64 = value.extract()?;
+                Ok(converted_186)
+            })()
+            .map_err(|error| {
+                rboto_core::input_operation(
+                    rboto_core::input_error(
+                        error,
+                        rboto_core::InputPath::Field("issued_before"),
+                        "int",
+                    ),
+                    "signin",
+                    "ListSessions",
+                )
+            })?;
+            Some(converted_186)
+        } else {
+            None
+        };
+        rboto_core::client_future_into_py(py, lease, async move {
+            let client = state.client().await?;
+            let request = client
+                .list_sessions()
+                .set_principal_arn(principal_arn_value)
+                .set_max_results(max_results_value)
+                .set_next_token(next_token_value)
+                .set_status(status_value)
+                .set_client_id(client_id_value)
+                .set_issued_after(issued_after_value)
+                .set_issued_before(issued_before_value);
+            let observer = rboto_core::OperationObservation::new(observation.is_some());
+            let result = request
+                .customize()
+                .interceptor(observer.clone())
+                .send()
+                .await;
+            if let Some(sink) = observation {
+                observer.publish(sink, client.config().region().map(|region| region.as_ref()));
+            };
+            let output = result.map_err(|error| {
+                Python::attach(|py| {
+                    sdk_error_to_py(py, &error, "ListSessions", &observer.response_metadata())
+                })
+            })?;
+            Ok(PyOperationListSessionsOutput {
+                inner: output.into(),
+            })
+        })
+    }
+
+    #[pyo3(signature = (params, observation=None))]
     fn put_console_authorization_configuration<'py>(
         &self,
         py: Python<'py>,
@@ -2958,9 +4408,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let target_id_value = if let Some(value) = dict_value(params, "target_id")? {
-            let converted_137 = (|| -> PyResult<_> {
-                let converted_137: String = value.extract()?;
-                Ok(converted_137)
+            let converted_187 = (|| -> PyResult<_> {
+                let converted_187: String = value.extract()?;
+                Ok(converted_187)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -2973,7 +4423,7 @@ impl SignInClient {
                     "PutConsoleAuthorizationConfiguration",
                 )
             })?;
-            Some(converted_137)
+            Some(converted_187)
         } else {
             None
         };
@@ -3014,9 +4464,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let source_vpc_value = if let Some(value) = dict_value(params, "source_vpc")? {
-            let converted_138 = (|| -> PyResult<_> {
-                let converted_138: String = value.extract()?;
-                Ok(converted_138)
+            let converted_188 = (|| -> PyResult<_> {
+                let converted_188: String = value.extract()?;
+                Ok(converted_188)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3029,15 +4479,15 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_138)
+            Some(converted_188)
         } else {
             None
         };
         let signin_source_vpce_value =
             if let Some(value) = dict_value(params, "signin_source_vpce")? {
-                let converted_139 = (|| -> PyResult<_> {
-                    let converted_139: String = value.extract()?;
-                    Ok(converted_139)
+                let converted_189 = (|| -> PyResult<_> {
+                    let converted_189: String = value.extract()?;
+                    Ok(converted_189)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -3050,15 +4500,15 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_139)
+                Some(converted_189)
             } else {
                 None
             };
         let console_source_vpce_value =
             if let Some(value) = dict_value(params, "console_source_vpce")? {
-                let converted_140 = (|| -> PyResult<_> {
-                    let converted_140: String = value.extract()?;
-                    Ok(converted_140)
+                let converted_190 = (|| -> PyResult<_> {
+                    let converted_190: String = value.extract()?;
+                    Ok(converted_190)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -3071,14 +4521,14 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_140)
+                Some(converted_190)
             } else {
                 None
             };
         let vpc_source_ip_value = if let Some(value) = dict_value(params, "vpc_source_ip")? {
-            let converted_141 = (|| -> PyResult<_> {
-                let converted_141: String = value.extract()?;
-                Ok(converted_141)
+            let converted_191 = (|| -> PyResult<_> {
+                let converted_191: String = value.extract()?;
+                Ok(converted_191)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3091,14 +4541,14 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_141)
+            Some(converted_191)
         } else {
             None
         };
         let source_ip_value = if let Some(value) = dict_value(params, "source_ip")? {
-            let converted_142 = (|| -> PyResult<_> {
-                let converted_142: String = value.extract()?;
-                Ok(converted_142)
+            let converted_192 = (|| -> PyResult<_> {
+                let converted_192: String = value.extract()?;
+                Ok(converted_192)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3111,14 +4561,14 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_142)
+            Some(converted_192)
         } else {
             None
         };
         let requested_region_value = if let Some(value) = dict_value(params, "requested_region")? {
-            let converted_143 = (|| -> PyResult<_> {
-                let converted_143: String = value.extract()?;
-                Ok(converted_143)
+            let converted_193 = (|| -> PyResult<_> {
+                let converted_193: String = value.extract()?;
+                Ok(converted_193)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3131,15 +4581,15 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_143)
+            Some(converted_193)
         } else {
             None
         };
         let excluded_principal_value =
             if let Some(value) = dict_value(params, "excluded_principal")? {
-                let converted_144 = (|| -> PyResult<_> {
-                    let converted_144: String = value.extract()?;
-                    Ok(converted_144)
+                let converted_194 = (|| -> PyResult<_> {
+                    let converted_194: String = value.extract()?;
+                    Ok(converted_194)
                 })()
                 .map_err(|error| {
                     rboto_core::input_operation(
@@ -3152,14 +4602,14 @@ impl SignInClient {
                         "PutResourcePermissionStatement",
                     )
                 })?;
-                Some(converted_144)
+                Some(converted_194)
             } else {
                 None
             };
         let client_token_value = if let Some(value) = dict_value(params, "client_token")? {
-            let converted_145 = (|| -> PyResult<_> {
-                let converted_145: String = value.extract()?;
-                Ok(converted_145)
+            let converted_195 = (|| -> PyResult<_> {
+                let converted_195: String = value.extract()?;
+                Ok(converted_195)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3172,7 +4622,7 @@ impl SignInClient {
                     "PutResourcePermissionStatement",
                 )
             })?;
-            Some(converted_145)
+            Some(converted_195)
         } else {
             None
         };
@@ -3220,9 +4670,9 @@ impl SignInClient {
     ) -> PyResult<Bound<'py, PyAny>> {
         let (state, lease) = self.state.acquire().ok_or_else(rboto_core::client_closed)?;
         let token_value = if let Some(value) = dict_value(params, "token")? {
-            let converted_146 = (|| -> PyResult<_> {
-                let converted_146: String = value.extract()?;
-                Ok(converted_146)
+            let converted_196 = (|| -> PyResult<_> {
+                let converted_196: String = value.extract()?;
+                Ok(converted_196)
             })()
             .map_err(|error| {
                 rboto_core::input_operation(
@@ -3231,7 +4681,7 @@ impl SignInClient {
                     "RevokeOAuth2TokenWithIAM",
                 )
             })?;
-            Some(converted_146)
+            Some(converted_196)
         } else {
             None
         };

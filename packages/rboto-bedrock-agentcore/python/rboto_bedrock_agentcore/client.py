@@ -12,10 +12,11 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthOutput, CreateABTestOutput, CreateEventOutput, CreatePaymentInstrumentOutput, CreatePaymentSessionOutput, DeleteABTestOutput, DeleteBatchEvaluationOutput, DeleteCapacityProviderSessionOutput, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentOutput, DeletePaymentSessionOutput, DeleteRecommendationOutput, EvaluateOutput, GetABTestOutput, GetAgentCardOutput, GetBatchEvaluationOutput, GetBrowserSessionOutput, GetCodeInterpreterSessionOutput, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceOutput, GetPaymentInstrumentOutput, GetPaymentSessionOutput, GetRecommendationOutput, GetResourceApiKeyOutput, GetResourceOauth2TokenOutput, GetResourcePaymentTokenOutput, GetWorkloadAccessTokenForJWTOutput, GetWorkloadAccessTokenForUserIdOutput, GetWorkloadAccessTokenOutput, IngestDataOutput, InvokeAgentRuntimeOutput, InvokeBrowserOutput, ListABTestsOutput, ListActorsOutput, ListBatchEvaluationsOutput, ListBrowserSessionsOutput, ListCodeInterpreterSessionsOutput, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsOutput, ListPaymentSessionsOutput, ListRecommendationsOutput, ListSessionsOutput, ProcessPaymentOutput, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileOutput, SearchRegistryRecordsOutput, StartBatchEvaluationOutput, StartBrowserSessionOutput, StartCodeInterpreterSessionOutput, StartMemoryExtractionJobOutput, StartRecommendationOutput, StopBatchEvaluationOutput, StopBrowserSessionOutput, StopCodeInterpreterSessionOutput, StopRuntimeSessionOutput, UpdateABTestOutput, UpdateBrowserStreamOutput
+from ._native import BedrockAgentCoreClient as NativeClient, BatchCreateMemoryRecordsOutput, BatchDeleteMemoryRecordsOutput, BatchUpdateMemoryRecordsOutput, CompleteResourceTokenAuthOutput, CreateABTestOutput, CreateEventOutput, CreatePaymentInstrumentOutput, CreatePaymentSessionOutput, DeleteABTestOutput, DeleteBatchEvaluationOutput, DeleteCapacityProviderSessionOutput, DeleteDatasetGenerationOutput, DeleteEventOutput, DeleteMemoryRecordOutput, DeletePaymentInstrumentOutput, DeletePaymentSessionOutput, DeleteRecommendationOutput, EvaluateOutput, GetABTestOutput, GetAgentCardOutput, GetAgentInsightOutput, GetBatchEvaluationOutput, GetBrowserSessionOutput, GetCodeInterpreterSessionOutput, GetDatasetGenerationOutput, GetEventOutput, GetMemoryRecordOutput, GetPaymentInstrumentBalanceOutput, GetPaymentInstrumentOutput, GetPaymentSessionOutput, GetRecommendationOutput, GetResourceApiKeyOutput, GetResourceOauth2TokenOutput, GetResourcePaymentTokenOutput, GetWorkloadAccessTokenForJWTOutput, GetWorkloadAccessTokenForUserIdOutput, GetWorkloadAccessTokenOutput, IngestDataOutput, InvokeAgentRuntimeOutput, InvokeBrowserOutput, InvokeWebSearchOutput, ListABTestsOutput, ListActorsOutput, ListAgentInsightsOutput, ListBatchEvaluationsOutput, ListBrowserSessionsOutput, ListCodeInterpreterSessionsOutput, ListDatasetGenerationsOutput, ListEventsOutput, ListMemoryExtractionJobsOutput, ListMemoryRecordsOutput, ListPaymentInstrumentsOutput, ListPaymentSessionsOutput, ListRecommendationsOutput, ListSessionsOutput, ProcessPaymentOutput, RetrieveMemoryRecordsOutput, SaveBrowserSessionProfileOutput, SearchRegistryRecordsOutput, StartBatchEvaluationOutput, StartBrowserSessionOutput, StartCodeInterpreterSessionOutput, StartDatasetGenerationOutput, StartMemoryExtractionJobOutput, StartRecommendationOutput, StopBatchEvaluationOutput, StopBrowserSessionOutput, StopCodeInterpreterSessionOutput, StopRuntimeSessionOutput, UpdateABTestOutput, UpdateAgentInsightOutput, UpdateBrowserStreamOutput
 from .types import (
     ABTestEvaluationConfig,
     ABTestExecutionStatus,
+    AgentInsightArchiveStatus,
     BlockchainChainId,
     Branch,
     BrowserAction,
@@ -27,6 +28,7 @@ from .types import (
     CodeInterpreterSessionStatus,
     ContentSource,
     DataSourceConfig,
+    DatasetExecutionConfig,
     EvaluationInput,
     EvaluationMetadata,
     EvaluationReferenceInput,
@@ -38,6 +40,7 @@ from .types import (
     ExtractionMode,
     FilterInput,
     GatewayFilter,
+    GenerationSource,
     HarnessMessage,
     HarnessModelConfiguration,
     HarnessSkill,
@@ -68,6 +71,7 @@ from .types import (
     RecommendationStatus,
     RecommendationType,
     RecordExpirySpecification,
+    ScenarioType,
     SearchCriteria,
     SessionFilter,
     SessionLimits,
@@ -78,6 +82,7 @@ from .types import (
     UserIdentifier,
     Variant,
     ViewPort,
+    WebSearchFilters,
 )
 from .paginators import BedrockAgentCoreClientPaginators as _Paginators
 
@@ -510,6 +515,33 @@ class BedrockAgentCoreClient:
         return _response
 
 
+    async def delete_dataset_generation(
+        self,
+        *,
+        dataset_id: str,
+        generation_id: str,
+    ) -> DeleteDatasetGenerationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/delete_dataset_generation/)."""
+        params: dict[str, object] = {
+            "dataset_id": dataset_id,
+            "generation_id": generation_id,
+        }
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_dataset_generation, params, _interceptors,
+                "bedrock-agentcore", "DeleteDatasetGeneration", self._region,
+                DeleteDatasetGenerationOutput,
+                ("dataset_id", "generation_id", ),
+                ("dataset_id", "generation_id", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.delete_dataset_generation(params)
+        return _response
+
+
     async def delete_event(
         self,
         *,
@@ -747,6 +779,33 @@ class BedrockAgentCoreClient:
         return _response
 
 
+    async def get_agent_insight(
+        self,
+        *,
+        application_name: str,
+        agent_insight_id: str,
+    ) -> GetAgentInsightOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_agent_insight/)."""
+        params: dict[str, object] = {
+            "application_name": application_name,
+            "agent_insight_id": agent_insight_id,
+        }
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_agent_insight, params, _interceptors,
+                "bedrock-agentcore", "GetAgentInsight", self._region,
+                GetAgentInsightOutput,
+                ("application_name", "agent_insight_id", ),
+                ("application_name", "agent_insight_id", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.get_agent_insight(params)
+        return _response
+
+
     async def get_batch_evaluation(
         self,
         *,
@@ -823,6 +882,33 @@ class BedrockAgentCoreClient:
             )
             return _response
         _response = await self._native.get_code_interpreter_session(params)
+        return _response
+
+
+    async def get_dataset_generation(
+        self,
+        *,
+        dataset_id: str,
+        generation_id: str,
+    ) -> GetDatasetGenerationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/get_dataset_generation/)."""
+        params: dict[str, object] = {
+            "dataset_id": dataset_id,
+            "generation_id": generation_id,
+        }
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_dataset_generation, params, _interceptors,
+                "bedrock-agentcore", "GetDatasetGeneration", self._region,
+                GetDatasetGenerationOutput,
+                ("dataset_id", "generation_id", ),
+                ("dataset_id", "generation_id", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.get_dataset_generation(params)
         return _response
 
 
@@ -1515,6 +1601,39 @@ class BedrockAgentCoreClient:
         return _response
 
 
+    async def invoke_web_search(
+        self,
+        *,
+        web_search_id: str,
+        search_query: str,
+        max_results: int | None = None,
+        filters: WebSearchFilters | None = None,
+    ) -> InvokeWebSearchOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/invoke_web_search/)."""
+        params: dict[str, object] = {
+            "web_search_id": web_search_id,
+            "search_query": search_query,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if filters is not None:
+            params["filters"] = filters
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.invoke_web_search, params, _interceptors,
+                "bedrock-agentcore", "InvokeWebSearch", self._region,
+                InvokeWebSearchOutput,
+                ("web_search_id", "search_query", "max_results", "filters", ),
+                ("web_search_id", "search_query", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.invoke_web_search(params)
+        return _response
+
+
     async def list_ab_tests(
         self,
         *,
@@ -1572,6 +1691,44 @@ class BedrockAgentCoreClient:
             )
             return _response
         _response = await self._native.list_actors(params)
+        return _response
+
+
+    async def list_agent_insights(
+        self,
+        *,
+        application_name: str | None = None,
+        batch_evaluation_id: str | None = None,
+        archive_status: AgentInsightArchiveStatus | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListAgentInsightsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_agent_insights/)."""
+        params: dict[str, object] = {
+        }
+        if application_name is not None:
+            params["application_name"] = application_name
+        if batch_evaluation_id is not None:
+            params["batch_evaluation_id"] = batch_evaluation_id
+        if archive_status is not None:
+            params["archive_status"] = archive_status
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_agent_insights, params, _interceptors,
+                "bedrock-agentcore", "ListAgentInsights", self._region,
+                ListAgentInsightsOutput,
+                ("application_name", "batch_evaluation_id", "archive_status", "max_results", "next_token", ),
+                (),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.list_agent_insights(params)
         return _response
 
 
@@ -1669,6 +1826,37 @@ class BedrockAgentCoreClient:
             )
             return _response
         _response = await self._native.list_code_interpreter_sessions(params)
+        return _response
+
+
+    async def list_dataset_generations(
+        self,
+        *,
+        dataset_id: str,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListDatasetGenerationsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_dataset_generations/)."""
+        params: dict[str, object] = {
+            "dataset_id": dataset_id,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_dataset_generations, params, _interceptors,
+                "bedrock-agentcore", "ListDatasetGenerations", self._region,
+                ListDatasetGenerationsOutput,
+                ("dataset_id", "max_results", "next_token", ),
+                ("dataset_id", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.list_dataset_generations(params)
         return _response
 
 
@@ -2100,6 +2288,7 @@ class BedrockAgentCoreClient:
         kms_key_arn: str | None = None,
         description: str | None = None,
         output_config: OutputConfig | None = None,
+        dataset_execution_config: DatasetExecutionConfig | None = None,
     ) -> StartBatchEvaluationOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_batch_evaluation/)."""
         params: dict[str, object] = {
@@ -2122,6 +2311,8 @@ class BedrockAgentCoreClient:
             params["description"] = description
         if output_config is not None:
             params["output_config"] = output_config
+        if dataset_execution_config is not None:
+            params["dataset_execution_config"] = dataset_execution_config
         _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -2129,7 +2320,7 @@ class BedrockAgentCoreClient:
                 self._native.start_batch_evaluation, params, _interceptors,
                 "bedrock-agentcore", "StartBatchEvaluation", self._region,
                 StartBatchEvaluationOutput,
-                ("batch_evaluation_name", "data_source_config", "evaluators", "insights", "client_token", "evaluation_metadata", "tags", "kms_key_arn", "description", "output_config", ),
+                ("batch_evaluation_name", "data_source_config", "evaluators", "insights", "client_token", "evaluation_metadata", "tags", "kms_key_arn", "description", "output_config", "dataset_execution_config", ),
                 ("batch_evaluation_name", "data_source_config", ),
                 service_name='Bedrock AgentCore',
             )
@@ -2242,6 +2433,44 @@ class BedrockAgentCoreClient:
             )
             return _response
         _response = await self._native.start_code_interpreter_session(params)
+        return _response
+
+
+    async def start_dataset_generation(
+        self,
+        *,
+        dataset_id: str,
+        name: str,
+        source: GenerationSource,
+        description: str | None = None,
+        scenario_type: ScenarioType | None = None,
+        client_token: str | None = None,
+    ) -> StartDatasetGenerationOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/start_dataset_generation/)."""
+        params: dict[str, object] = {
+            "dataset_id": dataset_id,
+            "name": name,
+            "source": source,
+        }
+        if description is not None:
+            params["description"] = description
+        if scenario_type is not None:
+            params["scenario_type"] = scenario_type
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.start_dataset_generation, params, _interceptors,
+                "bedrock-agentcore", "StartDatasetGeneration", self._region,
+                StartDatasetGenerationOutput,
+                ("dataset_id", "name", "source", "description", "scenario_type", "client_token", ),
+                ("dataset_id", "name", "source", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.start_dataset_generation(params)
         return _response
 
 
@@ -2492,6 +2721,35 @@ class BedrockAgentCoreClient:
             )
             return _response
         _response = await self._native.update_ab_test(params)
+        return _response
+
+
+    async def update_agent_insight(
+        self,
+        *,
+        application_name: str,
+        agent_insight_id: str,
+        archive_status: AgentInsightArchiveStatus,
+    ) -> UpdateAgentInsightOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/update_agent_insight/)."""
+        params: dict[str, object] = {
+            "application_name": application_name,
+            "agent_insight_id": agent_insight_id,
+            "archive_status": archive_status,
+        }
+        _interceptors = operation_interceptors("bedrock-agentcore", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_agent_insight, params, _interceptors,
+                "bedrock-agentcore", "UpdateAgentInsight", self._region,
+                UpdateAgentInsightOutput,
+                ("application_name", "agent_insight_id", "archive_status", ),
+                ("application_name", "agent_insight_id", "archive_status", ),
+                service_name='Bedrock AgentCore',
+            )
+            return _response
+        _response = await self._native.update_agent_insight(params)
         return _response
 
 

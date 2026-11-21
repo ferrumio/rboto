@@ -62,3 +62,49 @@ def test_nested_resource_operations_are_complete_and_deduplicated(tmp_path: Path
 )
 def test_rust_acronym_naming(name: str, expected: str) -> None:
     assert to_snake_case(name) == expected
+
+
+@pytest.mark.parametrize(
+    ("values", "valid"),
+    [
+        ([3, 6, 12], True),
+        ([-(2**31), 2**31 - 1], True),
+        ([], False),
+        ([3, 3], False),
+        ([True], False),
+        (["3"], False),
+        ([3.0], False),
+        ([None], False),
+        ([2**31], False),
+        ([-(2**31) - 1], False),
+    ],
+)
+def test_integer_enum_values(tmp_path: Path, values: list[object], valid: bool) -> None:
+    model = {
+        "smithy": "2.0",
+        "shapes": {
+            "test#Service": {"type": "service", "version": "1"},
+            "test#Capacity": {
+                "type": "intEnum",
+                "members": {
+                    f"VALUE_{index}": {
+                        "target": "smithy.api#Unit",
+                        "traits": {"smithy.api#enumValue": value},
+                    }
+                    for index, value in enumerate(values)
+                },
+            },
+        },
+    }
+    raw = json.dumps(model).encode()
+    path = tmp_path / "model.json"
+    path.write_bytes(raw)
+    descriptor = replace(get_service("sqs"), model_sha256=hashlib.sha256(raw).hexdigest())
+    if not valid:
+        with pytest.raises(ValueError, match="test#Capacity"):
+            load_model(path, descriptor)
+        return
+    capacity = load_model(path, descriptor).shapes["test#Capacity"]
+    assert capacity.kind == "intEnum"
+    assert capacity.int_enum_values == tuple(values)
+    assert capacity.members == ()

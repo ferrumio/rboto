@@ -133,6 +133,7 @@ async def converse(
     inference_config: InferenceConfiguration | None = None,
     tool_config: ToolConfiguration | None = None,
     guardrail_config: GuardrailConfiguration | None = None,
+    project_identifier: str | None = None,
     additional_model_request_fields: JSONValue | None = None,
     prompt_variables: dict[str, PromptVariableValues] | None = None,
     additional_model_response_field_paths: Sequence[str] | None = None,
@@ -155,6 +156,7 @@ async def converse_stream(
     inference_config: InferenceConfiguration | None = None,
     tool_config: ToolConfiguration | None = None,
     guardrail_config: GuardrailStreamConfiguration | None = None,
+    project_identifier: str | None = None,
     additional_model_request_fields: JSONValue | None = None,
     prompt_variables: dict[str, PromptVariableValues] | None = None,
     additional_model_response_field_paths: Sequence[str] | None = None,
@@ -213,6 +215,7 @@ async def invoke_model(
     performance_config_latency: PerformanceConfigLatency | None = None,
     service_tier: ServiceTierType | None = None,
     request_metadata: str | None = None,
+    project_identifier: str | None = None,
 ) -> InvokeModelOutput: ...
 ```
 
@@ -243,6 +246,7 @@ async def invoke_model_with_response_stream(
     performance_config_latency: PerformanceConfigLatency | None = None,
     service_tier: ServiceTierType | None = None,
     request_metadata: str | None = None,
+    project_identifier: str | None = None,
 ) -> InvokeModelWithResponseStreamOutput: ...
 ```
 

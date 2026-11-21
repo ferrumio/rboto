@@ -328,6 +328,10 @@ DataCatalogType: TypeAlias = Literal['LAMBDA', 'GLUE', 'HIVE', 'FEDERATED']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DataCatalogType/)."""
 DataCatalogTypeOutput: TypeAlias = DataCatalogType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DataCatalogTypeOutput/)."""
+DatabaseAttributes: TypeAlias = Literal['NAME']
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DatabaseAttributes/)."""
+DatabaseAttributesOutput: TypeAlias = DatabaseAttributes | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/DatabaseAttributesOutput/)."""
 EncryptionOption: TypeAlias = Literal['SSE_S3', 'SSE_KMS', 'CSE_KMS']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/EncryptionOption/)."""
 EncryptionOptionOutput: TypeAlias = EncryptionOption | UnknownEnumValue
@@ -372,6 +376,10 @@ SystemTableType: TypeAlias = Literal['QUERY_EXECUTIONS']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableType/)."""
 SystemTableTypeOutput: TypeAlias = SystemTableType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/SystemTableTypeOutput/)."""
+TableAttributes: TypeAlias = Literal['NAME', 'TABLE_TYPE']
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/TableAttributes/)."""
+TableAttributesOutput: TypeAlias = TableAttributes | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/athena/types/TableAttributesOutput/)."""
 ThrottleReason: TypeAlias = Literal['CONCURRENT_QUERY_LIMIT_EXCEEDED']
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ThrottleReason/)."""
 ThrottleReasonOutput: TypeAlias = ThrottleReason | UnknownEnumValue
@@ -1081,6 +1089,7 @@ ListDatabasesInput = TypedDict(
     "next_token": NotRequired["str"],
     "max_results": NotRequired["int"],
     "work_group": NotRequired["str"],
+    "attributes_to_get": NotRequired["Sequence[DatabaseAttributes]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListDatabasesInput/)."""
@@ -1185,6 +1194,7 @@ ListTableMetadataInput = TypedDict(
     "next_token": NotRequired["str"],
     "max_results": NotRequired["int"],
     "work_group": NotRequired["str"],
+    "attributes_to_get": NotRequired["Sequence[TableAttributes]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/athena/types/ListTableMetadataInput/)."""

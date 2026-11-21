@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon GuardDuty**,
 powered by Rust. This package contains `GuardDutyClient` and
-**102 operations**.
+**103 operations**.
 
 ## Installation
 
@@ -160,6 +160,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`list_detectors`](#list_detectors) | None | <code>ListDetectorsOutput</code> |
 | [`list_filters`](#list_filters) | <code>detector_id: str</code> | <code>ListFiltersOutput</code> |
 | [`list_findings`](#list_findings) | <code>detector_id: str</code> | <code>ListFindingsOutput</code> |
+| [`list_investigation_records`](#list_investigation_records) | <code>detector_id: str</code>, <code>investigation_id: str</code> | <code>ListInvestigationRecordsOutput</code> |
 | [`list_investigations`](#list_investigations) | <code>detector_id: str</code> | <code>ListInvestigationsOutput</code> |
 | [`list_invitations`](#list_invitations) | None | <code>ListInvitationsOutput</code> |
 | [`list_ip_sets`](#list_ip_sets) | <code>detector_id: str</code> | <code>ListIPSetsOutput</code> |
@@ -762,6 +763,7 @@ async def get_investigation(
     *,
     detector_id: str,
     investigation_id: str,
+    summary_format: SummaryFormat | None = None,
 ) -> GetInvestigationOutput: ...
 ```
 
@@ -1037,12 +1039,30 @@ Also available as `client.paginators.list_findings(...)`, returning an
 async iterator of the response type above.
 
 
+### list_investigation_records
+
+```python
+async def list_investigation_records(
+    *,
+    detector_id: str,
+    investigation_id: str,
+    record_types: _Sequence[RecordType] | None = None,
+    max_results: int | None = None,
+    next_token: str | None = None,
+) -> ListInvestigationRecordsOutput: ...
+```
+
+Also available as `client.paginators.list_investigation_records(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_investigations
 
 ```python
 async def list_investigations(
     *,
     detector_id: str,
+    filter_criteria: InvestigationFilterCriteria | None = None,
     sort_criteria: InvestigationSortCriteria | None = None,
     max_results: int | None = None,
     next_token: str | None = None,

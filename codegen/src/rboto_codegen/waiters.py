@@ -57,7 +57,7 @@ class _Compiler:
         if value.target.startswith("smithy.api#"):
             return short_name(value.target).removeprefix("Primitive").lower()
         shape = self.service.shapes[value.target]
-        return "string" if shape.kind == "enum" else shape.kind
+        return {"enum": "string", "intEnum": "integer"}.get(shape.kind, shape.kind)
 
     def item(self, value: _Type) -> _Type:
         if value.element is not None:

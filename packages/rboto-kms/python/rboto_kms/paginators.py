@@ -20,6 +20,7 @@ from ._native import (
 
 from .types import (
     IncludeKeyMaterial,
+    ResourceOwnerType,
 )
 
 if TYPE_CHECKING:
@@ -178,6 +179,7 @@ class KMSClientPaginators:
         *,
         limit: int | None = None,
         marker: str | None = None,
+        resource_owners: Sequence[ResourceOwnerType] | None = None,
     ) -> AsyncIterator[ListKeysOutput]:
         """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kms/operations/list_keys/#pagination-and-streaming)."""
         params: dict[str, object] = {
@@ -186,6 +188,8 @@ class KMSClientPaginators:
             params["limit"] = limit
         if marker is not None:
             params["marker"] = marker
+        if resource_owners is not None:
+            params["resource_owners"] = resource_owners
         return _paginate(
             self._client.list_keys, params,
             _PaginationSpec(

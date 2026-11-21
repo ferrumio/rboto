@@ -10,6 +10,7 @@ from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _pa
 from ._native import (
     DescribeStreamOutput,
     ListChannelsOutput,
+    ListQueuesOutput,
     ListShardsOutput,
     ListStreamConsumersOutput,
     ListStreamsOutput,
@@ -17,6 +18,7 @@ from ._native import (
 )
 
 from .types import (
+    QueueStreamFilter,
     ShardFilter,
     StreamFilter,
 )
@@ -80,6 +82,32 @@ class KinesisClientPaginators:
             params["next_token"] = next_token
         return _paginate(
             self._client.list_channels, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_queues(
+        self,
+        *,
+        max_results: int | None = None,
+        next_token: str | None = None,
+        stream_filter: Sequence[QueueStreamFilter] | None = None,
+    ) -> AsyncIterator[ListQueuesOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/kinesis/operations/list_queues/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        if stream_filter is not None:
+            params["stream_filter"] = stream_filter
+        return _paginate(
+            self._client.list_queues, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

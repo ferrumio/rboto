@@ -36,14 +36,28 @@ GetDelegatedAccessTokenOutput: TypeAlias = _native.GetDelegatedAccessTokenOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetDelegatedAccessTokenOutput/)."""
 GetFederationTokenOutput: TypeAlias = _native.GetFederationTokenOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenOutput/)."""
+GetScopedCredentialsOutput: TypeAlias = _native.GetScopedCredentialsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetScopedCredentialsOutput/)."""
 GetSessionTokenOutput: TypeAlias = _native.GetSessionTokenOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetSessionTokenOutput/)."""
 GetWebIdentityTokenOutput: TypeAlias = _native.GetWebIdentityTokenOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenOutput/)."""
+OriginIdentityOutput: TypeAlias = _native.OriginIdentity
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/OriginIdentityOutput/)."""
+ScopedSessionOutput: TypeAlias = _native.ScopedSession
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ScopedSessionOutput/)."""
+TransactionContextOutput: TypeAlias = _native.TransactionContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/TransactionContextOutput/)."""
+TrustedIdentityPropagationContextOutput: TypeAlias = _native.TrustedIdentityPropagationContext
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/TrustedIdentityPropagationContextOutput/)."""
 
 type JSONValue = None | bool | int | float | str | list[JSONValue] | dict[str, JSONValue]
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/JSONValue/)."""
 
+webIdentityTokenSubjectModeType: TypeAlias = Literal['AWSIdentity', 'OriginIdentity']
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/webIdentityTokenSubjectModeType/)."""
+webIdentityTokenSubjectModeTypeOutput: TypeAlias = webIdentityTokenSubjectModeType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/webIdentityTokenSubjectModeTypeOutput/)."""
 
 AssumeRoleRequest = TypedDict(
     "AssumeRoleRequest",
@@ -178,6 +192,17 @@ GetFederationTokenRequest = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetFederationTokenRequest/)."""
 
+GetScopedCredentialsRequest = TypedDict(
+    "GetScopedCredentialsRequest",
+    {
+    "policy": NotRequired["str"],
+    "duration_seconds": NotRequired["int"],
+    "minimum_session_token_size": NotRequired["int"],
+    "scoped_session_description": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetScopedCredentialsRequest/)."""
+
 GetSessionTokenRequest = TypedDict(
     "GetSessionTokenRequest",
     {
@@ -195,10 +220,23 @@ GetWebIdentityTokenRequest = TypedDict(
     "audience": Required["Sequence[str]"],
     "duration_seconds": NotRequired["int"],
     "signing_algorithm": Required["str"],
+    "scope": NotRequired["str"],
+    "subject_mode": NotRequired["webIdentityTokenSubjectModeType"],
     "tags": NotRequired["Sequence[Tag]"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/GetWebIdentityTokenRequest/)."""
+
+OriginIdentity = TypedDict(
+    "OriginIdentity",
+    {
+    "subject": NotRequired["str"],
+    "subject_type": NotRequired["str"],
+    "issuer": NotRequired["str"],
+    "federated_provider_arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/OriginIdentity/)."""
 
 PolicyDescriptorType = TypedDict(
     "PolicyDescriptorType",
@@ -217,6 +255,15 @@ ProvidedContext = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ProvidedContext/)."""
 
+ScopedSession = TypedDict(
+    "ScopedSession",
+    {
+    "scoped_session_id": Required["str"],
+    "arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/ScopedSession/)."""
+
 Tag = TypedDict(
     "Tag",
     {
@@ -225,3 +272,20 @@ Tag = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/sts/types/Tag/)."""
+
+TransactionContext = TypedDict(
+    "TransactionContext",
+    {
+    "identity_provider": NotRequired["dict[str, str]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/TransactionContext/)."""
+
+TrustedIdentityPropagationContext = TypedDict(
+    "TrustedIdentityPropagationContext",
+    {
+    "origin_identity": NotRequired["OriginIdentity"],
+    "transaction_context": NotRequired["TransactionContext"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/sts/types/TrustedIdentityPropagationContext/)."""

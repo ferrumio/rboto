@@ -12,9 +12,11 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import BedrockAgentCoreControlClient as NativeClient, AddDatasetExamplesOutput, BatchPutGatewayRateLimitsOutput, CreateAgentRuntimeEndpointOutput, CreateAgentRuntimeOutput, CreateApiKeyCredentialProviderOutput, CreateBrowserOutput, CreateBrowserProfileOutput, CreateCapacityProviderOutput, CreateCodeInterpreterOutput, CreateConfigurationBundleOutput, CreateConsentPortalOutput, CreateDatasetOutput, CreateDatasetVersionOutput, CreateEvaluatorOutput, CreateGatewayOutput, CreateGatewayRateLimitOutput, CreateGatewayRuleOutput, CreateGatewayTargetOutput, CreateHarnessEndpointOutput, CreateHarnessOutput, CreateMemoryOutput, CreateOauth2CredentialProviderOutput, CreateOnlineEvaluationConfigOutput, CreatePaymentConnectorOutput, CreatePaymentCredentialProviderOutput, CreatePaymentManagerOutput, CreatePolicyEngineOutput, CreatePolicyOutput, CreateRegistryOutput, CreateRegistryRecordOutput, CreateWorkloadIdentityOutput, DeleteAgentRuntimeEndpointOutput, DeleteAgentRuntimeOutput, DeleteApiKeyCredentialProviderOutput, DeleteBrowserOutput, DeleteBrowserProfileOutput, DeleteCapacityProviderOutput, DeleteCodeInterpreterOutput, DeleteConfigurationBundleOutput, DeleteConsentPortalOutput, DeleteDatasetExamplesOutput, DeleteDatasetOutput, DeleteEvaluatorOutput, DeleteGatewayOutput, DeleteGatewayRateLimitOutput, DeleteGatewayRuleOutput, DeleteGatewayTargetOutput, DeleteHarnessEndpointOutput, DeleteHarnessOutput, DeleteMemoryOutput, DeleteOauth2CredentialProviderOutput, DeleteOnlineEvaluationConfigOutput, DeletePaymentConnectorOutput, DeletePaymentCredentialProviderOutput, DeletePaymentManagerOutput, DeletePolicyEngineOutput, DeletePolicyOutput, DeleteRegistryOutput, DeleteRegistryRecordOutput, DeleteResourcePolicyOutput, DeleteWorkloadIdentityOutput, GetAgentRuntimeEndpointOutput, GetAgentRuntimeOutput, GetApiKeyCredentialProviderOutput, GetBrowserOutput, GetBrowserProfileOutput, GetCapacityProviderOutput, GetCodeInterpreterOutput, GetConfigurationBundleOutput, GetConfigurationBundleVersionOutput, GetConsentPortalOutput, GetDatasetOutput, GetEvaluatorOutput, GetGatewayOutput, GetGatewayRateLimitOutput, GetGatewayRuleOutput, GetGatewayTargetOutput, GetHarnessEndpointOutput, GetHarnessOutput, GetMemoryOutput, GetOauth2CredentialProviderOutput, GetOnlineEvaluationConfigOutput, GetPaymentConnectorOutput, GetPaymentCredentialProviderOutput, GetPaymentManagerOutput, GetPolicyEngineOutput, GetPolicyEngineSummaryOutput, GetPolicyGenerationOutput, GetPolicyGenerationSummaryOutput, GetPolicyOutput, GetPolicySummaryOutput, GetRegistryOutput, GetRegistryRecordOutput, GetResourcePolicyOutput, GetTokenVaultOutput, GetWorkloadIdentityOutput, ListAgentRuntimeEndpointsOutput, ListAgentRuntimeVersionsByCapacityProviderOutput, ListAgentRuntimeVersionsOutput, ListAgentRuntimesOutput, ListApiKeyCredentialProvidersOutput, ListBrowserProfilesOutput, ListBrowsersOutput, ListCapacityProvidersOutput, ListCodeInterpretersOutput, ListConfigurationBundleVersionsOutput, ListConfigurationBundlesOutput, ListConsentPortalsOutput, ListDatasetExamplesOutput, ListDatasetVersionsOutput, ListDatasetsOutput, ListEvaluatorsOutput, ListGatewayRateLimitsOutput, ListGatewayRulesOutput, ListGatewayTargetsOutput, ListGatewaysOutput, ListHarnessEndpointsOutput, ListHarnessVersionsOutput, ListHarnessesOutput, ListMemoriesOutput, ListOauth2CredentialProvidersOutput, ListOnlineEvaluationConfigsOutput, ListPaymentConnectorsOutput, ListPaymentCredentialProvidersOutput, ListPaymentManagersOutput, ListPoliciesOutput, ListPolicyEngineSummariesOutput, ListPolicyEnginesOutput, ListPolicyGenerationAssetsOutput, ListPolicyGenerationSummariesOutput, ListPolicyGenerationsOutput, ListPolicySummariesOutput, ListRegistriesOutput, ListRegistryRecordsOutput, ListTagsForResourceOutput, ListWorkloadIdentitiesOutput, PutResourcePolicyOutput, ResetTokenVaultKeyMaterialOutput, RotatePaymentConnectorCredentialsOutput, SetTokenVaultCMKOutput, StartPolicyGenerationOutput, SubmitRegistryRecordForApprovalOutput, SynchronizeGatewayTargetsOutput, TagResourceOutput, UntagResourceOutput, UpdateAgentRuntimeEndpointOutput, UpdateAgentRuntimeOutput, UpdateApiKeyCredentialProviderOutput, UpdateCapacityProviderOutput, UpdateConfigurationBundleOutput, UpdateConsentPortalOutput, UpdateDatasetExamplesOutput, UpdateDatasetOutput, UpdateEvaluatorOutput, UpdateGatewayOutput, UpdateGatewayRateLimitOutput, UpdateGatewayRuleOutput, UpdateGatewayTargetOutput, UpdateHarnessEndpointOutput, UpdateHarnessOutput, UpdateMemoryOutput, UpdateOauth2CredentialProviderOutput, UpdateOnlineEvaluationConfigOutput, UpdatePaymentConnectorOutput, UpdatePaymentCredentialProviderOutput, UpdatePaymentManagerOutput, UpdatePolicyEngineOutput, UpdatePolicyOutput, UpdateRegistryOutput, UpdateRegistryRecordOutput, UpdateRegistryRecordStatusOutput, UpdateWorkloadIdentityOutput
+from ._native import BedrockAgentCoreControlClient as NativeClient, AddDatasetExamplesOutput, BatchPutGatewayRateLimitsOutput, CreateAgentRuntimeEndpointOutput, CreateAgentRuntimeOutput, CreateApiKeyCredentialProviderOutput, CreateBrowserOutput, CreateBrowserProfileOutput, CreateCapacityProviderOutput, CreateCodeInterpreterOutput, CreateConfigurationBundleOutput, CreateConsentPortalOutput, CreateDatasetOutput, CreateDatasetVersionOutput, CreateEvaluatorOutput, CreateGatewayOutput, CreateGatewayRateLimitOutput, CreateGatewayRuleOutput, CreateGatewayTargetOutput, CreateHarnessEndpointOutput, CreateHarnessOutput, CreateMemoryOutput, CreateOauth2CredentialProviderOutput, CreateOnlineEvaluationConfigOutput, CreatePaymentConnectorOutput, CreatePaymentCredentialProviderOutput, CreatePaymentManagerOutput, CreatePolicyEngineOutput, CreatePolicyOutput, CreateRegistryOutput, CreateRegistryRecordOutput, CreateWorkloadIdentityOutput, DeleteAgentRuntimeEndpointOutput, DeleteAgentRuntimeOutput, DeleteApiKeyCredentialProviderOutput, DeleteBrowserOutput, DeleteBrowserProfileOutput, DeleteCapacityProviderOutput, DeleteCodeInterpreterOutput, DeleteConfigurationBundleOutput, DeleteConsentPortalOutput, DeleteDatasetExamplesOutput, DeleteDatasetOutput, DeleteEvaluatorOutput, DeleteGatewayOutput, DeleteGatewayRateLimitOutput, DeleteGatewayRuleOutput, DeleteGatewayTargetOutput, DeleteHarnessEndpointOutput, DeleteHarnessOutput, DeleteMemoryOutput, DeleteOauth2CredentialProviderOutput, DeleteOnlineEvaluationConfigOutput, DeletePaymentConnectorOutput, DeletePaymentCredentialProviderOutput, DeletePaymentManagerOutput, DeletePolicyEngineOutput, DeletePolicyOutput, DeleteRegistryOutput, DeleteRegistryRecordOutput, DeleteResourcePolicyOutput, DeleteWorkloadIdentityOutput, GetAgentInsightStoreOutput, GetAgentRuntimeEndpointOutput, GetAgentRuntimeOutput, GetApiKeyCredentialProviderOutput, GetBrowserOutput, GetBrowserProfileOutput, GetCapacityProviderOutput, GetCodeInterpreterOutput, GetConfigurationBundleOutput, GetConfigurationBundleVersionOutput, GetConsentPortalOutput, GetDatasetOutput, GetEvaluatorOutput, GetGatewayOutput, GetGatewayRateLimitOutput, GetGatewayRuleOutput, GetGatewayTargetOutput, GetHarnessEndpointOutput, GetHarnessOutput, GetMemoryOutput, GetOauth2CredentialProviderOutput, GetOnlineEvaluationConfigOutput, GetPaymentConnectorOutput, GetPaymentCredentialProviderOutput, GetPaymentManagerOutput, GetPolicyEngineOutput, GetPolicyEngineSummaryOutput, GetPolicyGenerationOutput, GetPolicyGenerationSummaryOutput, GetPolicyOutput, GetPolicySummaryOutput, GetRegistryOutput, GetRegistryRecordOutput, GetResourcePolicyOutput, GetTokenVaultOutput, GetWorkloadIdentityOutput, ListAgentInsightStoresOutput, ListAgentRuntimeEndpointsOutput, ListAgentRuntimeVersionsByCapacityProviderOutput, ListAgentRuntimeVersionsOutput, ListAgentRuntimesOutput, ListApiKeyCredentialProvidersOutput, ListBrowserProfilesOutput, ListBrowsersOutput, ListCapacityProvidersOutput, ListCodeInterpretersOutput, ListConfigurationBundleVersionsOutput, ListConfigurationBundlesOutput, ListConsentPortalsOutput, ListDatasetExamplesOutput, ListDatasetVersionsOutput, ListDatasetsOutput, ListEvaluatorsOutput, ListGatewayRateLimitsOutput, ListGatewayRulesOutput, ListGatewayTargetsOutput, ListGatewaysOutput, ListHarnessEndpointsOutput, ListHarnessVersionsOutput, ListHarnessesOutput, ListMemoriesOutput, ListOauth2CredentialProvidersOutput, ListOnlineEvaluationConfigsOutput, ListPaymentConnectorsOutput, ListPaymentCredentialProvidersOutput, ListPaymentManagersOutput, ListPoliciesOutput, ListPolicyEngineSummariesOutput, ListPolicyEnginesOutput, ListPolicyGenerationAssetsOutput, ListPolicyGenerationSummariesOutput, ListPolicyGenerationsOutput, ListPolicySummariesOutput, ListRegistriesOutput, ListRegistryRecordsOutput, ListTagsForResourceOutput, ListWorkloadIdentitiesOutput, PutResourcePolicyOutput, ResetTokenVaultKeyMaterialOutput, RotatePaymentConnectorCredentialsOutput, SetTokenVaultCMKOutput, StartPolicyGenerationOutput, SubmitRegistryRecordForApprovalOutput, SynchronizeGatewayTargetsOutput, TagResourceOutput, UntagResourceOutput, UpdateAgentInsightStoreOutput, UpdateAgentRuntimeEndpointOutput, UpdateAgentRuntimeOutput, UpdateApiKeyCredentialProviderOutput, UpdateCapacityProviderOutput, UpdateConfigurationBundleOutput, UpdateConsentPortalOutput, UpdateDatasetExamplesOutput, UpdateDatasetOutput, UpdateEvaluatorOutput, UpdateGatewayOutput, UpdateGatewayRateLimitOutput, UpdateGatewayRuleOutput, UpdateGatewayTargetOutput, UpdateHarnessEndpointOutput, UpdateHarnessOutput, UpdateMemoryOutput, UpdateOauth2CredentialProviderOutput, UpdateOnlineEvaluationConfigOutput, UpdatePaymentConnectorOutput, UpdatePaymentCredentialProviderOutput, UpdatePaymentManagerOutput, UpdatePolicyEngineOutput, UpdatePolicyOutput, UpdateRegistryOutput, UpdateRegistryRecordOutput, UpdateRegistryRecordStatusOutput, UpdateWorkloadIdentityOutput
 from .types import (
     Action,
+    AgentInsightStoreEnablementStatus,
+    AgentInsightStoreEncryptionConfiguration,
     AgentRuntimeArtifact,
     AllowedPort,
     ApprovalConfiguration,
@@ -45,6 +47,7 @@ from .types import (
     DatasetSchemaType,
     DescriptorType,
     Descriptors,
+    DomainOverride,
     EnforcementMode,
     EvaluatorConfig,
     EvaluatorLevel,
@@ -71,6 +74,9 @@ from .types import (
     KmsConfiguration,
     LifecycleConfiguration,
     LimitEntry,
+    ListDatasetExamplesFilter,
+    ListDatasetVersionsFilter,
+    ListDatasetsFilter,
     MemoryStrategyInput,
     MemoryView,
     MetadataConfiguration,
@@ -96,8 +102,10 @@ from .types import (
     RegistryStatus,
     RequestHeaderConfiguration,
     Resource,
+    ResourceConfiguration,
     ResourceType,
     Rule,
+    RuntimeHooksConfiguration,
     RuntimeMetadataConfiguration,
     SecretReference,
     SecretSourceType,
@@ -263,12 +271,14 @@ class BedrockAgentCoreControlClient:
         request_header_configuration: RequestHeaderConfiguration | None = None,
         protocol_configuration: ProtocolConfiguration | None = None,
         lifecycle_configuration: LifecycleConfiguration | None = None,
+        hooks_configuration: RuntimeHooksConfiguration | None = None,
         environment_variables: dict[str, str] | None = None,
         filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
         capacity_provider_configuration: CapacityProviderConfiguration | None = None,
         tags: dict[str, str] | None = None,
         platform_version: str | None = None,
         allowed_ports: Sequence[AllowedPort] | None = None,
+        resource_configurations: Sequence[ResourceConfiguration] | None = None,
     ) -> CreateAgentRuntimeOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_agent_runtime/)."""
         params: dict[str, object] = {
@@ -290,6 +300,8 @@ class BedrockAgentCoreControlClient:
             params["protocol_configuration"] = protocol_configuration
         if lifecycle_configuration is not None:
             params["lifecycle_configuration"] = lifecycle_configuration
+        if hooks_configuration is not None:
+            params["hooks_configuration"] = hooks_configuration
         if environment_variables is not None:
             params["environment_variables"] = environment_variables
         if filesystem_configurations is not None:
@@ -302,6 +314,8 @@ class BedrockAgentCoreControlClient:
             params["platform_version"] = platform_version
         if allowed_ports is not None:
             params["allowed_ports"] = allowed_ports
+        if resource_configurations is not None:
+            params["resource_configurations"] = resource_configurations
         _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -309,7 +323,7 @@ class BedrockAgentCoreControlClient:
                 self._native.create_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "CreateAgentRuntime", self._region,
                 CreateAgentRuntimeOutput,
-                ("agent_runtime_name", "agent_runtime_artifact", "role_arn", "network_configuration", "client_token", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "tags", "platform_version", "allowed_ports", ),
+                ("agent_runtime_name", "agent_runtime_artifact", "role_arn", "network_configuration", "client_token", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "hooks_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "tags", "platform_version", "allowed_ports", "resource_configurations", ),
                 ("agent_runtime_name", "agent_runtime_artifact", "role_arn", ),
                 service_name='Bedrock AgentCore Control',
             )
@@ -654,23 +668,25 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         dataset_name: str,
-        source: DataSourceType,
-        schema_type: DatasetSchemaType,
         client_token: str | None = None,
         description: str | None = None,
+        source: DataSourceType | None = None,
+        schema_type: DatasetSchemaType | None = None,
         kms_key_arn: str | None = None,
         tags: dict[str, str] | None = None,
     ) -> CreateDatasetOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_dataset/)."""
         params: dict[str, object] = {
             "dataset_name": dataset_name,
-            "source": source,
-            "schema_type": schema_type,
         }
         if client_token is not None:
             params["client_token"] = client_token
         if description is not None:
             params["description"] = description
+        if source is not None:
+            params["source"] = source
+        if schema_type is not None:
+            params["schema_type"] = schema_type
         if kms_key_arn is not None:
             params["kms_key_arn"] = kms_key_arn
         if tags is not None:
@@ -682,8 +698,8 @@ class BedrockAgentCoreControlClient:
                 self._native.create_dataset, params, _interceptors,
                 "bedrock-agentcore-control", "CreateDataset", self._region,
                 CreateDatasetOutput,
-                ("dataset_name", "source", "schema_type", "client_token", "description", "kms_key_arn", "tags", ),
-                ("dataset_name", "source", "schema_type", ),
+                ("dataset_name", "client_token", "description", "source", "schema_type", "kms_key_arn", "tags", ),
+                ("dataset_name", ),
                 service_name='Bedrock AgentCore Control',
             )
             return _response
@@ -776,6 +792,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
         exception_level: ExceptionLevel | None = None,
         tags: dict[str, str] | None = None,
+        domain_override: DomainOverride | None = None,
     ) -> CreateGatewayOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/create_gateway/)."""
         params: dict[str, object] = {
@@ -803,6 +820,8 @@ class BedrockAgentCoreControlClient:
             params["exception_level"] = exception_level
         if tags is not None:
             params["tags"] = tags
+        if domain_override is not None:
+            params["domain_override"] = domain_override
         _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -810,7 +829,7 @@ class BedrockAgentCoreControlClient:
                 self._native.create_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "CreateGateway", self._region,
                 CreateGatewayOutput,
-                ("name", "role_arn", "authorizer_type", "description", "client_token", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "interceptor_configurations", "policy_engine_configuration", "exception_level", "tags", ),
+                ("name", "role_arn", "authorizer_type", "description", "client_token", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "interceptor_configurations", "policy_engine_configuration", "exception_level", "tags", "domain_override", ),
                 ("name", "role_arn", "authorizer_type", ),
                 service_name='Bedrock AgentCore Control',
             )
@@ -1206,8 +1225,8 @@ class BedrockAgentCoreControlClient:
         payment_manager_id: str,
         name: str,
         type: PaymentConnectorType,
-        credential_provider_configurations: Sequence[CredentialsProviderConfiguration],
         description: str | None = None,
+        credential_provider_configurations: Sequence[CredentialsProviderConfiguration] | None = None,
         provision_mode: PaymentConnectorProvisionMode | None = None,
         client_token: str | None = None,
     ) -> CreatePaymentConnectorOutput:
@@ -1216,10 +1235,11 @@ class BedrockAgentCoreControlClient:
             "payment_manager_id": payment_manager_id,
             "name": name,
             "type": type,
-            "credential_provider_configurations": credential_provider_configurations,
         }
         if description is not None:
             params["description"] = description
+        if credential_provider_configurations is not None:
+            params["credential_provider_configurations"] = credential_provider_configurations
         if provision_mode is not None:
             params["provision_mode"] = provision_mode
         if client_token is not None:
@@ -1231,8 +1251,8 @@ class BedrockAgentCoreControlClient:
                 self._native.create_payment_connector, params, _interceptors,
                 "bedrock-agentcore-control", "CreatePaymentConnector", self._region,
                 CreatePaymentConnectorOutput,
-                ("payment_manager_id", "name", "type", "credential_provider_configurations", "description", "provision_mode", "client_token", ),
-                ("payment_manager_id", "name", "type", "credential_provider_configurations", ),
+                ("payment_manager_id", "name", "type", "description", "credential_provider_configurations", "provision_mode", "client_token", ),
+                ("payment_manager_id", "name", "type", ),
                 service_name='Bedrock AgentCore Control',
             )
             return _response
@@ -2325,6 +2345,31 @@ class BedrockAgentCoreControlClient:
         return _response
 
 
+    async def get_agent_insight_store(
+        self,
+        *,
+        agent_insight_store_id: str,
+    ) -> GetAgentInsightStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/get_agent_insight_store/)."""
+        params: dict[str, object] = {
+            "agent_insight_store_id": agent_insight_store_id,
+        }
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_agent_insight_store, params, _interceptors,
+                "bedrock-agentcore-control", "GetAgentInsightStore", self._region,
+                GetAgentInsightStoreOutput,
+                ("agent_insight_store_id", ),
+                ("agent_insight_store_id", ),
+                service_name='Bedrock AgentCore Control',
+            )
+            return _response
+        _response = await self._native.get_agent_insight_store(params)
+        return _response
+
+
     async def get_agent_runtime(
         self,
         *,
@@ -3243,6 +3288,35 @@ class BedrockAgentCoreControlClient:
         return _response
 
 
+    async def list_agent_insight_stores(
+        self,
+        *,
+        next_token: str | None = None,
+        max_results: int | None = None,
+    ) -> ListAgentInsightStoresOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_agent_insight_stores/)."""
+        params: dict[str, object] = {
+        }
+        if next_token is not None:
+            params["next_token"] = next_token
+        if max_results is not None:
+            params["max_results"] = max_results
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_agent_insight_stores, params, _interceptors,
+                "bedrock-agentcore-control", "ListAgentInsightStores", self._region,
+                ListAgentInsightStoresOutput,
+                ("next_token", "max_results", ),
+                (),
+                service_name='Bedrock AgentCore Control',
+            )
+            return _response
+        _response = await self._native.list_agent_insight_stores(params)
+        return _response
+
+
     async def list_agent_runtime_endpoints(
         self,
         *,
@@ -3616,6 +3690,7 @@ class BedrockAgentCoreControlClient:
         *,
         dataset_id: str,
         dataset_version: str | None = None,
+        filter: ListDatasetExamplesFilter | None = None,
         max_results: int | None = None,
         next_token: str | None = None,
     ) -> ListDatasetExamplesOutput:
@@ -3625,6 +3700,8 @@ class BedrockAgentCoreControlClient:
         }
         if dataset_version is not None:
             params["dataset_version"] = dataset_version
+        if filter is not None:
+            params["filter"] = filter
         if max_results is not None:
             params["max_results"] = max_results
         if next_token is not None:
@@ -3636,7 +3713,7 @@ class BedrockAgentCoreControlClient:
                 self._native.list_dataset_examples, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasetExamples", self._region,
                 ListDatasetExamplesOutput,
-                ("dataset_id", "dataset_version", "max_results", "next_token", ),
+                ("dataset_id", "dataset_version", "filter", "max_results", "next_token", ),
                 ("dataset_id", ),
                 service_name='Bedrock AgentCore Control',
             )
@@ -3649,6 +3726,7 @@ class BedrockAgentCoreControlClient:
         self,
         *,
         dataset_id: str,
+        filter: ListDatasetVersionsFilter | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDatasetVersionsOutput:
@@ -3656,6 +3734,8 @@ class BedrockAgentCoreControlClient:
         params: dict[str, object] = {
             "dataset_id": dataset_id,
         }
+        if filter is not None:
+            params["filter"] = filter
         if next_token is not None:
             params["next_token"] = next_token
         if max_results is not None:
@@ -3667,7 +3747,7 @@ class BedrockAgentCoreControlClient:
                 self._native.list_dataset_versions, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasetVersions", self._region,
                 ListDatasetVersionsOutput,
-                ("dataset_id", "next_token", "max_results", ),
+                ("dataset_id", "filter", "next_token", "max_results", ),
                 ("dataset_id", ),
                 service_name='Bedrock AgentCore Control',
             )
@@ -3679,12 +3759,15 @@ class BedrockAgentCoreControlClient:
     async def list_datasets(
         self,
         *,
+        filter: ListDatasetsFilter | None = None,
         next_token: str | None = None,
         max_results: int | None = None,
     ) -> ListDatasetsOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/list_datasets/)."""
         params: dict[str, object] = {
         }
+        if filter is not None:
+            params["filter"] = filter
         if next_token is not None:
             params["next_token"] = next_token
         if max_results is not None:
@@ -3696,7 +3779,7 @@ class BedrockAgentCoreControlClient:
                 self._native.list_datasets, params, _interceptors,
                 "bedrock-agentcore-control", "ListDatasets", self._region,
                 ListDatasetsOutput,
-                ("next_token", "max_results", ),
+                ("filter", "next_token", "max_results", ),
                 (),
                 service_name='Bedrock AgentCore Control',
             )
@@ -4727,6 +4810,40 @@ class BedrockAgentCoreControlClient:
         return _response
 
 
+    async def update_agent_insight_store(
+        self,
+        *,
+        agent_insight_store_id: str,
+        client_token: str | None = None,
+        enablement_status: AgentInsightStoreEnablementStatus | None = None,
+        encryption_configuration: AgentInsightStoreEncryptionConfiguration | None = None,
+    ) -> UpdateAgentInsightStoreOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_agent_insight_store/)."""
+        params: dict[str, object] = {
+            "agent_insight_store_id": agent_insight_store_id,
+        }
+        if client_token is not None:
+            params["client_token"] = client_token
+        if enablement_status is not None:
+            params["enablement_status"] = enablement_status
+        if encryption_configuration is not None:
+            params["encryption_configuration"] = encryption_configuration
+        _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_agent_insight_store, params, _interceptors,
+                "bedrock-agentcore-control", "UpdateAgentInsightStore", self._region,
+                UpdateAgentInsightStoreOutput,
+                ("agent_insight_store_id", "client_token", "enablement_status", "encryption_configuration", ),
+                ("agent_insight_store_id", ),
+                service_name='Bedrock AgentCore Control',
+            )
+            return _response
+        _response = await self._native.update_agent_insight_store(params)
+        return _response
+
+
     async def update_agent_runtime(
         self,
         *,
@@ -4739,12 +4856,14 @@ class BedrockAgentCoreControlClient:
         request_header_configuration: RequestHeaderConfiguration | None = None,
         protocol_configuration: ProtocolConfiguration | None = None,
         lifecycle_configuration: LifecycleConfiguration | None = None,
+        hooks_configuration: RuntimeHooksConfiguration | None = None,
         metadata_configuration: RuntimeMetadataConfiguration | None = None,
         environment_variables: dict[str, str] | None = None,
         filesystem_configurations: Sequence[FilesystemConfiguration] | None = None,
         capacity_provider_configuration: CapacityProviderConfiguration | None = None,
         platform_version: str | None = None,
         allowed_ports: Sequence[AllowedPort] | None = None,
+        resource_configurations: Sequence[ResourceConfiguration] | None = None,
         client_token: str | None = None,
     ) -> UpdateAgentRuntimeOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_agent_runtime/)."""
@@ -4765,6 +4884,8 @@ class BedrockAgentCoreControlClient:
             params["protocol_configuration"] = protocol_configuration
         if lifecycle_configuration is not None:
             params["lifecycle_configuration"] = lifecycle_configuration
+        if hooks_configuration is not None:
+            params["hooks_configuration"] = hooks_configuration
         if metadata_configuration is not None:
             params["metadata_configuration"] = metadata_configuration
         if environment_variables is not None:
@@ -4777,6 +4898,8 @@ class BedrockAgentCoreControlClient:
             params["platform_version"] = platform_version
         if allowed_ports is not None:
             params["allowed_ports"] = allowed_ports
+        if resource_configurations is not None:
+            params["resource_configurations"] = resource_configurations
         if client_token is not None:
             params["client_token"] = client_token
         _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
@@ -4786,7 +4909,7 @@ class BedrockAgentCoreControlClient:
                 self._native.update_agent_runtime, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateAgentRuntime", self._region,
                 UpdateAgentRuntimeOutput,
-                ("agent_runtime_id", "agent_runtime_artifact", "role_arn", "network_configuration", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "metadata_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "platform_version", "allowed_ports", "client_token", ),
+                ("agent_runtime_id", "agent_runtime_artifact", "role_arn", "network_configuration", "description", "authorizer_configuration", "request_header_configuration", "protocol_configuration", "lifecycle_configuration", "hooks_configuration", "metadata_configuration", "environment_variables", "filesystem_configurations", "capacity_provider_configuration", "platform_version", "allowed_ports", "resource_configurations", "client_token", ),
                 ("agent_runtime_id", "agent_runtime_artifact", "role_arn", ),
                 service_name='Bedrock AgentCore Control',
             )
@@ -5098,6 +5221,7 @@ class BedrockAgentCoreControlClient:
         policy_engine_configuration: GatewayPolicyEngineConfiguration | None = None,
         exception_level: ExceptionLevel | None = None,
         waf_configuration: WafConfiguration | None = None,
+        domain_override: DomainOverride | None = None,
     ) -> UpdateGatewayOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore-control/operations/update_gateway/)."""
         params: dict[str, object] = {
@@ -5126,6 +5250,8 @@ class BedrockAgentCoreControlClient:
             params["exception_level"] = exception_level
         if waf_configuration is not None:
             params["waf_configuration"] = waf_configuration
+        if domain_override is not None:
+            params["domain_override"] = domain_override
         _interceptors = operation_interceptors("bedrock-agentcore-control", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -5133,7 +5259,7 @@ class BedrockAgentCoreControlClient:
                 self._native.update_gateway, params, _interceptors,
                 "bedrock-agentcore-control", "UpdateGateway", self._region,
                 UpdateGatewayOutput,
-                ("gateway_identifier", "name", "role_arn", "authorizer_type", "description", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "custom_transform_configuration", "interceptor_configurations", "policy_engine_configuration", "exception_level", "waf_configuration", ),
+                ("gateway_identifier", "name", "role_arn", "authorizer_type", "description", "protocol_type", "protocol_configuration", "authorizer_configuration", "kms_key_arn", "custom_transform_configuration", "interceptor_configurations", "policy_engine_configuration", "exception_level", "waf_configuration", "domain_override", ),
                 ("gateway_identifier", "name", "role_arn", "authorizer_type", ),
                 service_name='Bedrock AgentCore Control',
             )

@@ -9,6 +9,7 @@ from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _pa
 
 from ._native import (
     BatchGetSecretValueOutput,
+    ListResourcePoliciesOutput,
     ListSecretVersionIdsOutput,
     ListSecretsOutput,
 )
@@ -49,6 +50,31 @@ class SecretsManagerClientPaginators:
             params["next_token"] = next_token
         return _paginate(
             self._client.batch_get_secret_value, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_resource_policies(
+        self,
+        *,
+        secret_id: str,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListResourcePoliciesOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/operations/list_resource_policies/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "secret_id": secret_id,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_resource_policies, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

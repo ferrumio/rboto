@@ -30,10 +30,12 @@ from ._native import (
 
 from .types import (
     CalculationExecutionState,
+    DatabaseAttributes,
     ExecutorState,
     FilterDefinition,
     QueryResultType,
     SessionState,
+    TableAttributes,
 )
 
 if TYPE_CHECKING:
@@ -180,6 +182,7 @@ class AthenaClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         work_group: str | None = None,
+        attributes_to_get: Sequence[DatabaseAttributes] | None = None,
     ) -> AsyncIterator[ListDatabasesOutput]:
         """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_databases/#pagination-and-streaming)."""
         params: dict[str, object] = {
@@ -191,6 +194,8 @@ class AthenaClientPaginators:
             params["max_results"] = max_results
         if work_group is not None:
             params["work_group"] = work_group
+        if attributes_to_get is not None:
+            params["attributes_to_get"] = attributes_to_get
         return _paginate(
             self._client.list_databases, params,
             _PaginationSpec(
@@ -442,6 +447,7 @@ class AthenaClientPaginators:
         next_token: str | None = None,
         max_results: int | None = None,
         work_group: str | None = None,
+        attributes_to_get: Sequence[TableAttributes] | None = None,
     ) -> AsyncIterator[ListTableMetadataOutput]:
         """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/athena/operations/list_table_metadata/#pagination-and-streaming)."""
         params: dict[str, object] = {
@@ -456,6 +462,8 @@ class AthenaClientPaginators:
             params["max_results"] = max_results
         if work_group is not None:
             params["work_group"] = work_group
+        if attributes_to_get is not None:
+            params["attributes_to_get"] = attributes_to_get
         return _paginate(
             self._client.list_table_metadata, params,
             _PaginationSpec(

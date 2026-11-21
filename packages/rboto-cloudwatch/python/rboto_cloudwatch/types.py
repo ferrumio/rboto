@@ -44,6 +44,8 @@ DeleteDashboardsOutput: TypeAlias = _native.DeleteDashboardsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteDashboardsOutput/)."""
 DeleteInsightRulesOutput: TypeAlias = _native.DeleteInsightRulesOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteInsightRulesOutput/)."""
+DeleteMetricDataQueryDefinitionOutput: TypeAlias = _native.DeleteMetricDataQueryDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteMetricDataQueryDefinitionOutput/)."""
 DeleteMetricStreamOutput: TypeAlias = _native.DeleteMetricStreamOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteMetricStreamOutput/)."""
 DeleteResourceMetricsConfigurationOutput: TypeAlias = _native.DeleteResourceMetricsConfigurationOutput
@@ -78,6 +80,8 @@ GetInsightRuleReportOutput: TypeAlias = _native.GetInsightRuleReportOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetInsightRuleReportOutput/)."""
 GetMetricDataOutput: TypeAlias = _native.GetMetricDataOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetMetricDataOutput/)."""
+GetMetricDataQueryDefinitionOutput: TypeAlias = _native.GetMetricDataQueryDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetMetricDataQueryDefinitionOutput/)."""
 GetMetricStatisticsOutput: TypeAlias = _native.GetMetricStatisticsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetMetricStatisticsOutput/)."""
 GetMetricStreamOutput: TypeAlias = _native.GetMetricStreamOutput
@@ -102,6 +106,8 @@ ListDashboardsOutput: TypeAlias = _native.ListDashboardsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListDashboardsOutput/)."""
 ListManagedInsightRulesOutput: TypeAlias = _native.ListManagedInsightRulesOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListManagedInsightRulesOutput/)."""
+ListMetricDataQueryDefinitionsOutput: TypeAlias = _native.ListMetricDataQueryDefinitionsOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListMetricDataQueryDefinitionsOutput/)."""
 ListMetricStreamsOutput: TypeAlias = _native.ListMetricStreamsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListMetricStreamsOutput/)."""
 ListMetricsOutput: TypeAlias = _native.ListMetricsOutput
@@ -124,6 +130,8 @@ MetricCharacteristicsOutput: TypeAlias = _native.MetricCharacteristics
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricCharacteristicsOutput/)."""
 MetricDataQueryOutput: TypeAlias = _native.MetricDataQuery
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricDataQueryOutput/)."""
+MetricDataQueryDefinitionSummaryOutput: TypeAlias = _native.MetricDataQueryDefinitionSummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricDataQueryDefinitionSummaryOutput/)."""
 MetricDataResultOutput: TypeAlias = _native.MetricDataResult
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricDataResultOutput/)."""
 MetricMathAnomalyDetectorOutput: TypeAlias = _native.MetricMathAnomalyDetector
@@ -152,6 +160,8 @@ PutInsightRuleOutput: TypeAlias = _native.PutInsightRuleOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutInsightRuleOutput/)."""
 PutManagedInsightRulesOutput: TypeAlias = _native.PutManagedInsightRulesOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutManagedInsightRulesOutput/)."""
+PutMetricDataQueryDefinitionOutput: TypeAlias = _native.PutMetricDataQueryDefinitionOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutMetricDataQueryDefinitionOutput/)."""
 PutMetricStreamOutput: TypeAlias = _native.PutMetricStreamOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutMetricStreamOutput/)."""
 RangeOutput: TypeAlias = _native.Range
@@ -242,6 +252,10 @@ OTelEnrichmentStatus: TypeAlias = Literal['Running', 'Stopped']
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/OTelEnrichmentStatus/)."""
 OTelEnrichmentStatusOutput: TypeAlias = OTelEnrichmentStatus | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/OTelEnrichmentStatusOutput/)."""
+QueryType: TypeAlias = Literal['PROMQL', 'SQL', 'METRIC_MATH']
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/QueryType/)."""
+QueryTypeOutput: TypeAlias = QueryType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/QueryTypeOutput/)."""
 RecentlyActive: TypeAlias = Literal['PT3H']
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/RecentlyActive/)."""
 RecentlyActiveOutput: TypeAlias = RecentlyActive | UnknownEnumValue
@@ -503,6 +517,14 @@ DeleteInsightRulesInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteInsightRulesInput/)."""
 
+DeleteMetricDataQueryDefinitionInput = TypedDict(
+    "DeleteMetricDataQueryDefinitionInput",
+    {
+    "id": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/DeleteMetricDataQueryDefinitionInput/)."""
+
 DeleteMetricStreamInput = TypedDict(
     "DeleteMetricStreamInput",
     {
@@ -753,6 +775,14 @@ GetMetricDataInput = TypedDict(
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetMetricDataInput/)."""
 
+GetMetricDataQueryDefinitionInput = TypedDict(
+    "GetMetricDataQueryDefinitionInput",
+    {
+    "id": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/GetMetricDataQueryDefinitionInput/)."""
+
 GetMetricStatisticsInput = TypedDict(
     "GetMetricStatisticsInput",
     {
@@ -885,6 +915,15 @@ ListManagedInsightRulesInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListManagedInsightRulesInput/)."""
+
+ListMetricDataQueryDefinitionsInput = TypedDict(
+    "ListMetricDataQueryDefinitionsInput",
+    {
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/ListMetricDataQueryDefinitionsInput/)."""
 
 ListMetricStreamsInput = TypedDict(
     "ListMetricStreamsInput",
@@ -1058,6 +1097,17 @@ MetricDataQuery = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricDataQuery/)."""
+
+MetricDataQueryDefinitionSummary = TypedDict(
+    "MetricDataQueryDefinitionSummary",
+    {
+    "id": Required["str"],
+    "path": Required["str"],
+    "type": Required["QueryType"],
+    "updated_at": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/MetricDataQueryDefinitionSummary/)."""
 
 MetricDataResult = TypedDict(
     "MetricDataResult",
@@ -1322,6 +1372,18 @@ PutMetricDataInput = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutMetricDataInput/)."""
+
+PutMetricDataQueryDefinitionInput = TypedDict(
+    "PutMetricDataQueryDefinitionInput",
+    {
+    "id": NotRequired["str"],
+    "path": Required["str"],
+    "expression": Required["str"],
+    "type": Required["QueryType"],
+    "tags": NotRequired["Sequence[Tag]"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/cloudwatch/types/PutMetricDataQueryDefinitionInput/)."""
 
 PutMetricStreamInput = TypedDict(
     "PutMetricStreamInput",

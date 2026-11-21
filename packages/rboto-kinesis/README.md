@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for Amazon Kinesis Data Streams**,
 powered by Rust. This package contains `KinesisClient` and
-**45 operations**.
+**57 operations**.
 
 ## Installation
 
@@ -109,17 +109,22 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
+| [`acknowledge_dead_letter_queue_records`](#acknowledge_dead_letter_queue_records) | <code>queue_arn: str</code>, <code>entries: Sequence[AcknowledgeDeadLetterQueueRecordsRequestEntry]</code> | <code>AcknowledgeDeadLetterQueueRecordsOutput</code> |
+| [`acknowledge_queue_records`](#acknowledge_queue_records) | <code>queue_arn: str</code>, <code>entries: Sequence[AcknowledgeQueueRecordsRequestEntry]</code> | <code>AcknowledgeQueueRecordsOutput</code> |
 | [`add_tags_to_stream`](#add_tags_to_stream) | <code>tags: dict[str, str]</code> | <code>None</code> |
 | [`create_channel`](#create_channel) | <code>channel_name: str</code>, <code>service_execution_role_arn: str</code>, <code>stream_configuration_list: Sequence[ChannelStreamConfiguration]</code> | <code>CreateChannelOutput</code> |
+| [`create_queue`](#create_queue) | <code>queue_name: str</code>, <code>stream_configuration_list: Sequence[QueueStreamConfiguration]</code> | <code>CreateQueueOutput</code> |
 | [`create_stream`](#create_stream) | <code>stream_name: str</code> | <code>None</code> |
 | [`decrease_stream_retention_period`](#decrease_stream_retention_period) | <code>retention_period_hours: int</code> | <code>None</code> |
 | [`delete_channel`](#delete_channel) | <code>channel_arn: str</code> | <code>None</code> |
+| [`delete_queue`](#delete_queue) | <code>queue_arn: str</code> | <code>None</code> |
 | [`delete_resource_policy`](#delete_resource_policy) | <code>resource_arn: str</code> | <code>None</code> |
 | [`delete_stream`](#delete_stream) | None | <code>None</code> |
 | [`deregister_stream_consumer`](#deregister_stream_consumer) | None | <code>None</code> |
 | [`describe_account_settings`](#describe_account_settings) | None | <code>DescribeAccountSettingsOutput</code> |
 | [`describe_channel`](#describe_channel) | <code>channel_arn: str</code> | <code>DescribeChannelOutput</code> |
 | [`describe_limits`](#describe_limits) | None | <code>DescribeLimitsOutput</code> |
+| [`describe_queue`](#describe_queue) | <code>queue_arn: str</code> | <code>DescribeQueueOutput</code> |
 | [`describe_stream`](#describe_stream) | None | <code>DescribeStreamOutput</code> |
 | [`describe_stream_consumer`](#describe_stream_consumer) | None | <code>DescribeStreamConsumerOutput</code> |
 | [`describe_stream_summary`](#describe_stream_summary) | None | <code>DescribeStreamSummaryOutput</code> |
@@ -130,6 +135,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`get_shard_iterator`](#get_shard_iterator) | <code>shard_id: str</code>, <code>shard_iterator_type: ShardIteratorType</code> | <code>GetShardIteratorOutput</code> |
 | [`increase_stream_retention_period`](#increase_stream_retention_period) | <code>retention_period_hours: int</code> | <code>None</code> |
 | [`list_channels`](#list_channels) | None | <code>ListChannelsOutput</code> |
+| [`list_queues`](#list_queues) | None | <code>ListQueuesOutput</code> |
 | [`list_shards`](#list_shards) | None | <code>ListShardsOutput</code> |
 | [`list_stream_consumers`](#list_stream_consumers) | <code>stream_arn: str</code> | <code>ListStreamConsumersOutput</code> |
 | [`list_streams`](#list_streams) | None | <code>ListStreamsOutput</code> |
@@ -139,8 +145,11 @@ native response definitions are in the package's `_native.pyi`.
 | [`put_record`](#put_record) | <code>data: bytes</code> | <code>PutRecordOutput</code> |
 | [`put_records`](#put_records) | <code>records: Sequence[PutRecordsRequestEntry]</code> | <code>PutRecordsOutput</code> |
 | [`put_resource_policy`](#put_resource_policy) | <code>resource_arn: str</code>, <code>policy: str</code> | <code>None</code> |
+| [`receive_dead_letter_queue_records`](#receive_dead_letter_queue_records) | <code>queue_arn: str</code> | <code>ReceiveDeadLetterQueueRecordsOutput</code> |
+| [`receive_queue_records`](#receive_queue_records) | <code>queue_arn: str</code> | <code>ReceiveQueueRecordsOutput</code> |
 | [`register_stream_consumer`](#register_stream_consumer) | <code>stream_arn: str</code>, <code>consumer_name: str</code> | <code>RegisterStreamConsumerOutput</code> |
 | [`remove_tags_from_stream`](#remove_tags_from_stream) | <code>tag_keys: Sequence[str]</code> | <code>None</code> |
+| [`restore_dead_letter_queue_records`](#restore_dead_letter_queue_records) | <code>queue_arn: str</code>, <code>entries: Sequence[RestoreDeadLetterQueueRecordsRequestEntry]</code> | <code>RestoreDeadLetterQueueRecordsOutput</code> |
 | [`split_shard`](#split_shard) | <code>shard_to_split: str</code>, <code>new_starting_hash_key: str</code> | <code>None</code> |
 | [`start_stream_encryption`](#start_stream_encryption) | <code>encryption_type: EncryptionType</code>, <code>key_id: str</code> | <code>None</code> |
 | [`stop_stream_encryption`](#stop_stream_encryption) | <code>encryption_type: EncryptionType</code>, <code>key_id: str</code> | <code>None</code> |
@@ -149,13 +158,38 @@ native response definitions are in the package's `_native.pyi`.
 | [`untag_resource`](#untag_resource) | <code>tag_keys: Sequence[str]</code>, <code>resource_arn: str</code> | <code>None</code> |
 | [`update_account_settings`](#update_account_settings) | <code>minimum_throughput_billing_commitment: MinimumThroughputBillingCommitmentInput</code> | <code>UpdateAccountSettingsOutput</code> |
 | [`update_channel`](#update_channel) | <code>channel_arn: str</code> | <code>UpdateChannelOutput</code> |
+| [`update_dead_letter_queue_records_visibility`](#update_dead_letter_queue_records_visibility) | <code>queue_arn: str</code>, <code>entries: Sequence[UpdateDeadLetterQueueRecordsVisibilityRequestEntry]</code> | <code>UpdateDeadLetterQueueRecordsVisibilityOutput</code> |
 | [`update_max_record_size`](#update_max_record_size) | <code>max_record_size_in_kib: int</code> | <code>None</code> |
+| [`update_queue`](#update_queue) | <code>queue_arn: str</code>, <code>queue_attributes: QueueAttributes</code> | <code>UpdateQueueOutput</code> |
+| [`update_queue_records_visibility`](#update_queue_records_visibility) | <code>queue_arn: str</code>, <code>entries: Sequence[UpdateQueueRecordsVisibilityRequestEntry]</code> | <code>UpdateQueueRecordsVisibilityOutput</code> |
 | [`update_shard_count`](#update_shard_count) | <code>target_shard_count: int</code>, <code>scaling_type: ScalingType</code> | <code>UpdateShardCountOutput</code> |
 | [`update_stream_mode`](#update_stream_mode) | <code>stream_arn: str</code>, <code>stream_mode_details: StreamModeDetails</code> | <code>None</code> |
 | [`update_stream_record_distribution_strategy`](#update_stream_record_distribution_strategy) | <code>stream_arn: str</code>, <code>record_distribution_strategy: RecordDistributionStrategy</code> | <code>None</code> |
 | [`update_stream_warm_throughput`](#update_stream_warm_throughput) | <code>warm_throughput_mibps: int</code> | <code>UpdateStreamWarmThroughputOutput</code> |
 
 ## Complete signatures
+
+### acknowledge_dead_letter_queue_records
+
+```python
+async def acknowledge_dead_letter_queue_records(
+    *,
+    queue_arn: str,
+    entries: Sequence[AcknowledgeDeadLetterQueueRecordsRequestEntry],
+) -> AcknowledgeDeadLetterQueueRecordsOutput: ...
+```
+
+
+### acknowledge_queue_records
+
+```python
+async def acknowledge_queue_records(
+    *,
+    queue_arn: str,
+    entries: Sequence[AcknowledgeQueueRecordsRequestEntry],
+) -> AcknowledgeQueueRecordsOutput: ...
+```
+
 
 ### add_tags_to_stream
 
@@ -184,6 +218,19 @@ async def create_channel(
     tags: dict[str, str] | None = None,
     logging_configuration: ChannelLoggingConfiguration | None = None,
 ) -> CreateChannelOutput: ...
+```
+
+
+### create_queue
+
+```python
+async def create_queue(
+    *,
+    queue_name: str,
+    stream_configuration_list: Sequence[QueueStreamConfiguration],
+    queue_attributes: QueueAttributes | None = None,
+    tags: dict[str, str] | None = None,
+) -> CreateQueueOutput: ...
 ```
 
 
@@ -222,6 +269,16 @@ async def decrease_stream_retention_period(
 async def delete_channel(
     *,
     channel_arn: str,
+) -> None: ...
+```
+
+
+### delete_queue
+
+```python
+async def delete_queue(
+    *,
+    queue_arn: str,
 ) -> None: ...
 ```
 
@@ -284,6 +341,16 @@ async def describe_channel(
 
 ```python
 async def describe_limits() -> DescribeLimitsOutput: ...
+```
+
+
+### describe_queue
+
+```python
+async def describe_queue(
+    *,
+    queue_arn: str,
+) -> DescribeQueueOutput: ...
 ```
 
 
@@ -425,6 +492,21 @@ Also available as `client.paginators.list_channels(...)`, returning an
 async iterator of the response type above.
 
 
+### list_queues
+
+```python
+async def list_queues(
+    *,
+    max_results: int | None = None,
+    next_token: str | None = None,
+    stream_filter: Sequence[QueueStreamFilter] | None = None,
+) -> ListQueuesOutput: ...
+```
+
+Also available as `client.paginators.list_queues(...)`, returning an
+async iterator of the response type above.
+
+
 ### list_shards
 
 ```python
@@ -562,6 +644,32 @@ async def put_resource_policy(
 ```
 
 
+### receive_dead_letter_queue_records
+
+```python
+async def receive_dead_letter_queue_records(
+    *,
+    queue_arn: str,
+    limit: int | None = None,
+    wait_time_seconds: int | None = None,
+    visibility_timeout_seconds: int | None = None,
+) -> ReceiveDeadLetterQueueRecordsOutput: ...
+```
+
+
+### receive_queue_records
+
+```python
+async def receive_queue_records(
+    *,
+    queue_arn: str,
+    limit: int | None = None,
+    wait_time_seconds: int | None = None,
+    visibility_timeout_seconds: int | None = None,
+) -> ReceiveQueueRecordsOutput: ...
+```
+
+
 ### register_stream_consumer
 
 ```python
@@ -585,6 +693,17 @@ async def remove_tags_from_stream(
     stream_arn: str | None = None,
     stream_id: str | None = None,
 ) -> None: ...
+```
+
+
+### restore_dead_letter_queue_records
+
+```python
+async def restore_dead_letter_queue_records(
+    *,
+    queue_arn: str,
+    entries: Sequence[RestoreDeadLetterQueueRecordsRequestEntry],
+) -> RestoreDeadLetterQueueRecordsOutput: ...
 ```
 
 
@@ -691,6 +810,17 @@ async def update_channel(
 ```
 
 
+### update_dead_letter_queue_records_visibility
+
+```python
+async def update_dead_letter_queue_records_visibility(
+    *,
+    queue_arn: str,
+    entries: Sequence[UpdateDeadLetterQueueRecordsVisibilityRequestEntry],
+) -> UpdateDeadLetterQueueRecordsVisibilityOutput: ...
+```
+
+
 ### update_max_record_size
 
 ```python
@@ -700,6 +830,28 @@ async def update_max_record_size(
     stream_arn: str | None = None,
     stream_id: str | None = None,
 ) -> None: ...
+```
+
+
+### update_queue
+
+```python
+async def update_queue(
+    *,
+    queue_arn: str,
+    queue_attributes: QueueAttributes,
+) -> UpdateQueueOutput: ...
+```
+
+
+### update_queue_records_visibility
+
+```python
+async def update_queue_records_visibility(
+    *,
+    queue_arn: str,
+    entries: Sequence[UpdateQueueRecordsVisibilityRequestEntry],
+) -> UpdateQueueRecordsVisibilityOutput: ...
 ```
 
 

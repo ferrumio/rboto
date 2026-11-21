@@ -110,7 +110,7 @@ native response definitions are in the package's `_native.pyi`.
 | [`create_activation`](#create_activation) | <code>iam_role: str</code> | <code>CreateActivationOutput</code> |
 | [`create_association`](#create_association) | <code>name: str</code> | <code>CreateAssociationOutput</code> |
 | [`create_association_batch`](#create_association_batch) | <code>entries: Sequence[CreateAssociationBatchRequestEntry]</code> | <code>CreateAssociationBatchOutput</code> |
-| [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code>, <code>config_connector_arn: str</code> | <code>CreateCloudConnectorOutput</code> |
+| [`create_cloud_connector`](#create_cloud_connector) | <code>display_name: str</code>, <code>role_arn: str</code>, <code>configuration: CloudConnectorConfiguration</code> | <code>CreateCloudConnectorOutput</code> |
 | [`create_document`](#create_document) | <code>content: str</code>, <code>name: str</code> | <code>CreateDocumentOutput</code> |
 | [`create_maintenance_window`](#create_maintenance_window) | <code>name: str</code>, <code>schedule: str</code>, <code>duration: int</code>, <code>cutoff: int</code>, <code>allow_unassociated_targets: bool</code> | <code>CreateMaintenanceWindowOutput</code> |
 | [`create_ops_item`](#create_ops_item) | <code>description: str</code>, <code>source: str</code>, <code>title: str</code> | <code>CreateOpsItemOutput</code> |
@@ -372,8 +372,8 @@ async def create_cloud_connector(
     display_name: str,
     role_arn: str,
     configuration: CloudConnectorConfiguration,
-    config_connector_arn: str,
     description: str | None = None,
+    config_connector_arn: str | None = None,
     tags: Sequence[Tag] | None = None,
 ) -> CreateCloudConnectorOutput: ...
 ```
@@ -394,6 +394,7 @@ async def create_document(
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
     tags: Sequence[Tag] | None = None,
+    cloud_providers: Sequence[CloudProvider] | None = None,
 ) -> CreateDocumentOutput: ...
 ```
 
@@ -2257,6 +2258,7 @@ async def update_document(
     document_version: str | None = None,
     document_format: DocumentFormat | None = None,
     target_type: str | None = None,
+    cloud_providers: Sequence[CloudProvider] | None = None,
 ) -> UpdateDocumentOutput: ...
 ```
 

@@ -8,11 +8,11 @@ client_class = "AthenaClient"
 adapter_crate = "rboto-athena-native"
 rust_crate = "aws-sdk-athena"
 rust_module = "aws_sdk_athena"
-rust_crate_version = "1.128.0"
-model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-06/aws-models/athena.json"
-model_sha256 = "b8ae77ddfd4103fd8c669f66c4fdc4fbb3987c5ce6fb9a40d32969b3430f7351"
-aws_model_hash = "f0f5cbaa19e52ce79c852e2544c1a309910a96c93cddb0e3dcec30803c1e4fcc"
-smithy_codegen_revision = "e181b22c1588cb6abd3c5840b3236dacaabb1d38"
+rust_crate_version = "1.132.0"
+model_url = "https://raw.githubusercontent.com/awslabs/aws-sdk-rust/release-2026-11-21/aws-models/athena.json"
+model_sha256 = "0d32fe026bec712d06ca95ec4bdb402e992b3aafb860a9a1f35b662bf1f946bd"
+aws_model_hash = "e11c977412053290e2690c720cda41b54e690240bd37443bbc5eb30d8196f99b"
+smithy_codegen_revision = "d0203cb69fe3e68bd234e14de5bc373ded9e857d"
 native_outputs = true
 
 [pagination.ListNotebookMetadata]

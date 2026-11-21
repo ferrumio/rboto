@@ -12,9 +12,10 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import SignInClient as NativeClient, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, CreateOAuth2TokenWithTokenExchangeOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
+from ._native import SignInClient as NativeClient, BatchRevokeSessionsOutput, CreateBearerTokenOutput, CreateOAuth2TokenOutput, CreateOAuth2TokenWithIAMOutput, CreateOAuth2TokenWithTokenExchangeOutput, DeleteConsoleAuthorizationConfigurationOutput, DeleteResourcePermissionStatementOutput, GetConsoleAuthorizationConfigurationOutput, GetResourcePolicyOutput, GetSessionOutput, IntrospectOAuth2TokenWithIAMOutput, ListResourcePermissionStatementsOutput, ListSessionsOutput, PutConsoleAuthorizationConfigurationOutput, PutResourcePermissionStatementOutput, RevokeOAuth2TokenWithIAMOutput
 from .types import (
     CreateOAuth2TokenRequestBody,
+    SessionStatus,
 )
 from .paginators import SignInClientPaginators as _Paginators
 
@@ -77,6 +78,67 @@ class SignInClient:
         return self._paginators
 
 
+    async def batch_revoke_sessions(
+        self,
+        *,
+        session_arns: Sequence[str],
+        principal_arn: str | None = None,
+        reason: str | None = None,
+    ) -> BatchRevokeSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/batch_revoke_sessions/)."""
+        params: dict[str, object] = {
+            "session_arns": session_arns,
+        }
+        if principal_arn is not None:
+            params["principal_arn"] = principal_arn
+        if reason is not None:
+            params["reason"] = reason
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.batch_revoke_sessions, params, _interceptors,
+                "signin", "BatchRevokeSessions", self._region,
+                BatchRevokeSessionsOutput,
+                ("session_arns", "principal_arn", "reason", ),
+                ("session_arns", ),
+                service_name='Signin',
+            )
+            return _response
+        _response = await self._native.batch_revoke_sessions(params)
+        return _response
+
+
+    async def create_bearer_token(
+        self,
+        *,
+        grant_type: str,
+        resource: str,
+        duration_seconds: int | None = None,
+    ) -> CreateBearerTokenOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/create_bearer_token/)."""
+        params: dict[str, object] = {
+            "grant_type": grant_type,
+            "resource": resource,
+        }
+        if duration_seconds is not None:
+            params["duration_seconds"] = duration_seconds
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_bearer_token, params, _interceptors,
+                "signin", "CreateBearerToken", self._region,
+                CreateBearerTokenOutput,
+                ("grant_type", "resource", "duration_seconds", ),
+                ("grant_type", "resource", ),
+                service_name='Signin',
+            )
+            return _response
+        _response = await self._native.create_bearer_token(params)
+        return _response
+
+
     async def create_o_auth2_token(
         self,
         *,
@@ -135,6 +197,8 @@ class SignInClient:
         grant_type: str,
         subject_token: str | None = None,
         subject_token_type: str | None = None,
+        assertion: str | None = None,
+        client_id: str | None = None,
         resource: str | None = None,
         scope: str | None = None,
     ) -> CreateOAuth2TokenWithTokenExchangeOutput:
@@ -146,6 +210,10 @@ class SignInClient:
             params["subject_token"] = subject_token
         if subject_token_type is not None:
             params["subject_token_type"] = subject_token_type
+        if assertion is not None:
+            params["assertion"] = assertion
+        if client_id is not None:
+            params["client_id"] = client_id
         if resource is not None:
             params["resource"] = resource
         if scope is not None:
@@ -157,7 +225,7 @@ class SignInClient:
                 self._native.create_o_auth2_token_with_token_exchange, params, _interceptors,
                 "signin", "CreateOAuth2TokenWithTokenExchange", self._region,
                 CreateOAuth2TokenWithTokenExchangeOutput,
-                ("grant_type", "subject_token", "subject_token_type", "resource", "scope", ),
+                ("grant_type", "subject_token", "subject_token_type", "assertion", "client_id", "resource", "scope", ),
                 ("grant_type", ),
                 service_name='Signin',
             )
@@ -268,6 +336,34 @@ class SignInClient:
         return _response
 
 
+    async def get_session(
+        self,
+        *,
+        session_arn: str,
+        principal_arn: str | None = None,
+    ) -> GetSessionOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/get_session/)."""
+        params: dict[str, object] = {
+            "session_arn": session_arn,
+        }
+        if principal_arn is not None:
+            params["principal_arn"] = principal_arn
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_session, params, _interceptors,
+                "signin", "GetSession", self._region,
+                GetSessionOutput,
+                ("session_arn", "principal_arn", ),
+                ("session_arn", ),
+                service_name='Signin',
+            )
+            return _response
+        _response = await self._native.get_session(params)
+        return _response
+
+
     async def introspect_o_auth2_token_with_iam(
         self,
         *,
@@ -322,6 +418,50 @@ class SignInClient:
             )
             return _response
         _response = await self._native.list_resource_permission_statements(params)
+        return _response
+
+
+    async def list_sessions(
+        self,
+        *,
+        principal_arn: str | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+        status: SessionStatus | None = None,
+        client_id: str | None = None,
+        issued_after: int | None = None,
+        issued_before: int | None = None,
+    ) -> ListSessionsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/signin/operations/list_sessions/)."""
+        params: dict[str, object] = {
+        }
+        if principal_arn is not None:
+            params["principal_arn"] = principal_arn
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        if status is not None:
+            params["status"] = status
+        if client_id is not None:
+            params["client_id"] = client_id
+        if issued_after is not None:
+            params["issued_after"] = issued_after
+        if issued_before is not None:
+            params["issued_before"] = issued_before
+        _interceptors = operation_interceptors("signin", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_sessions, params, _interceptors,
+                "signin", "ListSessions", self._region,
+                ListSessionsOutput,
+                ("principal_arn", "max_results", "next_token", "status", "client_id", "issued_after", "issued_before", ),
+                (),
+                service_name='Signin',
+            )
+            return _response
+        _response = await self._native.list_sessions(params)
         return _response
 
 

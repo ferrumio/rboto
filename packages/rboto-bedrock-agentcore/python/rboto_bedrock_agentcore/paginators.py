@@ -10,7 +10,9 @@ from rboto._pagination import PaginationSpec as _PaginationSpec, paginate as _pa
 from ._native import (
     ListABTestsOutput,
     ListActorsOutput,
+    ListAgentInsightsOutput,
     ListBatchEvaluationsOutput,
+    ListDatasetGenerationsOutput,
     ListEventsOutput,
     ListMemoryExtractionJobsOutput,
     ListMemoryRecordsOutput,
@@ -22,6 +24,7 @@ from ._native import (
 )
 
 from .types import (
+    AgentInsightArchiveStatus,
     ExtractionJobFilterInput,
     FilterInput,
     MemoryMetadataFilterExpression,
@@ -87,6 +90,38 @@ class BedrockAgentCoreClientPaginators:
         )
 
 
+    def list_agent_insights(
+        self,
+        *,
+        application_name: str | None = None,
+        batch_evaluation_id: str | None = None,
+        archive_status: AgentInsightArchiveStatus | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListAgentInsightsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_agent_insights/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if application_name is not None:
+            params["application_name"] = application_name
+        if batch_evaluation_id is not None:
+            params["batch_evaluation_id"] = batch_evaluation_id
+        if archive_status is not None:
+            params["archive_status"] = archive_status
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_agent_insights, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
     def list_batch_evaluations(
         self,
         *,
@@ -102,6 +137,31 @@ class BedrockAgentCoreClientPaginators:
             params["next_token"] = next_token
         return _paginate(
             self._client.list_batch_evaluations, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_dataset_generations(
+        self,
+        *,
+        dataset_id: str,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListDatasetGenerationsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/bedrock-agentcore/operations/list_dataset_generations/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+            "dataset_id": dataset_id,
+        }
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_dataset_generations, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

@@ -42,6 +42,7 @@ from ._native import (
     ListCrawlersOutput,
     ListCrawlsOutput,
     ListCustomEntityTypesOutput,
+    ListDataQualityEvaluationConfigsOutput,
     ListDataQualityResultsOutput,
     ListDataQualityResultsV2Output,
     ListDataQualityRuleRecommendationRunsOutput,
@@ -77,6 +78,7 @@ from ._native import (
 from .types import (
     AuditContext,
     CrawlsFilter,
+    DataQualityEvaluationConfigLevel,
     DataQualityResultFilterCriteria,
     DataQualityResultsV2FilterCriteria,
     DataQualityRuleRecommendationRunFilter,
@@ -1113,6 +1115,32 @@ class GlueClientPaginators:
             params["tags"] = tags
         return _paginate(
             self._client.list_custom_entity_types, params,
+            _PaginationSpec(
+                input_tokens=('next_token',),
+                output_tokens=((('next_token',),),),
+                more_results=None,
+            ),
+        )
+
+
+    def list_data_quality_evaluation_configs(
+        self,
+        *,
+        level: DataQualityEvaluationConfigLevel | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> AsyncIterator[ListDataQualityEvaluationConfigsOutput]:
+        """Yield pages lazily. See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/list_data_quality_evaluation_configs/#pagination-and-streaming)."""
+        params: dict[str, object] = {
+        }
+        if level is not None:
+            params["level"] = level
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        return _paginate(
+            self._client.list_data_quality_evaluation_configs, params,
             _PaginationSpec(
                 input_tokens=('next_token',),
                 output_tokens=((('next_token',),),),

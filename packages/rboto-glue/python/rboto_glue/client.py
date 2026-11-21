@@ -12,11 +12,11 @@ from rboto.session import Session, resolve_config
 from rboto.interceptors import Interceptor, invoke, resolve_interceptors
 from rboto._observability import operation_interceptors
 
-from ._native import GlueClient as NativeClient, AssociateGlossaryTermsOutput, BatchCreatePartitionOutput, BatchDeleteConnectionOutput, BatchDeletePartitionOutput, BatchDeleteTableOutput, BatchDeleteTableVersionOutput, BatchGetBlueprintsOutput, BatchGetCrawlersOutput, BatchGetCustomEntityTypesOutput, BatchGetDataQualityResultOutput, BatchGetDataQualityResultV2Output, BatchGetDataQualityRulesetEvaluationRunOutput, BatchGetDevEndpointsOutput, BatchGetIterableFormsOutput, BatchGetJobsOutput, BatchGetPartitionOutput, BatchGetTableOptimizerOutput, BatchGetTriggersOutput, BatchGetWorkflowsOutput, BatchPutDataQualityStatisticAnnotationOutput, BatchStopJobRunOutput, BatchUpdatePartitionOutput, CancelDataQualityRuleRecommendationRunOutput, CancelDataQualityRulesetEvaluationRunOutput, CancelMLTaskRunOutput, CancelStatementOutput, CheckSchemaVersionValidityOutput, CreateBlueprintOutput, CreateCatalogOutput, CreateClassifierOutput, CreateColumnStatisticsTaskSettingsOutput, CreateConnectionOutput, CreateCrawlerOutput, CreateCustomEntityTypeOutput, CreateDataQualityRulesetOutput, CreateDatabaseOutput, CreateDevEndpointOutput, CreateGlossaryOutput, CreateGlossaryTermOutput, CreateGlueIdentityCenterConfigurationOutput, CreateIntegrationOutput, CreateIntegrationResourcePropertyOutput, CreateIntegrationTablePropertiesOutput, CreateJobOutput, CreateMLTransformOutput, CreatePartitionIndexOutput, CreatePartitionOutput, CreateRegistryOutput, CreateSchemaOutput, CreateScriptOutput, CreateSecurityConfigurationOutput, CreateSessionOutput, CreateTableOptimizerOutput, CreateTableOutput, CreateTriggerOutput, CreateUsageProfileOutput, CreateUserDefinedFunctionOutput, CreateWorkflowOutput, DeleteAssetOutput, DeleteAssetTypeOutput, DeleteAttachmentOutput, DeleteBlueprintOutput, DeleteCatalogOutput, DeleteClassifierOutput, DeleteColumnStatisticsForPartitionOutput, DeleteColumnStatisticsForTableOutput, DeleteColumnStatisticsTaskSettingsOutput, DeleteConnectionOutput, DeleteConnectionTypeOutput, DeleteCrawlerOutput, DeleteCustomEntityTypeOutput, DeleteDataQualityRulesetOutput, DeleteDatabaseOutput, DeleteDevEndpointOutput, DeleteFormTypeOutput, DeleteGlossaryOutput, DeleteGlossaryTermOutput, DeleteGlueIdentityCenterConfigurationOutput, DeleteIntegrationOutput, DeleteIntegrationResourcePropertyOutput, DeleteIntegrationTablePropertiesOutput, DeleteJobOutput, DeleteMLTransformOutput, DeletePartitionIndexOutput, DeletePartitionOutput, DeleteRegistryOutput, DeleteResourcePolicyOutput, DeleteSchemaOutput, DeleteSchemaVersionsOutput, DeleteSecurityConfigurationOutput, DeleteSessionOutput, DeleteTableOptimizerOutput, DeleteTableOutput, DeleteTableVersionOutput, DeleteTriggerOutput, DeleteUsageProfileOutput, DeleteUserDefinedFunctionOutput, DeleteWorkflowOutput, DescribeConnectionTypeOutput, DescribeEntityOutput, DescribeInboundIntegrationsOutput, DescribeIntegrationsOutput, DisassociateGlossaryTermsOutput, GetAssetOutput, GetAssetTypeOutput, GetBlueprintOutput, GetBlueprintRunOutput, GetBlueprintRunsOutput, GetCatalogImportStatusOutput, GetCatalogOutput, GetCatalogsOutput, GetClassifierOutput, GetClassifiersOutput, GetColumnStatisticsForPartitionOutput, GetColumnStatisticsForTableOutput, GetColumnStatisticsTaskRunOutput, GetColumnStatisticsTaskRunsOutput, GetColumnStatisticsTaskSettingsOutput, GetConnectionOutput, GetConnectionsOutput, GetCrawlerMetricsOutput, GetCrawlerOutput, GetCrawlersOutput, GetCustomEntityTypeOutput, GetDashboardUrlOutput, GetDataCatalogEncryptionSettingsOutput, GetDataCatalogExportConfigurationOutput, GetDataQualityModelOutput, GetDataQualityModelResultOutput, GetDataQualityResultOutput, GetDataQualityResultV2Output, GetDataQualityRuleRecommendationRunOutput, GetDataQualityRulesetEvaluationRunOutput, GetDataQualityRulesetOutput, GetDatabaseOutput, GetDatabasesOutput, GetDataflowGraphOutput, GetDevEndpointOutput, GetDevEndpointsOutput, GetEntityRecordsOutput, GetFormTypeOutput, GetGlossaryOutput, GetGlossaryTermOutput, GetGlueIdentityCenterConfigurationOutput, GetIntegrationResourcePropertyOutput, GetIntegrationTablePropertiesOutput, GetJobBookmarkOutput, GetJobOutput, GetJobRunOutput, GetJobRunsOutput, GetJobUpgradeAnalysisOutput, GetJobsOutput, GetMLTaskRunOutput, GetMLTaskRunsOutput, GetMLTransformOutput, GetMLTransformsOutput, GetMappingOutput, GetMaterializedViewRefreshTaskRunOutput, GetPartitionIndexesOutput, GetPartitionOutput, GetPartitionsOutput, GetPlanOutput, GetRegistryOutput, GetResourcePoliciesOutput, GetResourcePolicyOutput, GetSchemaByDefinitionOutput, GetSchemaOutput, GetSchemaVersionOutput, GetSchemaVersionsDiffOutput, GetSecurityConfigurationOutput, GetSecurityConfigurationsOutput, GetSessionEndpointOutput, GetSessionOutput, GetStatementOutput, GetSystemLogsForJobRunOutput, GetSystemLogsForSessionOutput, GetTableOptimizerOutput, GetTableOutput, GetTableVersionOutput, GetTableVersionsOutput, GetTablesOutput, GetTagsOutput, GetTriggerOutput, GetTriggersOutput, GetUnfilteredPartitionMetadataOutput, GetUnfilteredPartitionsMetadataOutput, GetUnfilteredTableMetadataOutput, GetUsageProfileOutput, GetUserDefinedFunctionOutput, GetUserDefinedFunctionsOutput, GetWorkflowOutput, GetWorkflowRunOutput, GetWorkflowRunPropertiesOutput, GetWorkflowRunsOutput, ImportCatalogToGlueOutput, ListAssetTypesOutput, ListBlueprintsOutput, ListColumnStatisticsTaskRunsOutput, ListConnectionTypesOutput, ListCrawlersOutput, ListCrawlsOutput, ListCustomEntityTypesOutput, ListDataQualityResultsOutput, ListDataQualityResultsV2Output, ListDataQualityRuleRecommendationRunsOutput, ListDataQualityRulesetEvaluationRunsOutput, ListDataQualityRulesetsOutput, ListDataQualityStatisticAnnotationsOutput, ListDataQualityStatisticsOutput, ListDevEndpointsOutput, ListEntitiesOutput, ListFormTypesOutput, ListGlossariesOutput, ListGlossaryTermsOutput, ListIntegrationResourcePropertiesOutput, ListIntegrationTablePropertiesOutput, ListIterableFormsOutput, ListJobsOutput, ListMLTransformsOutput, ListMaterializedViewRefreshTaskRunsOutput, ListRegistriesOutput, ListSchemaVersionsOutput, ListSchemasOutput, ListSessionsOutput, ListStatementsOutput, ListTableOptimizerRunsOutput, ListTriggersOutput, ListUsageProfilesOutput, ListWorkflowsOutput, ModifyIntegrationOutput, PublishDataQualityResultV2Output, PutAssetOutput, PutAssetTypeOutput, PutAttachmentOutput, PutDataCatalogEncryptionSettingsOutput, PutDataCatalogExportConfigurationOutput, PutDataQualityProfileAnnotationOutput, PutFormTypeOutput, PutResourcePolicyOutput, PutSchemaVersionMetadataOutput, PutWorkflowRunPropertiesOutput, QuerySchemaVersionMetadataOutput, RegisterConnectionTypeOutput, RegisterSchemaVersionOutput, RemoveSchemaVersionMetadataOutput, ResetJobBookmarkOutput, ResumeWorkflowRunOutput, RunStatementOutput, SearchAssetsOutput, SearchTablesOutput, StartBlueprintRunOutput, StartColumnStatisticsTaskRunOutput, StartColumnStatisticsTaskRunScheduleOutput, StartCrawlerOutput, StartCrawlerScheduleOutput, StartDataQualityRuleRecommendationRunOutput, StartDataQualityRulesetEvaluationRunOutput, StartExportLabelsTaskRunOutput, StartImportLabelsTaskRunOutput, StartJobRunOutput, StartJobUpgradeAnalysisOutput, StartMLEvaluationTaskRunOutput, StartMLLabelingSetGenerationTaskRunOutput, StartMaterializedViewRefreshTaskRunOutput, StartTriggerOutput, StartWorkflowRunOutput, StopColumnStatisticsTaskRunOutput, StopColumnStatisticsTaskRunScheduleOutput, StopCrawlerOutput, StopCrawlerScheduleOutput, StopJobUpgradeAnalysisOutput, StopMaterializedViewRefreshTaskRunOutput, StopSessionOutput, StopTriggerOutput, StopWorkflowRunOutput, TagResourceOutput, TestConnectionOutput, UntagResourceOutput, UpdateAssetOutput, UpdateBlueprintOutput, UpdateCatalogOutput, UpdateClassifierOutput, UpdateColumnStatisticsForPartitionOutput, UpdateColumnStatisticsForTableOutput, UpdateColumnStatisticsTaskSettingsOutput, UpdateConnectionOutput, UpdateCrawlerOutput, UpdateCrawlerScheduleOutput, UpdateDataQualityRulesetOutput, UpdateDatabaseOutput, UpdateDevEndpointOutput, UpdateGlossaryOutput, UpdateGlossaryTermOutput, UpdateGlueIdentityCenterConfigurationOutput, UpdateIntegrationResourcePropertyOutput, UpdateIntegrationTablePropertiesOutput, UpdateJobFromSourceControlOutput, UpdateJobOutput, UpdateMLTransformOutput, UpdatePartitionOutput, UpdateRegistryOutput, UpdateSchemaOutput, UpdateSourceControlFromJobOutput, UpdateTableOptimizerOutput, UpdateTableOutput, UpdateTriggerOutput, UpdateUsageProfileOutput, UpdateUserDefinedFunctionOutput, UpdateWorkflowOutput
+from ._native import GlueClient as NativeClient, AssociateGlossaryTermsOutput, BatchCreatePartitionOutput, BatchDeleteConnectionOutput, BatchDeletePartitionOutput, BatchDeleteTableOutput, BatchDeleteTableVersionOutput, BatchGetBlueprintsOutput, BatchGetCrawlersOutput, BatchGetCustomEntityTypesOutput, BatchGetDataQualityResultOutput, BatchGetDataQualityResultV2Output, BatchGetDataQualityRulesetEvaluationRunOutput, BatchGetDevEndpointsOutput, BatchGetIterableFormsOutput, BatchGetJobsOutput, BatchGetPartitionOutput, BatchGetTableOptimizerOutput, BatchGetTriggersOutput, BatchGetWorkflowsOutput, BatchPutDataQualityStatisticAnnotationOutput, BatchStopJobRunOutput, BatchUpdatePartitionOutput, CancelDataQualityRuleRecommendationRunOutput, CancelDataQualityRulesetEvaluationRunOutput, CancelMLTaskRunOutput, CancelStatementOutput, CheckSchemaVersionValidityOutput, CreateBlueprintOutput, CreateCatalogOutput, CreateClassifierOutput, CreateColumnStatisticsTaskSettingsOutput, CreateConnectionOutput, CreateCrawlerOutput, CreateCustomEntityTypeOutput, CreateDataQualityEvaluationConfigOutput, CreateDataQualityRulesetOutput, CreateDatabaseOutput, CreateDevEndpointOutput, CreateGlossaryOutput, CreateGlossaryTermOutput, CreateGlueIdentityCenterConfigurationOutput, CreateIntegrationOutput, CreateIntegrationResourcePropertyOutput, CreateIntegrationTablePropertiesOutput, CreateJobOutput, CreateMLTransformOutput, CreatePartitionIndexOutput, CreatePartitionOutput, CreateRegistryOutput, CreateSchemaOutput, CreateScriptOutput, CreateSecurityConfigurationOutput, CreateSessionOutput, CreateTableOptimizerOutput, CreateTableOutput, CreateTriggerOutput, CreateUsageProfileOutput, CreateUserDefinedFunctionOutput, CreateWorkflowOutput, DeleteAssetOutput, DeleteAttachmentOutput, DeleteBlueprintOutput, DeleteCatalogOutput, DeleteClassifierOutput, DeleteColumnStatisticsForPartitionOutput, DeleteColumnStatisticsForTableOutput, DeleteColumnStatisticsTaskSettingsOutput, DeleteConnectionOutput, DeleteConnectionTypeOutput, DeleteCrawlerOutput, DeleteCustomEntityTypeOutput, DeleteDataQualityEvaluationConfigOutput, DeleteDataQualityRulesetOutput, DeleteDatabaseOutput, DeleteDevEndpointOutput, DeleteFormTypeOutput, DeleteGlossaryOutput, DeleteGlossaryTermOutput, DeleteGlueIdentityCenterConfigurationOutput, DeleteIntegrationOutput, DeleteIntegrationResourcePropertyOutput, DeleteIntegrationTablePropertiesOutput, DeleteJobOutput, DeleteMLTransformOutput, DeletePartitionIndexOutput, DeletePartitionOutput, DeleteRegistryOutput, DeleteResourcePolicyOutput, DeleteSchemaOutput, DeleteSchemaVersionsOutput, DeleteSecurityConfigurationOutput, DeleteSessionOutput, DeleteTableOptimizerOutput, DeleteTableOutput, DeleteTableVersionOutput, DeleteTriggerOutput, DeleteUsageProfileOutput, DeleteUserDefinedFunctionOutput, DeleteWorkflowOutput, DescribeConnectionTypeOutput, DescribeEntityOutput, DescribeInboundIntegrationsOutput, DescribeIntegrationsOutput, DisassociateGlossaryTermsOutput, GetAssetOutput, GetAssetTypeOutput, GetBlueprintOutput, GetBlueprintRunOutput, GetBlueprintRunsOutput, GetCatalogImportStatusOutput, GetCatalogOutput, GetCatalogsOutput, GetClassifierOutput, GetClassifiersOutput, GetColumnStatisticsForPartitionOutput, GetColumnStatisticsForTableOutput, GetColumnStatisticsTaskRunOutput, GetColumnStatisticsTaskRunsOutput, GetColumnStatisticsTaskSettingsOutput, GetConnectionOutput, GetConnectionsOutput, GetCrawlerMetricsOutput, GetCrawlerOutput, GetCrawlersOutput, GetCustomEntityTypeOutput, GetDashboardUrlOutput, GetDataCatalogEncryptionSettingsOutput, GetDataCatalogExportConfigurationOutput, GetDataQualityEvaluationConfigOutput, GetDataQualityModelOutput, GetDataQualityModelResultOutput, GetDataQualityResultOutput, GetDataQualityResultV2Output, GetDataQualityRuleRecommendationRunOutput, GetDataQualityRulesetEvaluationRunOutput, GetDataQualityRulesetOutput, GetDatabaseOutput, GetDatabasesOutput, GetDataflowGraphOutput, GetDevEndpointOutput, GetDevEndpointsOutput, GetEntityRecordsOutput, GetFormTypeOutput, GetGlossaryOutput, GetGlossaryTermOutput, GetGlueIdentityCenterConfigurationOutput, GetIntegrationResourcePropertyOutput, GetIntegrationTablePropertiesOutput, GetJobBookmarkOutput, GetJobOutput, GetJobRunOutput, GetJobRunsOutput, GetJobUpgradeAnalysisOutput, GetJobsOutput, GetMLTaskRunOutput, GetMLTaskRunsOutput, GetMLTransformOutput, GetMLTransformsOutput, GetMappingOutput, GetMaterializedViewRefreshTaskRunOutput, GetPartitionIndexesOutput, GetPartitionOutput, GetPartitionsOutput, GetPlanOutput, GetRegistryOutput, GetResourcePoliciesOutput, GetResourcePolicyOutput, GetSchemaByDefinitionOutput, GetSchemaOutput, GetSchemaVersionOutput, GetSchemaVersionsDiffOutput, GetSecurityConfigurationOutput, GetSecurityConfigurationsOutput, GetSessionEndpointOutput, GetSessionOutput, GetStatementOutput, GetSystemLogsForJobRunOutput, GetSystemLogsForSessionOutput, GetTableOptimizerOutput, GetTableOutput, GetTableVersionOutput, GetTableVersionsOutput, GetTablesOutput, GetTagsOutput, GetTriggerOutput, GetTriggersOutput, GetUnfilteredPartitionMetadataOutput, GetUnfilteredPartitionsMetadataOutput, GetUnfilteredTableMetadataOutput, GetUsageProfileOutput, GetUserDefinedFunctionOutput, GetUserDefinedFunctionsOutput, GetWorkflowOutput, GetWorkflowRunOutput, GetWorkflowRunPropertiesOutput, GetWorkflowRunsOutput, ImportCatalogToGlueOutput, ListAssetTypesOutput, ListBlueprintsOutput, ListColumnStatisticsTaskRunsOutput, ListConnectionTypesOutput, ListCrawlersOutput, ListCrawlsOutput, ListCustomEntityTypesOutput, ListDataQualityEvaluationConfigsOutput, ListDataQualityResultsOutput, ListDataQualityResultsV2Output, ListDataQualityRuleRecommendationRunsOutput, ListDataQualityRulesetEvaluationRunsOutput, ListDataQualityRulesetsOutput, ListDataQualityStatisticAnnotationsOutput, ListDataQualityStatisticsOutput, ListDevEndpointsOutput, ListEntitiesOutput, ListFormTypesOutput, ListGlossariesOutput, ListGlossaryTermsOutput, ListIntegrationResourcePropertiesOutput, ListIntegrationTablePropertiesOutput, ListIterableFormsOutput, ListJobsOutput, ListMLTransformsOutput, ListMaterializedViewRefreshTaskRunsOutput, ListRegistriesOutput, ListSchemaVersionsOutput, ListSchemasOutput, ListSessionsOutput, ListStatementsOutput, ListTableOptimizerRunsOutput, ListTriggersOutput, ListUsageProfilesOutput, ListWorkflowsOutput, ModifyIntegrationOutput, PublishDataQualityResultV2Output, PutAssetOutput, PutAttachmentOutput, PutDataCatalogEncryptionSettingsOutput, PutDataCatalogExportConfigurationOutput, PutDataQualityProfileAnnotationOutput, PutFormTypeOutput, PutResourcePolicyOutput, PutSchemaVersionMetadataOutput, PutWorkflowRunPropertiesOutput, QuerySchemaVersionMetadataOutput, RegisterConnectionTypeOutput, RegisterSchemaVersionOutput, RemoveSchemaVersionMetadataOutput, ResetJobBookmarkOutput, ResumeWorkflowRunOutput, RunStatementOutput, SearchAssetsOutput, SearchTablesOutput, StartBlueprintRunOutput, StartColumnStatisticsTaskRunOutput, StartColumnStatisticsTaskRunScheduleOutput, StartCrawlerOutput, StartCrawlerScheduleOutput, StartDataQualityRuleRecommendationRunOutput, StartDataQualityRulesetEvaluationRunOutput, StartExportLabelsTaskRunOutput, StartImportLabelsTaskRunOutput, StartJobRunOutput, StartJobUpgradeAnalysisOutput, StartMLEvaluationTaskRunOutput, StartMLLabelingSetGenerationTaskRunOutput, StartMaterializedViewRefreshTaskRunOutput, StartTriggerOutput, StartWorkflowRunOutput, StopColumnStatisticsTaskRunOutput, StopColumnStatisticsTaskRunScheduleOutput, StopCrawlerOutput, StopCrawlerScheduleOutput, StopJobUpgradeAnalysisOutput, StopMaterializedViewRefreshTaskRunOutput, StopSessionOutput, StopTriggerOutput, StopWorkflowRunOutput, TagResourceOutput, TestConnectionOutput, UntagResourceOutput, UpdateAssetOutput, UpdateBlueprintOutput, UpdateCatalogOutput, UpdateClassifierOutput, UpdateColumnStatisticsForPartitionOutput, UpdateColumnStatisticsForTableOutput, UpdateColumnStatisticsTaskSettingsOutput, UpdateConnectionOutput, UpdateCrawlerOutput, UpdateCrawlerScheduleOutput, UpdateDataQualityEvaluationConfigOutput, UpdateDataQualityRulesetOutput, UpdateDatabaseOutput, UpdateDevEndpointOutput, UpdateGlossaryOutput, UpdateGlossaryTermOutput, UpdateGlueIdentityCenterConfigurationOutput, UpdateIntegrationResourcePropertyOutput, UpdateIntegrationTablePropertiesOutput, UpdateJobFromSourceControlOutput, UpdateJobOutput, UpdateMLTransformOutput, UpdatePartitionOutput, UpdateRegistryOutput, UpdateSchemaOutput, UpdateSourceControlFromJobOutput, UpdateTableOptimizerOutput, UpdateTableOutput, UpdateTriggerOutput, UpdateUsageProfileOutput, UpdateUserDefinedFunctionOutput, UpdateWorkflowOutput
 from .types import (
     Action,
-    AssetFormEntry,
-    AssetTypeFormReference,
+    AssetFormInput,
+    AssetsExport,
     AuditContext,
     BatchGetTableOptimizerEntry,
     BatchUpdatePartitionRequestEntry,
@@ -43,6 +43,11 @@ from .types import (
     DataQualityAggregatedMetrics,
     DataQualityAnalyzerResult,
     DataQualityConfigurationV2,
+    DataQualityEvaluationConfigAdditionalRunOptions,
+    DataQualityEvaluationConfigDataSource,
+    DataQualityEvaluationConfigLevel,
+    DataQualityEvaluationConfigManagedRuleset,
+    DataQualityEvaluationConfigTrigger,
     DataQualityEvaluationRunAdditionalRunOptions,
     DataQualityObservation,
     DataQualityResultFilterCriteria,
@@ -65,8 +70,6 @@ from .types import (
     ExecutionClass,
     ExecutionProperty,
     ExistCondition,
-    ExportEncryptionConfiguration,
-    ExportSetting,
     FunctionType,
     GetConnectionsFilter,
     GlueResourceType,
@@ -102,6 +105,7 @@ from .types import (
     RegistryId,
     ResourceShareType,
     RestConfiguration,
+    S3TablesConfiguration,
     SchemaChangePolicy,
     SchemaDiffType,
     SchemaId,
@@ -1250,6 +1254,73 @@ class GlueClient:
         return _response
 
 
+    async def create_data_quality_evaluation_config(
+        self,
+        *,
+        name: str,
+        level: DataQualityEvaluationConfigLevel,
+        data_source: DataQualityEvaluationConfigDataSource,
+        role: str,
+        ruleset_name: str | None = None,
+        managed_ruleset_name: DataQualityEvaluationConfigManagedRuleset | None = None,
+        triggers: Sequence[DataQualityEvaluationConfigTrigger] | None = None,
+        schedule_expression: str | None = None,
+        start_at: str | None = None,
+        end_at: str | None = None,
+        number_of_workers: int | None = None,
+        timeout: int | None = None,
+        additional_run_options: DataQualityEvaluationConfigAdditionalRunOptions | None = None,
+        additional_data_sources: dict[str, DataSource] | None = None,
+        tags: dict[str, str] | None = None,
+        client_token: str | None = None,
+    ) -> CreateDataQualityEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/create_data_quality_evaluation_config/)."""
+        params: dict[str, object] = {
+            "name": name,
+            "level": level,
+            "data_source": data_source,
+            "role": role,
+        }
+        if ruleset_name is not None:
+            params["ruleset_name"] = ruleset_name
+        if managed_ruleset_name is not None:
+            params["managed_ruleset_name"] = managed_ruleset_name
+        if triggers is not None:
+            params["triggers"] = triggers
+        if schedule_expression is not None:
+            params["schedule_expression"] = schedule_expression
+        if start_at is not None:
+            params["start_at"] = start_at
+        if end_at is not None:
+            params["end_at"] = end_at
+        if number_of_workers is not None:
+            params["number_of_workers"] = number_of_workers
+        if timeout is not None:
+            params["timeout"] = timeout
+        if additional_run_options is not None:
+            params["additional_run_options"] = additional_run_options
+        if additional_data_sources is not None:
+            params["additional_data_sources"] = additional_data_sources
+        if tags is not None:
+            params["tags"] = tags
+        if client_token is not None:
+            params["client_token"] = client_token
+        _interceptors = operation_interceptors("glue", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.create_data_quality_evaluation_config, params, _interceptors,
+                "glue", "CreateDataQualityEvaluationConfig", self._region,
+                CreateDataQualityEvaluationConfigOutput,
+                ("name", "level", "data_source", "role", "ruleset_name", "managed_ruleset_name", "triggers", "schedule_expression", "start_at", "end_at", "number_of_workers", "timeout", "additional_run_options", "additional_data_sources", "tags", "client_token", ),
+                ("name", "level", "data_source", "role", ),
+                service_name='Glue',
+            )
+            return _response
+        _response = await self._native.create_data_quality_evaluation_config(params)
+        return _response
+
+
     async def create_data_quality_ruleset(
         self,
         *,
@@ -2269,31 +2340,6 @@ class GlueClient:
         return _response
 
 
-    async def delete_asset_type(
-        self,
-        *,
-        identifier: str,
-    ) -> DeleteAssetTypeOutput:
-        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/delete_asset_type/)."""
-        params: dict[str, object] = {
-            "identifier": identifier,
-        }
-        _interceptors = operation_interceptors("glue", self._interceptors)
-        if _interceptors:
-            self._native._ensure_open()
-            _response = await invoke(
-                self._native.delete_asset_type, params, _interceptors,
-                "glue", "DeleteAssetType", self._region,
-                DeleteAssetTypeOutput,
-                ("identifier", ),
-                ("identifier", ),
-                service_name='Glue',
-            )
-            return _response
-        _response = await self._native.delete_asset_type(params)
-        return _response
-
-
     async def delete_attachment(
         self,
         *,
@@ -2598,6 +2644,31 @@ class GlueClient:
             )
             return _response
         _response = await self._native.delete_custom_entity_type(params)
+        return _response
+
+
+    async def delete_data_quality_evaluation_config(
+        self,
+        *,
+        name: str,
+    ) -> DeleteDataQualityEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/delete_data_quality_evaluation_config/)."""
+        params: dict[str, object] = {
+            "name": name,
+        }
+        _interceptors = operation_interceptors("glue", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.delete_data_quality_evaluation_config, params, _interceptors,
+                "glue", "DeleteDataQualityEvaluationConfig", self._region,
+                DeleteDataQualityEvaluationConfigOutput,
+                ("name", ),
+                ("name", ),
+                service_name='Glue',
+            )
+            return _response
+        _response = await self._native.delete_data_quality_evaluation_config(params)
         return _response
 
 
@@ -4194,6 +4265,31 @@ class GlueClient:
             )
             return _response
         _response = await self._native.get_data_catalog_export_configuration(params)
+        return _response
+
+
+    async def get_data_quality_evaluation_config(
+        self,
+        *,
+        name: str,
+    ) -> GetDataQualityEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/get_data_quality_evaluation_config/)."""
+        params: dict[str, object] = {
+            "name": name,
+        }
+        _interceptors = operation_interceptors("glue", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.get_data_quality_evaluation_config, params, _interceptors,
+                "glue", "GetDataQualityEvaluationConfig", self._region,
+                GetDataQualityEvaluationConfigOutput,
+                ("name", ),
+                ("name", ),
+                service_name='Glue',
+            )
+            return _response
+        _response = await self._native.get_data_quality_evaluation_config(params)
         return _response
 
 
@@ -6511,6 +6607,38 @@ class GlueClient:
         return _response
 
 
+    async def list_data_quality_evaluation_configs(
+        self,
+        *,
+        level: DataQualityEvaluationConfigLevel | None = None,
+        max_results: int | None = None,
+        next_token: str | None = None,
+    ) -> ListDataQualityEvaluationConfigsOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/list_data_quality_evaluation_configs/)."""
+        params: dict[str, object] = {
+        }
+        if level is not None:
+            params["level"] = level
+        if max_results is not None:
+            params["max_results"] = max_results
+        if next_token is not None:
+            params["next_token"] = next_token
+        _interceptors = operation_interceptors("glue", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.list_data_quality_evaluation_configs, params, _interceptors,
+                "glue", "ListDataQualityEvaluationConfigs", self._region,
+                ListDataQualityEvaluationConfigsOutput,
+                ("level", "max_results", "next_token", ),
+                (),
+                service_name='Glue',
+            )
+            return _response
+        _response = await self._native.list_data_quality_evaluation_configs(params)
+        return _response
+
+
     async def list_data_quality_results(
         self,
         *,
@@ -7514,20 +7642,21 @@ class GlueClient:
     async def put_asset(
         self,
         *,
-        asset_type_id: str,
         identifier: str,
         name: str,
-        forms: dict[str, AssetFormEntry],
+        forms: dict[str, AssetFormInput],
+        asset_type_identifier: str | None = None,
         description: str | None = None,
         client_token: str | None = None,
     ) -> PutAssetOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/put_asset/)."""
         params: dict[str, object] = {
-            "asset_type_id": asset_type_id,
             "identifier": identifier,
             "name": name,
             "forms": forms,
         }
+        if asset_type_identifier is not None:
+            params["asset_type_identifier"] = asset_type_identifier
         if description is not None:
             params["description"] = description
         if client_token is not None:
@@ -7539,42 +7668,12 @@ class GlueClient:
                 self._native.put_asset, params, _interceptors,
                 "glue", "PutAsset", self._region,
                 PutAssetOutput,
-                ("asset_type_id", "identifier", "name", "forms", "description", "client_token", ),
-                ("asset_type_id", "identifier", "name", "forms", ),
+                ("identifier", "name", "forms", "asset_type_identifier", "description", "client_token", ),
+                ("identifier", "name", "forms", ),
                 service_name='Glue',
             )
             return _response
         _response = await self._native.put_asset(params)
-        return _response
-
-
-    async def put_asset_type(
-        self,
-        *,
-        name: str,
-        forms: dict[str, AssetTypeFormReference],
-        client_token: str | None = None,
-    ) -> PutAssetTypeOutput:
-        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/put_asset_type/)."""
-        params: dict[str, object] = {
-            "name": name,
-            "forms": forms,
-        }
-        if client_token is not None:
-            params["client_token"] = client_token
-        _interceptors = operation_interceptors("glue", self._interceptors)
-        if _interceptors:
-            self._native._ensure_open()
-            _response = await invoke(
-                self._native.put_asset_type, params, _interceptors,
-                "glue", "PutAssetType", self._region,
-                PutAssetTypeOutput,
-                ("name", "forms", "client_token", ),
-                ("name", "forms", ),
-                service_name='Glue',
-            )
-            return _response
-        _response = await self._native.put_asset_type(params)
         return _response
 
 
@@ -7584,9 +7683,9 @@ class GlueClient:
         asset_identifier: str,
         attachment_name: str,
         content: str,
-        form_type_id: str,
         iterable_form_name: str | None = None,
         item_identifier: str | None = None,
+        form_type_identifier: str | None = None,
         client_token: str | None = None,
     ) -> PutAttachmentOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/put_attachment/)."""
@@ -7594,12 +7693,13 @@ class GlueClient:
             "asset_identifier": asset_identifier,
             "attachment_name": attachment_name,
             "content": content,
-            "form_type_id": form_type_id,
         }
         if iterable_form_name is not None:
             params["iterable_form_name"] = iterable_form_name
         if item_identifier is not None:
             params["item_identifier"] = item_identifier
+        if form_type_identifier is not None:
+            params["form_type_identifier"] = form_type_identifier
         if client_token is not None:
             params["client_token"] = client_token
         _interceptors = operation_interceptors("glue", self._interceptors)
@@ -7609,8 +7709,8 @@ class GlueClient:
                 self._native.put_attachment, params, _interceptors,
                 "glue", "PutAttachment", self._region,
                 PutAttachmentOutput,
-                ("asset_identifier", "attachment_name", "content", "form_type_id", "iterable_form_name", "item_identifier", "client_token", ),
-                ("asset_identifier", "attachment_name", "content", "form_type_id", ),
+                ("asset_identifier", "attachment_name", "content", "iterable_form_name", "item_identifier", "form_type_identifier", "client_token", ),
+                ("asset_identifier", "attachment_name", "content", ),
                 service_name='Glue',
             )
             return _response
@@ -7649,18 +7749,19 @@ class GlueClient:
     async def put_data_catalog_export_configuration(
         self,
         *,
-        export_setting: ExportSetting,
-        encryption_configuration: ExportEncryptionConfiguration | None = None,
         client_token: str | None = None,
+        s3_tables_configuration: S3TablesConfiguration | None = None,
+        assets: AssetsExport | None = None,
     ) -> PutDataCatalogExportConfigurationOutput:
         """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/put_data_catalog_export_configuration/)."""
         params: dict[str, object] = {
-            "export_setting": export_setting,
         }
-        if encryption_configuration is not None:
-            params["encryption_configuration"] = encryption_configuration
         if client_token is not None:
             params["client_token"] = client_token
+        if s3_tables_configuration is not None:
+            params["s3_tables_configuration"] = s3_tables_configuration
+        if assets is not None:
+            params["assets"] = assets
         _interceptors = operation_interceptors("glue", self._interceptors)
         if _interceptors:
             self._native._ensure_open()
@@ -7668,8 +7769,8 @@ class GlueClient:
                 self._native.put_data_catalog_export_configuration, params, _interceptors,
                 "glue", "PutDataCatalogExportConfiguration", self._region,
                 PutDataCatalogExportConfigurationOutput,
-                ("export_setting", "encryption_configuration", "client_token", ),
-                ("export_setting", ),
+                ("client_token", "s3_tables_configuration", "assets", ),
+                (),
                 service_name='Glue',
             )
             return _response
@@ -9367,6 +9468,70 @@ class GlueClient:
             )
             return _response
         _response = await self._native.update_crawler_schedule(params)
+        return _response
+
+
+    async def update_data_quality_evaluation_config(
+        self,
+        *,
+        name: str,
+        data_source: DataQualityEvaluationConfigDataSource | None = None,
+        ruleset_name: str | None = None,
+        managed_ruleset_name: DataQualityEvaluationConfigManagedRuleset | None = None,
+        triggers: Sequence[DataQualityEvaluationConfigTrigger] | None = None,
+        schedule_expression: str | None = None,
+        start_at: str | None = None,
+        end_at: str | None = None,
+        pause_runs: bool | None = None,
+        role: str | None = None,
+        number_of_workers: int | None = None,
+        timeout: int | None = None,
+        additional_run_options: DataQualityEvaluationConfigAdditionalRunOptions | None = None,
+        additional_data_sources: dict[str, DataSource] | None = None,
+    ) -> UpdateDataQualityEvaluationConfigOutput:
+        """See [reference](https://ferrumio.github.io/rboto/reference/glue/operations/update_data_quality_evaluation_config/)."""
+        params: dict[str, object] = {
+            "name": name,
+        }
+        if data_source is not None:
+            params["data_source"] = data_source
+        if ruleset_name is not None:
+            params["ruleset_name"] = ruleset_name
+        if managed_ruleset_name is not None:
+            params["managed_ruleset_name"] = managed_ruleset_name
+        if triggers is not None:
+            params["triggers"] = triggers
+        if schedule_expression is not None:
+            params["schedule_expression"] = schedule_expression
+        if start_at is not None:
+            params["start_at"] = start_at
+        if end_at is not None:
+            params["end_at"] = end_at
+        if pause_runs is not None:
+            params["pause_runs"] = pause_runs
+        if role is not None:
+            params["role"] = role
+        if number_of_workers is not None:
+            params["number_of_workers"] = number_of_workers
+        if timeout is not None:
+            params["timeout"] = timeout
+        if additional_run_options is not None:
+            params["additional_run_options"] = additional_run_options
+        if additional_data_sources is not None:
+            params["additional_data_sources"] = additional_data_sources
+        _interceptors = operation_interceptors("glue", self._interceptors)
+        if _interceptors:
+            self._native._ensure_open()
+            _response = await invoke(
+                self._native.update_data_quality_evaluation_config, params, _interceptors,
+                "glue", "UpdateDataQualityEvaluationConfig", self._region,
+                UpdateDataQualityEvaluationConfigOutput,
+                ("name", "data_source", "ruleset_name", "managed_ruleset_name", "triggers", "schedule_expression", "start_at", "end_at", "pause_runs", "role", "number_of_workers", "timeout", "additional_run_options", "additional_data_sources", ),
+                ("name", ),
+                service_name='Glue',
+            )
+            return _response
+        _response = await self._native.update_data_quality_evaluation_config(params)
         return _response
 
 

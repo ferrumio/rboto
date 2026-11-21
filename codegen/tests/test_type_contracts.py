@@ -56,6 +56,40 @@ async def send(sqs: SQSClient, ddb: DynamoDBClient, url: str) -> None:
     assert result.returncode == 0, result.stdout + result.stderr
 
 
+def test_integer_enums_and_renamed_fields_preserve_strict_contracts(tmp_path: Path) -> None:
+    result = check_consumer(tmp_path / "new_model_valid.py", """
+from typing import assert_type
+from rboto import BedrockAgentCoreControlClient, LambdaClient
+from rboto_lambda.types import AcceleratorConfig, AcceleratorMemoryGB
+
+capacity: AcceleratorMemoryGB = 3
+config: AcceleratorConfig = {"accelerator_memory_size": capacity}
+
+async def read(lamb: LambdaClient, control: BedrockAgentCoreControlClient) -> None:
+    result = await lamb.update_function_configuration(
+        function_name="example", accelerator_config=config,
+    )
+    if result.accelerator_config is not None:
+        assert_type(result.accelerator_config.accelerator_memory_size, int)
+    runtime = await control.get_agent_runtime(agent_runtime_id="example")
+    if runtime.hooks_configuration is not None:
+        hooks = runtime.hooks_configuration.build
+        if hooks is not None:
+            _ = hooks.warmup
+""")
+    assert result.returncode == 0, result.stdout + result.stderr
+    result = check_consumer(tmp_path / "new_model_invalid.py", """
+from rboto_lambda.types import AcceleratorMemoryGB
+from rboto_bedrock_agentcore_control.types import RuntimeHooksConfiguration
+
+capacity: AcceleratorMemoryGB = 999
+wrong_type: AcceleratorMemoryGB = "3"
+hooks: RuntimeHooksConfiguration = {"build_value": {}}
+""")
+    assert result.returncode == 1, result.stdout + result.stderr
+    assert len([line for line in result.stdout.splitlines() if ": error:" in line]) == 3
+
+
 def test_file_sources_and_sinks_preserve_streaming_type_boundaries(tmp_path: Path) -> None:
     result = check_consumer(tmp_path / "files_valid.py", """
 from pathlib import Path

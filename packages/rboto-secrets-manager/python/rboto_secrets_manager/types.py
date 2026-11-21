@@ -12,6 +12,8 @@ from . import _native
 
 ApiErrorType: TypeAlias = _native.ApiErrorType
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ApiErrorType-1f10314cdd97/)."""
+AssociateCrossAccountReplicaOutput: TypeAlias = _native.AssociateCrossAccountReplicaOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/AssociateCrossAccountReplicaOutput/)."""
 BatchGetSecretValueOutput: TypeAlias = _native.BatchGetSecretValueOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/BatchGetSecretValueOutput/)."""
 ByteStream: TypeAlias = _native.ByteStream
@@ -20,12 +22,18 @@ CancelRotateSecretOutput: TypeAlias = _native.CancelRotateSecretOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CancelRotateSecretOutput/)."""
 CreateSecretOutput: TypeAlias = _native.CreateSecretOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretOutput/)."""
+CrossAccountPrimaryTypeOutput: TypeAlias = _native.CrossAccountPrimaryType
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CrossAccountPrimaryTypeOutput/)."""
+CrossAccountReplicaEntryOutput: TypeAlias = _native.CrossAccountReplicaEntry
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CrossAccountReplicaEntryOutput/)."""
 DeleteResourcePolicyOutput: TypeAlias = _native.DeleteResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyOutput/)."""
 DeleteSecretOutput: TypeAlias = _native.DeleteSecretOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteSecretOutput/)."""
 DescribeSecretOutput: TypeAlias = _native.DescribeSecretOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretOutput/)."""
+DisassociateCrossAccountReplicaOutput: TypeAlias = _native.DisassociateCrossAccountReplicaOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DisassociateCrossAccountReplicaOutput/)."""
 ExternalSecretRotationMetadataItemOutput: TypeAlias = _native.ExternalSecretRotationMetadataItem
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ExternalSecretRotationMetadataItemOutput/)."""
 GetRandomPasswordOutput: TypeAlias = _native.GetRandomPasswordOutput
@@ -34,6 +42,8 @@ GetResourcePolicyOutput: TypeAlias = _native.GetResourcePolicyOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyOutput/)."""
 GetSecretValueOutput: TypeAlias = _native.GetSecretValueOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueOutput/)."""
+ListResourcePoliciesOutput: TypeAlias = _native.ListResourcePoliciesOutput
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListResourcePoliciesOutput/)."""
 ListSecretVersionIdsOutput: TypeAlias = _native.ListSecretVersionIdsOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListSecretVersionIdsOutput/)."""
 ListSecretsOutput: TypeAlias = _native.ListSecretsOutput
@@ -48,6 +58,8 @@ ReplicateSecretToRegionsOutput: TypeAlias = _native.ReplicateSecretToRegionsOutp
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicateSecretToRegionsOutput/)."""
 ReplicationStatusTypeOutput: TypeAlias = _native.ReplicationStatusType
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicationStatusTypeOutput/)."""
+ResourcePolicySummaryOutput: TypeAlias = _native.ResourcePolicySummary
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ResourcePolicySummaryOutput/)."""
 RestoreSecretOutput: TypeAlias = _native.RestoreSecretOutput
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/RestoreSecretOutput/)."""
 RotateSecretOutput: TypeAlias = _native.RotateSecretOutput
@@ -80,6 +92,10 @@ FilterNameStringType: TypeAlias = Literal['description', 'name', 'tag-key', 'tag
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/FilterNameStringType/)."""
 FilterNameStringTypeOutput: TypeAlias = FilterNameStringType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/FilterNameStringTypeOutput/)."""
+ReplicaRestrictionType: TypeAlias = Literal['SameOrg', 'NoRestriction']
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicaRestrictionType/)."""
+ReplicaRestrictionTypeOutput: TypeAlias = ReplicaRestrictionType | UnknownEnumValue
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicaRestrictionTypeOutput/)."""
 SortByType: TypeAlias = Literal['created-date', 'last-accessed-date', 'last-changed-date', 'name']
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortByType/)."""
 SortByTypeOutput: TypeAlias = SortByType | UnknownEnumValue
@@ -88,7 +104,7 @@ SortOrderType: TypeAlias = Literal['asc', 'desc']
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortOrderType/)."""
 SortOrderTypeOutput: TypeAlias = SortOrderType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/SortOrderTypeOutput/)."""
-StatusType: TypeAlias = Literal['InSync', 'Failed', 'InProgress']
+StatusType: TypeAlias = Literal['InSync', 'Failed', 'InProgress', 'Pending', 'Detached']
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StatusType/)."""
 StatusTypeOutput: TypeAlias = StatusType | UnknownEnumValue
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/StatusTypeOutput/)."""
@@ -102,6 +118,17 @@ APIErrorType = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/APIErrorType-6a466cee1f13/)."""
+
+AssociateCrossAccountReplicaRequest = TypedDict(
+    "AssociateCrossAccountReplicaRequest",
+    {
+    "secret_id": Required["str"],
+    "cross_account_replica_arn": Required["str"],
+    "replica_restriction": NotRequired["ReplicaRestrictionType"],
+    "replication_role_arn": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/AssociateCrossAccountReplicaRequest/)."""
 
 BatchGetSecretValueRequest = TypedDict(
     "BatchGetSecretValueRequest",
@@ -135,14 +162,37 @@ CreateSecretRequest = TypedDict(
     "add_replica_regions": NotRequired["Sequence[ReplicaRegionType]"],
     "force_overwrite_replica_secret": NotRequired["bool"],
     "type": NotRequired["str"],
+    "cross_account_primary_arn": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CreateSecretRequest/)."""
+
+CrossAccountPrimaryType = TypedDict(
+    "CrossAccountPrimaryType",
+    {
+    "primary_secret_arn": NotRequired["str"],
+    "replication_status": NotRequired["StatusType"],
+    "status_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CrossAccountPrimaryType/)."""
+
+CrossAccountReplicaEntry = TypedDict(
+    "CrossAccountReplicaEntry",
+    {
+    "replica_secret_arn": NotRequired["str"],
+    "replication_role_arn": NotRequired["str"],
+    "replication_status": NotRequired["StatusType"],
+    "status_message": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/CrossAccountReplicaEntry/)."""
 
 DeleteResourcePolicyRequest = TypedDict(
     "DeleteResourcePolicyRequest",
     {
     "secret_id": Required["str"],
+    "policy_name": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DeleteResourcePolicyRequest/)."""
@@ -164,6 +214,15 @@ DescribeSecretRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DescribeSecretRequest/)."""
+
+DisassociateCrossAccountReplicaRequest = TypedDict(
+    "DisassociateCrossAccountReplicaRequest",
+    {
+    "secret_id": Required["str"],
+    "cross_account_replica_arn": Required["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/DisassociateCrossAccountReplicaRequest/)."""
 
 ExternalSecretRotationMetadataItem = TypedDict(
     "ExternalSecretRotationMetadataItem",
@@ -202,6 +261,7 @@ GetResourcePolicyRequest = TypedDict(
     "GetResourcePolicyRequest",
     {
     "secret_id": Required["str"],
+    "policy_name": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetResourcePolicyRequest/)."""
@@ -215,6 +275,16 @@ GetSecretValueRequest = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/GetSecretValueRequest/)."""
+
+ListResourcePoliciesRequest = TypedDict(
+    "ListResourcePoliciesRequest",
+    {
+    "secret_id": Required["str"],
+    "max_results": NotRequired["int"],
+    "next_token": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ListResourcePoliciesRequest/)."""
 
 ListSecretVersionIdsRequest = TypedDict(
     "ListSecretVersionIdsRequest",
@@ -245,6 +315,7 @@ PutResourcePolicyRequest = TypedDict(
     {
     "secret_id": Required["str"],
     "resource_policy": Required["str"],
+    "policy_name": NotRequired["str"],
     "block_public_policy": NotRequired["bool"],
     },
 )
@@ -302,6 +373,14 @@ ReplicationStatusType = TypedDict(
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ReplicationStatusType/)."""
+
+ResourcePolicySummary = TypedDict(
+    "ResourcePolicySummary",
+    {
+    "policy_name": NotRequired["str"],
+    },
+)
+"""See [reference](https://ferrumio.github.io/rboto/reference/secrets-manager/types/ResourcePolicySummary/)."""
 
 RestoreSecretRequest = TypedDict(
     "RestoreSecretRequest",

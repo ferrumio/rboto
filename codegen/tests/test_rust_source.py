@@ -86,6 +86,62 @@ def test_missing_source_is_not_an_empty_structure(tmp_path: Path) -> None:
     assert parse_fields(path) == ()
 
 
+@pytest.mark.parametrize("compact", [False, True])
+def test_setters_preserve_member_names_without_guessing_suffixes(
+    tmp_path: Path, compact: bool,
+) -> None:
+    source = """
+    pub struct Example {
+        pub build_value: Option<String>,
+        pub ordinary_value: Option<String>,
+        pub r#type: Option<String>,
+    }
+    impl ExampleBuilder {
+        pub fn set_build(mut self, input: Option<String>) -> Self {
+            self.build_value = input; self
+        }
+        pub fn set_ordinary_value(mut self, input: Option<String>) -> Self {
+            self.ordinary_value = input; self
+        }
+        pub fn set_type(mut self, input: Option<String>) -> Self {
+            self.r#type = input; self
+        }
+        pub fn set_meta(&mut self, meta: Option<ErrorMetadata>) -> &mut Self {
+            self.meta = meta; self
+        }
+    }
+    """
+    path = tmp_path / "renamed.rs"
+    path.write_text(" ".join(source.split()) if compact else source)
+    assert [(field.name, field.rust_name) for field in parse_fields(path)] == [
+        ("build", "build_value"), ("ordinary_value", "ordinary_value"), ("type", "r#type"),
+    ]
+
+
+@pytest.mark.parametrize(
+    "methods",
+    [
+        """pub fn set_build(mut self, input: Option<String>) -> Self {
+            self.build_value = transform(input); self
+        }""",
+        """pub fn set_build(mut self, input: Option<String>) -> Self {
+            self.build_value = input; self
+        }
+        pub fn set_other(mut self, input: Option<String>) -> Self {
+            self.build_value = input; self
+        }""",
+    ],
+)
+def test_ambiguous_or_unsupported_setters_fail(tmp_path: Path, methods: str) -> None:
+    path = tmp_path / "changed_setter.rs"
+    path.write_text(
+        "pub struct Example { pub build_value: Option<String> }"
+        f"impl ExampleBuilder {{ {methods} }}"
+    )
+    with pytest.raises(RustParseError, match="changed_setter.rs"):
+        parse_fields(path)
+
+
 def test_builder_scope_comments_and_multiline_signature() -> None:
     source = """
     impl ExampleBuilder {
@@ -177,6 +233,26 @@ def test_missing_operation_files_and_builders_fail(crate_source: Path) -> None:
     (crate_source / "src/operation/example/_example_input.rs").unlink()
     with pytest.raises(RustParseError, match="_example_input.rs"):
         parse_crate(get_service("sqs"))
+
+
+def test_renamed_required_field_uses_member_name(crate_source: Path) -> None:
+    (crate_source / "src/types/_example.rs").write_text("""
+    pub struct Example { pub build_value: String }
+    impl ExampleBuilder {
+        pub fn set_build(mut self, input: Option<String>) -> Self {
+            self.build_value = input; self
+        }
+        pub fn build(self) -> Result<crate::types::Example, BuildError> {
+            Ok(Example {
+                build_value: self.build_value.ok_or_else(||
+                    BuildError::missing_field("build_value", "required"))?,
+            })
+        }
+    }
+    """)
+    result = parse_crate(get_service("sqs")).types["Example"]
+    assert result.fields[0].name == "build"
+    assert result.builder_required_fields == ("build",)
 
 
 def test_modeled_result_is_not_confused_with_a_fallible_builder(crate_source: Path) -> None:

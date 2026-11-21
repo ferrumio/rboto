@@ -308,6 +308,7 @@ class _SemanticAlignment:
             "byte": "i8",
             "short": "i16",
             "integer": "i32",
+            "intEnum": "i32",
             "long": "i64",
             "float": "f32",
             "double": "f64",

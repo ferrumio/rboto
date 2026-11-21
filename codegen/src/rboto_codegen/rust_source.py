@@ -263,6 +263,44 @@ def error_codes(
     return tuple(result)
 
 
+def setter_fields(parts: tuple[str, ...]) -> dict[str, str]:
+    """Map stored fields to member names from generated builder setters."""
+    result: dict[str, str] = {}
+    for index in range(len(parts) - 3):
+        if parts[index:index + 2] != ("pub", "fn"):
+            continue
+        method = parts[index + 2]
+        if not method.startswith("set_"):
+            continue
+        start = index + 3
+        if parts[start] != "(":
+            raise RustParseError(f"{method}: unsupported setter signature")
+        end = closing(parts, start)
+        if parts[end + 1:end + 4] == ("->", "Self", "{"):
+            body_start = end + 3
+        elif parts[end + 1:end + 6] == ("->", "&", "mut", "Self", "{"):
+            body_start = end + 5
+        else:
+            raise RustParseError(f"{method}: setter must return Self")
+        body = parts[body_start + 1:closing(parts, body_start)]
+        if (
+            len(body) != 7
+            or body[:2] != ("self", ".")
+            or body[3] != "="
+            or body[5:] != (";", "self")
+            or not any(
+                parts[position:position + 2] == (body[4], ":")
+                for position in range(start + 1, end)
+            )
+        ):
+            raise RustParseError(f"{method}: unsupported setter assignment")
+        field = body[2].removeprefix("r#")
+        if field in result:
+            raise RustParseError(f"{field}: ambiguous builder setters")
+        result[field] = method.removeprefix("set_")
+    return result
+
+
 def builder(
     parts: tuple[str, ...],
     *,

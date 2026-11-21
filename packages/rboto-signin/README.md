@@ -8,7 +8,7 @@ It is not affiliated with, sponsored by, or endorsed by Amazon Web Services (AWS
 
 rboto provides an **async-only, typed Python client for AWS Sign-In**,
 powered by Rust. This package contains `SignInClient` and
-**12 operations**.
+**16 operations**.
 
 ## Installation
 
@@ -91,6 +91,8 @@ native response definitions are in the package's `_native.pyi`.
 
 | Method | Required arguments | Return type |
 |---|---|---|
+| [`batch_revoke_sessions`](#batch_revoke_sessions) | <code>session_arns: Sequence[str]</code> | <code>BatchRevokeSessionsOutput</code> |
+| [`create_bearer_token`](#create_bearer_token) | <code>grant_type: str</code>, <code>resource: str</code> | <code>CreateBearerTokenOutput</code> |
 | [`create_o_auth2_token`](#create_o_auth2_token) | <code>token_input: CreateOAuth2TokenRequestBody</code> | <code>CreateOAuth2TokenOutput</code> |
 | [`create_o_auth2_token_with_iam`](#create_o_auth2_token_with_iam) | <code>grant_type: str</code>, <code>resource: str</code> | <code>CreateOAuth2TokenWithIAMOutput</code> |
 | [`create_o_auth2_token_with_token_exchange`](#create_o_auth2_token_with_token_exchange) | <code>grant_type: str</code> | <code>CreateOAuth2TokenWithTokenExchangeOutput</code> |
@@ -98,13 +100,39 @@ native response definitions are in the package's `_native.pyi`.
 | [`delete_resource_permission_statement`](#delete_resource_permission_statement) | <code>statement_id: str</code> | <code>DeleteResourcePermissionStatementOutput</code> |
 | [`get_console_authorization_configuration`](#get_console_authorization_configuration) | None | <code>GetConsoleAuthorizationConfigurationOutput</code> |
 | [`get_resource_policy`](#get_resource_policy) | None | <code>GetResourcePolicyOutput</code> |
+| [`get_session`](#get_session) | <code>session_arn: str</code> | <code>GetSessionOutput</code> |
 | [`introspect_o_auth2_token_with_iam`](#introspect_o_auth2_token_with_iam) | <code>token: str</code> | <code>IntrospectOAuth2TokenWithIAMOutput</code> |
 | [`list_resource_permission_statements`](#list_resource_permission_statements) | None | <code>ListResourcePermissionStatementsOutput</code> |
+| [`list_sessions`](#list_sessions) | None | <code>ListSessionsOutput</code> |
 | [`put_console_authorization_configuration`](#put_console_authorization_configuration) | None | <code>PutConsoleAuthorizationConfigurationOutput</code> |
 | [`put_resource_permission_statement`](#put_resource_permission_statement) | None | <code>PutResourcePermissionStatementOutput</code> |
 | [`revoke_o_auth2_token_with_iam`](#revoke_o_auth2_token_with_iam) | <code>token: str</code> | <code>RevokeOAuth2TokenWithIAMOutput</code> |
 
 ## Complete signatures
+
+### batch_revoke_sessions
+
+```python
+async def batch_revoke_sessions(
+    *,
+    session_arns: Sequence[str],
+    principal_arn: str | None = None,
+    reason: str | None = None,
+) -> BatchRevokeSessionsOutput: ...
+```
+
+
+### create_bearer_token
+
+```python
+async def create_bearer_token(
+    *,
+    grant_type: str,
+    resource: str,
+    duration_seconds: int | None = None,
+) -> CreateBearerTokenOutput: ...
+```
+
 
 ### create_o_auth2_token
 
@@ -135,6 +163,8 @@ async def create_o_auth2_token_with_token_exchange(
     grant_type: str,
     subject_token: str | None = None,
     subject_token_type: str | None = None,
+    assertion: str | None = None,
+    client_id: str | None = None,
     resource: str | None = None,
     scope: str | None = None,
 ) -> CreateOAuth2TokenWithTokenExchangeOutput: ...
@@ -179,6 +209,17 @@ async def get_resource_policy() -> GetResourcePolicyOutput: ...
 ```
 
 
+### get_session
+
+```python
+async def get_session(
+    *,
+    session_arn: str,
+    principal_arn: str | None = None,
+) -> GetSessionOutput: ...
+```
+
+
 ### introspect_o_auth2_token_with_iam
 
 ```python
@@ -201,6 +242,25 @@ async def list_resource_permission_statements(
 ```
 
 Also available as `client.paginators.list_resource_permission_statements(...)`, returning an
+async iterator of the response type above.
+
+
+### list_sessions
+
+```python
+async def list_sessions(
+    *,
+    principal_arn: str | None = None,
+    max_results: int | None = None,
+    next_token: str | None = None,
+    status: SessionStatus | None = None,
+    client_id: str | None = None,
+    issued_after: int | None = None,
+    issued_before: int | None = None,
+) -> ListSessionsOutput: ...
+```
+
+Also available as `client.paginators.list_sessions(...)`, returning an
 async iterator of the response type above.
 
 

@@ -735,6 +735,7 @@ ConverseRequest = TypedDict(
     "inference_config": NotRequired["InferenceConfiguration"],
     "tool_config": NotRequired["ToolConfiguration"],
     "guardrail_config": NotRequired["GuardrailConfiguration"],
+    "project_identifier": NotRequired["str"],
     "additional_model_request_fields": NotRequired["JSONValue"],
     "prompt_variables": NotRequired["dict[str, PromptVariableValues]"],
     "additional_model_response_field_paths": NotRequired["Sequence[str]"],
@@ -792,6 +793,7 @@ ConverseStreamRequest = TypedDict(
     "inference_config": NotRequired["InferenceConfiguration"],
     "tool_config": NotRequired["ToolConfiguration"],
     "guardrail_config": NotRequired["GuardrailStreamConfiguration"],
+    "project_identifier": NotRequired["str"],
     "additional_model_request_fields": NotRequired["JSONValue"],
     "prompt_variables": NotRequired["dict[str, PromptVariableValues]"],
     "additional_model_response_field_paths": NotRequired["Sequence[str]"],
@@ -1737,6 +1739,7 @@ InvokeModelRequest = TypedDict(
     "performance_config_latency": NotRequired["PerformanceConfigLatency"],
     "service_tier": NotRequired["ServiceTierType"],
     "request_metadata": NotRequired["str"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelRequest/)."""
@@ -1791,6 +1794,7 @@ InvokeModelWithResponseStreamRequest = TypedDict(
     "performance_config_latency": NotRequired["PerformanceConfigLatency"],
     "service_tier": NotRequired["ServiceTierType"],
     "request_metadata": NotRequired["str"],
+    "project_identifier": NotRequired["str"],
     },
 )
 """See [reference](https://ferrumio.github.io/rboto/reference/bedrock-runtime/types/InvokeModelWithResponseStreamRequest/)."""
