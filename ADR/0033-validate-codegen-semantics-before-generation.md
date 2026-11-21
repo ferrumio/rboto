@@ -21,6 +21,10 @@ change and a fixture.
 Compare operation fields and nested structures, primitive widths, collection
 targets, sparse values, enum wire values, union payloads, streaming types and
 modeled error fields. Recursive Box wrappers preserve their target semantics.
+Validate operation decoder wire-code mappings against modeled error names and
+active protocol aliases. Retain Query error aliases in the parsed model, applying
+them only for Query or Query-compatible protocols; dormant traits on JSON services
+must not override their active wire codes.
 Builder-required fields are extracted only from the build method body, and
 compared with modeled requiredness, defaults and clientOptional.
 

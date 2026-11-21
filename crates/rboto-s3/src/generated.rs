@@ -30580,20 +30580,52 @@ fn invalid_object_state_error_details(
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::abort_multipart_upload::AbortMultipartUploadError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchUpload(_) => Some("NoSuchUpload"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::complete_multipart_upload::CompleteMultipartUploadError
 {
 }
-impl ModeledErrorDetails for aws_sdk_s3::operation::copy_object::CopyObjectError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket::CreateBucketError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::copy_object::CopyObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ObjectNotInActiveTierError(_) => Some("ObjectNotInActiveTierError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket::CreateBucketError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BucketAlreadyExists(_) => Some("BucketAlreadyExists"),
+            Self::BucketAlreadyOwnedByYou(_) => Some("BucketAlreadyOwnedByYou"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket_metadata_configuration::CreateBucketMetadataConfigurationError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::create_bucket_metadata_table_configuration::CreateBucketMetadataTableConfigurationError {}
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::create_multipart_upload::CreateMultipartUploadError
 {
 }
-impl ModeledErrorDetails for aws_sdk_s3::operation::create_session::CreateSessionError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::create_session::CreateSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket::DeleteBucketError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_analytics_configuration::DeleteBucketAnalyticsConfigurationError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::delete_bucket_cors::DeleteBucketCorsError {}
@@ -30631,7 +30663,15 @@ impl ModeledErrorDetails for aws_sdk_s3::operation::delete_object::DeleteObjectE
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::delete_object_annotation::DeleteObjectAnnotationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::delete_object_tagging::DeleteObjectTaggingError
 {
@@ -30686,6 +30726,13 @@ impl ModeledErrorDetails
 }
 impl ModeledErrorDetails for aws_sdk_s3::operation::get_bucket_website::GetBucketWebsiteError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::get_object::GetObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidObjectState(_) => Some("InvalidObjectState"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidObjectState(value) => invalid_object_state_error_details(py, value),
@@ -30694,15 +30741,39 @@ impl ModeledErrorDetails for aws_sdk_s3::operation::get_object::GetObjectError {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_acl::GetObjectAclError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_acl::GetObjectAclError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::get_object_annotation::GetObjectAnnotationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchAnnotation(_) => Some("NoSuchAnnotation"),
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::get_object_attributes::GetObjectAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::get_object_legal_hold::GetObjectLegalHoldError {}
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::get_object_lock_configuration::GetObjectLockConfigurationError
@@ -30715,8 +30786,24 @@ impl ModeledErrorDetails
     for aws_sdk_s3::operation::get_public_access_block::GetPublicAccessBlockError
 {
 }
-impl ModeledErrorDetails for aws_sdk_s3::operation::head_bucket::HeadBucketError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::head_object::HeadObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::head_bucket::HeadBucketError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFound(_) => Some("NotFound"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::head_object::HeadObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NotFound(_) => Some("NotFound"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_analytics_configurations::ListBucketAnalyticsConfigurationsError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_intelligent_tiering_configurations::ListBucketIntelligentTieringConfigurationsError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::list_bucket_inventory_configurations::ListBucketInventoryConfigurationsError {}
@@ -30733,10 +30820,35 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::list_object_annotations::ListObjectAnnotationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidPrefix(_) => Some("InvalidPrefix"),
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::list_object_versions::ListObjectVersionsError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects::ListObjectsError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Error {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects::ListObjectsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::list_objects_v2::ListObjectsV2Error {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::list_parts::ListPartsError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_abac::PutBucketAbacError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_accelerate_configuration::PutBucketAccelerateConfigurationError {}
@@ -30775,12 +30887,44 @@ impl ModeledErrorDetails
 {
 }
 impl ModeledErrorDetails for aws_sdk_s3::operation::put_bucket_website::PutBucketWebsiteError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::put_object::PutObjectError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_acl::PutObjectAclError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object::PutObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EncryptionTypeMismatch(_) => Some("EncryptionTypeMismatch"),
+            Self::InvalidRequest(_) => Some("InvalidRequest"),
+            Self::InvalidWriteOffset(_) => Some("InvalidWriteOffset"),
+            Self::TooManyParts(_) => Some("TooManyParts"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_acl::PutObjectAclError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::put_object_annotation::PutObjectAnnotationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AnnotationLimitExceeded(_) => Some("AnnotationLimitExceeded"),
+            Self::AnnotationNameTooLong(_) => Some("AnnotationNameTooLong"),
+            Self::InvalidAnnotationName(_) => Some("InvalidAnnotationName"),
+            Self::InvalidRequest(_) => Some("InvalidRequest"),
+            Self::NoSuchBucket(_) => Some("NoSuchBucket"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            Self::UnsupportedMediaType(_) => Some("UnsupportedMediaType"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::put_object_legal_hold::PutObjectLegalHoldError {}
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::put_object_lock_configuration::PutObjectLockConfigurationError
@@ -30792,8 +30936,24 @@ impl ModeledErrorDetails
     for aws_sdk_s3::operation::put_public_access_block::PutPublicAccessBlockError
 {
 }
-impl ModeledErrorDetails for aws_sdk_s3::operation::rename_object::RenameObjectError {}
-impl ModeledErrorDetails for aws_sdk_s3::operation::restore_object::RestoreObjectError {}
+impl ModeledErrorDetails for aws_sdk_s3::operation::rename_object::RenameObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotencyParameterMismatch(_) => Some("IdempotencyParameterMismatch"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_s3::operation::restore_object::RestoreObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ObjectAlreadyInActiveTierError(_) => Some("ObjectAlreadyInActiveTierError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::select_object_content::SelectObjectContentError
 {
@@ -30804,7 +30964,16 @@ impl ModeledErrorDetails for aws_sdk_s3::operation::update_bucket_metadata_journ
 impl ModeledErrorDetails
     for aws_sdk_s3::operation::update_object_encryption::UpdateObjectEncryptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDenied(_) => Some("AccessDenied"),
+            Self::InvalidRequest(_) => Some("InvalidRequest"),
+            Self::NoSuchKey(_) => Some("NoSuchKey"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_s3::operation::upload_part::UploadPartError {}
 impl ModeledErrorDetails for aws_sdk_s3::operation::upload_part_copy::UploadPartCopyError {}
 impl ModeledErrorDetails
@@ -30897,10 +31066,8 @@ impl PySelectObjectContentEventStreamReceiver {
                         }
                         Err(error) => {
                             stream.discard();
-                            let code = None;
-
                             Err(Python::attach(|py| {
-                                sdk_error_to_py_with_code(py, &error, &context, code)
+                                stream_sdk_error_to_py(py, &error, &context)
                             }))
                         }
                     }

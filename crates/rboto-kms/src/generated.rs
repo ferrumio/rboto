@@ -6957,104 +6957,935 @@ impl PyOperationVerifyMacOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionError {}
+impl ModeledErrorDetails for aws_sdk_kms::operation::cancel_key_deletion::CancelKeyDeletionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::connect_custom_key_store::ConnectCustomKeyStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudHsmClusterInvalidConfigurationException(_) => {
+                Some("CloudHsmClusterInvalidConfigurationException")
+            }
+            Self::CloudHsmClusterNotActiveException(_) => Some("CloudHsmClusterNotActiveException"),
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::create_alias::CreateAliasError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_alias::CreateAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidAliasNameException(_) => Some("InvalidAliasNameException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::create_custom_key_store::CreateCustomKeyStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudHsmClusterInUseException(_) => Some("CloudHsmClusterInUseException"),
+            Self::CloudHsmClusterInvalidConfigurationException(_) => {
+                Some("CloudHsmClusterInvalidConfigurationException")
+            }
+            Self::CloudHsmClusterNotActiveException(_) => Some("CloudHsmClusterNotActiveException"),
+            Self::CloudHsmClusterNotFoundException(_) => Some("CloudHsmClusterNotFoundException"),
+            Self::CustomKeyStoreNameInUseException(_) => Some("CustomKeyStoreNameInUseException"),
+            Self::IncorrectTrustAnchorException(_) => Some("IncorrectTrustAnchorException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::XksProxyIncorrectAuthenticationCredentialException(_) => {
+                Some("XksProxyIncorrectAuthenticationCredentialException")
+            }
+            Self::XksProxyInvalidConfigurationException(_) => {
+                Some("XksProxyInvalidConfigurationException")
+            }
+            Self::XksProxyInvalidResponseException(_) => Some("XksProxyInvalidResponseException"),
+            Self::XksProxyUriEndpointInUseException(_) => Some("XksProxyUriEndpointInUseException"),
+            Self::XksProxyUriInUseException(_) => Some("XksProxyUriInUseException"),
+            Self::XksProxyUriUnreachableException(_) => Some("XksProxyUriUnreachableException"),
+            Self::XksProxyVpcEndpointServiceInUseException(_) => {
+                Some("XksProxyVpcEndpointServiceInUseException")
+            }
+            Self::XksProxyVpcEndpointServiceInvalidConfigurationException(_) => {
+                Some("XksProxyVpcEndpointServiceInvalidConfigurationException")
+            }
+            Self::XksProxyVpcEndpointServiceNotFoundException(_) => {
+                Some("XksProxyVpcEndpointServiceNotFoundException")
+            }
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::create_grant::CreateGrantError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::create_key::CreateKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::decapsulate::DecapsulateError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::decrypt::DecryptError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::delete_alias::DeleteAliasError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_grant::CreateGrantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::create_key::CreateKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudHsmClusterInvalidConfigurationException(_) => {
+                Some("CloudHsmClusterInvalidConfigurationException")
+            }
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::TagException(_) => Some("TagException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            Self::XksKeyAlreadyInUseException(_) => Some("XksKeyAlreadyInUseException"),
+            Self::XksKeyInvalidConfigurationException(_) => {
+                Some("XksKeyInvalidConfigurationException")
+            }
+            Self::XksKeyNotFoundException(_) => Some("XksKeyNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::decapsulate::DecapsulateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidCiphertextException(_) => Some("InvalidCiphertextException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::decrypt::DecryptError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::IncorrectKeyException(_) => Some("IncorrectKeyException"),
+            Self::InvalidCiphertextException(_) => Some("InvalidCiphertextException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::delete_alias::DeleteAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::delete_custom_key_store::DeleteCustomKeyStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CustomKeyStoreHasCmKsException(_) => Some("CustomKeyStoreHasCMKsException"),
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::delete_imported_key_material::DeleteImportedKeyMaterialError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::derive_shared_secret::DeriveSharedSecretError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::describe_custom_key_stores::DescribeCustomKeyStoresError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::describe_key::DescribeKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key::DisableKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key_rotation::DisableKeyRotationError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::describe_key::DescribeKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key::DisableKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::disable_key_rotation::DisableKeyRotationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::disconnect_custom_key_store::DisconnectCustomKeyStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key::EnableKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key_rotation::EnableKeyRotationError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::encapsulate::EncapsulateError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::encrypt::EncryptError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key::GenerateDataKeyError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key::EnableKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::enable_key_rotation::EnableKeyRotationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::encapsulate::EncapsulateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::encrypt::EncryptError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key::GenerateDataKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::generate_data_key_pair::GenerateDataKeyPairError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::generate_mac::GenerateMacError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::generate_random::GenerateRandomError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_policy::GetKeyPolicyError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_pair_without_plaintext::GenerateDataKeyPairWithoutPlaintextError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_data_key_without_plaintext::GenerateDataKeyWithoutPlaintextError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_mac::GenerateMacError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::generate_random::GenerateRandomError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_last_usage::GetKeyLastUsageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_key_policy::GetKeyPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::get_key_rotation_status::GetKeyRotationStatusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::get_parameters_for_import::GetParametersForImportError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::get_public_key::GetPublicKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::import_key_material::ImportKeyMaterialError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_aliases::ListAliasesError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_grants::ListGrantsError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_keys::ListKeysError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::list_resource_tags::ListResourceTagsError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::get_public_key::GetPublicKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::import_key_material::ImportKeyMaterialError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::ExpiredImportTokenException(_) => Some("ExpiredImportTokenException"),
+            Self::IncorrectKeyMaterialException(_) => Some("IncorrectKeyMaterialException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidCiphertextException(_) => Some("InvalidCiphertextException"),
+            Self::InvalidImportTokenException(_) => Some("InvalidImportTokenException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_aliases::ListAliasesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_grants::ListGrantsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidGrantIdException(_) => Some("InvalidGrantIdException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_policies::ListKeyPoliciesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_key_rotations::ListKeyRotationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_keys::ListKeysError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::list_resource_tags::ListResourceTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::list_retirable_grants::ListRetirableGrantsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidMarkerException(_) => Some("InvalidMarkerException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::put_key_policy::PutKeyPolicyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::re_encrypt::ReEncryptError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::replicate_key::ReplicateKeyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::retire_grant::RetireGrantError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::revoke_grant::RevokeGrantError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::put_key_policy::PutKeyPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::re_encrypt::ReEncryptError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::IncorrectKeyException(_) => Some("IncorrectKeyException"),
+            Self::InvalidCiphertextException(_) => Some("InvalidCiphertextException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::replicate_key::ReplicateKeyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TagException(_) => Some("TagException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::retire_grant::RetireGrantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidGrantIdException(_) => Some("InvalidGrantIdException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::revoke_grant::RevokeGrantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::InvalidGrantIdException(_) => Some("InvalidGrantIdException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::rotate_key_on_demand::RotateKeyOnDemandError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::schedule_key_deletion::ScheduleKeyDeletionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::sign::SignError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::tag_resource::TagResourceError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::untag_resource::UntagResourceError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::update_alias::UpdateAliasError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::sign::SignError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TagException(_) => Some("TagException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TagException(_) => Some("TagException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::update_alias::UpdateAliasError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::update_custom_key_store::UpdateCustomKeyStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudHsmClusterInvalidConfigurationException(_) => {
+                Some("CloudHsmClusterInvalidConfigurationException")
+            }
+            Self::CloudHsmClusterNotActiveException(_) => Some("CloudHsmClusterNotActiveException"),
+            Self::CloudHsmClusterNotFoundException(_) => Some("CloudHsmClusterNotFoundException"),
+            Self::CloudHsmClusterNotRelatedException(_) => {
+                Some("CloudHsmClusterNotRelatedException")
+            }
+            Self::CustomKeyStoreInvalidStateException(_) => {
+                Some("CustomKeyStoreInvalidStateException")
+            }
+            Self::CustomKeyStoreNameInUseException(_) => Some("CustomKeyStoreNameInUseException"),
+            Self::CustomKeyStoreNotFoundException(_) => Some("CustomKeyStoreNotFoundException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::XksProxyIncorrectAuthenticationCredentialException(_) => {
+                Some("XksProxyIncorrectAuthenticationCredentialException")
+            }
+            Self::XksProxyInvalidConfigurationException(_) => {
+                Some("XksProxyInvalidConfigurationException")
+            }
+            Self::XksProxyInvalidResponseException(_) => Some("XksProxyInvalidResponseException"),
+            Self::XksProxyUriEndpointInUseException(_) => Some("XksProxyUriEndpointInUseException"),
+            Self::XksProxyUriInUseException(_) => Some("XksProxyUriInUseException"),
+            Self::XksProxyUriUnreachableException(_) => Some("XksProxyUriUnreachableException"),
+            Self::XksProxyVpcEndpointServiceInUseException(_) => {
+                Some("XksProxyVpcEndpointServiceInUseException")
+            }
+            Self::XksProxyVpcEndpointServiceInvalidConfigurationException(_) => {
+                Some("XksProxyVpcEndpointServiceInvalidConfigurationException")
+            }
+            Self::XksProxyVpcEndpointServiceNotFoundException(_) => {
+                Some("XksProxyVpcEndpointServiceNotFoundException")
+            }
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::update_key_description::UpdateKeyDescriptionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_kms::operation::update_primary_region::UpdatePrimaryRegionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::InvalidArnException(_) => Some("InvalidArnException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_kms::operation::verify::VerifyError {}
-impl ModeledErrorDetails for aws_sdk_kms::operation::verify_mac::VerifyMacError {}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::verify::VerifyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DependencyTimeoutException(_) => Some("DependencyTimeoutException"),
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidSignatureException(_) => Some("KMSInvalidSignatureException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_kms::operation::verify_mac::VerifyMacError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DisabledException(_) => Some("DisabledException"),
+            Self::DryRunOperationException(_) => Some("DryRunOperationException"),
+            Self::InvalidGrantTokenException(_) => Some("InvalidGrantTokenException"),
+            Self::InvalidKeyUsageException(_) => Some("InvalidKeyUsageException"),
+            Self::KeyUnavailableException(_) => Some("KeyUnavailableException"),
+            Self::KmsInternalException(_) => Some("KMSInternalException"),
+            Self::KmsInvalidMacException(_) => Some("KMSInvalidMacException"),
+            Self::KmsInvalidStateException(_) => Some("KMSInvalidStateException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            _ => None,
+        }
+    }
+}
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAliasListEntry>()?;

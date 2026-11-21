@@ -2917,73 +2917,352 @@ impl PyOperationUpdateIdentityPoolOutput {
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::create_identity_pool::CreateIdentityPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::delete_identities::DeleteIdentitiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::delete_identity_pool::DeleteIdentityPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::describe_identity::DescribeIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::describe_identity_pool::DescribeIdentityPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityError {}
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_id::GetIdError {}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_credentials_for_identity::GetCredentialsForIdentityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExternalServiceException(_) => Some("ExternalServiceException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidIdentityPoolConfigurationException(_) => Some("InvalidIdentityPoolConfigurationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_id::GetIdError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExternalServiceException(_) => Some("ExternalServiceException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::get_identity_pool_roles::GetIdentityPoolRolesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::get_open_id_token::GetOpenIdTokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExternalServiceException(_) => Some("ExternalServiceException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityError {}
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapError {}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_open_id_token_for_developer_identity::GetOpenIdTokenForDeveloperIdentityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DeveloperUserAlreadyRegisteredException(_) => Some("DeveloperUserAlreadyRegisteredException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::get_principal_tag_attribute_map::GetPrincipalTagAttributeMapError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::list_identities::ListIdentitiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::list_identity_pools::ListIdentityPoolsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::lookup_developer_identity::LookupDeveloperIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesError {}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::merge_developer_identities::MergeDeveloperIdentitiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::set_identity_pool_roles::SetIdentityPoolRolesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapError {}
-impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::tag_resource::TagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::set_principal_tag_attribute_map::SetPrincipalTagAttributeMapError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cognitoidentity::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::unlink_developer_identity::UnlinkDeveloperIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::unlink_identity::UnlinkIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExternalServiceException(_) => Some("ExternalServiceException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::untag_resource::UntagResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cognitoidentity::operation::update_identity_pool::UpdateIdentityPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::InternalErrorException(_) => Some("InternalErrorException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotAuthorizedException(_) => Some("NotAuthorizedException"),
+            Self::ResourceConflictException(_) => Some("ResourceConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

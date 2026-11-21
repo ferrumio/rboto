@@ -23043,262 +23043,1419 @@ impl PyOperationUpdateReputationEntityPolicyOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateError {}
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::associate_email_identity_certificate::AssociateEmailIdentityCertificateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::batch_get_metric_data::BatchGetMetricDataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalServiceErrorException(_) => Some("InternalServiceErrorException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::cancel_export_job::CancelExportJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_configuration_set::CreateConfigurationSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact::CreateContactError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact_list::CreateContactListError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_configuration_set_event_destination::CreateConfigurationSetEventDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact::CreateContactError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_contact_list::CreateContactListError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_custom_verification_email_template::CreateCustomVerificationEmailTemplateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_dedicated_ip_pool::CreateDedicatedIpPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_deliverability_test_report::CreateDeliverabilityTestReportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountSuspendedException(_) => Some("AccountSuspendedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MailFromDomainNotVerifiedException(_) => Some("MailFromDomainNotVerifiedException"),
+            Self::MessageRejected(_) => Some("MessageRejected"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::SendingPausedException(_) => Some("SendingPausedException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_email_identity::CreateEmailIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_email_identity_policy::CreateEmailIdentityPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_email_template::CreateEmailTemplateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_export_job::CreateExportJobError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_import_job::CreateImportJobError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_export_job::CreateExportJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_import_job::CreateImportJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::create_multi_region_endpoint::CreateMultiRegionEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant::CreateTenantError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant::CreateTenantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::create_tenant_resource_association::CreateTenantResourceAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_configuration_set::DeleteConfigurationSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact::DeleteContactError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_configuration_set_event_destination::DeleteConfigurationSetEventDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact::DeleteContactError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_contact_list::DeleteContactListError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_custom_verification_email_template::DeleteCustomVerificationEmailTemplateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_dedicated_ip_pool::DeleteDedicatedIpPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_email_identity::DeleteEmailIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_email_identity_policy::DeleteEmailIdentityPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_email_template::DeleteEmailTemplateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_multi_region_endpoint::DeleteMultiRegionEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::delete_suppressed_destination::DeleteSuppressedDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant::DeleteTenantError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_account::GetAccountError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant::DeleteTenantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::delete_tenant_resource_association::DeleteTenantResourceAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::disassociate_email_identity_certificate::DisassociateEmailIdentityCertificateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_account::GetAccountError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_blacklist_reports::GetBlacklistReportsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_configuration_set::GetConfigurationSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact::GetContactError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact_list::GetContactListError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_configuration_set_event_destinations::GetConfigurationSetEventDestinationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact::GetContactError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_contact_list::GetContactListError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_custom_verification_email_template::GetCustomVerificationEmailTemplateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ip::GetDedicatedIpError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_dedicated_ip_pool::GetDedicatedIpPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_dedicated_ips::GetDedicatedIpsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_deliverability_dashboard_options::GetDeliverabilityDashboardOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_deliverability_test_report::GetDeliverabilityTestReportError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_domain_deliverability_campaign::GetDomainDeliverabilityCampaignError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_domain_statistics_report::GetDomainStatisticsReportError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_email_address_insights::GetEmailAddressInsightsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_identity::GetEmailIdentityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_email_identity_policies::GetEmailIdentityPoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_export_job::GetExportJobError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_import_job::GetImportJobError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_email_template::GetEmailTemplateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_export_job::GetExportJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_import_job::GetImportJobError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_message_insights::GetMessageInsightsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_multi_region_endpoint::GetMultiRegionEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_reputation_entity::GetReputationEntityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::get_suppressed_destination::GetSuppressedDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_tenant::GetTenantError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::get_tenant::GetTenantError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_configuration_sets::ListConfigurationSetsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contact_lists::ListContactListsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contacts::ListContactsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contact_lists::ListContactListsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_contacts::ListContactsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_custom_verification_email_templates::ListCustomVerificationEmailTemplatesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_dedicated_ip_pools::ListDedicatedIpPoolsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_deliverability_test_reports::ListDeliverabilityTestReportsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_domain_deliverability_campaigns::ListDomainDeliverabilityCampaignsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_email_identities::ListEmailIdentitiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_email_identity_certificates::ListEmailIdentityCertificatesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_email_templates::ListEmailTemplatesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_export_jobs::ListExportJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_import_jobs::ListImportJobsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_multi_region_endpoints::ListMultiRegionEndpointsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_recommendations::ListRecommendationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_reputation_entities::ListReputationEntitiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_resource_tenants::ListResourceTenantsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_suppressed_destinations::ListSuppressedDestinationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::list_tenant_resources::ListTenantResourcesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_tenants::ListTenantsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::list_tenants::ListTenantsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_dedicated_ip_warmup_attributes::PutAccountDedicatedIpWarmupAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_details::PutAccountDetailsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::put_account_pricing_attributes::PutAccountPricingAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::put_account_sending_attributes::PutAccountSendingAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_account_suppression_attributes::PutAccountSuppressionAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::put_account_vdm_attributes::PutAccountVdmAttributesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_archiving_options::PutConfigurationSetArchivingOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_delivery_options::PutConfigurationSetDeliveryOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_reputation_options::PutConfigurationSetReputationOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_sending_options::PutConfigurationSetSendingOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_suppression_options::PutConfigurationSetSuppressionOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_tracking_options::PutConfigurationSetTrackingOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_configuration_set_vdm_options::PutConfigurationSetVdmOptionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::put_dedicated_ip_in_pool::PutDedicatedIpInPoolError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_pool_scaling_attributes::PutDedicatedIpPoolScalingAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_dedicated_ip_warmup_attributes::PutDedicatedIpWarmupAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_deliverability_dashboard_option::PutDeliverabilityDashboardOptionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_configuration_set_attributes::PutEmailIdentityConfigurationSetAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_attributes::PutEmailIdentityDkimAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_dkim_signing_attributes::PutEmailIdentityDkimSigningAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_feedback_attributes::PutEmailIdentityFeedbackAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_email_identity_mail_from_attributes::PutEmailIdentityMailFromAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::put_suppressed_destination::PutSuppressedDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::put_tenant_suppression_attributes::PutTenantSuppressionAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_bulk_email::SendBulkEmailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountSuspendedException(_) => Some("AccountSuspendedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MailFromDomainNotVerifiedException(_) => {
+                Some("MailFromDomainNotVerifiedException")
+            }
+            Self::MessageRejected(_) => Some("MessageRejected"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::SendingPausedException(_) => Some("SendingPausedException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::send_custom_verification_email::SendCustomVerificationEmailError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MailFromDomainNotVerifiedException(_) => {
+                Some("MailFromDomainNotVerifiedException")
+            }
+            Self::MessageRejected(_) => Some("MessageRejected"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::SendingPausedException(_) => Some("SendingPausedException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_email::SendEmailError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::tag_resource::TagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::send_email::SendEmailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountSuspendedException(_) => Some("AccountSuspendedException"),
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MailFromDomainNotVerifiedException(_) => {
+                Some("MailFromDomainNotVerifiedException")
+            }
+            Self::MessageRejected(_) => Some("MessageRejected"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::SendingPausedException(_) => Some("SendingPausedException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::test_render_email_template::TestRenderEmailTemplateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::untag_resource::UntagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::update_configuration_set::UpdateConfigurationSetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact::UpdateContactError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact_list::UpdateContactListError {}
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_configuration_set_event_destination::UpdateConfigurationSetEventDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact::UpdateContactError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_contact_list::UpdateContactListError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_custom_verification_email_template::UpdateCustomVerificationEmailTemplateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::update_email_identity_policy::UpdateEmailIdentityPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::update_email_template::UpdateEmailTemplateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::NotFoundException(_) => Some("NotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusError {}
+
+impl ModeledErrorDetails for aws_sdk_sesv2::operation::update_reputation_entity_customer_managed_status::UpdateReputationEntityCustomerManagedStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sesv2::operation::update_reputation_entity_policy::UpdateReputationEntityPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

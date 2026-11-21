@@ -15569,8 +15569,35 @@ fn model_stream_error_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::apply_guardrail::ApplyGuardrailError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::converse::ConverseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelErrorException(_) => Some("ModelErrorException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
@@ -15582,6 +15609,21 @@ impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::converse::Conver
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::converse_stream::ConverseStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelErrorException(_) => Some("ModelErrorException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
@@ -15593,16 +15635,65 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::count_tokens::CountTokensError {}
+impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::count_tokens::CountTokensError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::get_async_invoke::GetAsyncInvokeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::invoke_guardrail_checks::InvokeGuardrailChecksError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model::InvokeModelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelErrorException(_) => Some("ModelErrorException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
@@ -15612,6 +15703,22 @@ impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model::In
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_with_bidirectional_stream::InvokeModelWithBidirectionalStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelErrorException(_) => Some("ModelErrorException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
@@ -15622,6 +15729,22 @@ impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_wit
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_with_response_stream::InvokeModelWithResponseStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelErrorException(_) => Some("ModelErrorException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelErrorException(value) => model_error_exception_error_details(py, value),
@@ -15634,12 +15757,46 @@ impl ModeledErrorDetails for aws_sdk_bedrockruntime::operation::invoke_model_wit
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::list_async_invokes::ListAsyncInvokesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::operation::start_async_invoke::StartAsyncInvokeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelStreamErrorException(value) => {
@@ -15657,6 +15814,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelStreamErrorException(value) => {
@@ -15668,6 +15836,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockruntime::types::error::ResponseStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelStreamErrorException(_) => Some("ModelStreamErrorException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ModelTimeoutException(_) => Some("ModelTimeoutException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ModelStreamErrorException(value) => {
@@ -15743,35 +15922,31 @@ impl PyConverseStreamOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| converse_stream_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ConverseStreamOutputError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| converse_stream_output_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -15841,36 +16016,33 @@ impl PyInvokeModelWithBidirectionalStreamOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| invoke_model_with_bidirectional_stream_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ModelTimeoutException(_)) => Some("ModelTimeoutException"),
-                        Some(aws_sdk_bedrockruntime::types::error::InvokeModelWithBidirectionalStreamOutputError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                invoke_model_with_bidirectional_stream_output_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -15940,36 +16112,31 @@ impl PyResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ModelStreamErrorException(_)) => Some("ModelStreamErrorException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ModelTimeoutException(_)) => Some("ModelTimeoutException"),
-                        Some(aws_sdk_bedrockruntime::types::error::ResponseStreamError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

@@ -59116,10 +59116,35 @@ fn validation_exception_error_details(
     Ok(result.into_any().unbind())
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::add_tags_to_resource::AddTagsToResourceError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::add_tags_to_resource::AddTagsToResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::InvalidResourceType(_) => Some("InvalidResourceType"),
+            Self::TooManyTagsError(_) => Some("TooManyTagsError"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::associate_ops_item_related_item::AssociateOpsItemRelatedItemError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemConflictException(_) => Some("OpsItemConflictException"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            Self::OpsItemLimitExceededException(_) => Some("OpsItemLimitExceededException"),
+            Self::OpsItemNotFoundException(_) => Some("OpsItemNotFoundException"),
+            Self::OpsItemRelatedItemAlreadyExistsException(_) => {
+                Some("OpsItemRelatedItemAlreadyExistsException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemInvalidParameterException(value) => {
@@ -59136,17 +59161,92 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_command::CancelCommandError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_maintenance_window_execution::CancelMaintenanceWindowExecutionError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::create_activation::CreateActivationError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::create_association::CreateAssociationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_command::CancelCommandError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DuplicateInstanceId(_) => Some("DuplicateInstanceId"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidCommandId(_) => Some("InvalidCommandId"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::cancel_maintenance_window_execution::CancelMaintenanceWindowExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_activation::CreateActivationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidParameters(_) => Some("InvalidParameters"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_association::CreateAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationAlreadyExists(_) => Some("AssociationAlreadyExists"),
+            Self::AssociationLimitExceeded(_) => Some("AssociationLimitExceeded"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidOutputLocation(_) => Some("InvalidOutputLocation"),
+            Self::InvalidParameters(_) => Some("InvalidParameters"),
+            Self::InvalidSchedule(_) => Some("InvalidSchedule"),
+            Self::InvalidTag(_) => Some("InvalidTag"),
+            Self::InvalidTarget(_) => Some("InvalidTarget"),
+            Self::InvalidTargetMaps(_) => Some("InvalidTargetMaps"),
+            Self::UnsupportedPlatformType(_) => Some("UnsupportedPlatformType"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::create_association_batch::CreateAssociationBatchError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationLimitExceeded(_) => Some("AssociationLimitExceeded"),
+            Self::DuplicateInstanceId(_) => Some("DuplicateInstanceId"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidOutputLocation(_) => Some("InvalidOutputLocation"),
+            Self::InvalidParameters(_) => Some("InvalidParameters"),
+            Self::InvalidSchedule(_) => Some("InvalidSchedule"),
+            Self::InvalidTarget(_) => Some("InvalidTarget"),
+            Self::InvalidTargetMaps(_) => Some("InvalidTargetMaps"),
+            Self::UnsupportedPlatformType(_) => Some("UnsupportedPlatformType"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::create_cloud_connector::CreateCloudConnectorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceQuotaExceededException(value) => {
@@ -59157,12 +59257,46 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::create_document::CreateDocumentError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_document::CreateDocumentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DocumentAlreadyExists(_) => Some("DocumentAlreadyExists"),
+            Self::DocumentLimitExceeded(_) => Some("DocumentLimitExceeded"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocumentContent(_) => Some("InvalidDocumentContent"),
+            Self::InvalidDocumentSchemaVersion(_) => Some("InvalidDocumentSchemaVersion"),
+            Self::MaxDocumentSizeExceeded(_) => Some("MaxDocumentSizeExceeded"),
+            Self::NoLongerSupportedException(_) => Some("NoLongerSupportedException"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::create_maintenance_window::CreateMaintenanceWindowError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceLimitExceededException(_) => Some("ResourceLimitExceededException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_item::CreateOpsItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemAccessDeniedException(_) => Some("OpsItemAccessDeniedException"),
+            Self::OpsItemAlreadyExistsException(_) => Some("OpsItemAlreadyExistsException"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            Self::OpsItemLimitExceededException(_) => Some("OpsItemLimitExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemAlreadyExistsException(value) => {
@@ -59179,14 +59313,54 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_item::CreateOpsI
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_metadata::CreateOpsMetadataError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::create_ops_metadata::CreateOpsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsMetadataAlreadyExistsException(_) => Some("OpsMetadataAlreadyExistsException"),
+            Self::OpsMetadataInvalidArgumentException(_) => {
+                Some("OpsMetadataInvalidArgumentException")
+            }
+            Self::OpsMetadataLimitExceededException(_) => Some("OpsMetadataLimitExceededException"),
+            Self::OpsMetadataTooManyUpdatesException(_) => {
+                Some("OpsMetadataTooManyUpdatesException")
+            }
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::create_patch_baseline::CreatePatchBaselineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceLimitExceededException(_) => Some("ResourceLimitExceededException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::create_resource_data_sync::CreateResourceDataSyncError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceDataSyncAlreadyExistsException(_) => {
+                Some("ResourceDataSyncAlreadyExistsException")
+            }
+            Self::ResourceDataSyncCountExceededException(_) => {
+                Some("ResourceDataSyncCountExceededException")
+            }
+            Self::ResourceDataSyncInvalidConfigurationException(_) => {
+                Some("ResourceDataSyncInvalidConfigurationException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncAlreadyExistsException(value) => {
@@ -59197,19 +59371,91 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_activation::DeleteActivationError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_association::DeleteAssociationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_activation::DeleteActivationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidActivation(_) => Some("InvalidActivation"),
+            Self::InvalidActivationId(_) => Some("InvalidActivationId"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_association::DeleteAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::delete_cloud_connector::DeleteCloudConnectorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_document::DeleteDocumentError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_inventory::DeleteInventoryError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_document::DeleteDocumentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociatedInstances(_) => Some("AssociatedInstances"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentOperation(_) => Some("InvalidDocumentOperation"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_inventory::DeleteInventoryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDeleteInventoryParametersException(_) => {
+                Some("InvalidDeleteInventoryParametersException")
+            }
+            Self::InvalidInventoryRequestException(_) => Some("InvalidInventoryRequestException"),
+            Self::InvalidOptionException(_) => Some("InvalidOptionException"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::delete_maintenance_window::DeleteMaintenanceWindowError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_item::DeleteOpsItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemInvalidParameterException(value) => {
@@ -59220,16 +59466,63 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_item::DeleteOpsI
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_metadata::DeleteOpsMetadataError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameter::DeleteParameterError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameters::DeleteParametersError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_ops_metadata::DeleteOpsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsMetadataInvalidArgumentException(_) => {
+                Some("OpsMetadataInvalidArgumentException")
+            }
+            Self::OpsMetadataNotFoundException(_) => Some("OpsMetadataNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameter::DeleteParameterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ParameterNotFound(_) => Some("ParameterNotFound"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::delete_parameters::DeleteParametersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::delete_patch_baseline::DeletePatchBaselineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::delete_resource_data_sync::DeleteResourceDataSyncError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceDataSyncInvalidConfigurationException(_) => {
+                Some("ResourceDataSyncInvalidConfigurationException")
+            }
+            Self::ResourceDataSyncNotFoundException(_) => Some("ResourceDataSyncNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncNotFoundException(value) => {
@@ -59243,6 +59536,21 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::MalformedResourcePolicyDocumentException(_) => {
+                Some("MalformedResourcePolicyDocumentException")
+            }
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyConflictException(_) => Some("ResourcePolicyConflictException"),
+            Self::ResourcePolicyInvalidParameterException(_) => {
+                Some("ResourcePolicyInvalidParameterException")
+            }
+            Self::ResourcePolicyNotFoundException(_) => Some("ResourcePolicyNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourcePolicyInvalidParameterException(value) => {
@@ -59253,96 +59561,463 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_default_host_management_configuration::DeregisterDefaultHostManagementConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_default_host_management_configuration::DeregisterDefaultHostManagementConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::deregister_managed_instance::DeregisterManagedInstanceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_patch_baseline_for_patch_group::DeregisterPatchBaselineForPatchGroupError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_target_from_maintenance_window::DeregisterTargetFromMaintenanceWindowError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_task_from_maintenance_window::DeregisterTaskFromMaintenanceWindowError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_patch_baseline_for_patch_group::DeregisterPatchBaselineForPatchGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_target_from_maintenance_window::DeregisterTargetFromMaintenanceWindowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::TargetInUseException(_) => Some("TargetInUseException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::deregister_task_from_maintenance_window::DeregisterTaskFromMaintenanceWindowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_activations::DescribeActivationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_association::DescribeAssociationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAssociationVersion(_) => Some("InvalidAssociationVersion"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_association_execution_targets::DescribeAssociationExecutionTargetsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_association_execution_targets::DescribeAssociationExecutionTargetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::AssociationExecutionDoesNotExist(_) => Some("AssociationExecutionDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_association_executions::DescribeAssociationExecutionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_automation_executions::DescribeAutomationExecutionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidFilterValue(_) => Some("InvalidFilterValue"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_automation_step_executions::DescribeAutomationStepExecutionsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_automation_step_executions::DescribeAutomationStepExecutionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationExecutionNotFoundException(_) => Some("AutomationExecutionNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidFilterValue(_) => Some("InvalidFilterValue"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_available_patches::DescribeAvailablePatchesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_document::DescribeDocumentError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_document::DescribeDocumentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_document_permission::DescribeDocumentPermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentOperation(_) => Some("InvalidDocumentOperation"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidPermissionType(_) => Some("InvalidPermissionType"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_instance_associations::DescribeEffectiveInstanceAssociationsError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_patches_for_patch_baseline::DescribeEffectivePatchesForPatchBaselineError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_associations_status::DescribeInstanceAssociationsStatusError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_instance_associations::DescribeEffectiveInstanceAssociationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_effective_patches_for_patch_baseline::DescribeEffectivePatchesForPatchBaselineError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::UnsupportedOperatingSystem(_) => Some("UnsupportedOperatingSystem"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_associations_status::DescribeInstanceAssociationsStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_instance_information::DescribeInstanceInformationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidInstanceInformationFilterValue(_) => {
+                Some("InvalidInstanceInformationFilterValue")
+            }
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_instance_patch_states::DescribeInstancePatchStatesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_patch_states_for_patch_group::DescribeInstancePatchStatesForPatchGroupError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_instance_patch_states_for_patch_group::DescribeInstancePatchStatesForPatchGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_instance_patches::DescribeInstancePatchesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_instance_properties::DescribeInstancePropertiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidActivationId(_) => Some("InvalidActivationId"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidInstancePropertyFilterValue(_) => {
+                Some("InvalidInstancePropertyFilterValue")
+            }
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_inventory_deletions::DescribeInventoryDeletionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDeletionIdException(_) => Some("InvalidDeletionIdException"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_task_invocations::DescribeMaintenanceWindowExecutionTaskInvocationsError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_tasks::DescribeMaintenanceWindowExecutionTasksError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_executions::DescribeMaintenanceWindowExecutionsError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_schedule::DescribeMaintenanceWindowScheduleError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_targets::DescribeMaintenanceWindowTargetsError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_tasks::DescribeMaintenanceWindowTasksError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_task_invocations::DescribeMaintenanceWindowExecutionTaskInvocationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_execution_tasks::DescribeMaintenanceWindowExecutionTasksError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_executions::DescribeMaintenanceWindowExecutionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_schedule::DescribeMaintenanceWindowScheduleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_targets::DescribeMaintenanceWindowTargetsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_window_tasks::DescribeMaintenanceWindowTasksError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_maintenance_windows::DescribeMaintenanceWindowsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_windows_for_target::DescribeMaintenanceWindowsForTargetError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_ops_items::DescribeOpsItemsError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_parameters::DescribeParametersError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_maintenance_windows_for_target::DescribeMaintenanceWindowsForTargetError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_ops_items::DescribeOpsItemsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_parameters::DescribeParametersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidFilterOption(_) => Some("InvalidFilterOption"),
+            Self::InvalidFilterValue(_) => Some("InvalidFilterValue"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_patch_baselines::DescribePatchBaselinesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_patch_group_state::DescribePatchGroupStateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_patch_groups::DescribePatchGroupsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::describe_patch_properties::DescribePatchPropertiesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_sessions::DescribeSessionsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::describe_sessions::DescribeSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::disassociate_ops_item_related_item::DisassociateOpsItemRelatedItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemConflictException(_) => Some("OpsItemConflictException"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            Self::OpsItemNotFoundException(_) => Some("OpsItemNotFoundException"),
+            Self::OpsItemRelatedItemAssociationNotFoundException(_) => Some("OpsItemRelatedItemAssociationNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemInvalidParameterException(value) => ops_item_invalid_parameter_exception_error_details(py, value),
@@ -59352,6 +60027,16 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::disassociate_ops_item_relat
 }
 
 impl ModeledErrorDetails for aws_sdk_ssm::operation::get_access_token::GetAccessTokenError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ThrottlingException(value) => throttling_exception_error_details(py, value),
@@ -59364,46 +60049,228 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::get_access_token::GetAccess
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_automation_execution::GetAutomationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationExecutionNotFoundException(_) => {
+                Some("AutomationExecutionNotFoundException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_calendar_state::GetCalendarStateError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_cloud_connector::GetCloudConnectorError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_calendar_state::GetCalendarStateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentType(_) => Some("InvalidDocumentType"),
+            Self::UnsupportedCalendarException(_) => Some("UnsupportedCalendarException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_cloud_connector::GetCloudConnectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_command_invocation::GetCommandInvocationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidCommandId(_) => Some("InvalidCommandId"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidPluginName(_) => Some("InvalidPluginName"),
+            Self::InvocationDoesNotExist(_) => Some("InvocationDoesNotExist"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_connection_status::GetConnectionStatusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_default_patch_baseline::GetDefaultPatchBaselineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_deployable_patch_snapshot_for_instance::GetDeployablePatchSnapshotForInstanceError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_document::GetDocumentError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_deployable_patch_snapshot_for_instance::GetDeployablePatchSnapshotForInstanceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::UnsupportedFeatureRequiredException(_) => Some("UnsupportedFeatureRequiredException"),
+            Self::UnsupportedOperatingSystem(_) => Some("UnsupportedOperatingSystem"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_document::GetDocumentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_execution_preview::GetExecutionPreviewError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory::GetInventoryError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory_schema::GetInventorySchemaError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory::GetInventoryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAggregatorException(_) => Some("InvalidAggregatorException"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidInventoryGroupException(_) => Some("InvalidInventoryGroupException"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidResultAttributeException(_) => Some("InvalidResultAttributeException"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_inventory_schema::GetInventorySchemaError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_maintenance_window::GetMaintenanceWindowError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_maintenance_window_execution::GetMaintenanceWindowExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task::GetMaintenanceWindowExecutionTaskError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task_invocation::GetMaintenanceWindowExecutionTaskInvocationError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task::GetMaintenanceWindowExecutionTaskError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_maintenance_window_execution_task_invocation::GetMaintenanceWindowExecutionTaskInvocationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_maintenance_window_task::GetMaintenanceWindowTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_item::GetOpsItemError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_metadata::GetOpsMetadataError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_item::GetOpsItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemAccessDeniedException(_) => Some("OpsItemAccessDeniedException"),
+            Self::OpsItemNotFoundException(_) => Some("OpsItemNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_metadata::GetOpsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsMetadataInvalidArgumentException(_) => {
+                Some("OpsMetadataInvalidArgumentException")
+            }
+            Self::OpsMetadataNotFoundException(_) => Some("OpsMetadataNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_summary::GetOpsSummaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAggregatorException(_) => Some("InvalidAggregatorException"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            Self::ResourceDataSyncNotFoundException(_) => Some("ResourceDataSyncNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncNotFoundException(value) => {
@@ -59414,21 +60281,91 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::get_ops_summary::GetOpsSumm
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameter::GetParameterError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameter::GetParameterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidKeyId(_) => Some("InvalidKeyId"),
+            Self::ParameterNotFound(_) => Some("ParameterNotFound"),
+            Self::ParameterVersionNotFound(_) => Some("ParameterVersionNotFound"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_parameter_history::GetParameterHistoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidKeyId(_) => Some("InvalidKeyId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::ParameterNotFound(_) => Some("ParameterNotFound"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameters::GetParametersError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_parameters::GetParametersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidKeyId(_) => Some("InvalidKeyId"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_parameters_by_path::GetParametersByPathError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidFilterOption(_) => Some("InvalidFilterOption"),
+            Self::InvalidFilterValue(_) => Some("InvalidFilterValue"),
+            Self::InvalidKeyId(_) => Some("InvalidKeyId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline::GetPatchBaselineError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline_for_patch_group::GetPatchBaselineForPatchGroupError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline::GetPatchBaselineError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_patch_baseline_for_patch_group::GetPatchBaselineForPatchGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::get_resource_policies::GetResourcePoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyInvalidParameterException(_) => {
+                Some("ResourcePolicyInvalidParameterException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourcePolicyInvalidParameterException(value) => {
@@ -59439,47 +60376,187 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::get_service_setting::GetServiceSettingError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::get_service_setting::GetServiceSettingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ServiceSettingNotFound(_) => Some("ServiceSettingNotFound"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::label_parameter_version::LabelParameterVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ParameterNotFound(_) => Some("ParameterNotFound"),
+            Self::ParameterVersionLabelLimitExceeded(_) => {
+                Some("ParameterVersionLabelLimitExceeded")
+            }
+            Self::ParameterVersionNotFound(_) => Some("ParameterVersionNotFound"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_association_versions::ListAssociationVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::list_associations::ListAssociationsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_associations::ListAssociationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_cloud_connectors::ListCloudConnectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_command_invocations::ListCommandInvocationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidCommandId(_) => Some("InvalidCommandId"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::list_commands::ListCommandsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_commands::ListCommandsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidCommandId(_) => Some("InvalidCommandId"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_compliance_items::ListComplianceItemsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::InvalidResourceType(_) => Some("InvalidResourceType"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_compliance_summaries::ListComplianceSummariesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_document_metadata_history::ListDocumentMetadataHistoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_document_versions::ListDocumentVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::list_documents::ListDocumentsError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_documents::ListDocumentsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilterKey(_) => Some("InvalidFilterKey"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_inventory_entries::ListInventoryEntriesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes::ListNodesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::ResourceDataSyncNotFoundException(_) => Some("ResourceDataSyncNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncNotFoundException(value) => {
@@ -59491,6 +60568,17 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes::ListNodesError 
 }
 
 impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes_summary::ListNodesSummaryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAggregatorException(_) => Some("InvalidAggregatorException"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::ResourceDataSyncNotFoundException(_) => Some("ResourceDataSyncNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncNotFoundException(value) => {
@@ -59502,6 +60590,15 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::list_nodes_summary::ListNod
 }
 
 impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_item_events::ListOpsItemEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            Self::OpsItemLimitExceededException(_) => Some("OpsItemLimitExceededException"),
+            Self::OpsItemNotFoundException(_) => Some("OpsItemNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemInvalidParameterException(value) => {
@@ -59518,6 +60615,13 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_item_events::ListO
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_ops_item_related_items::ListOpsItemRelatedItemsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemInvalidParameterException(value) => {
@@ -59528,21 +60632,87 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_metadata::ListOpsMetadataError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::list_resource_compliance_summaries::ListResourceComplianceSummariesError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_ops_metadata::ListOpsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsMetadataInvalidArgumentException(_) => {
+                Some("OpsMetadataInvalidArgumentException")
+            }
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::list_resource_compliance_summaries::ListResourceComplianceSummariesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidFilter(_) => Some("InvalidFilter"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_resource_data_sync::ListResourceDataSyncError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidNextToken(_) => Some("InvalidNextToken"),
+            Self::ResourceDataSyncInvalidConfigurationException(_) => {
+                Some("ResourceDataSyncInvalidConfigurationException")
+            }
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::InvalidResourceType(_) => Some("InvalidResourceType"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::modify_document_permission::ModifyDocumentPermissionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DocumentLimitExceeded(_) => Some("DocumentLimitExceeded"),
+            Self::DocumentPermissionLimit(_) => Some("DocumentPermissionLimit"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidPermissionType(_) => Some("InvalidPermissionType"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::put_compliance_items::PutComplianceItemsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ComplianceTypeCountLimitExceededException(_) => {
+                Some("ComplianceTypeCountLimitExceededException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidItemContentException(_) => Some("InvalidItemContentException"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::InvalidResourceType(_) => Some("InvalidResourceType"),
+            Self::ItemSizeLimitExceededException(_) => Some("ItemSizeLimitExceededException"),
+            Self::TotalSizeLimitExceededException(_) => Some("TotalSizeLimitExceededException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidItemContentException(value) => {
@@ -59557,6 +60727,33 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::put_compliance_items::PutCo
 }
 
 impl ModeledErrorDetails for aws_sdk_ssm::operation::put_inventory::PutInventoryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CustomSchemaCountLimitExceededException(_) => {
+                Some("CustomSchemaCountLimitExceededException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidInventoryItemContextException(_) => {
+                Some("InvalidInventoryItemContextException")
+            }
+            Self::InvalidItemContentException(_) => Some("InvalidItemContentException"),
+            Self::InvalidTypeNameException(_) => Some("InvalidTypeNameException"),
+            Self::ItemContentMismatchException(_) => Some("ItemContentMismatchException"),
+            Self::ItemSizeLimitExceededException(_) => Some("ItemSizeLimitExceededException"),
+            Self::SubTypeCountLimitExceededException(_) => {
+                Some("SubTypeCountLimitExceededException")
+            }
+            Self::TotalSizeLimitExceededException(_) => Some("TotalSizeLimitExceededException"),
+            Self::UnsupportedInventoryItemContextException(_) => {
+                Some("UnsupportedInventoryItemContextException")
+            }
+            Self::UnsupportedInventorySchemaVersionException(_) => {
+                Some("UnsupportedInventorySchemaVersionException")
+            }
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidItemContentException(value) => {
@@ -59576,8 +60773,50 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::put_inventory::PutInventory
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::put_parameter::PutParameterError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::put_parameter::PutParameterError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::HierarchyLevelLimitExceededException(_) => {
+                Some("HierarchyLevelLimitExceededException")
+            }
+            Self::HierarchyTypeMismatchException(_) => Some("HierarchyTypeMismatchException"),
+            Self::IncompatiblePolicyException(_) => Some("IncompatiblePolicyException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAllowedPatternException(_) => Some("InvalidAllowedPatternException"),
+            Self::InvalidKeyId(_) => Some("InvalidKeyId"),
+            Self::InvalidPolicyAttributeException(_) => Some("InvalidPolicyAttributeException"),
+            Self::InvalidPolicyTypeException(_) => Some("InvalidPolicyTypeException"),
+            Self::ParameterAlreadyExists(_) => Some("ParameterAlreadyExists"),
+            Self::ParameterLimitExceeded(_) => Some("ParameterLimitExceeded"),
+            Self::ParameterMaxVersionLimitExceeded(_) => Some("ParameterMaxVersionLimitExceeded"),
+            Self::ParameterPatternMismatchException(_) => Some("ParameterPatternMismatchException"),
+            Self::PoliciesLimitExceededException(_) => Some("PoliciesLimitExceededException"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            Self::UnsupportedParameterType(_) => Some("UnsupportedParameterType"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::put_resource_policy::PutResourcePolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::MalformedResourcePolicyDocumentException(_) => {
+                Some("MalformedResourcePolicyDocumentException")
+            }
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyConflictException(_) => Some("ResourcePolicyConflictException"),
+            Self::ResourcePolicyInvalidParameterException(_) => {
+                Some("ResourcePolicyInvalidParameterException")
+            }
+            Self::ResourcePolicyLimitExceededException(_) => {
+                Some("ResourcePolicyLimitExceededException")
+            }
+            Self::ResourcePolicyNotFoundException(_) => Some("ResourcePolicyNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourcePolicyInvalidParameterException(value) => {
@@ -59591,29 +60830,150 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::put_resource_policy::PutRes
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::register_default_host_management_configuration::RegisterDefaultHostManagementConfigurationError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_default_host_management_configuration::RegisterDefaultHostManagementConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::register_default_patch_baseline::RegisterDefaultPatchBaselineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::register_patch_baseline_for_patch_group::RegisterPatchBaselineForPatchGroupError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::register_target_with_maintenance_window::RegisterTargetWithMaintenanceWindowError {}
-impl ModeledErrorDetails for aws_sdk_ssm::operation::register_task_with_maintenance_window::RegisterTaskWithMaintenanceWindowError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_patch_baseline_for_patch_group::RegisterPatchBaselineForPatchGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AlreadyExistsException(_) => Some("AlreadyExistsException"),
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::ResourceLimitExceededException(_) => Some("ResourceLimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_target_with_maintenance_window::RegisterTargetWithMaintenanceWindowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceLimitExceededException(_) => Some("ResourceLimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::register_task_with_maintenance_window::RegisterTaskWithMaintenanceWindowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::FeatureNotAvailableException(_) => Some("FeatureNotAvailableException"),
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceLimitExceededException(_) => Some("ResourceLimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::remove_tags_from_resource::RemoveTagsFromResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidResourceId(_) => Some("InvalidResourceId"),
+            Self::InvalidResourceType(_) => Some("InvalidResourceType"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::reset_service_setting::ResetServiceSettingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ServiceSettingNotFound(_) => Some("ServiceSettingNotFound"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::resume_session::ResumeSessionError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::resume_session::ResumeSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::send_automation_signal::SendAutomationSignalError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationExecutionNotFoundException(_) => {
+                Some("AutomationExecutionNotFoundException")
+            }
+            Self::AutomationStepNotFoundException(_) => Some("AutomationStepNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAutomationSignalException(_) => Some("InvalidAutomationSignalException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::send_command::SendCommandError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::send_command::SendCommandError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DuplicateInstanceId(_) => Some("DuplicateInstanceId"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::InvalidNotificationConfig(_) => Some("InvalidNotificationConfig"),
+            Self::InvalidOutputFolder(_) => Some("InvalidOutputFolder"),
+            Self::InvalidParameters(_) => Some("InvalidParameters"),
+            Self::InvalidRole(_) => Some("InvalidRole"),
+            Self::MaxDocumentSizeExceeded(_) => Some("MaxDocumentSizeExceeded"),
+            Self::UnsupportedPlatformType(_) => Some("UnsupportedPlatformType"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::start_access_request::StartAccessRequestError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ServiceQuotaExceededException(value) => {
@@ -59629,18 +60989,78 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::start_access_request::Start
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::start_associations_once::StartAssociationsOnceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InvalidAssociation(_) => Some("InvalidAssociation"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::start_automation_execution::StartAutomationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationDefinitionNotFoundException(_) => {
+                Some("AutomationDefinitionNotFoundException")
+            }
+            Self::AutomationDefinitionVersionNotFoundException(_) => {
+                Some("AutomationDefinitionVersionNotFoundException")
+            }
+            Self::AutomationExecutionLimitExceededException(_) => {
+                Some("AutomationExecutionLimitExceededException")
+            }
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAutomationExecutionParametersException(_) => {
+                Some("InvalidAutomationExecutionParametersException")
+            }
+            Self::InvalidTarget(_) => Some("InvalidTarget"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::start_change_request_execution::StartChangeRequestExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationDefinitionNotApprovedException(_) => {
+                Some("AutomationDefinitionNotApprovedException")
+            }
+            Self::AutomationDefinitionNotFoundException(_) => {
+                Some("AutomationDefinitionNotFoundException")
+            }
+            Self::AutomationDefinitionVersionNotFoundException(_) => {
+                Some("AutomationDefinitionVersionNotFoundException")
+            }
+            Self::AutomationExecutionLimitExceededException(_) => {
+                Some("AutomationExecutionLimitExceededException")
+            }
+            Self::IdempotentParameterMismatch(_) => Some("IdempotentParameterMismatch"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAutomationExecutionParametersException(_) => {
+                Some("InvalidAutomationExecutionParametersException")
+            }
+            Self::NoLongerSupportedException(_) => Some("NoLongerSupportedException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::start_execution_preview::StartExecutionPreviewError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -59649,51 +61069,215 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::start_session::StartSessionError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::start_session::StartSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::TargetNotConnected(_) => Some("TargetNotConnected"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::stop_automation_execution::StopAutomationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AutomationExecutionNotFoundException(_) => {
+                Some("AutomationExecutionNotFoundException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAutomationStatusUpdateException(_) => {
+                Some("InvalidAutomationStatusUpdateException")
+            }
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::terminate_session::TerminateSessionError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::terminate_session::TerminateSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::unlabel_parameter_version::UnlabelParameterVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ParameterNotFound(_) => Some("ParameterNotFound"),
+            Self::ParameterVersionNotFound(_) => Some("ParameterVersionNotFound"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::update_association::UpdateAssociationError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_association::UpdateAssociationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::AssociationVersionLimitExceeded(_) => Some("AssociationVersionLimitExceeded"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidAssociationVersion(_) => Some("InvalidAssociationVersion"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::InvalidOutputLocation(_) => Some("InvalidOutputLocation"),
+            Self::InvalidParameters(_) => Some("InvalidParameters"),
+            Self::InvalidSchedule(_) => Some("InvalidSchedule"),
+            Self::InvalidTarget(_) => Some("InvalidTarget"),
+            Self::InvalidTargetMaps(_) => Some("InvalidTargetMaps"),
+            Self::InvalidUpdate(_) => Some("InvalidUpdate"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_association_status::UpdateAssociationStatusError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AssociationDoesNotExist(_) => Some("AssociationDoesNotExist"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            Self::StatusUnchanged(_) => Some("StatusUnchanged"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_cloud_connector::UpdateCloudConnectorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_ssm::operation::update_document::UpdateDocumentError {}
+
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_document::UpdateDocumentError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DocumentVersionLimitExceeded(_) => Some("DocumentVersionLimitExceeded"),
+            Self::DuplicateDocumentContent(_) => Some("DuplicateDocumentContent"),
+            Self::DuplicateDocumentVersionName(_) => Some("DuplicateDocumentVersionName"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentContent(_) => Some("InvalidDocumentContent"),
+            Self::InvalidDocumentOperation(_) => Some("InvalidDocumentOperation"),
+            Self::InvalidDocumentSchemaVersion(_) => Some("InvalidDocumentSchemaVersion"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::MaxDocumentSizeExceeded(_) => Some("MaxDocumentSizeExceeded"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_document_default_version::UpdateDocumentDefaultVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentSchemaVersion(_) => Some("InvalidDocumentSchemaVersion"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_document_metadata::UpdateDocumentMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidDocument(_) => Some("InvalidDocument"),
+            Self::InvalidDocumentOperation(_) => Some("InvalidDocumentOperation"),
+            Self::InvalidDocumentVersion(_) => Some("InvalidDocumentVersion"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_maintenance_window::UpdateMaintenanceWindowError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_maintenance_window_target::UpdateMaintenanceWindowTargetError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_maintenance_window_task::UpdateMaintenanceWindowTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_managed_instance_role::UpdateManagedInstanceRoleError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidInstanceId(_) => Some("InvalidInstanceId"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_item::UpdateOpsItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsItemAccessDeniedException(_) => Some("OpsItemAccessDeniedException"),
+            Self::OpsItemAlreadyExistsException(_) => Some("OpsItemAlreadyExistsException"),
+            Self::OpsItemConflictException(_) => Some("OpsItemConflictException"),
+            Self::OpsItemInvalidParameterException(_) => Some("OpsItemInvalidParameterException"),
+            Self::OpsItemLimitExceededException(_) => Some("OpsItemLimitExceededException"),
+            Self::OpsItemNotFoundException(_) => Some("OpsItemNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::OpsItemAlreadyExistsException(value) => {
@@ -59710,14 +61294,51 @@ impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_item::UpdateOpsI
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_metadata::UpdateOpsMetadataError {}
+impl ModeledErrorDetails for aws_sdk_ssm::operation::update_ops_metadata::UpdateOpsMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::OpsMetadataInvalidArgumentException(_) => {
+                Some("OpsMetadataInvalidArgumentException")
+            }
+            Self::OpsMetadataKeyLimitExceededException(_) => {
+                Some("OpsMetadataKeyLimitExceededException")
+            }
+            Self::OpsMetadataNotFoundException(_) => Some("OpsMetadataNotFoundException"),
+            Self::OpsMetadataTooManyUpdatesException(_) => {
+                Some("OpsMetadataTooManyUpdatesException")
+            }
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_patch_baseline::UpdatePatchBaselineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DoesNotExistException(_) => Some("DoesNotExistException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_resource_data_sync::UpdateResourceDataSyncError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceDataSyncConflictException(_) => Some("ResourceDataSyncConflictException"),
+            Self::ResourceDataSyncInvalidConfigurationException(_) => {
+                Some("ResourceDataSyncInvalidConfigurationException")
+            }
+            Self::ResourceDataSyncNotFoundException(_) => Some("ResourceDataSyncNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceDataSyncNotFoundException(value) => {
@@ -59731,10 +61352,26 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::update_service_setting::UpdateServiceSettingError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ServiceSettingNotFound(_) => Some("ServiceSettingNotFound"),
+            Self::TooManyUpdates(_) => Some("TooManyUpdates"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_ssm::operation::validate_cloud_connector::ValidateCloudConnectorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

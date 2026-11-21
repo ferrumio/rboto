@@ -156,6 +156,10 @@ fn dict_value<'py>(
 }
 
 trait ModeledErrorDetails {
+    fn modeled_code(&self) -> Option<&'static str> {
+        None
+    }
+
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         Ok(PyDict::new(py).into_any().unbind())
     }
@@ -182,15 +186,15 @@ where
     E: ProvideErrorMetadata + ModeledErrorDetails + Error + 'static,
 {
     with_modeled_details(py, rboto_core::http_sdk_error_to_py(py, error, operation,
-        "{{ python_package }}.exceptions", "{{ service_error_class }}", metadata), error.as_service_error())
+        "{{ python_package }}.exceptions", "{{ service_error_class }}",
+        error.as_service_error().and_then(ModeledErrorDetails::modeled_code), metadata), error.as_service_error())
 }
 
 #[allow(dead_code)]
-fn sdk_error_to_py_with_code<E, R>(
+fn stream_sdk_error_to_py<E, R>(
     py: Python<'_>,
     error: &SdkError<E, R>,
     context: &StreamErrorContext,
-    fallback_code: Option<&str>,
 ) -> PyErr
 where
     E: ProvideErrorMetadata + ModeledErrorDetails + Error + 'static,
@@ -202,7 +206,8 @@ where
     }
     with_modeled_details(py, rboto_core::sdk_error_to_py(py, error, context.operation,
         "{{ python_package }}.exceptions", "{{ service_error_class }}",
-        fallback_code, context.metadata.request_id.as_deref(), &context.metadata), error.as_service_error())
+        error.as_service_error().and_then(ModeledErrorDetails::modeled_code),
+        context.metadata.request_id.as_deref(), &context.metadata), error.as_service_error())
 }
 
 #[pymodule]

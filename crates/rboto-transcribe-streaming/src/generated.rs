@@ -5271,16 +5271,86 @@ impl PyOperationGetMedicalScribeStreamOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamError {}
-impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_call_analytics_stream_transcription::StartCallAnalyticsStreamTranscriptionError {}
-impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_scribe_stream::StartMedicalScribeStreamError {}
-impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_stream_transcription::StartMedicalStreamTranscriptionError {}
-impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_stream_transcription::StartStreamTranscriptionError {}
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::get_medical_scribe_stream::GetMedicalScribeStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_call_analytics_stream_transcription::StartCallAnalyticsStreamTranscriptionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_scribe_stream::StartMedicalScribeStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_medical_stream_transcription::StartMedicalStreamTranscriptionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_transcribestreaming::operation::start_stream_transcription::StartStreamTranscriptionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_transcribestreaming::types::error::AudioStreamError {}
 impl ModeledErrorDetails
     for aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_transcribestreaming::types::error::MedicalScribeInputStreamError
 {
@@ -5288,14 +5358,46 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BadRequestException(_) => Some("BadRequestException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::InternalFailureException(_) => Some("InternalFailureException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
 
 #[pyclass(
@@ -5363,35 +5465,33 @@ impl PyCallAnalyticsTranscriptResultStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| call_analytics_transcript_result_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
-                        Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
-                        Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::InternalFailureException(_)) => Some("InternalFailureException"),
-                        Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_transcribestreaming::types::error::CallAnalyticsTranscriptResultStreamError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                call_analytics_transcript_result_stream_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5461,35 +5561,31 @@ impl PyMedicalScribeResultStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| medical_scribe_result_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::InternalFailureException(_)) => Some("InternalFailureException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalScribeResultStreamError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| medical_scribe_result_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5559,35 +5655,31 @@ impl PyMedicalTranscriptResultStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| medical_transcript_result_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::InternalFailureException(_)) => Some("InternalFailureException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_transcribestreaming::types::error::MedicalTranscriptResultStreamError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| medical_transcript_result_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -5657,35 +5749,31 @@ impl PyTranscriptResultStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| transcript_result_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::BadRequestException(_)) => Some("BadRequestException"),
-                        Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::LimitExceededException(_)) => Some("LimitExceededException"),
-                        Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::InternalFailureException(_)) => Some("InternalFailureException"),
-                        Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_transcribestreaming::types::error::TranscriptResultStreamError::ServiceUnavailableException(_)) => Some("ServiceUnavailableException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| transcript_result_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

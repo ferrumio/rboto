@@ -1599,31 +1599,124 @@ impl PyOperationGetWebIdentityTokenOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sts::operation::assume_role::AssumeRoleError {}
+impl ModeledErrorDetails for aws_sdk_sts::operation::assume_role::AssumeRoleError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExpiredTokenException(_) => Some("ExpiredTokenException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PackedPolicyTooLargeException(_) => Some("PackedPolicyTooLargeException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sts::operation::assume_role_with_saml::AssumeRoleWithSAMLError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExpiredTokenException(_) => Some("ExpiredTokenException"),
+            Self::IdpRejectedClaimException(_) => Some("IDPRejectedClaimException"),
+            Self::InvalidIdentityTokenException(_) => Some("InvalidIdentityTokenException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PackedPolicyTooLargeException(_) => Some("PackedPolicyTooLargeException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sts::operation::assume_role_with_web_identity::AssumeRoleWithWebIdentityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExpiredTokenException(_) => Some("ExpiredTokenException"),
+            Self::IdpCommunicationErrorException(_) => Some("IDPCommunicationErrorException"),
+            Self::IdpRejectedClaimException(_) => Some("IDPRejectedClaimException"),
+            Self::InvalidIdentityTokenException(_) => Some("InvalidIdentityTokenException"),
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PackedPolicyTooLargeException(_) => Some("PackedPolicyTooLargeException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sts::operation::assume_root::AssumeRootError {}
+
+impl ModeledErrorDetails for aws_sdk_sts::operation::assume_root::AssumeRootError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExpiredTokenException(_) => Some("ExpiredTokenException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sts::operation::decode_authorization_message::DecodeAuthorizationMessageError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAuthorizationMessageException(_) => {
+                Some("InvalidAuthorizationMessageException")
+            }
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_sts::operation::get_access_key_info::GetAccessKeyInfoError {}
 impl ModeledErrorDetails for aws_sdk_sts::operation::get_caller_identity::GetCallerIdentityError {}
 impl ModeledErrorDetails
     for aws_sdk_sts::operation::get_delegated_access_token::GetDelegatedAccessTokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExpiredTradeInTokenException(_) => Some("ExpiredTradeInTokenException"),
+            Self::PackedPolicyTooLargeException(_) => Some("PackedPolicyTooLargeException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sts::operation::get_federation_token::GetFederationTokenError {}
-impl ModeledErrorDetails for aws_sdk_sts::operation::get_session_token::GetSessionTokenError {}
+
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_federation_token::GetFederationTokenError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::MalformedPolicyDocumentException(_) => Some("MalformedPolicyDocumentException"),
+            Self::PackedPolicyTooLargeException(_) => Some("PackedPolicyTooLargeException"),
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sts::operation::get_session_token::GetSessionTokenError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::RegionDisabledException(_) => Some("RegionDisabledException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sts::operation::get_web_identity_token::GetWebIdentityTokenError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::JwtPayloadSizeExceededException(_) => Some("JWTPayloadSizeExceededException"),
+            Self::OutboundWebIdentityFederationDisabledException(_) => {
+                Some("OutboundWebIdentityFederationDisabledException")
+            }
+            Self::SessionDurationEscalationException(_) => {
+                Some("SessionDurationEscalationException")
+            }
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

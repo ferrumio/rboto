@@ -2646,47 +2646,364 @@ impl PyOperationStartMessageMoveTaskOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sqs::operation::add_permission::AddPermissionError {}
+impl ModeledErrorDetails for aws_sdk_sqs::operation::add_permission::AddPermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::OverLimit(_) => Some("OverLimit"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::cancel_message_move_task::CancelMessageMoveTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::change_message_visibility::ChangeMessageVisibilityError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::MessageNotInflight(_) => Some("MessageNotInflight"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::ReceiptHandleIsInvalid(_) => Some("ReceiptHandleIsInvalid"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::change_message_visibility_batch::ChangeMessageVisibilityBatchError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BatchEntryIdsNotDistinct(_) => Some("BatchEntryIdsNotDistinct"),
+            Self::EmptyBatchRequest(_) => Some("EmptyBatchRequest"),
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidBatchEntryId(_) => Some("InvalidBatchEntryId"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::TooManyEntriesInBatchRequest(_) => Some("TooManyEntriesInBatchRequest"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sqs::operation::create_queue::CreateQueueError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message::DeleteMessageError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_queue::DeleteQueueError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_url::GetQueueUrlError {}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::create_queue::CreateQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidAttributeName(_) => Some("InvalidAttributeName"),
+            Self::InvalidAttributeValue(_) => Some("InvalidAttributeValue"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDeletedRecently(_) => Some("QueueDeletedRecently"),
+            Self::QueueNameExists(_) => Some("QueueNameExists"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message::DeleteMessageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidIdFormat(_) => Some("InvalidIdFormat"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::ReceiptHandleIsInvalid(_) => Some("ReceiptHandleIsInvalid"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_message_batch::DeleteMessageBatchError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BatchEntryIdsNotDistinct(_) => Some("BatchEntryIdsNotDistinct"),
+            Self::EmptyBatchRequest(_) => Some("EmptyBatchRequest"),
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidBatchEntryId(_) => Some("InvalidBatchEntryId"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::TooManyEntriesInBatchRequest(_) => Some("TooManyEntriesInBatchRequest"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::delete_queue::DeleteQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_attributes::GetQueueAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidAttributeName(_) => Some("InvalidAttributeName"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::get_queue_url::GetQueueUrlError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::list_dead_letter_source_queues::ListDeadLetterSourceQueuesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::list_message_move_tasks::ListMessageMoveTasksError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queues::ListQueuesError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::purge_queue::PurgeQueueError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::receive_message::ReceiveMessageError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::remove_permission::RemovePermissionError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message::SendMessageError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message_batch::SendMessageBatchError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::set_queue_attributes::SetQueueAttributesError {}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queue_tags::ListQueueTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::list_queues::ListQueuesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::purge_queue::PurgeQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::PurgeQueueInProgress(_) => Some("PurgeQueueInProgress"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::receive_message::ReceiveMessageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::KmsAccessDenied(_) => Some("KmsAccessDenied"),
+            Self::KmsDisabled(_) => Some("KmsDisabled"),
+            Self::KmsInvalidKeyUsage(_) => Some("KmsInvalidKeyUsage"),
+            Self::KmsInvalidState(_) => Some("KmsInvalidState"),
+            Self::KmsNotFound(_) => Some("KmsNotFound"),
+            Self::KmsOptInRequired(_) => Some("KmsOptInRequired"),
+            Self::KmsThrottled(_) => Some("KmsThrottled"),
+            Self::OverLimit(_) => Some("OverLimit"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::remove_permission::RemovePermissionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message::SendMessageError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidMessageContents(_) => Some("InvalidMessageContents"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::KmsAccessDenied(_) => Some("KmsAccessDenied"),
+            Self::KmsDisabled(_) => Some("KmsDisabled"),
+            Self::KmsInvalidKeyUsage(_) => Some("KmsInvalidKeyUsage"),
+            Self::KmsInvalidState(_) => Some("KmsInvalidState"),
+            Self::KmsNotFound(_) => Some("KmsNotFound"),
+            Self::KmsOptInRequired(_) => Some("KmsOptInRequired"),
+            Self::KmsThrottled(_) => Some("KmsThrottled"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::send_message_batch::SendMessageBatchError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BatchEntryIdsNotDistinct(_) => Some("BatchEntryIdsNotDistinct"),
+            Self::BatchRequestTooLong(_) => Some("BatchRequestTooLong"),
+            Self::EmptyBatchRequest(_) => Some("EmptyBatchRequest"),
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidBatchEntryId(_) => Some("InvalidBatchEntryId"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::KmsAccessDenied(_) => Some("KmsAccessDenied"),
+            Self::KmsDisabled(_) => Some("KmsDisabled"),
+            Self::KmsInvalidKeyUsage(_) => Some("KmsInvalidKeyUsage"),
+            Self::KmsInvalidState(_) => Some("KmsInvalidState"),
+            Self::KmsNotFound(_) => Some("KmsNotFound"),
+            Self::KmsOptInRequired(_) => Some("KmsOptInRequired"),
+            Self::KmsThrottled(_) => Some("KmsThrottled"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::TooManyEntriesInBatchRequest(_) => Some("TooManyEntriesInBatchRequest"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::set_queue_attributes::SetQueueAttributesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidAttributeName(_) => Some("InvalidAttributeName"),
+            Self::InvalidAttributeValue(_) => Some("InvalidAttributeValue"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::OverLimit(_) => Some("OverLimit"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sqs::operation::start_message_move_task::StartMessageMoveTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_sqs::operation::tag_queue::TagQueueError {}
-impl ModeledErrorDetails for aws_sdk_sqs::operation::untag_queue::UntagQueueError {}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::tag_queue::TagQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_sqs::operation::untag_queue::UntagQueueError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidAddress(_) => Some("InvalidAddress"),
+            Self::InvalidSecurity(_) => Some("InvalidSecurity"),
+            Self::QueueDoesNotExist(_) => Some("QueueDoesNotExist"),
+            Self::RequestThrottled(_) => Some("RequestThrottled"),
+            Self::UnsupportedOperation(_) => Some("UnsupportedOperation"),
+            _ => None,
+        }
+    }
+}
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyBatchResultErrorEntry>()?;

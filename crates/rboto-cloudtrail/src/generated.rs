@@ -12964,135 +12964,1357 @@ impl PyOperationUpdateTrailOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::add_tags::AddTagsError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::cancel_query::CancelQueryError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_channel::CreateChannelError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardError {}
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::add_tags::AddTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::ChannelNotFoundException(_) => Some("ChannelNotFoundException"),
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::TagsLimitExceededException(_) => Some("TagsLimitExceededException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::cancel_query::CancelQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InactiveQueryException(_) => Some("InactiveQueryException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::QueryIdNotFoundException(_) => Some("QueryIdNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_channel::CreateChannelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelAlreadyExistsException(_) => Some("ChannelAlreadyExistsException"),
+            Self::ChannelMaxLimitExceededException(_) => Some("ChannelMaxLimitExceededException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidEventDataStoreCategoryException(_) => {
+                Some("InvalidEventDataStoreCategoryException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSourceException(_) => Some("InvalidSourceException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::TagsLimitExceededException(_) => Some("TagsLimitExceededException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_dashboard::CreateDashboardError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidQueryStatementException(_) => Some("InvalidQueryStatementException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::create_event_data_store::CreateEventDataStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreAlreadyExistsException(_) => {
+                Some("EventDataStoreAlreadyExistsException")
+            }
+            Self::EventDataStoreMaxLimitExceededException(_) => {
+                Some("EventDataStoreMaxLimitExceededException")
+            }
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidEventSelectorsException(_) => Some("InvalidEventSelectorsException"),
+            Self::InvalidKmsKeyIdException(_) => Some("InvalidKmsKeyIdException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::KmsException(_) => Some("KmsException"),
+            Self::KmsKeyNotFoundException(_) => Some("KmsKeyNotFoundException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_trail::CreateTrailError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::create_trail::CreateTrailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::CloudTrailInvalidClientTokenIdException(_) => {
+                Some("CloudTrailInvalidClientTokenIdException")
+            }
+            Self::CloudWatchLogsDeliveryUnavailableException(_) => {
+                Some("CloudWatchLogsDeliveryUnavailableException")
+            }
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InsufficientS3BucketPolicyException(_) => {
+                Some("InsufficientS3BucketPolicyException")
+            }
+            Self::InsufficientSnsTopicPolicyException(_) => {
+                Some("InsufficientSnsTopicPolicyException")
+            }
+            Self::InvalidCloudWatchLogsLogGroupArnException(_) => {
+                Some("InvalidCloudWatchLogsLogGroupArnException")
+            }
+            Self::InvalidCloudWatchLogsRoleArnException(_) => {
+                Some("InvalidCloudWatchLogsRoleArnException")
+            }
+            Self::InvalidKmsKeyIdException(_) => Some("InvalidKmsKeyIdException"),
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidS3BucketNameException(_) => Some("InvalidS3BucketNameException"),
+            Self::InvalidS3PrefixException(_) => Some("InvalidS3PrefixException"),
+            Self::InvalidSnsTopicNameException(_) => Some("InvalidSnsTopicNameException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::KmsException(_) => Some("KmsException"),
+            Self::KmsKeyDisabledException(_) => Some("KmsKeyDisabledException"),
+            Self::KmsKeyNotFoundException(_) => Some("KmsKeyNotFoundException"),
+            Self::MaximumNumberOfTrailsExceededException(_) => {
+                Some("MaximumNumberOfTrailsExceededException")
+            }
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::S3BucketDoesNotExistException(_) => Some("S3BucketDoesNotExistException"),
+            Self::TagsLimitExceededException(_) => Some("TagsLimitExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailAlreadyExistsException(_) => Some("TrailAlreadyExistsException"),
+            Self::TrailNotProvidedException(_) => Some("TrailNotProvidedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_channel::DeleteChannelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::ChannelNotFoundException(_) => Some("ChannelNotFoundException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_dashboard::DeleteDashboardError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::delete_event_data_store::DeleteEventDataStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelExistsForEdsException(_) => Some("ChannelExistsForEDSException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreFederationEnabledException(_) => {
+                Some("EventDataStoreFederationEnabledException")
+            }
+            Self::EventDataStoreHasOngoingImportException(_) => {
+                Some("EventDataStoreHasOngoingImportException")
+            }
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::EventDataStoreTerminationProtectedException(_) => {
+                Some("EventDataStoreTerminationProtectedException")
+            }
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceArnNotValidException(_) => Some("ResourceARNNotValidException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyNotFoundException(_) => Some("ResourcePolicyNotFoundException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_query::DescribeQueryError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::delete_trail::DeleteTrailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::deregister_organization_delegated_admin::DeregisterOrganizationDelegatedAdminError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountNotFoundException(_) => Some("AccountNotFoundException"),
+            Self::AccountNotRegisteredException(_) => Some("AccountNotRegisteredException"),
+            Self::CloudTrailAccessNotEnabledException(_) => Some("CloudTrailAccessNotEnabledException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => Some("InsufficientDependencyServiceAccessPermissionException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotOrganizationManagementAccountException(_) => Some("NotOrganizationManagementAccountException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => Some("OrganizationNotInAllFeaturesModeException"),
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_query::DescribeQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::QueryIdNotFoundException(_) => Some("QueryIdNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::describe_trails::DescribeTrailsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::disable_federation::DisableFederationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::enable_federation::EnableFederationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::ConcurrentModificationException(_) => Some("ConcurrentModificationException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreFederationEnabledException(_) => {
+                Some("EventDataStoreFederationEnabledException")
+            }
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::generate_query::GenerateQueryError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_channel::GetChannelError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::generate_query::GenerateQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::GenerateResponseException(_) => Some("GenerateResponseException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_channel::GetChannelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::ChannelNotFoundException(_) => Some("ChannelNotFoundException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_dashboard::GetDashboardError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_event_configuration::GetEventConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InvalidEventDataStoreCategoryException(_) => {
+                Some("InvalidEventDataStoreCategoryException")
+            }
+            Self::InvalidEventDataStoreStatusException(_) => {
+                Some("InvalidEventDataStoreStatusException")
+            }
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_event_data_store::GetEventDataStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_event_selectors::GetEventSelectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_import::GetImportError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_import::GetImportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ImportNotFoundException(_) => Some("ImportNotFoundException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_insight_selectors::GetInsightSelectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::InsightNotEnabledException(_) => Some("InsightNotEnabledException"),
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_query_results::GetQueryResultsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidMaxResultsException(_) => Some("InvalidMaxResultsException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::QueryIdNotFoundException(_) => Some("QueryIdNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::get_resource_policy::GetResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceArnNotValidException(_) => Some("ResourceARNNotValidException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyNotFoundException(_) => Some("ResourcePolicyNotFoundException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail::GetTrailError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_channels::ListChannelsError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail::GetTrailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::get_trail_status::GetTrailStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_channels::ListChannelsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_dashboards::ListDashboardsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::list_event_data_stores::ListEventDataStoresError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidMaxResultsException(_) => Some("InvalidMaxResultsException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::list_import_failures::ListImportFailuresError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_imports::ListImportsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_imports::ListImportsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::list_insights_data::ListInsightsDataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::list_insights_metric_data::ListInsightsMetricDataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_queries::ListQueriesError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_tags::ListTagsError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_trails::ListTrailsError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::lookup_events::LookupEventsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_public_keys::ListPublicKeysError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidTimeRangeException(_) => Some("InvalidTimeRangeException"),
+            Self::InvalidTokenException(_) => Some("InvalidTokenException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_queries::ListQueriesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidDateRangeException(_) => Some("InvalidDateRangeException"),
+            Self::InvalidMaxResultsException(_) => Some("InvalidMaxResultsException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidQueryStatusException(_) => Some("InvalidQueryStatusException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_tags::ListTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidTokenException(_) => Some("InvalidTokenException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::list_trails::ListTrailsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::lookup_events::LookupEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidEventCategoryException(_) => Some("InvalidEventCategoryException"),
+            Self::InvalidLookupAttributesException(_) => Some("InvalidLookupAttributesException"),
+            Self::InvalidMaxResultsException(_) => Some("InvalidMaxResultsException"),
+            Self::InvalidNextTokenException(_) => Some("InvalidNextTokenException"),
+            Self::InvalidTimeRangeException(_) => Some("InvalidTimeRangeException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::put_event_configuration::PutEventConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InsufficientIamAccessPermissionException(_) => {
+                Some("InsufficientIAMAccessPermissionException")
+            }
+            Self::InvalidEventDataStoreCategoryException(_) => {
+                Some("InvalidEventDataStoreCategoryException")
+            }
+            Self::InvalidEventDataStoreStatusException(_) => {
+                Some("InvalidEventDataStoreStatusException")
+            }
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::put_event_selectors::PutEventSelectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidEventSelectorsException(_) => Some("InvalidEventSelectorsException"),
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::put_insight_selectors::PutInsightSelectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InsufficientS3BucketPolicyException(_) => {
+                Some("InsufficientS3BucketPolicyException")
+            }
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidInsightSelectorsException(_) => Some("InvalidInsightSelectorsException"),
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::KmsException(_) => Some("KmsException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::S3BucketDoesNotExistException(_) => Some("S3BucketDoesNotExistException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::put_resource_policy::PutResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceArnNotValidException(_) => Some("ResourceARNNotValidException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourcePolicyNotValidException(_) => Some("ResourcePolicyNotValidException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::register_organization_delegated_admin::RegisterOrganizationDelegatedAdminError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountNotFoundException(_) => Some("AccountNotFoundException"),
+            Self::AccountRegisteredException(_) => Some("AccountRegisteredException"),
+            Self::CannotDelegateManagementAccountException(_) => Some("CannotDelegateManagementAccountException"),
+            Self::CloudTrailAccessNotEnabledException(_) => Some("CloudTrailAccessNotEnabledException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DelegatedAdminAccountLimitExceededException(_) => Some("DelegatedAdminAccountLimitExceededException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => Some("InsufficientDependencyServiceAccessPermissionException"),
+            Self::InsufficientIamAccessPermissionException(_) => Some("InsufficientIAMAccessPermissionException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NotOrganizationManagementAccountException(_) => Some("NotOrganizationManagementAccountException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => Some("OrganizationNotInAllFeaturesModeException"),
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::remove_tags::RemoveTagsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::ChannelNotFoundException(_) => Some("ChannelNotFoundException"),
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidTagParameterException(_) => Some("InvalidTagParameterException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ResourceTypeNotSupportedException(_) => Some("ResourceTypeNotSupportedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::restore_event_data_store::RestoreEventDataStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreMaxLimitExceededException(_) => {
+                Some("EventDataStoreMaxLimitExceededException")
+            }
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidEventDataStoreStatusException(_) => {
+                Some("InvalidEventDataStoreStatusException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::search_sample_queries::SearchSampleQueriesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::start_dashboard_refresh::StartDashboardRefreshError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_import::StartImportError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_logging::StartLoggingError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_query::StartQueryError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_import::StopImportError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_logging::StopLoggingError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_channel::UpdateChannelError {}
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_event_data_store_ingestion::StartEventDataStoreIngestionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => Some("InsufficientDependencyServiceAccessPermissionException"),
+            Self::InvalidEventDataStoreCategoryException(_) => Some("InvalidEventDataStoreCategoryException"),
+            Self::InvalidEventDataStoreStatusException(_) => Some("InvalidEventDataStoreStatusException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => Some("NoManagementAccountSLRExistsException"),
+            Self::NotOrganizationMasterAccountException(_) => Some("NotOrganizationMasterAccountException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_import::StartImportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccountHasOngoingImportException(_) => Some("AccountHasOngoingImportException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::ImportNotFoundException(_) => Some("ImportNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidEventDataStoreCategoryException(_) => {
+                Some("InvalidEventDataStoreCategoryException")
+            }
+            Self::InvalidEventDataStoreStatusException(_) => {
+                Some("InvalidEventDataStoreStatusException")
+            }
+            Self::InvalidImportSourceException(_) => Some("InvalidImportSourceException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_logging::StartLoggingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::start_query::StartQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InsufficientS3BucketPolicyException(_) => {
+                Some("InsufficientS3BucketPolicyException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidQueryStatementException(_) => Some("InvalidQueryStatementException"),
+            Self::InvalidS3BucketNameException(_) => Some("InvalidS3BucketNameException"),
+            Self::InvalidS3PrefixException(_) => Some("InvalidS3PrefixException"),
+            Self::MaxConcurrentQueriesException(_) => Some("MaxConcurrentQueriesException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::S3BucketDoesNotExistException(_) => Some("S3BucketDoesNotExistException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_event_data_store_ingestion::StopEventDataStoreIngestionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => Some("InsufficientDependencyServiceAccessPermissionException"),
+            Self::InvalidEventDataStoreCategoryException(_) => Some("InvalidEventDataStoreCategoryException"),
+            Self::InvalidEventDataStoreStatusException(_) => Some("InvalidEventDataStoreStatusException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::NoManagementAccountSlrExistsException(_) => Some("NoManagementAccountSLRExistsException"),
+            Self::NotOrganizationMasterAccountException(_) => Some("NotOrganizationMasterAccountException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_import::StopImportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ImportNotFoundException(_) => Some("ImportNotFoundException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::stop_logging::StopLoggingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_channel::UpdateChannelError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ChannelAlreadyExistsException(_) => Some("ChannelAlreadyExistsException"),
+            Self::ChannelArnInvalidException(_) => Some("ChannelARNInvalidException"),
+            Self::ChannelNotFoundException(_) => Some("ChannelNotFoundException"),
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InvalidEventDataStoreCategoryException(_) => {
+                Some("InvalidEventDataStoreCategoryException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_dashboard::UpdateDashboardError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidQueryStatementException(_) => Some("InvalidQueryStatementException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudtrail::operation::update_event_data_store::UpdateEventDataStoreError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::EventDataStoreAlreadyExistsException(_) => {
+                Some("EventDataStoreAlreadyExistsException")
+            }
+            Self::EventDataStoreArnInvalidException(_) => Some("EventDataStoreARNInvalidException"),
+            Self::EventDataStoreHasOngoingImportException(_) => {
+                Some("EventDataStoreHasOngoingImportException")
+            }
+            Self::EventDataStoreNotFoundException(_) => Some("EventDataStoreNotFoundException"),
+            Self::InactiveEventDataStoreException(_) => Some("InactiveEventDataStoreException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InvalidEventSelectorsException(_) => Some("InvalidEventSelectorsException"),
+            Self::InvalidInsightSelectorsException(_) => Some("InvalidInsightSelectorsException"),
+            Self::InvalidKmsKeyIdException(_) => Some("InvalidKmsKeyIdException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::KmsException(_) => Some("KmsException"),
+            Self::KmsKeyNotFoundException(_) => Some("KmsKeyNotFoundException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_trail::UpdateTrailError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudtrail::operation::update_trail::UpdateTrailError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::CloudTrailAccessNotEnabledException(_) => {
+                Some("CloudTrailAccessNotEnabledException")
+            }
+            Self::CloudTrailArnInvalidException(_) => Some("CloudTrailARNInvalidException"),
+            Self::CloudTrailInvalidClientTokenIdException(_) => {
+                Some("CloudTrailInvalidClientTokenIdException")
+            }
+            Self::CloudWatchLogsDeliveryUnavailableException(_) => {
+                Some("CloudWatchLogsDeliveryUnavailableException")
+            }
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InsufficientDependencyServiceAccessPermissionException(_) => {
+                Some("InsufficientDependencyServiceAccessPermissionException")
+            }
+            Self::InsufficientEncryptionPolicyException(_) => {
+                Some("InsufficientEncryptionPolicyException")
+            }
+            Self::InsufficientS3BucketPolicyException(_) => {
+                Some("InsufficientS3BucketPolicyException")
+            }
+            Self::InsufficientSnsTopicPolicyException(_) => {
+                Some("InsufficientSnsTopicPolicyException")
+            }
+            Self::InvalidCloudWatchLogsLogGroupArnException(_) => {
+                Some("InvalidCloudWatchLogsLogGroupArnException")
+            }
+            Self::InvalidCloudWatchLogsRoleArnException(_) => {
+                Some("InvalidCloudWatchLogsRoleArnException")
+            }
+            Self::InvalidEventSelectorsException(_) => Some("InvalidEventSelectorsException"),
+            Self::InvalidHomeRegionException(_) => Some("InvalidHomeRegionException"),
+            Self::InvalidKmsKeyIdException(_) => Some("InvalidKmsKeyIdException"),
+            Self::InvalidParameterCombinationException(_) => {
+                Some("InvalidParameterCombinationException")
+            }
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidS3BucketNameException(_) => Some("InvalidS3BucketNameException"),
+            Self::InvalidS3PrefixException(_) => Some("InvalidS3PrefixException"),
+            Self::InvalidSnsTopicNameException(_) => Some("InvalidSnsTopicNameException"),
+            Self::InvalidTrailNameException(_) => Some("InvalidTrailNameException"),
+            Self::KmsException(_) => Some("KmsException"),
+            Self::KmsKeyDisabledException(_) => Some("KmsKeyDisabledException"),
+            Self::KmsKeyNotFoundException(_) => Some("KmsKeyNotFoundException"),
+            Self::NoManagementAccountSlrExistsException(_) => {
+                Some("NoManagementAccountSLRExistsException")
+            }
+            Self::NotOrganizationMasterAccountException(_) => {
+                Some("NotOrganizationMasterAccountException")
+            }
+            Self::OperationNotPermittedException(_) => Some("OperationNotPermittedException"),
+            Self::OrganizationNotInAllFeaturesModeException(_) => {
+                Some("OrganizationNotInAllFeaturesModeException")
+            }
+            Self::OrganizationsNotInUseException(_) => Some("OrganizationsNotInUseException"),
+            Self::S3BucketDoesNotExistException(_) => Some("S3BucketDoesNotExistException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TrailNotFoundException(_) => Some("TrailNotFoundException"),
+            Self::TrailNotProvidedException(_) => Some("TrailNotProvidedException"),
+            Self::UnsupportedOperationException(_) => Some("UnsupportedOperationException"),
+            _ => None,
+        }
+    }
+}
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_class::<PyAdvancedEventSelector>()?;

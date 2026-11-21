@@ -17006,6 +17006,13 @@ fn too_many_requests_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::batch_get_named_query::BatchGetNamedQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17019,6 +17026,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::batch_get_prepared_statement::BatchGetPreparedStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17032,6 +17046,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::batch_get_query_execution::BatchGetQueryExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17045,6 +17066,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::cancel_capacity_reservation::CancelCapacityReservationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17058,6 +17086,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::create_capacity_reservation::CreateCapacityReservationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17071,6 +17106,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::create_data_catalog::CreateDataCatalogError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17082,6 +17124,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::create_named_query::CreateNamedQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17093,6 +17142,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::create_named_query::Crea
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::create_notebook::CreateNotebookError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17109,6 +17166,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::create_notebook::CreateN
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::create_prepared_statement::CreatePreparedStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17122,6 +17186,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::create_presigned_notebook_url::CreatePresignedNotebookUrlError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17136,6 +17208,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::create_system_table_configuration::CreateSystemTableConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17146,6 +17226,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::create_system_table_conf
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::create_work_group::CreateWorkGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17159,6 +17246,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::create_work_group::Creat
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::delete_capacity_reservation::DeleteCapacityReservationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17172,6 +17266,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::delete_data_catalog::DeleteDataCatalogError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17183,6 +17284,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::delete_named_query::DeleteNamedQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17194,6 +17302,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::delete_named_query::Dele
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::delete_notebook::DeleteNotebookError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17210,6 +17326,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::delete_notebook::DeleteN
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::delete_prepared_statement::DeletePreparedStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17224,6 +17348,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::delete_system_table_configuration::DeleteSystemTableConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17234,6 +17366,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::delete_system_table_conf
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::delete_work_group::DeleteWorkGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17245,6 +17384,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::delete_work_group::Delet
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::export_notebook::ExportNotebookError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17261,6 +17408,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::export_notebook::ExportN
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_calculation_execution::GetCalculationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17277,6 +17432,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_calculation_execution_code::GetCalculationExecutionCodeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17291,6 +17454,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_calculation_execution_status::GetCalculationExecutionStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17301,6 +17472,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_calculation_executio
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_capacity_assignment_configuration::GetCapacityAssignmentConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17312,6 +17490,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_capacity_assignment_
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_capacity_reservation::GetCapacityReservationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17323,6 +17508,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_data_catalog::GetDataCatalogError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17334,6 +17526,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_data_catalog::GetDat
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_database::GetDatabaseError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MetadataException(_) => Some("MetadataException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17345,6 +17545,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_database::GetDatabas
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_named_query::GetNamedQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17358,6 +17565,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_named_query::GetName
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_notebook_metadata::GetNotebookMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17374,6 +17589,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_prepared_statement::GetPreparedStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17390,6 +17613,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_query_execution::GetQueryExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17401,6 +17631,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_query_results::GetQueryResultsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17417,6 +17655,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_query_results::GetQu
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_query_runtime_statistics::GetQueryRuntimeStatisticsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17430,6 +17675,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_resource_dashboard::GetResourceDashboardError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17444,6 +17697,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_session::GetSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17460,6 +17721,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_session::GetSessionE
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_session_endpoint::GetSessionEndpointError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17474,6 +17743,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_session_status::GetSessionStatusError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17490,6 +17767,15 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_session_status::GetS
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::get_system_table_configuration::GetSystemTableConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17507,6 +17793,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_table_metadata::GetTableMetadataError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MetadataException(_) => Some("MetadataException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17518,6 +17812,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_table_metadata::GetT
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::get_work_group::GetWorkGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17529,6 +17830,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::get_work_group::GetWorkG
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::import_notebook::ImportNotebookError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17545,6 +17854,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::import_notebook::ImportN
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_application_dpu_sizes::ListApplicationDPUSizesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17561,6 +17878,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_calculation_executions::ListCalculationExecutionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17577,6 +17902,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_capacity_reservations::ListCapacityReservationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17588,6 +17920,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_data_catalogs::ListDataCatalogsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17599,6 +17938,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_data_catalogs::List
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_databases::ListDatabasesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MetadataException(_) => Some("MetadataException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17612,6 +17959,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_databases::ListData
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_engine_versions::ListEngineVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17623,6 +17977,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_executors::ListExecutorsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17637,6 +17999,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_executors::ListExec
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_named_queries::ListNamedQueriesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17650,6 +18019,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_named_queries::List
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_notebook_metadata::ListNotebookMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17666,6 +18043,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_notebook_sessions::ListNotebookSessionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17682,6 +18067,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_prepared_statements::ListPreparedStatementsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17695,6 +18087,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_query_executions::ListQueryExecutionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17706,6 +18105,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_sessions::ListSessionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17722,6 +18129,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_sessions::ListSessi
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_system_table_statuses::ListSystemTableStatusesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17738,6 +18153,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_table_metadata::ListTableMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::MetadataException(_) => Some("MetadataException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17751,6 +18174,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17765,6 +18196,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::list_work_groups::ListWorkGroupsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17776,6 +18214,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::list_work_groups::ListWo
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::put_capacity_assignment_configuration::PutCapacityAssignmentConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17787,6 +18232,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::put_capacity_assignment_
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::start_calculation_execution::StartCalculationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17803,6 +18256,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::start_query_execution::StartQueryExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17817,6 +18278,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::start_session::StartSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::SessionAlreadyExistsException(_) => Some("SessionAlreadyExistsException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17836,6 +18307,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::start_session::StartSess
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::stop_calculation_execution::StopCalculationExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17852,6 +18331,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::stop_query_execution::StopQueryExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17863,6 +18349,14 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17877,6 +18371,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::tag_resource::TagResourc
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::terminate_session::TerminateSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17891,6 +18393,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::terminate_session::Termi
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17907,6 +18417,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::untag_resource::UntagRes
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::update_capacity_reservation::UpdateCapacityReservationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17920,6 +18437,13 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::update_data_catalog::UpdateDataCatalogError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17931,6 +18455,13 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::update_named_query::UpdateNamedQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17942,6 +18473,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::update_named_query::Upda
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::update_notebook::UpdateNotebookError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17958,6 +18497,14 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::update_notebook::UpdateN
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::update_notebook_metadata::UpdateNotebookMetadataError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17974,6 +18521,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_athena::operation::update_prepared_statement::UpdatePreparedStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {
@@ -17988,6 +18543,15 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::update_system_table_configuration::UpdateSystemTableConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::TooManyRequestsException(_) => Some("TooManyRequestsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => invalid_request_exception_error_details(py, value),
@@ -17999,6 +18563,13 @@ impl ModeledErrorDetails for aws_sdk_athena::operation::update_system_table_conf
 }
 
 impl ModeledErrorDetails for aws_sdk_athena::operation::update_work_group::UpdateWorkGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::InvalidRequestException(_) => Some("InvalidRequestException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InvalidRequestException(value) => {

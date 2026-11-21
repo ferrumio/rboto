@@ -123,6 +123,7 @@ pub fn stream_error_to_py(
         "rboto.exceptions",
         class,
         class,
+        None,
         message,
         context.operation,
         context.metadata.request_id.as_deref(),
@@ -179,6 +180,7 @@ pub fn http_sdk_error_to_py<E>(
     operation: &str,
     exception_module: &str,
     service_base: &str,
+    modeled_code: Option<&str>,
     metadata: &ResponseMetadata,
 ) -> PyErr
 where
@@ -197,6 +199,7 @@ where
     // unhandled service error instead of SdkError::ResponseError. Preserve
     // modeled errors (including protocols that return error codes with 2xx).
     if response.is_some_and(|response| response.status().is_success())
+        && modeled_code.is_none()
         && error
             .as_service_error()
             .is_some_and(|service| service.code().is_none())
@@ -206,6 +209,7 @@ where
             "rboto.exceptions",
             "ResponseError",
             "ResponseError",
+            None,
             "Could not decode the service response",
             operation,
             request_id,
@@ -218,7 +222,7 @@ where
         operation,
         exception_module,
         service_base,
-        None,
+        modeled_code,
         request_id,
         &metadata,
     )
@@ -231,7 +235,7 @@ pub fn sdk_error_to_py<E, R>(
     operation: &str,
     exception_module: &str,
     service_base: &str,
-    fallback_code: Option<&str>,
+    modeled_code: Option<&str>,
     request_id: Option<&str>,
     metadata: &ResponseMetadata,
 ) -> PyErr
@@ -246,7 +250,8 @@ where
             py,
             exception_module,
             service_base,
-            service.code().or(fallback_code).unwrap_or("UnknownError"),
+            service.code().or(modeled_code).unwrap_or("UnknownError"),
+            modeled_code,
             service.message().unwrap_or("Service returned an error"),
             operation,
             request_id,
@@ -302,6 +307,7 @@ where
         "rboto.exceptions",
         class,
         class,
+        None,
         message,
         operation,
         request_id,

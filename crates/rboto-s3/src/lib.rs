@@ -181,6 +181,10 @@ fn dict_value<'py>(values: &Bound<'py, PyDict>, name: &str) -> PyResult<Option<B
 }
 
 trait ModeledErrorDetails {
+    fn modeled_code(&self) -> Option<&'static str> {
+        None
+    }
+
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         Ok(PyDict::new(py).into_any().unbind())
     }
@@ -217,6 +221,9 @@ where
             operation,
             "rboto_s3.exceptions",
             "S3Error",
+            error
+                .as_service_error()
+                .and_then(ModeledErrorDetails::modeled_code),
             metadata,
         ),
         error.as_service_error(),
@@ -224,11 +231,10 @@ where
 }
 
 #[allow(dead_code)]
-fn sdk_error_to_py_with_code<E, R>(
+fn stream_sdk_error_to_py<E, R>(
     py: Python<'_>,
     error: &SdkError<E, R>,
     context: &StreamErrorContext,
-    fallback_code: Option<&str>,
 ) -> PyErr
 where
     E: ProvideErrorMetadata + ModeledErrorDetails + Error + 'static,
@@ -247,7 +253,9 @@ where
             context.operation,
             "rboto_s3.exceptions",
             "S3Error",
-            fallback_code,
+            error
+                .as_service_error()
+                .and_then(ModeledErrorDetails::modeled_code),
             context.metadata.request_id.as_deref(),
             &context.metadata,
         ),

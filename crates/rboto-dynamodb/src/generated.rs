@@ -30622,6 +30622,14 @@ fn transaction_canceled_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::batch_execute_statement::BatchExecuteStatementError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
@@ -30632,6 +30640,19 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_get_item::BatchGetItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30645,6 +30666,23 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_get_item::BatchG
 }
 
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_write_item::BatchWriteItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ItemCollectionSizeLimitExceededException(_) => {
+                Some("ItemCollectionSizeLimitExceededException")
+            }
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::ReplicatedWriteConflictException(_) => Some("ReplicatedWriteConflictException"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30660,15 +30698,92 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::batch_write_item::Batc
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::cancel_bulk_operation::CancelBulkOperationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_backup::CreateBackupError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_backup::CreateBackupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BackupInUseException(_) => Some("BackupInUseException"),
+            Self::ContinuousBackupsUnavailableException(_) => {
+                Some("ContinuousBackupsUnavailableException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TableInUseException(_) => Some("TableInUseException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::create_global_table::CreateGlobalTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlobalTableAlreadyExistsException(_) => Some("GlobalTableAlreadyExistsException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_table::CreateTableError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_backup::DeleteBackupError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::create_table::CreateTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_backup::DeleteBackupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BackupInUseException(_) => Some("BackupInUseException"),
+            Self::BackupNotFoundException(_) => Some("BackupNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_item::DeleteItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionalCheckFailedException(_) => Some("ConditionalCheckFailedException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ItemCollectionSizeLimitExceededException(_) => {
+                Some("ItemCollectionSizeLimitExceededException")
+            }
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::ReplicatedWriteConflictException(_) => Some("ReplicatedWriteConflictException"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionConflictException(_) => Some("TransactionConflictException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConditionalCheckFailedException(value) => {
@@ -30687,43 +30802,228 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_item::DeleteIte
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::PolicyNotFoundException(_) => Some("PolicyNotFoundException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_table::DeleteTableError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_backup::DescribeBackupError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::delete_table::DeleteTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_backup::DescribeBackupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BackupNotFoundException(_) => Some("BackupNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_bulk_operation::DescribeBulkOperationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_continuous_backups::DescribeContinuousBackupsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_contributor_insights::DescribeContributorInsightsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_endpoints::DescribeEndpointsError
 {
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_export::DescribeExportError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_export::DescribeExportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExportNotFoundException(_) => Some("ExportNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_global_table::DescribeGlobalTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlobalTableNotFoundException(_) => Some("GlobalTableNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_import::DescribeImportError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table::DescribeTableError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_global_table_settings::DescribeGlobalTableSettingsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlobalTableNotFoundException(_) => Some("GlobalTableNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_import::DescribeImportError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ImportNotFoundException(_) => Some("ImportNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_kinesis_streaming_destination::DescribeKinesisStreamingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_limits::DescribeLimitsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table::DescribeTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::describe_table_replica_auto_scaling::DescribeTableReplicaAutoScalingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::describe_time_to_live::DescribeTimeToLiveError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::disable_kinesis_streaming_destination::DisableKinesisStreamingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::enable_kinesis_streaming_destination::EnableKinesisStreamingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::execute_statement::ExecuteStatementError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionalCheckFailedException(_) => Some("ConditionalCheckFailedException"),
+            Self::DuplicateItemException(_) => Some("DuplicateItemException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ItemCollectionSizeLimitExceededException(_) => {
+                Some("ItemCollectionSizeLimitExceededException")
+            }
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionConflictException(_) => Some("TransactionConflictException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConditionalCheckFailedException(value) => {
@@ -30742,6 +31042,23 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::execute_statement::Exe
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::execute_transaction::ExecuteTransactionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionCanceledException(_) => Some("TransactionCanceledException"),
+            Self::TransactionInProgressException(_) => Some("TransactionInProgressException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30760,8 +31077,35 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::export_table_to_point_in_time::ExportTableToPointInTimeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExportConflictException(_) => Some("ExportConflictException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidExportTimeException(_) => Some("InvalidExportTimeException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::PointInTimeRecoveryUnavailableException(_) => {
+                Some("PointInTimeRecoveryUnavailableException")
+            }
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::get_item::GetItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30777,29 +31121,135 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::get_item::GetItemError
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::get_resource_policy::GetResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::PolicyNotFoundException(_) => Some("PolicyNotFoundException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::import_table::ImportTableError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_backups::ListBackupsError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::import_table::ImportTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ImportConflictException(_) => Some("ImportConflictException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_backups::ListBackupsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::list_bulk_operations::ListBulkOperationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::list_contributor_insights::ListContributorInsightsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_exports::ListExportsError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_exports::ListExportsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::list_global_tables::ListGlobalTablesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_imports::ListImportsError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_tables::ListTablesError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_imports::ListImportsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::list_tables::ListTablesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::list_tags_of_resource::ListTagsOfResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::put_item::PutItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionalCheckFailedException(_) => Some("ConditionalCheckFailedException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ItemCollectionSizeLimitExceededException(_) => {
+                Some("ItemCollectionSizeLimitExceededException")
+            }
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::ReplicatedWriteConflictException(_) => Some("ReplicatedWriteConflictException"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionConflictException(_) => Some("TransactionConflictException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConditionalCheckFailedException(value) => {
@@ -30818,8 +31268,33 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::put_item::PutItemError
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::put_resource_policy::PutResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::PolicyNotFoundException(_) => Some("PolicyNotFoundException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::query::QueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30835,12 +31310,54 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::query::QueryError {
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::restore_table_from_backup::RestoreTableFromBackupError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::BackupInUseException(_) => Some("BackupInUseException"),
+            Self::BackupNotFoundException(_) => Some("BackupNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::TableAlreadyExistsException(_) => Some("TableAlreadyExistsException"),
+            Self::TableInUseException(_) => Some("TableInUseException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::restore_table_to_point_in_time::RestoreTableToPointInTimeError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::InvalidRestoreTimeException(_) => Some("InvalidRestoreTimeException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::PointInTimeRecoveryUnavailableException(_) => {
+                Some("PointInTimeRecoveryUnavailableException")
+            }
+            Self::TableAlreadyExistsException(_) => Some("TableAlreadyExistsException"),
+            Self::TableInUseException(_) => Some("TableInUseException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::scan::ScanError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30854,6 +31371,15 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::scan::ScanError {
 }
 
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::search_vectors::SearchVectorsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::RequestLimitExceeded(value) => request_limit_exceeded_error_details(py, value),
@@ -30866,11 +31392,50 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::search_vectors::Search
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::start_bulk_put_items::StartBulkPutItemsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::tag_resource::TagResourceError {}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::transact_get_items::TransactGetItemsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionCanceledException(_) => Some("TransactionCanceledException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30889,6 +31454,24 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::transact_write_items::TransactWriteItemsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::IdempotentParameterMismatchException(_) => {
+                Some("IdempotentParameterMismatchException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionCanceledException(_) => Some("TransactionCanceledException"),
+            Self::TransactionInProgressException(_) => Some("TransactionInProgressException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ProvisionedThroughputExceededException(value) => {
@@ -30904,24 +31487,100 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::untag_resource::UntagResourceError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::update_continuous_backups::UpdateContinuousBackupsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ContinuousBackupsUnavailableException(_) => {
+                Some("ContinuousBackupsUnavailableException")
+            }
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::update_contributor_insights::UpdateContributorInsightsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::update_global_table::UpdateGlobalTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlobalTableNotFoundException(_) => Some("GlobalTableNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ReplicaAlreadyExistsException(_) => Some("ReplicaAlreadyExistsException"),
+            Self::ReplicaNotFoundException(_) => Some("ReplicaNotFoundException"),
+            Self::TableNotFoundException(_) => Some("TableNotFoundException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::update_global_table_settings::UpdateGlobalTableSettingsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::GlobalTableNotFoundException(_) => Some("GlobalTableNotFoundException"),
+            Self::IndexNotFoundException(_) => Some("IndexNotFoundException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ReplicaNotFoundException(_) => Some("ReplicaNotFoundException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_item::UpdateItemError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConditionalCheckFailedException(_) => Some("ConditionalCheckFailedException"),
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::ItemCollectionSizeLimitExceededException(_) => {
+                Some("ItemCollectionSizeLimitExceededException")
+            }
+            Self::ProvisionedThroughputExceededException(_) => {
+                Some("ProvisionedThroughputExceededException")
+            }
+            Self::ReplicatedWriteConflictException(_) => Some("ReplicatedWriteConflictException"),
+            Self::RequestLimitExceeded(_) => Some("RequestLimitExceeded"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::TransactionConflictException(_) => Some("TransactionConflictException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ConditionalCheckFailedException(value) => {
@@ -30937,12 +31596,57 @@ impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_item::UpdateIte
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table::UpdateTableError {}
-impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingError {}
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_kinesis_streaming_destination::UpdateKinesisStreamingDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table::UpdateTableError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_dynamodb::operation::update_table_replica_auto_scaling::UpdateTableReplicaAutoScalingError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_dynamodb::operation::update_time_to_live::UpdateTimeToLiveError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerError(_) => Some("InternalServerError"),
+            Self::InvalidEndpointException(_) => Some("InvalidEndpointException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceInUseException(_) => Some("ResourceInUseException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
 
 pub(super) fn add_generated_classes(module: &Bound<'_, PyModule>) -> PyResult<()> {

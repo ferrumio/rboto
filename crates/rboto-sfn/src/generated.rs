@@ -13153,6 +13153,18 @@ fn validation_exception_error_details(
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::create_activity::CreateActivityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ActivityAlreadyExists(_) => Some("ActivityAlreadyExists"),
+            Self::ActivityLimitExceeded(_) => Some("ActivityLimitExceeded"),
+            Self::InvalidEncryptionConfiguration(_) => Some("InvalidEncryptionConfiguration"),
+            Self::InvalidName(_) => Some("InvalidName"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::TooManyTags(_) => Some("TooManyTags"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyTags(value) => too_many_tags_error_details(py, value),
@@ -13162,6 +13174,26 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::create_activity::CreateActi
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::create_state_machine::CreateStateMachineError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidDefinition(_) => Some("InvalidDefinition"),
+            Self::InvalidEncryptionConfiguration(_) => Some("InvalidEncryptionConfiguration"),
+            Self::InvalidLoggingConfiguration(_) => Some("InvalidLoggingConfiguration"),
+            Self::InvalidName(_) => Some("InvalidName"),
+            Self::InvalidTracingConfiguration(_) => Some("InvalidTracingConfiguration"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::StateMachineAlreadyExists(_) => Some("StateMachineAlreadyExists"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineLimitExceeded(_) => Some("StateMachineLimitExceeded"),
+            Self::StateMachineTypeNotSupported(_) => Some("StateMachineTypeNotSupported"),
+            Self::TooManyTags(_) => Some("TooManyTags"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyTags(value) => too_many_tags_error_details(py, value),
@@ -13174,6 +13206,18 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::create_state_machine::Creat
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::create_state_machine_alias::CreateStateMachineAliasError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidName(_) => Some("InvalidName"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13183,8 +13227,23 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::delete_activity::DeleteActivityError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::delete_activity::DeleteActivityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_sfn::operation::delete_state_machine::DeleteStateMachineError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13196,6 +13255,15 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::delete_state_machine::Delet
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::delete_state_machine_alias::DeleteStateMachineAliasError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13208,6 +13276,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::delete_state_machine_version::DeleteStateMachineVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13216,8 +13292,27 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_activity::DescribeActivityError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_activity::DescribeActivityError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ActivityDoesNotExist(_) => Some("ActivityDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_execution::DescribeExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13229,6 +13324,13 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_execution::Describ
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_map_run::DescribeMapRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13240,6 +13342,16 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_map_run::DescribeM
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::describe_state_machine::DescribeStateMachineError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13253,6 +13365,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::describe_state_machine_alias::DescribeStateMachineAliasError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13263,6 +13383,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_state_machine_for_execution::DescribeStateMachineForExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => kms_invalid_state_exception_error_details(py, value),
@@ -13272,6 +13402,17 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::describe_state_machine_for_
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::get_activity_task::GetActivityTaskError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ActivityDoesNotExist(_) => Some("ActivityDoesNotExist"),
+            Self::ActivityWorkerLimitExceeded(_) => Some("ActivityWorkerLimitExceeded"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13285,6 +13426,17 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::get_activity_task::GetActiv
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::get_execution_history::GetExecutionHistoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13295,8 +13447,27 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::list_activities::ListActivitiesError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::list_activities::ListActivitiesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_sfn::operation::list_executions::ListExecutionsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            Self::StateMachineTypeNotSupported(_) => Some("StateMachineTypeNotSupported"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13306,10 +13477,30 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::list_executions::ListExecut
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::list_map_runs::ListMapRunsError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::list_map_runs::ListMapRunsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::list_state_machine_aliases::ListStateMachineAliasesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13321,6 +13512,14 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::list_state_machine_versions::ListStateMachineVersionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13329,10 +13528,25 @@ impl ModeledErrorDetails
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::list_state_machines::ListStateMachinesError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::list_state_machines::ListStateMachinesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13344,6 +13558,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::publish_state_machine_version::PublishStateMachineVersionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13353,6 +13578,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::redrive_execution::RedriveExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::ExecutionLimitExceeded(_) => Some("ExecutionLimitExceeded"),
+            Self::ExecutionNotRedrivable(_) => Some("ExecutionNotRedrivable"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13362,6 +13597,17 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::redrive_execution::RedriveE
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_failure::SendTaskFailureError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::TaskDoesNotExist(_) => Some("TaskDoesNotExist"),
+            Self::TaskTimedOut(_) => Some("TaskTimedOut"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13372,8 +13618,30 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_failure::SendTask
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_heartbeat::SendTaskHeartbeatError {}
+impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_heartbeat::SendTaskHeartbeatError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::TaskDoesNotExist(_) => Some("TaskDoesNotExist"),
+            Self::TaskTimedOut(_) => Some("TaskTimedOut"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_success::SendTaskSuccessError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOutput(_) => Some("InvalidOutput"),
+            Self::InvalidToken(_) => Some("InvalidToken"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::TaskDoesNotExist(_) => Some("TaskDoesNotExist"),
+            Self::TaskTimedOut(_) => Some("TaskTimedOut"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13385,6 +13653,22 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::send_task_success::SendTask
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::start_execution::StartExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionAlreadyExists(_) => Some("ExecutionAlreadyExists"),
+            Self::ExecutionLimitExceeded(_) => Some("ExecutionLimitExceeded"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidExecutionInput(_) => Some("InvalidExecutionInput"),
+            Self::InvalidName(_) => Some("InvalidName"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13397,6 +13681,20 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::start_execution::StartExecu
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::start_sync_execution::StartSyncExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidExecutionInput(_) => Some("InvalidExecutionInput"),
+            Self::InvalidName(_) => Some("InvalidName"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            Self::StateMachineTypeNotSupported(_) => Some("StateMachineTypeNotSupported"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13408,6 +13706,17 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::start_sync_execution::Start
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::stop_execution::StopExecutionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ExecutionDoesNotExist(_) => Some("ExecutionDoesNotExist"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsInvalidStateException(_) => Some("KmsInvalidStateException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::KmsInvalidStateException(value) => {
@@ -13420,6 +13729,14 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::stop_execution::StopExecuti
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::TooManyTags(_) => Some("TooManyTags"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13430,6 +13747,15 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::tag_resource::TagResourceEr
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::test_state::TestStateError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidDefinition(_) => Some("InvalidDefinition"),
+            Self::InvalidExecutionInput(_) => Some("InvalidExecutionInput"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13439,6 +13765,13 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::test_state::TestStateError 
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13448,6 +13781,14 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::untag_resource::UntagResour
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::update_map_run::UpdateMapRunError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13458,6 +13799,24 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::update_map_run::UpdateMapRu
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::update_state_machine::UpdateStateMachineError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::InvalidDefinition(_) => Some("InvalidDefinition"),
+            Self::InvalidEncryptionConfiguration(_) => Some("InvalidEncryptionConfiguration"),
+            Self::InvalidLoggingConfiguration(_) => Some("InvalidLoggingConfiguration"),
+            Self::InvalidTracingConfiguration(_) => Some("InvalidTracingConfiguration"),
+            Self::KmsAccessDeniedException(_) => Some("KmsAccessDeniedException"),
+            Self::KmsThrottlingException(_) => Some("KmsThrottlingException"),
+            Self::MissingRequiredParameter(_) => Some("MissingRequiredParameter"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::StateMachineDoesNotExist(_) => Some("StateMachineDoesNotExist"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),
@@ -13469,6 +13828,16 @@ impl ModeledErrorDetails for aws_sdk_sfn::operation::update_state_machine::Updat
 impl ModeledErrorDetails
     for aws_sdk_sfn::operation::update_state_machine_alias::UpdateStateMachineAliasError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidArn(_) => Some("InvalidArn"),
+            Self::ResourceNotFound(_) => Some("ResourceNotFound"),
+            Self::StateMachineDeleting(_) => Some("StateMachineDeleting"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ResourceNotFound(value) => resource_not_found_error_details(py, value),
@@ -13479,6 +13848,12 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_sfn::operation::validate_state_machine_definition::ValidateStateMachineDefinitionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::ValidationException(value) => validation_exception_error_details(py, value),

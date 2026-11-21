@@ -28608,6 +28608,20 @@ fn internal_server_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::agentic_retrieve_stream::AgenticRetrieveStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28623,6 +28637,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::check_ingested_document_acl::CheckIngestedDocumentAclError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
@@ -28634,6 +28658,18 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::check_inges
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::create_invocation::CreateInvocationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28647,6 +28683,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::create_session::CreateSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28660,6 +28707,20 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::delete_agent_memory::DeleteAgentMemoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28677,6 +28738,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::delete_session::DeleteSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28688,6 +28760,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::end_session::EndSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28701,6 +28784,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::end_session
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::generate_query::GenerateQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28718,6 +28815,20 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::get_agent_memory::GetAgentMemoryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28735,6 +28846,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::get_document_content::GetDocumentContentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28746,6 +28867,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_execution_flow_snapshot::GetExecutionFlowSnapshotError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
@@ -28757,6 +28888,16 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_executi
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::get_flow_execution::GetFlowExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28768,6 +28909,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_ingested_document_acl::GetIngestedDocumentAclError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
@@ -28779,6 +28930,16 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_ingeste
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::get_invocation_step::GetInvocationStepError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28790,6 +28951,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_session::GetSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28803,6 +28974,21 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::get_session
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::invoke_agent::InvokeAgentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28818,6 +29004,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::invoke_flow::InvokeFlowError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28835,6 +29035,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::invoke_flow
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::invoke_inline_agent::InvokeInlineAgentError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28850,6 +29064,16 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::list_flow_execution_events::ListFlowExecutionEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => internal_server_exception_error_details(py, value),
@@ -28861,6 +29085,16 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::list_flow_e
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::list_flow_executions::ListFlowExecutionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28874,6 +29108,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::list_invocation_steps::ListInvocationStepsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28887,6 +29131,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::list_invocations::ListInvocationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28900,6 +29154,15 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::list_sessions::ListSessionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28913,6 +29176,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28926,6 +29199,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::optimize_prompt::OptimizePromptError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28943,6 +29227,18 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::put_invocation_step::PutInvocationStepError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -28954,6 +29250,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::rerank::RerankError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28969,6 +29279,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::rerank::Rer
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve::RetrieveError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -28986,6 +29310,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve::R
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::retrieve_and_generate::RetrieveAndGenerateError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -29001,6 +29339,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve_and_generate_stream::RetrieveAndGenerateStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -29014,6 +29366,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::operation::retrieve_an
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::start_flow_execution::StartFlowExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -29031,6 +29397,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::stop_flow_execution::StopFlowExecutionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::BadGatewayException(value) => bad_gateway_exception_error_details(py, value),
@@ -29048,6 +29427,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::tag_resource::TagResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29061,6 +29451,16 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::untag_resource::UntagResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29074,6 +29474,17 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::operation::update_session::UpdateSessionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29087,6 +29498,20 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29102,6 +29527,20 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29117,6 +29556,21 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::FlowResp
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::ResponseStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ModelNotReadyException(_) => Some("ModelNotReadyException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29134,6 +29588,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::Response
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29149,6 +29617,17 @@ impl ModeledErrorDetails
 }
 
 impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29166,6 +29645,20 @@ impl ModeledErrorDetails for aws_sdk_bedrockagentruntime::types::error::Optimize
 impl ModeledErrorDetails
     for aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::InternalServerException(value) => {
@@ -29245,39 +29738,33 @@ impl PyAgenticRetrieveStreamResponseOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| agentic_retrieve_stream_response_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::AgenticRetrieveStreamResponseOutputError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                agentic_retrieve_stream_response_output_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -29347,39 +29834,31 @@ impl PyFlowResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| flow_response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::FlowResponseStreamError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| flow_response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -29449,39 +29928,31 @@ impl PyInlineAgentResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| inline_agent_response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::InlineAgentResponseStreamError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| inline_agent_response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -29551,36 +30022,31 @@ impl PyOptimizedPromptStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| optimized_prompt_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::OptimizedPromptStreamError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| optimized_prompt_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -29650,40 +30116,31 @@ impl PyResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::ResponseStreamError::ModelNotReadyException(_)) => Some("ModelNotReadyException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -29746,39 +30203,33 @@ impl PyRetrieveAndGenerateStreamResponseOutputReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| retrieve_and_generate_stream_response_output_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ServiceQuotaExceededException(_)) => Some("ServiceQuotaExceededException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_bedrockagentruntime::types::error::RetrieveAndGenerateStreamResponseOutputError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                retrieve_and_generate_stream_response_output_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

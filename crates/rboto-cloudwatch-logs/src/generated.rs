@@ -26794,308 +26794,1308 @@ fn too_many_tags_exception_error_details(
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::associate_kms_key::AssociateKmsKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::associate_source_to_s3_table_integration::AssociateSourceToS3TableIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::cancel_export_task::CancelExportTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::cancel_import_task::CancelImportTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_delivery::CreateDeliveryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_export_task::CreateExportTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_import_task::CreateImportTaskError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::create_log_anomaly_detector::CreateLogAnomalyDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_log_group::CreateLogGroupError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_log_stream::CreateLogStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_lookup_table::CreateLookupTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceAlreadyExistsException(_) => Some("ResourceAlreadyExistsException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::create_scheduled_query::CreateScheduledQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_account_policy::DeleteAccountPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_data_protection_policy::DeleteDataProtectionPolicyError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_data_protection_policy::DeleteDataProtectionPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_delivery::DeleteDeliveryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination::DeleteDeliveryDestinationError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination_policy::DeleteDeliveryDestinationPolicyError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination::DeleteDeliveryDestinationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_delivery_destination_policy::DeleteDeliveryDestinationPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_delivery_source::DeleteDeliverySourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_destination::DeleteDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_index_policy::DeleteIndexPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_integration::DeleteIntegrationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_log_anomaly_detector::DeleteLogAnomalyDetectorError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_log_anomaly_detector::DeleteLogAnomalyDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_log_group::DeleteLogGroupError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_log_stream::DeleteLogStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_lookup_table::DeleteLookupTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_metric_filter::DeleteMetricFilterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_query_definition::DeleteQueryDefinitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_resource_policy::DeleteResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_retention_policy::DeleteRetentionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_scheduled_query::DeleteScheduledQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_subscription_filter::DeleteSubscriptionFilterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_syslog_configuration::DeleteSyslogConfigurationError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::delete_syslog_configuration::DeleteSyslogConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::delete_transformer::DeleteTransformerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_account_policies::DescribeAccountPoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_configuration_templates::DescribeConfigurationTemplatesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_deliveries::DescribeDeliveriesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_delivery_destinations::DescribeDeliveryDestinationsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_delivery_sources::DescribeDeliverySourcesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_destinations::DescribeDestinationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_export_tasks::DescribeExportTasksError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_field_indexes::DescribeFieldIndexesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_import_task_batches::DescribeImportTaskBatchesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_import_tasks::DescribeImportTasksError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_index_policies::DescribeIndexPoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_log_groups::DescribeLogGroupsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_log_streams::DescribeLogStreamsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_lookup_tables::DescribeLookupTablesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_metric_filters::DescribeMetricFiltersError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_queries::DescribeQueriesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_query_definitions::DescribeQueryDefinitionsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::describe_resource_policies::DescribeResourcePoliciesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::describe_subscription_filters::DescribeSubscriptionFiltersError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::disassociate_kms_key::DisassociateKmsKeyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::disassociate_source_from_s3_table_integration::DisassociateSourceFromS3TableIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::filter_log_events::FilterLogEventsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_data_protection_policy::GetDataProtectionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery::GetDeliveryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_delivery_destination::GetDeliveryDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_delivery_destination_policy::GetDeliveryDestinationPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_delivery_source::GetDeliverySourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_integration::GetIntegrationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_log_anomaly_detector::GetLogAnomalyDetectorError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_events::GetLogEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_fields::GetLogFieldsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_log_group_fields::GetLogGroupFieldsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_object::GetLogObjectError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_object::GetLogObjectError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::InternalStreamingException(_) => Some("InternalStreamingException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_log_record::GetLogRecordError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_lookup_table::GetLookupTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_query_results::GetQueryResultsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_scheduled_query::GetScheduledQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::get_scheduled_query_history::GetScheduledQueryHistoryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_storage_tier_policy::GetStorageTierPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::get_transformer::GetTransformerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_aggregate_log_group_summaries::ListAggregateLogGroupSummariesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_anomalies::ListAnomaliesError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_integrations::ListIntegrationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_log_anomaly_detectors::ListLogAnomalyDetectorsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_log_groups::ListLogGroupsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_log_groups_for_query::ListLogGroupsForQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_scheduled_queries::ListScheduledQueriesError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::list_sources_for_s3_table_integration::ListSourcesForS3TableIntegrationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_syslog_configurations::ListSyslogConfigurationsError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_tags_for_resource::ListTagsForResourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::list_tags_log_group::ListTagsLogGroupError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_account_policy::PutAccountPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_bearer_token_authentication::PutBearerTokenAuthenticationError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_bearer_token_authentication::PutBearerTokenAuthenticationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_data_protection_policy::PutDataProtectionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_delivery_destination::PutDeliveryDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_delivery_destination_policy::PutDeliveryDestinationPolicyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_delivery_source::PutDeliverySourceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceQuotaExceededException(_) => Some("ServiceQuotaExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_destination::PutDestinationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_destination_policy::PutDestinationPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_index_policy::PutIndexPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_integration::PutIntegrationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_events::PutLogEventsError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::DataAlreadyAcceptedException(_) => Some("DataAlreadyAcceptedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::InvalidSequenceTokenException(_) => Some("InvalidSequenceTokenException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::UnrecognizedClientException(_) => Some("UnrecognizedClientException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::DataAlreadyAcceptedException(value) => {
@@ -27109,44 +28109,171 @@ impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_events::
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_group_deletion_protection::PutLogGroupDeletionProtectionError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::put_log_group_deletion_protection::PutLogGroupDeletionProtectionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_metric_filter::PutMetricFilterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_query_definition::PutQueryDefinitionError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_resource_policy::PutResourcePolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_retention_policy::PutRetentionPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_storage_tier_policy::PutStorageTierPolicyError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_subscription_filter::PutSubscriptionFilterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_syslog_configuration::PutSyslogConfigurationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::put_transformer::PutTransformerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::start_live_tail::StartLiveTailError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::SessionTimeoutException(_) => Some("SessionTimeoutException"),
+            Self::SessionStreamingException(_) => Some("SessionStreamingException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::start_query::StartQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::LimitExceededException(_) => Some("LimitExceededException"),
+            Self::MalformedQueryException(_) => Some("MalformedQueryException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::MalformedQueryException(value) => {
@@ -27157,9 +28284,37 @@ impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::start_query::Sta
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_log_group::TagLogGroupError {}
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::stop_query::StopQueryError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_log_group::TagLogGroupError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_resource::TagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::TooManyTagsException(_) => Some("TooManyTagsException"),
+            _ => None,
+        }
+    }
     fn details(&self, py: Python<'_>) -> PyResult<Py<PyAny>> {
         match self {
             Self::TooManyTagsException(value) => too_many_tags_exception_error_details(py, value),
@@ -27171,31 +28326,138 @@ impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::tag_resource::Ta
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::test_metric_filter::TestMetricFilterError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::test_transformer::TestTransformerError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidOperationException(_) => Some("InvalidOperationException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::untag_log_group::UntagLogGroupError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::untag_resource::UntagResourceError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_anomaly::UpdateAnomalyError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationError {}
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_log_anomaly_detector::UpdateLogAnomalyDetectorError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::untag_resource::UntagResourceError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_anomaly::UpdateAnomalyError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_delivery_configuration::UpdateDeliveryConfigurationError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::operation::update_log_anomaly_detector::UpdateLogAnomalyDetectorError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::OperationAbortedException(_) => Some("OperationAbortedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::update_lookup_table::UpdateLookupTableError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InvalidParameterException(_) => Some("InvalidParameterException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ServiceUnavailableException(_) => Some("ServiceUnavailableException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::operation::update_scheduled_query::UpdateScheduledQueryError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
-impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError {}
+
+impl ModeledErrorDetails for aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::InternalStreamingException(_) => Some("InternalStreamingException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::SessionTimeoutException(_) => Some("SessionTimeoutException"),
+            Self::SessionStreamingException(_) => Some("SessionStreamingException"),
+            _ => None,
+        }
+    }
 }
 
 #[pyclass(
@@ -27263,31 +28525,31 @@ impl PyGetLogObjectResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| get_log_object_response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_cloudwatchlogs::types::error::GetLogObjectResponseStreamError::InternalStreamingException(_)) => Some("InternalStreamingException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| get_log_object_response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }
@@ -27357,32 +28619,31 @@ impl PyStartLiveTailResponseStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| start_live_tail_response_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError::SessionTimeoutException(_)) => Some("SessionTimeoutException"),
-                        Some(aws_sdk_cloudwatchlogs::types::error::StartLiveTailResponseStreamError::SessionStreamingException(_)) => Some("SessionStreamingException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| start_live_tail_response_stream_to_py(py, &event))
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

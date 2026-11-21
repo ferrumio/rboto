@@ -37,6 +37,7 @@ class SmithyShape:
     streaming: bool
     error: bool
     sparse: bool = False
+    query_error_code: str | None = None
 
 
 @dataclass(frozen=True, slots=True)
@@ -59,6 +60,7 @@ class SmithyService:
     operations: tuple[SmithyOperation, ...]
     shapes: dict[str, SmithyShape]
     sdk_id: str | None = None
+    protocols: tuple[str, ...] = ()
 
 
 def to_snake_case(name: str) -> str:
@@ -181,6 +183,16 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
                     _string(raw_variant.get("value"), f"{shape_id}.enum[{index}].value")
                 )
 
+        query_error_code = None
+        if "aws.protocols#awsQueryError" in traits:
+            if "smithy.api#error" not in traits:
+                raise ValueError(f"{shape_id}: awsQueryError requires an error shape")
+            query_error = _dict(traits["aws.protocols#awsQueryError"], f"{shape_id}.awsQueryError")
+            if "code" in query_error:
+                query_error_code = _string(query_error["code"], f"{shape_id}.awsQueryError.code")
+                if not query_error_code.strip():
+                    raise ValueError(f"{shape_id}.awsQueryError.code must not be empty")
+
         shapes[shape_id] = SmithyShape(
             shape_id=shape_id,
             name=short_name(shape_id),
@@ -193,6 +205,7 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             streaming="smithy.api#streaming" in traits,
             error="smithy.api#error" in traits,
             sparse="smithy.api#sparse" in traits,
+            query_error_code=query_error_code,
         )
 
     service_entries = [shape for shape in shapes.values() if shape.kind == "service"]
@@ -290,4 +303,7 @@ def load_model(path: Path, descriptor: ServiceDescriptor) -> SmithyService:
             .get("sdkId", service_shape.name),
             "aws service sdkId",
         ),
+        protocols=tuple(sorted(
+            name for name in _traits(raw_service.get("traits")) if name.startswith("aws.protocols#")
+        )),
     )

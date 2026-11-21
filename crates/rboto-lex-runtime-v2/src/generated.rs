@@ -5290,18 +5290,101 @@ impl PyOperationRecognizeUtteranceOutput {
     }
 }
 
-impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionError {}
-impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::get_session::GetSessionError {}
-impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::put_session::PutSessionError {}
-impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextError {}
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::delete_session::DeleteSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::get_session::GetSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::put_session::PutSessionError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
+impl ModeledErrorDetails for aws_sdk_lexruntimev2::operation::recognize_text::RecognizeTextError {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
+}
+
 impl ModeledErrorDetails
     for aws_sdk_lexruntimev2::operation::recognize_utterance::RecognizeUtteranceError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_lexruntimev2::operation::start_conversation::StartConversationError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
 }
+
 impl ModeledErrorDetails
     for aws_sdk_lexruntimev2::types::error::StartConversationRequestEventStreamError
 {
@@ -5309,6 +5392,19 @@ impl ModeledErrorDetails
 impl ModeledErrorDetails
     for aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError
 {
+    fn modeled_code(&self) -> Option<&'static str> {
+        match self {
+            Self::AccessDeniedException(_) => Some("AccessDeniedException"),
+            Self::ResourceNotFoundException(_) => Some("ResourceNotFoundException"),
+            Self::ValidationException(_) => Some("ValidationException"),
+            Self::ThrottlingException(_) => Some("ThrottlingException"),
+            Self::InternalServerException(_) => Some("InternalServerException"),
+            Self::ConflictException(_) => Some("ConflictException"),
+            Self::DependencyFailedException(_) => Some("DependencyFailedException"),
+            Self::BadGatewayException(_) => Some("BadGatewayException"),
+            _ => None,
+        }
+    }
 }
 
 #[pyclass(
@@ -5376,38 +5472,33 @@ impl PyStartConversationResponseEventStreamReceiver {
             let Some(lease) = inner.begin() else {
                 return Err(PyStopAsyncIteration::new_err(()));
             };
-            lease.run(async move {
-            let _access = inner.access().await;
-            let Some(mut stream) = inner.take_for_iteration() else {
-                return Err(PyStopAsyncIteration::new_err(()));
-            };
-            match stream.recv().await {
-                Ok(Some(event)) => {
-                    drop(stream);
-                    Python::attach(|py| start_conversation_response_event_stream_to_py(py, &event))
-                }
-                Ok(None) => {
-                    stream.discard();
-                    Err(PyStopAsyncIteration::new_err(()))
-                }
-                Err(error) => {
-                    stream.discard();
-                    let code = match error.as_service_error() {
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::AccessDeniedException(_)) => Some("AccessDeniedException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::ResourceNotFoundException(_)) => Some("ResourceNotFoundException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::ValidationException(_)) => Some("ValidationException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::ThrottlingException(_)) => Some("ThrottlingException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::InternalServerException(_)) => Some("InternalServerException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::ConflictException(_)) => Some("ConflictException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::DependencyFailedException(_)) => Some("DependencyFailedException"),
-                        Some(aws_sdk_lexruntimev2::types::error::StartConversationResponseEventStreamError::BadGatewayException(_)) => Some("BadGatewayException"),
-                        _ => None,
+            lease
+                .run(async move {
+                    let _access = inner.access().await;
+                    let Some(mut stream) = inner.take_for_iteration() else {
+                        return Err(PyStopAsyncIteration::new_err(()));
                     };
-
-                    Err(Python::attach(|py| sdk_error_to_py_with_code(py, &error, &context, code)))
-                }
-            }
-            }).await.unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
+                    match stream.recv().await {
+                        Ok(Some(event)) => {
+                            drop(stream);
+                            Python::attach(|py| {
+                                start_conversation_response_event_stream_to_py(py, &event)
+                            })
+                        }
+                        Ok(None) => {
+                            stream.discard();
+                            Err(PyStopAsyncIteration::new_err(()))
+                        }
+                        Err(error) => {
+                            stream.discard();
+                            Err(Python::attach(|py| {
+                                stream_sdk_error_to_py(py, &error, &context)
+                            }))
+                        }
+                    }
+                })
+                .await
+                .unwrap_or_else(|| Err(PyStopAsyncIteration::new_err(())))
         })
     }
 }

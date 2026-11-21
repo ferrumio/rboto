@@ -121,6 +121,33 @@ def align(
             operation=True,
         )
     models = {_normalized(shape.name): shape for shape in service.shapes.values()}
+    query_errors = bool(
+        {"aws.protocols#awsQuery", "aws.protocols#awsQueryCompatible"} & set(service.protocols)
+    )
+    for operation in service.operations:
+        if operation.rust_name not in crate.operations:
+            continue
+        codes = crate.operation_error_codes.get(operation.rust_name)
+        if codes is None:
+            semantics.problems.append(f"{operation.name}: missing SDK error-code mapping")
+            continue
+        decoded: set[str] = set()
+        for code, rust_error in codes:
+            shape = models.get(_normalized(rust_error))
+            if shape is None or not shape.error:
+                semantics.problems.append(f"{operation.name}: unmodeled SDK error {rust_error}")
+                continue
+            decoded.add(shape.shape_id)
+            expected_code = (
+                shape.query_error_code if query_errors and shape.query_error_code else shape.name
+            )
+            if code != expected_code:
+                semantics.problems.append(
+                    f"{operation.name}.{shape.name}: error code differs "
+                    f"(model={expected_code!r}, SDK={code!r})"
+                )
+        for error in sorted(set(operation.errors) - decoded):
+            semantics.problems.append(f"{operation.name}: modeled error missing from SDK: {error}")
     for rust_type in crate.types.values():
         shape = models.get(_normalized(rust_type.name))
         if shape is None:
